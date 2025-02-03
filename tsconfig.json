@@ -18,7 +18,14 @@
     "target": "esnext",
     "useDefineForClassFields": true,
     "strictNullChecks": false,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "baseUrl": ".",
+    "paths": {
+      "@frontend/types": ["src/client/types.ts"],
+      "@backend/types": ["src/server/types.ts"],
+      "@backend/db/models": ["src/server/db/models/index.ts"],
+      "@types": ["src/types.ts"]
+    }
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }],

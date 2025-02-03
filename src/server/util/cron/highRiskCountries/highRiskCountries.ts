@@ -30,7 +30,7 @@ export const getHighRiskCountries = async () => {
 
   for (const country of countries) {
     // eslint-disable-next-line no-await-in-loop
-    const totalRisk = await calculateTotalRisk(country.code)
+    const totalRisk = await calculateTotalRisk(country.iso2Code)
     if (totalRisk === 3) {
       highRiskCountries.push(country)
     }

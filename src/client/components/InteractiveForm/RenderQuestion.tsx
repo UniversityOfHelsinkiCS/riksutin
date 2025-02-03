@@ -1,17 +1,18 @@
 /* eslint-disable no-nested-ternary */
 import React from 'react'
-import { Box, Typography } from '@mui/material'
-import { Locales, PossibleChoiceTypes, Question } from '@backend/types'
 import { UseFormWatch } from 'react-hook-form'
-
 import { useTranslation } from 'react-i18next'
+
+import { Box, Typography } from '@mui/material'
+
+import type { Locales, PossibleChoiceTypes, Question } from '@types'
+import type { InputProps } from '@frontend/types'
+
 import useLoggedInUser from '../../hooks/useLoggedInUser'
 import MultiChoice from '../QuestionTypes/MultiChoice'
 import SingleChoice from '../QuestionTypes/SingleChoice'
 import Text from '../QuestionTypes/Text'
 import ShowMore from '../Common/ShowMore'
-
-import { InputProps } from '../../types'
 
 import styles from '../../styles'
 import useCountries from '../../hooks/useCountries'
@@ -70,7 +71,7 @@ const RenderQuestion = ({
   const selectedCountry = watch('8')
   const selectedCountryCode = countries.find(
     (country) => country.name === selectedCountry
-  )?.code
+  )?.iso2Code
 
   if (question.visibility?.options) {
     const [...options] = question.visibility.options

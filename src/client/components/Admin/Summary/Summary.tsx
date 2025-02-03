@@ -23,26 +23,23 @@ import useFaculties from '../../../hooks/useFaculties'
 import { extraOrganisations } from '../../../util/organisations'
 import createTableData from './utils'
 
+import type { TableValues } from './utils'
+
 const { riskColors } = styles
 
-type TableValues = {
-  [key: string]: any
+type TableProps = {
+  tableValues: TableValues[]
+  questionTitles: TableValues
 }
 
-const additionalColumnNames = {
+const additionalColumnNames: TableValues = {
   id: 'ID',
   date: 'Päivämäärä',
   total: 'Kokonaisriskitaso',
   faculty: 'Tiedekunta',
 }
 
-const Table = ({
-  tableValues,
-  questionTitles,
-}: {
-  tableValues: TableValues[]
-  questionTitles: { [key: string]: string }
-}) => {
+const Table = ({ tableValues, questionTitles }: TableProps) => {
   const deleteMutation = useDeleteEntryMutation()
 
   const columns = useMemo<MRT_ColumnDef<TableValues>[]>(
@@ -50,8 +47,7 @@ const Table = ({
       tableValues.length
         ? Object.keys(tableValues[0]).map((columnId) => ({
             header:
-              (questionTitles[columnId] ||
-                (additionalColumnNames as TableValues)[columnId]) ??
+              (questionTitles[columnId] || additionalColumnNames[columnId]) ??
               columnId,
             accessorKey: columnId,
             id: columnId,
@@ -61,11 +57,7 @@ const Table = ({
                 sx={() => ({
                   ...(columnId === 'total' && {
                     backgroundColor:
-                      cell.getValue<number>() === 1
-                        ? riskColors[1]
-                        : cell.getValue<number>() === 2
-                        ? riskColors[2]
-                        : riskColors[3],
+                      riskColors[cell.getValue<number>()] ?? riskColors[3],
                     borderRadius: '0.25rem',
                     fontWeight: 'bold',
                     p: '0.75rem',

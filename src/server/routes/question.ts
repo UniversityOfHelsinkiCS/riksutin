@@ -1,5 +1,7 @@
 import express from 'express'
 
+import type { RequestWithUser } from '@backend/types'
+
 import {
   createQuestion,
   deleteQuestion,
@@ -10,7 +12,6 @@ import {
 import { createOption, deleteOption, updateOption } from '../services/option'
 
 import adminHandler from '../middleware/admin'
-import { RequestWithUser } from '../types'
 
 const questionRouter = express.Router()
 

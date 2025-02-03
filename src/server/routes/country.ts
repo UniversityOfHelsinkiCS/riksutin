@@ -1,5 +1,8 @@
 import express from 'express'
 
+import type { BaseCountry, CountryData } from '@types'
+import type { Info, FullCountry } from '@backend/types'
+
 import { getHighRiskCountries } from '../util/cron/highRiskCountries/highRiskCountries'
 import { get } from '../util/redis'
 import { fetchData } from '../data/worldbank/util'
@@ -8,32 +11,32 @@ import fetchSafetyLevelData from '../data/safetyLevel'
 import getCountryUniversities from '../data/whed/countryUniversities'
 import fetchSanctionsData from '../data/sanctions/sanctionsMap'
 import parseAcademicFreedom from '../data/academicfreedom/parseAcademicFreedom'
-import { CountryData } from '../types'
-import { Info, Country } from '../data/worldbank/types'
 import parseRuleOfLaw from '../data/ruleOfLaw/parseRuleOfLaw'
 import parseHumanDevelopment from '../data/humanDevelopment/parseHumanDevelopment'
 
-type Response = [Info, Country[]]
+type Response = [Info, FullCountry[]]
 
-export const getCountries = async () => {
+export const getCountries = async (): Promise<BaseCountry[]> => {
   const [info, data]: Response = await fetchData(`countries`)
 
   const filtered = data.filter(({ region }) => region.value !== 'Aggregates')
 
   const countries = filtered.map(({ name, iso2Code }) => ({
     name,
-    code: iso2Code,
+    iso2Code,
   }))
 
   return countries
 }
 
-export const getCountryData = async (code: string | undefined) => {
+export const getCountryData = async (
+  code: string | undefined
+): Promise<CountryData> => {
   if (!code) return null
   const countries = await getCountries()
 
   const countryName = countries.find(
-    (country) => country.code === code.toUpperCase()
+    (country) => country.iso2Code === code.toUpperCase()
   )?.name
 
   const corruption = await getCountryIndicator(code, 'CC.PER.RNK')
@@ -45,7 +48,7 @@ export const getCountryData = async (code: string | undefined) => {
   const academicfreedom = parseAcademicFreedom(code)
   const ruleOfLaw = parseRuleOfLaw(countryName)
 
-  const country = {
+  const country: CountryData = {
     code,
     corruption,
     stability,
@@ -55,9 +58,10 @@ export const getCountryData = async (code: string | undefined) => {
     sanctions,
     academicfreedom,
     ruleOfLaw,
+    gdpr: null,
   }
 
-  return country as CountryData
+  return country
 }
 
 const countryRouter = express.Router()

@@ -1,7 +1,8 @@
 import express from 'express'
 
+import type { RequestWithUser } from '@backend/types'
+
 import { getFaculties, getUserFaculties } from '../services/faculty'
-import { RequestWithUser } from '../types'
 
 const facultyRouter = express.Router()
 

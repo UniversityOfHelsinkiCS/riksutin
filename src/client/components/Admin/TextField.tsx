@@ -8,7 +8,8 @@ import {
   Merge,
 } from 'react-hook-form'
 import { Box, InputLabel, TextField, Typography } from '@mui/material'
-import { Locales } from '@backend/types'
+
+import type { Locales } from '@types'
 
 // This component is used inside RHF form element
 export const DialogLocalesField = ({

@@ -1,6 +1,6 @@
 import { useMutation } from 'react-query'
 
-import { Locales } from '@backend/types'
+import type { Locales } from '@types'
 
 import useSurvey from './useSurvey'
 

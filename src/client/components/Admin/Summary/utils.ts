@@ -1,5 +1,9 @@
-import { Question } from '@backend/types'
-import { Entry, Faculty } from '../../../types'
+import type { Faculty, Question } from '@types'
+import type { Entry } from '@frontend/types'
+
+export type TableValues = {
+  [key: string]: string
+}
 
 const createTableData = (
   entries: Entry[],
@@ -20,7 +24,7 @@ const createTableData = (
 
   const questionIds = questions.map((q) => q.id)
 
-  const updatedEntries: any[] = []
+  const updatedEntries: TableValues[] = []
 
   entries.forEach((entry) => {
     if (entry.data.answers.selectOrganisation) {
@@ -32,17 +36,19 @@ const createTableData = (
       questionIds.map((id) => [id, entry.data.answers[id] ?? ''])
     )
 
-    const formattedFormData = Object.fromEntries(
+    const formattedFormData: TableValues = Object.fromEntries(
       Object.entries(formData).map((pair) => {
         const idAsInt = parseInt(pair[0], 10)
+
         if (singleChoiceQuestions.includes(idAsInt)) {
-          const text = questions
+          const text: string = questions
             .find((q) => q.id === idAsInt)
             ?.optionData.options.find((o: { id: any }) => o.id === pair[1])
             ?.title.fi
           return [pair[0], text]
         }
-        if (multiChoiceQuestions.includes(idAsInt)) {
+
+        if (multiChoiceQuestions.includes(idAsInt) && Array.isArray(pair[1])) {
           const texts = pair[1].map(
             (value: string) =>
               questions
@@ -53,16 +59,16 @@ const createTableData = (
 
           return [pair[0], texts.join(', ') ?? '']
         }
-        return pair
+        return pair as [string, string]
       })
     )
 
     const additionalValues = {
-      id: entry.id,
+      id: entry.id.toString(),
       date: `${new Date(entry.createdAt).toLocaleDateString()} ${new Date(
         entry.createdAt
       ).toLocaleTimeString()}`,
-      total: entry.data.risks.find((r) => r.id === 'total')?.level,
+      total: entry.data.risks.find((r) => r.id === 'total')?.level.toString(),
     }
 
     const faculty = faculties.find((f) => f.code === entry.data.answers.faculty)

@@ -1,8 +1,8 @@
 import { useQuery } from 'react-query'
 
-import apiClient from '../util/apiClient'
+import type { Entry } from '@frontend/types'
 
-import { Entry } from '../types'
+import apiClient from '../util/apiClient'
 
 export const useEntry = (entryId: string | undefined) => {
   const queryKey = ['entry', entryId]

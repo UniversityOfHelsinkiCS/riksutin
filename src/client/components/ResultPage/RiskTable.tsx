@@ -10,12 +10,12 @@ import {
   Typography,
 } from '@mui/material'
 
-import { Locales } from '@backend/types'
+import type { CountryData, Locales, Risk, RiskData } from '@types'
+
 import getCountryRiskTexts from '../../util/getCountryRiskTexts'
 import RiskElement from './RiskElement'
 
 import styles from '../../styles'
-import { CountryData, Risk, RiskData } from '../../types'
 import { globalNorthCountries } from '../../util/countryLists'
 import useCountries from '../../hooks/useCountries'
 import useResults from '../../hooks/useResults'
@@ -40,7 +40,7 @@ const RiskTable = ({
   const selectedCountry: string = riskData.answers['8']
   const selectedCountryCode = countries.find(
     (country) => country.name === selectedCountry
-  )?.code
+  )?.iso2Code
 
   const totalRisk = riskData.risks.find((risk) => risk.id === 'total')
   const countryRisk = riskData.risks.find((risk) => risk.id === 'country')

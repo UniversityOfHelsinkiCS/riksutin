@@ -1,13 +1,13 @@
+import type { BaseCountry } from '@types'
+
 import { useQuery } from 'react-query'
 
 import apiClient from '../util/apiClient'
 
-import { Country } from '../types'
-
 const useCountries = () => {
   const queryKey = 'countries'
 
-  const query = async (): Promise<Country[]> => {
+  const query = async (): Promise<BaseCountry[]> => {
     const { data } = await apiClient.get('/countries')
 
     return data
@@ -21,7 +21,7 @@ const useCountries = () => {
 export const useHighRiskCountries = () => {
   const queryKey = 'highRiskCountries'
 
-  const query = async (): Promise<Country[]> => {
+  const query = async (): Promise<BaseCountry[]> => {
     const { data } = await apiClient.get('/countries/highrisk')
 
     return data

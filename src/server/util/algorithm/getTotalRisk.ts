@@ -1,5 +1,6 @@
-import { FormValues } from '@frontend/types'
-import { UpdatedCountryData, Risk } from '../../types'
+import type { FormValues, Risk } from '@types'
+import type { UpdatedCountryData } from '@backend/types'
+
 import { totalCountryRisk } from './utils'
 
 const getTotalRisk = (
@@ -15,7 +16,8 @@ const getTotalRisk = (
   const previousCollaborationMultiplier =
     formData[24] === 'noSuccessfulCollaboration' ? 1.2 : 1
 
-  const allRisks = (riskArray.map((value) => value.level) as number[])
+  const allRisks = riskArray
+    .map((value) => value.level)
     .concat(countryRiskValues ? countryRiskValues[1] : [])
     .filter((value) => value)
 

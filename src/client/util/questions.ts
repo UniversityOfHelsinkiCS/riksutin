@@ -1,4 +1,4 @@
-import { Locales, Question } from '@backend/types'
+import type { Locales, Question } from '@types'
 
 const sortQuestions = (questions: Question[], language: keyof Locales) => {
   const sortedQuestions = questions.sort((a, b) => {

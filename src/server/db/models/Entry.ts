@@ -6,8 +6,9 @@ import {
   DataTypes,
 } from 'sequelize'
 
+import type { RiskData } from '@types'
+
 import { sequelize } from '../connection'
-import { RiskData } from '../../types'
 
 class Entry extends Model<
   InferAttributes<Entry>,

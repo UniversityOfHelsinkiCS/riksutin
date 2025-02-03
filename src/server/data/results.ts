@@ -1,4 +1,4 @@
-import { Result } from '../types'
+import type { Result } from '@types'
 
 const getResultData = (): Result[] => [
   {

@@ -1,9 +1,10 @@
 import React from 'react'
 import { Box, Stack } from '@mui/material'
 
+import type { InputProps } from '@frontend/types'
+
 import ResetForm from './ResetForm'
 
-import { InputProps } from '../../types'
 import styles from '../../styles'
 
 const SurveyButtons = ({ children }: InputProps) => {

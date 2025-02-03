@@ -1,5 +1,4 @@
-import { Locales, Result } from '@backend/types'
-import { FormValues, Risk } from '@frontend/types'
+import type { FormValues, Locales, Result, Risk } from '@types'
 
 const getRiskTexts = (
   risks: Risk[],

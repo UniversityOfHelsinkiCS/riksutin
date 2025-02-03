@@ -1,12 +1,8 @@
-import { Locales, Question, User } from '@backend/types'
 import { Control, UseFormWatch, UseFormRegister } from 'react-hook-form'
 
-import { FORM_DATA_KEY } from '../config'
+import type { FormValues, Locales, Question, RiskData, User } from '@types'
 
-export interface Faculty {
-  code: string
-  name: Locales
-}
+import { FORM_DATA_KEY } from '../config'
 
 export interface InputProps {
   control?: Control<any>
@@ -21,13 +17,7 @@ export interface InputProps {
   defaultValue?: string
 }
 
-export interface FormValues {
-  [key: number]: any
-  faculty: string
-  selectOrganisation: string
-}
-
-export type SurveySave = typeof FORM_DATA_KEY
+type SurveySave = typeof FORM_DATA_KEY
 
 export interface PersistForm {
   value: FormValues
@@ -52,7 +42,7 @@ export interface Survey {
   updatedAt?: Date
 }
 
-export interface Entry {
+export type Entry = {
   id: number
   surveyId: number
   userId: string
@@ -64,42 +54,4 @@ export interface Entry {
   createdAt: string
   survey: Survey
   User: User
-}
-
-export interface Risk {
-  id: string
-  title: string
-  level: any
-  infoText?: string
-}
-
-export interface RiskData {
-  answers: FormValues
-  risks: Risk[]
-  country: CountryData[]
-  updatedData?: {
-    answers: FormValues
-    risks: Risk[]
-    country: CountryData[]
-    createdAt: string
-  }[]
-}
-
-export type Country = {
-  code: string
-  name: string
-}
-
-export type CountryData = {
-  academicfreedom: number
-  code: string
-  corruption: number
-  stability: number
-  hci: number
-  safetyLevel: number
-  universities: string[]
-  sanctions: object[] | number
-  gdpr?: number | null
-  createdAt?: string
-  ruleOfLaw?: number
 }

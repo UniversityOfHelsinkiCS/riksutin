@@ -1,8 +1,8 @@
+import type { CountryData } from '@types'
+
 import { useQuery } from 'react-query'
 
 import apiClient from '../util/apiClient'
-
-import { CountryData } from '../types'
 
 const useCountry = (code: string | undefined) => {
   const queryKey = ['country', code]

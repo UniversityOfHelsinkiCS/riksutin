@@ -1,6 +1,6 @@
 import express from 'express'
 
-import { RequestWithUser } from '../types'
+import type { RequestWithUser } from '@backend/types'
 
 const userRouter = express.Router()
 

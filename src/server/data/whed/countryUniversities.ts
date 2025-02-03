@@ -41,7 +41,7 @@ const parseHTML = (html: string): string[] => {
 
   const universityNames = [...universities]
     .map((university) => university?.textContent?.trim())
-    .filter((name) => name && !filterList.includes(name)) as string[]
+    .filter((name) => name && !filterList.includes(name))
 
   return universityNames
 }

@@ -1,5 +1,4 @@
-import { Country } from '@frontend/types'
-import { RiskData, FormValues } from '../../types'
+import type { BaseCountry, FormValues, RiskData } from '@types'
 
 import { getQuestions } from '../../services/question'
 import { getCountries, getCountryData } from '../../routes/country'
@@ -8,13 +7,13 @@ import getOtherRisks from './getOtherRisks'
 import getTotalRisk from './getTotalRisk'
 
 const createRiskData = async (formData: FormValues) => {
-  const countries: Country[] = await getCountries()
+  const countries: BaseCountry[] = await getCountries()
   const questions = await getQuestions('1')
 
   const selectedCountry: string = formData['8']
   const selectedCountryCode = countries?.find(
     (country) => country.name === selectedCountry
-  )?.code
+  )?.iso2Code
 
   const countryData = await getCountryData(selectedCountryCode)
 

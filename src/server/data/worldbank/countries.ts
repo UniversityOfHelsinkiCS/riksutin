@@ -1,7 +1,7 @@
-import { Info, Country } from './types'
+import type { Info, FullCountry } from '@backend/types'
 import { fetchData } from './util'
 
-type Response = [Info, Country[]]
+type Response = [Info, FullCountry[]]
 
 const getCountries = async () => {
   const [info, data]: Response = await fetchData(`countries`)

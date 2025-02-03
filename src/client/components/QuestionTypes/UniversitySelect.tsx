@@ -4,10 +4,10 @@ import { Autocomplete, Box, Button, TextField, Typography } from '@mui/material'
 
 import { useTranslation } from 'react-i18next'
 
-import { Locales, Question } from '@backend/types'
+import type { Locales, Question } from '@types'
+import type { InputProps } from '@frontend/types'
 
 import useCountry from '../../hooks/useCountryData'
-import { InputProps } from '../../types'
 import LoadingProgress from '../Common/LoadingProgress'
 import ShowMore from '../Common/ShowMore'
 

@@ -1,4 +1,4 @@
-import { Faculty } from '../types'
+import type { Faculty } from '@types'
 
 export const extraOrganisations: Faculty[] = [
   {

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Box, Typography } from '@mui/material'
 
-import { Question, Locales } from '@backend/types'
+import type { Question, Locales } from '@types'
 
 import useSurvey from '../../../hooks/useSurvey'
 import useQuestions from '../../../hooks/useQuestions'

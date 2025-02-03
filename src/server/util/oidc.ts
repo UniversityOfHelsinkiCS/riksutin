@@ -7,6 +7,9 @@ import {
 } from 'openid-client'
 import passport from 'passport'
 
+import type { User as UserType } from '@types'
+import type { UserInfo } from '@backend/types'
+
 import { inE2EMode } from '../../config'
 import {
   OIDC_ISSUER,
@@ -14,7 +17,6 @@ import {
   OIDC_CLIENT_SECRET,
   OIDC_REDIRECT_URI,
 } from './config'
-import { UserInfo, User as UserType } from '../types'
 import { User } from '../db/models'
 
 const params = {

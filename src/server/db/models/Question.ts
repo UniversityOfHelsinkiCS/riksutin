@@ -6,9 +6,9 @@ import {
   DataTypes,
 } from 'sequelize'
 
-import { sequelize } from '../connection'
+import type { Locales, OptionData, Visibility } from '@types'
 
-import { Visibility, OptionData, Locales } from '../../types'
+import { sequelize } from '../connection'
 
 class Question extends Model<
   InferAttributes<Question>,

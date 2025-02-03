@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box, Typography } from '@mui/material'
 
-import { Locales } from '@backend/types'
+import type { Locales } from '@types'
 
 import useSurvey from '../../../hooks/useSurvey'
 import useQuestions from '../../../hooks/useQuestions'

@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query'
 
-import { Question } from '@backend/types'
+import { Question } from '@types'
 
 import apiClient from '../util/apiClient'
 

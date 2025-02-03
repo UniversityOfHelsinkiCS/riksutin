@@ -5,11 +5,9 @@ import { Box, Typography, Button } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { enqueueSnackbar } from 'notistack'
 
-import { ChoiceType, Locales, Question } from '@backend/types'
+import type { ChoiceType, Locales, OptionUpdates, Question } from '@types'
 
 import { useEditOptionMutation } from '../../../hooks/useOptionMutation'
-
-import { OptionUpdates } from '../../../../server/types'
 
 type Option<A> = A extends readonly (infer T)[] ? T : never
 

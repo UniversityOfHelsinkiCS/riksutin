@@ -6,8 +6,9 @@ import {
   DataTypes,
 } from 'sequelize'
 
+import type { Locales } from '@types'
+
 import { sequelize } from '../connection'
-import { Locales } from '../../types'
 
 class Result extends Model<
   InferAttributes<Result>,

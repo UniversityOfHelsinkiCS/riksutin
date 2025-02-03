@@ -1,6 +1,6 @@
-import { Entry, Survey, User } from '../db/models'
+import type { EntryValues } from '@backend/types'
 
-import { EntryValues } from '../types'
+import { Entry, Survey, User } from '../db/models'
 
 import NotFoundError from '../errors/NotFoundError'
 import UnauthorizedError from '../errors/UnauthorizedError'

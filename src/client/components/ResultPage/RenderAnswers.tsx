@@ -1,13 +1,14 @@
 /* eslint-disable no-nested-ternary */
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Locales } from '@backend/types'
 import { Box, Typography } from '@mui/material'
+
+import type { FormValues, Locales } from '@types'
+import type { Survey } from '@frontend/types'
 
 import { extraOrganisations } from '../../util/organisations'
 
 import styles from '../../styles'
-import { FormValues, Survey } from '../../types'
 import useFaculties from '../../hooks/useFaculties'
 
 const { resultStyles } = styles

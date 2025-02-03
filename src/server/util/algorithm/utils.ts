@@ -1,5 +1,6 @@
-import { FormValues } from '@frontend/types'
-import { Question, UpdatedCountryData, CountryData } from '@backend/types'
+import type { CountryData, FormValues, Question } from '@types'
+import type { UpdatedCountryData } from '@backend/types'
+
 import {
   euCountries,
   eeaCountries,
@@ -41,9 +42,7 @@ export const totalCountryRisk = (
   const { code, createdAt, universities, gdpr, ...numberRisks } =
     updatedCountryData
 
-  const countryRisksFiltered: number[] = Object.values(numberRisks).concat(
-    gdpr as number
-  )
+  const countryRisksFiltered: number[] = Object.values(numberRisks).concat(gdpr)
 
   if (!countryRisksFiltered || countryRisksFiltered.length === 0) return null
 

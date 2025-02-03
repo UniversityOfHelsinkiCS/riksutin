@@ -13,7 +13,7 @@ import {
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import EditIcon from '@mui/icons-material/Edit'
 
-import { Question } from '@backend/types'
+import type { Question } from '@types'
 
 interface QuestionMenuProps {
   question: Question

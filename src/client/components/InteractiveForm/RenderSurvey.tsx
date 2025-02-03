@@ -5,7 +5,8 @@ import { useTranslation } from 'react-i18next'
 import { Box, Button, Typography } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
 
-import { Locales, Question } from '@backend/types'
+import type { Locales, Question } from '@types'
+
 import { Control, UseFormWatch } from 'react-hook-form/dist/types'
 import { useFormState } from 'react-hook-form'
 import RenderQuestion from './RenderQuestion'

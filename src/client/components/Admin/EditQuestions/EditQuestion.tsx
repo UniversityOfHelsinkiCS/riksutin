@@ -5,7 +5,7 @@ import { Box, Typography, Button } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { enqueueSnackbar } from 'notistack'
 
-import { Locales, Question } from '@backend/types'
+import type { Locales, Question } from '@types'
 
 import {
   useDeleteQuestionMutation,

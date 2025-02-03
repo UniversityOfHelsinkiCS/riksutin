@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Locales } from '@backend/types'
+import type { Locales } from '@types'
 
 const SummaryEmailTemplate = ({ language }: { language: keyof Locales }) => {
   if (language === 'en') {

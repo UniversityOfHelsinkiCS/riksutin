@@ -7,10 +7,10 @@ import {
   NonAttribute,
 } from 'sequelize'
 
+import type { Locales } from '@types'
+
 import { sequelize } from '../connection'
 import Question from './Question'
-
-import { Locales } from '../../types'
 
 class Survey extends Model<
   InferAttributes<Survey>,

@@ -1,5 +1,7 @@
 import express from 'express'
 
+import type { RequestWithUser } from '@backend/types'
+
 import adminHandler from '../middleware/admin'
 import {
   createResult,
@@ -7,8 +9,6 @@ import {
   getResults,
   updateResult,
 } from '../services/result'
-
-import { RequestWithUser } from '../types'
 
 const resultRouter = express.Router()
 

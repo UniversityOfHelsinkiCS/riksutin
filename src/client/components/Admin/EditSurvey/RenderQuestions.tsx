@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box } from '@mui/material'
 
-import { Locales, Question } from '@backend/types'
+import type { Locales, Question } from '@types'
 
 import QuestionItem from './QuestionItem'
 
