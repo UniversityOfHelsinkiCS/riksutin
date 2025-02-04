@@ -28,6 +28,10 @@ jobs:
 
       redis:
         image: redis:7-alpine
+
+    steps:
+      - name: Empty echo
+        run: echo ""
   
   playwright:
     needs: setup-services
