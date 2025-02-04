@@ -12,8 +12,6 @@ jobs:
           context: .
           args:
             - E2E=true
-        environment:
-          - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
         command: ['npm', 'run', 'start:test']
         ports:
           - 8000:8000
