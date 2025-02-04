@@ -3,8 +3,35 @@ name: E2E Tests
 on: [workflow_call]
 
 jobs:
+  setup-services:
+    runs-on: ubuntu-latest
 
+    services:
+      app:
+        build:
+          context: .
+          args:
+            - E2E=true
+        environment:
+          - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
+        command: ['npm', 'run', 'start:test']
+        ports:
+          - 8000:8000
+        container_name: riksutin_test
+
+      postgres:
+        image: postgres:15.7
+        environment:
+          - POSTGRES_PASSWORD=postgres
+        ports:
+          - 5432:5432
+
+      redis:
+        image: redis:7-alpine
+  
   playwright:
+    needs: setup-services
+
     timeout-minutes: 60
     runs-on: ubuntu-latest
 
@@ -12,13 +39,10 @@ jobs:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
       with:
-        node-version: 18
+        node-version: 20
 
     - name: Install dependencies
       run: npm ci
-
-    - name: Start the application
-      run: docker compose -f docker-compose.ci.yml up -d
 
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
