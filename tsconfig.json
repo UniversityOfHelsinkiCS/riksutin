@@ -21,6 +21,9 @@
       "@server/types": ["src/server/types.ts"],
       "@dbmodels": ["src/server/db/models/index.ts"],
 
+      "@userconfig": ["config/index.ts"],
+      "@userservices/*": ["config/services/*"],
+
       "@config": ["src/config.ts"],
       "@server/config": ["src/server/util/config.ts"],
       "@validators/*": ["src/validators/*"]
