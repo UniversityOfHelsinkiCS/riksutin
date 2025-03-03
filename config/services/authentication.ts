@@ -54,13 +54,13 @@ const verifyLogin = async (
   } = userinfo as unknown as UserInfo
 
   const user: UserType = {
-    username,
     id: id || username,
+    username,
+    firstName,
+    lastName,
     email,
     iamGroups,
     language,
-    firstName,
-    lastName,
     isAdmin: checkAdmin(iamGroups),
   }
 

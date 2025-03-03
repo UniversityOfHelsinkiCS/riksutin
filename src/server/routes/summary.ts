@@ -1,6 +1,6 @@
 import express from 'express'
 
-import sendEmail from '../mailer/pate'
+import sendEmail from '../util/mailer'
 
 const summaryRouter = express.Router()
 

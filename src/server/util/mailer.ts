@@ -1,4 +1,4 @@
-import { default as implSendEmail } from '@userservices/pate'
+import { default as implSendEmail } from '@userservices/mailer'
 
 const sendEmail = async () => {}
 

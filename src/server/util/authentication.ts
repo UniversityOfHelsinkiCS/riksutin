@@ -1,4 +1,4 @@
-import implSetupAuthentication from '@userservices/oidc'
+import implSetupAuthentication from '@userservices/authentication'
 
 const setupAuthentication = () => {}
 

@@ -80,7 +80,7 @@
     "selectedCountry": "Valitsemasi yhteistyökumppanin sijaintimaa"
   },
   "contact": {
-    "pateErrorMessage": "Failed to connect to the server"
+    "emailErrorMessage": "Failed to connect to the server"
   },
   "userPage": {
     "userPageButton": "Your profile",

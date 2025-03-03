@@ -72,7 +72,7 @@ const SendSummaryEmail = () => {
         })
       })
       .catch(() => {
-        enqueueSnackbar(t('contact:pateErrorMessage'), { variant: 'error' })
+        enqueueSnackbar(t('contact:emailErrorMessage'), { variant: 'error' })
       })
   }
 

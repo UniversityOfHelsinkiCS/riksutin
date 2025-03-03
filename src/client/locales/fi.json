@@ -79,7 +79,7 @@
     "selectedCountry": "Valitsemasi yhteistyökumppanin sijaintimaa"
   },
   "contact": {
-    "pateErrorMessage": "Palvelimeen ei saatu yhteyttä"
+    "emailErrorMessage": "Palvelimeen ei saatu yhteyttä"
   },
   "userPage": {
     "userPageButton": "Omat tiedot",

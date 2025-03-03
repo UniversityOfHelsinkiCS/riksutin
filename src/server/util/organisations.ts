@@ -1,7 +1,7 @@
 import {
   getOrganisationData as implGetOrganisationData,
   getUserOrganisations as implGetUserOrganisationData,
-} from '@userservices/jami'
+} from '@userservices/organisations'
 
 const defaultGetOrganisationData = () => {
   return []
