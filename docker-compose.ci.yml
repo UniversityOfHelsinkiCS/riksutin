@@ -16,7 +16,7 @@ services:
     container_name: riksutin_test
 
   db:
-    image: postgres:15.7
+    image: postgres:15.12
     environment:
       - POSTGRES_PASSWORD=postgres
     ports:
