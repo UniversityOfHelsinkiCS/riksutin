@@ -91,7 +91,8 @@
     "projectName": "Name of the collaboration project",
     "updateRiskAssessment": "Update risk assessment",
     "updateSuccess": "Risks were updated successfully!",
-    "backButton": "Return to summary page"
+    "backButton": "Return to summary page",
+    "printButton": "Create PDF"
   },
   "admin": {
     "summaryTab": "Summary",
