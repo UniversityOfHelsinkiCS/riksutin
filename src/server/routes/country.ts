@@ -1,11 +1,9 @@
 import express from 'express'
 
 import type { CountryData } from '@types'
-import type { Info, FullCountry } from '@server/types'
 
 import { getHighRiskCountries } from '../util/cron/highRiskCountries/highRiskCountries'
 import { get } from '../util/redis'
-import { fetchData } from '../data/worldbank/util'
 import getCountryIndicator from '../data/worldbank/indicator'
 import fetchSafetyLevelData from '../data/safetyLevel'
 import getCountryUniversities from '../data/whed/countryUniversities'
@@ -13,23 +11,9 @@ import fetchSanctionsData from '../data/sanctions/sanctionsMap'
 import parseAcademicFreedom from '../data/academicfreedom/parseAcademicFreedom'
 import parseRuleOfLaw from '../data/ruleOfLaw/parseRuleOfLaw'
 import parseHumanDevelopment from '../data/humanDevelopment/parseHumanDevelopment'
+import { getCountries } from '../services/countries'
 
-type Response = [Info, FullCountry[]]
-
-export const getCountries = async () => {
-  const [_, data]: Response = await fetchData('countries')
-
-  const filtered = data.filter(({ region }) => region.value !== 'Aggregates')
-
-  const countries = filtered.map(({ name, iso2Code }) => ({
-    name,
-    iso2Code,
-  }))
-
-  return countries
-}
-
-export const getCountryData = async (code: string | undefined): Promise<CountryData> => {
+export const getCountryData = async (code: string | undefined): Promise<CountryData | null> => {
   if (!code) return null
   const countries = await getCountries()
 

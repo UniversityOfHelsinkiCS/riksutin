@@ -11,7 +11,7 @@ import useQuestions from '../../../hooks/useQuestions'
 import useDeleteEntryMutation from '../../../hooks/useDeleteEntryMutation'
 import styles from '../../../styles'
 import useFaculties from '../../../hooks/useFaculties'
-import { extraOrganisations } from '../../../util/organisations'
+import { extraOrganisations } from '@domain/organisations'
 import createTableData from './utils'
 
 import type { TableValues } from './utils'
@@ -37,7 +37,7 @@ const Table = ({ tableValues, questionTitles }: TableProps) => {
     () =>
       tableValues.length
         ? Object.keys(tableValues[0]).map(columnId => ({
-            header: (questionTitles[columnId] || additionalColumnNames[columnId]) ?? columnId,
+            header: questionTitles[columnId] ?? additionalColumnNames[columnId] ?? columnId,
             accessorKey: columnId,
             id: columnId,
             Cell: ({ cell, row }) => (
@@ -73,7 +73,7 @@ const Table = ({ tableValues, questionTitles }: TableProps) => {
     if (!window.confirm('Haluatko poistaa valitun riskiarvion?')) return
 
     try {
-      deleteMutation.mutate(row.original.id.toString())
+      deleteMutation.mutate(row.original.id!.toString())
       enqueueSnackbar('Riskiarvio poistettu', { variant: 'success' })
     } catch (error: any) {
       enqueueSnackbar(error.message, { variant: 'error' })

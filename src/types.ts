@@ -108,7 +108,7 @@ export interface RiskData {
     answers: FormValues
     risks: Risk[]
     country: CountryData[]
-    createdAt: string
+    createdAt?: string
   }[]
 }
 

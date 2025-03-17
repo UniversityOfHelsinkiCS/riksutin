@@ -1,7 +1,8 @@
 import logger from '../../logger'
 import scheduleCronJob from '../schedule'
-import { getCountries, getCountryData } from '../../../routes/country'
+import { getCountryData } from '../../../routes/country'
 import { set } from '../../redis'
+import { getCountries } from '../../../services/countries'
 
 const calculateTotalRisk = async (countryCode: string) => {
   const countryData = await getCountryData(countryCode)

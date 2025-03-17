@@ -11,7 +11,7 @@ import useUserFaculties from '../../hooks/useUserFaculties'
 
 import ShowMore from './ShowMore'
 
-import { extraOrganisations, organisationInfos } from '../../util/organisations'
+import { extraOrganisations, organisationInfos } from '@domain/organisations'
 
 import styles from '../../styles'
 

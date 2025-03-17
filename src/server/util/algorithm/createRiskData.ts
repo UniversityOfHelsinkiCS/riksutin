@@ -1,10 +1,11 @@
 import type { BaseCountry, FormValues, RiskData } from '@types'
 
 import { getQuestions } from '../../services/question'
-import { getCountries, getCountryData } from '../../routes/country'
+import { getCountryData } from '../../routes/country'
 import getCountryRisks from './getCountryRisks'
 import getOtherRisks from './getOtherRisks'
 import getTotalRisk from './getTotalRisk'
+import { getCountries } from '../../services/countries'
 
 const createRiskData = async (formData: FormValues) => {
   const countries: BaseCountry[] = await getCountries()

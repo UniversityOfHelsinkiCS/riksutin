@@ -1,26 +1,30 @@
-import { useTranslation } from 'react-i18next'
-import { Box, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from '@mui/material'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React from 'react'
 
 import type { CountryData, Locales, Risk, RiskData } from '@types'
 
-import getCountryRiskTexts from '../../util/getCountryRiskTexts'
 import RiskElement from './RiskElement'
 
-import styles from '../../styles'
-import { globalNorthCountries } from '../../util/countryLists'
-import useCountries from '../../hooks/useCountries'
-import useResults from '../../hooks/useResults'
-import getRiskTexts from '../../util/getRiskTexts'
+import styles from './styles'
+import { useComponents } from './context'
+import { globalNorthCountries } from '@domain/countryLists'
+import getRiskTexts from '@domain/getRiskTexts'
+import getCountryRiskTexts from '@domain/getCountryRiskTexts'
 
 const { resultStyles } = styles
 
-const RiskTable = ({ riskData, countryData }: { riskData: RiskData; countryData: CountryData }) => {
-  const { t, i18n } = useTranslation()
-  const { language } = i18n
-  const { results } = useResults(1)
-  const { countries, isLoading } = useCountries()
-
-  if (!riskData || !countries || isLoading || !results) return null
+const RiskTable = ({
+  riskData,
+  countryData,
+  countries,
+  results,
+}: {
+  riskData: RiskData
+  countryData: CountryData
+  countries: any
+  results: any
+}) => {
+  const { Div, Typography, TableContainer, Table, TableBody, TableRow, TableCell, t, language } = useComponents()
 
   const selectedCountry: string = riskData.answers['8']
   const selectedCountryCode = countries.find(country => country.name === selectedCountry)?.iso2Code
@@ -43,7 +47,7 @@ const RiskTable = ({ riskData, countryData }: { riskData: RiskData; countryData:
 
   if (selectedCountryCode === 'CN') {
     countryInfoText += t('countrySpecificTexts:CN')
-  } else if (!globalNorthCountries.includes(selectedCountryCode!)) {
+  } else if (!globalNorthCountries.includes(selectedCountryCode)) {
     countryInfoText += t('countrySpecificTexts:globalSouth')
   }
 
@@ -53,10 +57,10 @@ const RiskTable = ({ riskData, countryData }: { riskData: RiskData; countryData:
 
   return (
     <>
-      <Typography data-cy="result-section-title" variant="h6" component="div">
+      <Typography data-cy="result-section-title" variant="h6" style={{ marginBottom: '20px', fontSize: '24px' }}>
         {t('results:riskTableTitle')}
       </Typography>
-      <Box sx={resultStyles.resultElementWrapper}>
+      <Div style={resultStyles.resultElementWrapper}>
         <TableContainer>
           <Table
             sx={{
@@ -70,9 +74,9 @@ const RiskTable = ({ riskData, countryData }: { riskData: RiskData; countryData:
               <RiskElement infoText={totalRiskText} title={totalRisk.title} level={totalRisk.level} />
               <TableRow>
                 <TableCell colSpan={3}>
-                  <Box sx={{ paddingTop: '10px', paddingBottom: '10px' }}>
+                  <Div style={{ paddingTop: '10px', paddingBottom: '10px' }}>
                     <Typography variant="body1">{t('riskTable:multiplierInfoText')}</Typography>
-                  </Box>
+                  </Div>
                 </TableCell>
               </TableRow>
               {countryRisksWithTexts && countryRisk && (
@@ -88,7 +92,7 @@ const RiskTable = ({ riskData, countryData }: { riskData: RiskData; countryData:
                       level={risk.level}
                       title={risk.title}
                       infoText={risk.infoText}
-                      style={{ paddingLeft: '30px' }}
+                      style={{ paddingLeft: '10px' }}
                     />
                   ))}
                 </>
@@ -102,7 +106,7 @@ const RiskTable = ({ riskData, countryData }: { riskData: RiskData; countryData:
             </TableBody>
           </Table>
         </TableContainer>
-      </Box>
+      </Div>
     </>
   )
 }
