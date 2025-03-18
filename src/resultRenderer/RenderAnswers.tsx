@@ -6,10 +6,7 @@ import type { Survey } from '@client/types'
 
 import { extraOrganisations } from '@common/organisations'
 
-import styles from './styles'
 import { useComponents } from './context'
-
-const { resultStyles } = styles
 
 const RenderAnswers = ({
   survey,
@@ -62,12 +59,12 @@ const RenderAnswers = ({
       <Typography variant="h6" style={{ fontSize: '24px', marginBottom: '20px' }}>
         {t('results:answerBoxTitle')}
       </Typography>
-      <Div style={resultStyles.resultElementWrapper}>
+      <Div style={{ borderLeft: '1px solid lightgray' }}>
         {survey?.Questions.map(currentQuestion => (
           <Div key={currentQuestion.id}>
             {!currentQuestion.parentId && (
               <>
-                <Div style={resultStyles.card}>
+                <Div style={{ margin: '16px' }}>
                   <Typography style={{ fontWeight: '800' }}>
                     {currentQuestion.id === 8 && resultData[4] === 'multilateral'
                       ? t('questions:additionalPartnerOrganisationCountryQuestion')
@@ -79,10 +76,10 @@ const RenderAnswers = ({
                 </Div>
                 {survey?.Questions.filter(childQuestion => childQuestion.parentId === currentQuestion.id)?.map(
                   childQuestion => (
-                    <Div key={childQuestion.id}>
-                      <Div>
+                    <Div key={childQuestion.id} style={{ margin: '16px' }}>
+                      <Div style={{ borderLeft: '1px solid lightgray' }}>
                         {answers[childQuestion.id] && (
-                          <Div style={resultStyles.answerBox}>
+                          <Div style={{ margin: '16px' }}>
                             <Typography style={{ fontWeight: '800' }}>
                               {childQuestion.title[language as keyof Locales]}
                             </Typography>
@@ -100,14 +97,14 @@ const RenderAnswers = ({
               </>
             )}
             {currentQuestion.id === 6 && answers[21] && (
-              <Div style={resultStyles.answerBox}>
+              <Div style={{ margin: '16px' }}>
                 <Typography style={{ fontWeight: '800' }}>
                   {survey.Questions.find(childQuestion => childQuestion.id === 21)?.title[language as keyof Locales]}
                 </Typography>
               </Div>
             )}
             {currentQuestion.id === 1 && (
-              <Div style={resultStyles.card}>
+              <Div style={{ margin: '16px' }}>
                 <Typography style={{ fontWeight: '800' }}>{t('facultySelect:title')}</Typography>
                 <Typography>
                   {organisations.find(faculty => faculty.code === answers.faculty)?.name[language as keyof Locales]}

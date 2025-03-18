@@ -62,14 +62,7 @@ const RiskTable = ({
       </Typography>
       <Div style={resultStyles.resultElementWrapper}>
         <TableContainer>
-          <Table
-            sx={{
-              width: '80%',
-              '& .MuiTableCell-sizeMedium': {
-                padding: '10px',
-              },
-            }}
-          >
+          <Table>
             <TableBody>
               <RiskElement infoText={totalRiskText} title={totalRisk.title} level={totalRisk.level} />
               <TableRow>
