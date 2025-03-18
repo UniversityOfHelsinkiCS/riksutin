@@ -4,9 +4,9 @@ const getSurveyData = () => ({
   id: 1,
   name: DEFAULT_SURVEY_NAME,
   title: {
-    fi: '## Tervetuloa Riksuttimeen',
-    sv: '## Välkommen till Riksutin',
-    en: '## Welcome to Riksutin',
+    fi: '## Tervetuloa Risk-i:n',
+    sv: '## Välkommen till Risk-i',
+    en: '## Welcome to Risk-i',
   },
   text: {
     fi: '### Tervetuloa käyttämään Helsingin yliopiston kansainvälisen yhteistyön riskiarviointisovellusta. Täyttämällä arvioitavan yhteistyön perustiedot, saat arvion sekä yhteistyön kokonaisriskitasosta että keskeisten kv-yhteistyön yksittäisistä riskeistä. Lisäksi saat ohjeita ja lisätietoja tunnistettujen riskien hallitsemiseksi.  Sovelluksen on tarkoitettu tutkimus-, opetus- ja liikkuvuusyhteistyön arvioimiseen, ja sen käyttäminen muihin tarkoituksiiin ei ole suotavaa. Sovellukseen  liittyviä kommentteja ja kysymyksiä voit lähettää: grp-int-risks@helsinki.fi',
