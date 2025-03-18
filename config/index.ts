@@ -21,8 +21,9 @@ export const PATE_URL = inProduction
   ? 'https://api-toska.apps.ocp-prod-0.k8s.it.helsinki.fi/pate/'
   : 'https://api-toska.apps.ocp-test-0.k8s.it.helsinki.fi/pate/'
 
-// eslint-disable-next-line no-nested-ternary
 const FULL_URL = inProduction ? PRODUCTION_URL : inStaging ? STAGING_URL : DEVELOPMENT_URL
+
+export const TESTER_EMAILS = JSON.parse(process.env.TESTER_EMAILS ?? '[]') as string[]
 
 // EXTERNAL
 import type { InstanceExports } from '@config'

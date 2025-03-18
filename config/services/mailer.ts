@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios'
 
 import { inProduction, appName } from '@config'
-import { PATE_URL } from '@userconfig'
+import { PATE_URL, TESTER_EMAILS } from '@userconfig'
 import logger from 'src/server/util/logger'
 import FormData from 'form-data'
 
@@ -59,13 +59,16 @@ const sendEmail = async (
   // Log attachmentFileId to the console
   if (attachmentFileId) logger.info('Sent ' + attachment?.filename + 'got' + attachmentFileId)
 
+  // Check if the email is being sent to a tester. If so, set dryrun to false
+  const acuallySendInTesting = TESTER_EMAILS.some(email => emails.some(({ to }) => to === email))
+
   const mail = {
     template: {
       from: appName,
       text,
     },
     emails,
-    settings,
+    settings: { ...settings, dryrun: !acuallySendInTesting },
     attachmentFileId,
   }
 
