@@ -14,7 +14,7 @@ import i18n from '../util/i18n'
 import { TFunction } from 'i18next'
 import { DEFAULT_SURVEY_NAME, supportEmail } from '@config'
 
-export const createPdfResultBlob = async (entry: Entry) => {
+export const createPdfResultBuffer = async (entry: Entry) => {
   const t = i18n.getFixedT('en')
 
   const [results, countries, survey, faculties] = await Promise.all([
@@ -44,9 +44,7 @@ export const createPdfResultBlob = async (entry: Entry) => {
     stream.on('error', err => reject(err))
   })
 
-  const blob = new Blob([buffer], { type: 'application/pdf' })
-
-  return blob
+  return buffer
 }
 
 type Country = {

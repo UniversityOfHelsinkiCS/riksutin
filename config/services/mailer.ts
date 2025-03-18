@@ -3,6 +3,7 @@ import axios from 'axios'
 import { inProduction, appName } from '@config'
 import { PATE_URL } from '@userconfig'
 import logger from 'src/server/util/logger'
+import FormData from 'form-data'
 
 const settings = {
   hideToska: false,
@@ -20,7 +21,7 @@ const pateClient = axios.create({
   },
 })
 
-const uploadFile = async (attachment: { filename: string; content: Blob }) => {
+const uploadFile = async (attachment: { filename: string; content: Buffer }) => {
   const formData = new FormData()
   formData.append('file', attachment.content, attachment.filename)
 
@@ -35,7 +36,7 @@ const sendEmail = async (
   targets: string[],
   text: string,
   subject: string,
-  attachment: { filename: string; content: Blob } | null = null
+  attachment: { filename: string; content: Buffer } | null = null
 ) => {
   const emails = targets.map(to => ({ to, subject }))
 

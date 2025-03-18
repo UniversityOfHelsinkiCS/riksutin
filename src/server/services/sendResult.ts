@@ -1,5 +1,5 @@
 import { Entry } from '@dbmodels'
-import { createPdfResultBlob } from './pdfResult'
+import { createPdfResultBuffer } from './pdfResult'
 import i18n from '../util/i18n'
 import sendEmail from '@userservices/mailer'
 import logger from '../util/logger'
@@ -7,7 +7,7 @@ import { inDevelopment } from '@config'
 import fs from 'fs'
 
 export const sendResult = async (entry: Entry, targets: string[]) => {
-  const pdfBlob = await createPdfResultBlob(entry)
+  const pdfBuffer = await createPdfResultBuffer(entry)
 
   logger.info('Generated PDF for entry', { entryId: entry.id })
 
@@ -19,14 +19,13 @@ export const sendResult = async (entry: Entry, targets: string[]) => {
 
   // Save to a file in development
   if (inDevelopment) {
-    const arrayBuffer = await pdfBlob.arrayBuffer()
-    fs.writeFileSync(filename, Buffer.from(arrayBuffer))
+    fs.writeFileSync(filename, pdfBuffer)
     logger.info('DEVELOPMENT: Saved PDF to file', { filename })
     return
   }
 
   await sendEmail(targets, subject, text, {
     filename,
-    content: pdfBlob,
+    content: pdfBuffer,
   })
 }
