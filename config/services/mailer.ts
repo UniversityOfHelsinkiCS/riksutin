@@ -26,7 +26,7 @@ const uploadFile = async (attachment: { filename: string; content: Buffer }) => 
   formData.append('file', attachment.content, attachment.filename)
 
   const response = await pateClient.post('/upload', formData, {
-    headers: { 'Content-Type': 'multipart/form-data' },
+    headers: formData.getHeaders(),
   })
 
   return response.data.fileId // Assuming the API returns a fileId
