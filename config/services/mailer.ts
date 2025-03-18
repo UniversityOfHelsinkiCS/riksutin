@@ -43,24 +43,35 @@ const uploadFile = async (attachment: { filename: string; content: Buffer }) => 
   }
 }
 
+type EmailData = {
+  to: string
+  subject: string
+  attachmentFileId?: string
+}
+
 const sendEmail = async (
   targets: string[],
   text: string,
   subject: string,
   attachment: { filename: string; content: Buffer } | null = null
 ) => {
-  const emails = targets.map(to => ({ to, subject }))
+  const emails: EmailData[] = targets.map(to => ({ to, subject }))
 
-  // Log attachment to the console
-  if (attachment) logger.info('Sending ' + attachment.filename)
+  if (attachment) logger.info('Sending: ' + attachment.filename)
 
   const attachmentFileId = attachment ? await uploadFile(attachment) : undefined
 
-  // Log attachmentFileId to the console
-  if (attachmentFileId) logger.info('Sent ' + attachment?.filename + 'got' + attachmentFileId)
+  if (attachmentFileId) {
+    logger.info('Uploaded: ' + attachment?.filename + ', got: ' + attachmentFileId)
+
+    emails.forEach(email => {
+      email.attachmentFileId = attachmentFileId
+    })
+  }
 
   // Check if the email is being sent to a tester. If so, set dryrun to false
   const acuallySendInTesting = TESTER_EMAILS.some(email => emails.some(({ to }) => to === email))
+  if (acuallySendInTesting) logger.info('Sending email to tester')
 
   const mail = {
     template: {
@@ -69,7 +80,6 @@ const sendEmail = async (
     },
     emails,
     settings: { ...settings, dryrun: !acuallySendInTesting },
-    attachmentFileId,
   }
 
   await pateClient.post('/', mail)
