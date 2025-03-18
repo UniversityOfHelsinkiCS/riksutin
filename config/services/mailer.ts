@@ -19,8 +19,26 @@ const pateClient = axios.create({
   },
 })
 
-const sendEmail = async (targets: string[], text: string, subject: string) => {
+const uploadFile = async (attachment: { filename: string; content: Blob }) => {
+  const formData = new FormData()
+  formData.append('file', attachment.content, attachment.filename)
+
+  const response = await pateClient.post('/upload', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  })
+
+  return response.data.fileId // Assuming the API returns a fileId
+}
+
+const sendEmail = async (
+  targets: string[],
+  text: string,
+  subject: string,
+  attachment: { filename: string; content: Blob } | null = null
+) => {
   const emails = targets.map(to => ({ to, subject }))
+
+  const attachmentFileId = attachment ? await uploadFile(attachment) : undefined
 
   const mail = {
     template: {
@@ -29,6 +47,7 @@ const sendEmail = async (targets: string[], text: string, subject: string) => {
     },
     emails,
     settings,
+    attachmentFileId,
   }
 
   await pateClient.post('/', mail)
