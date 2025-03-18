@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 
 import { inProduction, appName } from '@config'
 import { PATE_URL } from '@userconfig'
@@ -25,11 +25,22 @@ const uploadFile = async (attachment: { filename: string; content: Buffer }) => 
   const formData = new FormData()
   formData.append('file', attachment.content, attachment.filename)
 
-  const response = await pateClient.post('/upload', formData, {
-    headers: formData.getHeaders(),
-  })
+  try {
+    const response = await pateClient.post('/upload', formData, {
+      headers: formData.getHeaders(),
+    })
 
-  return response.data.fileId // Assuming the API returns a fileId
+    return response.data.fileId // Assuming the API returns a fileId
+  } catch (error) {
+    // If the request failed with 4xx, there is an error message in the returned json body
+    if (error instanceof AxiosError && error.response && error.response.status >= 400 && error.response.status < 500) {
+      logger.error('Failed to upload file', error.response.data)
+    } else {
+      logger.error('Failed to upload file', error)
+    }
+
+    throw error
+  }
 }
 
 const sendEmail = async (
