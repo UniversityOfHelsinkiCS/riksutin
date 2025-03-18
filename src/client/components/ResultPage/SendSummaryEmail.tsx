@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import ReactDOMServer from 'react-dom/server'
 import { Controller, useForm } from 'react-hook-form'
 import { enqueueSnackbar } from 'notistack'
 import { useTranslation } from 'react-i18next'
@@ -9,25 +8,18 @@ import { Autocomplete, Box, Button, Chip, TextField, Typography } from '@mui/mat
 
 import { ShareResultEmails, ShareResultsZod } from '@validators/emails'
 
-import type { Locales } from '@types'
 import useLoggedInUser from '../../hooks/useLoggedInUser'
-
-import SummaryEmailTemplate from '../../templates/SummaryEmailTemplate'
 
 import styles from '../../styles'
 import sendEmail from '../../util/mailing'
 
-const SendSummaryEmail = () => {
-  const { t, i18n } = useTranslation()
+const SendSummaryEmail = ({ entryId }: { entryId: string }) => {
+  const { t } = useTranslation()
   const location = useLocation()
   const [isSent, setIsSent] = useState(false)
   const { user, isLoading } = useLoggedInUser()
 
-  const { language } = i18n
-
   const { cardStyles } = styles
-
-  const resultHTML = sessionStorage.getItem('riksutin-session-resultHTML')
 
   const {
     control,
@@ -43,28 +35,13 @@ const SendSummaryEmail = () => {
   })
 
   useEffect(() => {
-    setIsSent(false)
-  }, [resultHTML])
-
-  useEffect(() => {
     if (user?.email) reset({ emails: [user?.email] })
   }, [reset, user])
 
   const onSubmit = ({ emails }: ShareResultEmails) => {
     if (errors?.emails || emails.length === 0) return
 
-    const summaryEmailTemplate = ReactDOMServer.renderToString(
-      <SummaryEmailTemplate language={language as keyof Locales} />
-    )
-
-    const subject = t('results:summaryEmailSubject')
-    const text = `
-    ${summaryEmailTemplate}
-
-    ${resultHTML}
-    `
-
-    sendEmail(emails, text, subject)
+    sendEmail(emails, entryId)
       .then(() => {
         setIsSent(true)
         enqueueSnackbar(t('results:sendSuccess'), {

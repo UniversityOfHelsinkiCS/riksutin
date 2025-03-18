@@ -9,7 +9,7 @@ import { useEntry } from '../../hooks/useEntry'
 import useSurvey from '../../hooks/useSurvey'
 import MuiComponentProvider from '../Common/MuiComponentProvider'
 import RenderAnswersDOM from '../ResultPage/RenderAnswersDOM'
-import { usePrintMutation } from 'src/client/hooks/usePrintMutation'
+import SendSummaryEmail from '../ResultPage/SendSummaryEmail'
 
 interface TabPanelProps {
   children: React.ReactNode
@@ -51,7 +51,6 @@ const UserEntry = () => {
   const location = useLocation()
   const { survey } = useSurvey()
   const { entry } = useEntry(entryId)
-  const printMutation = usePrintMutation(entryId)
   const [tabValue, setTabValue] = useState(0)
   const { t } = useTranslation()
 
@@ -59,35 +58,7 @@ const UserEntry = () => {
     setTabValue(newValue)
   }
 
-  const handlePrintClick = async () => {
-    try {
-      const pdfData = await printMutation.mutateAsync()
-
-      // Create a Blob from the PDF data
-      const blob = new Blob([pdfData], { type: 'application/pdf' })
-
-      // Create a URL for the Blob
-      const url = window.URL.createObjectURL(blob)
-
-      // Create a temporary link element to trigger the download
-      const link = document.createElement('a')
-      link.href = url
-      link.download = `report-${entryId}.pdf`
-
-      // Append to the document, click it, and remove it
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)
-
-      // Clean up the URL object
-      window.URL.revokeObjectURL(url)
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error('Error downloading PDF:', error)
-    }
-  }
-
-  if (!entry || !survey) return null
+  if (!entryId || !entry || !survey) return null
 
   const { answers, country, updatedData } = entry.data
 
@@ -130,9 +101,7 @@ const UserEntry = () => {
           ))}
           <RenderAnswersDOM survey={survey} resultData={answers} />
         </Box>
-        <Button variant="outlined" onClick={handlePrintClick}>
-          {t('userPage:printButton')}
-        </Button>
+        <SendSummaryEmail entryId={entryId} />
       </div>
     </MuiComponentProvider>
   )

@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next'
 import { enqueueSnackbar } from 'notistack'
 import { Box, Grid } from '@mui/material'
 
-import { FORM_DATA_KEY, LOCATION_KEY } from '@config'
-import type { FormValues, RiskData } from '@types'
+import { FORM_DATA_KEY } from '@config'
+import type { FormValues } from '@types'
 
 import useResults from '../../hooks/useResults'
 import useSurvey from '../../hooks/useSurvey'
@@ -14,21 +14,19 @@ import { useSaveEntryMutation } from '../../hooks/useSaveEntryMutation'
 
 import HelloBanner from './HelloBanner'
 import RenderSurvey from './RenderSurvey'
-import Results from '../ResultPage/Results'
 
 import { useResultData } from '../../contexts/ResultDataContext'
 
 import styles from '../../styles'
+import { useNavigate } from 'react-router-dom'
 
 const InteractiveForm = () => {
   const { survey, isLoading } = useSurvey()
+  const navigate = useNavigate()
   const { results } = useResults(survey?.id)
   const { t } = useTranslation()
   const mutation = useSaveEntryMutation(survey?.id)
-  const [riskData, setRiskData] = useState<RiskData>()
 
-  const sessionLocation = sessionStorage.getItem(LOCATION_KEY)
-  const [showResults, setShowResults] = useState(sessionLocation === 'results')
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [submitButtonLoading, setSubmitButtonLoading] = useState(false)
 
@@ -52,14 +50,8 @@ const InteractiveForm = () => {
     setResultData(submittedData)
     try {
       const createdData = await mutation.mutateAsync(submittedData)
-      const risks = createdData.data
-      sessionStorage.setItem(LOCATION_KEY, 'results')
-      setShowResults(true)
-      document
-        ?.getElementById('survey-main-section')
-        ?.scrollIntoView({ behavior: 'instant' })
-      setRiskData(risks)
       setIsSubmitted(true)
+      navigate(`/user/${createdData.id}`)
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log(error)
@@ -71,16 +63,11 @@ const InteractiveForm = () => {
   return (
     <Box sx={formStyles.formWrapper}>
       <Grid id="survey-main-section">
-        {!showResults && (
-          <Grid item sm={12}>
-            <HelloBanner />
-          </Grid>
-        )}
         <Grid item sm={12}>
-          <form
-            style={{ display: showResults ? 'none' : 'block' }}
-            onSubmit={handleSubmit(onSubmit)}
-          >
+          <HelloBanner />
+        </Grid>
+        <Grid item sm={12}>
+          <form style={{ display: 'block' }} onSubmit={handleSubmit(onSubmit)}>
             <RenderSurvey
               questions={survey.Questions}
               control={control}
@@ -90,12 +77,6 @@ const InteractiveForm = () => {
             />
           </form>
         </Grid>
-
-        {riskData && showResults && (
-          <Grid item sm={12}>
-            <Results setShowResults={setShowResults} riskData={riskData} />
-          </Grid>
-        )}
       </Grid>
     </Box>
   )

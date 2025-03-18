@@ -1,13 +1,13 @@
 import express from 'express'
 
 import type { EntryValues, RequestWithUser } from '@server/types'
-
+import z from 'zod'
 import { Entry } from '@dbmodels'
 import { riskReEvaluation } from '../util/cron/riskReEvaluation/riskReEvaluation'
 import createRiskData from '../util/algorithm/createRiskData'
 import adminHandler from '../middleware/admin'
 import { createEntry, getEntries, getEntry, getUserEntries } from '../services/entry'
-import { createPdfResult } from '../services/pdfResult'
+import { sendResult } from '../services/sendResult'
 
 const entryRouter = express.Router()
 
@@ -76,23 +76,25 @@ entryRouter.post('/:surveyId', async (req: RequestWithUser, res: any) => {
 
   const entry = await createEntry(userId, surveyId, updatedData)
 
-  return res.status(201).send(entry.data)
+  return res.status(201).send(entry.toJSON())
 })
 
-entryRouter.post('/:entryId/pdf', adminHandler, async (req: RequestWithUser, res: any) => {
+const SendEmailBodySchema = z.object({
+  targets: z.array(z.string()),
+})
+
+entryRouter.post('/:entryId/send-email', adminHandler, async (req: RequestWithUser, res: any) => {
   const { entryId } = req.params
   const userId = req.user?.id
+  const { targets } = SendEmailBodySchema.parse(req.body)
 
   const entry = await getEntry(entryId, userId)
 
   if (!entry) return res.status(404).send('Entry not found')
 
-  const pdfStream = await createPdfResult(entry)
+  await sendResult(entry, targets)
 
-  res.setHeader('Content-Type', 'application/pdf')
-  pdfStream.pipe(res)
-  // eslint-disable-next-line no-console
-  pdfStream.on('end', () => console.log('Done streaming, response sent.'))
+  return res.status(200).send('Email sent')
 })
 
 export default entryRouter

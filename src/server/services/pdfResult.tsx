@@ -14,7 +14,7 @@ import i18n from '../util/i18n'
 import { TFunction } from 'i18next'
 import { DEFAULT_SURVEY_NAME, supportEmail } from '@config'
 
-export const createPdfResult = async (entry: Entry) => {
+export const createPdfResultBlob = async (entry: Entry) => {
   const t = i18n.getFixedT('en')
 
   const [results, countries, survey, faculties] = await Promise.all([
@@ -24,7 +24,7 @@ export const createPdfResult = async (entry: Entry) => {
     getFaculties(),
   ])
 
-  return ReactPdf.renderToStream(
+  const stream = await ReactPdf.renderToStream(
     <ResultDocument
       entry={entry.data}
       countries={countries}
@@ -35,6 +35,18 @@ export const createPdfResult = async (entry: Entry) => {
       t={t}
     />
   )
+
+  const buffer = await new Promise<Buffer>((resolve, reject) => {
+    const chunks: Uint8Array[] = []
+    stream.on('data', chunk => chunks.push(chunk))
+    stream.on('end', () => resolve(Buffer.concat(chunks)))
+    // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
+    stream.on('error', err => reject(err))
+  })
+
+  const blob = new Blob([buffer], { type: 'application/pdf' })
+
+  return blob
 }
 
 type Country = {

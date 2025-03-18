@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-} from 'react'
+import { createContext, useCallback, useContext, useMemo, useState } from 'react'
 
 import { FORM_DATA_KEY } from '@config'
 import type { FormValues } from '@types'
@@ -14,9 +8,7 @@ interface ResultDataContextValue {
   setResultData: React.Dispatch<React.SetStateAction<FormValues>>
 }
 
-const LicenseResultDataContext = createContext<
-  ResultDataContextValue | undefined
->(undefined)
+const LicenseResultDataContext = createContext<ResultDataContextValue | undefined>(undefined)
 
 const ResultDataProvider = ({ children }: { children: React.ReactNode }) => {
   const getSavedInstance = useCallback(() => {
@@ -30,16 +22,9 @@ const ResultDataProvider = ({ children }: { children: React.ReactNode }) => {
 
   const [resultData, setResultData] = useState<FormValues>(savedFormData)
 
-  const contextValue = useMemo(
-    () => ({ resultData, setResultData }),
-    [resultData, setResultData]
-  )
+  const contextValue = useMemo(() => ({ resultData, setResultData }), [resultData, setResultData])
 
-  return (
-    <LicenseResultDataContext.Provider value={contextValue}>
-      {children}
-    </LicenseResultDataContext.Provider>
-  )
+  return <LicenseResultDataContext.Provider value={contextValue}>{children}</LicenseResultDataContext.Provider>
 }
 
 const useResultData = (): ResultDataContextValue => {

@@ -10,7 +10,6 @@ import accessLogger from '../middleware/access'
 import facultyRouter from './faculty'
 import surveyRouter from './survey'
 import resultRouter from './result'
-import summaryRouter from './summary'
 import entryRouter from './entry'
 import userRouter from './user'
 import loginRouter from './login'
@@ -41,7 +40,6 @@ router.use('/faculties', facultyRouter)
 router.use('/surveys', surveyRouter)
 router.use('/questions', questionRouter)
 router.use('/results', resultRouter)
-router.use('/summary', summaryRouter)
 router.use('/entries', entryRouter)
 router.use('/users', userRouter)
 router.use('/login', loginRouter)

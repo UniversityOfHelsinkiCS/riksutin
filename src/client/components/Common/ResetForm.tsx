@@ -12,12 +12,7 @@ const ResetForm = () => {
   }
 
   return (
-    <Button
-      sx={formStyles.stackButton}
-      type="button"
-      data-cy="reset-form-button"
-      onClick={resetForm}
-    >
+    <Button sx={formStyles.stackButton} type="button" data-cy="reset-form-button" onClick={resetForm}>
       {t('reset')}
     </Button>
   )

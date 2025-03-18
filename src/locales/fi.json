@@ -172,5 +172,13 @@
     "resultTab": "Tulosten muokkaus",
     "recommendationTab": "Suositusten muokkaus",
     "markdown": "Muokattavat kentät tukevat <0>Markdown</0>-sisältöä"
+  },
+  "email": {
+    "subject": "Riskiraportti",
+    "bodyTitle": "Hei",
+    "bodyText": "Olet täyttänyt kansainvälisen yhteistyön riskiarviolomakkeen ja alla on arvioinnin tulokset, joita voit hyödyntää haluamallasi tavalla. Huomioithan, että voit päivittää itse riskiarvioinnin, jos hankkeessasi tapahtuu olennaisia muutoksia. Saat myös automaattisesti päivityksen, jos olosuhteissa tapahtuu merkittäviä muutoksia. Ole tarvittaessa yhteydessä risk-i@helsinki.fi."
+  },
+  "pdf": {
+    "footer": "Raportin on luonut {{appName}}, {{date}}"
   }
 }

@@ -2,6 +2,7 @@ import axios from 'axios'
 
 import { inProduction, appName } from '@config'
 import { PATE_URL } from '@userconfig'
+import logger from 'src/server/util/logger'
 
 const settings = {
   hideToska: false,
@@ -38,7 +39,13 @@ const sendEmail = async (
 ) => {
   const emails = targets.map(to => ({ to, subject }))
 
+  // Log attachment to the console
+  if (attachment) logger.info('Sending ' + attachment.filename)
+
   const attachmentFileId = attachment ? await uploadFile(attachment) : undefined
+
+  // Log attachmentFileId to the console
+  if (attachmentFileId) logger.info('Sent ' + attachment?.filename + 'got' + attachmentFileId)
 
   const mail = {
     template: {
@@ -51,6 +58,8 @@ const sendEmail = async (
   }
 
   await pateClient.post('/', mail)
+
+  logger.info('Email sent')
 }
 
 export default sendEmail

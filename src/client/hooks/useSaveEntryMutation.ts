@@ -18,12 +18,12 @@ export const useSaveEntryMutation = (surveyId: number | undefined) => {
       sessionToken = sessionId
     }
 
-    const entry: Entry = await apiClient.post(`/entries/${surveyId}`, {
+    const res = await apiClient.post(`/entries/${surveyId}`, {
       data,
       sessionToken,
     })
 
-    return entry
+    return res.data as Entry
   }
 
   const mutation = useMutation(mutationFn)
