@@ -24,7 +24,7 @@ export const sendResult = async (entry: Entry, targets: string[]) => {
     return
   }
 
-  await sendEmail(targets, subject, text, {
+  await sendEmail(targets, text, subject, {
     filename,
     content: pdfBuffer,
   })
