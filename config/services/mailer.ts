@@ -7,7 +7,7 @@ const settings = {
   hideToska: false,
   disableToska: true,
   color: '#fc7f03',
-  header: 'Riksutin',
+  header: 'Risk-i.helsinki.fi',
   headerFontColor: 'white',
   dryrun: !inProduction,
 }
