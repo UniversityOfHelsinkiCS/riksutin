@@ -39,17 +39,18 @@ const SendSummaryEmail = ({ entryId }: { entryId: string }) => {
   }, [reset, user])
 
   const onSubmit = ({ emails }: ShareResultEmails) => {
-    if (errors?.emails || emails.length === 0) return
+    if (errors?.emails || emails.length === 0 || isSent) return
 
+    setIsSent(true)
     sendEmail(emails, entryId)
       .then(() => {
-        setIsSent(true)
         enqueueSnackbar(t('results:sendSuccess'), {
           variant: 'success',
         })
       })
       .catch(() => {
         enqueueSnackbar(t('contact:emailErrorMessage'), { variant: 'error' })
+        setIsSent(false)
       })
   }
 

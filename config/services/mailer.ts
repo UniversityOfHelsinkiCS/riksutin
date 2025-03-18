@@ -34,7 +34,7 @@ const uploadFile = async (attachment: { filename: string; content: Buffer }) => 
   } catch (error) {
     // If the request failed with 4xx, there is an error message in the returned json body
     if (error instanceof AxiosError && error.response && error.response.status >= 400 && error.response.status < 500) {
-      logger.error('Failed to upload file', error.response.data)
+      logger.error('Failed to upload file' + error.response.data)
     } else {
       logger.error('Failed to upload file', error)
     }
