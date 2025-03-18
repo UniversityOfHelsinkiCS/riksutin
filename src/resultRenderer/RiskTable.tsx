@@ -7,9 +7,9 @@ import RiskElement from './RiskElement'
 
 import styles from './styles'
 import { useComponents } from './context'
-import { globalNorthCountries } from '@domain/countryLists'
-import getRiskTexts from '@domain/getRiskTexts'
-import getCountryRiskTexts from '@domain/getCountryRiskTexts'
+import { globalNorthCountries } from '@common/countryLists'
+import getRiskTexts from '@common/getRiskTexts'
+import getCountryRiskTexts from '@common/getCountryRiskTexts'
 
 const { resultStyles } = styles
 

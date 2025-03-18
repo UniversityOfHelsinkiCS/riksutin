@@ -29,7 +29,7 @@
       "@server/config": ["src/server/util/config.ts"],
       "@validators/*": ["src/validators/*"],
 
-      "@domain/*": ["src/domain/*"],
+      "@common/*": ["src/common/*"],
       "@resultRenderer/*": ["src/resultRenderer/*"]
     }
   }

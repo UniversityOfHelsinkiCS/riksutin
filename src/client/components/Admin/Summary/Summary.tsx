@@ -11,7 +11,7 @@ import useQuestions from '../../../hooks/useQuestions'
 import useDeleteEntryMutation from '../../../hooks/useDeleteEntryMutation'
 import styles from '../../../styles'
 import useFaculties from '../../../hooks/useFaculties'
-import { extraOrganisations } from '@domain/organisations'
+import { extraOrganisations } from '@common/organisations'
 import createTableData from './utils'
 
 import type { TableValues } from './utils'

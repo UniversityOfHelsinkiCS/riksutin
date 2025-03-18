@@ -4,7 +4,7 @@ import React from 'react'
 import type { FormValues, Locales } from '@types'
 import type { Survey } from '@client/types'
 
-import { extraOrganisations } from '@domain/organisations'
+import { extraOrganisations } from '@common/organisations'
 
 import styles from './styles'
 import { useComponents } from './context'
