@@ -30,30 +30,6 @@ export const euCountries = [
 
 export const eeaCountries = [...euCountries, 'IS', 'LI', 'NO']
 
-export const adequateProtectionCountries = [
-  'AD',
-  'AR',
-  'CA',
-  'FO',
-  'IM',
-  'IL',
-  'NZ',
-  'KR',
-  'CH',
-  'GB',
-  'UY',
-  'US',
-]
+export const adequateProtectionCountries = ['AD', 'AR', 'CA', 'FO', 'IM', 'IL', 'NZ', 'KR', 'CH', 'GB', 'UY', 'US']
 
-export const globalNorthCountries = [
-  ...eeaCountries,
-  'AU',
-  'CA',
-  'JP',
-  'NZ',
-  'CH',
-  'GB',
-  'US',
-  'KR',
-  'IL',
-]
+export const globalNorthCountries = [...eeaCountries, 'AU', 'CA', 'JP', 'NZ', 'CH', 'GB', 'US', 'KR', 'IL']

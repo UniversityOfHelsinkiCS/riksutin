@@ -27,19 +27,12 @@ const Results = ({
     sessionStorage.setItem(LOCATION_KEY, 'form')
     setShowResults(false)
 
-    document
-      ?.getElementById('survey-main-section')
-      ?.scrollIntoView({ behavior: 'smooth' })
+    document?.getElementById('survey-main-section')?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
     <Box>
-      <Typography
-        data-cy="result-section-title"
-        variant="h5"
-        sx={resultStyles.heading}
-        component="div"
-      >
+      <Typography data-cy="result-section-title" variant="h5" sx={resultStyles.heading} component="div">
         {t('results:title')}
       </Typography>
 

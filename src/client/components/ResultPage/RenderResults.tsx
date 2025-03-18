@@ -1,13 +1,11 @@
-import { Box } from '@mui/material'
-
 import type { RiskData } from '@types'
 
 import useSurvey from '../../hooks/useSurvey'
 import useResultRefCallback from '../../hooks/useResultRefCallback'
 
-import RiskTable from './RiskTable'
-
-import RenderAnswers from './RenderAnswers'
+import RiskTableDOM from './RiskTableDOM'
+import MuiComponentProvider from '../Common/MuiComponentProvider'
+import RenderAnswersDOM from './RenderAnswersDOM'
 
 const RenderResults = ({ riskData }: { riskData: RiskData }) => {
   const { survey } = useSurvey()
@@ -16,10 +14,12 @@ const RenderResults = ({ riskData }: { riskData: RiskData }) => {
   if (!survey) return null
 
   return (
-    <Box ref={refCallback}>
-      <RiskTable riskData={riskData} countryData={riskData.country[0]} />
-      <RenderAnswers survey={survey} resultData={riskData.answers} />
-    </Box>
+    <div ref={refCallback}>
+      <MuiComponentProvider>
+        <RiskTableDOM riskData={riskData} countryData={riskData.country[0]} />
+        <RenderAnswersDOM survey={survey} resultData={riskData.answers} />
+      </MuiComponentProvider>
+    </div>
   )
 }
 

@@ -90,7 +90,8 @@
     "projectName": "Yhteistyöprojektin nimi",
     "updateRiskAssessment": "Päivitä riskiarvio",
     "updateSuccess": "Riskien uudelleenarviointi onnistui!",
-    "backButton": "Palaa yhteenvetonäkymään"
+    "backButton": "Palaa yhteenvetonäkymään",
+    "printButton": "Luo PDF"
   },
   "admin": {
     "summaryTab": "Yhteenveto",
