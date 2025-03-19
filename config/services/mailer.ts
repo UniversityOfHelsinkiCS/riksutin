@@ -72,6 +72,7 @@ const sendEmail = async (
   // Check if the email is being sent to a tester. If so, set dryrun to false
   const acuallySendInTesting = TESTER_EMAILS.some(email => emails.some(({ to }) => to === email))
   if (acuallySendInTesting) logger.info('Sending email to tester')
+  const acualSettings = acuallySendInTesting ? { ...settings, dryrun: false } : settings
 
   const mail = {
     template: {
@@ -79,7 +80,7 @@ const sendEmail = async (
       text,
     },
     emails,
-    settings: { ...settings, dryrun: !acuallySendInTesting },
+    settings: acualSettings,
   }
 
   await pateClient.post('/', mail)
