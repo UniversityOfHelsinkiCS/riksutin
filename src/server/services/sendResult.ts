@@ -15,7 +15,7 @@ export const sendResult = async (entry: Entry, targets: string[]) => {
 
   const subject = i18n.t('email:subject')
 
-  const filename = `result-${entry.id}.pdf`
+  const filename = 'risk-assessment.pdf'
 
   // Save to a file in development
   if (inDevelopment) {
