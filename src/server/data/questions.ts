@@ -197,15 +197,12 @@ const getQuestionData = (): Question[] => [
     },
     optionData: {
       type: 'text',
-      options: [
-        {
-          attributes: {
-            multiline: true,
-            minRows: 5,
-            inputProps: { maxLength: 500 },
-          },
-        },
-      ],
+      options: [],
+      attributes: {
+        multiline: true,
+        minRows: 5,
+        inputProps: { maxLength: 500 },
+      },
     },
     visibility: {},
   },

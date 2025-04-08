@@ -22,13 +22,13 @@ export interface Faculty {
   name: Locales
 }
 
-export type ChoiceType = SingleChoiceType[] | MultipleChoiceType[] | any[]
+export type ChoiceType = SingleChoiceType[] | MultipleChoiceType[]
 
 export type SingleChoiceType = {
   id: string
   label: string
   title: Locales
-  risk: number
+  risk?: number
 }
 
 export type PossibleChoiceTypes =
@@ -41,10 +41,17 @@ export type PossibleChoiceTypes =
   | 'universitySelect'
   | 'highRiskCountrySelect'
 
+type Attributes = {
+  multiline: boolean
+  minRows: number
+  inputProps: { maxLength: number }
+}
+
 export interface OptionData {
   type: PossibleChoiceTypes
   options: ChoiceType
   label?: Locales
+  attributes?: Attributes
 }
 
 export interface OptionUpdates {
@@ -52,7 +59,7 @@ export interface OptionUpdates {
   data?: Locales
 }
 
-export interface MultipleChoiceType extends SingleChoiceType {
+export type MultipleChoiceType = SingleChoiceType & {
   data: Locales
 }
 
