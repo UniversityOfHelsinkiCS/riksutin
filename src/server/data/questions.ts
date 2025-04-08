@@ -20,6 +20,24 @@ const getQuestionData = (): Question[] => [
     visibility: {},
   },
   {
+    id: 100,
+    surveyId: 1,
+    parentId: null,
+    priority: 0,
+    title: {
+      fi: 'Projektin omistajan nimi',
+      sv: 'Name of the person responsible for the project',
+      en: 'Name of the person responsible for the project',
+    },
+    text: {
+      fi: '',
+      sv: '',
+      en: '',
+    },
+    optionData: { type: 'text', options: [] },
+    visibility: {},
+  },
+  {
     id: 2,
     surveyId: 1,
     parentId: null,

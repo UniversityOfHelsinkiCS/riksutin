@@ -1,8 +1,24 @@
 import type { Faculty } from '@types'
 import { inDevelopment, inE2EMode } from '@config'
 import mockFaculty from '../mocs/faculty'
+import mockEmployee from '../mocs/employee'
 
-import { getOrganisationData, getUserOrganisations } from '../util/organisations'
+import {
+  getUnitData,
+  getOrganisationData,
+  getOrganisationEmployeeData,
+  getUserOrganisations,
+} from '../util/organisations'
+
+export const getUnits = async (): Promise<Faculty[]> => {
+  if (inDevelopment || inE2EMode) return mockFaculty
+
+  const unitData = (await getUnitData()) || []
+
+  const units = unitData.map(({ code, name }) => ({ code, name }))
+
+  return units
+}
 
 export const getFaculties = async (): Promise<Faculty[]> => {
   if (inDevelopment || inE2EMode) return mockFaculty
@@ -24,4 +40,12 @@ export const getUserFaculties = async (userId: string, iamGroups: string[]): Pro
   const faculties = organisationData.map(({ code, name }) => ({ code, name }))
 
   return faculties
+}
+
+export const getEmployees = async (search: string) => {
+  if (inDevelopment || inE2EMode) return mockEmployee
+
+  const employeeData = (await getOrganisationEmployeeData(search)) || []
+
+  return employeeData
 }

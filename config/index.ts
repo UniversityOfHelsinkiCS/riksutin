@@ -14,12 +14,18 @@ export const STAGING_URL = 'https://riksutin.ext.ocp-test-0.k8s.it.helsinki.fi'
 export const DEVELOPMENT_URL = 'http://localhost:3000'
 
 export const API_TOKEN = process.env.API_TOKEN ?? ''
+export const UNIT_API_TOKEN = process.env.UNIT_API_TOKEN ?? ''
+export const EMPLOYEE_API_TOKEN = process.env.EMPLOYEE_API_TOKEN ?? ''
+
 export const JAMI_URL = inProduction
   ? 'https://api-toska.apps.ocp-prod-0.k8s.it.helsinki.fi/jami/'
   : 'https://api-toska.apps.ocp-test-0.k8s.it.helsinki.fi/jami/'
 export const PATE_URL = inProduction
   ? 'https://api-toska.apps.ocp-prod-0.k8s.it.helsinki.fi/pate/'
   : 'https://api-toska.apps.ocp-test-0.k8s.it.helsinki.fi/pate/'
+
+export const EMPLOYEE_GW_API_URL = 'https://gw-api-test.it.helsinki.fi'
+export const UNIT_GW_API_URL = 'https://gw.api.helsinki.fi'
 
 const FULL_URL = inProduction ? PRODUCTION_URL : inStaging ? STAGING_URL : DEVELOPMENT_URL
 

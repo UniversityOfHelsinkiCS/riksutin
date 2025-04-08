@@ -15,6 +15,7 @@ import ShowMore from '../Common/ShowMore'
 import styles from '../../styles'
 import useCountries from '../../hooks/useCountries'
 import SelectFaculty from '../Common/SelectFaculty'
+import SelectUnit from '../Common/SelectUnit'
 import OrganisationSelect from '../QuestionTypes/OrganisationSelect'
 import UniversitySelect from '../QuestionTypes/UniversitySelect'
 import HighRiskCountrySelect from '../QuestionTypes/HighRiskCountriesSelect'
@@ -119,6 +120,7 @@ const RenderQuestion = ({ control, watch, question, questions, language }: Input
         </QuestionType>
       </Box>
       {question.id === 1 && <SelectFaculty control={control} />}
+      {question.id === 100 && <SelectUnit control={control} />}
     </Box>
   )
 }

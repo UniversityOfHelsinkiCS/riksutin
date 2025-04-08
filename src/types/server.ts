@@ -28,9 +28,12 @@ type Programme = {
   international: boolean
 }
 
-export interface OrganisationData {
+export interface UnitData {
   code: string
   name: Locales
+}
+
+export interface OrganisationData extends UnitData {
   programmes: Programme[]
 }
 

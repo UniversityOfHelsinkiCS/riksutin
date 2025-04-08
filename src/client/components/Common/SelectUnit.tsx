@@ -6,7 +6,8 @@ import { Box, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui
 import type { Faculty, Locales } from '@types'
 import type { InputProps } from '@client/types'
 
-import useFaculties from '../../hooks/useFaculties'
+// import useFaculties from '../../hooks/useFaculties'
+import useUnits from '../../hooks/useUnits'
 import useUserFaculties from '../../hooks/useUserFaculties'
 
 import ShowMore from './ShowMore'
@@ -34,18 +35,18 @@ const FacultyInfo = ({ faculty }: { faculty: Faculty | undefined }) => {
   return (
     <Box sx={cardStyles.content}>
       <Typography component="div">
-        {t('facultySelect:infoMessage')}
+        {t('unitSelect:infoMessage')}
         <ShowMore text={facultyInfo.info[language as keyof Locales]} />
       </Typography>
     </Box>
   )
 }
 
-const SelectFaculty = ({ control }: InputProps) => {
+const SelectUnit = ({ control }: InputProps) => {
   const { t, i18n } = useTranslation()
   const { language } = i18n
   const [faculty, setFaculty] = useState<Faculty>()
-  const { faculties, isLoading: facultiesLoading } = useFaculties()
+  const { faculties, isLoading: facultiesLoading } = useUnits()
   const { userFaculties, isLoading: userFacultiesLoading } = useUserFaculties()
 
   useEffect(() => {
@@ -65,7 +66,7 @@ const SelectFaculty = ({ control }: InputProps) => {
         <Typography component="span" sx={{ color: 'red' }}>
           {'* '}
         </Typography>
-        <Typography component="span">{t('facultySelect:title')}</Typography>
+        <Typography component="span">{t('unitSelect:title')}</Typography>
       </Box>
       <Controller
         control={control}
@@ -74,8 +75,8 @@ const SelectFaculty = ({ control }: InputProps) => {
         defaultValue={userFaculties[0]?.code || extraOrganisations[0].code}
         render={({ field }) => (
           <FormControl sx={{ minWidth: 200 }}>
-            <InputLabel>{t('facultySelect:inputLabel')}</InputLabel>
-            <Select data-cy="faculty-select" label={t('facultySelect:inputLabel')} {...field}>
+            <InputLabel>{t('unitSelect:inputLabel')}</InputLabel>
+            <Select data-cy="faculty-select" label={t('unitSelect:inputLabel')} {...field}>
               {organisations.map((f: Faculty) => (
                 <MenuItem
                   data-cy={`faculty-option-${f.code}`}
@@ -95,4 +96,4 @@ const SelectFaculty = ({ control }: InputProps) => {
   )
 }
 
-export default SelectFaculty
+export default SelectUnit

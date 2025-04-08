@@ -16,6 +16,11 @@
     "inputLabel": "Tiedekunta",
     "infoMessage": "Tietoa tiedekuntasi ohjeistuksesta"
   },
+  "unitSelect": {
+    "title": "Projektin omistajan yksikkö",
+    "inputLabel": "Yksikkö",
+    "infoMessage": "Tietoa yksikkösi ohjeistuksesta"
+  },
   "universitySelect": {
     "textFieldInfo": "Kirjoita tähän yhteistyöyliopiston nimi"
   },
