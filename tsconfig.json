@@ -18,6 +18,7 @@
     "baseUrl": ".",
     "paths": {
       "@types": ["src/types.ts"],
+      "@routes/types": ["src/types/routes.ts"],
       "@client/types": ["src/types/client.ts"],
       "@server/types": ["src/types/server.ts"],
       "@dbmodels": ["src/server/db/models/index.ts"],
