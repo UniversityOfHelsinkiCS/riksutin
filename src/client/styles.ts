@@ -232,7 +232,7 @@ const common = {
   },
 }
 
-const riskColors: any = {
+const riskColors = {
   1: '#2ecc71',
   2: '#f1c40f',
   3: '#e74c3c',

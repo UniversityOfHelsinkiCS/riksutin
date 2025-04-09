@@ -1,6 +1,6 @@
 import { NextFunction, Response } from 'express'
 
-const adminHandler = (req: any, res: Response, next: NextFunction) => {
+const adminHandler = (req, res: Response, next: NextFunction) => {
   if (!req?.user.isAdmin) throw new Error('Unauthorized')
 
   return next()

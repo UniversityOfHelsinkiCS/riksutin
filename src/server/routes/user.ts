@@ -4,7 +4,7 @@ import type { RequestWithUser } from '@server/types'
 
 const userRouter = express.Router()
 
-userRouter.get('/', (req: RequestWithUser, res: any) => {
+userRouter.get('/', (req: RequestWithUser, res) => {
   return res.send({ ...req?.user })
 })
 

@@ -1,6 +1,6 @@
 import mockUser from '../mocs/user'
 
-const userMiddleware = (req: any, _: any, next: any) => {
+const userMiddleware = (req, _, next) => {
   if (req.path.includes('/login')) return next()
 
   req.user = mockUser

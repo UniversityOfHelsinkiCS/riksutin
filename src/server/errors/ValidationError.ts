@@ -3,7 +3,7 @@ class ZodValidationError extends Error {
 
   errors: Record<string, string[]>
 
-  constructor(message: string, errors: any) {
+  constructor(message: string, errors) {
     super(message)
     this.name = 'ZodValidationError'
     this.statusCode = 400

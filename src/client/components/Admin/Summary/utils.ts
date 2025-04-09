@@ -26,27 +26,26 @@ const createTableData = (entries: Entry[], questions: Question[], faculties: Fac
     const formData = Object.fromEntries(questionIds.map(id => [id, entry.data.answers[id] ?? '']))
 
     const formattedFormData: TableValues = Object.fromEntries(
-      Object.entries(formData).map(pair => {
-        const idAsInt = parseInt(pair[0], 10)
+      Object.entries(formData).map(([key, val]) => {
+        const idAsInt = parseInt(key, 10)
 
         if (singleChoiceQuestions.includes(idAsInt)) {
-          const text: string = questions
-            .find(q => q.id === idAsInt)
-            ?.optionData.options.find((o: { id: any }) => o.id === pair[1])?.title.fi
-          return [pair[0], text]
+          const text = questions.find(q => q.id === idAsInt)?.optionData.options.find(o => o.id === val)?.title.fi
+          return [key, text]
         }
 
-        if (multiChoiceQuestions.includes(idAsInt) && Array.isArray(pair[1])) {
-          const texts = pair[1].map(
+        if (multiChoiceQuestions.includes(idAsInt) && Array.isArray(val)) {
+          const texts = val.map(
             (value: string) =>
               questions
                 .find(question => question.id === idAsInt)
                 ?.optionData.options.find(option => option.id === value)?.title.fi
           )
 
-          return [pair[0], texts.join(', ') ?? '']
+          return [key, texts.join(', ') ?? '']
         }
-        return pair as [string, string]
+
+        return [key, val]
       })
     )
 

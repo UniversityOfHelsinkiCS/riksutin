@@ -2,7 +2,7 @@ import express from 'express'
 
 const organizationRouter = express.Router()
 
-organizationRouter.get('/:org', async (req, res: any) => {
+organizationRouter.get('/:org', async (req, res) => {
   const { org } = req.params
 
   const params = '&pageSize=20&pageNumber=1'
@@ -11,9 +11,7 @@ organizationRouter.get('/:org', async (req, res: any) => {
   const response = await fetch(url, { method: 'POST' })
   const data = await response.json()
 
-  const resultNames = [
-    ...new Set(data.results.map((result: any) => result.summary)),
-  ]
+  const resultNames = [...new Set(data.results.map(result => result.summary))]
 
   return res.status(200).send(resultNames)
 })

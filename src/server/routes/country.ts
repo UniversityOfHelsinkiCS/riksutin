@@ -67,7 +67,7 @@ countryRouter.get('/', async (_, res) => {
   return res.status(200).send(countries)
 })
 
-countryRouter.get('/:code', async (req, res: any) => {
+countryRouter.get('/:code', async (req, res) => {
   const country = await getCountryData(req.params.code)
 
   return res.status(200).send(country)

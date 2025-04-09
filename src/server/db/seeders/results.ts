@@ -2,9 +2,9 @@ import { Result } from '@dbmodels'
 import getResultData from '../../data/results'
 
 const seedResults = () => {
-  const results: any = getResultData()
+  const results = getResultData()
 
-  results.forEach(async (result: any) => {
+  results.forEach(async result => {
     await Result.upsert({
       ...result,
     })

@@ -63,28 +63,20 @@ questionRouter.post('/:id/option/', adminHandler, async (req, res) => {
   return res.status(201).send(updatedQuestion)
 })
 
-questionRouter.put(
-  '/:id/option/:optionId',
-  adminHandler,
-  async (req: RequestWithUser, res: any) => {
-    const { id, optionId } = req.params
+questionRouter.put('/:id/option/:optionId', adminHandler, async (req: RequestWithUser, res: any) => {
+  const { id, optionId } = req.params
 
-    const updatedQuestion = await updateOption(id, optionId, req.body)
+  const updatedQuestion = await updateOption(id, optionId, req.body)
 
-    return res.status(200).send(updatedQuestion)
-  }
-)
+  return res.status(200).send(updatedQuestion)
+})
 
-questionRouter.delete(
-  '/:id/option/:optionId',
-  adminHandler,
-  async (req: RequestWithUser, res: any) => {
-    const { id, optionId } = req.params
+questionRouter.delete('/:id/option/:optionId', adminHandler, async (req: RequestWithUser, res) => {
+  const { id, optionId } = req.params
 
-    const updatedQuestion = await deleteOption(id, optionId)
+  const updatedQuestion = await deleteOption(id, optionId)
 
-    return res.status(204).send(updatedQuestion)
-  }
-)
+  return res.status(204).send(updatedQuestion)
+})
 
 export default questionRouter

@@ -6,9 +6,7 @@ const fetchSanctionsData = async (code: string | undefined) => {
     const res = await fetch(url)
     const data = await res.json()
 
-    const countrySanctions = data.data.find(
-      (c: any) => c.country.data.code === code
-    )?.has_lists
+    const countrySanctions = data.data.find(c => c.country.data.code === code)?.has_lists
 
     if (!countrySanctions) return null
 

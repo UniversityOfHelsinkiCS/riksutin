@@ -35,10 +35,10 @@ const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 export const connectToDatabase = async (attempt = 0): Promise<void | null> => {
   try {
     await testConnection()
-  } catch (err: any) {
+  } catch (err) {
     if (attempt === DB_CONNECTION_RETRY_LIMIT) {
       logger.error(`Connection to database failed after ${attempt} attempts`, {
-        error: err.stack,
+        error: (err as Error).stack,
       })
 
       return process.exit(1)
