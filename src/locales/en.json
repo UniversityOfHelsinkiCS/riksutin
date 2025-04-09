@@ -18,7 +18,7 @@
     "infoMessage": "Information about your faculty's guidelines"
   },
   "unitSelect": {
-    "title": "Unit of the person responsible for the project",
+    "title": "Unit responsible for the project",
     "inputLabel": "Unit",
     "infoMessage": "Information about the owner's unit's guidelines"
   },

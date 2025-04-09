@@ -17,7 +17,7 @@
     "infoMessage": "Tietoa tiedekuntasi ohjeistuksesta"
   },
   "unitSelect": {
-    "title": "Projektin omistajan yksikkö",
+    "title": "Projektin omistava yksikkö",
     "inputLabel": "Yksikkö",
     "infoMessage": "Tietoa yksikkösi ohjeistuksesta"
   },

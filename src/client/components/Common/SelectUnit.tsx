@@ -70,13 +70,13 @@ const SelectUnit = ({ control }: InputProps) => {
       </Box>
       <Controller
         control={control}
-        name="faculty"
+        name="unit"
         rules={{ required: true }}
         defaultValue={userFaculties[0]?.code || extraOrganisations[0].code}
         render={({ field }) => (
           <FormControl sx={{ minWidth: 200 }}>
             <InputLabel>{t('unitSelect:inputLabel')}</InputLabel>
-            <Select data-cy="faculty-select" label={t('unitSelect:inputLabel')} {...field}>
+            <Select data-cy="unit-select" label={t('unitSelect:inputLabel')} {...field}>
               {organisations.map((f: Faculty) => (
                 <MenuItem
                   data-cy={`faculty-option-${f.code}`}

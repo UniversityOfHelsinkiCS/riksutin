@@ -30,7 +30,7 @@ const RenderAnswers = ({
     const answer = resultData[questionId]
     const text = question.optionData.options.find(o => o.id === answer)?.title[language as keyof Locales]
 
-    return { [questionId]: text || '' }
+    return { [questionId]: text ?? '' }
   })
 
   const multiChoiceAnswers = multiChoiceQuestions.map(question => {
@@ -108,6 +108,14 @@ const RenderAnswers = ({
                 <Typography style={{ fontWeight: '800' }}>{t('facultySelect:title')}</Typography>
                 <Typography>
                   {organisations.find(faculty => faculty.code === answers.faculty)?.name[language as keyof Locales]}
+                </Typography>
+              </Div>
+            )}
+            {currentQuestion.id === 100 && (
+              <Div style={{ margin: '16px' }}>
+                <Typography style={{ fontWeight: '800' }}>{t('unitSelect:title')}</Typography>
+                <Typography>
+                  {organisations.find(faculty => faculty.code === answers.unit)?.name[language as keyof Locales]}
                 </Typography>
               </Div>
             )}
