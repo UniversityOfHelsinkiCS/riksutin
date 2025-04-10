@@ -20,7 +20,7 @@ export const jamiClient = axios.create({
 })
 
 export const getUnitData = async (): Promise<UnitData[]> => {
-  const url = UNIT_GW_API_URL + '/organisation/info/v1/FinanceAndOldResearch'
+  const url = UNIT_GW_API_URL + '/organisation/info/v1/financeUnitsPublic'
 
   const response = await fetch(url, {
     headers: { 'x-api-key': UNIT_API_TOKEN },
@@ -30,19 +30,14 @@ export const getUnitData = async (): Promise<UnitData[]> => {
     uniqueId: string
     type: string
     code: string
-    educationCode: string
     nameFi: string
     nameEn: string
     nameSv: string
-    unitStartDate: string
-    publicity: string
-    uniqueCode: string
     parent: string
   }[] = await response.json()
 
   const filteredData = data
     .filter(({ code }) => !!code)
-    .filter(({ uniqueCode }) => uniqueCode == 'kylla')
     .map(({ code, nameFi, nameEn, nameSv }) => ({
       code,
       name: {
