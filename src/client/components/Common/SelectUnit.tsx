@@ -16,8 +16,8 @@ import { extraOrganisations, organisationInfos } from '@common/organisations'
 
 import styles from '../../styles'
 
-const sortFaculties = (faculties: Faculty[], language: keyof Locales) => {
-  return faculties.sort((a, b) => a.name[language]?.localeCompare(b.name[language]!) ?? 0)
+const sortFaculties = (faculties: Faculty[]) => {
+  return faculties.sort((a, b) => a.code?.localeCompare(b.code) ?? 0)
 }
 
 const { cardStyles } = styles
@@ -57,7 +57,7 @@ const SelectUnit = ({ control }: InputProps) => {
 
   if (facultiesLoading || !faculties || userFacultiesLoading || !userFaculties) return null
 
-  const sortedFaculties = sortFaculties(faculties, language as keyof Locales)
+  const sortedFaculties = sortFaculties(faculties)
   const organisations = sortedFaculties.concat(extraOrganisations)
 
   return (
