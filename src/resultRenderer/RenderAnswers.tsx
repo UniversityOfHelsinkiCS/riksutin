@@ -111,11 +111,12 @@ const RenderAnswers = ({
                 </Typography>
               </Div>
             )}
-            {currentQuestion.id === 100 && (
+            {currentQuestion.id === 2 && (
               <Div style={{ margin: '16px' }}>
                 <Typography style={{ fontWeight: '800' }}>{t('unitSelect:title')}</Typography>
                 <Typography>
-                  {organisations.find(faculty => faculty.code === answers.unit)?.name[language as keyof Locales]}
+                  {organisations.find(faculty => faculty.code === answers.unit)?.name[language as keyof Locales] ??
+                    answers.unit}
                 </Typography>
               </Div>
             )}

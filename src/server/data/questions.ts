@@ -20,7 +20,7 @@ const getQuestionData = (): Question[] => [
     visibility: {},
   },
   {
-    id: 100,
+    id: 2,
     surveyId: 1,
     parentId: null,
     priority: 0,
@@ -33,24 +33,6 @@ const getQuestionData = (): Question[] => [
       fi: '',
       sv: '',
       en: '',
-    },
-    optionData: { type: 'text', options: [] },
-    visibility: {},
-  },
-  {
-    id: 2,
-    surveyId: 1,
-    parentId: null,
-    priority: 1,
-    title: {
-      fi: 'Yhteistyön vastuuyksikkö HY:ssa',
-      sv: 'UH unit responsible for collaboration',
-      en: 'UH unit responsible for collaboration',
-    },
-    text: {
-      fi: 'Kirjoita tähän sen yksikön nimi, jolla HY:ssa on päävastuu tässä yhteistyöstä.',
-      sv: '',
-      en: 'Please provide the name of UH unit, which has the main responsibility of the collaboration in question.',
     },
     optionData: { type: 'text', options: [] },
     visibility: {},
