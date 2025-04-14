@@ -20,6 +20,7 @@ import OrganisationSelect from '../QuestionTypes/OrganisationSelect'
 import UniversitySelect from '../QuestionTypes/UniversitySelect'
 import HighRiskCountrySelect from '../QuestionTypes/HighRiskCountriesSelect'
 import CountrySelect from '../QuestionTypes/CountrySelect'
+import EmployeeSelect from '../QuestionTypes/EmployeeSelect'
 
 const { cardStyles } = styles
 
@@ -83,6 +84,7 @@ const RenderQuestion = ({ control, watch, question, questions, language }: Input
     multipleChoice: MultiChoice,
     info: SingleChoice,
     text: Text,
+    employeeSelect: EmployeeSelect,
     countrySelect: CountrySelect,
     organisationSelect: OrganisationSelect,
     universitySelect: UniversitySelect,

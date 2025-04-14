@@ -36,6 +36,7 @@ export type PossibleChoiceTypes =
   | 'multipleChoice'
   | 'info'
   | 'text'
+  | 'employeeSelect'
   | 'countrySelect'
   | 'organisationSelect'
   | 'universitySelect'

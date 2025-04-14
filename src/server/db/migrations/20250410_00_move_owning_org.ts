@@ -21,20 +21,20 @@ export const up: Migration = async ({ context: queryInterface }) => {
         data->'answers' ? '2'
     `)
 
-  // COPY the project adder is now the owner
-  await queryInterface.sequelize.query(`
-      UPDATE
-        entries
-      SET
-        data = JSONB_SET(data, '{answers,2}', data->'answers'->'1')
-    `)
-
   // DROP answer "2"
   await queryInterface.sequelize.query(`
       DELETE FROM
         questions
       WHERE
         id = 2
+    `)
+
+  // COPY the project adder is now the owner
+  await queryInterface.sequelize.query(`
+      UPDATE
+        entries
+      SET
+        data = JSONB_SET(data, '{answers,2}', data->'answers'->'1')
     `)
 }
 
@@ -57,19 +57,19 @@ export const down: Migration = async ({ context: queryInterface }) => {
         data = JSONB_SET(data, '{answers,2}', data->'answers'->'unit')
     `)
 
-  // DROP responsible org
-  await queryInterface.sequelize.query(`
-      UPDATE
-        entries
-      SET
-        data = data #- '{answers,'unit'}'
-    `)
-
   // DROP answer "2"
   await queryInterface.sequelize.query(`
       DELETE FROM
         questions
       WHERE
         id = 2
+    `)
+
+  // DROP responsible org
+  await queryInterface.sequelize.query(`
+      UPDATE
+        entries
+      SET
+        data = data #- '{answers,'unit'}'
     `)
 }

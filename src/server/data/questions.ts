@@ -34,7 +34,15 @@ const getQuestionData = (): Question[] => [
       sv: '',
       en: '',
     },
-    optionData: { type: 'text', options: [] },
+    optionData: {
+      type: 'employeeSelect',
+      options: [],
+      label: {
+        fi: 'Valitse omistaja',
+        sv: 'Select employee',
+        en: 'Select employee',
+      },
+    },
     visibility: {},
   },
   {

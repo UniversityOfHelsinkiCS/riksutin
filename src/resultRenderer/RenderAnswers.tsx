@@ -72,7 +72,11 @@ const RenderAnswers = ({
                         ? t('questions:additionalPartnerOrganisationTypeQuestion')
                         : currentQuestion.title[language as keyof Locales]}
                   </Typography>
-                  <Typography>{answers[currentQuestion.id] as string}</Typography>
+                  <Typography>
+                    {currentQuestion.id === 2
+                      ? `${answers[currentQuestion.id].value} (${answers[currentQuestion.id].username})`
+                      : (answers[currentQuestion.id] as string)}
+                  </Typography>
                 </Div>
                 {survey?.Questions.filter(childQuestion => childQuestion.parentId === currentQuestion.id)?.map(
                   childQuestion => (

@@ -39,14 +39,12 @@ const RenderSurvey = ({
 
   const { language } = i18n
 
-  const requiredFields = Object.keys(defaultValues).filter(
-    (value) => !['1', '2', '7', 'faculty'].includes(value)
-  )
+  const requiredFields = Object.keys(defaultValues).filter(value => !['1', '2', '7', 'faculty'].includes(value))
 
   return (
     <Box sx={cardStyles.outerBox}>
       <Box sx={cardStyles.card}>
-        {questions.map((question) => (
+        {questions.map(question => (
           <Box key={question.id} sx={cardStyles.card}>
             {showQuestions && question.parentId === null && (
               <RenderQuestion
@@ -61,20 +59,15 @@ const RenderSurvey = ({
         ))}
         {Object.values(errors).length !== 0 && (
           <Box sx={{ p: 2 }}>
-            <Typography>
-              {t('questions:requiredQuestionsNeedAnswers')}
-            </Typography>
+            <Typography>{t('questions:requiredQuestionsNeedAnswers')}</Typography>
             <ul>
               {requiredFields
-                .filter((id) => !Object.keys(dirtyFields).includes(id))
-                .map((id) => (
+                .filter(id => !Object.keys(dirtyFields).includes(id))
+                .map(id => (
                   <li key={id}>
                     <Typography color="red">
-                      {
-                        questions.find((q) => q.id.toString() === id)?.title[
-                          language as keyof Locales
-                        ]
-                      }
+                      {questions.find(q => q.id.toString() === id)?.title[language as keyof Locales] ??
+                        `Failed to read field id: ${id}`}
                     </Typography>
                   </li>
                 ))}
@@ -83,10 +76,7 @@ const RenderSurvey = ({
         )}
         <Box sx={formStyles.stackBox}>
           {!showQuestions ? (
-            <Button
-              data-cy="open-form-button"
-              onClick={() => setShowQuestions(true)}
-            >
+            <Button data-cy="open-form-button" onClick={() => setShowQuestions(true)}>
               {t('openForm')}
             </Button>
           ) : (
