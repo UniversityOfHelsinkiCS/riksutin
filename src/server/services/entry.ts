@@ -1,6 +1,7 @@
 import type { EntryValues } from '@server/types'
 
 import { Entry, Survey, User } from '@dbmodels'
+import { Op } from 'sequelize'
 
 import NotFoundError from '../errors/NotFoundError'
 import UnauthorizedError from '../errors/UnauthorizedError'
@@ -18,7 +19,7 @@ export const getEntries = async (): Promise<Entry[]> => {
 export const getUserEntries = async (userId: string): Promise<Entry[]> => {
   const entries = await Entry.findAll({
     where: {
-      userId,
+      [Op.or]: [{ userId }, { ownerId: userId }],
     },
     include: Survey,
     order: [['createdAt', 'DESC']],
@@ -36,7 +37,8 @@ export const getEntry = async (entryId: string, userId: string): Promise<Entry> 
 
   const user = await User.findByPk(userId)
 
-  if (entry.userId !== userId && !user?.isAdmin) throw new UnauthorizedError('Unauthorized access')
+  if (entry.userId !== userId && entry.ownerId !== userId && !user?.isAdmin)
+    throw new UnauthorizedError('Unauthorized access')
 
   return entry
 }
