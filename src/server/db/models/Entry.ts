@@ -1,24 +1,17 @@
-import {
-  Model,
-  InferAttributes,
-  InferCreationAttributes,
-  CreationOptional,
-  DataTypes,
-} from 'sequelize'
+import { Model, InferAttributes, InferCreationAttributes, CreationOptional, DataTypes } from 'sequelize'
 
 import type { RiskData } from '@types'
 
 import { sequelize } from '../connection'
 
-class Entry extends Model<
-  InferAttributes<Entry>,
-  InferCreationAttributes<Entry>
-> {
+class Entry extends Model<InferAttributes<Entry>, InferCreationAttributes<Entry>> {
   declare id: CreationOptional<number>
 
   declare surveyId: number
 
   declare userId: string
+
+  declare ownerId: string
 
   declare data: RiskData
 
@@ -39,6 +32,10 @@ Entry.init(
       allowNull: false,
     },
     userId: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    ownerId: {
       type: DataTypes.STRING,
       allowNull: true,
     },

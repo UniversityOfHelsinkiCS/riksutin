@@ -4,6 +4,7 @@ import { Entry, Survey, User } from '@dbmodels'
 
 import NotFoundError from '../errors/NotFoundError'
 import UnauthorizedError from '../errors/UnauthorizedError'
+import { EmployeeResponse } from '@routes/types'
 
 export const getEntries = async (): Promise<Entry[]> => {
   const entries = await Entry.findAll({
@@ -28,32 +29,47 @@ export const getUserEntries = async (userId: string): Promise<Entry[]> => {
   return entries
 }
 
-export const getEntry = async (
-  entryId: string,
-  userId: string
-): Promise<Entry> => {
+export const getEntry = async (entryId: string, userId: string): Promise<Entry> => {
   const entry = await Entry.findByPk(entryId, { include: Survey })
 
   if (!entry) throw new NotFoundError('Entry not found')
 
   const user = await User.findByPk(userId)
 
-  if (entry.userId !== userId && !user?.isAdmin)
-    throw new UnauthorizedError('Unauthorized access')
+  if (entry.userId !== userId && !user?.isAdmin) throw new UnauthorizedError('Unauthorized access')
 
   return entry
 }
 
-export const createEntry = async (
-  userId: string,
-  surveyId: string,
-  body: EntryValues
-) => {
+export const createEntry = async (userId: string, surveyId: string, body: EntryValues) => {
   const { sessionToken, data } = body
+  const { value, username }: EmployeeResponse = data.answers['2']
+
+  const ownerId =
+    (
+      await User.findOne({
+        where: {
+          username,
+        },
+      })
+    )?.id ??
+    (
+      await User.create({
+        id: '',
+        username,
+        firstName: value,
+        lastName: value,
+        email: '',
+        language: '',
+        lastLoggedIn: new Date(),
+        isAdmin: false,
+      })
+    ).id
 
   const newEntry = await Entry.create({
     surveyId: Number(surveyId),
     userId,
+    ownerId,
     data,
     sessionToken,
     reminderSent: false,
