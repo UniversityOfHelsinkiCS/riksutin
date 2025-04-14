@@ -23,7 +23,14 @@ const createTableData = (entries: Entry[], questions: Question[], faculties: Fac
       entry.data.answers[22] = entry.data.answers.selectOrganisation
     }
 
-    const formData = Object.fromEntries(questionIds.map(id => [id, entry.data.answers[id] ?? '']))
+    const formData = Object.fromEntries(
+      questionIds.map(id => [
+        id,
+        entry.data.answers[id] && id === 2
+          ? `${entry.data.answers[id].value} (${entry.data.answers[id].username})`
+          : (entry.data.answers[id] ?? ''),
+      ])
+    )
 
     const formattedFormData: TableValues = Object.fromEntries(
       Object.entries(formData).map(([key, val]) => {
