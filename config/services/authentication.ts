@@ -44,8 +44,8 @@ const verifyLogin = async (
   done: (err: any, user?: unknown) => void
 ) => {
   const {
-    uid: username,
-    hyPersonSisuId: id,
+    uid,
+    hyPersonSisuId,
     email,
     hyGroupCn: iamGroups,
     preferredLanguage: language,
@@ -54,8 +54,8 @@ const verifyLogin = async (
   } = userinfo as unknown as UserInfo
 
   const user: UserType = {
-    id: id || username,
-    username,
+    id: uid,
+    username: hyPersonSisuId || uid,
     firstName,
     lastName,
     email,

@@ -45,19 +45,19 @@ export const getEntry = async (entryId: string, userId: string): Promise<Entry> 
 
 export const createEntry = async (userId: string, surveyId: string, body: EntryValues) => {
   const { sessionToken, data } = body
-  const { employeeNumber, username, firstName, lastName, email }: EmployeeResponse = data.answers['2']
+  const { username, firstName, lastName, email }: EmployeeResponse = data.answers['2']
 
   const ownerId =
     (
       await User.findOne({
         where: {
-          username,
+          id: username,
         },
       })
     )?.id ??
     (
       await User.create({
-        id: employeeNumber,
+        id: username,
         username,
         firstName,
         lastName,

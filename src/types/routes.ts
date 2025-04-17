@@ -3,6 +3,9 @@ export interface GenericError {
 }
 export type CanError<T, E = GenericError> = T | E
 
+/**
+ * NOTE: username in this case is the AD-identifier
+ */
 export type EmployeeResponse = {
   employeeNumber: string
   username: string
