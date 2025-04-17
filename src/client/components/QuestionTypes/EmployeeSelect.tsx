@@ -39,7 +39,7 @@ const EmployeeSelect = ({ control, question }: InputProps) => {
                 disablePortal
                 id={`select-${question.id.toString()}`}
                 options={data}
-                getOptionLabel={option => `${option.value} (${option.username})`}
+                getOptionLabel={option => `${option.firstName} ${option.lastName} (${option.email})`}
                 noOptionsText={'Aloita syöte saadaksesi ehdotuksia'}
                 loadingText={<LoadingProgress />}
                 onChange={(e, data) => onChange(data)}

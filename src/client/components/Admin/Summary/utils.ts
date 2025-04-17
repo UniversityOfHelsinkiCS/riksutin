@@ -27,7 +27,7 @@ const createTableData = (entries: Entry[], questions: Question[], faculties: Fac
       questionIds.map(id => [
         id,
         entry.data.answers[id] && id === 2
-          ? `${entry.data.answers[id].value} (${entry.data.answers[id].username})`
+          ? `${entry.data.answers[id].firstName} ${entry.data.answers[id].lastName} (${entry.data.answers[id].email})`
           : (entry.data.answers[id] ?? ''),
       ])
     )

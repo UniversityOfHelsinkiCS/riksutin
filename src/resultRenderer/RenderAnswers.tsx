@@ -73,8 +73,11 @@ const RenderAnswers = ({
                         : currentQuestion.title[language as keyof Locales]}
                   </Typography>
                   <Typography>
-                    {answers[currentQuestion.id] && currentQuestion.id === 2
-                      ? `${answers[currentQuestion.id].value} (${answers[currentQuestion.id].username})`
+                    {answers[currentQuestion.id] &&
+                    currentQuestion.id === 2 &&
+                    typeof answers[currentQuestion.id] === 'object' &&
+                    !Array.isArray(answers[currentQuestion.id])
+                      ? `${answers[currentQuestion.id].firstName} ${answers[currentQuestion.id].lastName} (${answers[currentQuestion.id].email})`
                       : ((answers[currentQuestion.id] as string) ?? '')}
                   </Typography>
                 </Div>

@@ -45,7 +45,7 @@ export const getEntry = async (entryId: string, userId: string): Promise<Entry> 
 
 export const createEntry = async (userId: string, surveyId: string, body: EntryValues) => {
   const { sessionToken, data } = body
-  const { value, username }: EmployeeResponse = data.answers['2']
+  const { employeeNumber, username, firstName, lastName, email }: EmployeeResponse = data.answers['2']
 
   const ownerId =
     (
@@ -57,11 +57,11 @@ export const createEntry = async (userId: string, surveyId: string, body: EntryV
     )?.id ??
     (
       await User.create({
-        id: '',
+        id: employeeNumber,
         username,
-        firstName: value,
-        lastName: value,
-        email: '',
+        firstName,
+        lastName,
+        email,
         language: '',
         lastLoggedIn: new Date(),
         isAdmin: false,
