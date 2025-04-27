@@ -28,6 +28,7 @@ const additionalColumnNames: TableValues = {
   date: 'Päivämäärä',
   total: 'Kokonaisriskitaso',
   faculty: 'Tiedekunta',
+  unit: 'Yksikkö',
 }
 
 const Table = ({ tableValues, questionTitles }: TableProps) => {
@@ -66,7 +67,7 @@ const Table = ({ tableValues, questionTitles }: TableProps) => {
 
   const columnIds = Object.keys(tableValues[0])
 
-  const [columnOrder, setColumnOrder] = useState(['3', 'date', 'total', '1', 'faculty', ...columnIds])
+  const [columnOrder, setColumnOrder] = useState(['3', 'date', 'total', '1', 'faculty', '2', 'unit', ...columnIds])
 
   const handleDeleteRiskAssessment = (row: MRT_Row<TableValues>) => {
     // eslint-disable-next-line no-alert

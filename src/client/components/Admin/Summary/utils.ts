@@ -64,7 +64,10 @@ const createTableData = (entries: Entry[], questions: Question[], faculties: Fac
 
     const faculty = faculties.find(f => f.code === entry.data.answers.faculty)?.name.fi
 
-    const obj = { ...additionalValues, ...formattedFormData, faculty }
+    const unit = faculties.find(f => f.code === entry.data.answers.unit)
+    const parsedUnit = unit ? `${unit.code} - ${unit.name.fi}` : entry.data.answers.unit
+
+    const obj = { ...additionalValues, ...formattedFormData, faculty, unit: parsedUnit }
 
     updatedEntries.push(obj)
   })
