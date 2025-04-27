@@ -54,6 +54,9 @@ const RenderAnswers = ({
     ...Object.assign({}, ...multiChoiceAnswers),
   }
 
+  const unit = organisations.find(faculty => faculty.code === answers.unit)
+  const parsedUnit = unit ? `${unit.code} - ${unit.name[language as keyof Locales]}` : answers.unit
+
   return (
     <>
       <Typography variant="h6" style={{ fontSize: '24px', marginBottom: '20px' }}>
@@ -121,10 +124,7 @@ const RenderAnswers = ({
             {currentQuestion.id === 2 && (
               <Div style={{ margin: '16px' }}>
                 <Typography style={{ fontWeight: '800' }}>{t('unitSelect:title')}</Typography>
-                <Typography>
-                  {organisations.find(faculty => faculty.code === answers.unit)?.name[language as keyof Locales] ??
-                    answers.unit}
-                </Typography>
+                <Typography>{parsedUnit}</Typography>
               </Div>
             )}
           </Div>

@@ -72,7 +72,6 @@ const SelectUnit = ({ control }: InputProps) => {
         control={control}
         name="unit"
         rules={{ required: true }}
-        defaultValue={userFaculties[0]?.code || extraOrganisations[0].code}
         render={({ field }) => (
           <FormControl sx={{ minWidth: 200 }}>
             <InputLabel>{t('unitSelect:inputLabel')}</InputLabel>
