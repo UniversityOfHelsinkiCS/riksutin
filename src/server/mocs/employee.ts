@@ -1,9 +1,13 @@
+import { EmployeeResponse } from '@routes/types'
 import mockUser from './user'
 
-const mockEmplyee = [
+const mockEmplyee: EmployeeResponse[] = [
   {
-    username: mockUser.email,
-    value: mockUser.firstName + ' ' + mockUser.lastName,
+    employeeNumber: '',
+    username: mockUser.username,
+    firstName: mockUser.firstName,
+    lastName: mockUser.lastName,
+    email: mockUser.email,
   },
 ]
 
