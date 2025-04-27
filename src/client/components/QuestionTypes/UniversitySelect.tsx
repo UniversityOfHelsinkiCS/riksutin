@@ -57,6 +57,8 @@ const UniversitySelect = ({ control, question, selectedCountry }: InputProps) =>
 
   if (isLoading) return <LoadingProgress />
 
+  const autocompleteOptions = country?.universities.sort() ?? question.optionData.options
+
   return (
     <>
       <Typography component="span" sx={{ color: 'red' }}>
@@ -84,7 +86,7 @@ const UniversitySelect = ({ control, question, selectedCountry }: InputProps) =>
                 <Autocomplete
                   disablePortal
                   id={`select-${question.id.toString()}`}
-                  options={country?.universities ?? question.optionData.options}
+                  options={autocompleteOptions}
                   getOptionLabel={option => option}
                   onChange={(e, data) => onChange(data)}
                   sx={{ width: '50%' }}
