@@ -7,9 +7,9 @@ const getQuestionData = (): Question[] => [
     parentId: null,
     priority: 0,
     title: {
-      fi: 'Ilmoittajan nimi',
-      sv: 'Name of the person providing information',
-      en: 'Name of the person providing information',
+      fi: 'Tekijä',
+      sv: 'Person providing the information',
+      en: 'Person providing the information',
     },
     text: {
       fi: '',
@@ -25,9 +25,9 @@ const getQuestionData = (): Question[] => [
     parentId: null,
     priority: 0,
     title: {
-      fi: 'Projektin omistajan nimi',
-      sv: 'Name of the person responsible for the project',
-      en: 'Name of the person responsible for the project',
+      fi: 'Projektin omistaja',
+      sv: 'Person responsible for the project',
+      en: 'Person responsible for the project',
     },
     text: {
       fi: '',
@@ -38,9 +38,9 @@ const getQuestionData = (): Question[] => [
       type: 'employeeSelect',
       options: [],
       label: {
-        fi: 'Valitse omistaja',
-        sv: 'Select employee',
-        en: 'Select employee',
+        fi: 'Hae omistaja',
+        sv: 'Search for the owner',
+        en: 'Search for the owner',
       },
     },
     visibility: {},
