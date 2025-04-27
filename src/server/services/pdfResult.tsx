@@ -9,7 +9,7 @@ import { Page, Text, View, Document } from '@react-pdf/renderer'
 import { ComponentProvider } from '@resultRenderer/context'
 import RiskTable from '@resultRenderer/RiskTable'
 import RenderAnswers from '@resultRenderer/RenderAnswers'
-import { RiskData } from '@types'
+import { Faculty, RiskData } from '@types'
 import i18n from '../util/i18n'
 import { TFunction } from 'i18next'
 import { DEFAULT_SURVEY_NAME, supportEmail } from '@config'
@@ -17,11 +17,12 @@ import { DEFAULT_SURVEY_NAME, supportEmail } from '@config'
 export const createPdfResultBuffer = async (entry: Entry) => {
   const t = i18n.getFixedT('en')
 
-  const [results, countries, survey, faculties] = await Promise.all([
+  const [results, countries, survey, faculties, units] = await Promise.all([
     getResults('1'),
     getCountries(),
     getSurvey(DEFAULT_SURVEY_NAME),
     getFaculties(),
+    getUnits(),
   ])
 
   const stream = await ReactPdf.renderToStream(
@@ -32,6 +33,7 @@ export const createPdfResultBuffer = async (entry: Entry) => {
       survey={survey}
       resultData={entry.data.answers}
       faculties={faculties}
+      units={units}
       t={t}
     />
   )
@@ -59,6 +61,7 @@ const ResultDocument = ({
   survey,
   resultData,
   faculties,
+  units,
   t,
 }: {
   entry: RiskData
@@ -66,7 +69,8 @@ const ResultDocument = ({
   results: Result[]
   survey: any
   resultData: any
-  faculties: any[]
+  faculties: Faculty[]
+  units: Faculty[]
   t: TFunction
 }) => {
   const { country } = entry
@@ -98,7 +102,7 @@ const ResultDocument = ({
           <View style={{ padding: '10px', fontSize: '10px' }}>
             <RiskTable countries={countries} countryData={country[0]} riskData={entry} results={results} />
             <View style={{ padding: '10px' }} />
-            <RenderAnswers survey={survey} resultData={resultData} faculties={faculties} />
+            <RenderAnswers survey={survey} resultData={resultData} faculties={faculties} units={units} />
           </View>
         </ComponentProvider>
         <Text fixed style={{ bottom: 0, left: 0, right: 0, textAlign: 'center', fontSize: '8px', paddingTop: '10px' }}>
@@ -149,7 +153,7 @@ import ReactMarkdown from 'react-markdown'
 import { getResults } from './result'
 import { getCountries } from './countries'
 import { getSurvey } from './survey'
-import { getFaculties } from './faculty'
+import { getFaculties, getUnits } from './faculty'
 
 const H1 = ({ ...rest }) => <Text {...rest} />
 

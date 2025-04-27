@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react'
 
-import type { FormValues, Locales } from '@types'
+import type { Faculty, FormValues, Locales } from '@types'
 import type { Survey } from '@client/types'
 
 import { extraOrganisations } from '@common/organisations'
@@ -12,10 +12,12 @@ const RenderAnswers = ({
   survey,
   resultData,
   faculties,
+  units,
 }: {
   survey: Survey
   resultData: FormValues
-  faculties: any
+  faculties: Faculty[]
+  units: Faculty[]
 }) => {
   const { Div, Typography, t, language } = useComponents()
 
@@ -54,7 +56,7 @@ const RenderAnswers = ({
     ...Object.assign({}, ...multiChoiceAnswers),
   }
 
-  const unit = organisations.find(faculty => faculty.code === answers.unit)
+  const unit = units.find(faculty => faculty.code === answers.unit)
   const parsedUnit = unit ? `${unit.code} - ${unit.name[language as keyof Locales]}` : answers.unit
 
   return (
