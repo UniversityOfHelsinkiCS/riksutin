@@ -2,10 +2,13 @@ import os from 'os'
 
 import winston from 'winston'
 import { WinstonGelfTransporter } from 'winston-gelf-transporter'
+import LokiTransport from 'winston-loki'
 
 import { inProduction } from '@config'
 
 const { combine, timestamp, printf, splat } = winston.format
+
+const LOKI_HOST = 'loki-svc.toska-lokki.svc.cluster.local:3100'
 
 const transports: winston.transport[] = []
 
@@ -40,6 +43,13 @@ if (!inProduction) {
     })
   )
   transports.push(new winston.transports.Console({ format: prodFormat }))
+
+  transports.push(
+    new LokiTransport({
+      host: LOKI_HOST,
+      labels: { app: 'riksutin', environment: process.env.NODE_ENV || 'production' }
+    })
+  )
 
   transports.push(
     new WinstonGelfTransporter({
