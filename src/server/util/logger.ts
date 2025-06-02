@@ -36,18 +36,27 @@ if (!inProduction) {
     silly: 6,
   }
 
-  const prodFormat = winston.format.printf(({ level, ...rest }) =>
-    JSON.stringify({
-      level: levels[level],
-      ...rest,
-    })
-  )
+  const prodFormat = winston.format.printf(({ level, ...rest }) => {
+    let message: string
+    try {
+      message = JSON.stringify({
+        level: levels[level],
+        ...rest,
+      })
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(rest)
+      return ''
+    }
+    return message
+  })
+
   transports.push(new winston.transports.Console({ format: prodFormat }))
 
   transports.push(
     new LokiTransport({
       host: LOKI_HOST,
-      labels: { app: 'riksutin', environment: process.env.NODE_ENV || 'production' }
+      labels: { app: 'riksutin', environment: process.env.NODE_ENV ?? 'production' },
     })
   )
 
