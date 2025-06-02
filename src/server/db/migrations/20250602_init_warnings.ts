@@ -1,8 +1,13 @@
 import { DataTypes } from 'sequelize'
 
 import { Migration } from '../connection'
+// eslint-disable-next-line no-console
+console.log('WTF1')
 
 export const up: Migration = async ({ context: queryInterface }) => {
+  // eslint-disable-next-line no-console
+  console.log('WTF2')
+
   await queryInterface.createTable('warnings', {
     id: {
       type: DataTypes.STRING,

@@ -16,7 +16,7 @@ import loginRouter from './login'
 import questionRouter from './question'
 import countryRouter from './country'
 import organizationRouter from './organization'
-import warningRouter from './warning'
+import warningsRouter from './warning'
 
 const router = express()
 
@@ -46,7 +46,7 @@ router.use('/users', userRouter)
 router.use('/login', loginRouter)
 router.use('/countries', countryRouter)
 router.use('/organizations', organizationRouter)
-router.use('/warning', warningRouter)
+router.use('/warnings', warningsRouter)
 
 router.use(SentryHandlers.errorHandler())
 router.use(errorHandler)
