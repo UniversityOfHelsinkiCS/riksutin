@@ -8,8 +8,6 @@ class Warning extends Model<InferAttributes<Warning>, InferCreationAttributes<Wa
   declare country: string
   declare text: Locales
   declare expiry_date: Date
-  declare created_at: Date
-  declare updated_at: Date
 }
 
 Warning.init(
@@ -28,12 +26,6 @@ Warning.init(
       allowNull: false,
     },
     expiry_date: {
-      type: DataTypes.DATE,
-    },
-    created_at: {
-      type: DataTypes.DATE,
-    },
-    updated_at: {
       type: DataTypes.DATE,
     },
   },
