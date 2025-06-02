@@ -13,7 +13,7 @@ class Warning extends Model<InferAttributes<Warning>, InferCreationAttributes<Wa
 Warning.init(
   {
     id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
     },

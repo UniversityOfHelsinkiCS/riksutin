@@ -5,7 +5,7 @@ import { Migration } from '../connection'
 export const up: Migration = async ({ context: queryInterface }) => {
   await queryInterface.createTable('warnings', {
     id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
@@ -19,6 +19,14 @@ export const up: Migration = async ({ context: queryInterface }) => {
     },
     expiry_date: {
       type: DataTypes.DATE,
+    },
+    created_at: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      allowNull: false,
     },
   })
 }

@@ -3,7 +3,6 @@ import { Umzug, SequelizeStorage } from 'umzug'
 
 import { DATABASE_URL } from '@server/config'
 import logger from '../util/logger'
-import { t } from 'i18next'
 
 const DB_CONNECTION_RETRY_LIMIT = 10
 
@@ -28,17 +27,7 @@ const runMigrations = async () => {
 
 const testConnection = async () => {
   await sequelize.authenticate()
-  try {
-    await runMigrations()
-  } catch (err) {
-    // eslint-disable-next-line no-console
-    console.error(err)
-    // eslint-disable-next-line no-console
-    console.error('Error running migrations', {
-      error: (err as Error).stack,
-    })
-    throw new Error(t('db.connection.migrationError'))
-  }
+  await runMigrations()
 }
 
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
