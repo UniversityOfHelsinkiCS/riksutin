@@ -1,29 +1,37 @@
 import { DataTypes } from 'sequelize'
 
 import { Migration } from '../connection'
-// eslint-disable-next-line no-console
-console.log('WTF1')
 
 export const up: Migration = async ({ context: queryInterface }) => {
-  // eslint-disable-next-line no-console
-  console.log('WTF2')
-
-  await queryInterface.createTable('warnings', {
+  await queryInterface.createTable('users2', {
     id: {
       type: DataTypes.STRING,
+      allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
     },
-    country: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    text: {
-      type: DataTypes.JSONB,
-      allowNull: false,
+    first_name: {
+      type: DataTypes.STRING,
     },
-    expiry_date: {
+    last_name: {
+      type: DataTypes.STRING,
+    },
+    email: {
+      type: DataTypes.STRING,
+    },
+    language: {
+      type: DataTypes.STRING,
+    },
+    last_logged_in: {
       type: DataTypes.DATE,
+    },
+    is_admin: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
     },
     created_at: {
       type: DataTypes.DATE,
@@ -37,5 +45,5 @@ export const up: Migration = async ({ context: queryInterface }) => {
 }
 
 export const down: Migration = async ({ context: queryInterface }) => {
-  await queryInterface.dropTable('warnings')
+  await queryInterface.dropTable('users2')
 }
