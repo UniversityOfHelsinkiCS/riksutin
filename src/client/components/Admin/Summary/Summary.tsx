@@ -58,7 +58,6 @@ const Table = ({ tableValues, questionTitles }: TableProps) => {
                 ) : (
                   cell.getValue<number>()
                 )}
-                warnings
               </Box>
             ),
           }))
