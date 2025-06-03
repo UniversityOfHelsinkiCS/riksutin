@@ -31,6 +31,7 @@ const Admin = () => {
         <Tab component={Link} to="./edit-survey" label={t('admin:surveyTab')} value="edit-survey" />
         <Tab component={Link} to="./edit-questions" label={t('admin:questionTab')} value="edit-questions" />
         <Tab component={Link} to="./edit-results" label={t('admin:resultTab')} value="edit-results" />
+        <Tab component={Link} to="./warnings" label={t('admin:warningTab')} value="warnings" />
       </Tabs>
       <Outlet />
     </Box>

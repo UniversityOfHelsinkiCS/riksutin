@@ -48,7 +48,11 @@ const RiskElement = ({ infoText, title, level, style, ekstra }: RiskElementProps
       {infoText && (
         <Div style={{ width: '90%', padding: '10px' }}>
           <Markdown>{infoText}</Markdown>
-          {ekstra && <Markdown>{ekstra}</Markdown>}
+          {ekstra && (
+            <div style={{ marginTop: 20 }}>
+              <Markdown>{ekstra}</Markdown>
+            </div>
+          )}
         </Div>
       )}
     </Div>

@@ -45,7 +45,6 @@ const RiskTable = ({
   ]
 
   let ekstraText = ''
-
   warnings.map(({ country, text }) => {
     if (country === countryData.code) {
       ekstraText += text[language]
@@ -74,12 +73,7 @@ const RiskTable = ({
         <TableContainer>
           <Table>
             <TableBody>
-              <RiskElement
-                infoText={totalRiskText}
-                title={totalRisk.title}
-                level={totalRisk.level}
-                ekstra={ekstraText}
-              />
+              <RiskElement infoText={totalRiskText} title={totalRisk.title} level={totalRisk.level} />
 
               <TableRow>
                 <TableCell colSpan={3}>
@@ -94,7 +88,9 @@ const RiskTable = ({
                     title={t('riskTable:countryRiskLevel')}
                     level={countryRisk.level}
                     infoText={countryInfoText}
+                    ekstra={ekstraText}
                   />
+
                   {countryRisksWithTexts.map((risk: Risk) => (
                     <RiskElement
                       key={risk.id}
