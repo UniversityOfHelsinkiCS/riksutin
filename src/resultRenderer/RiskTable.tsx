@@ -54,9 +54,7 @@ const RiskTable = ({
   let countryInfoText =
     results.find(r => r.optionLabel === `country${countryRisk?.level}`)?.isSelected[language as keyof Locales] ?? ''
 
-  if (selectedCountryCode === 'CN') {
-    countryInfoText += t('countrySpecificTexts:CN')
-  } else if (!globalNorthCountries.includes(selectedCountryCode)) {
+  if (!globalNorthCountries.includes(selectedCountryCode)) {
     countryInfoText += t('countrySpecificTexts:globalSouth')
   }
 
