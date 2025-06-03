@@ -8,9 +8,10 @@ export interface RiskElementProps {
   title: string
   level: number | null
   style?: any
+  ekstra?: string
 }
 
-const RiskElement = ({ infoText, title, level, style }: RiskElementProps) => {
+const RiskElement = ({ infoText, title, level, style, ekstra }: RiskElementProps) => {
   const { Div, Markdown, Typography, t } = useComponents()
   if (!level) return null
 
@@ -47,6 +48,7 @@ const RiskElement = ({ infoText, title, level, style }: RiskElementProps) => {
       {infoText && (
         <Div style={{ width: '90%', padding: '10px' }}>
           <Markdown>{infoText}</Markdown>
+          {ekstra && <Markdown>{ekstra}</Markdown>}
         </Div>
       )}
     </Div>

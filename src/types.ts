@@ -3,6 +3,15 @@ export type BaseCountry = {
   name: string
 }
 
+export type Warning = {
+  id: number
+  country: string
+  text: Locales
+  expiry_date: string
+  createdAt: string
+  updatedAt: string
+}
+
 export type CountryData = {
   academicfreedom: number
   code: string

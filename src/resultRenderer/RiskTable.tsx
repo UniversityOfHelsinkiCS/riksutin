@@ -11,6 +11,8 @@ import { globalNorthCountries } from '@common/countryLists'
 import getRiskTexts from '@common/getRiskTexts'
 import getCountryRiskTexts from '@common/getCountryRiskTexts'
 
+import useWarnings from '../client/hooks/useWarnings'
+
 const { resultStyles } = styles
 
 const RiskTable = ({
@@ -32,15 +34,23 @@ const RiskTable = ({
   const totalRisk = riskData.risks.find(risk => risk.id === 'total')
   const countryRisk = riskData.risks.find(risk => risk.id === 'country')
 
-  if (!totalRisk) return null
+  const { warnings } = useWarnings()
 
-  let totalRiskText = results.find(r => r.optionLabel === `total${totalRisk.level}`)?.isSelected[
+  if (!totalRisk) return null
+  if (!countryData) return null
+  if (!warnings) return null
+
+  const totalRiskText = results.find(r => r.optionLabel === `total${totalRisk.level}`)?.isSelected[
     language as keyof Locales
   ]
 
-  if (selectedCountryCode === 'RU' || selectedCountryCode === 'BY') {
-    totalRiskText += t('countrySpecificTexts:RU')
-  }
+  let ekstraText = ''
+
+  warnings.map(({ country, text }) => {
+    if (country === countryData.code) {
+      ekstraText += text[language]
+    }
+  })
 
   let countryInfoText =
     results.find(r => r.optionLabel === `country${countryRisk?.level}`)?.isSelected[language as keyof Locales] ?? ''
@@ -64,7 +74,13 @@ const RiskTable = ({
         <TableContainer>
           <Table>
             <TableBody>
-              <RiskElement infoText={totalRiskText} title={totalRisk.title} level={totalRisk.level} />
+              <RiskElement
+                infoText={totalRiskText}
+                title={totalRisk.title}
+                level={totalRisk.level}
+                ekstra={ekstraText}
+              />
+
               <TableRow>
                 <TableCell colSpan={3}>
                   <Div style={{ paddingTop: '10px', paddingBottom: '10px' }}>
