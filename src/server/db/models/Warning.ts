@@ -4,7 +4,7 @@ import { sequelize } from '../connection'
 import type { Locales } from '@types'
 
 class Warning extends Model<InferAttributes<Warning>, InferCreationAttributes<Warning>> {
-  declare id: string
+  declare id: number
   declare country: string
   declare text: Locales
   declare expiry_date: Date

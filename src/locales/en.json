@@ -178,7 +178,8 @@
     "resultTab": "Edit results",
     "warningTab": "Country warnings",
     "recommendationTab": "Edit recommendations",
-    "markdown": "Editable fields support <0>Markdown</0> content"
+    "markdown": "Editable fields support <0>Markdown</0> content",
+    "allCountryWarnings": "All country spesific warnings"
   },
   "email": {
     "subject": "Risk assessment results",

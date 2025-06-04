@@ -177,7 +177,8 @@
     "resultTab": "Tulosten muokkaus",
     "warningTab": "Maakohtaiset varoitukset",
     "recommendationTab": "Suositusten muokkaus",
-    "markdown": "Muokattavat kentät tukevat <0>Markdown</0>-sisältöä"
+    "markdown": "Muokattavat kentät tukevat <0>Markdown</0>-sisältöä",
+    "allCountryWarnings": "Kaikki maakohtaiset varoitukset"
   },
   "email": {
     "subject": "Riskiraportti",
