@@ -1,4 +1,4 @@
-import type { Warning } from '@types'
+import type { Warning, NewWarning } from '@types'
 
 import { useQuery } from 'react-query'
 
@@ -20,20 +20,26 @@ export const useWarnings = () => {
   return { warnings, ...rest }
 }
 
-//export const createWarning = newWarning =>
-//  axios.post("/warnings", newWarning).then(res => res.data)
-//
-//export const postWarnings = () => {
-//  const queryKey = 'warninigs'
-//  const mutationFn = async (data: NewWarning) => {
-//    await apiClient.post("/warnings", data)
-//  }
-//
-//  return mutationFn
-//}
+export const createWarning = async (warningObj: NewWarning) => {
+  //const queryKey = 'warninigs'
+  const obj = await apiClient.post('/warnings', warningObj)
+  return obj
+}
 
-//export default {
-//  useWarnings, postWarnings
-//}
+export const deleteWarning = async (warningId: number) => {
+  try {
+    const obj = await apiClient.delete(`/warnings/${warningId}`)
 
-export default useWarnings
+    return obj
+  } catch (er) {
+    return { error: er, er }
+  }
+}
+
+export default {
+  useWarnings,
+  createWarning,
+  deleteWarning,
+}
+
+//export default useWarnings

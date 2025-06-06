@@ -28,9 +28,7 @@ warningsRouter.post('/', adminHandler, async (req: RequestWithUser, res: any) =>
 
 warningsRouter.delete('/:id', adminHandler, async (req: RequestWithUser, res: any) => {
   const { id } = req.params
-
   const deletedWarning = await deleteWarning(id)
-
   return res.status(204).send(deletedWarning)
 })
 

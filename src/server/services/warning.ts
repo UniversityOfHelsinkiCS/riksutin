@@ -38,7 +38,6 @@ export const createWarning = async (newWarningValues: NewWarning): Promise<Warni
     //expiry_date: new Date('2025-12-31T23:59:59Z')
     //expiry_date: new Date(newWarningValues.expiry_date)
   })
-
   return newWarning
 }
 
