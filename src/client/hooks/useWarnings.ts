@@ -20,4 +20,20 @@ export const useWarnings = () => {
   return { warnings, ...rest }
 }
 
+//export const createWarning = newWarning =>
+//  axios.post("/warnings", newWarning).then(res => res.data)
+//
+//export const postWarnings = () => {
+//  const queryKey = 'warninigs'
+//  const mutationFn = async (data: NewWarning) => {
+//    await apiClient.post("/warnings", data)
+//  }
+//
+//  return mutationFn
+//}
+
+//export default {
+//  useWarnings, postWarnings
+//}
+
 export default useWarnings
