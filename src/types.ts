@@ -12,6 +12,13 @@ export type Warning = {
   updatedAt: string
 }
 
+export type NewWarning = {
+  id: number
+  country: string
+  text: Locales
+  expiry_date: string
+}
+
 export type CountryData = {
   academicfreedom: number
   code: string

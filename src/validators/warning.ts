@@ -19,14 +19,20 @@ export const NewWarningZod = z.object({
     en: z.string().nonempty(),
   }),
   expiry_date: z.string(),
-  //data: z.record(
-  //  z.string(),
-  //  z.object({
-  //    fi: z.string(),
-  //    sv: z.string(),
-  //    en: z.string(),
-  //  })
-  //),
 })
 
 export type NewWarning = z.infer<typeof NewWarningZod>
+
+export const UpdatedWarningZod = z.object({
+  id: z.number(),
+  country: z.string().nonempty(),
+  text: z.object({
+    fi: z.string().nonempty(),
+    en: z.string().nonempty(),
+  }),
+  expiry_date: z.string(),
+  updatedAt: z.string(),
+  createdAt: z.string(),
+})
+
+export type UpdatedWarning = z.infer<typeof UpdatedWarningZod>

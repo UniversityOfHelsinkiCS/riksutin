@@ -179,7 +179,8 @@
     "warningTab": "Country warnings",
     "recommendationTab": "Edit recommendations",
     "markdown": "Editable fields support <0>Markdown</0> content",
-    "allCountryWarnings": "All country spesific warnings"
+    "allCountryWarnings": "All country spesific warnings",
+    "expire": "Expires"
   },
   "email": {
     "subject": "Risk assessment results",

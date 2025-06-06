@@ -1,9 +1,8 @@
-import {
-  NewWarning,
-  //git NewWarningZod,
-} from '@validators/warning'
+import { NewWarning, NewWarningZod, UpdatedWarning, UpdatedWarningZod } from '@validators/warning'
 
 import { Warning } from '@dbmodels'
+import NotFoundError from '../errors/NotFoundError'
+import ZodValidationError from '../errors/ValidationError'
 //import { DataTypes } from 'sequelize'
 
 export const getWarnings = async (): Promise<Warning[]> => {
@@ -24,10 +23,9 @@ export const getWarningWithId = async (id: number): Promise<Warning[]> => {
 }
 
 export const createWarning = async (newWarningValues: NewWarning): Promise<Warning> => {
-  //console.log("warn3")
+  const request = NewWarningZod.safeParse(newWarningValues)
 
-  //const request = NewWarningZod.safeParse(newWarningValues)
-  //console.log("warn4")
+  if (!request.success) throw new ZodValidationError('Validation of the new result inputs failed', request.error.issues)
 
   const newWarning = await Warning.create({
     id: newWarningValues.id,
@@ -41,6 +39,31 @@ export const createWarning = async (newWarningValues: NewWarning): Promise<Warni
     //expiry_date: new Date(newWarningValues.expiry_date)
   })
 
-  //console.log("warn5")
   return newWarning
+}
+
+export const deleteWarning = async (warningId: string): Promise<Warning> => {
+  const warning = await Warning.findByPk(warningId)
+
+  if (!warning) throw new NotFoundError('No warning with this id')
+  await warning.destroy()
+  return warning
+}
+
+export const updateWarning = async (warningId: string, updatedWarningValues: UpdatedWarning): Promise<Warning> => {
+  const warning = await Warning.findByPk(warningId)
+
+  if (!warning) throw new NotFoundError('Question to update not found')
+
+  const request = UpdatedWarningZod.safeParse(updatedWarningValues)
+
+  if (!request.success)
+    throw new ZodValidationError('Validation of the warning update values failed', request.error.issues)
+  const { data } = request
+
+  Object.assign(warning, data)
+
+  await warning.save()
+
+  return warning
 }

@@ -4,7 +4,9 @@ import { useQuery } from 'react-query'
 
 import apiClient from '../util/apiClient'
 
-const useWarnings = () => {
+//import axios from 'axios'
+
+export const useWarnings = () => {
   const queryKey = 'warnings'
 
   const query = async (): Promise<Warning[]> => {

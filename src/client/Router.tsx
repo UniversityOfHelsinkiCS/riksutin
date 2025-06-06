@@ -17,7 +17,7 @@ import NotFound from './components/Errors/NotFound'
 import RenderEditResults from './components/Admin/EditResults/RenderEditResults'
 import EditResults from './components/Admin/EditResults/EditResults'
 
-import RenderWarnings from './components/Admin/Warnings'
+import RenderMainWarningsPage from './components/Admin/Warnings'
 
 const router = createBrowserRouter(
   [
@@ -80,7 +80,7 @@ const router = createBrowserRouter(
             },
             {
               path: 'warnings',
-              element: <RenderWarnings />,
+              element: <RenderMainWarningsPage />,
             },
           ],
         },
