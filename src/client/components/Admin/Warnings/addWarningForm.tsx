@@ -17,7 +17,6 @@ const WarningForm = () => {
 
   const addWarning = async event => {
     event.preventDefault()
-    //console.log("Klaks")
 
     if (!countries) return null
     const countryCode = countries.find(country => country.name === newCountry)?.iso2Code
@@ -37,7 +36,6 @@ const WarningForm = () => {
     setNewFiText('')
     setNewEnText('')
     setNewExpiryDate('')
-    //console.log(res)
     return res
   }
 
@@ -59,13 +57,22 @@ const WarningForm = () => {
 
   return (
     <div>
-      <p>OK</p>
       <form onSubmit={addWarning}>
-        Maa: <input value={newCountry} onChange={handleCountryChange} placeholder="Country name in english" />
-        Varoitus suomeksi: <input value={newFiText} onChange={handleFiTextChange} placeholder="uusi käännös" />
-        Varoitus englanniski: <input value={newEnText} onChange={handleEnTextChange} placeholder="new translation" />
-        Päättymispäivä: <input value={newExpiryDate} onChange={handleExpiryDateChange} placeholder="new date" />
-        <button type="submit">Send</button>
+        <div>
+          Maa: <input value={newCountry} onChange={handleCountryChange} placeholder="Country name in english" />
+        </div>
+        <div>
+          Varoitus suomeksi: <input value={newFiText} onChange={handleFiTextChange} placeholder="uusi käännös" />
+        </div>
+        <div>
+          Varoitus englanniksi: <input value={newEnText} onChange={handleEnTextChange} placeholder="new translation" />
+        </div>
+        <div>
+          Päättymispäivä: <input value={newExpiryDate} onChange={handleExpiryDateChange} placeholder="new date" />
+        </div>
+        <button type="submit" style={{ color: '#0288d1', width: '10%', borderColor: '#0288d1' }}>
+          Send
+        </button>
       </form>
     </div>
   )

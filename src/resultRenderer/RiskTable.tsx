@@ -11,7 +11,7 @@ import { globalNorthCountries } from '@common/countryLists'
 import getRiskTexts from '@common/getRiskTexts'
 import getCountryRiskTexts from '@common/getCountryRiskTexts'
 
-import useWarnings from '../client/hooks/useWarnings'
+import { useWarnings } from '../client/hooks/useWarnings'
 
 const { resultStyles } = styles
 

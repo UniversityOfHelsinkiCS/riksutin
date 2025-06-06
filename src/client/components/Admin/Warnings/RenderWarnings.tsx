@@ -1,8 +1,9 @@
 import { useWarnings } from 'src/client/hooks/useWarnings'
 import useCountries from 'src/client/hooks/useCountries'
-//import useWarnings from 'src/client/hooks/useWarnings'
 import { useTranslation } from 'react-i18next'
 import { deleteWarning } from 'src/client/hooks/useWarnings'
+
+//import { useComponents } from '@resultRenderer/context'
 //import { Warning } from '@dbmodels'
 
 const FormatedDate = ({ expiryDate }) => {
@@ -18,6 +19,7 @@ const FormatedDate = ({ expiryDate }) => {
 const WarningObject = ({ country, text, expiryDate }) => {
   const { countries } = useCountries()
   const { warnings } = useWarnings()
+  //const { Div, Markdown, t }  =useComponents()
   if (!countries) return null
 
   const countryObj = countries.find(countryObj => countryObj.iso2Code == country)
@@ -27,16 +29,14 @@ const WarningObject = ({ country, text, expiryDate }) => {
 
   const handleDelete = async event => {
     event.preventDefault()
-    //console.log("Kluks")
 
     const countryId = warnings.find(warnObj => warnObj.country === country)?.id
 
     if (countryId) {
-      //console.log(countryId)
-      //const res = await deleteWarning(countryId)
       await deleteWarning(countryId)
     }
   }
+  //<ul><Markdown>{text.fi}</Markdown></ul>
 
   return (
     <div>
@@ -46,8 +46,8 @@ const WarningObject = ({ country, text, expiryDate }) => {
         <p></p>
         <ul>{text.en}</ul>
         {expiryDate && <FormatedDate expiryDate={expiryDate} />}
-        <button style={{ color: 'green' }}>Edit</button>
-        <button onClick={handleDelete} style={{ color: 'red' }}>
+        <button style={{ color: 'green', width: '10%', borderColor: 'green', margin: '10px' }}>Edit</button>
+        <button onClick={handleDelete} style={{ color: 'red', width: '10%', borderColor: 'red', margin: '10px' }}>
           Delete
         </button>
       </ul>
