@@ -11,7 +11,19 @@ const AddWarning = () => {
 
   return (
     <div>
-      <button onClick={handleAddNew}>{showForm ? 'Close' : 'Add new'}</button>
+      <button
+        onClick={handleAddNew}
+        style={{
+          padding: '3px',
+          width: '10%',
+          color: '#107eab',
+          borderColor: '#87bed5',
+          borderStyle: 'solid',
+          borderRadius: '5px',
+        }}
+      >
+        {showForm ? 'Close' : 'Add new'}
+      </button>
       {showForm && <WarningForm />}
     </div>
   )

@@ -1,10 +1,9 @@
 import type { Warning, NewWarning } from '@types'
 
-import { useQuery } from 'react-query'
+import { useQuery, useMutation } from 'react-query'
 
 import apiClient from '../util/apiClient'
-
-//import axios from 'axios'
+import queryClient from '../util/queryClient'
 
 export const useWarnings = () => {
   const queryKey = 'warnings'
@@ -20,26 +19,54 @@ export const useWarnings = () => {
   return { warnings, ...rest }
 }
 
-export const createWarning = async (warningObj: NewWarning) => {
-  //const queryKey = 'warninigs'
-  const obj = await apiClient.post('/warnings', warningObj)
-  return obj
+export const useCreateWarning = () => {
+  const mutation = useMutation(
+    async (newWarning: NewWarning) => {
+      await apiClient.post('/warnings', newWarning)
+    },
+    {
+      onSuccess: () => {
+        // eslint-disable-next-line
+        queryClient.invalidateQueries({ queryKey: ['warnings'] })
+      },
+    }
+  )
+  return mutation
 }
 
-export const deleteWarning = async (warningId: number) => {
-  try {
-    const obj = await apiClient.delete(`/warnings/${warningId}`)
+export const useDeleteWarning = () => {
+  const mutation = useMutation(
+    async (warningId: number) => {
+      await apiClient.delete(`/warnings/${warningId}`)
+    },
+    {
+      onSuccess: () => {
+        // eslint-disable-next-line
+        queryClient.invalidateQueries({ queryKey: ['warnings'] })
+      },
+    }
+  )
+  return mutation
+}
 
-    return obj
-  } catch (er) {
-    return { error: er, er }
-  }
+export const useEditWarning = () => {
+  const mutation = useMutation(
+    async (warningObj: Warning) => {
+      await apiClient.put(`/warnings/${warningObj.id}`, warningObj)
+    },
+    {
+      onSuccess: () => {
+        // eslint-disable-next-line
+        queryClient.invalidateQueries({ queryKey: ['warnings'] })
+      },
+    }
+  )
+  return mutation
 }
 
 export default {
   useWarnings,
-  createWarning,
-  deleteWarning,
+  useCreateWarning,
+  useDeleteWarning,
+  useEditWarning,
 }
-
-//export default useWarnings

@@ -1,19 +1,16 @@
 import { useState } from 'react'
 
-import { useCreateWarning } from 'src/client/hooks/useWarnings'
+import { useEditWarning } from 'src/client/hooks/useWarnings'
 import useCountries from '../../../hooks/useCountries'
-//import { useQueryClient } from 'react-query'
 
-const WarningForm = () => {
-  //const queryClient = useQueryClient()
-
+const EditWarningForm = ({ countryName, text, expiryDate, id }) => {
   const { countries } = useCountries()
-  const { mutate: createWarning } = useCreateWarning()
+  const { mutate: editWarning } = useEditWarning()
 
-  const [newCountry, setNewCountry] = useState('')
-  const [newFiText, setNewFiText] = useState('')
-  const [newEnText, setNewEnText] = useState('')
-  const [newExpiryDate, setNewExpiryDate] = useState('')
+  const [newCountry, setNewCountry] = useState(countryName)
+  const [newFiText, setNewFiText] = useState(text.fi)
+  const [newEnText, setNewEnText] = useState(text.en)
+  const [newExpiryDate, setNewExpiryDate] = useState(expiryDate)
 
   const addWarning = event => {
     event.preventDefault()
@@ -23,13 +20,15 @@ const WarningForm = () => {
     if (!countryCode) return null
 
     const warningObject = {
-      id: Math.floor(Math.random() * 100),
+      id,
       country: countryCode,
       text: {
         fi: newFiText,
         en: newEnText,
       },
       expiry_date: newExpiryDate,
+      updatedAt: '',
+      createdAt: '',
     }
 
     setNewCountry('')
@@ -37,7 +36,7 @@ const WarningForm = () => {
     setNewEnText('')
     setNewExpiryDate('')
 
-    return createWarning(warningObject)
+    return editWarning(warningObject)
   }
 
   const handleCountryChange = event => {
@@ -73,7 +72,14 @@ const WarningForm = () => {
         </div>
         <button
           type="submit"
-          style={{ width: '10%', color: '#107eab', borderColor: '#87bed5', borderStyle: 'solid', borderRadius: '5px' }}
+          style={{
+            padding: '3px',
+            width: '10%',
+            color: '#107eab',
+            borderColor: '#87bed5',
+            borderStyle: 'solid',
+            borderRadius: '5px',
+          }}
         >
           Send
         </button>
@@ -82,4 +88,4 @@ const WarningForm = () => {
   )
 }
 
-export default WarningForm
+export default EditWarningForm

@@ -1,10 +1,9 @@
 import { useWarnings } from 'src/client/hooks/useWarnings'
 import useCountries from 'src/client/hooks/useCountries'
 import { useTranslation } from 'react-i18next'
-import { deleteWarning } from 'src/client/hooks/useWarnings'
-
-//import { useComponents } from '@resultRenderer/context'
-//import { Warning } from '@dbmodels'
+import { useDeleteWarning } from 'src/client/hooks/useWarnings'
+import EditWarningForm from './editWarningForm'
+import { useState } from 'react'
 
 const FormatedDate = ({ expiryDate }) => {
   const { t } = useTranslation()
@@ -16,48 +15,84 @@ const FormatedDate = ({ expiryDate }) => {
   return <p>{expiryDate && `${t('admin:expire')}: ${year}-${month}-${day}`}</p>
 }
 
-const WarningObject = ({ country, text, expiryDate }) => {
+const WarningObject = ({ country, text, expiryDate, id }) => {
   const { countries } = useCountries()
   const { warnings } = useWarnings()
-  //const { Div, Markdown, t }  =useComponents()
+  const { mutate: deleteWarning } = useDeleteWarning()
+  const [showEditWarningForm, setShowEditWarningForm] = useState(false)
+
   if (!countries) return null
 
   const countryObj = countries.find(countryObj => countryObj.iso2Code == country)
 
   if (!countryObj) return null
+
   if (!warnings) return null
 
-  const handleDelete = async event => {
+  const handleDelete = event => {
     event.preventDefault()
+    // eslint-disable-next-line
+    if (window.confirm(`Are you sure you want to delete a warning for ${country}`)) {
+      const countryId = warnings.find(warnObj => warnObj.country === country)?.id
 
-    const countryId = warnings.find(warnObj => warnObj.country === country)?.id
-
-    if (countryId) {
-      await deleteWarning(countryId)
+      if (countryId) {
+        void deleteWarning(countryId)
+      }
     }
   }
-  //<ul><Markdown>{text.fi}</Markdown></ul>
 
+  const handleEdit = event => {
+    event.preventDefault()
+    setShowEditWarningForm(!showEditWarningForm)
+  }
   return (
     <div>
       <h4>{countryObj?.name}:</h4>
       <ul>
         <ul>{text.fi}</ul>
+
         <p></p>
         <ul>{text.en}</ul>
         {expiryDate && <FormatedDate expiryDate={expiryDate} />}
-        <button style={{ color: 'green', width: '10%', borderColor: 'green', margin: '10px' }}>Edit</button>
-        <button onClick={handleDelete} style={{ color: 'red', width: '10%', borderColor: 'red', margin: '10px' }}>
+        <button
+          onClick={handleEdit}
+          style={{
+            padding: '3px',
+            width: '10%',
+            color: '#3d8f29',
+            borderColor: '#53ab3e',
+            margin: '10px',
+            borderStyle: 'solid',
+            borderRadius: '5px',
+          }}
+        >
+          Edit
+        </button>
+        <button
+          onClick={handleDelete}
+          style={{
+            padding: '3px',
+            width: '10%',
+            color: '#ab4141',
+            borderColor: '#c25353',
+            margin: '10px',
+            borderStyle: 'solid',
+            borderRadius: '5px',
+          }}
+        >
           Delete
         </button>
+        {showEditWarningForm && (
+          <EditWarningForm countryName={countryObj.name} text={text} expiryDate={expiryDate} id={id} />
+        )}
       </ul>
     </div>
   )
 }
 
 const RenderWarnings = () => {
-  const { warnings } = useWarnings()
   const { t } = useTranslation()
+  const { warnings } = useWarnings()
 
   if (!warnings) return null
 
@@ -68,7 +103,7 @@ const RenderWarnings = () => {
       {warnings.map(c => (
         <ul key={c.country}>
           {' '}
-          <WarningObject country={c.country} text={c.text} expiryDate={c.expiry_date} />{' '}
+          <WarningObject country={c.country} text={c.text} expiryDate={c.expiry_date} id={c.id} />{' '}
         </ul>
       ))}
     </div>
