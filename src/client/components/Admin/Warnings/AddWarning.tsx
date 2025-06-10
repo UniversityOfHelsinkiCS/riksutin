@@ -24,7 +24,7 @@ const AddWarning = () => {
       >
         {showForm ? 'Close' : 'Add new'}
       </button>
-      {showForm && <WarningForm />}
+      {showForm && <WarningForm showForm={showForm} setShowForm={setShowForm} />}
     </div>
   )
 }

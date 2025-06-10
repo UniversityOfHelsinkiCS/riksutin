@@ -5,19 +5,21 @@ import { useDeleteWarning } from 'src/client/hooks/useWarnings'
 import EditWarningForm from './editWarningForm'
 
 const FormatedDate = ({ expiryDate }) => {
-  const { t } = useTranslation()
+  //const { t } = useTranslation()
   const date = new Date(expiryDate)
   const day = date.getDate()
   const month = date.getMonth() + 1
   const year = date.getFullYear()
 
-  return <p>{expiryDate && `${t('admin:expire')}: ${year}-${month}-${day}`}</p>
+  //return <p>{expiryDate && `${t('admin:expire')}: ${year}-${month}-${day}`}</p>
+  return <p>{expiryDate && ` ${year}-${month}-${day}`}</p>
 }
 
-const WarningObject = ({ country, text, expiryDate, id }) => {
+const WarningObject = ({ country, text, expiryDate, id, updatedAt, createdAt }) => {
   const { countries } = useCountries()
   const { warnings } = useWarnings()
   const { mutate: deleteWarning } = useDeleteWarning()
+  const { t } = useTranslation()
 
   if (!countries) return null
 
@@ -44,11 +46,11 @@ const WarningObject = ({ country, text, expiryDate, id }) => {
       <h4>{countryObj?.name}:</h4>
       <ul>
         <ul>{text.fi}</ul>
-
         <p></p>
         <ul>{text.en}</ul>
-        {expiryDate && <FormatedDate expiryDate={expiryDate} />}
-
+        {`${t('admin:expire')}:`} {expiryDate && <FormatedDate expiryDate={expiryDate} />}
+        päivitetty: {updatedAt && <FormatedDate expiryDate={updatedAt} />}
+        luotu: {updatedAt && <FormatedDate expiryDate={createdAt} />}
         <button
           onClick={handleDelete}
           style={{
@@ -63,7 +65,13 @@ const WarningObject = ({ country, text, expiryDate, id }) => {
         >
           Delete
         </button>
-        <EditWarningForm countryName={countryObj.name} text={text} expiryDate={expiryDate} id={id} />
+        <EditWarningForm
+          countryName={countryObj.name}
+          text={text}
+          expiryDate={expiryDate}
+          id={id}
+          createdAt={createdAt}
+        />
       </ul>
     </div>
   )
@@ -82,7 +90,14 @@ const RenderWarnings = () => {
       {warnings.map(c => (
         <ul key={c.country}>
           {' '}
-          <WarningObject country={c.country} text={c.text} expiryDate={c.expiry_date} id={c.id} />{' '}
+          <WarningObject
+            country={c.country}
+            text={c.text}
+            expiryDate={c.expiry_date}
+            id={c.id}
+            updatedAt={c.updatedAt}
+            createdAt={c.createdAt}
+          />{' '}
         </ul>
       ))}
     </div>

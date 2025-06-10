@@ -6,7 +6,7 @@ import useCountries from '../../../hooks/useCountries'
 import { Autocomplete, TextField } from '@mui/material'
 //import { useQueryClient } from 'react-query'
 
-const WarningForm = () => {
+const WarningForm = ({ showForm, setShowForm }) => {
   //const queryClient = useQueryClient()
 
   const { countries } = useCountries()
@@ -31,13 +31,15 @@ const WarningForm = () => {
         en: newEnText,
       },
       expiry_date: newExpiryDate,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     }
-    // console.log("id", warningObject.id)
 
     setNewCountry('')
     setNewFiText('')
     setNewEnText('')
     setNewExpiryDate('')
+    setShowForm(!showForm)
 
     return createWarning(warningObject)
   }
@@ -66,7 +68,7 @@ const WarningForm = () => {
     <div>
       <form onSubmit={addWarning} style={{ backgroundColor: '#dae3f2', padding: '20px', margin: '10px' }}>
         <div>
-          Maa:
+          Maa
           <Autocomplete
             style={{ background: 'white' }}
             disablePortal

@@ -5,7 +5,7 @@ import useCountries from '../../../hooks/useCountries'
 
 import { Autocomplete, TextField } from '@mui/material'
 
-const EditWarningForm = ({ countryName, text, expiryDate, id }) => {
+const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt }) => {
   const { countries } = useCountries()
   const { mutate: editWarning } = useEditWarning()
 
@@ -31,8 +31,8 @@ const EditWarningForm = ({ countryName, text, expiryDate, id }) => {
         en: newEnText,
       },
       expiry_date: newExpiryDate,
-      updatedAt: '',
-      createdAt: '',
+      updatedAt: String(new Date()),
+      createdAt,
     }
 
     setShowEditWarningForm(false)
@@ -83,7 +83,7 @@ const EditWarningForm = ({ countryName, text, expiryDate, id }) => {
       {showEditWarningForm && (
         <form onSubmit={addEditedWarning} style={{ backgroundColor: '#dae3f2', padding: '20px', margin: '10px' }}>
           <div>
-            Maa:
+            Maa
             <Autocomplete
               style={{ background: 'white' }}
               disablePortal
@@ -95,7 +95,7 @@ const EditWarningForm = ({ countryName, text, expiryDate, id }) => {
             />
           </div>
           <div>
-            Varoitus suomeksi:{' '}
+            Varoitus suomeksi{' '}
             <textarea
               value={newFiText}
               onChange={handleFiTextChange}
@@ -106,7 +106,7 @@ const EditWarningForm = ({ countryName, text, expiryDate, id }) => {
             />
           </div>
           <div>
-            Varoitus englanniksi:{' '}
+            Varoitus englanniksi{' '}
             <textarea
               value={newEnText}
               onChange={handleEnTextChange}
@@ -117,7 +117,8 @@ const EditWarningForm = ({ countryName, text, expiryDate, id }) => {
             />
           </div>
           <div>
-            Päättymispäivä: <input value={newExpiryDate} onChange={handleExpiryDateChange} placeholder="new date" />
+            Päättymispäivä{' '}
+            <input type="date" value={newExpiryDate} onChange={handleExpiryDateChange} placeholder="new date" />
           </div>
           <button
             type="submit"
@@ -137,5 +138,6 @@ const EditWarningForm = ({ countryName, text, expiryDate, id }) => {
     </div>
   )
 }
+//Päättymispäivä: <input value={newExpiryDate} onChange={handleExpiryDateChange} placeholder="new date" />
 
 export default EditWarningForm

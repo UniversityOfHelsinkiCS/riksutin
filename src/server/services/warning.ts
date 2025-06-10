@@ -1,4 +1,4 @@
-import { NewWarning, NewWarningZod, UpdatedWarning, UpdatedWarningZod } from '@validators/warning'
+import { NewWarningZod, UpdatedWarning, UpdatedWarningZod } from '@validators/warning'
 
 import { Warning } from '@dbmodels'
 import NotFoundError from '../errors/NotFoundError'
@@ -21,8 +21,8 @@ export const getWarningWithId = async (id: string): Promise<Warning[]> => {
   })
   return result
 }
-
-export const createWarning = async (newWarningValues: NewWarning): Promise<Warning> => {
+//export const createWarning = async (newWarningValues: NewWarning): Promise<Warning> => {
+export const createWarning = async (newWarningValues: Warning): Promise<Warning> => {
   const request = NewWarningZod.safeParse(newWarningValues)
 
   if (!request.success) throw new ZodValidationError('Validation of the new result inputs failed', request.error.issues)
@@ -33,9 +33,9 @@ export const createWarning = async (newWarningValues: NewWarning): Promise<Warni
       fi: newWarningValues.text.fi,
       en: newWarningValues.text.en,
     },
-    expiry_date: new Date(),
-    //expiry_date: new Date('2025-12-31T23:59:59Z')
-    //expiry_date: new Date(newWarningValues.expiry_date)
+    expiry_date: new Date(newWarningValues.expiry_date),
+    createdAt: new Date(newWarningValues.createdAt),
+    updatedAt: new Date(newWarningValues.updatedAt),
   })
   return newWarning
 }
