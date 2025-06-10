@@ -36,7 +36,7 @@ export const useCreateWarning = () => {
 
 export const useDeleteWarning = () => {
   const mutation = useMutation(
-    async (warningId: number) => {
+    async (warningId: string) => {
       await apiClient.delete(`/warnings/${warningId}`)
     },
     {

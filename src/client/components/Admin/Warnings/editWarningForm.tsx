@@ -35,18 +35,12 @@ const EditWarningForm = ({ countryName, text, expiryDate, id }) => {
       createdAt: '',
     }
 
-    //setNewCountry('')
-    //setNewFiText('')
-    //setNewEnText('')
-    //setNewExpiryDate('')
     setShowEditWarningForm(false)
 
     return editWarning(warningObject)
   }
 
   const handleCountryChange = (event, value) => {
-    //setNewCountry(event.target.value)
-    //console.log(value, newCountry)
     setNewCountry(value)
   }
   const handleFiTextChange = event => {

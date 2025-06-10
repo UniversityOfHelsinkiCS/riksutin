@@ -1,7 +1,6 @@
 import { z } from 'zod'
 
 export const NewWarningFormZod = z.object({
-  id: z.number(),
   country: z.string().nonempty(),
   text: z.object({
     fi: z.string().nonempty(),
@@ -12,7 +11,6 @@ export const NewWarningFormZod = z.object({
 export type NewWarningFormType = z.infer<typeof NewWarningFormZod>
 
 export const NewWarningZod = z.object({
-  id: z.number(),
   country: z.string().nonempty(),
   text: z.object({
     fi: z.string().nonempty(),

@@ -1,10 +1,10 @@
-import { Model, InferAttributes, InferCreationAttributes, DataTypes } from 'sequelize'
+import { Model, InferAttributes, InferCreationAttributes, DataTypes, CreationOptional } from 'sequelize'
 
 import { sequelize } from '../connection'
 import type { Locales } from '@types'
 
 class Warning extends Model<InferAttributes<Warning>, InferCreationAttributes<Warning>> {
-  declare id: number
+  declare id: CreationOptional<number>
   declare country: string
   declare text: Locales
   declare expiry_date: Date
@@ -14,8 +14,8 @@ Warning.init(
   {
     id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
       primaryKey: true,
+      autoIncrement: true,
     },
     country: {
       type: DataTypes.STRING,

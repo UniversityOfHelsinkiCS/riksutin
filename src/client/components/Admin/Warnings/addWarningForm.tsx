@@ -2,7 +2,6 @@ import { useState } from 'react'
 
 import { useCreateWarning } from 'src/client/hooks/useWarnings'
 import useCountries from '../../../hooks/useCountries'
-//import { v4 as uuidv4 } from 'uuid'
 
 import { Autocomplete, TextField } from '@mui/material'
 //import { useQueryClient } from 'react-query'
@@ -26,7 +25,6 @@ const WarningForm = () => {
     if (!countryCode) return null
 
     const warningObject = {
-      id: Math.floor(Math.random() * 100),
       country: countryCode,
       text: {
         fi: newFiText,
@@ -34,6 +32,7 @@ const WarningForm = () => {
       },
       expiry_date: newExpiryDate,
     }
+    // console.log("id", warningObject.id)
 
     setNewCountry('')
     setNewFiText('')

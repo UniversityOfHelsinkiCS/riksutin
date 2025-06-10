@@ -13,7 +13,7 @@ warningsRouter.get('/', async (_req, res) => {
 
 warningsRouter.get('/:id', async (req, res) => {
   const { id } = req.params
-  const results = await getWarningWithId(Number(id))
+  const results = await getWarningWithId(String(id))
   return res.send(results)
 })
 

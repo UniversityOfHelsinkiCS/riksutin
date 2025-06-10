@@ -13,7 +13,6 @@ export type Warning = {
 }
 
 export type NewWarning = {
-  id: number
   country: string
   text: Locales
   expiry_date: string

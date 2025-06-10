@@ -11,7 +11,7 @@ export const getWarnings = async (): Promise<Warning[]> => {
   return results
 }
 
-export const getWarningWithId = async (id: number): Promise<Warning[]> => {
+export const getWarningWithId = async (id: string): Promise<Warning[]> => {
   //console.log("test1")
 
   const result = await Warning.findAll({
@@ -28,7 +28,6 @@ export const createWarning = async (newWarningValues: NewWarning): Promise<Warni
   if (!request.success) throw new ZodValidationError('Validation of the new result inputs failed', request.error.issues)
 
   const newWarning = await Warning.create({
-    id: newWarningValues.id,
     country: newWarningValues.country,
     text: {
       fi: newWarningValues.text.fi,

@@ -34,7 +34,7 @@ const WarningObject = ({ country, text, expiryDate, id }) => {
       const countryId = warnings.find(warnObj => warnObj.country === country)?.id
 
       if (countryId) {
-        void deleteWarning(countryId)
+        void deleteWarning(String(countryId))
       }
     }
   }
