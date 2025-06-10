@@ -3,6 +3,8 @@ import { useState } from 'react'
 import { useEditWarning } from 'src/client/hooks/useWarnings'
 import useCountries from '../../../hooks/useCountries'
 
+import { Autocomplete, TextField } from '@mui/material'
+
 const EditWarningForm = ({ countryName, text, expiryDate, id }) => {
   const { countries } = useCountries()
   const { mutate: editWarning } = useEditWarning()
@@ -12,7 +14,9 @@ const EditWarningForm = ({ countryName, text, expiryDate, id }) => {
   const [newEnText, setNewEnText] = useState(text.en)
   const [newExpiryDate, setNewExpiryDate] = useState(expiryDate)
 
-  const addWarning = event => {
+  const [showEditWarningForm, setShowEditWarningForm] = useState(false)
+
+  const addEditedWarning = event => {
     event.preventDefault()
 
     if (!countries) return null
@@ -31,18 +35,20 @@ const EditWarningForm = ({ countryName, text, expiryDate, id }) => {
       createdAt: '',
     }
 
-    setNewCountry('')
-    setNewFiText('')
-    setNewEnText('')
-    setNewExpiryDate('')
+    //setNewCountry('')
+    //setNewFiText('')
+    //setNewEnText('')
+    //setNewExpiryDate('')
+    setShowEditWarningForm(false)
 
     return editWarning(warningObject)
   }
 
-  const handleCountryChange = event => {
-    setNewCountry(event.target.value)
+  const handleCountryChange = (event, value) => {
+    //setNewCountry(event.target.value)
+    //console.log(value, newCountry)
+    setNewCountry(value)
   }
-
   const handleFiTextChange = event => {
     setNewFiText(event.target.value)
   }
@@ -55,35 +61,85 @@ const EditWarningForm = ({ countryName, text, expiryDate, id }) => {
     setNewExpiryDate(event.target.value)
   }
 
+  const handleEdit = event => {
+    event.preventDefault()
+    setShowEditWarningForm(!showEditWarningForm)
+  }
+
+  const countryNames = countries?.map(c => c.name)
+  if (!countryNames) return null
+
   return (
     <div>
-      <form onSubmit={addWarning}>
-        <div>
-          Maa: <input value={newCountry} onChange={handleCountryChange} placeholder="Country name in english" />
-        </div>
-        <div>
-          Varoitus suomeksi: <input value={newFiText} onChange={handleFiTextChange} placeholder="uusi käännös" />
-        </div>
-        <div>
-          Varoitus englanniksi: <input value={newEnText} onChange={handleEnTextChange} placeholder="new translation" />
-        </div>
-        <div>
-          Päättymispäivä: <input value={newExpiryDate} onChange={handleExpiryDateChange} placeholder="new date" />
-        </div>
-        <button
-          type="submit"
-          style={{
-            padding: '3px',
-            width: '10%',
-            color: '#107eab',
-            borderColor: '#87bed5',
-            borderStyle: 'solid',
-            borderRadius: '5px',
-          }}
-        >
-          Send
-        </button>
-      </form>
+      <button
+        onClick={handleEdit}
+        style={{
+          padding: '3px',
+          width: '10%',
+          color: '#3d8f29',
+          borderColor: '#53ab3e',
+          margin: '10px',
+          borderStyle: 'solid',
+          borderRadius: '5px',
+        }}
+      >
+        Edit
+      </button>
+
+      {showEditWarningForm && (
+        <form onSubmit={addEditedWarning} style={{ backgroundColor: '#dae3f2', padding: '20px', margin: '10px' }}>
+          <div>
+            Maa:
+            <Autocomplete
+              style={{ background: 'white' }}
+              disablePortal
+              value={newCountry}
+              onChange={handleCountryChange}
+              options={countryNames}
+              sx={{ width: 300 }}
+              renderInput={params => <TextField {...params} label="Countries" />}
+            />
+          </div>
+          <div>
+            Varoitus suomeksi:{' '}
+            <textarea
+              value={newFiText}
+              onChange={handleFiTextChange}
+              placeholder="uusi käännös"
+              cols={80}
+              rows={5}
+              style={{ display: 'flex', justifyContent: 'flexEnd', margin: '5px' }}
+            />
+          </div>
+          <div>
+            Varoitus englanniksi:{' '}
+            <textarea
+              value={newEnText}
+              onChange={handleEnTextChange}
+              placeholder="new translation"
+              cols={80}
+              rows={5}
+              style={{ display: 'flex', justifyContent: 'flexEnd', margin: '5px' }}
+            />
+          </div>
+          <div>
+            Päättymispäivä: <input value={newExpiryDate} onChange={handleExpiryDateChange} placeholder="new date" />
+          </div>
+          <button
+            type="submit"
+            style={{
+              padding: '3px',
+              width: '10%',
+              color: '#107eab',
+              borderColor: '#87bed5',
+              borderStyle: 'solid',
+              borderRadius: '5px',
+            }}
+          >
+            Send
+          </button>
+        </form>
+      )}
     </div>
   )
 }

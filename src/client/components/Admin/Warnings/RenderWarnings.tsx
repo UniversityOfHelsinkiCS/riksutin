@@ -3,7 +3,6 @@ import useCountries from 'src/client/hooks/useCountries'
 import { useTranslation } from 'react-i18next'
 import { useDeleteWarning } from 'src/client/hooks/useWarnings'
 import EditWarningForm from './editWarningForm'
-import { useState } from 'react'
 
 const FormatedDate = ({ expiryDate }) => {
   const { t } = useTranslation()
@@ -19,7 +18,6 @@ const WarningObject = ({ country, text, expiryDate, id }) => {
   const { countries } = useCountries()
   const { warnings } = useWarnings()
   const { mutate: deleteWarning } = useDeleteWarning()
-  const [showEditWarningForm, setShowEditWarningForm] = useState(false)
 
   if (!countries) return null
 
@@ -41,10 +39,6 @@ const WarningObject = ({ country, text, expiryDate, id }) => {
     }
   }
 
-  const handleEdit = event => {
-    event.preventDefault()
-    setShowEditWarningForm(!showEditWarningForm)
-  }
   return (
     <div>
       <h4>{countryObj?.name}:</h4>
@@ -54,20 +48,7 @@ const WarningObject = ({ country, text, expiryDate, id }) => {
         <p></p>
         <ul>{text.en}</ul>
         {expiryDate && <FormatedDate expiryDate={expiryDate} />}
-        <button
-          onClick={handleEdit}
-          style={{
-            padding: '3px',
-            width: '10%',
-            color: '#3d8f29',
-            borderColor: '#53ab3e',
-            margin: '10px',
-            borderStyle: 'solid',
-            borderRadius: '5px',
-          }}
-        >
-          Edit
-        </button>
+
         <button
           onClick={handleDelete}
           style={{
@@ -82,9 +63,7 @@ const WarningObject = ({ country, text, expiryDate, id }) => {
         >
           Delete
         </button>
-        {showEditWarningForm && (
-          <EditWarningForm countryName={countryObj.name} text={text} expiryDate={expiryDate} id={id} />
-        )}
+        <EditWarningForm countryName={countryObj.name} text={text} expiryDate={expiryDate} id={id} />
       </ul>
     </div>
   )

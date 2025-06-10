@@ -2,6 +2,9 @@ import { useState } from 'react'
 
 import { useCreateWarning } from 'src/client/hooks/useWarnings'
 import useCountries from '../../../hooks/useCountries'
+//import { v4 as uuidv4 } from 'uuid'
+
+import { Autocomplete, TextField } from '@mui/material'
 //import { useQueryClient } from 'react-query'
 
 const WarningForm = () => {
@@ -40,8 +43,8 @@ const WarningForm = () => {
     return createWarning(warningObject)
   }
 
-  const handleCountryChange = event => {
-    setNewCountry(event.target.value)
+  const handleCountryChange = (event, value) => {
+    setNewCountry(value)
   }
 
   const handleFiTextChange = event => {
@@ -56,24 +59,62 @@ const WarningForm = () => {
     setNewExpiryDate(event.target.value)
   }
 
+  const countryNames = countries?.map(c => c.name)
+  if (!countryNames) return null
+
+  //<input value={newCountry} onChange={handleCountryChange} placeholder="Country name in english" />
   return (
     <div>
-      <form onSubmit={addWarning}>
+      <form onSubmit={addWarning} style={{ backgroundColor: '#dae3f2', padding: '20px', margin: '10px' }}>
         <div>
-          Maa: <input value={newCountry} onChange={handleCountryChange} placeholder="Country name in english" />
+          Maa:
+          <Autocomplete
+            style={{ background: 'white' }}
+            disablePortal
+            //value={newCountry}
+            onChange={handleCountryChange}
+            options={countryNames}
+            sx={{ width: 300 }}
+            renderInput={params => <TextField {...params} label="Countries" />}
+          />
+        </div>
+
+        <div style={{ margin: '5px' }}>
+          Varoitus suomeksi
+          <textarea
+            value={newFiText}
+            onChange={handleFiTextChange}
+            placeholder="uusi käännös"
+            cols={80}
+            rows={5}
+            style={{ display: 'flex', justifyContent: 'flexEnd', margin: '5px' }}
+          />
+        </div>
+        <div style={{ margin: '5px' }}>
+          Varoitus englanniksi
+          <textarea
+            value={newEnText}
+            onChange={handleEnTextChange}
+            placeholder="new translation"
+            cols={80}
+            rows={5}
+            style={{ display: 'flex', justifyContent: 'flexEnd', margin: '5px' }}
+          />
         </div>
         <div>
-          Varoitus suomeksi: <input value={newFiText} onChange={handleFiTextChange} placeholder="uusi käännös" />
-        </div>
-        <div>
-          Varoitus englanniksi: <input value={newEnText} onChange={handleEnTextChange} placeholder="new translation" />
-        </div>
-        <div>
-          Päättymispäivä: <input value={newExpiryDate} onChange={handleExpiryDateChange} placeholder="new date" />
+          Päättymispäivä{' '}
+          <input type="date" value={newExpiryDate} onChange={handleExpiryDateChange} placeholder="new date" />
         </div>
         <button
           type="submit"
-          style={{ width: '10%', color: '#107eab', borderColor: '#87bed5', borderStyle: 'solid', borderRadius: '5px' }}
+          style={{
+            width: '10%',
+            color: '#107eab',
+            borderColor: '#87bed5',
+            borderStyle: 'solid',
+            borderRadius: '5px',
+            padding: '3px',
+          }}
         >
           Send
         </button>
