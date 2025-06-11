@@ -12,8 +12,6 @@ export const getWarnings = async (): Promise<Warning[]> => {
 }
 
 export const getWarningWithId = async (id: string): Promise<Warning[]> => {
-  //console.log("test1")
-
   const result = await Warning.findAll({
     where: {
       id,
@@ -23,6 +21,7 @@ export const getWarningWithId = async (id: string): Promise<Warning[]> => {
 }
 //export const createWarning = async (newWarningValues: NewWarning): Promise<Warning> => {
 export const createWarning = async (newWarningValues: Warning): Promise<Warning> => {
+  //console.log(newWarningValues)
   const request = NewWarningZod.safeParse(newWarningValues)
 
   if (!request.success) throw new ZodValidationError('Validation of the new result inputs failed', request.error.issues)
@@ -33,7 +32,7 @@ export const createWarning = async (newWarningValues: Warning): Promise<Warning>
       fi: newWarningValues.text.fi,
       en: newWarningValues.text.en,
     },
-    expiry_date: new Date(newWarningValues.expiry_date),
+    expiry_date: newWarningValues.expiry_date ? new Date(newWarningValues.expiry_date) : undefined,
     createdAt: new Date(newWarningValues.createdAt),
     updatedAt: new Date(newWarningValues.updatedAt),
   })

@@ -3,16 +3,16 @@ import useCountries from 'src/client/hooks/useCountries'
 import { useTranslation } from 'react-i18next'
 import { useDeleteWarning } from 'src/client/hooks/useWarnings'
 import EditWarningForm from './editWarningForm'
+//import { useComponents } from '@resultRenderer/context'
+import Markdown from '../../Common/Markdown'
 
 const FormatedDate = ({ expiryDate }) => {
-  //const { t } = useTranslation()
   const date = new Date(expiryDate)
   const day = date.getDate()
   const month = date.getMonth() + 1
   const year = date.getFullYear()
 
-  //return <p>{expiryDate && `${t('admin:expire')}: ${year}-${month}-${day}`}</p>
-  return <p>{expiryDate && ` ${year}-${month}-${day}`}</p>
+  return <>{expiryDate && ` ${day}/${month}/${year}`}</>
 }
 
 const WarningObject = ({ country, text, expiryDate, id, updatedAt, createdAt }) => {
@@ -20,6 +20,7 @@ const WarningObject = ({ country, text, expiryDate, id, updatedAt, createdAt }) 
   const { warnings } = useWarnings()
   const { mutate: deleteWarning } = useDeleteWarning()
   const { t } = useTranslation()
+  //const { Div, Markdown } = useComponents()
 
   if (!countries) return null
 
@@ -42,15 +43,40 @@ const WarningObject = ({ country, text, expiryDate, id, updatedAt, createdAt }) 
   }
 
   return (
-    <div>
+    <div
+      style={{
+        borderStyle: 'solid',
+        borderColor: '#dae3f2',
+        borderWidth: '0px',
+        borderBottomWidth: '6px',
+        borderTopWidth: '2px',
+        borderLeftWidth: '3px',
+        padding: '20px',
+        margin: '10px',
+        borderRadius: '5px',
+      }}
+    >
       <h4>{countryObj?.name}:</h4>
+
       <ul>
-        <ul>{text.fi}</ul>
+        <ul>
+          <Markdown>{`FI: ${text.fi}`}</Markdown>
+        </ul>
         <p></p>
-        <ul>{text.en}</ul>
-        {`${t('admin:expire')}:`} {expiryDate && <FormatedDate expiryDate={expiryDate} />}
-        päivitetty: {updatedAt && <FormatedDate expiryDate={updatedAt} />}
-        luotu: {updatedAt && <FormatedDate expiryDate={createdAt} />}
+        <ul>
+          <Markdown>{`EN: ${text.en}`}</Markdown>
+        </ul>
+
+        <p>
+          {`${t('admin:expire')}:`} {expiryDate && <FormatedDate expiryDate={expiryDate} />}
+        </p>
+        <p>
+          {`${t('admin:updated')}:`} {updatedAt && <FormatedDate expiryDate={updatedAt} />}
+        </p>
+        <p>
+          {`${t('admin:created')}:`} {updatedAt && <FormatedDate expiryDate={createdAt} />}
+        </p>
+
         <button
           onClick={handleDelete}
           style={{
@@ -82,6 +108,18 @@ const RenderWarnings = () => {
   const { warnings } = useWarnings()
 
   if (!warnings) return null
+
+  warnings.sort(function (a, b) {
+    const x = a.country.toLowerCase()
+    const y = b.country.toLowerCase()
+    if (x < y) {
+      return -1
+    }
+    if (x > y) {
+      return 1
+    }
+    return 0
+  })
 
   return (
     <div>

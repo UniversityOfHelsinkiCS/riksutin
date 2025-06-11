@@ -7,7 +7,7 @@ class Warning extends Model<InferAttributes<Warning>, InferCreationAttributes<Wa
   declare id: CreationOptional<number>
   declare country: string
   declare text: Locales
-  declare expiry_date: Date
+  declare expiry_date: CreationOptional<Date>
   declare updatedAt: Date
   declare createdAt: Date
 }

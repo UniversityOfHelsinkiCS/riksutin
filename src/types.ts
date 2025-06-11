@@ -7,7 +7,7 @@ export type Warning = {
   id: number
   country: string
   text: Locales
-  expiry_date: string
+  expiry_date?: string
   createdAt: string
   updatedAt: string
 }
@@ -15,7 +15,7 @@ export type Warning = {
 export type NewWarning = {
   country: string
   text: Locales
-  expiry_date: string
+  expiry_date?: string
 }
 
 export type CountryData = {

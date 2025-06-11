@@ -20,6 +20,7 @@ export const useWarnings = () => {
 }
 
 export const useCreateWarning = () => {
+  //console.log("use1")
   const mutation = useMutation(
     async (newWarning: NewWarning) => {
       await apiClient.post('/warnings', newWarning)

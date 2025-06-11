@@ -179,7 +179,9 @@
     "recommendationTab": "Suositusten muokkaus",
     "markdown": "Muokattavat kentät tukevat <0>Markdown</0>-sisältöä",
     "allCountryWarnings": "Kaikki maakohtaiset varoitukset",
-    "expire": "Vanhenee"
+    "expire": "Vanhenee",
+    "updated": "Päivitetty",
+    "created": "Luotu"
   },
   "email": {
     "subject": "Riskiraportti",

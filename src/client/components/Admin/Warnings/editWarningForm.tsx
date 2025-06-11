@@ -81,59 +81,78 @@ const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt }) => {
       </button>
 
       {showEditWarningForm && (
-        <form onSubmit={addEditedWarning} style={{ backgroundColor: '#dae3f2', padding: '20px', margin: '10px' }}>
-          <div>
-            Maa
-            <Autocomplete
-              style={{ background: 'white' }}
-              disablePortal
-              value={newCountry}
-              onChange={handleCountryChange}
-              options={countryNames}
-              sx={{ width: 300 }}
-              renderInput={params => <TextField {...params} label="Countries" />}
-            />
-          </div>
-          <div>
-            Varoitus suomeksi{' '}
-            <textarea
-              value={newFiText}
-              onChange={handleFiTextChange}
-              placeholder="uusi käännös"
-              cols={80}
-              rows={5}
-              style={{ display: 'flex', justifyContent: 'flexEnd', margin: '5px' }}
-            />
-          </div>
-          <div>
-            Varoitus englanniksi{' '}
-            <textarea
-              value={newEnText}
-              onChange={handleEnTextChange}
-              placeholder="new translation"
-              cols={80}
-              rows={5}
-              style={{ display: 'flex', justifyContent: 'flexEnd', margin: '5px' }}
-            />
-          </div>
-          <div>
-            Päättymispäivä{' '}
-            <input type="date" value={newExpiryDate} onChange={handleExpiryDateChange} placeholder="new date" />
-          </div>
-          <button
-            type="submit"
-            style={{
-              padding: '3px',
-              width: '10%',
-              color: '#107eab',
-              borderColor: '#87bed5',
-              borderStyle: 'solid',
-              borderRadius: '5px',
-            }}
-          >
-            Send
-          </button>
-        </form>
+        <div>
+          <h4>Edit warning data</h4>
+          <form onSubmit={addEditedWarning} style={{ backgroundColor: '#dae3f2', padding: '20px', margin: '10px' }}>
+            <div>
+              Maa
+              <Autocomplete
+                style={{ background: 'white' }}
+                disablePortal
+                value={newCountry}
+                onChange={handleCountryChange}
+                options={countryNames}
+                sx={{ width: 300 }}
+                renderInput={params => <TextField {...params} label="Countries" />}
+              />
+            </div>
+            <div>
+              Varoitus suomeksi{' '}
+              <textarea
+                value={newFiText}
+                onChange={handleFiTextChange}
+                placeholder="uusi käännös"
+                cols={80}
+                rows={5}
+                style={{ display: 'flex', justifyContent: 'flexEnd', margin: '5px' }}
+              />
+            </div>
+            <div>
+              Varoitus englanniksi{' '}
+              <textarea
+                value={newEnText}
+                onChange={handleEnTextChange}
+                placeholder="new translation"
+                cols={80}
+                rows={5}
+                style={{ display: 'flex', justifyContent: 'flexEnd', margin: '5px' }}
+              />
+            </div>
+            <div>
+              Päättymispäivä{' '}
+              <input type="date" value={newExpiryDate} onChange={handleExpiryDateChange} placeholder="new date" />
+            </div>
+
+            <button
+              onClick={handleEdit}
+              style={{
+                padding: '3px',
+                width: '10%',
+                color: '#107eab',
+                borderColor: '#87bed5',
+                borderStyle: 'solid',
+                borderRadius: '5px',
+                margin: '10px',
+              }}
+            >
+              Cancel
+            </button>
+
+            <button
+              type="submit"
+              style={{
+                padding: '3px',
+                width: '10%',
+                color: '#33708a',
+                borderColor: '#4d88a1',
+                borderStyle: 'solid',
+                borderRadius: '5px',
+              }}
+            >
+              Send
+            </button>
+          </form>
+        </div>
       )}
     </div>
   )

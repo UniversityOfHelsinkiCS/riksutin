@@ -16,6 +16,7 @@ const WarningForm = ({ showForm, setShowForm }) => {
   const [newFiText, setNewFiText] = useState('')
   const [newEnText, setNewEnText] = useState('')
   const [newExpiryDate, setNewExpiryDate] = useState('')
+  //const [newStatusText, setNewStatusText ] = useState('(testi-ilmoitus)')
 
   const addWarning = event => {
     event.preventDefault()
@@ -30,7 +31,7 @@ const WarningForm = ({ showForm, setShowForm }) => {
         fi: newFiText,
         en: newEnText,
       },
-      expiry_date: newExpiryDate,
+      expiry_date: newExpiryDate.length > 0 ? newExpiryDate : undefined,
       createdAt: new Date(),
       updatedAt: new Date(),
     }
@@ -41,7 +42,17 @@ const WarningForm = ({ showForm, setShowForm }) => {
     setNewExpiryDate('')
     setShowForm(!showForm)
 
-    return createWarning(warningObject)
+    //try{
+    //console.log("ennen virhettä")
+    return createWarning(warningObject) //vanha
+    //createWarning(warningObject)
+    //setNewStatusText("onnistui")
+    //} catch (er: unknown) {
+    //  console.log("virhe")
+    //  console.log("error: ", er)
+    //  setNewStatusText("ei onnistunut")
+    //  return (er)
+    //}
   }
 
   const handleCountryChange = (event, value) => {
@@ -64,11 +75,15 @@ const WarningForm = ({ showForm, setShowForm }) => {
   if (!countryNames) return null
 
   //<input value={newCountry} onChange={handleCountryChange} placeholder="Country name in english" />
+  //{newStatusText}
   return (
     <div>
-      <form onSubmit={addWarning} style={{ backgroundColor: '#dae3f2', padding: '20px', margin: '10px' }}>
+      <form
+        onSubmit={addWarning}
+        style={{ backgroundColor: '#dae3f2', padding: '20px', margin: '10px', borderRadius: '5px' }}
+      >
         <div>
-          Maa
+          Country
           <Autocomplete
             style={{ background: 'white' }}
             disablePortal
@@ -81,7 +96,7 @@ const WarningForm = ({ showForm, setShowForm }) => {
         </div>
 
         <div style={{ margin: '5px' }}>
-          Varoitus suomeksi
+          Warning in Finnish
           <textarea
             value={newFiText}
             onChange={handleFiTextChange}
@@ -92,7 +107,7 @@ const WarningForm = ({ showForm, setShowForm }) => {
           />
         </div>
         <div style={{ margin: '5px' }}>
-          Varoitus englanniksi
+          Warning in English
           <textarea
             value={newEnText}
             onChange={handleEnTextChange}
@@ -102,19 +117,35 @@ const WarningForm = ({ showForm, setShowForm }) => {
             style={{ display: 'flex', justifyContent: 'flexEnd', margin: '5px' }}
           />
         </div>
-        <div>
-          Päättymispäivä{' '}
+        <div style={{ margin: '5px' }}>
+          <p>Expiry date</p>{' '}
           <input type="date" value={newExpiryDate} onChange={handleExpiryDateChange} placeholder="new date" />
         </div>
+
         <button
-          type="submit"
+          onClick={() => setShowForm(false)}
           style={{
+            padding: '3px',
             width: '10%',
             color: '#107eab',
             borderColor: '#87bed5',
             borderStyle: 'solid',
             borderRadius: '5px',
+            margin: '10px',
+          }}
+        >
+          Cancel
+        </button>
+
+        <button
+          type="submit"
+          style={{
             padding: '3px',
+            width: '10%',
+            color: '#33708a',
+            borderColor: '#4d88a1',
+            borderStyle: 'solid',
+            borderRadius: '5px',
           }}
         >
           Send

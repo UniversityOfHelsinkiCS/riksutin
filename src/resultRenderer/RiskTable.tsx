@@ -45,9 +45,11 @@ const RiskTable = ({
   ]
 
   let ekstraText = ''
-  warnings.map(({ country, text }) => {
+  warnings.map(({ country, text, expiry_date }) => {
     if (country === countryData.code) {
-      ekstraText += text[language]
+      if (expiry_date && new Date(expiry_date) >= new Date()) {
+        ekstraText += text[language]
+      }
     }
   })
 
@@ -71,8 +73,11 @@ const RiskTable = ({
         <TableContainer>
           <Table>
             <TableBody>
-              <RiskElement infoText={totalRiskText} title={totalRisk.title} level={totalRisk.level} />
-
+              <TableRow>
+                <TableCell>
+                  <RiskElement infoText={totalRiskText} title={totalRisk.title} level={totalRisk.level} />
+                </TableCell>
+              </TableRow>
               <TableRow>
                 <TableCell colSpan={3}>
                   <Div style={{ paddingTop: '10px', paddingBottom: '10px' }}>
@@ -82,28 +87,44 @@ const RiskTable = ({
               </TableRow>
               {countryRisksWithTexts && countryRisk && (
                 <>
-                  <RiskElement
-                    title={t('riskTable:countryRiskLevel')}
-                    level={countryRisk.level}
-                    infoText={countryInfoText}
-                    ekstra={ekstraText}
-                  />
-
-                  {countryRisksWithTexts.map((risk: Risk) => (
-                    <RiskElement
-                      key={risk.id}
-                      level={risk.level}
-                      title={risk.title}
-                      infoText={risk.infoText}
-                      style={{ paddingLeft: '10px' }}
-                    />
-                  ))}
+                  <TableRow>
+                    <TableCell colSpan={3}>
+                      <RiskElement
+                        title={t('riskTable:countryRiskLevel')}
+                        level={countryRisk.level}
+                        infoText={countryInfoText}
+                        ekstra={ekstraText}
+                      />
+                    </TableCell>
+                  </TableRow>
+                  {countryRisksWithTexts?.map((risk: Risk) => {
+                    if (risk.level > 0) {
+                      return (
+                        <TableRow key={risk.id}>
+                          <TableCell colSpan={3}>
+                            <RiskElement
+                              level={risk.level}
+                              title={risk.title}
+                              infoText={risk.infoText}
+                              style={{ paddingLeft: '10px' }}
+                            />
+                          </TableCell>
+                        </TableRow>
+                      )
+                    } else {
+                      return <Div key={''}></Div>
+                    }
+                  })}
                 </>
               )}
               {otherRisksWithTexts?.map(
                 risk =>
                   !['country', 'total'].includes(risk.id) && (
-                    <RiskElement key={risk.id} title={risk.title} level={risk.level} infoText={risk.infoText} />
+                    <TableRow key={risk.id}>
+                      <TableCell colSpan={3}>
+                        <RiskElement title={risk.title} level={risk.level} infoText={risk.infoText} />
+                      </TableCell>
+                    </TableRow>
                   )
               )}
             </TableBody>
