@@ -5,6 +5,7 @@ import { useDeleteWarning } from 'src/client/hooks/useWarnings'
 import EditWarningForm from './editWarningForm'
 //import { useComponents } from '@resultRenderer/context'
 import Markdown from '../../Common/Markdown'
+//import ErrorMessage from './ErrorMessage'
 
 const FormatedDate = ({ expiryDate }) => {
   const date = new Date(expiryDate)
@@ -15,7 +16,7 @@ const FormatedDate = ({ expiryDate }) => {
   return <>{expiryDate && ` ${day}/${month}/${year}`}</>
 }
 
-const WarningObject = ({ country, text, expiryDate, id, updatedAt, createdAt }) => {
+const WarningObject = ({ country, text, expiryDate, id, updatedAt, createdAt, setNewErrorText, setNewInfoText }) => {
   const { countries } = useCountries()
   const { warnings } = useWarnings()
   const { mutate: deleteWarning } = useDeleteWarning()
@@ -38,6 +39,15 @@ const WarningObject = ({ country, text, expiryDate, id, updatedAt, createdAt }) 
 
       if (countryId) {
         void deleteWarning(String(countryId))
+        setNewInfoText('Poisto onnistiu')
+        setTimeout(() => {
+          setNewInfoText(null)
+        }, 5000)
+      } else {
+        setNewErrorText('Poisto ei onnistunut')
+        setTimeout(() => {
+          setNewErrorText(null)
+        }, 5000)
       }
     }
   }
@@ -97,13 +107,15 @@ const WarningObject = ({ country, text, expiryDate, id, updatedAt, createdAt }) 
           expiryDate={expiryDate}
           id={id}
           createdAt={createdAt}
+          setNewErrorText={setNewErrorText}
+          setNewInfoText={setNewInfoText}
         />
       </ul>
     </div>
   )
 }
 
-const RenderWarnings = () => {
+const RenderWarnings = ({ setNewErrorText, setNewInfoText }) => {
   const { t } = useTranslation()
   const { warnings } = useWarnings()
 
@@ -135,6 +147,8 @@ const RenderWarnings = () => {
             id={c.id}
             updatedAt={c.updatedAt}
             createdAt={c.createdAt}
+            setNewErrorText={setNewErrorText}
+            setNewInfoText={setNewInfoText}
           />{' '}
         </ul>
       ))}

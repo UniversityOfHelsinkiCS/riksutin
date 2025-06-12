@@ -6,19 +6,18 @@ import useCountries from '../../../hooks/useCountries'
 import { Autocomplete, TextField } from '@mui/material'
 //import { useQueryClient } from 'react-query'
 
-const WarningForm = ({ showForm, setShowForm }) => {
+const WarningForm = ({ showForm, setShowForm, setNewStatusText, setNewErrorText }) => {
   //const queryClient = useQueryClient()
 
   const { countries } = useCountries()
-  const { mutate: createWarning } = useCreateWarning()
+  const { mutateAsync: createWarning } = useCreateWarning()
 
   const [newCountry, setNewCountry] = useState('')
   const [newFiText, setNewFiText] = useState('')
   const [newEnText, setNewEnText] = useState('')
   const [newExpiryDate, setNewExpiryDate] = useState('')
-  //const [newStatusText, setNewStatusText ] = useState('(testi-ilmoitus)')
 
-  const addWarning = event => {
+  const addWarning = async event => {
     event.preventDefault()
 
     if (!countries) return null
@@ -42,17 +41,23 @@ const WarningForm = ({ showForm, setShowForm }) => {
     setNewExpiryDate('')
     setShowForm(!showForm)
 
-    //try{
-    //console.log("ennen virhettä")
-    return createWarning(warningObject) //vanha
-    //createWarning(warningObject)
-    //setNewStatusText("onnistui")
-    //} catch (er: unknown) {
-    //  console.log("virhe")
-    //  console.log("error: ", er)
-    //  setNewStatusText("ei onnistunut")
-    //  return (er)
-    //}
+    try {
+      const res = await createWarning(warningObject)
+
+      setNewStatusText('luonti onnistui')
+      setTimeout(() => {
+        setNewStatusText(null)
+      }, 5000)
+      //console.log("luonti valmis")
+      return res
+    } catch (er: any) {
+      //console.log("virhe luonnissa " + er)
+      setNewErrorText(' luonti ei onistunut [' + er.message + ']')
+      setTimeout(() => {
+        setNewErrorText(null)
+      }, 5000)
+    }
+    return 'NO data'
   }
 
   const handleCountryChange = (event, value) => {
@@ -75,7 +80,7 @@ const WarningForm = ({ showForm, setShowForm }) => {
   if (!countryNames) return null
 
   //<input value={newCountry} onChange={handleCountryChange} placeholder="Country name in english" />
-  //{newStatusText}
+  //
   return (
     <div>
       <form
@@ -85,9 +90,8 @@ const WarningForm = ({ showForm, setShowForm }) => {
         <div>
           Country
           <Autocomplete
-            style={{ background: 'white' }}
+            style={{ background: 'white', border: '1.5px solid #708287', borderRadius: '3px' }}
             disablePortal
-            //value={newCountry}
             onChange={handleCountryChange}
             options={countryNames}
             sx={{ width: 300 }}
@@ -103,7 +107,14 @@ const WarningForm = ({ showForm, setShowForm }) => {
             placeholder="uusi käännös"
             cols={80}
             rows={5}
-            style={{ display: 'flex', justifyContent: 'flexEnd', margin: '5px' }}
+            style={{
+              display: 'flex',
+              //justifyContent: 'flexEnd',
+              margin: '5px',
+              border: '1.5px solid #708287',
+              borderRadius: '3px',
+              padding: '5px',
+            }}
           />
         </div>
         <div style={{ margin: '5px' }}>
@@ -114,12 +125,25 @@ const WarningForm = ({ showForm, setShowForm }) => {
             placeholder="new translation"
             cols={80}
             rows={5}
-            style={{ display: 'flex', justifyContent: 'flexEnd', margin: '5px' }}
+            style={{
+              display: 'flex',
+              //justifyContent: 'flexStart',
+              margin: '5px',
+              border: '1.5px solid #708287',
+              borderRadius: '3px',
+              padding: '5px',
+            }}
           />
         </div>
         <div style={{ margin: '5px' }}>
           <p>Expiry date</p>{' '}
-          <input type="date" value={newExpiryDate} onChange={handleExpiryDateChange} placeholder="new date" />
+          <input
+            type="date"
+            value={newExpiryDate}
+            onChange={handleExpiryDateChange}
+            placeholder="new date"
+            style={{ border: '1.5px solid rgb(73, 126, 141)', borderRadius: '15px', padding: '5px' }}
+          />
         </div>
 
         <button

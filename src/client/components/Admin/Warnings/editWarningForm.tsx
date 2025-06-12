@@ -5,7 +5,7 @@ import useCountries from '../../../hooks/useCountries'
 
 import { Autocomplete, TextField } from '@mui/material'
 
-const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt }) => {
+const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt, setNewInfoText, setNewErrorText }) => {
   const { countries } = useCountries()
   const { mutate: editWarning } = useEditWarning()
 
@@ -35,9 +35,24 @@ const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt }) => {
       createdAt,
     }
 
-    setShowEditWarningForm(false)
+    try {
+      return editWarning(warningObject)
+      //const res = editWarning(warningObject)
 
-    return editWarning(warningObject)
+      //setShowEditWarningForm(false)
+      setNewInfoText('Editointi onnistui')
+      //setTimeout(() => {
+      //  setNewInfoText(null)
+      //}, 5000)
+      //
+      //return res
+    } catch (error: any) {
+      setNewErrorText(' editointi ei onistunut [' + error.message + ']')
+      setTimeout(() => {
+        setNewErrorText(null)
+      }, 5000)
+    }
+    return 'NO data'
   }
 
   const handleCountryChange = (event, value) => {

@@ -21,17 +21,26 @@ export const useWarnings = () => {
 
 export const useCreateWarning = () => {
   //console.log("use1")
+
+  //fetchedData = useQuery(.....), then render error only if fetchedData.isError is truthy.  //käytä
+
   const mutation = useMutation(
     async (newWarning: NewWarning) => {
-      await apiClient.post('/warnings', newWarning)
+      return apiClient.post('/warnings', newWarning)
     },
     {
       onSuccess: () => {
         // eslint-disable-next-line
         queryClient.invalidateQueries({ queryKey: ['warnings'] })
       },
+      onError(error: any) {
+        //console.log(error)
+        return error
+      },
     }
   )
+  //console.log("mutaatio: " + mutation)
+
   return mutation
 }
 
@@ -53,12 +62,16 @@ export const useDeleteWarning = () => {
 export const useEditWarning = () => {
   const mutation = useMutation(
     async (warningObj: Warning) => {
-      await apiClient.put(`/warnings/${warningObj.id}`, warningObj)
+      return apiClient.put(`/warnings/${warningObj.id}`, warningObj)
     },
     {
       onSuccess: () => {
         // eslint-disable-next-line
         queryClient.invalidateQueries({ queryKey: ['warnings'] })
+      },
+      onError(error: any) {
+        //console.log(error)
+        return error
       },
     }
   )
