@@ -10,7 +10,7 @@ const ErrorMessage = ({ text }) => {
           }}
         >
           <p style={{ color: 'white', fontSize: '30px', padding: '10px' }}>
-            <span style={{ marginLeft: '20px', fontSize: '30px' }}>&#10006;</span> {text}
+            <span style={{ marginLeft: '20px', fontSize: '30px' }}>&#10004;</span> {text}
           </p>
         </div>
       )}

@@ -7,7 +7,7 @@ import { Autocomplete, TextField } from '@mui/material'
 
 const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt, setNewInfoText, setNewErrorText }) => {
   const { countries } = useCountries()
-  const { mutate: editWarning } = useEditWarning()
+  const { mutateAsync: editWarning } = useEditWarning()
 
   const [newCountry, setNewCountry] = useState(countryName)
   const [newFiText, setNewFiText] = useState(text.fi)
@@ -16,7 +16,7 @@ const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt, setNewI
 
   const [showEditWarningForm, setShowEditWarningForm] = useState(false)
 
-  const addEditedWarning = event => {
+  const addEditedWarning = async event => {
     event.preventDefault()
 
     if (!countries) return null
@@ -36,16 +36,16 @@ const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt, setNewI
     }
 
     try {
-      return editWarning(warningObject)
+      const res = await editWarning(warningObject)
       //const res = editWarning(warningObject)
 
-      //setShowEditWarningForm(false)
+      setShowEditWarningForm(false)
       setNewInfoText('Editointi onnistui')
-      //setTimeout(() => {
-      //  setNewInfoText(null)
-      //}, 5000)
-      //
-      //return res
+      setTimeout(() => {
+        setNewInfoText(null)
+      }, 5000)
+
+      return res
     } catch (error: any) {
       setNewErrorText(' editointi ei onistunut [' + error.message + ']')
       setTimeout(() => {
@@ -100,7 +100,7 @@ const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt, setNewI
           <h4>Edit warning data</h4>
           <form onSubmit={addEditedWarning} style={{ backgroundColor: '#dae3f2', padding: '20px', margin: '10px' }}>
             <div>
-              Maa
+              Country
               <Autocomplete
                 style={{ background: 'white' }}
                 disablePortal
@@ -112,7 +112,7 @@ const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt, setNewI
               />
             </div>
             <div>
-              Varoitus suomeksi{' '}
+              Warning in Finnish{' '}
               <textarea
                 value={newFiText}
                 onChange={handleFiTextChange}
@@ -123,7 +123,7 @@ const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt, setNewI
               />
             </div>
             <div>
-              Varoitus englanniksi{' '}
+              Warning in English{' '}
               <textarea
                 value={newEnText}
                 onChange={handleEnTextChange}
@@ -134,8 +134,14 @@ const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt, setNewI
               />
             </div>
             <div>
-              Päättymispäivä{' '}
-              <input type="date" value={newExpiryDate} onChange={handleExpiryDateChange} placeholder="new date" />
+              <p>Epiry date (optional)</p>{' '}
+              <input
+                type="date"
+                value={newExpiryDate}
+                onChange={handleExpiryDateChange}
+                placeholder="new date"
+                style={{ border: '1.5px solid rgb(73, 126, 141)', borderRadius: '15px', padding: '5px' }}
+              />
             </div>
 
             <button
@@ -172,6 +178,5 @@ const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt, setNewI
     </div>
   )
 }
-//Päättymispäivä: <input value={newExpiryDate} onChange={handleExpiryDateChange} placeholder="new date" />
 
 export default EditWarningForm
