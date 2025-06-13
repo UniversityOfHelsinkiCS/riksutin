@@ -42,14 +42,14 @@ const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt, setNewI
       setShowEditWarningForm(false)
       setNewInfoText('Editointi onnistui')
       setTimeout(() => {
-        setNewInfoText(null)
+        setNewInfoText('')
       }, 5000)
 
       return res
     } catch (error: any) {
       setNewErrorText(' editointi ei onistunut [' + error.message + ']')
       setTimeout(() => {
-        setNewErrorText(null)
+        setNewErrorText('')
       }, 5000)
     }
     return 'NO data'

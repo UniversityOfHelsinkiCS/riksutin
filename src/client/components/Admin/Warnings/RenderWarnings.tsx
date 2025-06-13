@@ -39,14 +39,14 @@ const WarningObject = ({ country, text, expiryDate, id, updatedAt, createdAt, se
 
       if (countryId) {
         void deleteWarning(String(countryId))
-        setNewInfoText('Poisto onnistiu')
+        setNewInfoText('Poisto onnistui')
         setTimeout(() => {
-          setNewInfoText(null)
+          setNewInfoText('')
         }, 5000)
       } else {
         setNewErrorText('Poisto ei onnistunut')
         setTimeout(() => {
-          setNewErrorText(null)
+          setNewErrorText('')
         }, 5000)
       }
     }

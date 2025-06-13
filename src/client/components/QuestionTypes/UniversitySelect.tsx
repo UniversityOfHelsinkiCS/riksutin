@@ -106,7 +106,7 @@ const UniversitySelect = ({ control, question, selectedCountry }: InputProps) =>
           }
         />
         <Button onClick={() => setShowUniversityList(!showUniversityList)} sx={{ m: 2 }}>
-          {showUniversityList ? 'Lisää yliopisto itse' : 'Palaa listaukseen'}
+          {showUniversityList ? `${t('questions:addUniversityManually')}` : `${t('questions:returnToListing')}`}
         </Button>
       </Box>
     </>

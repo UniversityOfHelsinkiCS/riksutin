@@ -46,7 +46,7 @@ const WarningForm = ({ showForm, setShowForm, setNewStatusText, setNewErrorText 
 
       setNewStatusText('luonti onnistui')
       setTimeout(() => {
-        setNewStatusText(null)
+        setNewStatusText('')
       }, 5000)
       //console.log("luonti valmis")
       return res
@@ -54,7 +54,7 @@ const WarningForm = ({ showForm, setShowForm, setNewStatusText, setNewErrorText 
       //console.log("virhe luonnissa " + er)
       setNewErrorText(' luonti ei onistunut [' + er.message + ']')
       setTimeout(() => {
-        setNewErrorText(null)
+        setNewErrorText('')
       }, 5000)
     }
     return 'NO data'

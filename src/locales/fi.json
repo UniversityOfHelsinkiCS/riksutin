@@ -36,6 +36,7 @@
     "loadingUniversities": "Ladataan",
     "selectUniversityInfoMessage": "Valitse sijaintimaa nähdäksesi vaihtoehdot",
     "addUniversityManually": "Lisää yliopisto itse",
+    "returnToListing": "Palaa listaukseen",
     "requiredText": "Pakollinen kysymys",
     "requiredQuestionsNeedAnswers": "Vastaa seuraaviin pakollisiin kysymyksiin:"
   },

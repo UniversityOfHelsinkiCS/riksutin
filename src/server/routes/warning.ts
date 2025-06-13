@@ -35,9 +35,13 @@ warningsRouter.delete('/:id', adminHandler, async (req: RequestWithUser, res: an
 })
 
 warningsRouter.put('/:id', adminHandler, async (req: RequestWithUser, res: any) => {
-  const { id } = req.params
-  const updatedResult = await updateWarning(id, req.body)
-  return res.send(updatedResult)
+  try {
+    const { id } = req.params
+    const updatedResult = await updateWarning(id, req.body)
+    return res.send(updatedResult)
+  } catch (error: any) {
+    res.status(400).json({ error: 'routevirhe: ' + error.message })
+  }
 })
 
 export default warningsRouter
