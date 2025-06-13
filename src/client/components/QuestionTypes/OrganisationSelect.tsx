@@ -20,23 +20,17 @@ const OrganisationList = ({
   const { organisations } = useOrganisations(inputOrganisation)
   const { t } = useTranslation()
 
+  organisations?.sort((a, b) => a.localeCompare(b))
+
   if (!organisations) return <LoadingProgress />
 
   return organisations.length === 0 ? (
-    <Typography
-      data-cy="result-section-title"
-      variant="body1"
-      sx={{ mt: 2, paddingBottom: 2 }}
-    >
+    <Typography data-cy="result-section-title" variant="body1" sx={{ mt: 2, paddingBottom: 2 }}>
       {t('organisationSelect:noResults')}
     </Typography>
   ) : (
     <>
-      <Typography
-        data-cy="result-section-title"
-        variant="body1"
-        sx={{ mt: 2, paddingBottom: 2 }}
-      >
+      <Typography data-cy="result-section-title" variant="body1" sx={{ mt: 2, paddingBottom: 2 }}>
         {t('organisationSelect:listInfoText')}
       </Typography>
 
@@ -52,11 +46,11 @@ const OrganisationList = ({
             <Autocomplete
               disablePortal
               id={`select-${questionId}`}
-              options={organisations}
-              getOptionLabel={(option) => option}
+              options={organisations} //organisations
+              getOptionLabel={option => option}
               onChange={(e, data) => onChange(data)}
               sx={{ width: '50%' }}
-              renderInput={(params) => (
+              renderInput={params => (
                 <TextField
                   helperText={error ? error.message : null}
                   error={!!error}
@@ -72,12 +66,7 @@ const OrganisationList = ({
   )
 }
 
-const OrganisationSelect = ({
-  control,
-  question,
-  children,
-  watch,
-}: InputProps) => {
+const OrganisationSelect = ({ control, question, children, watch }: InputProps) => {
   if (!question || !watch) return null
 
   const input = watch(question.id.toString())
@@ -90,11 +79,7 @@ const OrganisationSelect = ({
         defaultValue=""
         render={({ field: { onChange } }) => (
           <Box justifyContent="center">
-            <TextField
-              data-testid={`question-${question.id}`}
-              onChange={onChange}
-              fullWidth
-            />
+            <TextField data-testid={`question-${question.id}`} onChange={onChange} fullWidth />
           </Box>
         )}
       />
