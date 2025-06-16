@@ -3,9 +3,7 @@ import useCountries from 'src/client/hooks/useCountries'
 import { useTranslation } from 'react-i18next'
 import { useDeleteWarning } from 'src/client/hooks/useWarnings'
 import EditWarningForm from './editWarningForm'
-//import { useComponents } from '@resultRenderer/context'
 import Markdown from '../../Common/Markdown'
-//import ErrorMessage from './ErrorMessage'
 
 const FormatedDate = ({ expiryDate }) => {
   const date = new Date(expiryDate)
@@ -21,7 +19,6 @@ const WarningObject = ({ country, text, expiryDate, id, updatedAt, createdAt, se
   const { warnings } = useWarnings()
   const { mutate: deleteWarning } = useDeleteWarning()
   const { t } = useTranslation()
-  //const { Div, Markdown } = useComponents()
 
   if (!countries) return null
 
@@ -76,7 +73,6 @@ const WarningObject = ({ country, text, expiryDate, id, updatedAt, createdAt, se
         <ul>
           <Markdown>{`EN: ${text.en}`}</Markdown>
         </ul>
-
         <p>
           {`${t('admin:expire')}:`} {expiryDate && <FormatedDate expiryDate={expiryDate} />}
         </p>
@@ -87,20 +83,6 @@ const WarningObject = ({ country, text, expiryDate, id, updatedAt, createdAt, se
           {`${t('admin:created')}:`} {updatedAt && <FormatedDate expiryDate={createdAt} />}
         </p>
 
-        <button
-          onClick={handleDelete}
-          style={{
-            padding: '3px',
-            width: '10%',
-            color: '#ab4141',
-            borderColor: '#c25353',
-            margin: '10px',
-            borderStyle: 'solid',
-            borderRadius: '5px',
-          }}
-        >
-          Delete
-        </button>
         <EditWarningForm
           countryName={countryObj.name}
           text={text}
@@ -110,6 +92,20 @@ const WarningObject = ({ country, text, expiryDate, id, updatedAt, createdAt, se
           setNewErrorText={setNewErrorText}
           setNewInfoText={setNewInfoText}
         />
+        <button
+          onClick={handleDelete}
+          style={{
+            padding: '3px',
+            width: '80px',
+            color: '#ab4141',
+            borderColor: '#c25353',
+            margin: '10px',
+            borderStyle: 'solid',
+            borderRadius: '5px',
+          }}
+        >
+          {t('admin:delete')}
+        </button>
       </ul>
     </div>
   )

@@ -112,9 +112,13 @@
     "selectQuestionType": "Valitse kysymyksen tyyppi",
     "save": "Tallenna",
     "confirm": "Vahvista",
-    "cancel": "Eiku",
+    "cancel": "Peru",
     "edit": "Muokkaa",
+    "delete": "Poista",
     "move": "Siirrä",
+    "send": "Lähetä",
+    "close": "Sulje",
+    "addNew": "Lisää uusi",
     "saveSuccess": "Tallennettu onnistuneesti",
     "deleteSuccess": "Poistettu onnistuneesti",
     "rePrioritizeSuccess": "Siirretty onnistuneesti",
@@ -182,7 +186,11 @@
     "allCountryWarnings": "Kaikki maakohtaiset varoitukset",
     "expire": "Vanhenee",
     "updated": "Päivitetty",
-    "created": "Luotu"
+    "created": "Luotu",
+    "country": "Valtio",
+    "WarningInFinnish": "Varoitus suomeksi",
+    "WarningInEnglish": "Varoitus englanniksi",
+    "ExpiryDate": "Päättymispäivä"
   },
   "email": {
     "subject": "Riskiraportti",

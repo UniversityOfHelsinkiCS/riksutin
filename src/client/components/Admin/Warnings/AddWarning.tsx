@@ -2,15 +2,17 @@ import { useState } from 'react'
 import WarningForm from './addWarningForm'
 import ErrorMessage from './ErrorMessage'
 import InfoMessage from './InfoMessage'
+import { useTranslation } from 'react-i18next'
+
 const AddWarning = () => {
   const [showForm, setShowForm] = useState(Boolean)
   const [newStatusText, setNewStatusText] = useState('')
   const [newErrorText, setNewErrorText] = useState('')
+  const { t } = useTranslation()
 
   const handleAddNew = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
     setShowForm(!showForm)
-    //setNewStatusText("luonti onnistui")
   }
 
   return (
@@ -28,7 +30,7 @@ const AddWarning = () => {
           borderRadius: '5px',
         }}
       >
-        {showForm ? 'Close' : 'Add new'}
+        {showForm ? `${t('admin:close')}` : `${t('admin:addNew')}`}
       </button>
       {showForm && (
         <WarningForm
@@ -42,6 +44,4 @@ const AddWarning = () => {
   )
 }
 
-//<span>&#9746;</span> +
-//&#9745;
 export default AddWarning

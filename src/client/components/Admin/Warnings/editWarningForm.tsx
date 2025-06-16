@@ -4,6 +4,7 @@ import { useEditWarning } from 'src/client/hooks/useWarnings'
 import useCountries from '../../../hooks/useCountries'
 
 import { Autocomplete, TextField } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
 const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt, setNewInfoText, setNewErrorText }) => {
   const { countries } = useCountries()
@@ -15,6 +16,7 @@ const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt, setNewI
   const [newExpiryDate, setNewExpiryDate] = useState(expiryDate)
 
   const [showEditWarningForm, setShowEditWarningForm] = useState(false)
+  const { t } = useTranslation()
 
   const addEditedWarning = async event => {
     event.preventDefault()
@@ -37,7 +39,6 @@ const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt, setNewI
 
     try {
       const res = await editWarning(warningObject)
-      //const res = editWarning(warningObject)
 
       setShowEditWarningForm(false)
       setNewInfoText('Editointi onnistui')
@@ -84,7 +85,7 @@ const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt, setNewI
         onClick={handleEdit}
         style={{
           padding: '3px',
-          width: '10%',
+          width: '80px',
           color: '#3d8f29',
           borderColor: '#53ab3e',
           margin: '10px',
@@ -92,7 +93,7 @@ const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt, setNewI
           borderRadius: '5px',
         }}
       >
-        Edit
+        {t('admin:edit')}
       </button>
 
       {showEditWarningForm && (
@@ -100,7 +101,7 @@ const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt, setNewI
           <h4>Edit warning data</h4>
           <form onSubmit={addEditedWarning} style={{ backgroundColor: '#dae3f2', padding: '20px', margin: '10px' }}>
             <div>
-              Country
+              {t('admin:country')}
               <Autocomplete
                 style={{ background: 'white' }}
                 disablePortal
@@ -112,7 +113,7 @@ const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt, setNewI
               />
             </div>
             <div>
-              Warning in Finnish{' '}
+              {t('admin:WarningInFinnish')}{' '}
               <textarea
                 value={newFiText}
                 onChange={handleFiTextChange}
@@ -123,7 +124,7 @@ const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt, setNewI
               />
             </div>
             <div>
-              Warning in English{' '}
+              {t('admin:WarningInEnglish')}{' '}
               <textarea
                 value={newEnText}
                 onChange={handleEnTextChange}
@@ -134,21 +135,34 @@ const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt, setNewI
               />
             </div>
             <div>
-              <p>Epiry date (optional)</p>{' '}
+              <p>{t('admin:ExpiryDate')} (optional)</p>{' '}
               <input
                 type="date"
                 value={newExpiryDate}
                 onChange={handleExpiryDateChange}
                 placeholder="new date"
+                min="2025-01-01"
                 style={{ border: '1.5px solid rgb(73, 126, 141)', borderRadius: '15px', padding: '5px' }}
               />
             </div>
-
+            <button
+              type="submit"
+              style={{
+                padding: '3px',
+                width: '70px',
+                color: '#33708a',
+                borderColor: '#4d88a1',
+                borderStyle: 'solid',
+                borderRadius: '5px',
+              }}
+            >
+              {t('admin:send')}
+            </button>
             <button
               onClick={handleEdit}
               style={{
                 padding: '3px',
-                width: '10%',
+                width: '70px',
                 color: '#107eab',
                 borderColor: '#87bed5',
                 borderStyle: 'solid',
@@ -156,21 +170,7 @@ const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt, setNewI
                 margin: '10px',
               }}
             >
-              Cancel
-            </button>
-
-            <button
-              type="submit"
-              style={{
-                padding: '3px',
-                width: '10%',
-                color: '#33708a',
-                borderColor: '#4d88a1',
-                borderStyle: 'solid',
-                borderRadius: '5px',
-              }}
-            >
-              Send
+              {t('admin:cancel')}
             </button>
           </form>
         </div>

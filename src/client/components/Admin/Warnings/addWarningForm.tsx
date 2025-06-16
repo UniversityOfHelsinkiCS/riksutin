@@ -4,13 +4,13 @@ import { useCreateWarning } from 'src/client/hooks/useWarnings'
 import useCountries from '../../../hooks/useCountries'
 
 import { Autocomplete, TextField } from '@mui/material'
-//import { useQueryClient } from 'react-query'
+
+import { useTranslation } from 'react-i18next'
 
 const WarningForm = ({ showForm, setShowForm, setNewStatusText, setNewErrorText }) => {
-  //const queryClient = useQueryClient()
-
   const { countries } = useCountries()
   const { mutateAsync: createWarning } = useCreateWarning()
+  const { t } = useTranslation()
 
   const [newCountry, setNewCountry] = useState('')
   const [newFiText, setNewFiText] = useState('')
@@ -48,10 +48,8 @@ const WarningForm = ({ showForm, setShowForm, setNewStatusText, setNewErrorText 
       setTimeout(() => {
         setNewStatusText('')
       }, 5000)
-      //console.log("luonti valmis")
       return res
     } catch (er: any) {
-      //console.log("virhe luonnissa " + er)
       setNewErrorText(' luonti ei onistunut [' + er.message + ']')
       setTimeout(() => {
         setNewErrorText('')
@@ -79,8 +77,6 @@ const WarningForm = ({ showForm, setShowForm, setNewStatusText, setNewErrorText 
   const countryNames = countries?.map(c => c.name)
   if (!countryNames) return null
 
-  //<input value={newCountry} onChange={handleCountryChange} placeholder="Country name in english" />
-  //
   return (
     <div>
       <form
@@ -88,7 +84,7 @@ const WarningForm = ({ showForm, setShowForm, setNewStatusText, setNewErrorText 
         style={{ backgroundColor: '#dae3f2', padding: '20px', margin: '10px', borderRadius: '5px' }}
       >
         <div>
-          Country
+          {t('admin:country')}
           <Autocomplete
             style={{ background: 'white', border: '1.5px solid #708287', borderRadius: '3px' }}
             disablePortal
@@ -100,7 +96,7 @@ const WarningForm = ({ showForm, setShowForm, setNewStatusText, setNewErrorText 
         </div>
 
         <div style={{ margin: '5px' }}>
-          Warning in Finnish
+          {t('admin:WarningInFinnish')}
           <textarea
             value={newFiText}
             onChange={handleFiTextChange}
@@ -109,7 +105,6 @@ const WarningForm = ({ showForm, setShowForm, setNewStatusText, setNewErrorText 
             rows={5}
             style={{
               display: 'flex',
-              //justifyContent: 'flexEnd',
               margin: '5px',
               border: '1.5px solid #708287',
               borderRadius: '3px',
@@ -118,7 +113,7 @@ const WarningForm = ({ showForm, setShowForm, setNewStatusText, setNewErrorText 
           />
         </div>
         <div style={{ margin: '5px' }}>
-          Warning in English
+          {t('admin:WarningInEnglish')}
           <textarea
             value={newEnText}
             onChange={handleEnTextChange}
@@ -127,7 +122,6 @@ const WarningForm = ({ showForm, setShowForm, setNewStatusText, setNewErrorText 
             rows={5}
             style={{
               display: 'flex',
-              //justifyContent: 'flexStart',
               margin: '5px',
               border: '1.5px solid #708287',
               borderRadius: '3px',
@@ -136,12 +130,13 @@ const WarningForm = ({ showForm, setShowForm, setNewStatusText, setNewErrorText 
           />
         </div>
         <div style={{ margin: '5px' }}>
-          <p>Expiry date</p>{' '}
+          <p>{t('admin:ExpiryDate')} (optional)</p>{' '}
           <input
             type="date"
             value={newExpiryDate}
             onChange={handleExpiryDateChange}
             placeholder="new date"
+            min="2025-01-01"
             style={{ border: '1.5px solid rgb(73, 126, 141)', borderRadius: '15px', padding: '5px' }}
           />
         </div>
@@ -158,7 +153,7 @@ const WarningForm = ({ showForm, setShowForm, setNewStatusText, setNewErrorText 
             margin: '10px',
           }}
         >
-          Cancel
+          {t('admin:cancel')}
         </button>
 
         <button
@@ -172,7 +167,7 @@ const WarningForm = ({ showForm, setShowForm, setNewStatusText, setNewErrorText 
             borderRadius: '5px',
           }}
         >
-          Send
+          {t('admin:send')}
         </button>
       </form>
     </div>

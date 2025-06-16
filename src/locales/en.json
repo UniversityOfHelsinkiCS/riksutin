@@ -115,7 +115,11 @@
     "confirm": "Confirm",
     "cancel": "Cancel",
     "edit": "Edit",
+    "delete": "Poista",
     "move": "Move",
+    "send": "Send",
+    "close": "Close",
+    "addNew": "Add new",
     "saveSuccess": "Saved successfully",
     "deleteSuccess": "Deleted successfully",
     "rePrioritizeSuccess": "Moved successfully",
@@ -183,7 +187,11 @@
     "allCountryWarnings": "All country spesific warnings",
     "expire": "Expires",
     "updated": "Updated",
-    "created": "Created"
+    "created": "Created",
+    "country": "Country",
+    "WarningInFinnish": "Warning in Finnish",
+    "WarningInEnglish": "Warning in English",
+    "ExpiryDate": "Expiry date"
   },
   "email": {
     "subject": "Risk assessment results",

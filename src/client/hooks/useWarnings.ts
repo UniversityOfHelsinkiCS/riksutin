@@ -7,23 +7,16 @@ import queryClient from '../util/queryClient'
 
 export const useWarnings = () => {
   const queryKey = 'warnings'
-
   const query = async (): Promise<Warning[]> => {
     const { data } = await apiClient.get('/warnings')
 
     return data
   }
-
   const { data: warnings, ...rest } = useQuery(queryKey, query)
-
   return { warnings, ...rest }
 }
 
 export const useCreateWarning = () => {
-  //console.log("use1")
-
-  //fetchedData = useQuery(.....), then render error only if fetchedData.isError is truthy.  //käytä
-
   const mutation = useMutation(
     async (newWarning: NewWarning) => {
       return apiClient.post('/warnings', newWarning)
@@ -34,13 +27,10 @@ export const useCreateWarning = () => {
         queryClient.invalidateQueries({ queryKey: ['warnings'] })
       },
       onError(error: any) {
-        //console.log(error)
         return error
       },
     }
   )
-  //console.log("mutaatio: " + mutation)
-
   return mutation
 }
 
@@ -70,7 +60,6 @@ export const useEditWarning = () => {
         queryClient.invalidateQueries({ queryKey: ['warnings'] })
       },
       onError(error: any) {
-        //console.log(error)
         return error
       },
     }
