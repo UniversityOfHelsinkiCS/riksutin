@@ -1,5 +1,4 @@
 import { FullCountry, Info } from '@server/types'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { fetchData, buildCache } from '../data/worldbank/util'
 import { cacheSanctionsData } from '../data/sanctions/sanctionsMap'
 
@@ -19,6 +18,6 @@ export const getCountries = async () => {
 }
 
 export const cacheCountries = async () => {
-  //await buildCache()
+  await buildCache()
   await cacheSanctionsData()
 }
