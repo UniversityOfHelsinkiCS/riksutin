@@ -22,3 +22,7 @@ export const get = async <T>(key: string): Promise<T | null> => {
   const value = await redis.get(key)
   return JSON.parse(value ?? 'null')
 }
+
+export const setPermanent = async <T>(key: string, value: T) => {
+  await redis.set(key, JSON.stringify(value))
+}
