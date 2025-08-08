@@ -3,13 +3,10 @@ import { fetchData, getLatestIndicator, riskLevelCheck } from './util'
 
 type Response = [Info, Indicator[]]
 
-const getCountryIndicator = async (
-  countryCode: string,
-  indicatorCode: string
-) => {
-  const [_, data]: Response = await fetchData(
-    `country/${countryCode}/indicator/${indicatorCode}`
-  )
+const getCountryIndicator = async (countryCode: string, indicatorCode: string) => {
+  const url = `country/${countryCode}/indicator/${indicatorCode}`
+
+  const [_, data]: Response = await fetchData(url)
 
   const indicatorData = data.filter(({ value }) => value !== null)
 

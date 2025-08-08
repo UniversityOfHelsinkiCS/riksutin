@@ -20,6 +20,5 @@ export const set = async <T>(key: string, value: T) => {
 
 export const get = async <T>(key: string): Promise<T | null> => {
   const value = await redis.get(key)
-
   return JSON.parse(value ?? 'null')
 }

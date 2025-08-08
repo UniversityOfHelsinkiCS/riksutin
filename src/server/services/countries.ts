@@ -1,5 +1,5 @@
 import { FullCountry, Info } from '@server/types'
-import { fetchData } from '../data/worldbank/util'
+import { fetchData, buildCache } from '../data/worldbank/util'
 
 type Response = [Info, FullCountry[]]
 
@@ -14,4 +14,8 @@ export const getCountries = async () => {
   }))
 
   return countries
+}
+
+export const cacheCountries = async () => {
+  await buildCache()
 }

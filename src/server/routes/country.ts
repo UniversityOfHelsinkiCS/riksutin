@@ -11,7 +11,7 @@ import fetchSanctionsData from '../data/sanctions/sanctionsMap'
 import parseAcademicFreedom from '../data/academicfreedom/parseAcademicFreedom'
 import parseRuleOfLaw from '../data/ruleOfLaw/parseRuleOfLaw'
 import parseHumanDevelopment from '../data/humanDevelopment/parseHumanDevelopment'
-import { getCountries } from '../services/countries'
+import { getCountries, cacheCountries } from '../services/countries'
 
 export const getCountryData = async (code: string | undefined): Promise<CountryData | null> => {
   if (!code) return null
@@ -65,6 +65,12 @@ countryRouter.get('/', async (_, res) => {
   const countries = await getCountries()
 
   return res.status(200).send(countries)
+})
+
+countryRouter.get('/cache', async (_, res) => {
+  await cacheCountries()
+
+  return res.status(200).send({ status: 'OK' })
 })
 
 countryRouter.get('/:code', async (req, res) => {
