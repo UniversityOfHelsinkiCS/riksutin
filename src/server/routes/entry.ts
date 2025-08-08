@@ -63,6 +63,13 @@ entryRouter.delete('/:entryId/delete', async (req: RequestWithUser, res: any) =>
   return res.status(204).send()
 })
 
+// endpoint for testing
+entryRouter.post('/:surveyId/dryrun', async (req: RequestWithUser, res: any) => {
+  const { data } = req.body
+  const riskData = await createRiskData(data)
+  return res.status(201).send(riskData)
+})
+
 entryRouter.post('/:surveyId', async (req: RequestWithUser, res: any) => {
   const { surveyId } = req.params
   const { sessionToken, data } = req.body
