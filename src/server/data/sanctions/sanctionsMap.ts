@@ -1,18 +1,42 @@
+/* eslint-disable no-console */
+import { get, setPermanent } from '../../util/redis'
+
+const url = 'https://sanctionsmap.eu/api/v1/regime'
+
 const fetchSanctionsData = async (code: string | undefined) => {
   if (!code) return null
 
+  console.log('fetch CACHED', url)
+
   try {
-    const url = 'https://sanctionsmap.eu/api/v1/regime'
-    const res = await fetch(url)
-    const data = await res.json()
+    let data: any = await get(url)
+    if (!data) {
+      data = await cacheSanctionsData()
+    }
 
     const countrySanctions = data.data.find(c => c.country.data.code === code)?.has_lists
+
+    console.log('countrySanctions', countrySanctions)
 
     if (!countrySanctions) return null
 
     return countrySanctions
   } catch (error) {
     return null
+  }
+}
+
+export const cacheSanctionsData = async () => {
+  try {
+    const url = 'https://sanctionsmap.eu/api/v1/regime'
+    console.log('caching', url)
+    const res = await fetch(url)
+    const data = res.json()
+
+    await setPermanent(url, data)
+    return data
+  } catch (error) {
+    console.log('failed')
   }
 }
 
