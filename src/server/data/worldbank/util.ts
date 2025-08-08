@@ -84,8 +84,7 @@ export const buildCache = async () => {
   console.log('contries', countries.length)
   const codes = countries.map(c => c.iso2Code)
 
-  //for (const code of codes) {
-  for (const code of [codes[0]]) {
+  for (const code of codes) {
     console.log(code)
     try {
       await cacheCountryIndicator(code, 'CC.PER.RNK')
