@@ -22,6 +22,7 @@ const fetchSanctionsData = async (code: string | undefined) => {
 
     return countrySanctions
   } catch (error) {
+    console.log('failed', error)
     return null
   }
 }
@@ -31,7 +32,7 @@ export const cacheSanctionsData = async () => {
     const url = 'https://sanctionsmap.eu/api/v1/regime'
     console.log('caching', url)
     const res = await fetch(url)
-    const data = res.json()
+    const data = await res.json()
 
     await setPermanent(url, data)
     return data
