@@ -16,6 +16,7 @@ import { connectToDatabase } from './db/connection'
 import seed from './db/seeders'
 import startRiskCron from './util/cron/riskReEvaluation/riskReEvaluation'
 import startCountryCron from './util/cron/highRiskCountries/highRiskCountries'
+import startCountryRiskCron from './util/cron/countryRisks'
 
 const app = express()
 
@@ -50,6 +51,7 @@ app.listen(PORT, async () => {
     startRiskCron()
   }
   startCountryCron()
+  startCountryRiskCron()
 
   logger.info(`Server running on port ${PORT}`)
 })
