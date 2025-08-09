@@ -17,6 +17,8 @@ This app contains an algorithm that calculates different risks for the project b
 The object includes the following data. The source for data is in the brackets:
 
 - Academic freedom ([CSV](../src/server/data/academicfreedom/academicfreedom.csv)), year used ??
+  - source https://v-dem.net/data/the-v-dem-dataset/
+  - Se on ainakin mukana tossa Country-Year: V-Dem Full+Others -datasetissä ja sitä merkitään koodilla v2xca_academ
 - Corruption ([Worldbank API](https://api.worldbank.org/v2))
 - Human development index ([CSV](../src/server/data/humanDevelopment/humanDevelopment.csv)) source [https://hdr.undp.org/] current data 2022
   - for data, go to https://hdr.undp.org/data-center/human-development-index#/indicies/HDI
