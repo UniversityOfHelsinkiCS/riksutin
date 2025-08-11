@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import type { Indicator } from '@server/types'
 import { set, get, setPermanent } from '../../util/redis'
+import { cacheSafetyLevel } from '../safetyLevel'
 
 const baseUrl = 'https://api.worldbank.org/v2'
 
@@ -84,17 +85,28 @@ export const buildCache = async () => {
   console.log('contries', countries.length)
   const codes = countries.map(c => c.iso2Code)
 
+  const failed: string[] = []
+
   for (const code of codes) {
     console.log(code)
+    try {
+      await cacheSafetyLevel(code)
+    } catch (e) {
+      failed.push(code)
+    }
     try {
       await cacheCountryIndicator(code, 'CC.PER.RNK')
       await cacheCountryIndicator(code, 'PV.PER.RNK')
     } catch (e) {
       console.log('FAILED ', code)
+      failed.push(code)
+      console.log(e)
     }
 
-    await sleep(100)
+    await sleep(50)
   }
+
+  console.log('failed:', failed)
 
   console.log('caching country data: done')
 }

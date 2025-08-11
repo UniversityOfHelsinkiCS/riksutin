@@ -1,9 +1,11 @@
+/* eslint-disable no-console */
 import Parser from 'rss-parser'
 import jsdom from 'jsdom'
+import { get, setPermanent } from '../util/redis'
 
 type SafetyLevel = [string, number]
 
-const fetchSafetyLevelData = async (code: string) => {
+export const cacheSafetyLevel = async (code: string) => {
   const { JSDOM } = jsdom
 
   const parser = new Parser({
@@ -11,8 +13,10 @@ const fetchSafetyLevelData = async (code: string) => {
       item: [['content:encoded', 'encoded']],
     },
   })
+
   const url = `https://um.fi/o/rss?dctype=matkustustiedotteet&countrycode=${code}&lang=fi`
 
+  console.log('HTTP REQUEST ', url)
   try {
     const feed = await parser.parseURL(url)
 
@@ -30,10 +34,28 @@ const fetchSafetyLevelData = async (code: string) => {
 
     const safetyLevelRisk = safetyLevels.find(level => level[0] === safetyLevel)?.[1] ?? null
 
+    await setPermanent(url, safetyLevelRisk)
     return safetyLevelRisk
-  } catch (error) {
+  } catch (e) {
+    return 1
+  }
+}
+
+const fetchSafetyLevelData = async (code: string) => {
+  if (code === 'FI') {
     return null
   }
+
+  const url = `https://um.fi/o/rss?dctype=matkustustiedotteet&countrycode=${code}&lang=fi`
+
+  console.log('FROM CACHE', url)
+  let safetyLevelRisk: any = await get(url)
+  console.log('GOT', safetyLevelRisk)
+  if (!safetyLevelRisk) {
+    safetyLevelRisk = await cacheSafetyLevel(code)
+  }
+
+  return safetyLevelRisk
 }
 
 export default fetchSafetyLevelData

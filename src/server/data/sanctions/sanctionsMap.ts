@@ -6,7 +6,7 @@ const url = 'https://sanctionsmap.eu/api/v1/regime'
 const fetchSanctionsData = async (code: string | undefined) => {
   if (!code) return null
 
-  console.log('fetch CACHED', url)
+  console.log('FROM CACHE', url)
 
   try {
     let data: any = await get(url)
@@ -30,7 +30,7 @@ const fetchSanctionsData = async (code: string | undefined) => {
 export const cacheSanctionsData = async () => {
   try {
     const url = 'https://sanctionsmap.eu/api/v1/regime'
-    console.log('caching', url)
+    console.log('caching: HTTP get', url)
     const res = await fetch(url)
     const data = await res.json()
 
