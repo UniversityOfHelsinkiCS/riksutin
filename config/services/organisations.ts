@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import type { UnitData, OrganisationData } from '@server/types'
+import type { UnitData, OrganisationData, TuhatData } from '@server/types'
 import type { CanError, EmployeeResponse } from '@routes/types'
 
 import {
@@ -10,6 +10,7 @@ import {
   UNIT_API_TOKEN,
   EMPLOYEE_GW_API_URL,
   EMPLOYEE_API_TOKEN,
+  TUHAT_API_TOKEN,
 } from '@userconfig'
 
 export const jamiClient = axios.create({
@@ -18,6 +19,53 @@ export const jamiClient = axios.create({
     token: API_TOKEN,
   },
 })
+
+export const getTuhatData = async (userId: string): Promise<TuhatData[]> => {
+  const url = UNIT_GW_API_URL + '/tuhatextapi/runningprojects'
+  const response = await fetch(url, {
+    headers: { 'x-api-key': TUHAT_API_TOKEN },
+  })
+
+  const data: {
+    count: number
+    pageInformation: object
+    runningProjects: [
+      {
+        title: {
+          fi_FI: string
+          en_GB: string
+          sv_SE: string
+        }
+        uuid: string
+        pureId: string
+        participants: [
+          {
+            role: object
+            username: string
+            pureId: string
+            firstName: string
+            lastName: string
+          },
+        ]
+      },
+    ]
+  } = await response.json()
+
+  const mappedData = data.runningProjects.map(({ pureId, title, participants }) => ({
+    tuhatId: pureId,
+    name: {
+      fi: title.fi_FI || title.en_GB,
+      en: title.en_GB || title.fi_FI,
+      sv: title.sv_SE || title.en_GB || title.fi_FI,
+    },
+    participants: participants ? participants.map(participant => participant.username) : [],
+  }))
+
+  const filteredData = mappedData
+    .filter(({ participants }) => participants.includes(userId))
+    .map(({ tuhatId, name }) => ({ tuhatId, name }))
+  return filteredData
+}
 
 export const getUnitData = async (): Promise<UnitData[]> => {
   const url = UNIT_GW_API_URL + '/organisation/info/v1/financeUnitsPublic'

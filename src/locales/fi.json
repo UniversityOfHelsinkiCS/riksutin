@@ -21,6 +21,13 @@
     "inputLabel": "Yksikkö",
     "infoMessage": "Tietoa yksikkösi ohjeistuksesta"
   },
+  "tuhatProjectExists": {
+    "title": "Onko projekti tallennettu TUHAT-järjestelmään?"
+  },
+  "tuhatProjectSelect": {
+    "inputLabel": "Yhteistyöprojekti",
+    "infoMessage": "Anna yhteistyöprojektin nimi"
+  },
   "universitySelect": {
     "textFieldInfo": "Kirjoita tähän yhteistyöyliopiston nimi"
   },

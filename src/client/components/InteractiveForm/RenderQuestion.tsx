@@ -21,6 +21,7 @@ import UniversitySelect from '../QuestionTypes/UniversitySelect'
 import HighRiskCountrySelect from '../QuestionTypes/HighRiskCountriesSelect'
 import CountrySelect from '../QuestionTypes/CountrySelect'
 import EmployeeSelect from '../QuestionTypes/EmployeeSelect'
+import SelectTuhatProject from '../Common/TuhatProjectSelect'
 
 const { cardStyles } = styles
 
@@ -96,6 +97,7 @@ const RenderQuestion = ({ control, watch, question, questions, language }: Input
   if (!QuestionType) return null
 
   const childQuestions = questions.filter(childQuestion => question.id === childQuestion.parentId)
+  if (question.id === 3) return <SelectTuhatProject control={control} question={question} />
   return (
     <Box>
       <Box sx={cardStyles.questionsContainer}>

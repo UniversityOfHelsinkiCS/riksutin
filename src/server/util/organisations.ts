@@ -3,6 +3,7 @@ import {
   getOrganisationData as implGetOrganisationData,
   getUserOrganisations as implGetUserOrganisationData,
   getEmployeeData as implGetEmployeeData,
+  getTuhatData as implGetTuhatData,
 } from '@userservices/organisations'
 
 const defaultGetUnitData = () => {
@@ -21,7 +22,12 @@ const defaultGetUserOrganisations = () => {
   return []
 }
 
+const defaultGetTuhatData = () => {
+  return []
+}
+
 export const getUnitData = implGetUnitData ?? defaultGetUnitData
 export const getOrganisationData = implGetOrganisationData ?? defaultGetOrganisationData
 export const getOrganisationEmployeeData = implGetEmployeeData ?? defaultGetEmployeeData
 export const getUserOrganisations = implGetUserOrganisationData ?? defaultGetUserOrganisations
+export const getTuhatProjects = implGetTuhatData ?? defaultGetTuhatData

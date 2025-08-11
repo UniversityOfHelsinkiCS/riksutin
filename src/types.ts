@@ -37,6 +37,11 @@ export interface Faculty {
   name: Locales
 }
 
+export interface tuhatProject {
+  tuhatId: string
+  name: Locales
+}
+
 export type ChoiceType = SingleChoiceType[] | MultipleChoiceType[]
 
 export type SingleChoiceType = {

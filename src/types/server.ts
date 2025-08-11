@@ -33,6 +33,11 @@ export interface UnitData {
   name: Locales
 }
 
+export interface TuhatData {
+  tuhatId: string
+  name: Locales
+}
+
 export interface OrganisationData extends UnitData {
   programmes: Programme[]
 }

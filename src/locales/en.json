@@ -22,6 +22,15 @@
     "inputLabel": "Unit",
     "infoMessage": "Information about the owner's unit's guidelines"
   },
+  "tuhatProjectExists": {
+    "title": "Is the project saved in the TUHAT system?",
+    "positive": "Yes",
+    "negative": "No"
+  },
+  "tuhatProjectSelect": {
+    "inputLabel": "Project or collaboration",
+    "infoMessage": "Give the name"
+  },
   "universitySelect": {
     "textFieldInfo": "Write the name of the partner university here"
   },

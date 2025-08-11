@@ -17,6 +17,7 @@ import questionRouter from './question'
 import countryRouter from './country'
 import organizationRouter from './organization'
 import warningsRouter from './warning'
+import tuhatProjectsRouter from './tuhatProject'
 
 const router = express()
 
@@ -47,6 +48,7 @@ router.use('/login', loginRouter)
 router.use('/countries', countryRouter)
 router.use('/organizations', organizationRouter)
 router.use('/warnings', warningsRouter)
+router.use('/tuhatprojects', tuhatProjectsRouter)
 
 router.use(SentryHandlers.errorHandler())
 router.use(errorHandler)
