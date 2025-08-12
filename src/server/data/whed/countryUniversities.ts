@@ -53,6 +53,7 @@ const getCountryUniversities = async (countryName: string | undefined) => {
 
   try {
     const key = getKey(countryName)
+    console.log('FROM CACHE ', key)
     let names: string[] | null = await get(key)
     if (!names) {
       names = await cacheUniversityData(countryName)
