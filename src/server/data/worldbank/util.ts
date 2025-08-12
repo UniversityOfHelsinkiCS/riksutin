@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 import type { Indicator } from '@server/types'
-import { set, get, setPermanent } from '../../util/redis'
+import { get, setPermanent } from '../../util/redis'
 import { cacheSafetyLevel } from '../safetyLevel'
+import { cacheUniversityData } from '../whed/countryUniversities'
 
 const baseUrl = 'https://api.worldbank.org/v2'
 
@@ -31,7 +32,7 @@ export const fetchData = async (path: string) => {
 
   const cached = await get(url)
   if (cached) {
-    console.log('fetch CACHED', url)
+    console.log('FROM CACHE', url)
     return cached
   }
 
@@ -39,8 +40,6 @@ export const fetchData = async (path: string) => {
 
   const response = await fetch(url)
   const data = await response.json()
-
-  await set(url, data)
 
   return data
 }
@@ -91,6 +90,13 @@ export const buildCache = async () => {
     console.log(code)
     try {
       await cacheSafetyLevel(code)
+    } catch (e) {
+      failed.push(code)
+    }
+    try {
+      const countryName = countries.find(c => c.iso2Code === code).name
+      console.log(countryName)
+      await cacheUniversityData(countryName)
     } catch (e) {
       failed.push(code)
     }

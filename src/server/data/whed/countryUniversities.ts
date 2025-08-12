@@ -1,19 +1,15 @@
+/* eslint-disable no-console */
 import jsdom from 'jsdom'
 
-import logger from '../../util/logger'
+import { get, setPermanent } from '../../util/redis'
+import logger from 'src/server/util/logger'
 
-import { set, get } from '../../util/redis'
+const url = 'https://whed.net/results_institutions.php'
 
-const baseUrl = 'https://whed.net'
+const getKey = countryName => `${url}?country=${countryName}`
 
-const fetchData = async (countryName: string) => {
+export const cacheUniversityData = async (countryName: string) => {
   if (countryName === 'United States') countryName = 'United States of America'
-
-  const url = `${baseUrl}/results_institutions.php`
-  const key = `${url}?country=${countryName}`
-
-  const cached: string | null = await get(key)
-  if (cached) return cached
 
   const formdata = new FormData()
 
@@ -25,11 +21,15 @@ const fetchData = async (countryName: string) => {
     body: formdata,
   })
 
+  const key = getKey(countryName)
+  console.log('HTTP REQUEST ', key)
+
   const html = await response.text()
+  const universityNames: string[] = parseHTML(html)
 
-  await set(key, html)
+  await setPermanent(key, universityNames)
 
-  return html
+  return universityNames
 }
 
 const parseHTML = (html: string): string[] => {
@@ -52,10 +52,13 @@ const getCountryUniversities = async (countryName: string | undefined) => {
   if (!countryName) return null
 
   try {
-    const html = await fetchData(countryName)
-    const universityNames = parseHTML(html)
+    const key = getKey(countryName)
+    let names: string[] | null = await get(key)
+    if (!names) {
+      names = await cacheUniversityData(countryName)
+    }
 
-    return universityNames
+    return names
   } catch (error) {
     logger.error(error)
     return []
