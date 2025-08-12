@@ -81,8 +81,8 @@ export const buildCache = async () => {
   const countriesUrl = `${baseUrl}/countries?${params}`
   const [_, data] = await get(countriesUrl)
   const countries = data.filter(({ region }) => region.value !== 'Aggregates')
-  console.log('contries', countries.length)
   const codes = countries.map(c => c.iso2Code)
+  console.log('contries', codes.length)
 
   const failed: string[] = []
 

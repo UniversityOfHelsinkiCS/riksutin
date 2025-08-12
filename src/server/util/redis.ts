@@ -3,6 +3,8 @@ import { RedisStore } from 'connect-redis'
 
 import { REDIS_HOST } from '@server/config'
 
+import { Cache } from '@dbmodels'
+
 const ttl = 60 * 60 * 24 * 30 // 30 days
 
 export const redis = new Redis({
@@ -24,5 +26,12 @@ export const get = async <T>(key: string): Promise<T | null> => {
 }
 
 export const setPermanent = async <T>(key: string, value: T) => {
+  const existing = await Cache.findOne({ where: { key } })
+  if (existing) {
+    await existing.update({ value: value as unknown as object })
+  } else {
+    await Cache.create({ key, value: value as unknown as object })
+  }
+
   await redis.set(key, JSON.stringify(value))
 }
