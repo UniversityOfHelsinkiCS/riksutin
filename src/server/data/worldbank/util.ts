@@ -79,7 +79,7 @@ export const buildCache = async () => {
   await cacheData('countries')
 
   const countriesUrl = `${baseUrl}/countries?${params}`
-  const [_, data] = await get(countriesUrl)
+  const [_, data]: any = await get(countriesUrl)
   const countries = data.filter(({ region }) => region.value !== 'Aggregates')
   const codes = countries.map(c => c.iso2Code)
   console.log('contries', codes.length)
