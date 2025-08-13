@@ -18,6 +18,4 @@ Survey.hasMany(Result)
 Entry.belongsTo(User)
 User.hasMany(Entry)
 
-//Warning.hasMany(Warning)
-
 export { Survey, Question, Result, User, Entry, Warning, Cache }

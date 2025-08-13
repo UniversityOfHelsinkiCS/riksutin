@@ -95,7 +95,6 @@ export const buildCache = async () => {
     }
     try {
       const countryName = countries.find(c => c.iso2Code === code).name
-      console.log(countryName)
       await cacheUniversityData(countryName)
     } catch (e) {
       failed.push(code)
@@ -104,9 +103,7 @@ export const buildCache = async () => {
       await cacheCountryIndicator(code, 'CC.PER.RNK')
       await cacheCountryIndicator(code, 'PV.PER.RNK')
     } catch (e) {
-      console.log('FAILED ', code)
       failed.push(code)
-      console.log(e)
     }
 
     await sleep(50)

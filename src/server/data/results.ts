@@ -155,6 +155,23 @@ const getResultData = (): Result[] => [
     },
   },
   {
+    id: 9,
+    surveyId: 1,
+    optionLabel: 'HCI4',
+    isSelected: {
+      fi: '*Ei tiedossa*',
+      sv: '*Unknown*',
+      en: '*Unknown*',
+    },
+    data: {
+      title: {
+        fi: 'Maan kehittyneisyys',
+        sv: '',
+        en: 'Human development',
+      },
+    },
+  },
+  {
     id: 10,
     surveyId: 1,
     optionLabel: 'academicFreedom1',

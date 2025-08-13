@@ -1,25 +1,15 @@
 import type { FormValues, Question, Risk } from '@types'
 import type { UpdatedCountryData } from '@server/types'
 
-import {
-  totalCountryRisk,
-  dualUseRisk,
-  organisationRisk,
-  universityRisk,
-  consortiumRisk,
-} from './utils'
+import { totalCountryRisk, dualUseRisk, organisationRisk, universityRisk, consortiumRisk } from './utils'
 
-const getOtherRisks = (
-  country: UpdatedCountryData,
-  questions: Question[],
-  formData: FormValues
-) => {
+const getOtherRisks = (country: UpdatedCountryData, questions: Question[], formData: FormValues) => {
   const countryRiskValues = totalCountryRisk(country, formData)
 
   const dualUseRiskValue = dualUseRisk(questions, formData, country)
   const organisationRiskValue = organisationRisk(formData)
   const ethicalRiskValue = questions
-    .find((question) => question.id === 25)
+    .find(question => question.id === 25)
     ?.optionData.options.find((o: { id: any }) => o.id === formData[25])?.risk
 
   const riskArray: Risk[] = [
@@ -36,9 +26,7 @@ const getOtherRisks = (
     {
       id: 'duration',
       title: 'riskTable:durationRiskLevel',
-      level: questions
-        .find((question) => question.id === 12)
-        ?.optionData.options.find((o) => o.id === formData[12])?.risk,
+      level: questions.find(question => question.id === 12)?.optionData.options.find(o => o.id === formData[12])?.risk,
     },
     {
       id: 'dualUse',
@@ -53,9 +41,7 @@ const getOtherRisks = (
     {
       id: 'economic',
       title: 'riskTable:economicRiskLevel',
-      level: questions
-        .find((question) => question.id === 16)
-        ?.optionData.options.find((o) => o.id === formData[16])?.risk,
+      level: questions.find(question => question.id === 16)?.optionData.options.find(o => o.id === formData[16])?.risk,
     },
     {
       id: 'ethical',
@@ -73,9 +59,7 @@ const getOtherRisks = (
     riskArray.push(consortium)
   }
 
-  const filteredArray = riskArray.filter(
-    (value) => value.level !== null && value.level !== undefined
-  )
+  const filteredArray = riskArray.filter(value => value.level !== null && value.level !== undefined)
 
   return filteredArray
 }

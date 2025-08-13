@@ -9,9 +9,10 @@ export const getCountries = async () => {
 
   const filtered = data.filter(({ region }) => region.value !== 'Aggregates')
 
-  const countries = filtered.map(({ name, iso2Code }) => ({
+  const countries = filtered.map(({ name, iso2Code, id }) => ({
     name,
     iso2Code,
+    id,
   }))
 
   return countries

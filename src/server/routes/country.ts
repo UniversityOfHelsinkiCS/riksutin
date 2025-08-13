@@ -7,28 +7,29 @@ import { get } from '../util/redis'
 import getCountryIndicator from '../data/worldbank/indicator'
 import fetchSafetyLevelData from '../data/safetyLevel'
 import getCountryUniversities from '../data/whed/countryUniversities'
-import fetchSanctionsData from '../data/sanctions/sanctionsMap'
+import fetchSanctionsData, { cacheSanctionsData } from '../data/sanctions/sanctionsMap'
 import parseAcademicFreedom from '../data/academicfreedom/parseAcademicFreedom'
 import parseRuleOfLaw from '../data/ruleOfLaw/parseRuleOfLaw'
-import parseHumanDevelopment from '../data/humanDevelopment/parseHumanDevelopment'
 import { getCountries, cacheCountries } from '../services/countries'
+import getHumanDevelopment from '../data/humanDevelopment'
 
 export const getCountryData = async (code: string | undefined): Promise<CountryData | null> => {
   if (!code) return null
   const countries = await getCountries()
-
-  const countryName = countries.find(country => country.iso2Code === code.toUpperCase())?.name
+  const country = countries.find(country => country.iso2Code === code.toUpperCase())
+  const countryName = country?.name
+  const countryId = country?.id
 
   const corruption = await getCountryIndicator(code, 'CC.PER.RNK')
   const stability = await getCountryIndicator(code, 'PV.PER.RNK')
-  const hci = parseHumanDevelopment(countryName)
+  const hci = await getHumanDevelopment(countryName, countryId)
   const safetyLevel = await fetchSafetyLevelData(code)
   const universities = await getCountryUniversities(countryName)
   const sanctions = await fetchSanctionsData(code)
   const academicfreedom = parseAcademicFreedom(code)
   const ruleOfLaw = parseRuleOfLaw(countryName)
 
-  const country: CountryData = {
+  return {
     code,
     corruption,
     stability,
@@ -40,8 +41,6 @@ export const getCountryData = async (code: string | undefined): Promise<CountryD
     ruleOfLaw,
     gdpr: null,
   }
-
-  return country
 }
 
 const countryRouter = express.Router()
@@ -69,6 +68,7 @@ countryRouter.get('/', async (_, res) => {
 
 countryRouter.get('/cache', async (_, res) => {
   await cacheCountries()
+  await cacheSanctionsData()
 
   return res.status(200).send({ status: 'OK' })
 })

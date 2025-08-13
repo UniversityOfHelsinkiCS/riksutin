@@ -17,6 +17,7 @@ export const API_TOKEN = process.env.API_TOKEN ?? ''
 export const UNIT_API_TOKEN = process.env.UNIT_API_TOKEN ?? ''
 export const EMPLOYEE_API_TOKEN = process.env.EMPLOYEE_API_TOKEN ?? ''
 export const TUHAT_API_TOKEN = process.env.TUHAT_API_TOKEN ?? ''
+export const HDR_API_TOKEN = process.env.HDR_API_TOKEN ?? ''
 
 export const JAMI_URL = inProduction
   ? 'https://api-toska.apps.ocp-prod-0.k8s.it.helsinki.fi/jami/'

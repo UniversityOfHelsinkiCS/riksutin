@@ -39,10 +39,10 @@ const RiskElement = ({ infoText, title, level, style, ekstra }: RiskElementProps
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: riskColors[level > 3 ? 3 : level],
+            backgroundColor: riskColors[level],
           }}
         >
-          <Typography>{level > 3 ? 3 : level}</Typography>
+          <Typography>{level > 3 ? '?' : level}</Typography>
         </Div>
       </Div>
       {infoText && (

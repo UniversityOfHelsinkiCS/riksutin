@@ -1,13 +1,16 @@
 import logger from '../logger'
 import scheduleCronJob from './schedule'
-import { buildCache as buildWorldbankCache } from '../../data/worldbank/util'
+import { buildCache as perCountryCache } from '../../data/worldbank/util'
 import { cacheSanctionsData } from 'src/server/data/sanctions/sanctionsMap'
+import { cacheHdrData } from 'src/server/data/humanDevelopment'
 
 export const getHighRiskCountries = async () => {
   logger.info('Worldbank cache')
-  await buildWorldbankCache()
+  await perCountryCache()
   logger.info('sanctionsmap cache')
   await cacheSanctionsData()
+  logger.info('hdr cache')
+  await cacheHdrData()
   logger.info('caches built')
 }
 
