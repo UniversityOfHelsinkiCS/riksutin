@@ -37,9 +37,46 @@ export interface Faculty {
   name: Locales
 }
 
-export interface tuhatProject {
+type Participant = {
+  role: {
+    fi_FI: string
+    en_GB: string
+    sv_SE: string
+    rolePureUri: string
+  }
+  username: string
+  pureId: string
+  firstName: string
+  lastName: string
+}
+
+type Reference = {
+  type: {
+    fi_FI: string
+    en_GB: string
+    sv_SE: string
+  }
+}
+
+export interface TuhatData {
   tuhatId: string
-  name: Locales
+  references: Reference[]
+  endDate: string
+  name: {
+    fi: string
+    en: string
+    sv: string
+  }
+  type: {
+    fi: string
+    en: string
+    sv: string
+  }
+  faculty: string
+  pureId: string
+  managingOrganisationUnit: string
+  startDate: string
+  participants: Participant[]
 }
 
 export type ChoiceType = SingleChoiceType[] | MultipleChoiceType[]
