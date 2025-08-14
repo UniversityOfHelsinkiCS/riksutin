@@ -37,6 +37,7 @@ export const cacheSafetyLevel = async (code: string) => {
     await setPermanent(url, safetyLevelRisk)
     return safetyLevelRisk
   } catch (e) {
+    await setPermanent(url, 1)
     return 1
   }
 }
