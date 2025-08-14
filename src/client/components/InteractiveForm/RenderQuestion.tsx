@@ -91,7 +91,7 @@ const RenderQuestion = ({ control, watch, question, questions, language }: Input
     organisationSelect: OrganisationSelect,
     universitySelect: UniversitySelect,
     highRiskCountrySelect: HighRiskCountrySelect,
-    noneditable: Info,
+    noneditable: Text,
   }
 
   const QuestionType = components[question.optionData.type]

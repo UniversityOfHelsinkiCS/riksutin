@@ -16,7 +16,7 @@ const getQuestionData = (): Question[] => [
       sv: '',
       en: '',
     },
-    optionData: { type: 'noneditable', options: [] },
+    optionData: { type: 'text', options: [] },
     visibility: {},
   },
   {

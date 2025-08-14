@@ -12,7 +12,7 @@
     "contactSupport": "Ota yhteyttä tukeen: <mailTo>{{supportEmail}}</mailTo>"
   },
   "facultySelect": {
-    "title": "Ilmoittajan tiedekunta",
+    "title": "Lomakkeen täyttäjän tiedekunta",
     "inputLabel": "Tiedekunta",
     "infoMessage": "Tietoa tiedekuntasi ohjeistuksesta"
   },
