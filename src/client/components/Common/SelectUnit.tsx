@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { Box, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material'
+import { Box, Autocomplete, TextField, Typography } from '@mui/material'
 
 import type { Faculty, Locales } from '@types'
 import type { InputProps } from '@client/types'
 
-// import useFaculties from '../../hooks/useFaculties'
 import useUnits from '../../hooks/useUnits'
 import useUserFaculties from '../../hooks/useUserFaculties'
 
@@ -71,23 +70,30 @@ const SelectUnit = ({ control }: InputProps) => {
       <Controller
         control={control}
         name="unit"
+        defaultValue=""
         rules={{ required: true }}
-        render={({ field }) => (
-          <FormControl sx={{ minWidth: 200 }}>
-            <InputLabel>{t('unitSelect:inputLabel')}</InputLabel>
-            <Select data-cy="unit-select" label={t('unitSelect:inputLabel')} {...field}>
-              {organisations.map((f: Faculty) => (
-                <MenuItem
-                  data-cy={`faculty-option-${f.code}`}
-                  key={f.code}
-                  value={f.code}
-                  onClick={() => setFaculty(f)}
-                >
-                  {f.code} - {f.name[language as keyof Locales]}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+        render={({ field: { onChange }, fieldState: { error } }) => (
+          <Box justifyContent="center">
+            <Autocomplete
+              disablePortal
+              id={'unit'}
+              options={organisations}
+              getOptionLabel={option => `${option.code} - ${option.name[language as keyof Locales]}`}
+              onChange={(e, data) => {
+                onChange(data?.code)
+                setFaculty(data ?? undefined)
+              }}
+              sx={{ width: '50%' }}
+              renderInput={params => (
+                <TextField
+                  helperText={error ? error.message : null}
+                  error={!!error}
+                  {...params}
+                  label={t('unitSelect:inputLabel')}
+                />
+              )}
+            />
+          </Box>
         )}
       />
       <FacultyInfo faculty={faculty} />
