@@ -1,0 +1,1076 @@
+[
+  {
+    "country_name": "Mexico",
+    "country_text_id": "MEX",
+    "year": "2024",
+    "v2xca_academ": "0.713"
+  },
+  {
+    "country_name": "Suriname",
+    "country_text_id": "SUR",
+    "year": "2024",
+    "v2xca_academ": "0.808"
+  },
+  {
+    "country_name": "Sweden",
+    "country_text_id": "SWE",
+    "year": "2024",
+    "v2xca_academ": "0.94"
+  },
+  {
+    "country_name": "Switzerland",
+    "country_text_id": "CHE",
+    "year": "2024",
+    "v2xca_academ": "0.81"
+  },
+  {
+    "country_name": "Ghana",
+    "country_text_id": "GHA",
+    "year": "2024",
+    "v2xca_academ": "0.785"
+  },
+  {
+    "country_name": "South Africa",
+    "country_text_id": "ZAF",
+    "year": "2024",
+    "v2xca_academ": "0.838"
+  },
+  {
+    "country_name": "Japan",
+    "country_text_id": "JPN",
+    "year": "2024",
+    "v2xca_academ": "0.755"
+  },
+  {
+    "country_name": "Burma/Myanmar",
+    "country_text_id": "MMR",
+    "year": "2024",
+    "v2xca_academ": "0.026"
+  },
+  {
+    "country_name": "Russia",
+    "country_text_id": "RUS",
+    "year": "2024",
+    "v2xca_academ": "0.208"
+  },
+  {
+    "country_name": "Albania",
+    "country_text_id": "ALB",
+    "year": "2024",
+    "v2xca_academ": "0.775"
+  },
+  {
+    "country_name": "Egypt",
+    "country_text_id": "EGY",
+    "year": "2024",
+    "v2xca_academ": "0.082"
+  },
+  {
+    "country_name": "Yemen",
+    "country_text_id": "YEM",
+    "year": "2024",
+    "v2xca_academ": "0.22"
+  },
+  {
+    "country_name": "Colombia",
+    "country_text_id": "COL",
+    "year": "2024",
+    "v2xca_academ": "0.595"
+  },
+  {
+    "country_name": "Poland",
+    "country_text_id": "POL",
+    "year": "2024",
+    "v2xca_academ": "0.869"
+  },
+  {
+    "country_name": "Brazil",
+    "country_text_id": "BRA",
+    "year": "2024",
+    "v2xca_academ": "0.755"
+  },
+  {
+    "country_name": "United States of America",
+    "country_text_id": "USA",
+    "year": "2024",
+    "v2xca_academ": "0.684"
+  },
+  {
+    "country_name": "Portugal",
+    "country_text_id": "PRT",
+    "year": "2024",
+    "v2xca_academ": "0.719"
+  },
+  {
+    "country_name": "El Salvador",
+    "country_text_id": "SLV",
+    "year": "2024",
+    "v2xca_academ": "0.204"
+  },
+  {
+    "country_name": "Bangladesh",
+    "country_text_id": "BGD",
+    "year": "2024",
+    "v2xca_academ": "0.21"
+  },
+  {
+    "country_name": "Bolivia",
+    "country_text_id": "BOL",
+    "year": "2024",
+    "v2xca_academ": "0.669"
+  },
+  {
+    "country_name": "Haiti",
+    "country_text_id": "HTI",
+    "year": "2024",
+    "v2xca_academ": "0.66"
+  },
+  {
+    "country_name": "Honduras",
+    "country_text_id": "HND",
+    "year": "2024",
+    "v2xca_academ": "0.923"
+  },
+  {
+    "country_name": "Mali",
+    "country_text_id": "MLI",
+    "year": "2024",
+    "v2xca_academ": "0.337"
+  },
+  {
+    "country_name": "Pakistan",
+    "country_text_id": "PAK",
+    "year": "2024",
+    "v2xca_academ": "0.351"
+  },
+  {
+    "country_name": "Peru",
+    "country_text_id": "PER",
+    "year": "2024",
+    "v2xca_academ": "0.826"
+  },
+  {
+    "country_name": "Senegal",
+    "country_text_id": "SEN",
+    "year": "2024",
+    "v2xca_academ": "0.528"
+  },
+  {
+    "country_name": "South Sudan",
+    "country_text_id": "SSD",
+    "year": "2024",
+    "v2xca_academ": "0.103"
+  },
+  {
+    "country_name": "Sudan",
+    "country_text_id": "SDN",
+    "year": "2024",
+    "v2xca_academ": "0.236"
+  },
+  {
+    "country_name": "Vietnam",
+    "country_text_id": "VNM",
+    "year": "2024",
+    "v2xca_academ": "0.322"
+  },
+  {
+    "country_name": "Afghanistan",
+    "country_text_id": "AFG",
+    "year": "2024",
+    "v2xca_academ": "0.079"
+  },
+  {
+    "country_name": "Argentina",
+    "country_text_id": "ARG",
+    "year": "2024",
+    "v2xca_academ": "0.685"
+  },
+  {
+    "country_name": "Ethiopia",
+    "country_text_id": "ETH",
+    "year": "2024",
+    "v2xca_academ": "0.259"
+  },
+  {
+    "country_name": "India",
+    "country_text_id": "IND",
+    "year": "2024",
+    "v2xca_academ": "0.161"
+  },
+  {
+    "country_name": "Kenya",
+    "country_text_id": "KEN",
+    "year": "2024",
+    "v2xca_academ": "0.816"
+  },
+  {
+    "country_name": "North Korea",
+    "country_text_id": "PRK",
+    "year": "2024",
+    "v2xca_academ": "0.019"
+  },
+  {
+    "country_name": "South Korea",
+    "country_text_id": "KOR",
+    "year": "2024",
+    "v2xca_academ": "0.834"
+  },
+  {
+    "country_name": "Kosovo",
+    "country_text_id": "XKX",
+    "year": "2024",
+    "v2xca_academ": "0.816"
+  },
+  {
+    "country_name": "Lebanon",
+    "country_text_id": "LBN",
+    "year": "2024",
+    "v2xca_academ": "0.493"
+  },
+  {
+    "country_name": "Nigeria",
+    "country_text_id": "NGA",
+    "year": "2024",
+    "v2xca_academ": "0.86"
+  },
+  {
+    "country_name": "Philippines",
+    "country_text_id": "PHL",
+    "year": "2024",
+    "v2xca_academ": "0.624"
+  },
+  {
+    "country_name": "Tanzania",
+    "country_text_id": "TZA",
+    "year": "2024",
+    "v2xca_academ": "0.621"
+  },
+  {
+    "country_name": "Taiwan",
+    "country_text_id": "TWN",
+    "year": "2024",
+    "v2xca_academ": "0.83"
+  },
+  {
+    "country_name": "Thailand",
+    "country_text_id": "THA",
+    "year": "2024",
+    "v2xca_academ": "0.457"
+  },
+  {
+    "country_name": "Uganda",
+    "country_text_id": "UGA",
+    "year": "2024",
+    "v2xca_academ": "0.39"
+  },
+  {
+    "country_name": "Venezuela",
+    "country_text_id": "VEN",
+    "year": "2024",
+    "v2xca_academ": "0.201"
+  },
+  {
+    "country_name": "Benin",
+    "country_text_id": "BEN",
+    "year": "2024",
+    "v2xca_academ": "0.744"
+  },
+  {
+    "country_name": "Bhutan",
+    "country_text_id": "BTN",
+    "year": "2024",
+    "v2xca_academ": "0.432"
+  },
+  {
+    "country_name": "Burkina Faso",
+    "country_text_id": "BFA",
+    "year": "2024",
+    "v2xca_academ": "0.84"
+  },
+  {
+    "country_name": "Cambodia",
+    "country_text_id": "KHM",
+    "year": "2024",
+    "v2xca_academ": "0.21"
+  },
+  {
+    "country_name": "Indonesia",
+    "country_text_id": "IDN",
+    "year": "2024",
+    "v2xca_academ": "0.591"
+  },
+  {
+    "country_name": "Mozambique",
+    "country_text_id": "MOZ",
+    "year": "2024",
+    "v2xca_academ": "0.412"
+  },
+  {
+    "country_name": "Nepal",
+    "country_text_id": "NPL",
+    "year": "2024",
+    "v2xca_academ": "0.785"
+  },
+  {
+    "country_name": "Nicaragua",
+    "country_text_id": "NIC",
+    "year": "2024",
+    "v2xca_academ": "0.019"
+  },
+  {
+    "country_name": "Niger",
+    "country_text_id": "NER",
+    "year": "2024",
+    "v2xca_academ": "0.767"
+  },
+  {
+    "country_name": "Zambia",
+    "country_text_id": "ZMB",
+    "year": "2024",
+    "v2xca_academ": "0.749"
+  },
+  {
+    "country_name": "Zimbabwe",
+    "country_text_id": "ZWE",
+    "year": "2024",
+    "v2xca_academ": "0.21"
+  },
+  {
+    "country_name": "Guinea",
+    "country_text_id": "GIN",
+    "year": "2024",
+    "v2xca_academ": "0.289"
+  },
+  {
+    "country_name": "Ivory Coast",
+    "country_text_id": "CIV",
+    "year": "2024",
+    "v2xca_academ": "0.655"
+  },
+  {
+    "country_name": "Mauritania",
+    "country_text_id": "MRT",
+    "year": "2024",
+    "v2xca_academ": "0.21"
+  },
+  {
+    "country_name": "Canada",
+    "country_text_id": "CAN",
+    "year": "2024",
+    "v2xca_academ": "0.854"
+  },
+  {
+    "country_name": "Australia",
+    "country_text_id": "AUS",
+    "year": "2024",
+    "v2xca_academ": "0.872"
+  },
+  {
+    "country_name": "Botswana",
+    "country_text_id": "BWA",
+    "year": "2024",
+    "v2xca_academ": "0.912"
+  },
+  {
+    "country_name": "Burundi",
+    "country_text_id": "BDI",
+    "year": "2024",
+    "v2xca_academ": "0.203"
+  },
+  {
+    "country_name": "Cape Verde",
+    "country_text_id": "CPV",
+    "year": "2024",
+    "v2xca_academ": "0.869"
+  },
+  {
+    "country_name": "Central African Republic",
+    "country_text_id": "CAF",
+    "year": "2024",
+    "v2xca_academ": "0.338"
+  },
+  {
+    "country_name": "Chile",
+    "country_text_id": "CHL",
+    "year": "2024",
+    "v2xca_academ": "0.924"
+  },
+  {
+    "country_name": "Costa Rica",
+    "country_text_id": "CRI",
+    "year": "2024",
+    "v2xca_academ": "0.917"
+  },
+  {
+    "country_name": "Timor-Leste",
+    "country_text_id": "TLS",
+    "year": "2024",
+    "v2xca_academ": "0.717"
+  },
+  {
+    "country_name": "Ecuador",
+    "country_text_id": "ECU",
+    "year": "2024",
+    "v2xca_academ": "0.779"
+  },
+  {
+    "country_name": "France",
+    "country_text_id": "FRA",
+    "year": "2024",
+    "v2xca_academ": "0.868"
+  },
+  {
+    "country_name": "Germany",
+    "country_text_id": "DEU",
+    "year": "2024",
+    "v2xca_academ": "0.88"
+  },
+  {
+    "country_name": "Guatemala",
+    "country_text_id": "GTM",
+    "year": "2024",
+    "v2xca_academ": "0.667"
+  },
+  {
+    "country_name": "Iran",
+    "country_text_id": "IRN",
+    "year": "2024",
+    "v2xca_academ": "0.142"
+  },
+  {
+    "country_name": "Iraq",
+    "country_text_id": "IRQ",
+    "year": "2024",
+    "v2xca_academ": "0.413"
+  },
+  {
+    "country_name": "Ireland",
+    "country_text_id": "IRL",
+    "year": "2024",
+    "v2xca_academ": "0.924"
+  },
+  {
+    "country_name": "Italy",
+    "country_text_id": "ITA",
+    "year": "2024",
+    "v2xca_academ": "0.889"
+  },
+  {
+    "country_name": "Jordan",
+    "country_text_id": "JOR",
+    "year": "2024",
+    "v2xca_academ": "0.252"
+  },
+  {
+    "country_name": "Latvia",
+    "country_text_id": "LVA",
+    "year": "2024",
+    "v2xca_academ": "0.916"
+  },
+  {
+    "country_name": "Lesotho",
+    "country_text_id": "LSO",
+    "year": "2024",
+    "v2xca_academ": "0.615"
+  },
+  {
+    "country_name": "Liberia",
+    "country_text_id": "LBR",
+    "year": "2024",
+    "v2xca_academ": "0.539"
+  },
+  {
+    "country_name": "Malawi",
+    "country_text_id": "MWI",
+    "year": "2024",
+    "v2xca_academ": "0.821"
+  },
+  {
+    "country_name": "Maldives",
+    "country_text_id": "MDV",
+    "year": "2024",
+    "v2xca_academ": "0.549"
+  },
+  {
+    "country_name": "Mongolia",
+    "country_text_id": "MNG",
+    "year": "2024",
+    "v2xca_academ": "0.703"
+  },
+  {
+    "country_name": "Morocco",
+    "country_text_id": "MAR",
+    "year": "2024",
+    "v2xca_academ": "0.533"
+  },
+  {
+    "country_name": "Netherlands",
+    "country_text_id": "NLD",
+    "year": "2024",
+    "v2xca_academ": "0.76"
+  },
+  {
+    "country_name": "Panama",
+    "country_text_id": "PAN",
+    "year": "2024",
+    "v2xca_academ": "0.906"
+  },
+  {
+    "country_name": "Papua New Guinea",
+    "country_text_id": "PNG",
+    "year": "2024",
+    "v2xca_academ": "0.87"
+  },
+  {
+    "country_name": "Qatar",
+    "country_text_id": "QAT",
+    "year": "2024",
+    "v2xca_academ": "0.121"
+  },
+  {
+    "country_name": "Sierra Leone",
+    "country_text_id": "SLE",
+    "year": "2024",
+    "v2xca_academ": "0.849"
+  },
+  {
+    "country_name": "Spain",
+    "country_text_id": "ESP",
+    "year": "2024",
+    "v2xca_academ": "0.881"
+  },
+  {
+    "country_name": "Syria",
+    "country_text_id": "SYR",
+    "year": "2024",
+    "v2xca_academ": "0.157"
+  },
+  {
+    "country_name": "Tunisia",
+    "country_text_id": "TUN",
+    "year": "2024",
+    "v2xca_academ": "0.636"
+  },
+  {
+    "country_name": "Türkiye",
+    "country_text_id": "TUR",
+    "year": "2024",
+    "v2xca_academ": "0.12"
+  },
+  {
+    "country_name": "Ukraine",
+    "country_text_id": "UKR",
+    "year": "2024",
+    "v2xca_academ": "0.277"
+  },
+  {
+    "country_name": "United Kingdom",
+    "country_text_id": "GBR",
+    "year": "2024",
+    "v2xca_academ": "0.768"
+  },
+  {
+    "country_name": "Uruguay",
+    "country_text_id": "URY",
+    "year": "2024",
+    "v2xca_academ": "0.919"
+  },
+  {
+    "country_name": "Algeria",
+    "country_text_id": "DZA",
+    "year": "2024",
+    "v2xca_academ": "0.191"
+  },
+  {
+    "country_name": "Angola",
+    "country_text_id": "AGO",
+    "year": "2024",
+    "v2xca_academ": "0.437"
+  },
+  {
+    "country_name": "Armenia",
+    "country_text_id": "ARM",
+    "year": "2024",
+    "v2xca_academ": "0.639"
+  },
+  {
+    "country_name": "Azerbaijan",
+    "country_text_id": "AZE",
+    "year": "2024",
+    "v2xca_academ": "0.163"
+  },
+  {
+    "country_name": "Belarus",
+    "country_text_id": "BLR",
+    "year": "2024",
+    "v2xca_academ": "0.041"
+  },
+  {
+    "country_name": "Cameroon",
+    "country_text_id": "CMR",
+    "year": "2024",
+    "v2xca_academ": "0.231"
+  },
+  {
+    "country_name": "Chad",
+    "country_text_id": "TCD",
+    "year": "2024",
+    "v2xca_academ": "0.309"
+  },
+  {
+    "country_name": "China",
+    "country_text_id": "CHN",
+    "year": "2024",
+    "v2xca_academ": "0.067"
+  },
+  {
+    "country_name": "Democratic Republic of the Congo",
+    "country_text_id": "COD",
+    "year": "2024",
+    "v2xca_academ": "0.475"
+  },
+  {
+    "country_name": "Republic of the Congo",
+    "country_text_id": "COG",
+    "year": "2024",
+    "v2xca_academ": "0.338"
+  },
+  {
+    "country_name": "Djibouti",
+    "country_text_id": "DJI",
+    "year": "2024",
+    "v2xca_academ": "0.325"
+  },
+  {
+    "country_name": "Dominican Republic",
+    "country_text_id": "DOM",
+    "year": "2024",
+    "v2xca_academ": "0.907"
+  },
+  {
+    "country_name": "Eritrea",
+    "country_text_id": "ERI",
+    "year": "2024",
+    "v2xca_academ": "0.03"
+  },
+  {
+    "country_name": "Gabon",
+    "country_text_id": "GAB",
+    "year": "2024",
+    "v2xca_academ": "0.42"
+  },
+  {
+    "country_name": "The Gambia",
+    "country_text_id": "GMB",
+    "year": "2024",
+    "v2xca_academ": "0.803"
+  },
+  {
+    "country_name": "Georgia",
+    "country_text_id": "GEO",
+    "year": "2024",
+    "v2xca_academ": "0.727"
+  },
+  {
+    "country_name": "Guinea-Bissau",
+    "country_text_id": "GNB",
+    "year": "2024",
+    "v2xca_academ": "0.582"
+  },
+  {
+    "country_name": "Jamaica",
+    "country_text_id": "JAM",
+    "year": "2024",
+    "v2xca_academ": "0.941"
+  },
+  {
+    "country_name": "Kazakhstan",
+    "country_text_id": "KAZ",
+    "year": "2024",
+    "v2xca_academ": "0.36"
+  },
+  {
+    "country_name": "Kyrgyzstan",
+    "country_text_id": "KGZ",
+    "year": "2024",
+    "v2xca_academ": "0.458"
+  },
+  {
+    "country_name": "Laos",
+    "country_text_id": "LAO",
+    "year": "2024",
+    "v2xca_academ": "0.135"
+  },
+  {
+    "country_name": "Libya",
+    "country_text_id": "LBY",
+    "year": "2024",
+    "v2xca_academ": "0.305"
+  },
+  {
+    "country_name": "Madagascar",
+    "country_text_id": "MDG",
+    "year": "2024",
+    "v2xca_academ": "0.707"
+  },
+  {
+    "country_name": "Moldova",
+    "country_text_id": "MDA",
+    "year": "2024",
+    "v2xca_academ": "0.708"
+  },
+  {
+    "country_name": "Namibia",
+    "country_text_id": "NAM",
+    "year": "2024",
+    "v2xca_academ": "0.652"
+  },
+  {
+    "country_name": "Palestine/West Bank",
+    "country_text_id": "PSE",
+    "year": "2024",
+    "v2xca_academ": "0.353"
+  },
+  {
+    "country_name": "Rwanda",
+    "country_text_id": "RWA",
+    "year": "2024",
+    "v2xca_academ": "0.06"
+  },
+  {
+    "country_name": "Somalia",
+    "country_text_id": "SOM",
+    "year": "2024",
+    "v2xca_academ": "0.516"
+  },
+  {
+    "country_name": "Sri Lanka",
+    "country_text_id": "LKA",
+    "year": "2024",
+    "v2xca_academ": "0.721"
+  },
+  {
+    "country_name": "Eswatini",
+    "country_text_id": "SWZ",
+    "year": "2024",
+    "v2xca_academ": "0.17"
+  },
+  {
+    "country_name": "Tajikistan",
+    "country_text_id": "TJK",
+    "year": "2024",
+    "v2xca_academ": "0.077"
+  },
+  {
+    "country_name": "Togo",
+    "country_text_id": "TGO",
+    "year": "2024",
+    "v2xca_academ": "0.712"
+  },
+  {
+    "country_name": "Trinidad and Tobago",
+    "country_text_id": "TTO",
+    "year": "2024",
+    "v2xca_academ": "0.441"
+  },
+  {
+    "country_name": "Turkmenistan",
+    "country_text_id": "TKM",
+    "year": "2024",
+    "v2xca_academ": "0.067"
+  },
+  {
+    "country_name": "Palestine/Gaza",
+    "country_text_id": "PSG",
+    "year": "2024",
+    "v2xca_academ": "0.131"
+  },
+  {
+    "country_name": "Somaliland",
+    "country_text_id": "SML",
+    "year": "2024",
+    "v2xca_academ": "0.58"
+  },
+  {
+    "country_name": "Uzbekistan",
+    "country_text_id": "UZB",
+    "year": "2024",
+    "v2xca_academ": "0.293"
+  },
+  {
+    "country_name": "Austria",
+    "country_text_id": "AUT",
+    "year": "2024",
+    "v2xca_academ": "0.899"
+  },
+  {
+    "country_name": "Bahrain",
+    "country_text_id": "BHR",
+    "year": "2024",
+    "v2xca_academ": "0.185"
+  },
+  {
+    "country_name": "Barbados",
+    "country_text_id": "BRB",
+    "year": "2024",
+    "v2xca_academ": "0.914"
+  },
+  {
+    "country_name": "Belgium",
+    "country_text_id": "BEL",
+    "year": "2024",
+    "v2xca_academ": "0.935"
+  },
+  {
+    "country_name": "Bosnia and Herzegovina",
+    "country_text_id": "BIH",
+    "year": "2024",
+    "v2xca_academ": "0.709"
+  },
+  {
+    "country_name": "Bulgaria",
+    "country_text_id": "BGR",
+    "year": "2024",
+    "v2xca_academ": "0.833"
+  },
+  {
+    "country_name": "Comoros",
+    "country_text_id": "COM",
+    "year": "2024",
+    "v2xca_academ": "0.298"
+  },
+  {
+    "country_name": "Croatia",
+    "country_text_id": "HRV",
+    "year": "2024",
+    "v2xca_academ": "0.825"
+  },
+  {
+    "country_name": "Cuba",
+    "country_text_id": "CUB",
+    "year": "2024",
+    "v2xca_academ": "0.101"
+  },
+  {
+    "country_name": "Cyprus",
+    "country_text_id": "CYP",
+    "year": "2024",
+    "v2xca_academ": "0.891"
+  },
+  {
+    "country_name": "Czechia",
+    "country_text_id": "CZE",
+    "year": "2024",
+    "v2xca_academ": "0.979"
+  },
+  {
+    "country_name": "Denmark",
+    "country_text_id": "DNK",
+    "year": "2024",
+    "v2xca_academ": "0.892"
+  },
+  {
+    "country_name": "Equatorial Guinea",
+    "country_text_id": "GNQ",
+    "year": "2024",
+    "v2xca_academ": "0.069"
+  },
+  {
+    "country_name": "Estonia",
+    "country_text_id": "EST",
+    "year": "2024",
+    "v2xca_academ": "0.977"
+  },
+  {
+    "country_name": "Fiji",
+    "country_text_id": "FJI",
+    "year": "2024",
+    "v2xca_academ": "0.644"
+  },
+  {
+    "country_name": "Finland",
+    "country_text_id": "FIN",
+    "year": "2024",
+    "v2xca_academ": "0.832"
+  },
+  {
+    "country_name": "Greece",
+    "country_text_id": "GRC",
+    "year": "2024",
+    "v2xca_academ": "0.65"
+  },
+  {
+    "country_name": "Guyana",
+    "country_text_id": "GUY",
+    "year": "2024",
+    "v2xca_academ": "0.785"
+  },
+  {
+    "country_name": "Hong Kong",
+    "country_text_id": "HKG",
+    "year": "2024",
+    "v2xca_academ": "0.238"
+  },
+  {
+    "country_name": "Iceland",
+    "country_text_id": "ISL",
+    "year": "2024",
+    "v2xca_academ": "0.897"
+  },
+  {
+    "country_name": "Israel",
+    "country_text_id": "ISR",
+    "year": "2024",
+    "v2xca_academ": "0.843"
+  },
+  {
+    "country_name": "Kuwait",
+    "country_text_id": "KWT",
+    "year": "2024",
+    "v2xca_academ": "0.502"
+  },
+  {
+    "country_name": "Lithuania",
+    "country_text_id": "LTU",
+    "year": "2024",
+    "v2xca_academ": "0.812"
+  },
+  {
+    "country_name": "Luxembourg",
+    "country_text_id": "LUX",
+    "year": "2024",
+    "v2xca_academ": "0.885"
+  },
+  {
+    "country_name": "North Macedonia",
+    "country_text_id": "MKD",
+    "year": "2024",
+    "v2xca_academ": "0.743"
+  },
+  {
+    "country_name": "Malaysia",
+    "country_text_id": "MYS",
+    "year": "2024",
+    "v2xca_academ": "0.297"
+  },
+  {
+    "country_name": "Malta",
+    "country_text_id": "MLT",
+    "year": "2024",
+    "v2xca_academ": "0.874"
+  },
+  {
+    "country_name": "Mauritius",
+    "country_text_id": "MUS",
+    "year": "2024",
+    "v2xca_academ": "0.358"
+  },
+  {
+    "country_name": "Montenegro",
+    "country_text_id": "MNE",
+    "year": "2024",
+    "v2xca_academ": "0.824"
+  },
+  {
+    "country_name": "New Zealand",
+    "country_text_id": "NZL",
+    "year": "2024",
+    "v2xca_academ": "0.803"
+  },
+  {
+    "country_name": "Norway",
+    "country_text_id": "NOR",
+    "year": "2024",
+    "v2xca_academ": "0.847"
+  },
+  {
+    "country_name": "Oman",
+    "country_text_id": "OMN",
+    "year": "2024",
+    "v2xca_academ": "0.226"
+  },
+  {
+    "country_name": "Paraguay",
+    "country_text_id": "PRY",
+    "year": "2024",
+    "v2xca_academ": "0.674"
+  },
+  {
+    "country_name": "Romania",
+    "country_text_id": "ROU",
+    "year": "2024",
+    "v2xca_academ": "0.826"
+  },
+  {
+    "country_name": "Sao Tome and Principe",
+    "country_text_id": "STP",
+    "year": "2024",
+    "v2xca_academ": "0.685"
+  },
+  {
+    "country_name": "Saudi Arabia",
+    "country_text_id": "SAU",
+    "year": "2024",
+    "v2xca_academ": "0.069"
+  },
+  {
+    "country_name": "Serbia",
+    "country_text_id": "SRB",
+    "year": "2024",
+    "v2xca_academ": "0.755"
+  },
+  {
+    "country_name": "Seychelles",
+    "country_text_id": "SYC",
+    "year": "2024",
+    "v2xca_academ": "0.899"
+  },
+  {
+    "country_name": "Singapore",
+    "country_text_id": "SGP",
+    "year": "2024",
+    "v2xca_academ": "0.421"
+  },
+  {
+    "country_name": "Slovakia",
+    "country_text_id": "SVK",
+    "year": "2024",
+    "v2xca_academ": "0.877"
+  },
+  {
+    "country_name": "Slovenia",
+    "country_text_id": "SVN",
+    "year": "2024",
+    "v2xca_academ": "0.927"
+  },
+  {
+    "country_name": "Solomon Islands",
+    "country_text_id": "SLB",
+    "year": "2024",
+    "v2xca_academ": "0.891"
+  },
+  {
+    "country_name": "Vanuatu",
+    "country_text_id": "VUT",
+    "year": "2024",
+    "v2xca_academ": "0.908"
+  },
+  {
+    "country_name": "United Arab Emirates",
+    "country_text_id": "ARE",
+    "year": "2024",
+    "v2xca_academ": "0.5"
+  },
+  {
+    "country_name": "Hungary",
+    "country_text_id": "HUN",
+    "year": "2024",
+    "v2xca_academ": "0.304"
+  },
+  {
+    "country_name": "Zanzibar",
+    "country_text_id": "ZZB",
+    "year": "2024",
+    "v2xca_academ": "0.32"
+  }
+]

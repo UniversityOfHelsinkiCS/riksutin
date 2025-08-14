@@ -12,6 +12,7 @@ import parseAcademicFreedom from '../data/academicfreedom/parseAcademicFreedom'
 import parseRuleOfLaw from '../data/ruleOfLaw/parseRuleOfLaw'
 import { getCountries, cacheCountries } from '../services/countries'
 import getHumanDevelopment, { cacheHdrData } from '../data/humanDevelopment'
+import getAcademicFreedom from '../data/academicfreedom'
 
 export const getCountryData = async (code: string | undefined): Promise<CountryData | null> => {
   if (!code) return null
@@ -26,8 +27,11 @@ export const getCountryData = async (code: string | undefined): Promise<CountryD
   const safetyLevel = await fetchSafetyLevelData(code)
   const universities = await getCountryUniversities(countryName)
   const sanctions = await fetchSanctionsData(code)
-  const academicfreedom = parseAcademicFreedom(code)
   const ruleOfLaw = parseRuleOfLaw(countryName)
+  const academicfreedom = parseAcademicFreedom(code)
+  const academicfreedom2 = getAcademicFreedom(countryId)
+
+  console.log(academicfreedom, academicfreedom2)
 
   return {
     code,

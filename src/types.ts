@@ -61,6 +61,7 @@ export type PossibleChoiceTypes =
   | 'organisationSelect'
   | 'universitySelect'
   | 'highRiskCountrySelect'
+  | 'noneditable'
 
 type Attributes = {
   multiline: boolean

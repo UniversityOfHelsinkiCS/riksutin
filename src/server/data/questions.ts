@@ -7,7 +7,7 @@ const getQuestionData = (): Question[] => [
     parentId: null,
     priority: 0,
     title: {
-      fi: 'Tekijä',
+      fi: 'Lomakkeen täyttäjä',
       sv: 'Person providing the information',
       en: 'Person providing the information',
     },
@@ -16,7 +16,7 @@ const getQuestionData = (): Question[] => [
       sv: '',
       en: '',
     },
-    optionData: { type: 'text', options: [] },
+    optionData: { type: 'noneditable', options: [] },
     visibility: {},
   },
   {

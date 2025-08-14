@@ -10,6 +10,7 @@ import useLoggedInUser from '../../hooks/useLoggedInUser'
 import MultiChoice from '../QuestionTypes/MultiChoice'
 import SingleChoice from '../QuestionTypes/SingleChoice'
 import Text from '../QuestionTypes/Text'
+import Info from '../QuestionTypes/Info'
 import ShowMore from '../Common/ShowMore'
 
 import styles from '../../styles'
@@ -41,7 +42,7 @@ const QuestionText = ({
   return (
     <>
       <Typography component="span" sx={{ color: 'red' }}>
-        {![7, 26].includes(question.id) && '* '}
+        {![1, 7, 26].includes(question.id) && '* '}
       </Typography>
       <Typography component="span">
         {question.id === 8 && watch('4') === 'multilateral'
@@ -90,6 +91,7 @@ const RenderQuestion = ({ control, watch, question, questions, language }: Input
     organisationSelect: OrganisationSelect,
     universitySelect: UniversitySelect,
     highRiskCountrySelect: HighRiskCountrySelect,
+    noneditable: Info,
   }
 
   const QuestionType = components[question.optionData.type]
