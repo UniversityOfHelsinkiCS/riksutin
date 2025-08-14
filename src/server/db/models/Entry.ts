@@ -1,6 +1,6 @@
 import { Model, InferAttributes, InferCreationAttributes, CreationOptional, DataTypes } from 'sequelize'
 
-import type { RiskData } from '@types'
+import type { RiskData, TuhatData } from '@types'
 
 import { sequelize } from '../connection'
 
@@ -14,6 +14,8 @@ class Entry extends Model<InferAttributes<Entry>, InferCreationAttributes<Entry>
   declare ownerId: string
 
   declare data: RiskData
+
+  declare tuhatData: TuhatData
 
   declare sessionToken: string
 
@@ -42,6 +44,11 @@ Entry.init(
     data: {
       type: DataTypes.JSONB,
       allowNull: false,
+    },
+    tuhatData: {
+      type: DataTypes.JSONB,
+      allowNull: true,
+      defaultValue: {},
     },
     sessionToken: {
       type: DataTypes.STRING,

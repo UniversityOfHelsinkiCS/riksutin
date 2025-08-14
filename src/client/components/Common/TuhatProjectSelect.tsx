@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import {
@@ -14,11 +14,12 @@ import {
   Typography,
 } from '@mui/material'
 
-import type { tuhatProject, Locales, SingleChoiceType } from '@types'
+import type { TuhatData, Locales, SingleChoiceType } from '@types'
 import type { InputProps } from '@client/types'
 import useTuhatProjects from '../../hooks/useTuhatProjects'
 
 import styles from '../../styles'
+import { TUHAT_DATA_KEY } from '@config'
 
 const { cardStyles } = styles
 
@@ -43,14 +44,22 @@ const collabProjectOptions = [
   },
 ]
 
-const SelectTuhatProject = ({ control, question }: InputProps) => {
+const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
   const { t, i18n } = useTranslation()
   const { language } = i18n
+  let userId = ''
+  const [projectOwnerId, setProjectOwnerId] = useState<string>('')
+  const { tuhatProjects, isLoading: tuhatProjectsLoading } = useTuhatProjects(projectOwnerId)
 
-  const [projectExists, setProjectExists] = useState<string>('')
-  const { tuhatProjects, isLoading: tuhatProjectsLoading } = useTuhatProjects()
+  useEffect(() => {
+    if (userId) setProjectOwnerId(userId)
+  }, [userId])
 
-  if (!tuhatProjects || tuhatProjectsLoading || !question) return null
+  if (!tuhatProjects || tuhatProjectsLoading || !question || !watch || !control) return null
+
+  const projectOwnerField = watch('2')
+  if (projectOwnerField) userId = JSON.parse(JSON.stringify(projectOwnerField)).id
+  if (control._formValues.tuhatProjectExists === 'tuhatOptionNegative') sessionStorage.setItem(TUHAT_DATA_KEY, '{}')
 
   return (
     <Box sx={cardStyles.questionsContainer}>
@@ -76,7 +85,6 @@ const SelectTuhatProject = ({ control, question }: InputProps) => {
                     value={singleOption.id}
                     label={singleOption.title[language as keyof Locales]}
                     control={<Radio />}
-                    onClick={() => setProjectExists(singleOption.id)}
                   />
                 ))}
               </RadioGroup>
@@ -84,7 +92,7 @@ const SelectTuhatProject = ({ control, question }: InputProps) => {
           </Box>
         )}
       />
-      {projectExists === 'tuhatOptionPositive' && (
+      {control._formValues.tuhatProjectExists === 'tuhatOptionPositive' && (
         <>
           <Box sx={{ marginBottom: '16px' }}>
             <Typography component="span" sx={{ color: 'red' }}>
@@ -98,7 +106,7 @@ const SelectTuhatProject = ({ control, question }: InputProps) => {
             name={question.id.toString()}
             rules={{
               required: {
-                value: projectExists === 'tuhatOptionPositive',
+                value: control._formValues.tuhatProjectExists === 'tuhatOptionPositive',
                 message: 'Projektin nimi tarvitaan',
               },
             }}
@@ -108,11 +116,12 @@ const SelectTuhatProject = ({ control, question }: InputProps) => {
                 <FormControl sx={{ minWidth: 200 }}>
                   <InputLabel>{t('tuhatProjectSelect:inputLabel')}</InputLabel>
                   <Select data-cy="tuhatProject-select" label={t(' tuhatProjectSelect:inputLabel')} {...field}>
-                    {tuhatProjects.map((c: tuhatProject) => (
+                    {tuhatProjects.map((c: TuhatData) => (
                       <MenuItem
                         data-cy={''}
                         key={c.tuhatId}
-                        value={`${c.name[language as keyof Locales]} (${c.tuhatId})`}
+                        value={`${c.name[language as keyof Locales]}`}
+                        onClick={() => sessionStorage.setItem(TUHAT_DATA_KEY, JSON.stringify(c))}
                       >
                         {c.name[language as keyof Locales]}
                       </MenuItem>
@@ -124,7 +133,7 @@ const SelectTuhatProject = ({ control, question }: InputProps) => {
           />
         </>
       )}
-      {projectExists === 'tuhatOptionNegative' && (
+      {control._formValues.tuhatProjectExists === 'tuhatOptionNegative' && (
         <>
           <Box sx={{ marginBottom: '16px' }}>
             <Typography component="span" sx={{ color: 'red' }}>
@@ -138,7 +147,7 @@ const SelectTuhatProject = ({ control, question }: InputProps) => {
             name={question.id.toString()}
             rules={{
               required: {
-                value: projectExists === 'tuhatOptionNegative',
+                value: control._formValues.tuhatProjectExists === 'tuhatOptionNegative',
                 message: 'Projekti tarvitaan',
               },
             }}

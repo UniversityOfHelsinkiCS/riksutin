@@ -31,16 +31,39 @@ export const getTuhatData = async (userId: string): Promise<TuhatData[]> => {
     pageInformation: object
     runningProjects: [
       {
+        references: [
+          {
+            type: {
+              fi_FI: string
+              en_GB: string
+              sv_SE: string
+            }
+          },
+        ]
+        endDate: string
         title: {
           fi_FI: string
           en_GB: string
           sv_SE: string
         }
+        type: {
+          fi_FI: string
+          en_GB: string
+          sv_SE: string
+        }
         uuid: string
+        faculty: string
         pureId: string
+        managingOrganisationUnit: string
+        startDate: string
         participants: [
           {
-            role: object
+            role: {
+              fi_FI: string
+              en_GB: string
+              sv_SE: string
+              rolePureUri: string
+            }
             username: string
             pureId: string
             firstName: string
@@ -51,19 +74,42 @@ export const getTuhatData = async (userId: string): Promise<TuhatData[]> => {
     ]
   } = await response.json()
 
-  const mappedData = data.runningProjects.map(({ pureId, title, participants }) => ({
-    tuhatId: pureId,
-    name: {
-      fi: title.fi_FI || title.en_GB,
-      en: title.en_GB || title.fi_FI,
-      sv: title.sv_SE || title.en_GB || title.fi_FI,
-    },
-    participants: participants ? participants.map(participant => participant.username) : [],
-  }))
+  const filteredData = data.runningProjects
+    .filter(({ participants }) => participants.map(({ username }) => username).includes(userId))
+    .map(
+      ({
+        references,
+        startDate,
+        endDate,
+        type,
+        uuid,
+        faculty,
+        managingOrganisationUnit,
+        pureId,
+        title,
+        participants,
+      }) => ({
+        tuhatId: uuid,
+        pureId,
+        startDate,
+        endDate,
+        faculty,
+        managingOrganisationUnit,
+        name: {
+          fi: title.fi_FI || title.en_GB,
+          en: title.en_GB || title.fi_FI,
+          sv: title.sv_SE || title.en_GB || title.fi_FI,
+        },
+        type: {
+          fi: type.fi_FI || type.en_GB,
+          en: type.en_GB || type.fi_FI,
+          sv: type.sv_SE || type.en_GB || type.fi_FI,
+        },
+        references,
+        participants,
+      })
+    )
 
-  const filteredData = mappedData
-    .filter(({ participants }) => participants.includes(userId))
-    .map(({ tuhatId, name }) => ({ tuhatId, name }))
   return filteredData
 }
 

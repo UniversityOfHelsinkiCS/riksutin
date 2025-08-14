@@ -99,7 +99,7 @@ const RenderQuestion = ({ control, watch, question, questions, language }: Input
   if (!QuestionType) return null
 
   const childQuestions = questions.filter(childQuestion => question.id === childQuestion.parentId)
-  if (question.id === 3) return <SelectTuhatProject control={control} question={question} />
+  if (question.id === 3) return <SelectTuhatProject control={control} question={question} watch={watch} />
   return (
     <Box>
       <Box sx={cardStyles.questionsContainer}>

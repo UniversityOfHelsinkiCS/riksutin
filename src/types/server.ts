@@ -33,9 +33,46 @@ export interface UnitData {
   name: Locales
 }
 
+type Participant = {
+  role: {
+    fi_FI: string
+    en_GB: string
+    sv_SE: string
+    rolePureUri: string
+  }
+  username: string
+  pureId: string
+  firstName: string
+  lastName: string
+}
+
+type Reference = {
+  type: {
+    fi_FI: string
+    en_GB: string
+    sv_SE: string
+  }
+}
+
 export interface TuhatData {
   tuhatId: string
-  name: Locales
+  references: Reference[]
+  endDate: string
+  name: {
+    fi: string
+    en: string
+    sv: string
+  }
+  type: {
+    fi: string
+    en: string
+    sv: string
+  }
+  faculty: string
+  pureId: string
+  managingOrganisationUnit: string
+  startDate: string
+  participants: Participant[]
 }
 
 export interface OrganisationData extends UnitData {
@@ -58,6 +95,7 @@ export interface RequestWithUser extends Request {
 
 export interface EntryValues {
   data: RiskData
+  tuhatData: TuhatData
   sessionToken: string
 }
 

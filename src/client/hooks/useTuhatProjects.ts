@@ -1,14 +1,14 @@
 import { useQuery } from 'react-query'
 
-import type { tuhatProject } from '@types'
+import type { TuhatData } from '@types'
 
 import apiClient from '../util/apiClient'
 
-const useTuhatProjects = () => {
-  const queryKey = 'tuhatprojects'
+const useTuhatProjects = (projectOwnerId: string) => {
+  const queryKey = ['tuhatprojects', projectOwnerId]
 
-  const query = async (): Promise<tuhatProject[]> => {
-    const { data } = await apiClient.get('/tuhatprojects')
+  const query = async (): Promise<TuhatData[]> => {
+    const { data } = await apiClient.get('/tuhatprojects/', { params: { projectOwnerId } })
 
     return data
   }

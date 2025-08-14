@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { enqueueSnackbar } from 'notistack'
 import { Box, Grid } from '@mui/material'
 
-import { FORM_DATA_KEY } from '@config'
+import { FORM_DATA_KEY, TUHAT_DATA_KEY } from '@config'
 import type { FormValues } from '@types'
 
 import useResults from '../../hooks/useResults'
@@ -46,8 +46,9 @@ const InteractiveForm = () => {
 
   const onSubmit = async (data: FormValues) => {
     setSubmitButtonLoading(true)
-    const submittedData = data
-    setResultData(submittedData)
+    const tuhatData = sessionStorage.getItem(TUHAT_DATA_KEY) ?? '{}'
+    const submittedData = { formData: data, tuhatData: JSON.parse(tuhatData) }
+    setResultData(data)
     try {
       const createdData = await mutation.mutateAsync(submittedData)
       setIsSubmitted(true)

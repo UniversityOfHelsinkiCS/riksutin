@@ -72,14 +72,14 @@ entryRouter.post('/:surveyId/dryrun', async (req: RequestWithUser, res: any) => 
 
 entryRouter.post('/:surveyId', async (req: RequestWithUser, res: any) => {
   const { surveyId } = req.params
-  const { sessionToken, data } = req.body
+  const { sessionToken, data, tuhatData } = req.body
   const userId = req.user?.id || `publicUser-${sessionToken}`
 
   const riskData = await createRiskData(data)
 
   if (!riskData) return res.status(500).send('Error when calculating risks')
 
-  const updatedData: EntryValues = { sessionToken, data: riskData }
+  const updatedData: EntryValues = { sessionToken, data: riskData, tuhatData }
   const entry = await createEntry(userId, surveyId, updatedData)
 
   return res.status(201).send(entry.toJSON())

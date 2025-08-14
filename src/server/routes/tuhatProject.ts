@@ -1,15 +1,13 @@
 import express from 'express'
 
-import type { RequestWithUser } from '@server/types'
-
 import { getTuhatProjects } from '../services/tuhatProject'
 
 const tuhatProjectRouter = express.Router()
 
-tuhatProjectRouter.get('/', async (req: RequestWithUser, res: any) => {
-  const { id } = req.user
+tuhatProjectRouter.get<never, any[], never, { userid: string }>('/', async (req, res) => {
+  const { userid = '' } = req.query
 
-  const tuhatProjects = await getTuhatProjects(id)
+  const tuhatProjects = await getTuhatProjects(userid)
 
   return res.send(tuhatProjects)
 })

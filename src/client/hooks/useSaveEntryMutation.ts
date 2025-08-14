@@ -4,23 +4,22 @@ import { useMutation } from 'react-query'
 import { SESSION_TOKEN } from '@config'
 
 import { Entry } from '@dbmodels'
-import type { FormValues } from '@types'
+import type { FormValues, TuhatData } from '@types'
 
 import apiClient from '../util/apiClient'
 
 export const useSaveEntryMutation = (surveyId: number | undefined) => {
-  const mutationFn = async (data: FormValues) => {
+  const mutationFn = async (data: { formData: FormValues; tuhatData: TuhatData | object }) => {
     let sessionToken = sessionStorage.getItem(SESSION_TOKEN)
-
     if (!sessionToken) {
       const sessionId = uuidv4()
       sessionStorage.setItem(SESSION_TOKEN, sessionId)
       sessionToken = sessionId
     }
-
     const res = await apiClient.post(`/entries/${surveyId}`, {
-      data,
+      data: data.formData,
       sessionToken,
+      tuhatData: data.tuhatData,
     })
 
     return res.data as Entry

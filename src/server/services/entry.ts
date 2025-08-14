@@ -44,7 +44,7 @@ export const getEntry = async (entryId: string, userId: string): Promise<Entry> 
 }
 
 export const createEntry = async (userId: string, surveyId: string, body: EntryValues) => {
-  const { sessionToken, data } = body
+  const { sessionToken, data, tuhatData } = body
   const { username, firstName, lastName, email }: EmployeeResponse = data.answers['2']
 
   const ownerId =
@@ -75,6 +75,7 @@ export const createEntry = async (userId: string, surveyId: string, body: EntryV
     data,
     sessionToken,
     reminderSent: false,
+    tuhatData,
   })
 
   return newEntry

@@ -18,6 +18,7 @@ export interface InstanceExports {
   PUBLIC_URL: string
   FULL_URL: string
 
+  TUHAT_DATA_KEY: string
   FORM_DATA_KEY: string
   SESSION_TOKEN: string
   LOCATION_KEY: string
@@ -34,6 +35,7 @@ const defaults: InstanceExports = {
   FULL_URL: DEFAULT_URL,
 
   FORM_DATA_KEY: 'riksutin_local_save',
+  TUHAT_DATA_KEY: 'tuhat_local_save',
   SESSION_TOKEN: 'riksutin_session_token',
   LOCATION_KEY: 'riksutin_session_location',
 }
@@ -49,6 +51,7 @@ export const {
   FULL_URL,
 
   FORM_DATA_KEY,
+  TUHAT_DATA_KEY,
   SESSION_TOKEN,
   LOCATION_KEY,
 } = Object.assign(defaults, implementationSpecific)
