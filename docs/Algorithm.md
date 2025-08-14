@@ -12,7 +12,7 @@ This app contains an algorithm that calculates different risks for the project b
 
 ### Country
 
-`Country` includes all the country risks. These risks are based on the country the user has selected. It is a simple key-value object where the key is a title of the risk and value is either a risk level (a number from 1 to 3) or a some other value if it requires information from the survey before it can be converted to a risk level.
+`Country` includes all the country risks. These risks are based on the country the user has selected. It is a simple key-value object where the key is a title of the risk and value is either a risk level (a number from 1 to 3) or some other value if it requires information from the survey before it can be converted to a risk level.
 
 The object includes the following data. The source for data is in the brackets:
 
@@ -20,8 +20,12 @@ The object includes the following data. The source for data is in the brackets:
   - source https://v-dem.net/data/the-v-dem-dataset/
   - Se on ainakin mukana tossa Country-Year: V-Dem Full+Others -datasetissä ja sitä merkitään koodilla v2xca_academ
 - Corruption ([Worldbank API](https://api.worldbank.org/v2))
-- Human development index ([CSV](../src/server/data/humanDevelopment/humanDevelopment.csv)) source [https://hdr.undp.org/] current data 2022
-  - for data, go to https://hdr.undp.org/data-center/human-development-index#/indicies/HDI
+- Human development index ([CSV](../src/server/data/humanDevelopment/humanDevelopment.csv)) source [https://hdr.undp.org/] current data 2023
+  - see https://github.com/UniversityOfHelsinkiCS/riksutin/blob/master/src/server/data/humanDevelopment/index.ts#L6
+  - for data, see
+     - https://hdr.undp.org/data-center/human-development-index#/indicies/HDI
+     - https://hdrdata.org/api/CompositeIndices/query?apikey=KEY_HERE&year=2023
+     - https://hdr.undp.org/sites/default/files/2023-24_HDR/HDRO_data_api_manual.pdf
 - Political stability ([Worldbank API](https://api.worldbank.org/v2))
 - Safety level ([Ministry for Foreign Affairs of Finland's matkustustiedotteet](https://um.fi/o/rss?dctype=matkustustiedotteet), RSS feed)
 - Sanctions ([EU sanctions map API](https://sanctionsmap.eu/api/v1/regime))
