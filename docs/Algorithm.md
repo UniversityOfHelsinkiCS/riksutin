@@ -20,7 +20,7 @@ The object includes the following data. The source for data is in the brackets:
   - source https://v-dem.net/data/the-v-dem-dataset/
   - Se on ainakin mukana tossa Country-Year: V-Dem Full+Others -datasetissä ja sitä merkitään koodilla v2xca_academ
 - Corruption ([Worldbank API](https://api.worldbank.org/v2))
-- Human development index ([CSV](../src/server/data/humanDevelopment/humanDevelopment.csv)) source [https://hdr.undp.org/] current data 2023
+- Human development index [API](https://hdrdata.org/api/CompositeIndices/query?apikey=KEY_HERE&year=2023)  current data 2023
   - see https://github.com/UniversityOfHelsinkiCS/riksutin/blob/master/src/server/data/humanDevelopment/index.ts#L6
   - for data, see
      - https://hdr.undp.org/data-center/human-development-index#/indicies/HDI
