@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { Box, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material'
+import { Autocomplete, Box, TextField, Typography } from '@mui/material'
 
 import type { Faculty, Locales } from '@types'
 import type { InputProps } from '@client/types'
@@ -55,7 +55,6 @@ const SelectFaculty = ({ control }: InputProps) => {
   }, [userFaculties, userFacultiesLoading])
 
   if (facultiesLoading || !faculties || userFacultiesLoading || !userFaculties) return null
-
   const sortedFaculties = sortFaculties(faculties)
   const organisations = sortedFaculties.concat(extraOrganisations)
 
@@ -70,24 +69,30 @@ const SelectFaculty = ({ control }: InputProps) => {
       <Controller
         control={control}
         name="faculty"
+        defaultValue=""
         rules={{ required: true }}
-        defaultValue={userFaculties[0]?.code || extraOrganisations[0].code}
-        render={({ field }) => (
-          <FormControl sx={{ minWidth: 200 }}>
-            <InputLabel>{t('facultySelect:inputLabel')}</InputLabel>
-            <Select data-cy="faculty-select" label={t('facultySelect:inputLabel')} {...field}>
-              {organisations.map((f: Faculty) => (
-                <MenuItem
-                  data-cy={`faculty-option-${f.code}`}
-                  key={f.code}
-                  value={f.code}
-                  onClick={() => setFaculty(f)}
-                >
-                  {f.code} - {f.name[language as keyof Locales]}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+        render={({ field: { onChange }, fieldState: { error } }) => (
+          <Box justifyContent="center">
+            <Autocomplete
+              disablePortal
+              id={'faculty'}
+              options={organisations}
+              getOptionLabel={option => `${option.code} - ${option.name[language as keyof Locales]}`}
+              onChange={(e, data) => {
+                onChange(data?.code)
+                setFaculty(data ?? undefined)
+              }}
+              sx={{ width: '50%' }}
+              renderInput={params => (
+                <TextField
+                  helperText={error ? error.message : null}
+                  error={!!error}
+                  {...params}
+                  label={t('unitSelect:inputLabel')}
+                />
+              )}
+            />
+          </Box>
         )}
       />
       <FacultyInfo faculty={faculty} />
