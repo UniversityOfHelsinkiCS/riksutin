@@ -23,9 +23,7 @@ const OptionItem = ({
 }) => {
   const { t } = useTranslation()
   const mutation = useEditOptionMutation(question.id, option.id)
-  const [optionTitle, setOptionTitle] = useState<string | undefined>(
-    option.title[language]
-  )
+  const [optionTitle, setOptionTitle] = useState<string | undefined>(option.title[language])
   const [optionData, setOptionData] = useState<string | undefined>('')
 
   useEffect(() => {
@@ -78,12 +76,7 @@ const OptionItem = ({
           {t('admin:optionTitle', { optionNumber })}
           <Typography ml={1}>{language}</Typography>
         </Typography>
-        <MDEditor
-          data-color-mode="light"
-          height={200}
-          value={optionTitle}
-          onChange={setOptionTitle}
-        />
+        <MDEditor data-color-mode="light" height={200} value={optionTitle} onChange={setOptionTitle} />
       </Box>
 
       {optionData && (
@@ -92,12 +85,7 @@ const OptionItem = ({
             {t('admin:optionText', { optionNumber })}
             <Typography ml={1}>{language}</Typography>
           </Typography>
-          <MDEditor
-            data-color-mode="light"
-            height={400}
-            value={optionData}
-            onChange={setOptionData}
-          />
+          <MDEditor data-color-mode="light" height={400} value={optionData} onChange={setOptionData} />
         </Box>
       )}
 
@@ -123,18 +111,8 @@ const EditOptions = ({
 
   return (
     <Box mb={2} display="flex">
-      <OptionItem
-        option={option}
-        optionNumber={optionNumber}
-        question={question}
-        language={'fi' as keyof Locales}
-      />
-      <OptionItem
-        option={option}
-        optionNumber={optionNumber}
-        question={question}
-        language={language}
-      />
+      <OptionItem option={option} optionNumber={optionNumber} question={question} language={'fi' as keyof Locales} />
+      <OptionItem option={option} optionNumber={optionNumber} question={question} language={language} />
     </Box>
   )
 }

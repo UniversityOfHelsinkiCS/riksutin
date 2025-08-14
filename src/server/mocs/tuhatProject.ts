@@ -1,19 +1,44 @@
 const mockTuhatProject = [
   {
-    tuhatId: '29938432',
+    references: [
+      {
+        type: {
+          fi_FI: 'tyyppi',
+          en_GB: 'type',
+          sv_SE: 'type',
+        },
+      },
+    ],
+    endDate: '2029-02-02',
     name: {
-      fi: 'Oden projekti',
-      en: 'Odes Project',
-      sv: 'Odes project',
+      fi: 'projekti',
+      en: 'project',
+      sv: 'projekt',
     },
-  },
-  {
-    tuhatId: '28827302',
-    name: {
-      fi: 'Tärkeä yhteistyö',
-      en: 'Important collaboration',
-      sv: 'Important collaboration',
+    type: {
+      fi: 'Tutkimusprojekti',
+      en: 'Research project',
+      sv: 'Forskningsproject',
     },
+    tuhatId: '1kl9-13tf-34fr-245f',
+    faculty: '1234563',
+    pureId: '3345678',
+    managingOrganisationUnit: '3r3r3r',
+    startDate: '2024-09-09',
+    participants: [
+      {
+        role: {
+          fi_FI: 'Johtaja',
+          en_GB: 'Manager',
+          sv_SE: 'Ledare',
+          rolePureUri: '1',
+        },
+        username: 'Testiuser',
+        pureId: '1234567',
+        firstName: 'Testi',
+        lastName: 'Käyttäjä',
+      },
+    ],
   },
 ]
 

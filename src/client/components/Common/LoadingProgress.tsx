@@ -7,9 +7,7 @@ const LoadingProgress = () => {
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', mt: 4 }}>
       <CircularProgress />
-      <Typography sx={{ ml: 4 }}>
-        {t('questions:loadingUniversities')}
-      </Typography>
+      <Typography sx={{ ml: 4 }}>{t('questions:loadingUniversities')}</Typography>
     </Box>
   )
 }

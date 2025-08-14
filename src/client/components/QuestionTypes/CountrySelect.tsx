@@ -33,19 +33,15 @@ const CountrySelect = ({ control, question, children }: InputProps) => {
               disablePortal
               id={`select-${question.id.toString()}`}
               options={countryNames}
-              getOptionLabel={(option) => option}
+              getOptionLabel={option => option}
               onChange={(e, data) => onChange(data)}
               sx={{ width: '50%' }}
-              renderInput={(params) => (
+              renderInput={params => (
                 <TextField
                   helperText={error ? error.message : null}
                   error={!!error}
                   {...params}
-                  label={
-                    question.optionData.label
-                      ? question.optionData.label[language as keyof Locales]
-                      : ''
-                  }
+                  label={question.optionData.label ? question.optionData.label[language as keyof Locales] : ''}
                 />
               )}
             />
