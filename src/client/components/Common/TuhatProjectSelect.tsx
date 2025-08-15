@@ -59,13 +59,14 @@ const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
   if (!tuhatProjects || tuhatProjectsLoading || !question || !watch || !control) return null
 
   const projectOwnerField = watch('2')
-  if (projectOwnerField) userId = JSON.parse(JSON.stringify(projectOwnerField)).id
+  const projectOptionChosen = watch('tuhatProjectExists') || ''
+  if (projectOwnerField?.username) userId = projectOwnerField.username
   if (control._formValues.tuhatProjectExists === 'tuhatOptionNegative')
     sessionStorage.setItem(TUHAT_DATA_STORAGE_KEY, '{}')
   console.log(projectOwnerField)
   console.log(userId)
   console.log(sessionStorage.getItem(TUHAT_DATA_STORAGE_KEY))
-  console.log(control._formValues.tuhatProjectExists)
+  console.log(projectOptionChosen)
   return (
     <Box sx={cardStyles.questionsContainer}>
       <Box sx={{ marginBottom: '16px' }}>
@@ -97,7 +98,7 @@ const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
           </Box>
         )}
       />
-      {control._formValues.tuhatProjectExists === 'tuhatOptionPositive' && (
+      {projectOptionChosen === 'tuhatOptionPositive' && (
         <>
           <Box sx={{ marginBottom: '16px' }}>
             <Typography component="span" sx={{ color: 'red' }}>
@@ -138,7 +139,7 @@ const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
           />
         </>
       )}
-      {control._formValues.tuhatProjectExists === 'tuhatOptionNegative' && (
+      {projectOptionChosen === 'tuhatOptionNegative' && (
         <>
           <Box sx={{ marginBottom: '16px' }}>
             <Typography component="span" sx={{ color: 'red' }}>
