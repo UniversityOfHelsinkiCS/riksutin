@@ -20,7 +20,7 @@ export const jamiClient = axios.create({
   },
 })
 
-export const getTuhatData = async (userId: string): Promise<TuhatData[]> => {
+export const getTuhatData = async (projectOwnerId: string): Promise<TuhatData[]> => {
   const url = UNIT_GW_API_URL + '/tuhatextapi/runningprojects'
   const response = await fetch(url, {
     headers: { 'x-api-key': TUHAT_API_TOKEN },
@@ -75,7 +75,7 @@ export const getTuhatData = async (userId: string): Promise<TuhatData[]> => {
   } = await response.json()
 
   const filteredData = data.runningProjects
-    .filter(({ participants }) => participants.map(({ username }) => username).includes(userId))
+    .filter(({ participants }) => participants?.map(({ username }) => username).includes(projectOwnerId))
     .map(
       ({
         references,
