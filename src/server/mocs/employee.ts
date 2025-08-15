@@ -4,7 +4,7 @@ import mockUser from './user'
 const mockEmplyee: EmployeeResponse[] = [
   {
     employeeNumber: '',
-    username: mockUser.username,
+    username: mockUser.id,
     firstName: mockUser.firstName,
     lastName: mockUser.lastName,
     email: mockUser.email,
