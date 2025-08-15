@@ -29,13 +29,13 @@ The object includes the following data. The source for data is in the brackets:
 - Political stability ([Worldbank API](https://api.worldbank.org/v2))
 - Safety level ([Ministry for Foreign Affairs of Finland's matkustustiedotteet](https://um.fi/o/rss?dctype=matkustustiedotteet), RSS feed)
 - Sanctions ([EU sanctions map API](https://sanctionsmap.eu/api/v1/regime))
-- Rule of Law ([CSV](../src/server/data/ruleOfLaw/ruleOfLaw.csv)) https://worldjusticeproject.org/, current data 2023
+- Rule of Law ([CSV](../src/server/data/ruleOfLaw/ruleOfLaw.csv)) https://worldjusticeproject.org/, current data 2024
   - go to https://worldjusticeproject.org/rule-of-law-index/global/2024/table open network tab, there is 2024.csv and other years 
 - Universities ([WHED](https://whed.net/results_institutions.php), scraper)
 
 (see also https://github.com/UniversityOfHelsinkiCS/riksutin/blob/master/docs/DataSources.md)
 
-Risk levels of sanctions, safety level and universities are calculated based on the form data.
+Risk levels of sanctions, safety level, and universities are calculated based on the form data.
 
 ### Risks
 
