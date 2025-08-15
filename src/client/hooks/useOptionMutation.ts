@@ -47,10 +47,7 @@ export const useEditOptionMutation = (questionId: number, optionId: string) => {
   return mutation
 }
 
-export const useDeleteOptionMutation = (
-  questionId: number,
-  optionId: string
-) => {
+export const useDeleteOptionMutation = (questionId: number, optionId: string) => {
   const { survey } = useSurvey()
 
   const mutationFn = async () => {
