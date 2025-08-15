@@ -65,6 +65,7 @@ const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
   console.log(projectOwnerField)
   console.log(userId)
   console.log(sessionStorage.getItem(TUHAT_DATA_STORAGE_KEY))
+  console.log(control._formValues.tuhatProjectExists)
   return (
     <Box sx={cardStyles.questionsContainer}>
       <Box sx={{ marginBottom: '16px' }}>
