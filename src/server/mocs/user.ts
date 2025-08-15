@@ -1,6 +1,5 @@
 const mockUser = {
-  id: 'testuser',
-  username: 'hy-hlo-1441871',
+  username: 'testuser',
   firstName: 'Testi',
   lastName: 'Kayttaja',
   email: 'grp-toska@helsinki.fi',
