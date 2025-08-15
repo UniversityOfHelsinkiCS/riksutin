@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { useEffect, useState } from 'react'
 import { Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -56,20 +55,51 @@ const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
   }, [projectOwnerField])
 
   if (!question || !watch || !control) return null
+  if (tuhatProjectsLoading || tuhatProjects === undefined || tuhatProjects?.length === 0) {
+    return (
+      <Box sx={cardStyles.questionsContainer}>
+        <Box sx={{ marginBottom: '16px' }}>
+          <Typography component="span" sx={{ color: 'red' }}>
+            {'* '}
+          </Typography>
+          <Typography component="span">{question.title[language as keyof Locales]}</Typography>
+        </Box>
+        <Controller
+          control={control}
+          key={'projektname'}
+          name={question.id.toString()}
+          rules={{ required: true }}
+          defaultValue={''}
+          render={({ field: { onChange }, fieldState: { error } }) => (
+            <Box justifyContent="center">
+              <TextField
+                helperText={error ? error.message : null}
+                error={!!error}
+                data-testid={'question-projectText'}
+                onChange={onChange}
+                fullWidth
+                placeholder={question.text[language as keyof Locales]}
+              />
+            </Box>
+          )}
+        />
+      </Box>
+    )
+  }
 
   const projectOptionChosen = watch('tuhatProjectExists') || ''
   if (control._formValues.tuhatProjectExists === 'tuhatOptionNegative')
     sessionStorage.setItem(TUHAT_DATA_STORAGE_KEY, '{}')
-  console.log(projectOwnerField)
-  console.log(projectOwnerId)
-  console.log(sessionStorage.getItem(TUHAT_DATA_STORAGE_KEY))
-  console.log(projectOptionChosen)
+
   return (
     <Box sx={cardStyles.questionsContainer}>
       <Box sx={{ marginBottom: '16px' }}>
         <Typography component="span" sx={{ color: 'red' }}>
           {'* '}
         </Typography>
+        <Typography component="span">{question.title[language as keyof Locales]}</Typography>
+      </Box>
+      <Box sx={{ marginBottom: '16px' }}>
         <Typography component="span">{t('tuhatProjectExists:title')}</Typography>
       </Box>
       <Controller
@@ -95,85 +125,62 @@ const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
           </Box>
         )}
       />
-      {!tuhatProjects && (
-        <Box sx={{ marginBottom: '16px' }}>
-          <Typography component="span">{t('tuhatProjectNotFound:text')}</Typography>
-        </Box>
-      )}
-      {tuhatProjects && !tuhatProjectsLoading && projectOptionChosen === 'tuhatOptionPositive' && (
-        <>
-          <Box sx={{ marginBottom: '16px' }}>
-            <Typography component="span" sx={{ color: 'red' }}>
-              {'* '}
-            </Typography>
-            <Typography component="span">{question.title[language as keyof Locales]}</Typography>
-          </Box>
-          <Controller
-            control={control}
-            key={'tuhatOptionPositive'}
-            name={question.id.toString()}
-            rules={{
-              required: {
-                value: control._formValues.tuhatProjectExists === 'tuhatOptionPositive',
-                message: 'Projektin nimi tarvitaan',
-              },
-            }}
-            defaultValue={''}
-            render={({ field }) => (
-              <>
-                <FormControl sx={{ minWidth: 200 }}>
-                  <InputLabel>{t('tuhatProjectSelect:inputLabel')}</InputLabel>
-                  <Select data-cy="tuhatProject-select" label={t(' tuhatProjectSelect:inputLabel')} {...field}>
-                    {tuhatProjects.map((c: TuhatData) => (
-                      <MenuItem
-                        data-cy={''}
-                        key={c.tuhatId}
-                        value={`${c.name[language as keyof Locales]}`}
-                        onClick={() => sessionStorage.setItem(TUHAT_DATA_STORAGE_KEY, JSON.stringify(c))}
-                      >
-                        {c.name[language as keyof Locales]}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </>
-            )}
-          />
-        </>
+      {projectOptionChosen === 'tuhatOptionPositive' && (
+        <Controller
+          control={control}
+          key={'tuhatOptionPositive'}
+          name={question.id.toString()}
+          rules={{
+            required: {
+              value: projectOptionChosen === 'tuhatOptionPositive',
+              message: 'Projektin nimi tarvitaan',
+            },
+          }}
+          defaultValue={''}
+          render={({ field }) => (
+            <FormControl sx={{ minWidth: 200 }}>
+              <InputLabel>{t('tuhatProjectSelect:inputLabel')}</InputLabel>
+              <Select data-cy="tuhatProject-select" label={t(' tuhatProjectSelect:inputLabel')} {...field}>
+                {tuhatProjects?.map((c: TuhatData) => (
+                  <MenuItem
+                    data-cy={''}
+                    key={c.tuhatId}
+                    value={`${c.name[language as keyof Locales]}`}
+                    onClick={() => sessionStorage.setItem(TUHAT_DATA_STORAGE_KEY, JSON.stringify(c))}
+                  >
+                    {c.name[language as keyof Locales]}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          )}
+        />
       )}
       {projectOptionChosen === 'tuhatOptionNegative' && (
-        <>
-          <Box sx={{ marginBottom: '16px' }}>
-            <Typography component="span" sx={{ color: 'red' }}>
-              {'* '}
-            </Typography>
-            <Typography component="span">{question.title[language as keyof Locales]}</Typography>
-          </Box>
-          <Controller
-            control={control}
-            key={'tuhatOptionNegative'}
-            name={question.id.toString()}
-            rules={{
-              required: {
-                value: control._formValues.tuhatProjectExists === 'tuhatOptionNegative',
-                message: 'Projekti tarvitaan',
-              },
-            }}
-            defaultValue={''}
-            render={({ field: { onChange }, fieldState: { error } }) => (
-              <Box justifyContent="center">
-                <TextField
-                  helperText={error ? error.message : null}
-                  error={!!error}
-                  data-testid={'question-tuhatProjText'}
-                  onChange={onChange}
-                  fullWidth
-                  placeholder={question.text[language as keyof Locales]}
-                />
-              </Box>
-            )}
-          />
-        </>
+        <Controller
+          control={control}
+          key={'tuhatOptionNegative'}
+          name={question.id.toString()}
+          rules={{
+            required: {
+              value: projectOptionChosen === 'tuhatOptionNegative',
+              message: 'Projekti tarvitaan',
+            },
+          }}
+          defaultValue={''}
+          render={({ field: { onChange }, fieldState: { error } }) => (
+            <Box justifyContent="center">
+              <TextField
+                helperText={error ? error.message : null}
+                error={!!error}
+                data-testid={'question-tuhatProjText'}
+                onChange={onChange}
+                fullWidth
+                placeholder={question.text[language as keyof Locales]}
+              />
+            </Box>
+          )}
+        />
       )}
     </Box>
   )
