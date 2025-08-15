@@ -22,6 +22,9 @@
     "inputLabel": "Unit",
     "infoMessage": "Information about the owner's unit's guidelines"
   },
+  "tuhatProjectNotFound": {
+    "text": "No projects was found based on the project owner from TUHAT system."
+  },
   "tuhatProjectExists": {
     "title": "Is the project saved in the TUHAT system?",
     "positive": "Yes",

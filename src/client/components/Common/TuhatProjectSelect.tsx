@@ -48,23 +48,20 @@ const collabProjectOptions = [
 const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
   const { t, i18n } = useTranslation()
   const { language } = i18n
-  let userId = ''
-  const [projectOwnerId, setProjectOwnerId] = useState<string>('')
+  const [projectOwnerId, setProjectOwnerId] = useState<string>(watch?.('2')?.username ? watch('2').username : '')
   const { tuhatProjects, isLoading: tuhatProjectsLoading } = useTuhatProjects(projectOwnerId)
-
+  const projectOwnerField = watch?.('2') ?? ''
   useEffect(() => {
-    if (userId) setProjectOwnerId(userId)
-  }, [userId])
+    if (projectOwnerField) setProjectOwnerId(projectOwnerField.username)
+  }, [projectOwnerField])
 
-  if (!tuhatProjects || tuhatProjectsLoading || !question || !watch || !control) return null
+  if (!question || !watch || !control) return null
 
-  const projectOwnerField = watch('2')
   const projectOptionChosen = watch('tuhatProjectExists') || ''
-  if (projectOwnerField?.username) userId = projectOwnerField.username
   if (control._formValues.tuhatProjectExists === 'tuhatOptionNegative')
     sessionStorage.setItem(TUHAT_DATA_STORAGE_KEY, '{}')
   console.log(projectOwnerField)
-  console.log(userId)
+  console.log(projectOwnerId)
   console.log(sessionStorage.getItem(TUHAT_DATA_STORAGE_KEY))
   console.log(projectOptionChosen)
   return (
@@ -98,7 +95,12 @@ const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
           </Box>
         )}
       />
-      {projectOptionChosen === 'tuhatOptionPositive' && (
+      {!tuhatProjects && (
+        <Box sx={{ marginBottom: '16px' }}>
+          <Typography component="span">{t('tuhatProjectNotFound:text')}</Typography>
+        </Box>
+      )}
+      {tuhatProjects && !tuhatProjectsLoading && projectOptionChosen === 'tuhatOptionPositive' && (
         <>
           <Box sx={{ marginBottom: '16px' }}>
             <Typography component="span" sx={{ color: 'red' }}>

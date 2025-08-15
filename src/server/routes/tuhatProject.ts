@@ -4,10 +4,10 @@ import { getTuhatProjects } from '../services/tuhatProject'
 
 const tuhatProjectRouter = express.Router()
 
-tuhatProjectRouter.get<never, any[], never, { userid: string }>('/', async (req, res) => {
-  const { userid = '' } = req.query
+tuhatProjectRouter.get<never, any[], never, { projectOwnerId: string }>('/', async (req, res) => {
+  const { projectOwnerId = '' } = req.query
 
-  const tuhatProjects = await getTuhatProjects(userid)
+  const tuhatProjects = await getTuhatProjects(projectOwnerId)
 
   return res.send(tuhatProjects)
 })

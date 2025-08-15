@@ -21,6 +21,9 @@
     "inputLabel": "Yksikkö",
     "infoMessage": "Tietoa yksikkösi ohjeistuksesta"
   },
+  "tuhatProjectNotFound": {
+    "text": "Projektin omistajalle ei löytynyt olemassa olevia projekteja TUHAT-järjestelmästä."
+  },
   "tuhatProjectExists": {
     "title": "Onko projekti tallennettu TUHAT-järjestelmään?"
   },
