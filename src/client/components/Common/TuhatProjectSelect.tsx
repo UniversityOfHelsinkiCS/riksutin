@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { useEffect, useState } from 'react'
 import { Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -19,7 +20,7 @@ import type { InputProps } from '@client/types'
 import useTuhatProjects from '../../hooks/useTuhatProjects'
 
 import styles from '../../styles'
-import { TUHAT_DATA_KEY } from '@config'
+import { TUHAT_DATA_STORAGE_KEY } from '@config'
 
 const { cardStyles } = styles
 
@@ -59,8 +60,11 @@ const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
 
   const projectOwnerField = watch('2')
   if (projectOwnerField) userId = JSON.parse(JSON.stringify(projectOwnerField)).id
-  if (control._formValues.tuhatProjectExists === 'tuhatOptionNegative') sessionStorage.setItem(TUHAT_DATA_KEY, '{}')
-
+  if (control._formValues.tuhatProjectExists === 'tuhatOptionNegative')
+    sessionStorage.setItem(TUHAT_DATA_STORAGE_KEY, '{}')
+  console.log(projectOwnerField)
+  console.log(userId)
+  console.log(sessionStorage.getItem(TUHAT_DATA_STORAGE_KEY))
   return (
     <Box sx={cardStyles.questionsContainer}>
       <Box sx={{ marginBottom: '16px' }}>
@@ -121,7 +125,7 @@ const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
                         data-cy={''}
                         key={c.tuhatId}
                         value={`${c.name[language as keyof Locales]}`}
-                        onClick={() => sessionStorage.setItem(TUHAT_DATA_KEY, JSON.stringify(c))}
+                        onClick={() => sessionStorage.setItem(TUHAT_DATA_STORAGE_KEY, JSON.stringify(c))}
                       >
                         {c.name[language as keyof Locales]}
                       </MenuItem>

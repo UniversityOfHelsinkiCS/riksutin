@@ -2,7 +2,7 @@ import { Control, UseFormWatch, UseFormRegister } from 'react-hook-form'
 
 import type { FormValues, Locales, Question, RiskData, TuhatData, User } from '@types'
 
-import { FORM_DATA_KEY, TUHAT_DATA_KEY } from '@config'
+import { FORM_DATA_KEY, TUHAT_DATA_STORAGE_KEY } from '@config'
 
 export interface InputProps {
   control?: Control<any>
@@ -18,7 +18,7 @@ export interface InputProps {
 }
 
 type SurveySave = typeof FORM_DATA_KEY
-type TuhatDataSave = typeof TUHAT_DATA_KEY
+type TuhatDataSave = typeof TUHAT_DATA_STORAGE_KEY
 
 export interface PersistForm {
   value: FormValues
