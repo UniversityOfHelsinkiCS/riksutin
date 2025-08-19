@@ -98,7 +98,7 @@
     "emailErrorMessage": "Palvelimeen ei saatu yhteyttä"
   },
   "userPage": {
-    "userPageButton": "Omat tiedot",
+    "userPageButton": "Aiemmat arviot",
     "previousEntries": "Aikaisemmat riskiarviosi",
     "tableDate": "Päivämäärä",
     "tableTotalRiskLevel": "Kokonaisriskitaso",

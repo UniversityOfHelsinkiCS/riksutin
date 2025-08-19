@@ -2,6 +2,7 @@ import { useState } from 'react'
 import {
   Box,
   Button,
+  CircularProgress,
   Table,
   TableBody,
   TableCell,
@@ -25,6 +26,15 @@ const UserPage = () => {
   const mutation = useUpdateEntryRisks()
   const [updateButtonClicked, setUpdateButtonClicked] = useState('')
 
+  if (!entries)
+    return (
+      <Box sx={{ m: 3 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', my: 4 }}>
+          <CircularProgress />
+        </Box>
+      </Box>
+    )
+
   const entriesWithData = entries?.filter(entry => entry.data.answers && entry.data.country && entry.data.risks)
 
   const handleUpdateRiskAssessment = async (entryId: string) => {
@@ -35,7 +45,7 @@ const UserPage = () => {
     })
   }
 
-  if (!entriesWithData)
+  if (entries.length === 0)
     return (
       <Box sx={{ m: 3 }}>
         <Typography variant="h6" sx={{ my: 4, pl: 1 }}>

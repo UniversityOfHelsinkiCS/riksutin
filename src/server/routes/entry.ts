@@ -19,6 +19,8 @@ entryRouter.get('/', adminHandler, async (req, res) => {
 
 entryRouter.get('/user', async (req: RequestWithUser, res: any) => {
   const userId = req.user?.id
+
+  await new Promise(resolve => setTimeout(resolve, 2000))
   const entries = await getUserEntries(userId)
   return res.status(200).send(entries)
 })

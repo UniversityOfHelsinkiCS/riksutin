@@ -101,7 +101,7 @@
     "emailErrorMessage": "Failed to connect to the server"
   },
   "userPage": {
-    "userPageButton": "Your profile",
+    "userPageButton": "Your assesments",
     "previousEntries": "Your previous risk assessments",
     "tableDate": "Date",
     "tableTotalRiskLevel": "Total risk level",
