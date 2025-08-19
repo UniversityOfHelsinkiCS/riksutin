@@ -7,7 +7,7 @@ import RiskElement from './RiskElement'
 
 import styles from './styles'
 import { useComponents } from './context'
-import { globalNorthCountries } from '@common/countryLists'
+import { globalSouthCountries } from '@common/countryLists'
 import getRiskTexts from '@common/getRiskTexts'
 import getCountryRiskTexts from '@common/getCountryRiskTexts'
 
@@ -56,8 +56,8 @@ const RiskTable = ({
   let countryInfoText =
     results.find(r => r.optionLabel === `country${countryRisk?.level}`)?.isSelected[language as keyof Locales] ?? ''
 
-  if (!globalNorthCountries.includes(selectedCountryCode)) {
-    countryInfoText += t('countrySpecificTexts:globalSouth')
+  if (globalSouthCountries.includes(selectedCountryCode)) {
+    countryInfoText += '\n' + t('countrySpecificTexts:globalSouth')
   }
 
   const countryRisksWithTexts = getCountryRiskTexts(countryData, results, riskData.answers, language)
