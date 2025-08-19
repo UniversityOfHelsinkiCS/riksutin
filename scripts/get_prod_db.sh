@@ -61,11 +61,8 @@ echo "Removing database and related volume"
 docker compose -f $DOCKER_COMPOSE down -v
 
 echo "Starting postgres in the background"
-<<<<<<< HEAD
+
 docker compose -f $DOCKER_COMPOSE up -d $SERVICE_NAME $JAMI_DB
-=======
-docker-compose -f $DOCKER_COMPOSE up -d $SERVICE_NAME
->>>>>>> 59dd95f (feat new get prod db script)
 
 retry docker compose -f $DOCKER_COMPOSE exec $SERVICE_NAME pg_isready --dbname=$DB_NAME
 
