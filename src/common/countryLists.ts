@@ -36,4 +36,5 @@ export const adequateProtectionCountries = ['AD', 'AR', 'CA', 'FO', 'IM', 'IL', 
 
 export const globalNorthCountries = [...eeaCountries, 'AU', 'CA', 'JP', 'NZ', 'CH', 'GB', 'US', 'KR', 'IL']
 
+// source: https://worldpopulationreview.com/country-rankings/global-south-countries
 export const globalSouthCountries = globalSouth.map(c => c.iso2Code)
