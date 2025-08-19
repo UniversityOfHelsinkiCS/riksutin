@@ -232,6 +232,11 @@ const getQuestionData = (): Question[] => [
       sv: 'Role of UH in collaboration',
       en: 'Role of UH in collaboration',
     },
+    shortTitle: {
+      fi: 'HY:n asema yhteistyössä',
+      sv: 'Role of UH in collaboration',
+      en: 'Role of UH in collaboration',
+    },
     text: {
       fi: 'Valitse listasta Helsingin yliopiston asemaa hankkeessasi parhaiten kuvaava vaihtoehto',
       sv: '',
@@ -280,6 +285,11 @@ const getQuestionData = (): Question[] => [
       fi: 'Onko kirjallinen sopimus solmittu tai tullaanko sellainen solmimaan ennen yhteistyön aloittamista?',
       sv: 'Has a written agreement been made, or will one be concluded prior to starting the collaboration?',
       en: 'Has a written agreement been made, or will one be concluded prior to starting the collaboration?',
+    },
+    shortTitle: {
+      fi: 'Kirjallinen sopimus',
+      sv: 'Written agreement',
+      en: 'Written agreement',
     },
     text: {
       fi: 'Ilmaise tässä, onko yhteistyöstä tehty jo sopimus, tai onko sellainen valmisteilla.',
@@ -465,6 +475,11 @@ const getQuestionData = (): Question[] => [
       sv: 'Is external funding included in this collaboration?',
       en: 'Is external funding included in this collaboration?',
     },
+    shortTitle: {
+      fi: 'Ulkopuolista rahoitus',
+      sv: 'External funding',
+      en: 'External funding',
+    },
     text: {
       fi: 'Valitse annetuista vaihtoehdoista, sen mukaan, onko tarkoitus hyödyntää yhteistyössä ulkopuolista rahoitusta',
       sv: '',
@@ -504,6 +519,11 @@ const getQuestionData = (): Question[] => [
     priority: 0,
     title: {
       fi: 'Onko yksikkösi saanut aiemmin rahoitusta samalta rahoittajalta?',
+      sv: 'Has your unit been previously funded by the same funder?',
+      en: 'Has your unit been previously funded by the same funder?',
+    },
+    shortTitle: {
+      fi: 'Aiempaa rahoitusta rahoittajalta?',
       sv: 'Has your unit been previously funded by the same funder?',
       en: 'Has your unit been previously funded by the same funder?',
     },
@@ -651,6 +671,11 @@ const getQuestionData = (): Question[] => [
       sv: 'Provide an estimate of the University’s financial responsibilities (including in-kind) of the collaboration for the duration of it.',
       en: 'Provide an estimate of the University’s financial responsibilities (including in-kind) of the collaboration for the duration of it.',
     },
+    shortTitle: {
+      fi: 'Taloudellinen kokonaisvastuu',
+      sv: 'Financial responsibilities',
+      en: 'Financial responsibilities',
+    },
     text: {
       fi: 'Ilmoita hankkeen taloudellinen kokonaislaajuus sisältäen mahdollisen omarahoituksen',
       sv: '',
@@ -700,6 +725,11 @@ const getQuestionData = (): Question[] => [
     priority: 14,
     title: {
       fi: 'Onko mahdollista, että yhteistyössä siirretään henkilötietoja yhteistyökumppanille?',
+      sv: 'Does the collaboration require transferring personal data to the partner institution?',
+      en: 'Does the collaboration require transferring personal data to the partner institution?',
+    },
+    shortTitle: {
+      fi: 'Henkilötietojen siirto',
       sv: 'Does the collaboration require transferring personal data to the partner institution?',
       en: 'Does the collaboration require transferring personal data to the partner institution?',
     },
@@ -852,6 +882,11 @@ const getQuestionData = (): Question[] => [
       sv: 'Does the collaboration require transferring technology or know-how with potential for military use (so-called Dual Use)?',
       en: 'Does the collaboration require transferring technology or know-how with potential for military use (so-called Dual Use)?',
     },
+    shortTitle: {
+      fi: 'Sotilaskäyttöön soveltuvaa teknologiaa',
+      sv: 'Does the collaboration require transferring technology or know-how with potential for military use (so-called Dual Use)?',
+      en: 'Does the collaboration require transferring technology or know-how with potential for military use (so-called Dual Use)?',
+    },
     text: {
       fi: 'Valitse annetuista vaihtoehdoista sen mukaan, onko mahdollista, että yhteistyökumppanille siirtyy sotilaskäyttöön soveltuvaa teknologiaa tai osaamista',
       sv: '',
@@ -904,6 +939,11 @@ const getQuestionData = (): Question[] => [
       sv: 'Has your unit collaborated successfully with the partner organisation before?',
       en: 'Has your unit collaborated successfully with the partner organisation before?',
     },
+    shortTitle: {
+      fi: 'Onko aiempaa yhteistyötä',
+      sv: 'Has your unit collaborated successfully with the partner organisation before?',
+      en: 'Has your unit collaborated successfully with the partner organisation before?',
+    },
     text: {
       fi: 'Valitse annetuista vaihtoehdoista',
       sv: '',
@@ -941,6 +981,11 @@ const getQuestionData = (): Question[] => [
     priority: 19,
     title: {
       fi: 'Arvioi, sisältääkö yhteistyö eettisiä ongelmakohtia (ihmisoikeudet, tasa-arvo, yhdenvertaisuus) tai ristiriitaa yliopiston arvojen kanssa',
+      sv: '',
+      en: 'Assess if the collaboration includes ethical issues (human rights, equality) or conflicts with the values of the UH',
+    },
+    shortTitle: {
+      fi: 'Ristiriitaa HY:n arvoihin',
       sv: '',
       en: 'Assess if the collaboration includes ethical issues (human rights, equality) or conflicts with the values of the UH',
     },
@@ -1016,6 +1061,11 @@ const getQuestionData = (): Question[] => [
       sv: '',
       en: 'Select all applicable countries of especial risks, whose universities or other organisations belong to you consortium',
     },
+    shortTitle: {
+      fi: 'Konsortion erityisen riskin maat',
+      sv: '',
+      en: 'Select all applicable countries of especial risks, whose universities or other organisations belong to you consortium',
+    },
     text: {
       fi: '',
       sv: '',
@@ -1034,6 +1084,11 @@ const getQuestionData = (): Question[] => [
     priority: 0,
     title: {
       fi: 'Valitse konsortioon kuuluvat maat',
+      sv: '',
+      en: 'Select countries that belong to the consortium',
+    },
+    shortTitle: {
+      fi: 'Konsortioon kuuluvat maat',
       sv: '',
       en: 'Select countries that belong to the consortium',
     },

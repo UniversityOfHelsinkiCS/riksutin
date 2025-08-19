@@ -184,6 +184,7 @@ export interface Question {
   parentId: number | null
   priority: number
   title: Locales
+  shortTitle?: Locales
   text: Locales
   optionData: OptionData
   visibility: Visibility

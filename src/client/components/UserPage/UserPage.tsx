@@ -70,7 +70,7 @@ const UserPage = () => {
         </Typography>
       </Box>
       <TableContainer sx={{ m: 2 }}>
-        <Table sx={{ maxWidth: '45rem' }} aria-label="simple table">
+        <Table sx={{ maxWidth: '60rem' }} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>{t('userPage:projectName')}</TableCell>

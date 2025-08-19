@@ -11,9 +11,9 @@ const mockTuhatProject = [
     ],
     endDate: '2029-02-02',
     name: {
-      fi: 'projekti',
-      en: 'project',
-      sv: 'projekt',
+      fi: 'Tietojenkäsittelytieteen sovelluskehitysakatemia',
+      en: 'Tietojenkäsittelytieteen sovelluskehitysakatemia',
+      sv: 'Tietojenkäsittelytieteen sovelluskehitysakatemia',
     },
     type: {
       fi: 'Tutkimusprojekti',

@@ -1,19 +1,10 @@
-import {
-  Model,
-  InferAttributes,
-  InferCreationAttributes,
-  CreationOptional,
-  DataTypes,
-} from 'sequelize'
+import { Model, InferAttributes, InferCreationAttributes, CreationOptional, DataTypes } from 'sequelize'
 
 import type { Locales, OptionData, Visibility } from '@types'
 
 import { sequelize } from '../connection'
 
-class Question extends Model<
-  InferAttributes<Question>,
-  InferCreationAttributes<Question>
-> {
+class Question extends Model<InferAttributes<Question>, InferCreationAttributes<Question>> {
   declare id: CreationOptional<number>
 
   declare surveyId: number
@@ -23,6 +14,8 @@ class Question extends Model<
   declare priority: number
 
   declare title: Locales
+
+  declare shortTitle: Locales
 
   declare text: Locales
 
@@ -51,6 +44,11 @@ Question.init(
       allowNull: false,
     },
     title: {
+      type: DataTypes.JSONB,
+      allowNull: false,
+      defaultValue: {},
+    },
+    shortTitle: {
       type: DataTypes.JSONB,
       allowNull: false,
       defaultValue: {},

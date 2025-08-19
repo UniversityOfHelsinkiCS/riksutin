@@ -174,7 +174,14 @@ const Summary = () => {
 
   const tableData = createTableData(entriesWithData, questions, organisations)
 
-  const questionTitles = Object.fromEntries(questions.map(q => [q.id.toString(), q.title.fi]))
+  const headerTitle = q => {
+    if (q.shortTitle.fi) {
+      return q.shortTitle.fi
+    }
+    return q.title.fi ?? q.title.fi
+  }
+
+  const questionTitles = Object.fromEntries(questions.map(q => [q.id.toString(), headerTitle(q)]))
 
   return (
     <>
