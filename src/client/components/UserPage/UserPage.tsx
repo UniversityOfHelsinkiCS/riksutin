@@ -87,15 +87,7 @@ const UserPage = () => {
                 <TableCell component="th" scope="row">
                   {new Date(entry.createdAt).toLocaleDateString()} {new Date(entry.createdAt).toLocaleTimeString()}
                 </TableCell>
-                <TableCell
-                  align="center"
-                  sx={{
-                    width: '100%',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                >
+                <TableCell sx={{ paddingLeft: 7 }}>
                   <Box
                     sx={[
                       {
