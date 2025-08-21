@@ -40,6 +40,8 @@ const InteractiveForm = () => {
     defaultValues: resultData,
   })
 
+  console.log(watch())
+
   usePersistForm({ value: watch(), sessionStorageKey: FORM_DATA_KEY })
 
   if (!survey || isLoading || !results) return null
