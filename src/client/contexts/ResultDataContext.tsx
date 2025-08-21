@@ -3,6 +3,9 @@ import { createContext, useCallback, useContext, useMemo, useState } from 'react
 import { FORM_DATA_KEY } from '@config'
 import type { FormValues } from '@types'
 import useLoggedInUser from '../hooks/useLoggedInUser'
+import useUserFaculties from '../hooks/useUserFaculties'
+
+import { extraOrganisations } from '@common/organisations'
 
 interface ResultDataContextValue {
   resultData: FormValues
@@ -13,15 +16,20 @@ const LicenseResultDataContext = createContext<ResultDataContextValue | undefine
 
 const ResultDataProvider = ({ children }: { children: React.ReactNode }) => {
   const { user } = useLoggedInUser()
+  const { userFaculties } = useUserFaculties()
 
   const getSavedInstance = useCallback(() => {
     const savedData = sessionStorage.getItem(FORM_DATA_KEY)
+
+    const faculty = userFaculties && userFaculties.length > 0 ? userFaculties[0].code : extraOrganisations[0].code
+
     if (savedData) return JSON.parse(savedData)
 
     return {
       1: `${user?.firstName} ${user?.lastName}`,
+      faculty,
     }
-  }, [user])
+  }, [userFaculties, user])
 
   const savedFormData = getSavedInstance()
 

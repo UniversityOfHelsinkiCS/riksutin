@@ -44,7 +44,7 @@ const FacultyInfo = ({ faculty }: { faculty: FacultyOrUnit | undefined }) => {
 const SelectFaculty = ({ control }: InputProps) => {
   const { t, i18n } = useTranslation()
   const { language } = i18n
-  const [faculty, setFaculty] = useState<FacultyOrUnit>()
+  const [faculty, setFaculty] = useState<FacultyOrUnit | null>(null)
   const { faculties, isLoading: facultiesLoading } = useFaculties()
   const { userFaculties, isLoading: userFacultiesLoading } = useUserFaculties()
 
@@ -55,8 +55,11 @@ const SelectFaculty = ({ control }: InputProps) => {
   }, [userFaculties, userFacultiesLoading])
 
   if (facultiesLoading || !faculties || userFacultiesLoading || !userFaculties) return null
+
   const sortedFaculties = sortFaculties(faculties)
   const organisations = sortedFaculties.concat(extraOrganisations)
+
+  const defaultValue = userFaculties.length > 0 ? userFaculties[0] : extraOrganisations[0]
 
   return (
     <Box sx={cardStyles.questionsContainer}>
@@ -70,7 +73,7 @@ const SelectFaculty = ({ control }: InputProps) => {
         control={control}
         name="faculty"
         rules={{ required: true }}
-        defaultValue={userFaculties[0]?.code || extraOrganisations[0].code}
+        defaultValue={defaultValue.code}
         render={({ field }) => (
           <FormControl sx={{ minWidth: 200 }}>
             <InputLabel>{t('facultySelect:inputLabel')}</InputLabel>
@@ -81,6 +84,7 @@ const SelectFaculty = ({ control }: InputProps) => {
                   key={f.code}
                   value={f.code}
                   onClick={() => setFaculty(f)}
+                  selected={faculty && f.code === faculty.code ? true : undefined}
                 >
                   {f.code} - {f.name[language as keyof Locales]}
                 </MenuItem>

@@ -13,6 +13,35 @@ import SurveyButtons from '../Common/SurveyButtons'
 import { useResultData } from '../../contexts/ResultDataContext'
 
 import styles from '../../styles'
+import ResetForm from '../Common/ResetForm'
+
+const RenderErrors = ({ requiredFields, questions, control }) => {
+  const { t, i18n } = useTranslation()
+  const { language } = i18n
+  const { dirtyFields, errors } = useFormState({ control })
+
+  if (Object.values(errors).length === 0) {
+    return null
+  }
+
+  return (
+    <Box sx={{ p: 2 }}>
+      <Typography>{t('questions:requiredQuestionsNeedAnswers')}</Typography>
+      <ul>
+        {requiredFields
+          .filter(id => !Object.keys(dirtyFields).includes(id))
+          .map(id => (
+            <li key={id}>
+              <Typography color="red">
+                {questions.find(q => q.id.toString() === id)?.title[language as keyof Locales] ??
+                  `Failed to read field id: ${id}`}
+              </Typography>
+            </li>
+          ))}
+      </ul>
+    </Box>
+  )
+}
 
 const RenderSurvey = ({
   questions,
@@ -28,7 +57,7 @@ const RenderSurvey = ({
   submitButtonLoading: boolean
 }) => {
   const { t, i18n } = useTranslation()
-  const { dirtyFields, defaultValues, errors } = useFormState({ control })
+  const { defaultValues } = useFormState({ control })
 
   const { resultData } = useResultData()
   const [showQuestions, setShowQuestions] = useState(Boolean(resultData))
@@ -43,6 +72,8 @@ const RenderSurvey = ({
 
   return (
     <Box sx={cardStyles.outerBox}>
+      {import.meta.env.MODE === 'development' && <ResetForm />}
+
       <Box sx={cardStyles.card}>
         {questions.map(question => (
           <Box key={question.id} sx={cardStyles.card}>
@@ -57,23 +88,9 @@ const RenderSurvey = ({
             )}
           </Box>
         ))}
-        {Object.values(errors).length !== 0 && (
-          <Box sx={{ p: 2 }}>
-            <Typography>{t('questions:requiredQuestionsNeedAnswers')}</Typography>
-            <ul>
-              {requiredFields
-                .filter(id => !Object.keys(dirtyFields).includes(id))
-                .map(id => (
-                  <li key={id}>
-                    <Typography color="red">
-                      {questions.find(q => q.id.toString() === id)?.title[language as keyof Locales] ??
-                        `Failed to read field id: ${id}`}
-                    </Typography>
-                  </li>
-                ))}
-            </ul>
-          </Box>
-        )}
+
+        <RenderErrors control={control} requiredFields={requiredFields} questions={questions} />
+
         <Box sx={formStyles.stackBox}>
           {!showQuestions ? (
             <Button data-cy="open-form-button" onClick={() => setShowQuestions(true)}>
