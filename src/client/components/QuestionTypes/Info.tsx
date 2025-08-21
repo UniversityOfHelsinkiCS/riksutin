@@ -1,23 +1,42 @@
+import { Controller } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { Box, TextField } from '@mui/material'
 
 import type { InputProps } from '@client/types'
 
-const Info = ({ question, defaultValue }: InputProps) => {
+const Text = ({ control, question, defaultValue }: InputProps) => {
+  const { t } = useTranslation()
   if (!question) return null
 
   const props = question.optionData?.attributes ?? {}
 
   return (
-    <Box justifyContent="center">
-      <TextField
-        data-testid={`question-${question.id}`}
-        fullWidth
-        InputProps={props}
-        defaultValue={defaultValue}
-        disabled
-      />
-    </Box>
+    <Controller
+      control={control}
+      name={question.id.toString()}
+      defaultValue={defaultValue}
+      rules={{
+        required: {
+          value: question.id !== 7,
+          message: t('questions:requiredText'),
+        },
+      }}
+      render={({ field: { onChange }, fieldState: { error } }) => (
+        <Box justifyContent="center">
+          <TextField
+            helperText={error ? error.message : null}
+            error={!!error}
+            data-testid={`question-${question.id}`}
+            onChange={onChange}
+            fullWidth
+            InputProps={props}
+            defaultValue={defaultValue}
+            disabled
+          />
+        </Box>
+      )}
+    />
   )
 }
 
-export default Info
+export default Text
