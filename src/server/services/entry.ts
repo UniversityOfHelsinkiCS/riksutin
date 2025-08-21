@@ -45,28 +45,33 @@ export const getEntry = async (entryId: string, userId: string): Promise<Entry> 
 
 export const createEntry = async (userId: string, surveyId: string, body: EntryValues) => {
   const { sessionToken, data, tuhatData } = body
-  const { username, firstName, lastName, email }: EmployeeResponse = data.answers['2']
+  let ownerId = ''
+  if (!data.answers['2']) {
+    ownerId = userId
+  } else {
+    const { username, firstName, lastName, email }: EmployeeResponse = data.answers['2']
 
-  const ownerId =
-    (
-      await User.findOne({
-        where: {
+    ownerId =
+      (
+        await User.findOne({
+          where: {
+            id: username,
+          },
+        })
+      )?.id ??
+      (
+        await User.create({
           id: username,
-        },
-      })
-    )?.id ??
-    (
-      await User.create({
-        id: username,
-        username,
-        firstName,
-        lastName,
-        email,
-        language: '',
-        lastLoggedIn: new Date(),
-        isAdmin: false,
-      })
-    ).id
+          username,
+          firstName,
+          lastName,
+          email,
+          language: '',
+          lastLoggedIn: new Date(),
+          isAdmin: false,
+        })
+      ).id
+  }
 
   const newEntry = await Entry.create({
     surveyId: Number(surveyId),

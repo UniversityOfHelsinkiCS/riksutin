@@ -1,7 +1,7 @@
-import { UseFormWatch } from 'react-hook-form'
+import { UseFormWatch, Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, TextField } from '@mui/material'
 
 import type { Locales, PossibleChoiceTypes, Question } from '@types'
 import type { InputProps } from '@client/types'
@@ -23,6 +23,7 @@ import EmployeeSelect from '../QuestionTypes/EmployeeSelect'
 import SelectTuhatProject from '../Common/TuhatProjectSelect'
 import Info from '../QuestionTypes/Info'
 import { useResultData } from 'src/client/contexts/ResultDataContext'
+import { ORGANISATION_ID } from '@userconfig'
 
 const { cardStyles } = styles
 
@@ -54,6 +55,45 @@ const QuestionText = ({
       </Typography>
     </>
   )
+}
+const CustomText = ({ control, id, title }) => {
+  const { t } = useTranslation()
+  return (
+    <Box sx={cardStyles.questionsContainer}>
+      <Box sx={{ marginBottom: '16px' }}>
+        <Typography component="span" sx={{ color: 'red' }}>
+          {'* '}
+        </Typography>
+        <Typography component="span">{t(title)}</Typography>
+      </Box>
+      <Controller
+        control={control}
+        name={id}
+        defaultValue=""
+        rules={{ required: true }}
+        render={({ field: { onChange }, fieldState: { error } }) => (
+          <Box justifyContent="center">
+            <TextField
+              helperText={error ? error.message : null}
+              data-testid={`question-${id}`}
+              onChange={onChange}
+              fullWidth
+            />
+          </Box>
+        )}
+      />
+    </Box>
+  )
+}
+
+const FacultySelect = ({ control }) => {
+  if (ORGANISATION_ID === 'hy') return <SelectFaculty control={control} />
+  return <CustomText control={control} id="faculty" title="facultySelect:title" />
+}
+
+const UnitSelect = ({ control }) => {
+  if (ORGANISATION_ID === 'hy') return <SelectUnit control={control} />
+  return <CustomText control={control} id="unit" title="unitSelect:title" />
 }
 
 const RenderQuestion = ({ control, watch, question, questions, language }: InputProps) => {
@@ -99,9 +139,10 @@ const RenderQuestion = ({ control, watch, question, questions, language }: Input
   if (!QuestionType) return null
 
   const childQuestions = questions.filter(childQuestion => question.id === childQuestion.parentId)
-  if (question.id === 3) {
+
+  if (question.id === 3 && ORGANISATION_ID === 'hy')
     return <SelectTuhatProject control={control} question={question} watch={watch} />
-  }
+  if (question.id === 2 && ORGANISATION_ID !== 'hy') return <UnitSelect control={control} />
 
   const defaultValue: any = resultData[question.id]
 
@@ -130,8 +171,8 @@ const RenderQuestion = ({ control, watch, question, questions, language }: Input
           ))}
         </QuestionType>
       </Box>
-      {question.id === 1 && <SelectFaculty control={control} />}
-      {question.id === 2 && <SelectUnit control={control} />}
+      {question.id === 1 && <FacultySelect control={control} />}
+      {question.id === 2 && <UnitSelect control={control} />}
     </Box>
   )
 }
