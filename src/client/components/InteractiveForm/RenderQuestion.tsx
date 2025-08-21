@@ -6,7 +6,6 @@ import { Box, Typography } from '@mui/material'
 import type { Locales, PossibleChoiceTypes, Question } from '@types'
 import type { InputProps } from '@client/types'
 
-import useLoggedInUser from '../../hooks/useLoggedInUser'
 import MultiChoice from '../QuestionTypes/MultiChoice'
 import SingleChoice from '../QuestionTypes/SingleChoice'
 import Text from '../QuestionTypes/Text'
@@ -23,6 +22,7 @@ import CountrySelect from '../QuestionTypes/CountrySelect'
 import EmployeeSelect from '../QuestionTypes/EmployeeSelect'
 import SelectTuhatProject from '../Common/TuhatProjectSelect'
 import Info from '../QuestionTypes/Info'
+import { useResultData } from 'src/client/contexts/ResultDataContext'
 
 const { cardStyles } = styles
 
@@ -58,7 +58,7 @@ const QuestionText = ({
 
 const RenderQuestion = ({ control, watch, question, questions, language }: InputProps) => {
   const { countries, isLoading } = useCountries()
-  const { user } = useLoggedInUser()
+  const { resultData } = useResultData()
 
   if (isLoading || !question || !questions || !watch || !countries) return null
 
@@ -99,7 +99,12 @@ const RenderQuestion = ({ control, watch, question, questions, language }: Input
   if (!QuestionType) return null
 
   const childQuestions = questions.filter(childQuestion => question.id === childQuestion.parentId)
-  if (question.id === 3) return <SelectTuhatProject control={control} question={question} watch={watch} />
+  if (question.id === 3) {
+    return <SelectTuhatProject control={control} question={question} watch={watch} />
+  }
+
+  const defaultValue: any = resultData[question.id]
+
   return (
     <Box>
       <Box sx={cardStyles.questionsContainer}>
@@ -111,7 +116,7 @@ const RenderQuestion = ({ control, watch, question, questions, language }: Input
           language={language}
           selectedCountry={selectedCountryCode}
           watch={watch}
-          defaultValue={question.id === 1 ? `${user?.firstName} ${user?.lastName}` : ''}
+          defaultValue={defaultValue ? defaultValue : ''}
         >
           {childQuestions?.map(children => (
             <RenderQuestion
