@@ -21,7 +21,7 @@ const sortFaculties = (faculties: FacultyOrUnit[]) => {
 
 const { cardStyles } = styles
 
-const FacultyInfo = ({ faculty }: { faculty: FacultyOrUnit | undefined }) => {
+const FacultyInfo = ({ faculty }: { faculty: FacultyOrUnit | null }) => {
   const { t, i18n } = useTranslation()
   const { language } = i18n
 

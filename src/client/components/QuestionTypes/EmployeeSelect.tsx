@@ -11,9 +11,16 @@ import useEmployee from '../../hooks/useEmployeeData'
 import ShowMore from '../Common/ShowMore'
 import LoadingProgress from '../Common/LoadingProgress'
 
+type Option = {
+  username: string
+  firstName: string
+  lastName: string
+  email: string
+}
+
 const EmployeeSelect = ({ control, question }: InputProps) => {
   const [input, setInput] = useState('')
-  const { data = [] } = useEmployee(input)
+  const { data: employees = [] } = useEmployee(input)
 
   const { t, i18n } = useTranslation()
   const { language } = i18n
@@ -29,21 +36,25 @@ const EmployeeSelect = ({ control, question }: InputProps) => {
         <Controller
           control={control}
           name={question.id.toString()}
-          defaultValue=""
+          defaultValue={input}
           rules={{
             required: { value: true, message: t('questions:requiredText') },
           }}
-          render={({ field: { onChange }, fieldState: { error } }) => (
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
             <Box>
               <Autocomplete
                 disablePortal
                 id={`select-${question.id.toString()}`}
-                options={data}
-                getOptionLabel={option => `${option.firstName} ${option.lastName} (${option.email})`}
+                options={employees}
+                getOptionLabel={(option: Option | null) =>
+                  option ? `${option.firstName} ${option.lastName} (${option.email})` : ''
+                }
                 noOptionsText={'Aloita syöte saadaksesi ehdotuksia'}
                 loadingText={<LoadingProgress />}
                 onChange={(e, data) => onChange(data)}
                 sx={{ width: '50%' }}
+                value={value}
+                isOptionEqualToValue={(option, value) => option.username === value?.username}
                 renderInput={params => (
                   <TextField
                     helperText={error ? error.message : null}
