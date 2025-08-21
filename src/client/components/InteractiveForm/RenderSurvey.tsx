@@ -30,8 +30,6 @@ const RenderSurvey = ({
   const { t, i18n } = useTranslation()
   const { dirtyFields, defaultValues, errors } = useFormState({ control })
 
-  console.log('default', defaultValues)
-
   const { resultData } = useResultData()
   const [showQuestions, setShowQuestions] = useState(Boolean(resultData))
 

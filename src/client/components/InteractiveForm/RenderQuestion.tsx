@@ -10,7 +10,6 @@ import useLoggedInUser from '../../hooks/useLoggedInUser'
 import MultiChoice from '../QuestionTypes/MultiChoice'
 import SingleChoice from '../QuestionTypes/SingleChoice'
 import Text from '../QuestionTypes/Text'
-import Info from '../QuestionTypes/Info'
 import ShowMore from '../Common/ShowMore'
 
 import styles from '../../styles'
@@ -23,6 +22,7 @@ import HighRiskCountrySelect from '../QuestionTypes/HighRiskCountriesSelect'
 import CountrySelect from '../QuestionTypes/CountrySelect'
 import EmployeeSelect from '../QuestionTypes/EmployeeSelect'
 import SelectTuhatProject from '../Common/TuhatProjectSelect'
+import Info from '../QuestionTypes/Info'
 
 const { cardStyles } = styles
 
@@ -91,7 +91,7 @@ const RenderQuestion = ({ control, watch, question, questions, language }: Input
     organisationSelect: OrganisationSelect,
     universitySelect: UniversitySelect,
     highRiskCountrySelect: HighRiskCountrySelect,
-    noneditable: Text,
+    noneditable: Info,
   }
 
   const QuestionType = components[question.optionData.type]

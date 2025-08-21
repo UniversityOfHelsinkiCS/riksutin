@@ -34,14 +34,13 @@ const InteractiveForm = () => {
 
   const { formStyles } = styles
 
-  console.log('result data', resultData)
-
   const { handleSubmit, control, watch } = useForm({
     mode: 'onSubmit',
     shouldUnregister: true,
     defaultValues: resultData,
   })
 
+  // eslint-disable-next-line no-console
   console.log(watch())
 
   usePersistForm({ value: watch(), sessionStorageKey: FORM_DATA_KEY })
