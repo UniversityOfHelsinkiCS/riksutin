@@ -34,6 +34,8 @@ const InteractiveForm = () => {
 
   const { formStyles } = styles
 
+  console.log('result data', resultData)
+
   const { handleSubmit, control, watch } = useForm({
     mode: 'onSubmit',
     shouldUnregister: true,
