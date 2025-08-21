@@ -30,7 +30,7 @@ const InteractiveForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [submitButtonLoading, setSubmitButtonLoading] = useState(false)
 
-  const { resultData, setResultData } = useResultData()
+  const { resultData } = useResultData()
 
   const { formStyles } = styles
 
@@ -51,10 +51,10 @@ const InteractiveForm = () => {
     setSubmitButtonLoading(true)
     const tuhatData = sessionStorage.getItem(TUHAT_DATA_STORAGE_KEY) ?? '{}'
     const submittedData = { formData: data, tuhatData: JSON.parse(tuhatData) }
-    setResultData(data)
     try {
       const createdData = await mutation.mutateAsync(submittedData)
       setIsSubmitted(true)
+      sessionStorage.clear()
       navigate(`/user/${createdData.id}`)
     } catch (error) {
       // eslint-disable-next-line no-console
