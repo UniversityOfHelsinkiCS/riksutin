@@ -1,6 +1,7 @@
-import type { Faculty } from '@types'
+import type { FacultyOrUnit } from '@types'
 import { inDevelopment, inE2EMode } from '@config'
 import mockFaculty from '../mocs/faculty'
+import mockUnit from '../mocs/unit'
 import mockEmployee from '../mocs/employee'
 
 import {
@@ -10,8 +11,8 @@ import {
   getUserOrganisations,
 } from '../util/organisations'
 
-export const getUnits = async (): Promise<Faculty[]> => {
-  if (inDevelopment || inE2EMode) return mockFaculty
+export const getUnits = async (): Promise<FacultyOrUnit[]> => {
+  if (inDevelopment || inE2EMode) return mockUnit
 
   const unitData = (await getUnitData()) || []
 
@@ -20,7 +21,7 @@ export const getUnits = async (): Promise<Faculty[]> => {
   return units
 }
 
-export const getFaculties = async (): Promise<Faculty[]> => {
+export const getFaculties = async (): Promise<FacultyOrUnit[]> => {
   if (inDevelopment || inE2EMode) return mockFaculty
 
   const organisationData = (await getOrganisationData()) || []
@@ -30,7 +31,7 @@ export const getFaculties = async (): Promise<Faculty[]> => {
   return faculties
 }
 
-export const getUserFaculties = async (userId: string, iamGroups: string[]): Promise<Faculty[]> => {
+export const getUserFaculties = async (userId: string, iamGroups: string[]): Promise<FacultyOrUnit[]> => {
   if (inDevelopment || inE2EMode) return mockFaculty
 
   if (!userId) return []

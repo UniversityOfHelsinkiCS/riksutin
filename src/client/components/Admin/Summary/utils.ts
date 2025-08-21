@@ -1,11 +1,11 @@
-import type { Faculty, Question } from '@types'
+import type { FacultyOrUnit, Question } from '@types'
 import type { Entry } from '@client/types'
 
 export type TableValues = {
   [key: string]: string | undefined
 }
 
-const createTableData = (entries: Entry[], questions: Question[], faculties: Faculty[]) => {
+const createTableData = (entries: Entry[], questions: Question[], faculties: FacultyOrUnit[]) => {
   const multiChoiceQuestions = questions
     .filter(question => {
       return question.optionData.type === 'multipleChoice' || question.optionData.type === 'highRiskCountrySelect'

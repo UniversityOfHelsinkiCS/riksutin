@@ -9,7 +9,7 @@ import { Page, Text, View, Document } from '@react-pdf/renderer'
 import { ComponentProvider } from '@resultRenderer/context'
 import RiskTable from '@resultRenderer/RiskTable'
 import RenderAnswers from '@resultRenderer/RenderAnswers'
-import { Faculty, RiskData } from '@types'
+import { FacultyOrUnit, RiskData } from '@types'
 import i18n from '../util/i18n'
 import { TFunction } from 'i18next'
 import { DEFAULT_SURVEY_NAME, supportEmail } from '@config'
@@ -69,8 +69,8 @@ const ResultDocument = ({
   results: Result[]
   survey: any
   resultData: any
-  faculties: Faculty[]
-  units: Faculty[]
+  faculties: FacultyOrUnit[]
+  units: FacultyOrUnit[]
   t: TFunction
 }) => {
   const { country } = entry

@@ -3,7 +3,7 @@ import { Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Box, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material'
 
-import type { Faculty, Locales } from '@types'
+import type { FacultyOrUnit, Locales } from '@types'
 import type { InputProps } from '@client/types'
 
 import useFaculties from '../../hooks/useFaculties'
@@ -15,13 +15,13 @@ import { extraOrganisations, organisationInfos } from '@common/organisations'
 
 import styles from '../../styles'
 
-const sortFaculties = (faculties: Faculty[]) => {
+const sortFaculties = (faculties: FacultyOrUnit[]) => {
   return faculties.sort((a, b) => a.code?.localeCompare(b.code) ?? 0)
 }
 
 const { cardStyles } = styles
 
-const FacultyInfo = ({ faculty }: { faculty: Faculty | undefined }) => {
+const FacultyInfo = ({ faculty }: { faculty: FacultyOrUnit | undefined }) => {
   const { t, i18n } = useTranslation()
   const { language } = i18n
 
@@ -44,7 +44,7 @@ const FacultyInfo = ({ faculty }: { faculty: Faculty | undefined }) => {
 const SelectFaculty = ({ control }: InputProps) => {
   const { t, i18n } = useTranslation()
   const { language } = i18n
-  const [faculty, setFaculty] = useState<Faculty>()
+  const [faculty, setFaculty] = useState<FacultyOrUnit>()
   const { faculties, isLoading: facultiesLoading } = useFaculties()
   const { userFaculties, isLoading: userFacultiesLoading } = useUserFaculties()
 
@@ -75,7 +75,7 @@ const SelectFaculty = ({ control }: InputProps) => {
           <FormControl sx={{ minWidth: 200 }}>
             <InputLabel>{t('facultySelect:inputLabel')}</InputLabel>
             <Select data-cy="faculty-select" label={t('facultySelect:inputLabel')} {...field}>
-              {organisations.map((f: Faculty) => (
+              {organisations.map((f: FacultyOrUnit) => (
                 <MenuItem
                   data-cy={`faculty-option-${f.code}`}
                   key={f.code}

@@ -32,7 +32,7 @@ export type CountryData = {
   ruleOfLaw: number
 }
 
-export interface Faculty {
+export interface FacultyOrUnit {
   code: string
   name: Locales
 }

@@ -1,63 +1,41 @@
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Box, Autocomplete, TextField, Typography } from '@mui/material'
 
-import type { Faculty, Locales } from '@types'
+import type { FacultyOrUnit, Locales } from '@types'
 import type { InputProps } from '@client/types'
 
 import useUnits from '../../hooks/useUnits'
-import useUserFaculties from '../../hooks/useUserFaculties'
 
-import ShowMore from './ShowMore'
-
-import { extraOrganisations, organisationInfos } from '@common/organisations'
+import { extraOrganisations } from '@common/organisations'
 
 import styles from '../../styles'
+import { useResultData } from 'src/client/contexts/ResultDataContext'
 
-const sortFaculties = (faculties: Faculty[]) => {
+const sortFaculties = (faculties: FacultyOrUnit[]) => {
   return faculties.sort((a, b) => a.code?.localeCompare(b.code) ?? 0)
 }
 
 const { cardStyles } = styles
 
-const FacultyInfo = ({ faculty }: { faculty: Faculty | undefined }) => {
-  const { t, i18n } = useTranslation()
-  const { language } = i18n
-
-  if (!faculty) return null
-
-  const facultyInfo = organisationInfos.find(info => info.code === faculty?.code)
-
-  if (!facultyInfo?.info[language as keyof Locales]) return null
-
-  return (
-    <Box sx={cardStyles.content}>
-      <Typography component="div">
-        {t('unitSelect:infoMessage')}
-        <ShowMore text={facultyInfo.info[language as keyof Locales]} />
-      </Typography>
-    </Box>
-  )
-}
-
 const SelectUnit = ({ control }: InputProps) => {
   const { t, i18n } = useTranslation()
   const { language } = i18n
-  const [faculty, setFaculty] = useState<Faculty>()
-  const { faculties, isLoading: facultiesLoading } = useUnits()
-  const { userFaculties, isLoading: userFacultiesLoading } = useUserFaculties()
+  const [unit, setUnit] = useState<string>()
+  const { faculties: units, isLoading: unitsLoading } = useUnits()
+  const { resultData } = useResultData()
 
   useEffect(() => {
-    if (userFacultiesLoading || !userFaculties) return
+    setUnit(resultData.unit)
+  }, [resultData])
 
-    setFaculty(userFaculties[0])
-  }, [userFaculties, userFacultiesLoading])
+  if (unitsLoading || !units) return null
 
-  if (facultiesLoading || !faculties || userFacultiesLoading || !userFaculties) return null
+  const selectedUnit = units.find(u => u.code === unit)
 
-  const sortedFaculties = sortFaculties(faculties)
-  const organisations = sortedFaculties.concat(extraOrganisations)
+  const sortedUnits = sortFaculties(units)
+  const organisations = sortedUnits.concat(extraOrganisations)
 
   return (
     <Box sx={cardStyles.questionsContainer}>
@@ -70,7 +48,7 @@ const SelectUnit = ({ control }: InputProps) => {
       <Controller
         control={control}
         name="unit"
-        defaultValue=""
+        defaultValue={unit}
         rules={{ required: true }}
         render={({ field: { onChange }, fieldState: { error } }) => (
           <Box justifyContent="center">
@@ -81,8 +59,8 @@ const SelectUnit = ({ control }: InputProps) => {
               getOptionLabel={option => `${option.code} - ${option.name[language as keyof Locales]}`}
               onChange={(e, data) => {
                 onChange(data?.code)
-                setFaculty(data ?? undefined)
               }}
+              value={selectedUnit}
               sx={{ width: '50%' }}
               renderInput={params => (
                 <TextField
@@ -96,7 +74,6 @@ const SelectUnit = ({ control }: InputProps) => {
           </Box>
         )}
       />
-      <FacultyInfo faculty={faculty} />
     </Box>
   )
 }

@@ -1,13 +1,13 @@
 import { useQuery } from 'react-query'
 
-import { Faculty } from '@types'
+import { FacultyOrUnit } from '@types'
 
 import apiClient from '../util/apiClient'
 
 const useUserFaculties = () => {
   const queryKey = 'userFaculties'
 
-  const query = async (): Promise<Faculty[]> => {
+  const query = async (): Promise<FacultyOrUnit[]> => {
     const { data } = await apiClient.get('/faculties/user')
 
     return data

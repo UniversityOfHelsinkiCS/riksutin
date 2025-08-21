@@ -1,6 +1,6 @@
-import type { Faculty } from '@types'
+import type { FacultyOrUnit } from '@types'
 
-export const extraOrganisations: Faculty[] = [
+export const extraOrganisations: FacultyOrUnit[] = [
   {
     code: 'OTHER',
     name: {

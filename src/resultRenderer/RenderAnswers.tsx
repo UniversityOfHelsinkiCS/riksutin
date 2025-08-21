@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react'
 
-import type { Faculty, FormValues, Locales } from '@types'
+import type { FacultyOrUnit, FormValues, Locales } from '@types'
 import type { Survey } from '@client/types'
 
 import { extraOrganisations } from '@common/organisations'
@@ -16,8 +16,8 @@ const RenderAnswers = ({
 }: {
   survey: Survey
   resultData: FormValues
-  faculties: Faculty[]
-  units: Faculty[]
+  faculties: FacultyOrUnit[]
+  units: FacultyOrUnit[]
 }) => {
   const { Div, Typography, t, language } = useComponents()
 
