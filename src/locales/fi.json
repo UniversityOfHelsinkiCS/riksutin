@@ -22,7 +22,7 @@
     "infoMessage": "Tietoa yksikkösi ohjeistuksesta"
   },
   "tuhatProjectNotFound": {
-    "text": "Projektin omistajalle ei löytynyt olemassa olevia projekteja TUHAT-järjestelmästä."
+    "defineProjectOwner": "Täytä Projektin omistaja -kenttä ensin saadaksesi projektivaihtoehdot näkyviin."
   },
   "tuhatProjectExists": {
     "title": "Onko projekti tallennettu TUHAT-järjestelmään?"

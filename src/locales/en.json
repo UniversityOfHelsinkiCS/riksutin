@@ -23,7 +23,7 @@
     "infoMessage": "Information about the owner's unit's guidelines"
   },
   "tuhatProjectNotFound": {
-    "text": "No projects was found based on the project owner from TUHAT system."
+    "defineProjectOwner": "Please, fill Project owner field to enable the project options."
   },
   "tuhatProjectExists": {
     "title": "Is the project saved in the TUHAT system?",

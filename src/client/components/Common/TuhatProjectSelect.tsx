@@ -55,7 +55,25 @@ const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
   }, [projectOwnerField])
 
   if (!question || !watch || !control) return null
-  if (tuhatProjectsLoading || tuhatProjects === undefined || tuhatProjects?.length === 0) {
+
+  if (tuhatProjectsLoading || tuhatProjects === undefined) {
+    return (
+      <Box sx={cardStyles.questionsContainer}>
+        <Box sx={{ marginBottom: '16px' }}>
+          <Typography component="span" sx={{ color: 'red' }}>
+            {'* '}
+          </Typography>
+          <Typography component="span">{question.title[language as keyof Locales]}</Typography>
+        </Box>
+        <Box>
+          <Typography component="span" fontStyle={'italic'}>
+            {t('tuhatProjectNotFound:defineProjectOwner')}
+          </Typography>
+        </Box>
+      </Box>
+    )
+  }
+  if (tuhatProjects?.length === 0) {
     return (
       <Box sx={cardStyles.questionsContainer}>
         <Box sx={{ marginBottom: '16px' }}>
