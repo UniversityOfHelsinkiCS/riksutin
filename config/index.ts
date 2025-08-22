@@ -19,7 +19,7 @@ export const EMPLOYEE_API_TOKEN = process.env.EMPLOYEE_API_TOKEN ?? ''
 export const TUHAT_API_TOKEN = process.env.TUHAT_API_TOKEN ?? ''
 export const HDR_API_TOKEN = process.env.HDR_API_TOKEN ?? ''
 
-export const ORGANISATION_ID = process.env.ORGANISATION_ID ?? ''
+export const ORGANISATION_ID = process.env.ORGANISATION_ID ?? 'hy'
 
 //Hy related
 export const JAMI_URL = inProduction
