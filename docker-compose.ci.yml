@@ -9,6 +9,7 @@ services:
         - NPM_COMMAND=start:test
     environment:
       - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
+      - ORGANISATION_ID=hy
     volumes:
       - ./:/opt/app-root/src
     ports:
