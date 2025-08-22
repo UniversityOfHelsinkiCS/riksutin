@@ -21,6 +21,8 @@ export const HDR_API_TOKEN = process.env.HDR_API_TOKEN ?? ''
 
 export const ORGANISATION_ID = process.env.ORGANISATION_ID ?? ''
 
+console.log('ORGANISATION_ID', ORGANISATION_ID)
+
 //Hy related
 export const JAMI_URL = inProduction
   ? 'https://api-toska.apps.ocp-prod-0.k8s.it.helsinki.fi/jami/'
