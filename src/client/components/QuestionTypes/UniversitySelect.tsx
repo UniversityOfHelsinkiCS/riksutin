@@ -80,7 +80,7 @@ const UniversitySelect = ({ control, question, selectedCountry }: InputProps) =>
           rules={{
             required: { value: true, message: t('questions:requiredText') },
           }}
-          render={({ field: { onChange }, fieldState: { error } }) =>
+          render={({ field: { onChange, value }, fieldState: { error } }) =>
             showUniversityList ? (
               <Box>
                 <Autocomplete
@@ -90,6 +90,7 @@ const UniversitySelect = ({ control, question, selectedCountry }: InputProps) =>
                   getOptionLabel={option => option}
                   onChange={(e, data) => onChange(data)}
                   sx={{ width: '50%' }}
+                  value={value}
                   renderInput={params => (
                     <TextField
                       helperText={error ? error.message : null}
