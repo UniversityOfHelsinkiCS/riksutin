@@ -28,10 +28,7 @@ export const getCountryData = async (code: string | undefined): Promise<CountryD
   const universities = await getCountryUniversities(countryName)
   const sanctions = await fetchSanctionsData(code)
   const ruleOfLaw = parseRuleOfLaw(countryName)
-  const academicfreedom = parseAcademicFreedom(code)
-  const academicfreedom2 = getAcademicFreedom(countryId)
-
-  console.log(academicfreedom, academicfreedom2)
+  const academicfreedom = getAcademicFreedom(countryId)
 
   return {
     code,
