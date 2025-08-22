@@ -140,7 +140,7 @@ const RenderQuestion = ({ control, watch, question, questions, language }: Input
 
   const childQuestions = questions.filter(childQuestion => question.id === childQuestion.parentId)
   // eslint-disable-next-line no-console
-  console.log(ORGANISATION_ID)
+  console.log('debug', ORGANISATION_ID)
   if (question.id === 3 && ORGANISATION_ID === 'hy')
     return <SelectTuhatProject control={control} question={question} watch={watch} />
   if (question.id === 2 && ORGANISATION_ID !== 'hy') return <UnitSelect control={control} />
