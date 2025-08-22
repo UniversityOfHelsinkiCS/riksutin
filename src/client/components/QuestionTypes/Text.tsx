@@ -10,6 +10,8 @@ const Text = ({ control, question, defaultValue }: InputProps) => {
 
   const props = question.optionData?.attributes ?? {}
 
+  console.log(question)
+
   return (
     <Controller
       control={control}
@@ -21,7 +23,7 @@ const Text = ({ control, question, defaultValue }: InputProps) => {
           message: t('questions:requiredText'),
         },
       }}
-      render={({ field: { onChange }, fieldState: { error } }) => (
+      render={({ field: { onChange, value }, fieldState: { error } }) => (
         <Box justifyContent="center">
           <TextField
             helperText={error ? error.message : null}
@@ -31,6 +33,7 @@ const Text = ({ control, question, defaultValue }: InputProps) => {
             fullWidth
             InputProps={props}
             defaultValue={defaultValue}
+            value={value}
           />
         </Box>
       )}

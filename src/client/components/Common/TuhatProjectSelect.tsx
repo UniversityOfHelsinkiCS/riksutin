@@ -168,13 +168,14 @@ const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
             },
           }}
           defaultValue={''}
-          render={({ field: { onChange }, fieldState: { error } }) => (
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
             <Box justifyContent="center">
               <TextField
                 helperText={error ? error.message : null}
                 error={!!error}
                 data-testid={'question-tuhatProjText'}
                 onChange={onChange}
+                value={value}
                 fullWidth
                 placeholder={question.text[language as keyof Locales]}
               />
