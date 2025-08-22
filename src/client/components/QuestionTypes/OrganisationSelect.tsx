@@ -41,7 +41,7 @@ const OrganisationList = ({
         rules={{
           required: { value: true, message: t('questions:requiredText') },
         }}
-        render={({ field: { onChange }, fieldState: { error } }) => (
+        render={({ field: { onChange, value }, fieldState: { error } }) => (
           <Box justifyContent="center">
             <Autocomplete
               disablePortal
@@ -50,6 +50,7 @@ const OrganisationList = ({
               getOptionLabel={option => option}
               onChange={(e, data) => onChange(data)}
               sx={{ width: '50%' }}
+              value={value}
               renderInput={params => (
                 <TextField
                   helperText={error ? error.message : null}
@@ -71,15 +72,19 @@ const OrganisationSelect = ({ control, question, children, watch }: InputProps) 
 
   const input = watch(question.id.toString())
 
+  const selection = watch('selectOrganisation')
+
   return (
     <>
       <Controller
         control={control}
         name={question.id.toString()}
         defaultValue=""
-        render={({ field: { onChange } }) => (
+        render={({ field: { onChange, value } }) => (
           <Box justifyContent="center">
-            <TextField data-testid={`question-${question.id}`} onChange={onChange} fullWidth />
+            {!selection && (
+              <TextField data-testid={`question-${question.id}`} onChange={onChange} fullWidth value={value} />
+            )}
           </Box>
         )}
       />

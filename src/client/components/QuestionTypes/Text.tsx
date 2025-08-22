@@ -10,8 +10,6 @@ const Text = ({ control, question, defaultValue }: InputProps) => {
 
   const props = question.optionData?.attributes ?? {}
 
-  console.log(question)
-
   return (
     <Controller
       control={control}
