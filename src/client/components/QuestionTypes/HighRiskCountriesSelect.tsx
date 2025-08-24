@@ -22,7 +22,6 @@ const HighRiskCountrySelect = ({ control, question, children }: InputProps) => {
       <Controller
         control={control}
         name={question.id.toString()}
-        defaultValue=""
         render={({ field: { onChange, value }, fieldState: { error } }) => (
           <Box justifyContent="center">
             <Autocomplete
