@@ -48,7 +48,9 @@
     "addUniversityManually": "Lisää yliopisto itse",
     "returnToListing": "Palaa listaukseen",
     "requiredText": "Pakollinen kysymys",
-    "requiredQuestionsNeedAnswers": "Vastaa seuraaviin pakollisiin kysymyksiin:"
+    "requiredQuestionsNeedAnswers": "Vastaa seuraaviin pakollisiin kysymyksiin:",
+    "fillerIsOwner": "Täyttäjä on omistaja",
+    "startWriting": "Aloita syöte saadaksesi ehdotuksia"
   },
   "riskTable": {
     "countryRiskLevel": "Maan riskitaso",

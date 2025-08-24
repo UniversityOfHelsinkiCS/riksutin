@@ -51,7 +51,9 @@
     "addUniversityManually": "Add university manually",
     "returnToListing": "Return to listing",
     "requiredText": "Required",
-    "requiredQuestionsNeedAnswers": "Answer the following required questions:"
+    "requiredQuestionsNeedAnswers": "Answer the following required questions:",
+    "fillerIsOwner": "Responder is the owner",
+    "startWriting": "Start writing to see proposals"    
   },
   "riskTable": {
     "countryRiskLevel": "Risk level of the partner country",

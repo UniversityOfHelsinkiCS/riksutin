@@ -56,6 +56,7 @@ const QuestionText = ({
     </>
   )
 }
+
 const CustomText = ({ control, id, title }) => {
   const { t } = useTranslation()
   return (
