@@ -18,7 +18,15 @@ facultyRouter.get('/units', async (req, res) => {
   return res.send(units)
 })
 
-facultyRouter.get('/user', async (req: RequestWithUser, res: any) => {
+const ensureAuthenticated = (req, res, next) => {
+  if (!req.user) {
+    return res.status(401).send('Unauthorized')
+  }
+
+  next()
+}
+
+facultyRouter.get('/user', ensureAuthenticated, async (req: RequestWithUser, res: any) => {
   const { id, iamGroups = [] } = req.user
 
   const faculties = await getUserFaculties(id, iamGroups)
