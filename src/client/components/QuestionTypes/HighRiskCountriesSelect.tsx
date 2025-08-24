@@ -23,26 +23,23 @@ const HighRiskCountrySelect = ({ control, question, children }: InputProps) => {
         control={control}
         name={question.id.toString()}
         defaultValue=""
-        render={({ field: { onChange }, fieldState: { error } }) => (
+        render={({ field: { onChange, value }, fieldState: { error } }) => (
           <Box justifyContent="center">
             <Autocomplete
               multiple
               disablePortal
               id={`select-${question.id.toString()}`}
-              options={countries.map((country) => country.name)}
-              getOptionLabel={(option) => option}
+              options={countries.map(country => country.name)}
+              getOptionLabel={option => option}
               onChange={(e, data) => onChange(data)}
               sx={{ width: '50%' }}
-              renderInput={(params) => (
+              value={value}
+              renderInput={params => (
                 <TextField
                   helperText={error ? error.message : null}
                   error={!!error}
                   {...params}
-                  label={
-                    question.optionData.label
-                      ? question.optionData.label[language as keyof Locales]
-                      : ''
-                  }
+                  label={question.optionData.label ? question.optionData.label[language as keyof Locales] : ''}
                 />
               )}
             />
