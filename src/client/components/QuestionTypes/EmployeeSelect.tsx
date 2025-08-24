@@ -19,7 +19,7 @@ type Option = {
   email: string
 }
 
-const EmployeeSelect = ({ control, question }: InputProps) => {
+const EmployeeSelect = ({ control, question, watch }: InputProps) => {
   const [input, setInput] = useState('')
   const { data: employees = [] } = useEmployee(input)
 
@@ -28,7 +28,17 @@ const EmployeeSelect = ({ control, question }: InputProps) => {
 
   const { user, isLoading } = useLoggedInUser()
 
-  if (!question || isLoading) return null
+  if (!question || isLoading || !user) return null
+
+  // for requires these values
+  const loggedUserForForm = {
+    ...user,
+    username: user.id,
+    id: user.username,
+  }
+
+  const selection = watch ? watch()[question.id] : undefined
+  const meSelected = selection && selection.username === loggedUserForForm.username
 
   return (
     <>
@@ -71,7 +81,12 @@ const EmployeeSelect = ({ control, question }: InputProps) => {
                 />
               </Box>
               <Box flex={1}>
-                <Button variant="contained" color="primary" onClick={() => onChange(user)} sx={{ height: '56px' }}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => onChange(loggedUserForForm)}
+                  sx={{ height: '56px', visibility: meSelected ? 'hidden' : '' }}
+                >
                   {t('questions:fillerIsOwner')}
                 </Button>
               </Box>
