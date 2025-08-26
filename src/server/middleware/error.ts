@@ -8,12 +8,7 @@ import logger from '../util/logger'
 
 import ZodValidationError from '../errors/ValidationError'
 
-const errorHandler = (
-  error: Error,
-  _req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const errorHandler = (error: Error, _req: Request, res: Response, next: NextFunction) => {
   logger.error(`${error.message} ${error.name} ${error.stack}`)
 
   if (inProduction) Sentry.captureException(error)
@@ -26,9 +21,7 @@ const errorHandler = (
   }
 
   if (error.name === 'SequelizeValidationError') {
-    return res
-      .status(400)
-      .send({ error: error.message, data: (error as ValidationError).errors })
+    return res.status(400).send({ error: error.message, data: (error as ValidationError).errors })
   }
 
   if (error.name === 'SequelizeUniqueConstraintError') {

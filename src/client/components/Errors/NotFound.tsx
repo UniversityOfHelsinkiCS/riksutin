@@ -16,14 +16,9 @@ const NotFound = () => {
           NOT FOUND (404)
         </Typography>
         <Typography variant="h6">
-          Sorry, but the page cannot be found. The page may have been moved or
-          deleted.
+          Sorry, but the page cannot be found. The page may have been moved or deleted.
         </Typography>
-        <Button
-          sx={{ mt: 4 }}
-          variant="contained"
-          onClick={() => navigate('/')}
-        >
+        <Button sx={{ mt: 4 }} variant="contained" onClick={() => navigate('/')}>
           Back Home
         </Button>
       </Container>

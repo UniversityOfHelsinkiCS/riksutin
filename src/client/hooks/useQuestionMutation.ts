@@ -1,10 +1,6 @@
 import { useMutation } from 'react-query'
 
-import {
-  NewQuestion,
-  UpdatedQuestion,
-  UpdatedQuestionLocation,
-} from '@validators/questions'
+import { NewQuestion, UpdatedQuestion, UpdatedQuestionLocation } from '@validators/questions'
 
 import apiClient from '../util/apiClient'
 import queryClient from '../util/queryClient'
@@ -44,9 +40,7 @@ export const useEditQuestionMutation = (questionId: number) => {
   return mutation
 }
 
-export const useEditQuestionPriorityMutation = (
-  questionId: number | undefined
-) => {
+export const useEditQuestionPriorityMutation = (questionId: number | undefined) => {
   const { survey } = useSurvey()
 
   const mutationFn = async (data: UpdatedQuestionLocation) => {

@@ -1,9 +1,4 @@
-import {
-  NewResult,
-  NewResultZod,
-  UpdatedResult,
-  UpdatedResultZod,
-} from '@validators/results'
+import { NewResult, NewResultZod, UpdatedResult, UpdatedResultZod } from '@validators/results'
 import { Result, Survey } from '@dbmodels'
 
 import NotFoundError from '../errors/NotFoundError'
@@ -19,22 +14,19 @@ export const getResults = async (surveyId: string): Promise<Result[]> => {
   return results
 }
 
-export const createResult = async (
-  surveyId: string,
-  newResultValues: NewResult
-): Promise<Result> => {
+export const createResult = async (surveyId: string, newResultValues: NewResult): Promise<Result> => {
   const survey = await Survey.findByPk(surveyId)
 
-  if (!survey)
+  if (!survey) {
     throw new NotFoundError('Survey not found while creating a new result')
+  }
 
   const request = NewResultZod.safeParse(newResultValues)
 
-  if (!request.success)
-    throw new ZodValidationError(
-      'Validation of the new result inputs failed',
-      request.error.issues
-    )
+  if (!request.success) {
+    throw new ZodValidationError('Validation of the new result inputs failed', request.error.issues)
+  }
+
   const { data } = request
 
   const newResult = await Result.create({
@@ -45,21 +37,17 @@ export const createResult = async (
   return newResult
 }
 
-export const updateResult = async (
-  resultId: string,
-  updatedResultValues: UpdatedResult
-): Promise<Result> => {
+export const updateResult = async (resultId: string, updatedResultValues: UpdatedResult): Promise<Result> => {
   const result = await Result.findByPk(resultId)
 
   if (!result) throw new NotFoundError('Result to update not found')
 
   const request = UpdatedResultZod.safeParse(updatedResultValues)
 
-  if (!request.success)
-    throw new ZodValidationError(
-      'Validation of the update result inputs failed',
-      request.error.issues
-    )
+  if (!request.success) {
+    throw new ZodValidationError('Validation of the update result inputs failed', request.error.issues)
+  }
+
   const { data } = request
 
   Object.assign(result, data)

@@ -16,14 +16,9 @@ const Error = () => {
           UNEXPECTED ERROR
         </Typography>
         <Typography variant="h6">
-          Sorry, but something unexpected went wrong loading your page. We are
-          looking into the issue.
+          Sorry, but something unexpected went wrong loading your page. We are looking into the issue.
         </Typography>
-        <Button
-          sx={{ mt: 4 }}
-          variant="contained"
-          onClick={() => navigate('/')}
-        >
+        <Button sx={{ mt: 4 }} variant="contained" onClick={() => navigate('/')}>
           Back Home
         </Button>
       </Container>

@@ -7,28 +7,15 @@ import { enqueueSnackbar } from 'notistack'
 import type { Locales, Question } from '@types'
 import { UpdatedQuestion } from '@validators/questions'
 
-import {
-  useDeleteQuestionMutation,
-  useEditQuestionMutation,
-} from '../../../hooks/useQuestionMutation'
+import { useDeleteQuestionMutation, useEditQuestionMutation } from '../../../hooks/useQuestionMutation'
 
 import DeleteDialog from '../DeleteDialog'
 
-const QuestionItem = ({
-  language,
-  question,
-}: {
-  language: keyof Locales
-  question: Question
-}) => {
+const QuestionItem = ({ language, question }: { language: keyof Locales; question: Question }) => {
   const { t } = useTranslation()
   const mutation = useEditQuestionMutation(question.id)
-  const [questionTitle, setQuestionTitle] = useState<string | undefined>(
-    question.title[language]
-  )
-  const [questionText, setQuestionText] = useState<string | undefined>(
-    question.text[language]
-  )
+  const [questionTitle, setQuestionTitle] = useState<string | undefined>(question.title[language])
+  const [questionText, setQuestionText] = useState<string | undefined>(question.text[language])
 
   useEffect(() => {
     setQuestionTitle(question.title[language])
@@ -73,12 +60,7 @@ const QuestionItem = ({
           {t('admin:questionTitle')}
           <Typography ml={1}>{language}</Typography>
         </Typography>
-        <MDEditor
-          data-color-mode="light"
-          height={200}
-          value={questionTitle}
-          onChange={setQuestionTitle}
-        />
+        <MDEditor data-color-mode="light" height={200} value={questionTitle} onChange={setQuestionTitle} />
       </Box>
 
       <Box sx={{ mb: 2 }}>
@@ -86,12 +68,7 @@ const QuestionItem = ({
           {t('admin:questionText')}
           <Typography ml={1}>{language}</Typography>
         </Typography>
-        <MDEditor
-          data-color-mode="light"
-          height={400}
-          value={questionText}
-          onChange={setQuestionText}
-        />
+        <MDEditor data-color-mode="light" height={400} value={questionText} onChange={setQuestionText} />
       </Box>
 
       <Button variant="outlined" onClick={handleSave}>

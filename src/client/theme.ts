@@ -4,11 +4,7 @@ import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
 
 import { useMemo } from 'react'
-import {
-  createTheme,
-  responsiveFontSizes,
-  ThemeOptions,
-} from '@mui/material/styles'
+import { createTheme, responsiveFontSizes, ThemeOptions } from '@mui/material/styles'
 
 /**
  * Module augmentation to extend default theme with new colours: https://mui.com/material-ui/customization/palette/#customization
@@ -82,10 +78,7 @@ const themeOptions: ThemeOptions = {
 }
 
 export const useTheme = () => {
-  const theme = useMemo(
-    () => responsiveFontSizes(createTheme(themeOptions)),
-    []
-  )
+  const theme = useMemo(() => responsiveFontSizes(createTheme(themeOptions)), [])
 
   return theme
 }

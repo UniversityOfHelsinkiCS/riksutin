@@ -162,7 +162,6 @@ const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
                 {tuhatProjects?.map((c: TuhatData) => (
                   <MenuItem
                     data-cy={''}
-                    // eslint-disable-next-line react/no-array-index-key
                     key={c.tuhatId}
                     value={`${c.name[language as keyof Locales]}`}
                     onClick={() => sessionStorage.setItem(TUHAT_DATA_STORAGE_KEY, JSON.stringify(c))}

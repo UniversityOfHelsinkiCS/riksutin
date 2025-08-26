@@ -19,13 +19,7 @@ const OptionSection = ({
 }) => {
   const { t } = useTranslation()
 
-  if (
-    !selectedQuestion ||
-    !['singleChoice', 'multipleChoice'].includes(
-      selectedQuestion.optionData.type
-    )
-  )
-    return null
+  if (!selectedQuestion || !['singleChoice', 'multipleChoice'].includes(selectedQuestion.optionData.type)) return null
 
   const options = selectedQuestion?.optionData.options || []
 
@@ -70,9 +64,7 @@ const EditQuestions = () => {
 
   const selectedLanguage = 'en'
 
-  const selectedQuestion = questions.find(
-    (question) => question.id === Number(questionId)
-  )
+  const selectedQuestion = questions.find(question => question.id === Number(questionId))
 
   const handleQuestionDeletion = () => {
     navigate({
@@ -88,21 +80,14 @@ const EditQuestions = () => {
           <Typography sx={{ my: 4, pl: 1 }} variant="h4">
             {t('admin:questionViewQuestionEdit')}
           </Typography>
-          <EditQuestion
-            language={selectedLanguage}
-            question={selectedQuestion}
-            onDelete={handleQuestionDeletion}
-          />
+          <EditQuestion language={selectedLanguage} question={selectedQuestion} onDelete={handleQuestionDeletion} />
         </Box>
       ) : (
         <Typography sx={{ my: 4, pl: 1 }} variant="h4">
           {t('admin:questionViewInfo')}
         </Typography>
       )}
-      <OptionSection
-        selectedQuestion={selectedQuestion}
-        selectedLanguage={selectedLanguage}
-      />
+      <OptionSection selectedQuestion={selectedQuestion} selectedLanguage={selectedLanguage} />
     </Box>
   )
 }

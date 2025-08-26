@@ -17,9 +17,7 @@ type DimensionUpdates = {
 export const useCreateDimensionMutation = () => {
   const { survey } = useSurvey()
 
-  const dimensionquestion = survey?.Questions.find(
-    (question) => question.optionData.type === 'dimensions'
-  )
+  const dimensionquestion = survey?.Questions.find(question => question.optionData.type === 'dimensions')
 
   const mutationFn = async (data: NewDimension) => {
     await apiClient.post(`/questions/${dimensionquestion?.id}/option/`, data)
@@ -35,15 +33,10 @@ export const useCreateDimensionMutation = () => {
 export const useEditDimensionMutation = (dimensionId: string) => {
   const { survey } = useSurvey()
 
-  const dimensionquestion = survey?.Questions.find(
-    (question) => question.optionData.type === 'dimensions'
-  )
+  const dimensionquestion = survey?.Questions.find(question => question.optionData.type === 'dimensions')
 
   const mutationFn = async (data: DimensionUpdates) => {
-    await apiClient.put(
-      `/questions/${dimensionquestion?.id}/option/${dimensionId}`,
-      data
-    )
+    await apiClient.put(`/questions/${dimensionquestion?.id}/option/${dimensionId}`, data)
   }
 
   const mutation = useMutation(mutationFn, {
@@ -56,14 +49,10 @@ export const useEditDimensionMutation = (dimensionId: string) => {
 export const useDeleteDimensionMutation = (dimensionId: string) => {
   const { survey } = useSurvey()
 
-  const dimensionquestion = survey?.Questions.find(
-    (question) => question.optionData.type === 'dimensions'
-  )
+  const dimensionquestion = survey?.Questions.find(question => question.optionData.type === 'dimensions')
 
   const mutationFn = async () => {
-    await apiClient.delete(
-      `/questions/${dimensionquestion?.id}/option/${dimensionId}`
-    )
+    await apiClient.delete(`/questions/${dimensionquestion?.id}/option/${dimensionId}`)
   }
 
   const mutation = useMutation(mutationFn, {

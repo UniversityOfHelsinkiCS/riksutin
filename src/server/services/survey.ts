@@ -23,10 +23,7 @@ export const getSurvey = async (surveyName: string): Promise<Survey> => {
   return survey
 }
 
-export const updateSurvey = async (
-  surveyName: string,
-  updates: UpdatedSurveyInfo
-): Promise<Survey> => {
+export const updateSurvey = async (surveyName: string, updates: UpdatedSurveyInfo): Promise<Survey> => {
   const survey = await Survey.findOne({
     where: {
       name: surveyName,
@@ -40,11 +37,10 @@ export const updateSurvey = async (
 
   const request = UpdatedSurveyInfoZod.safeParse(updates)
 
-  if (!request.success)
-    throw new ZodValidationError(
-      'Validation of the update result inputs failed',
-      request.error.issues
-    )
+  if (!request.success) {
+    throw new ZodValidationError('Validation of the update result inputs failed', request.error.issues)
+  }
+
   const { data } = request
 
   Object.assign(survey, data)

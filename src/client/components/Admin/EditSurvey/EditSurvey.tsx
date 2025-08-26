@@ -10,21 +10,11 @@ import { UpdatedSurveyInfo } from '@validators/survey'
 
 import { useEditSurveyMutation } from '../../../hooks/useSurveyMutation'
 
-const SurveyItem = ({
-  language,
-  survey,
-}: {
-  language: keyof Locales
-  survey: Survey
-}) => {
+const SurveyItem = ({ language, survey }: { language: keyof Locales; survey: Survey }) => {
   const { t } = useTranslation()
   const mutation = useEditSurveyMutation()
-  const [surveyTitle, setSurveyTitle] = useState<string | undefined>(
-    survey.title[language]
-  )
-  const [surveyText, setSurveyText] = useState<string | undefined>(
-    survey.text[language]
-  )
+  const [surveyTitle, setSurveyTitle] = useState<string | undefined>(survey.title[language])
+  const [surveyText, setSurveyText] = useState<string | undefined>(survey.text[language])
 
   useEffect(() => {
     setSurveyTitle(survey.title[language])
@@ -68,12 +58,7 @@ const SurveyItem = ({
           {t('admin:surveyText')}
           <Typography ml={1}>{language}</Typography>
         </Typography>
-        <MDEditor
-          data-color-mode="light"
-          height={400}
-          value={surveyText}
-          onChange={setSurveyText}
-        />
+        <MDEditor data-color-mode="light" height={400} value={surveyText} onChange={setSurveyText} />
       </Box>
 
       <Button variant="outlined" onClick={handleSave}>
@@ -83,13 +68,7 @@ const SurveyItem = ({
   )
 }
 
-const EditSurvey = ({
-  language,
-  survey,
-}: {
-  language: keyof Locales
-  survey: Survey
-}) => (
+const EditSurvey = ({ language, survey }: { language: keyof Locales; survey: Survey }) => (
   <Box display="flex">
     <SurveyItem language={'fi' as keyof Locales} survey={survey} />
     <SurveyItem language={language} survey={survey} />

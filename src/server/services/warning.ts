@@ -19,9 +19,8 @@ export const getWarningWithId = async (id: string): Promise<Warning[]> => {
   })
   return result
 }
-//export const createWarning = async (newWarningValues: NewWarning): Promise<Warning> => {
+
 export const createWarning = async (newWarningValues: Warning): Promise<Warning> => {
-  //console.log(newWarningValues)
   const request = NewWarningZod.safeParse(newWarningValues)
 
   if (!request.success) throw new ZodValidationError('Validation of the new result inputs failed', request.error.issues)

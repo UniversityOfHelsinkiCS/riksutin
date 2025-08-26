@@ -8,13 +8,7 @@ import type { Locales, Result } from '@types'
 
 import { useEditResultMutation } from '../../../hooks/useResultMutation'
 
-const ResultItem = ({
-  language,
-  result,
-}: {
-  language: keyof Locales
-  result: Result
-}) => {
+const ResultItem = ({ language, result }: { language: keyof Locales; result: Result }) => {
   const { t } = useTranslation()
   const mutation = useEditResultMutation(result.id)
 
@@ -53,12 +47,7 @@ const ResultItem = ({
       }}
     >
       <Box sx={{ mb: 2 }}>
-        <MDEditor
-          data-color-mode="light"
-          height={200}
-          value={resultIsSelected}
-          onChange={setResultIsSelected}
-        />
+        <MDEditor data-color-mode="light" height={200} value={resultIsSelected} onChange={setResultIsSelected} />
       </Box>
 
       <Button variant="outlined" onClick={handleSave}>
@@ -68,13 +57,7 @@ const ResultItem = ({
   )
 }
 
-const EditResult = ({
-  language,
-  result,
-}: {
-  language: keyof Locales
-  result: Result
-}) => (
+const EditResult = ({ language, result }: { language: keyof Locales; result: Result }) => (
   <Box mb={5} display="flex">
     <ResultItem language={'fi' as keyof Locales} result={result} />
     <ResultItem language={language} result={result} />

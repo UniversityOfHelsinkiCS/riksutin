@@ -14,8 +14,9 @@ const RenderEditSurvey = () => {
   const { survey, isLoading: surveyIsLoading } = useSurvey()
   const { questions, isLoading: questionsIsLoading } = useQuestions(survey?.id)
 
-  if (!survey || surveyIsLoading || !questions || questionsIsLoading)
+  if (!survey || surveyIsLoading || !questions || questionsIsLoading) {
     return null
+  }
 
   const selectedLanguage = 'en'
 
@@ -37,14 +38,10 @@ const RenderEditSurvey = () => {
           {t('admin:surveyViewQuestionPositionEdit')}
         </Typography>
         <Box sx={{ mt: 5 }}>
-          {sortedQuestions.map((question) => (
+          {sortedQuestions.map(question => (
             <div key={question.id}>
               {question.parentId === null && (
-                <RenderQuestions
-                  question={question}
-                  questions={sortedQuestions}
-                  language={language as keyof Locales}
-                />
+                <RenderQuestions question={question} questions={sortedQuestions} language={language as keyof Locales} />
               )}
             </div>
           ))}

@@ -16,19 +16,13 @@ const EditResults = () => {
 
   if (!resultsFetched || !results || !survey) return null
 
-  const selectedResult = results.find(
-    (result) => result.id === Number(resultId)
-  )
+  const selectedResult = results.find(result => result.id === Number(resultId))
 
   if (!selectedResult) return null
 
   return (
     <Box>
-      <EditResult
-        key={selectedResult.id}
-        language={selectedLanguage}
-        result={selectedResult}
-      />
+      <EditResult key={selectedResult.id} language={selectedLanguage} result={selectedResult} />
     </Box>
   )
 }

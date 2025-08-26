@@ -20,7 +20,7 @@ const HelloBanner = () => {
   return (
     <Box id="hello-component" sx={cardStyles.helloBox}>
       <Box sx={cardStyles.expendableBox}>
-        <Markdown>{survey.text[language as keyof Locales]}</Markdown>
+        <Markdown>{survey.text[language as keyof Locales] ?? ''}</Markdown>
       </Box>
     </Box>
   )

@@ -1,19 +1,10 @@
-import {
-  Model,
-  InferAttributes,
-  InferCreationAttributes,
-  CreationOptional,
-  DataTypes,
-} from 'sequelize'
+import { Model, InferAttributes, InferCreationAttributes, CreationOptional, DataTypes } from 'sequelize'
 
 import type { Locales } from '@types'
 
 import { sequelize } from '../connection'
 
-class Result extends Model<
-  InferAttributes<Result>,
-  InferCreationAttributes<Result>
-> {
+class Result extends Model<InferAttributes<Result>, InferCreationAttributes<Result>> {
   declare id: CreationOptional<number>
 
   declare surveyId: number
