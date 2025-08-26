@@ -61,7 +61,7 @@ const mockTuhatProject = [
       en: 'Research project',
       sv: 'Forskningsproject',
     },
-    tuhatId: '1kl9-13tf-34fr-245f',
+    tuhatId: '1kl9-13tf-34fr-xxxx',
     faculty: '1234563',
     pureId: '3345678',
     managingOrganisationUnit: '3r3r3r',
