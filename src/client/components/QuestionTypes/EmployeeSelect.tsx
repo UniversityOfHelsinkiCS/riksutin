@@ -69,6 +69,7 @@ const EmployeeSelect = ({ control, question, watch }: InputProps) => {
                   sx={{ width: '80%' }}
                   value={value}
                   isOptionEqualToValue={(option, val) =>
+                    // the compiler here is wrong, do not remove val === ''
                     (option != null && val != null && option.username === val.username) || val === null || val === ''
                   }
                   renderInput={params => (
