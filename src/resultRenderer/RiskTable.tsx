@@ -97,7 +97,7 @@ const RiskTable = ({
                       />
                     </TableCell>
                   </TableRow>
-                  {countryRisksWithTexts?.map((risk: Risk) => {
+                  {countryRisksWithTexts?.map((risk: Risk, id: number) => {
                     if (risk.level > 0) {
                       return (
                         <TableRow key={risk.id}>
@@ -112,7 +112,12 @@ const RiskTable = ({
                         </TableRow>
                       )
                     } else {
-                      return <Div key={''}></Div>
+                      return (
+                        // eslint-disable-next-line react/no-array-index-key
+                        <TableRow key={id} style={{ display: 'none' }}>
+                          <TableCell colSpan={3} />
+                        </TableRow>
+                      )
                     }
                   })}
                 </>
