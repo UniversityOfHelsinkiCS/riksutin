@@ -91,6 +91,7 @@ const UniversitySelect = ({ control, question, selectedCountry }: InputProps) =>
                   onChange={(e, data) => onChange(data)}
                   sx={{ width: '50%' }}
                   value={value}
+                  isOptionEqualToValue={(option, val) => option === val || val === ''}
                   renderInput={params => (
                     <TextField
                       helperText={error ? error.message : null}

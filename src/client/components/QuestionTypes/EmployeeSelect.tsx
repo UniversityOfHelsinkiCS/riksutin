@@ -68,7 +68,9 @@ const EmployeeSelect = ({ control, question, watch }: InputProps) => {
                   onChange={(e, data) => onChange(data)}
                   sx={{ width: '80%' }}
                   value={value}
-                  isOptionEqualToValue={(option, value) => option != null && option.username === value?.username}
+                  isOptionEqualToValue={(option, val) =>
+                    (option != null && val != null && option.username === val.username) || val === null || val === ''
+                  }
                   renderInput={params => (
                     <TextField
                       helperText={error ? error.message : null}

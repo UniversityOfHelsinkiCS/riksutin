@@ -30,7 +30,6 @@ const Text = ({ control, question, defaultValue }: InputProps) => {
             onChange={onChange}
             fullWidth
             InputProps={props}
-            defaultValue={defaultValue}
             value={value}
           />
         </Box>

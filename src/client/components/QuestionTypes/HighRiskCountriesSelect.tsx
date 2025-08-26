@@ -32,7 +32,7 @@ const HighRiskCountrySelect = ({ control, question, children }: InputProps) => {
               getOptionLabel={option => option}
               onChange={(e, data) => onChange(data)}
               sx={{ width: '50%' }}
-              value={value}
+              value={value ?? []}
               renderInput={params => (
                 <TextField
                   helperText={error ? error.message : null}

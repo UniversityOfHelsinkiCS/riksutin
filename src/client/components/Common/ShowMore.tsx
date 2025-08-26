@@ -5,7 +5,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import Markdown from './Markdown'
 
-const ShowMore = ({ text, expanded = false }: { text: string | undefined; expanded?: boolean }) => {
+const ShowMore = ({ text, expanded = false }: { text: string | undefined | null; expanded?: boolean }) => {
   const [expand, setExpand] = useState(expanded)
 
   if (!text) return null

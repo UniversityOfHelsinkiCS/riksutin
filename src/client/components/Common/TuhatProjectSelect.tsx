@@ -159,10 +159,11 @@ const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
             <FormControl sx={{ minWidth: 200 }}>
               <InputLabel>{t('tuhatProjectSelect:inputLabel')}</InputLabel>
               <Select data-cy="tuhatProject-select" label={t(' tuhatProjectSelect:inputLabel')} {...field}>
-                {tuhatProjects?.map((c: TuhatData) => (
+                {tuhatProjects?.map((c: TuhatData, idx: number) => (
                   <MenuItem
                     data-cy={''}
-                    key={c.tuhatId}
+                    // eslint-disable-next-line react/no-array-index-key
+                    key={`${c.tuhatId}-${idx}`}
                     value={`${c.name[language as keyof Locales]}`}
                     onClick={() => sessionStorage.setItem(TUHAT_DATA_STORAGE_KEY, JSON.stringify(c))}
                   >
