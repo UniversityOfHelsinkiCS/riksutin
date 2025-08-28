@@ -24,7 +24,7 @@ ENV ORGANISATION_ID=$ORGANISATION_ID
 
 # Setup
 COPY . .
-RUN npm ci
+RUN npm install
 RUN npm run build
 
 ARG NPM_COMMAND="start:prod"

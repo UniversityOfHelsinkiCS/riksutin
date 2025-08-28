@@ -50,7 +50,8 @@
     "husky": "^8.0.0",
     "lint-staged": "^13.1.0",
     "prettier": "^3.5.1",
-    "typescript-eslint": "^8.24.0"
+    "typescript-eslint": "^8.24.0",
+    "tsx": "^3.12.7"
   },
   "proxy": "http://localhost:8000"
 }
