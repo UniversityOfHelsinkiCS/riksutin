@@ -24,7 +24,8 @@ ENV ORGANISATION_ID=$ORGANISATION_ID
 
 # Setup
 COPY . .
-RUN npm install
+RUN npm ci
+RUN npm install -g tsx
 RUN npm run build
 
 ARG NPM_COMMAND="start:prod"
