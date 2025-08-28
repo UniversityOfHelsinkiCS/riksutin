@@ -17,6 +17,7 @@
     "start:dev:server": "npm run watch --workspace=server",
     "start:dev:client": "npm run watch --workspace=client",
     "test": "npm run test --workspaces --if-present",
+    "test:local": "npx playwright test",
     "lint": "eslint",
     "format": "prettier --write \"*.{ts,tsx,json,css,md}\"",
     "build": "npm run build --workspace=client",
