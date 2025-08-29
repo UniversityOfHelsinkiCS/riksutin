@@ -20,6 +20,10 @@ export default defineConfig({
   use: {
     baseURL: inE2E ? 'http://localhost:8000' : 'http://localhost:3000',
     trace: 'on-first-retry',
+    video: {
+      mode: 'on-first-retry',
+      size: { width: 640, height: 480 },
+    },
   },
 
   /* Configure projects for major browsers */
