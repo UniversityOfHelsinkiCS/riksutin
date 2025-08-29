@@ -27,7 +27,7 @@ jobs:
       run: npm ci --workspaces
 
     - name: Build
-      run: npm run build 
+      run: ORGANISATION_ID=hy npm run build
 
     - name: Start the application
       run: docker compose -f docker-compose.ci.yml up -d
