@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "scripts": {
     "build": "tsx index.ts",
+    "start": "tsx index.ts",
     "watch": "tsx watch index.ts"
   },
   "dependencies": {
