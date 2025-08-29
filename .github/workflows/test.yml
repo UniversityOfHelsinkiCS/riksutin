@@ -1,11 +1,18 @@
 name: E2E Tests
 
-on:
-  push:
-    branches: [ master ]
-
+on: [workflow_call]
 
 jobs:
+  eslint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+      - name: Build project for eslint
+        run: npm install
+      - name: Run eslint
+        run: npm run lint
+        
   playwright:
     timeout-minutes: 60
     runs-on: ubuntu-latest
