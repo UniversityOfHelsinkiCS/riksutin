@@ -25,7 +25,7 @@ ENV ORGANISATION_ID=$ORGANISATION_ID
 # Setup
 COPY . .
 RUN npm install -g tsx
-RUN npm ci
+RUN npm ci --workspaces
 RUN npm run build
 
 ARG NPM_COMMAND="start:prod"

@@ -20,7 +20,7 @@ jobs:
       run: docker compose -f docker-compose.ci.yml up -d
 
     - name: Install dependencies
-      run: npm ci --workspace=tests
+      run: npm ci --workspaces
 
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
