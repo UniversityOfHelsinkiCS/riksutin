@@ -5,8 +5,9 @@ const seedQuestions = () => {
   const questions = getQuestionData()
 
   questions.forEach(async question => {
-    await Question.upsert({
+    return await Question.upsert({
       ...question,
+      shortTitle: question.shortTitle ?? { fi: '', en: '', sv: '' },
     })
   })
 }

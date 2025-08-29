@@ -45,15 +45,17 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'test') {
 
 app.listen(PORT, async () => {
   await connectToDatabase()
-  if (!['production', 'test'].includes(process.env.NODE_ENV ?? '')) {
+  if (process.env.NODE_ENV !== 'production') {
     await seed()
   }
   await setupAuthentication()
   if (inProduction) {
     startRiskCron()
   }
-  startCountryCron()
-  startCountryRiskCron()
+  if (process.env.NODE_ENV !== 'test') {
+    startCountryCron()
+    startCountryRiskCron()
+  }
 
   logger.info(`Server running on port ${PORT}`)
 })
