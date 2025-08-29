@@ -13,6 +13,30 @@ test.describe('form', () => {
     await page.goto('/')
   })
 
+  test('Employee can be selected', async ({ page }) => {
+    // Locate the Autocomplete input
+    const autocompleteInput = page.locator('#select-2')
+    await autocompleteInput.fill('a')
+
+    // Wait for options to appear
+    const options = page.locator('.MuiAutocomplete-option')
+    await expect(options).toHaveCount(3)
+
+    // Select the first option
+    await options.nth(2).click()
+
+    await expect(autocompleteInput).toHaveValue('Outi Savolainen (outi.savolainen@helsinki.fi)')
+  })
+
+  /*
+  test('can set filler as the owner', async ({ page }) => {
+    await page.getByRole('button', { name: 'Olen projektin omistaja' }).click()
+
+    const input = page.locator('#select-2')
+    await expect(input).toHaveValue('Testi Kayttaja (grp-toska@helsinki.fi)')
+  })
+    /*
+
   /*
   test('has the first question which can be edited', async ({ page }) => {
     await expect(page.getByText('Lomakkeen täyttäjä')).toBeVisible()

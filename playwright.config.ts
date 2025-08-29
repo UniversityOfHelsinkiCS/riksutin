@@ -1,15 +1,5 @@
 import { defineConfig, devices } from '@playwright/test'
 
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-// require('dotenv').config();
-const inE2E = process.env.CI === 'true'
-
-/**
- * See https://playwright.dev/docs/test-configuration.
- */
 export default defineConfig({
   testDir: './tests',
   fullyParallel: false,
@@ -18,7 +8,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
-    baseURL: inE2E ? 'http://localhost:8000' : 'http://localhost:3000',
+    baseURL: 'http://localhost:8000',
     trace: 'on-first-retry',
     video: {
       mode: 'on-first-retry',
@@ -26,7 +16,6 @@ export default defineConfig({
     },
   },
 
-  /* Configure projects for major browsers */
   projects: [
     {
       name: 'chromium',
@@ -44,11 +33,4 @@ export default defineConfig({
     },
  */
   ],
-
-  /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   url: 'http://127.0.0.1:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
 })
