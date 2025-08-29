@@ -13,7 +13,14 @@ test.describe('form', () => {
     await page.goto('/')
   })
 
-  test('Employee can be selected', async ({ page }) => {
+  test('Can set filler as the owner', async ({ page }) => {
+    await page.getByRole('button', { name: 'Olen projektin omistaja' }).click()
+
+    const input = page.locator('#select-2')
+    await expect(input).toHaveValue('Testi Kayttaja (grp-toska@helsinki.fi)')
+  })
+
+  test('Owner can be selected', async ({ page }) => {
     // Locate the Autocomplete input
     const autocompleteInput = page.locator('#select-2')
     await autocompleteInput.fill('a')
@@ -29,12 +36,7 @@ test.describe('form', () => {
   })
 
   /*
-  test('can set filler as the owner', async ({ page }) => {
-    await page.getByRole('button', { name: 'Olen projektin omistaja' }).click()
 
-    const input = page.locator('#select-2')
-    await expect(input).toHaveValue('Testi Kayttaja (grp-toska@helsinki.fi)')
-  })
     /*
 
   /*
