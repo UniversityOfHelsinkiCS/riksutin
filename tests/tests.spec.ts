@@ -124,6 +124,5 @@ test.describe('results', () => {
     await expect(page.getByText('Aikaisemmat riskiarviosi')).toBeVisible()
     await expect(page.getByTestId('entrybox').first()).toBeVisible()
   })
-
-  */
 })
+*/
