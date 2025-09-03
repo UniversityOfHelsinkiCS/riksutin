@@ -51,7 +51,6 @@ test.describe('form', () => {
     await page.getByLabel('Organisaatio').click()
     await expect(page.getByRole('option', { name: 'HELSINGIN YLIOPISTO', exact: true })).toBeVisible()
   })
-
 })
 
 /*
