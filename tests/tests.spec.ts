@@ -13,42 +13,24 @@ test.describe('form', () => {
     await page.goto('/')
   })
 
-  test('Can set filler as the owner', async ({ page }) => {
+  test('can set filler as the owner', async ({ page }) => {
     await page.getByRole('button', { name: 'Olen projektin omistaja' }).click()
 
     const input = page.locator('#select-2')
     await expect(input).toHaveValue('Testi Kayttaja (grp-toska@helsinki.fi)')
   })
 
-  test('Owner can be selected', async ({ page }) => {
+  test('owner can be selected', async ({ page }) => {
     // Locate the Autocomplete input
     const autocompleteInput = page.locator('#select-2')
     await autocompleteInput.fill('a')
 
-    // Wait for options to appear
     const options = page.locator('.MuiAutocomplete-option')
     await expect(options).toHaveCount(3)
 
-    // Select the first option
-    await options.nth(2).click()
+    await options.filter({ hasText: 'Outi' }).first().click()
 
     await expect(autocompleteInput).toHaveValue('Outi Savolainen (outi.savolainen@helsinki.fi)')
-  })
-
-  /*
-
-    /*
-
-  /*
-  test('has the first question which can be edited', async ({ page }) => {
-    await expect(page.getByText('Lomakkeen täyttäjä')).toBeVisible()
-
-    const nameInput = page.getByTestId('question-1').getByRole('textbox')
-
-    await nameInput.click()
-    await nameInput.fill('')
-
-    await expect(nameInput).toHaveValue('')
   })
 
   test('selecting a country shows a list of universities', async ({ page }) => {
