@@ -9,6 +9,10 @@ Riksutin (officially known as **Risk-i** or **International collaboration risk a
 - Copy `.env.template` as `.env` file and fill in the required values
 - Run `npm i` and `npm start` to setup and start the development environment
 
+## Running tests locally
+
+Start app with `npm run start:test:local` and run tests with `npm run test:local`. You get the UI mode with params `-- --ui`.
+
 ## Features
 
 ### Survey

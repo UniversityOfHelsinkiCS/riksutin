@@ -13,6 +13,7 @@
     "start": "docker compose up",
     "start:prod": "NODE_ENV=production npm run build --workspace=server",
     "start:test": "NODE_ENV=test npm run build --workspace=server",
+    "start:test:local": "docker compose -f docker-compose.ci.yml -f docker-compose.local-test.yml up",
     "start:dev": "NODE_ENV=development concurrently \"npm run start:dev:server\" \"npm run start:dev:client\"",
     "start:dev:server": "npm run watch --workspace=server",
     "start:dev:client": "npm run watch --workspace=client",
