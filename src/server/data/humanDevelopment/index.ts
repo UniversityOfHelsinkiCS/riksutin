@@ -15,7 +15,7 @@ export const cacheHdrData = async () => {
     await setPermanent(url, data)
     return data
   } catch (error) {
-    console.log('failed')
+    return []
   }
 }
 
