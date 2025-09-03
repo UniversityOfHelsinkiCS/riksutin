@@ -30,9 +30,7 @@ jobs:
       run: ORGANISATION_ID=hy npm run build
 
     - name: Start the application
-      env:
-        HDR_API_TOKEN: ${{ secrets.HDR_API_TOKEN }}
-      run: docker compose -f docker-compose.ci.yml up -d
+      run: HDR_API_TOKEN=${{ secrets.HDR_API_TOKEN }} docker compose -f docker-compose.ci.yml up -d
 
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
