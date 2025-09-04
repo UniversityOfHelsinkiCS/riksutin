@@ -3,13 +3,12 @@ import type { Indicator } from '@server/types'
 import { get, setPermanent } from '../../util/redis'
 import { cacheSafetyLevel } from '../safetyLevel'
 import { cacheUniversityData } from '../whed/countryUniversities'
-
-const baseUrl = 'https://api.worldbank.org/v2'
+import { WORLDBANK_BASE_URL } from '@userconfig'
 
 const params = 'per_page=1000&format=json'
 
 export const cacheData = async (path: string) => {
-  const url = `${baseUrl}/${path}?${params}`
+  const url = `${WORLDBANK_BASE_URL}/${path}?${params}`
 
   console.log('HTTP REQUEST ', url)
 
@@ -28,10 +27,10 @@ export const cacheCountryIndicator = async (countryCode: string, indicatorCode: 
 }
 
 export const fetchData = async (path: string) => {
-  const url = `${baseUrl}/${path}?${params}`
+  const url = `${WORLDBANK_BASE_URL}/${path}?${params}`
 
   const cached = await get(url)
-  if (cached) {
+  if (false && cached) {
     console.log('FROM CACHE', url)
     return cached
   }
@@ -78,7 +77,7 @@ export const buildCache = async () => {
   console.log('caching country data: started')
   await cacheData('countries')
 
-  const countriesUrl = `${baseUrl}/countries?${params}`
+  const countriesUrl = `${WORLDBANK_BASE_URL}/countries?${params}`
   const [_, data]: any = await get(countriesUrl)
   const countries = data.filter(({ region }) => region.value !== 'Aggregates')
   const codes = countries.map(c => c.iso2Code)

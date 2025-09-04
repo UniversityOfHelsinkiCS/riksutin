@@ -8,6 +8,8 @@ services:
     environment:
       - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
       - ORGANISATION_ID=hy
+    env_file:
+      - cienv
     volumes:
       - ./:/opt/app-root/src
     ports:
@@ -26,3 +28,8 @@ services:
   redis:
     image: redis:7-alpine
     container_name: riksutin_test_redis
+
+  mock:
+    image: mluukkai/riksutin_datasource_mock
+    ports:
+      - 3000:3000

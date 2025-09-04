@@ -36,6 +36,11 @@ const FULL_URL = inProduction ? PRODUCTION_URL : inStaging ? STAGING_URL : DEVEL
 
 export const TESTER_EMAILS = JSON.parse(process.env.TESTER_EMAILS ?? '[]') as string[]
 
+//   const url = `https://um.fi/o/rss?dctype=matkustustiedotteet&countrycode=${code}&lang=fi`
+
+export const SAFETY_LEVEL_BASE_URL = process.env.SAFETY_LEVEL_URL ?? 'https://um.fi/o/rss'
+export const WORLDBANK_BASE_URL = process.env.WORLDBANK_URL ?? 'https://api.worldbank.org/v2'
+
 // EXTERNAL
 import type { InstanceExports } from '@config'
 export default { FULL_URL } as Partial<InstanceExports>

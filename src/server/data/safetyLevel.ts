@@ -2,8 +2,11 @@
 import Parser from 'rss-parser'
 import jsdom from 'jsdom'
 import { get, setPermanent } from '../util/redis'
+import { SAFETY_LEVEL_BASE_URL } from '@userconfig'
 
 type SafetyLevel = [string, number]
+
+const getUrl = code => `${SAFETY_LEVEL_BASE_URL}?dctype=matkustustiedotteet&countrycode=${code}&lang=fi`
 
 export const cacheSafetyLevel = async (code: string) => {
   const { JSDOM } = jsdom
@@ -14,7 +17,7 @@ export const cacheSafetyLevel = async (code: string) => {
     },
   })
 
-  const url = `https://um.fi/o/rss?dctype=matkustustiedotteet&countrycode=${code}&lang=fi`
+  const url = getUrl(code)
 
   console.log('HTTP REQUEST ', url)
   try {
@@ -47,7 +50,7 @@ const fetchSafetyLevelData = async (code: string) => {
     return null
   }
 
-  const url = `https://um.fi/o/rss?dctype=matkustustiedotteet&countrycode=${code}&lang=fi`
+  const url = getUrl(code)
 
   console.log('FROM CACHE', url)
   let safetyLevelRisk: any = await get(url)
