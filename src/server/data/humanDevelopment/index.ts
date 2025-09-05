@@ -1,18 +1,15 @@
 /* eslint-disable no-console */
 import { get, setPermanent } from '../../util/redis'
 
-import { HDR_API_TOKEN } from '@userconfig'
-
-const year = 2023
-const url = `https://hdrdata.org/api/CompositeIndices/query?apikey=${HDR_API_TOKEN}&year=${year}`
+import { HDI_URL, NO_CACHE } from '@userconfig'
 
 export const cacheHdrData = async () => {
   try {
-    console.log('caching: HTTP get', url)
-    const res = await fetch(url)
+    console.log('caching: HTTP get', HDI_URL)
+    const res = await fetch(HDI_URL)
     const data = await res.json()
 
-    await setPermanent(url, data)
+    await setPermanent(HDI_URL, data)
     return data
   } catch (error) {
     return []
@@ -22,8 +19,8 @@ export const cacheHdrData = async () => {
 const getHumanDevelopment = async (name: string | undefined, id: string | undefined) => {
   if (!name) return null
 
-  let data: any = await get(url)
-  if (!data) {
+  let data: any = await get(HDI_URL)
+  if (NO_CACHE || !data) {
     data = await cacheHdrData()
   }
 

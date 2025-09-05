@@ -30,6 +30,9 @@ services:
     container_name: riksutin_test_redis
 
   mock:
-    image: mluukkai/riksutin_datasource_mock
+    build:
+      context:
+        data_source_mock 
+    container_name: data_source_mock
     ports:
       - 3000:3000

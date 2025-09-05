@@ -1,2 +1,7 @@
 ORGANISATION_ID=hy
 WORLDBANK_URL=http://mock:3000
+SAFETY_LEVEL_URL=http://mock:3000/um
+SANCTIONS_URL=http://mock:3000/sanctions
+HDI_URL=http://mock:3000/hdr
+UNIVERSITIES_URL=http://mock:3000/universities
+NO_CACHE=true

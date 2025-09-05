@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
+import { NO_CACHE, SANCTIONS_URL } from '@userconfig'
 import { get, setPermanent } from '../../util/redis'
 
-const url = 'https://sanctionsmap.eu/api/v1/regime'
+const url = SANCTIONS_URL
 
 const fetchSanctionsData = async (code: string | undefined) => {
   if (!code) return null
@@ -10,7 +11,7 @@ const fetchSanctionsData = async (code: string | undefined) => {
 
   try {
     let data: any = await get(url)
-    if (!data) {
+    if (NO_CACHE || !data) {
       data = await cacheSanctionsData()
     }
 
@@ -29,7 +30,6 @@ const fetchSanctionsData = async (code: string | undefined) => {
 
 export const cacheSanctionsData = async () => {
   try {
-    const url = 'https://sanctionsmap.eu/api/v1/regime'
     console.log('caching: HTTP get', url)
     const res = await fetch(url)
     const data = await res.json()

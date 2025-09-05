@@ -3,7 +3,7 @@ import type { Indicator } from '@server/types'
 import { get, setPermanent } from '../../util/redis'
 import { cacheSafetyLevel } from '../safetyLevel'
 import { cacheUniversityData } from '../whed/countryUniversities'
-import { WORLDBANK_BASE_URL } from '@userconfig'
+import { WORLDBANK_BASE_URL, NO_CACHE } from '@userconfig'
 
 const params = 'per_page=1000&format=json'
 
@@ -30,7 +30,7 @@ export const fetchData = async (path: string) => {
   const url = `${WORLDBANK_BASE_URL}/${path}?${params}`
 
   const cached = await get(url)
-  if (false && cached) {
+  if (!NO_CACHE && cached) {
     console.log('FROM CACHE', url)
     return cached
   }

@@ -3,10 +3,9 @@ import jsdom from 'jsdom'
 
 import { get, setPermanent } from '../../util/redis'
 import logger from 'src/server/util/logger'
+import { UNIVERSITIES_URL, NO_CACHE } from '@userconfig'
 
-const url = 'https://whed.net/results_institutions.php'
-
-const getKey = countryName => `${url}?country=${countryName}`
+const getKey = countryName => `${UNIVERSITIES_URL}?country=${countryName}`
 
 export const cacheUniversityData = async (countryName: string) => {
   if (countryName === 'United States') countryName = 'United States of America'
@@ -16,13 +15,13 @@ export const cacheUniversityData = async (countryName: string) => {
   formdata.append('Chp1', countryName)
   formdata.append('nbr_ref_pge', '10000')
 
-  const response = await fetch(url, {
+  const response = await fetch(UNIVERSITIES_URL, {
     method: 'POST',
     body: formdata,
   })
 
   const key = getKey(countryName)
-  console.log('HTTP REQUEST ', key)
+  console.log('HTTP POST REQUEST ', key)
 
   const html = await response.text()
   const universityNames: string[] = parseHTML(html)
@@ -55,7 +54,7 @@ const getCountryUniversities = async (countryName: string | undefined) => {
     const key = getKey(countryName)
     console.log('FROM CACHE ', key)
     let names: string[] | null = await get(key)
-    if (!names) {
+    if (NO_CACHE || !names) {
       names = await cacheUniversityData(countryName)
     }
 

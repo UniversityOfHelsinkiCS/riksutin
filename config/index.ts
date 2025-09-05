@@ -18,6 +18,7 @@ export const UNIT_API_TOKEN = process.env.UNIT_API_TOKEN ?? ''
 export const EMPLOYEE_API_TOKEN = process.env.EMPLOYEE_API_TOKEN ?? ''
 export const TUHAT_API_TOKEN = process.env.TUHAT_API_TOKEN ?? ''
 export const HDR_API_TOKEN = process.env.HDR_API_TOKEN ?? ''
+export const HDR_YEAR = process.env.HDR_YEAR ?? '2023'
 
 export const ORGANISATION_ID = process.env.ORGANISATION_ID ?? ''
 
@@ -36,10 +37,14 @@ const FULL_URL = inProduction ? PRODUCTION_URL : inStaging ? STAGING_URL : DEVEL
 
 export const TESTER_EMAILS = JSON.parse(process.env.TESTER_EMAILS ?? '[]') as string[]
 
-//   const url = `https://um.fi/o/rss?dctype=matkustustiedotteet&countrycode=${code}&lang=fi`
-
-export const SAFETY_LEVEL_BASE_URL = process.env.SAFETY_LEVEL_URL ?? 'https://um.fi/o/rss'
+export const SAFETY_LEVEL_BASE_URL = process.env.SAFETY_LEVEL_URL ?? 'https://um.fi'
 export const WORLDBANK_BASE_URL = process.env.WORLDBANK_URL ?? 'https://api.worldbank.org/v2'
+export const SANCTIONS_URL = process.env.SANCTIONS_URL ?? 'https://sanctionsmap.eu/api/v1/regime'
+export const UNIVERSITIES_URL = process.env.UNIVERSITIES_URL ?? 'https://whed.net/results_institutions.php'
+export const HDI_URL =
+  process.env.HDI_URL ?? `https://hdrdata.org/api/CompositeIndices/query?apikey=${HDR_API_TOKEN}&year=${HDR_YEAR}`
+
+export const NO_CACHE = process.env.NO_CACHE ?? false
 
 // EXTERNAL
 import type { InstanceExports } from '@config'
