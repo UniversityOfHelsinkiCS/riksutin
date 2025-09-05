@@ -11,12 +11,16 @@ Riksutin (officially known as **Risk-i** or **International collaboration risk a
 
 ## Running tests locally (and in CI)
 
-Start app with `npm run start:test:local` and run tests with `npm run test:local`. You get the UI mode with params `-- --ui`.
+Start app with `npm run start:local:test`, wait until the fronend is build and app is served in [http://localhost:3000/](http://localhost:3000/)
+
+
+Run tests with `npm run test:local`. You get the UI mode with params `-- --ui`.
 
 The envs for testing are in `cienv`
 
-Envs are using a dummy service to mock the external dependencies, see [data_source_mock](https://github.com/UniversityOfHelsinkiCS/riksutin/tree/master/data_source_mock). Data is mostly hardcoded so you will not get eg real universities of each country
+Envs are using a dummy service to mock the external dependencies, see [data_source_mock](https://github.com/UniversityOfHelsinkiCS/riksutin/tree/master/data_source_mock). Data is mostly hardcoded so you will not get eg real universities of each country.
 
+By default the caching of data sources is turned off when tests are run, see [this](https://github.com/UniversityOfHelsinkiCS/riksutin/blob/master/cienv#L7)
 
 ## Features
 
