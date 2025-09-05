@@ -13,6 +13,11 @@ Riksutin (officially known as **Risk-i** or **International collaboration risk a
 
 Start app with `npm run start:test:local` and run tests with `npm run test:local`. You get the UI mode with params `-- --ui`.
 
+The envs for testing are in `cienv`
+
+Envs are using a dummy service to mock the external dependencies, see >data_source_mock>. Data is mostly hardcoded so you will not get eg real universities of each country
+
+
 ## Features
 
 ### Survey
