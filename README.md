@@ -9,13 +9,13 @@ Riksutin (officially known as **Risk-i** or **International collaboration risk a
 - Copy `.env.template` as `.env` file and fill in the required values
 - Run `npm i` and `npm start` to setup and start the development environment
 
-## Running tests locally
+## Running tests locally (and in CI)
 
 Start app with `npm run start:test:local` and run tests with `npm run test:local`. You get the UI mode with params `-- --ui`.
 
 The envs for testing are in `cienv`
 
-Envs are using a dummy service to mock the external dependencies, see >data_source_mock>. Data is mostly hardcoded so you will not get eg real universities of each country
+Envs are using a dummy service to mock the external dependencies, see [data_source_mock](https://github.com/UniversityOfHelsinkiCS/riksutin/tree/master/data_source_mock). Data is mostly hardcoded so you will not get eg real universities of each country
 
 
 ## Features
