@@ -25,6 +25,7 @@ const MultiChoice = ({ control, question, children, language }: InputProps) => {
                 <FormControlLabel
                   key={choice.id}
                   value={choice.id}
+                  data-cy={`choice-select-${choice.id}`}
                   checked={field.value.includes(choice.id)}
                   control={
                     <Checkbox

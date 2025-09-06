@@ -89,11 +89,8 @@ test.describe('results', () => {
     await page.locator('[data-cy="choice-select-partner"]').click()
     await page.locator('[data-cy="choice-select-agreementDone"]').click()
 
-    //await page.locator('[data-cy="choice-select-research"]').click()
-    //await page.locator('[data-cy="choice-select-education"]').click()
-
-    await page.locator('label').filter({ hasText: 'Tutkimusyhteistyö' }).click()
-    await page.locator('label').filter({ hasText: 'Koulutus/opetusyhteistyö' }).click()
+    await page.locator('input[value="education"]').check()
+    await page.locator('input[value="research"]').check()
 
     await page.locator('[data-cy="choice-select-mediumDuration"]').click()
 
