@@ -108,6 +108,8 @@ test.describe('results', () => {
     await page.getByTestId('question-7').getByRole('textbox').fill('Testiprojekti')
 
     await page.getByRole('button', { name: 'Valinnat tehty' }).click()
+
+    await expect(page.getByText('Yhteenveto valinnoistasi')).toBeVisible()
   })
 
   /*
