@@ -40,7 +40,7 @@ jobs:
         CI: true
       run: npx playwright test
 
-    - name: Print logs on failure
+    - name: Print logs
       shell: bash
       #if: failure()
       run: docker compose -f docker-compose.ci.yml logs --tail="all"

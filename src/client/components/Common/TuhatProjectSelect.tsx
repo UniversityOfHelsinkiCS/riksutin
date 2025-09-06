@@ -158,7 +158,7 @@ const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
           render={({ field }) => (
             <FormControl sx={{ minWidth: 200 }}>
               <InputLabel>{t('tuhatProjectSelect:inputLabel')}</InputLabel>
-              <Select data-cy="tuhatProject-select" label={t(' tuhatProjectSelect:inputLabel')} {...field}>
+              <Select data-cy="tuhatProject-select" label={t('tuhatProjectSelect:inputLabel')} {...field}>
                 {tuhatProjects?.map((c: TuhatData) => (
                   <MenuItem
                     data-cy={''}

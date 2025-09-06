@@ -321,7 +321,6 @@ const getQuestionData = (): Question[] => [
     },
     visibility: {},
   },
-
   {
     id: 11,
     surveyId: 1,
