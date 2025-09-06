@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { test, expect, type Page } from '@playwright/test'
 
 test('has title', async ({ page }) => {
