@@ -27,7 +27,6 @@ export const createPdfResultBuffer = async (entry: Entry) => {
     getWarnings(),
   ])
 
-
   const stream = await ReactPdf.renderToStream(
     <ResultDocument
       entry={entry.data}
