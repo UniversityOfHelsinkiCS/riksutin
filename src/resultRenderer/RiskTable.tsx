@@ -11,8 +11,6 @@ import { globalSouthCountries } from '@common/countryLists'
 import getRiskTexts from '@common/getRiskTexts'
 import getCountryRiskTexts from '@common/getCountryRiskTexts'
 
-import { useWarnings } from '../client/hooks/useWarnings'
-
 const { resultStyles } = styles
 
 const RiskTable = ({
@@ -20,11 +18,13 @@ const RiskTable = ({
   countryData,
   countries,
   results,
+  warnings,
 }: {
   riskData: RiskData
   countryData: CountryData
   countries: any
   results: any
+  warnings: any
 }) => {
   const { Div, Typography, TableContainer, Table, TableBody, TableRow, TableCell, t, language } = useComponents()
 
@@ -34,11 +34,8 @@ const RiskTable = ({
   const totalRisk = riskData.risks.find(risk => risk.id === 'total')
   const countryRisk = riskData.risks.find(risk => risk.id === 'country')
 
-  const { warnings } = useWarnings()
-
   if (!totalRisk) return null
   if (!countryData) return null
-  if (!warnings) return null
 
   const totalRiskText = results.find(r => r.optionLabel === `total${totalRisk.level}`)?.isSelected[
     language as keyof Locales
@@ -47,7 +44,7 @@ const RiskTable = ({
   let ekstraText = ''
   warnings.map(({ country, text, expiry_date }) => {
     if (country === countryData.code) {
-      if (expiry_date && new Date(expiry_date) >= new Date()) {
+      if (!expiry_date || new Date(expiry_date) >= new Date()) {
         ekstraText += text[language]
       }
     }

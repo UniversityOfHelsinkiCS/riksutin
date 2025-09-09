@@ -13,17 +13,20 @@ import { FacultyOrUnit, RiskData } from '@types'
 import i18n from '../util/i18n'
 import { TFunction } from 'i18next'
 import { DEFAULT_SURVEY_NAME, supportEmail } from '@config'
+import { getWarnings } from '../services/warning'
 
 export const createPdfResultBuffer = async (entry: Entry) => {
   const t = i18n.getFixedT('en')
 
-  const [results, countries, survey, faculties, units] = await Promise.all([
+  const [results, countries, survey, faculties, units, warnings] = await Promise.all([
     getResults('1'),
     getCountries(),
     getSurvey(DEFAULT_SURVEY_NAME),
     getFaculties(),
     getUnits(),
+    getWarnings(),
   ])
+
 
   const stream = await ReactPdf.renderToStream(
     <ResultDocument
@@ -35,6 +38,7 @@ export const createPdfResultBuffer = async (entry: Entry) => {
       faculties={faculties}
       units={units}
       t={t}
+      warnings={warnings}
     />
   )
 
@@ -63,6 +67,7 @@ const ResultDocument = ({
   faculties,
   units,
   t,
+  warnings,
 }: {
   entry: RiskData
   countries: Country[]
@@ -72,6 +77,7 @@ const ResultDocument = ({
   faculties: FacultyOrUnit[]
   units: FacultyOrUnit[]
   t: TFunction
+  warnings: any
 }) => {
   const { country } = entry
 
@@ -100,7 +106,13 @@ const ResultDocument = ({
           }}
         >
           <View style={{ padding: '10px', fontSize: '10px' }}>
-            <RiskTable countries={countries} countryData={country[0]} riskData={entry} results={results} />
+            <RiskTable
+              countries={countries}
+              countryData={country[0]}
+              riskData={entry}
+              results={results}
+              warnings={warnings}
+            />
             <View style={{ padding: '10px' }} />
             <RenderAnswers survey={survey} resultData={resultData} faculties={faculties} units={units} />
           </View>
