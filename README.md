@@ -11,8 +11,7 @@ Riksutin (officially known as **Risk-i** or **International collaboration risk a
 
 ## Running tests locally (and in CI)
 
-Start app with `npm run start:local:test`, wait until the fronend is build and app is served in [http://localhost:3000/](http://localhost:3000/)
-
+Start app with `npm run start:local:test`, wait until the fronend is build and app is served in [http://localhost:3000/](http://localhost:3000/). Note that at the moment you need to build the project locally when code is changed, see https://github.com/UniversityOfHelsinkiCS/riksutin/issues/126
 
 Run tests with `npm run test:local`. You get the UI mode with params `-- --ui`.
 
