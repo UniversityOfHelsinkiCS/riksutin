@@ -122,6 +122,7 @@ const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
       <Box sx={{ marginBottom: '16px' }}>
         <Typography component="span">{t('tuhatProjectExists:title')}</Typography>
       </Box>
+
       <Controller
         control={control}
         name="tuhatProjectExists"
@@ -145,6 +146,7 @@ const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
           </Box>
         )}
       />
+
       {projectOptionChosen === 'tuhatOptionPositive' && (
         <Controller
           control={control}
@@ -176,6 +178,7 @@ const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
           )}
         />
       )}
+
       {projectOptionChosen === 'tuhatOptionNegative' && (
         <Controller
           control={control}

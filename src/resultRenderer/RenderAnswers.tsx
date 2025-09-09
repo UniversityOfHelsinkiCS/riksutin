@@ -59,6 +59,8 @@ const RenderAnswers = ({
   const unit = units.find(faculty => faculty.code === answers.unit)
   const parsedUnit = unit ? `${unit.code} - ${unit.name[language as keyof Locales]}` : answers.unit
 
+  console.log('PERKELE')
+
   return (
     <>
       <Typography variant="h6" style={{ fontSize: '24px', marginBottom: '20px' }}>
@@ -69,7 +71,7 @@ const RenderAnswers = ({
           <Div key={currentQuestion.id}>
             {!currentQuestion.parentId && (
               <>
-                <Div style={{ margin: '16px' }}>
+                <Div style={{ margin: '16px' }} id={`question-${currentQuestion.id}`}>
                   <Typography style={{ fontWeight: '800' }}>
                     {currentQuestion.id === 8 && resultData[4] === 'multilateral'
                       ? t('questions:additionalPartnerOrganisationCountryQuestion')
