@@ -8,7 +8,6 @@ test('has title', async ({ page }) => {
 
 test.describe.configure({ mode: 'serial' })
 
-/*
 test.describe('form', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/')
@@ -50,8 +49,17 @@ test.describe('form', () => {
     await page.getByLabel('Organisaatio').click()
     await expect(page.getByRole('option', { name: 'HELSINGIN YLIOPISTO', exact: true })).toBeVisible()
   })
+
+  test('Tuhat project can be selected', async ({ page }) => {
+    await page.getByRole('button', { name: 'Olen projektin omistaja' }).click()
+
+    await page.locator('[data-cy="choice-select-tuhatOptionPositive"]').click()
+    await page.locator('[data-cy="tuhatProject-select"]').click()
+    await page.locator('text="AI akatemia"').click()
+
+    await page.getByLabel('Valitse sijaintimaa').click()
+  })
 })
-*/
 
 test.describe('results', () => {
   test.beforeEach(async ({ page }) => {

@@ -106,8 +106,10 @@ const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
   }
 
   const projectOptionChosen = watch('tuhatProjectExists') || ''
-  if (control._formValues.tuhatProjectExists === 'tuhatOptionNegative')
+
+  if (control._formValues.tuhatProjectExists === 'tuhatOptionNegative') {
     sessionStorage.setItem(TUHAT_DATA_STORAGE_KEY, '{}')
+  }
 
   return (
     <Box sx={cardStyles.questionsContainer}>
