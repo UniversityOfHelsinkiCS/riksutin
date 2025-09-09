@@ -139,113 +139,19 @@ test.describe('results', () => {
   test('answers section contains the question and the response', async () => {
     const owner = page.locator('#question-2')
     await expect(owner).toBeVisible()
+    await expect(owner.getByText('Projektin omistaja')).toBeVisible()
     await expect(owner).toContainText('Testi Kayttaja (grp-toska@helsinki.fi)')
 
-    await expect(page.getByText('Projektin omistaja')).toBeVisible()
-    await expect(page.getByText('Testi Kayttaja (grp-toska@helsinki.fi)')).toBeVisible()
-
-    await expect(page.getByText('Projektin omistava yksikkö')).toBeVisible()
-    await expect(page.getByText('H523 - Tietojenkäsittelytieteen osasto')).toBeVisible()
+    const organization = page.locator('#question-3')
+    await expect(organization.getByText('Projektin omistava yksikkö')).toBeVisible()
+    await expect(organization.getByText('H523 - Tietojenkäsittelytieteen osasto')).toBeVisible()
   })
 
   test('user page exists and has content', async () => {
     await page.getByRole('link', { name: 'Aiemmat arviot' }).click()
     await expect(page.getByText('Aikaisemmat riskiarviosi')).toBeVisible()
     await expect(page.getByTestId('entrybox').first()).toBeVisible()
-    await expect(page.getByRole('link', { name: 'Tuska' })).toBeVisible()
+    const projectLinks = page.getByRole('link', { name: 'Tuska' })
+    await expect(projectLinks.first()).toBeVisible()
   })
 })
-
-/*
-test.describe('results', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/')
-  })
-
-  test('can be filled', async ({ page }) => {
-    await page.getByRole('button', { name: 'Olen projektin omistaja' }).click()
-
-    const autocompleteInput = page.locator('#unit')
-    await autocompleteInput.fill('ti')
-    const options = page.locator('.MuiAutocomplete-option')
-    await options.filter({ hasText: 'Tietojenkäsittelytieteen osasto' }).first().click()
-
-    // TUHAT negative
-    await page.locator('[data-cy="choice-select-tuhatOptionNegative"]').click()
-    await page.getByTestId('question-tuhatProjText').getByRole('textbox').click()
-    await page.getByTestId('question-tuhatProjText').getByRole('textbox').fill('Tuska')
-
-    await page.locator('[data-cy="choice-select-bilateral"]').click()
-
-    await page.getByLabel('Valitse sijaintimaa').click()
-    await page.getByRole('option', { name: 'Afghanistan' }).click()
-
-    await page.locator('[data-cy="choice-select-university"]').click()
-    await page.getByLabel('Valitse yliopisto').click()
-    await page.getByRole('option', { name: 'Kardan University' }).click()
-
-    await page.locator('[data-cy="choice-select-succefultCollaboration"]').click()
-    await page.locator('[data-cy="choice-select-partner"]').click()
-    await page.locator('[data-cy="choice-select-agreementDone"]').click()
-
-    await page.locator('input[value="education"]').check()
-    await page.locator('input[value="research"]').check()
-
-    await page.locator('[data-cy="choice-select-mediumDuration"]').click()
-
-    await page.locator('[data-cy="choice-select-noExternalFunding"]').click()
-
-    await page.locator('[data-cy="choice-select-mediumBudget"]').click()
-    await page.locator('[data-cy="choice-select-transferPersonalData"]').click()
-    await page.locator('[data-cy="choice-select-noTransferMilitaryKnowledge"]').click()
-
-    await page.locator('[data-cy="choice-select-noEthicalIssues"]').click()
-
-    await page.getByTestId('question-7').getByRole('textbox').click()
-    await page.getByTestId('question-7').getByRole('textbox').fill('Testiprojekti')
-
-    await page.getByRole('button', { name: 'Valinnat tehty' }).click()
-
-    await expect(page.getByText('Yhteenveto valinnoistasi')).toBeVisible()
-  })
-
-
-  test.afterAll(async () => {
-    await page.close()
-  })
-
-  test('risk table and answers are visible after submitting', async () => {
-    await expect(page.getByText('Yhteistyön riskit')).toBeVisible()
-    await expect(page.getByText('Yhteenveto valinnoistasi')).toBeVisible()
-  })
-
-  test('risk table has content', async () => {
-    await expect(page.getByText('Yhteistyön kokonaisriskitaso', { exact: true })).toBeVisible()
-    await expect(page.getByText('Maan riskitaso', { exact: true })).toBeVisible()
-    await expect(page.getByText('Korruptio', { exact: true })).toBeVisible()
-    await expect(page.getByText('Akateeminen vapaus', { exact: true })).toBeVisible()
-    await expect(page.getByText('Poliittinen vakaus', { exact: true })).toBeVisible()
-    await expect(page.getByText('Maan kehittyneisyys', { exact: true })).toBeVisible()
-    await expect(page.getByText('GDPR', { exact: true })).toBeVisible()
-    await expect(page.getByText('Pakotteet', { exact: true })).toBeVisible()
-    await expect(page.getByText('Yliopiston riskitaso', { exact: true })).toBeVisible()
-    await expect(page.getByText('Kaksikäyttötuotteiden riskitaso', { exact: true })).toBeVisible()
-    await expect(page.getByText('Eettinen riskitaso', { exact: true })).toBeVisible()
-  })
-
-  test('answers section contains the question and the response', async () => {
-    await expect(page.locator('b').filter({ hasText: 'Ilmoittajan nimi' })).toBeVisible()
-    await expect(page.getByText('Testi Testinen')).toBeVisible()
-
-    await expect(page.locator('b').filter({ hasText: 'Yhteistyön vastuuyksikkö HY:ssa' })).toBeVisible()
-    await expect(page.getByText('CS')).toBeVisible()
-  })
-
-  test('user page exists and has content', async () => {
-    await page.getByRole('link', { name: 'Omat tiedot' }).click()
-    await expect(page.getByText('Aikaisemmat riskiarviosi')).toBeVisible()
-    await expect(page.getByTestId('entrybox').first()).toBeVisible()
-  })
-
-})
-*/
