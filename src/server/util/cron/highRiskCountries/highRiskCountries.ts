@@ -3,6 +3,7 @@ import scheduleCronJob from '../schedule'
 import { getCountryData } from '../../../routes/country'
 import { set } from '../../redis'
 import { getCountries } from '../../../services/countries'
+import mockHighrisk from '../../../mocs/highrisk'
 
 const calculateTotalRisk = async (countryCode: string) => {
   const countryData = await getCountryData(countryCode)
@@ -11,7 +12,7 @@ const calculateTotalRisk = async (countryCode: string) => {
 
   const riskValues = Object.values(numberRisks)
 
-  const sanctionsRiskLevel = countryData.sanctions ? 2 : 1
+  const sanctionsRiskLevel: number = countryData.sanctions ? 2 : 1
 
   const totalCountryRiskLevel =
     Math.round(riskValues.concat(sanctionsRiskLevel).reduce((a, b) => a + b, 0) / riskValues.length) || 0
@@ -20,6 +21,10 @@ const calculateTotalRisk = async (countryCode: string) => {
 }
 
 export const getHighRiskCountries = async () => {
+  if (process.env.NODE_ENV !== 'production') {
+    return mockHighrisk
+  }
+
   logger.info('Calculating risk level 3 countries')
   const countries = await getCountries()
   const highRiskCountries: {

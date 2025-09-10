@@ -22,10 +22,28 @@ export const gdprRisk = (country: CountryData | undefined, resultData: FormValue
   return null
 }
 
+export const multilateralPartnerRisk = (updatedCountryData: any) => {
+  if (!updatedCountryData) return null
+
+  const { name, code, createdAt, universities, gdpr, ...numberRisks } = updatedCountryData
+
+  const countryRisksFiltered: number[] = gdpr ? Object.values(numberRisks).concat(gdpr) : Object.values(numberRisks)
+
+  if (!countryRisksFiltered || countryRisksFiltered.length === 0) return null
+
+  const totalCountryRiskLevel = countryRisksFiltered.reduce((a, b) => a + b, 0) / countryRisksFiltered.length || 0
+
+  return {
+    rawTotalCountryRiskLevel: totalCountryRiskLevel,
+    totalCountryRiskLevel: Math.round(totalCountryRiskLevel),
+    countryRisksFiltered,
+  }
+}
+
 export const totalCountryRisk = (updatedCountryData: UpdatedCountryData | undefined, formData: FormValues) => {
   if (!updatedCountryData || !formData) return null
 
-  const { code, createdAt, universities, gdpr, ...numberRisks } = updatedCountryData
+  const { name, code, createdAt, universities, gdpr, ...numberRisks } = updatedCountryData
 
   const countryRisksFiltered: number[] = gdpr ? Object.values(numberRisks).concat(gdpr) : Object.values(numberRisks)
 

@@ -19,17 +19,18 @@ export type NewWarning = {
 }
 
 export type CountryData = {
-  academicfreedom: number
+  academicfreedom: number | null
   code: string
-  corruption: number
-  stability: number
-  hci: number
+  name: string | undefined
+  corruption: number | null
+  stability: number | null
+  hci: number | null
   safetyLevel: number
-  universities: string[]
+  universities: string[] | null
   sanctions: number
   gdpr: number | null
   createdAt?: string
-  ruleOfLaw: number
+  ruleOfLaw: number | null
 }
 
 export interface FacultyOrUnit {
@@ -176,6 +177,7 @@ export interface RiskData {
     country: CountryData[]
     createdAt?: string
   }[]
+  multilateralCountries: any[]
 }
 
 export interface Question {

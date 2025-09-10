@@ -15,21 +15,23 @@ import getAcademicFreedom from '../data/academicfreedom'
 
 export const getCountryData = async (code: string | undefined): Promise<CountryData | null> => {
   if (!code) return null
+
   const countries = await getCountries()
   const country = countries.find(country => country.iso2Code === code.toUpperCase())
-  const countryName = country?.name
+  const name = country?.name
   const countryId = country?.id
 
   const corruption = await getCountryIndicator(code, 'CC.PER.RNK')
   const stability = await getCountryIndicator(code, 'PV.PER.RNK')
-  const hci = await getHumanDevelopment(countryName, countryId)
+  const hci = await getHumanDevelopment(name, countryId)
   const safetyLevel = await fetchSafetyLevelData(code)
-  const universities = await getCountryUniversities(countryName)
+  const universities = await getCountryUniversities(name)
   const sanctions = await fetchSanctionsData(code)
-  const ruleOfLaw = parseRuleOfLaw(countryName)
+  const ruleOfLaw = parseRuleOfLaw(name)
   const academicfreedom = getAcademicFreedom(countryId)
 
   return {
+    name,
     code,
     corruption,
     stability,
