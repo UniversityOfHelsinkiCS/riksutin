@@ -14,7 +14,7 @@ const getCountryRisks = (
   const safetyLevelText = results.find(r => r.optionLabel === `safetyLevel${country.safetyLevel}`)?.isSelected[
     language as keyof Locales
   ]
-  const academicFreedomText = results.find(r => r.optionLabel === `academicFreedom${country.academicfreedom}`)
+  const academicFreedomText = results.find(r => r.optionLabel === `academicFreedom${country.academicFreedom}`)
     ?.isSelected[language as keyof Locales]
   const politicalStabilityText = results.find(r => r.optionLabel === `politicalStability${country.stability}`)
     ?.isSelected[language as keyof Locales]
@@ -45,7 +45,7 @@ const getCountryRisks = (
     {
       id: 'academicFreedom',
       title: 'riskTable:academicFreedom',
-      level: country.academicfreedom,
+      level: country.academicFreedom,
       infoText: academicFreedomText,
     },
     {

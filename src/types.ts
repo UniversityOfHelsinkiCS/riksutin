@@ -19,7 +19,8 @@ export type NewWarning = {
 }
 
 export type CountryData = {
-  academicfreedom: number | null
+  countryRisk: any
+  academicFreedom: number | null
   code: string
   name: string | undefined
   corruption: number | null
@@ -157,7 +158,7 @@ export interface Result {
 export interface Risk {
   id: string
   title: string
-  level: number
+  level: number | null
   infoText?: string
 }
 
@@ -177,7 +178,7 @@ export interface RiskData {
     country: CountryData[]
     createdAt?: string
   }[]
-  multilateralCountries: any[]
+  multilateralCountries: CountryData[]
 }
 
 export interface Question {

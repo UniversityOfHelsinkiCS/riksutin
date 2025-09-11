@@ -10,6 +10,7 @@ import { useComponents } from './context'
 import { globalSouthCountries } from '@common/countryLists'
 import getRiskTexts from '@common/getRiskTexts'
 import getCountryRiskTexts from '@common/getCountryRiskTexts'
+import MultilateralRisks from './MultilateralRisks'
 
 const { resultStyles } = styles
 
@@ -66,6 +67,7 @@ const RiskTable = ({
       <Typography data-cy="result-section-title" variant="h6" style={{ marginBottom: '20px', fontSize: '24px' }}>
         {t('results:riskTableTitle')}
       </Typography>
+      {process.env.NODE_ENV === 'development' && <MultilateralRisks riskData={riskData} results={results} />}
       <Div style={resultStyles.resultElementWrapper}>
         <TableContainer>
           <Table>
@@ -95,7 +97,7 @@ const RiskTable = ({
                     </TableCell>
                   </TableRow>
                   {countryRisksWithTexts?.map((risk: Risk, id: number) => {
-                    if (risk.level > 0) {
+                    if (risk.level && risk.level > 0) {
                       return (
                         <TableRow key={risk.id}>
                           <TableCell colSpan={3}>
@@ -132,6 +134,7 @@ const RiskTable = ({
             </TableBody>
           </Table>
         </TableContainer>
+        <MultilateralRisks riskData={riskData} results={results} />
       </Div>
     </>
   )

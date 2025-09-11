@@ -28,7 +28,7 @@ export const getCountryData = async (code: string | undefined): Promise<CountryD
   const universities = await getCountryUniversities(name)
   const sanctions = await fetchSanctionsData(code)
   const ruleOfLaw = parseRuleOfLaw(name)
-  const academicfreedom = getAcademicFreedom(countryId)
+  const academicFreedom = getAcademicFreedom(countryId)
 
   return {
     name,
@@ -39,7 +39,7 @@ export const getCountryData = async (code: string | undefined): Promise<CountryD
     safetyLevel,
     universities,
     sanctions,
-    academicfreedom,
+    academicFreedom,
     ruleOfLaw,
     gdpr: null,
   }

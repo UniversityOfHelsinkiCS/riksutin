@@ -1,7 +1,7 @@
-import academicfreedom from './academic_freedom.json'
+import academicFreedom from './academic_freedom.json'
 
 const getAcademicFreedom = code => {
-  const country = academicfreedom.find(c => c.country_text_id === code)
+  const country = academicFreedom.find(c => c.country_text_id === code)
   if (!country) {
     return null
   }
