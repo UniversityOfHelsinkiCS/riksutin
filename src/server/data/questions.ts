@@ -23,7 +23,7 @@ const getQuestionData = (): Question[] => [
     id: 2,
     surveyId: 1,
     parentId: null,
-    priority: 0,
+    priority: 1,
     title: {
       fi: 'Projektin omistaja',
       sv: 'Person responsible for the project',
@@ -67,7 +67,7 @@ const getQuestionData = (): Question[] => [
     id: 4,
     surveyId: 1,
     parentId: null,
-    priority: 3,
+    priority: 4,
     title: {
       fi: 'Yhteistyökonsortion koostumus',
       sv: 'Composition of consortium',
@@ -107,7 +107,7 @@ const getQuestionData = (): Question[] => [
     id: 6,
     surveyId: 1,
     parentId: null,
-    priority: 6,
+    priority: 7,
     title: {
       fi: 'Yhteistyöorganisaation tyyppi',
       sv: 'Type of the partner organisation',
@@ -200,7 +200,7 @@ const getQuestionData = (): Question[] => [
     id: 8,
     surveyId: 1,
     parentId: null,
-    priority: 5,
+    priority: 6,
     title: {
       fi: 'Yhteistyökumppanin sijaintimaa',
       sv: 'Home country of partner organisation',
@@ -226,7 +226,7 @@ const getQuestionData = (): Question[] => [
     id: 9,
     surveyId: 1,
     parentId: null,
-    priority: 8,
+    priority: 3,
     title: {
       fi: 'Helsingin yliopiston asema yhteistyössä',
       sv: 'Role of UH in collaboration',

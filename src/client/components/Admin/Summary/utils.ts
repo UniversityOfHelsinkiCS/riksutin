@@ -59,7 +59,7 @@ const createTableData = (entries: Entry[], questions: Question[], faculties: Fac
     const additionalValues = {
       id: entry.id.toString(),
       date: `${new Date(entry.createdAt).toLocaleDateString()} ${new Date(entry.createdAt).toLocaleTimeString()}`,
-      total: entry.data.risks.find(r => r.id === 'total')?.level.toString(),
+      total: entry.data.risks.find(r => r.id === 'total')?.level?.toString(),
     }
 
     const faculty = faculties.find(f => f.code === entry.data.answers.faculty)?.name.fi
