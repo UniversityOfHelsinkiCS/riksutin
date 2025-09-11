@@ -28,7 +28,7 @@ const Element = ({ level, id, results }) => {
 
   const option = results.find(r => r.optionLabel === optLabel)
 
-  const tip = option ? option.isSelected[language] : 'no clue what means'
+  const tip = option ? option.isSelected[language] : 'label not available'
 
   return (
     <Div
