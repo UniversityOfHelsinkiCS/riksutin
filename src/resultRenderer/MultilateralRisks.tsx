@@ -82,6 +82,8 @@ const MultilateralRisks = ({ riskData, results }: { riskData: RiskData; results:
     return t(`riskTable:${id}`)
   }
 
+  const width = `${70 / multilateralCountries.length}%`
+
   return (
     <Div>
       <Button variant="contained" onClick={() => setShowTable(!showTable)}>
@@ -106,9 +108,9 @@ const MultilateralRisks = ({ riskData, results }: { riskData: RiskData; results:
             </TableRow>
             {risks.map(riskId => (
               <TableRow key={riskId}>
-                <TableCell>{getLabelFor(riskId)}</TableCell>
+                <TableCell sx={{ width: '30.0%' }}>{getLabelFor(riskId)}</TableCell>
                 {multilateralCountries.map(country => (
-                  <TableCell key={country.code}>
+                  <TableCell key={country.code} sx={{ width }}>
                     <Element level={country[riskId] ? country[riskId] : 4} id={riskId} results={results} />
                   </TableCell>
                 ))}
