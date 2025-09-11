@@ -56,6 +56,8 @@ const MultilateralRisks = ({ riskData, results }: { riskData: RiskData; results:
   const { multilateralCountries } = riskData
   const { TableContainer, Table, TableBody, TableRow, TableCell, Div, t } = useComponents()
 
+  if (!multilateralCountries) return null
+
   if (!showTable) {
     return (
       <Div>
