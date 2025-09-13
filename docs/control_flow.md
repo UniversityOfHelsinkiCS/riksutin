@@ -29,5 +29,8 @@ sequenceDiagram
     otherRisks ->> util: organisationRisk(formData)
     deactivate otherRisks
     riskData ->> totalRisk: getTotalRisk(otherRisks, updatedCountryData, formData)
+    activate totalRisk
+    totalRisk ->> util: totalCountryRisk(country, formData)
+    deactivate totalRisk
     deactivate riskData
 ```
