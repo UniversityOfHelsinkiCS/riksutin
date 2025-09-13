@@ -1,6 +1,6 @@
 ```mermaid
 sequenceDiagram
-    participant entry
+    participant entryRouter
     participant riskData
     participant countryRisks
     participant countryRouter
@@ -8,7 +8,7 @@ sequenceDiagram
     participant totalRisk
     participant util
 
-    entry->>riskData: getRiskData(data)
+    entryRouter->>riskData: getRiskData(data)
     activate riskData
     riskData ->>+ countryRisks: getMultilateralRisks(countries, formData)
     activate countryRisks
@@ -33,4 +33,5 @@ sequenceDiagram
     totalRisk ->> util: totalCountryRisk(country, formData)
     deactivate totalRisk
     deactivate riskData
+    totalRisk --> entryRouter: resultJson
 ```
