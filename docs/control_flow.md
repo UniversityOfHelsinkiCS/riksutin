@@ -6,6 +6,7 @@ sequenceDiagram
     participant countryRouter
     participant otherRisks
     participant totalRisk
+    participant util
 
     entry->>riskData: getRiskData(data)
     activate riskData
