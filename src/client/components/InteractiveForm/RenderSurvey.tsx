@@ -49,12 +49,14 @@ const RenderSurvey = ({
   watch,
   isSubmitted,
   submitButtonLoading,
+  setValue,
 }: {
   control: Control<any>
   watch: UseFormWatch<any>
   questions: Question[]
   isSubmitted: boolean
   submitButtonLoading: boolean
+  setValue?: any
 }) => {
   const { t, i18n } = useTranslation()
   const { defaultValues } = useFormState({ control })
@@ -84,6 +86,7 @@ const RenderSurvey = ({
                 question={question}
                 questions={questions}
                 language={language}
+                setValue={setValue}
               />
             )}
           </Box>

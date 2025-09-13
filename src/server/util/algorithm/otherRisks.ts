@@ -5,7 +5,6 @@ import { totalCountryRisk, dualUseRisk, organisationRisk, universityRisk, consor
 
 const getOtherRisks = (country: UpdatedCountryData, questions: Question[], formData: FormValues) => {
   const countryRiskValues = totalCountryRisk(country, formData)
-
   const dualUseRiskValue = dualUseRisk(questions, formData, country)
   const organisationRiskValue = organisationRisk(formData)
   const ethicalRiskValue = questions

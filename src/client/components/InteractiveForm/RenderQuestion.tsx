@@ -97,7 +97,7 @@ const UnitSelect = ({ control }) => {
   return <CustomText control={control} id="unit" title="unitSelect:title" />
 }
 
-const RenderQuestion = ({ control, watch, question, questions, language }: InputProps) => {
+const RenderQuestion = ({ control, watch, question, questions, language, setValue }: InputProps) => {
   const { countries, isLoading } = useCountries()
   const { resultData } = useResultData()
 
@@ -141,11 +141,35 @@ const RenderQuestion = ({ control, watch, question, questions, language }: Input
 
   const childQuestions = questions.filter(childQuestion => question.id === childQuestion.parentId)
 
-  if (question.id === 3 && ORGANISATION_ID === 'hy')
+  if (question.id === 3 && ORGANISATION_ID === 'hy') {
     return <SelectTuhatProject control={control} question={question} watch={watch} />
-  if (question.id === 2 && ORGANISATION_ID !== 'hy') return <UnitSelect control={control} />
+  }
+
+  if (question.id === 2 && ORGANISATION_ID !== 'hy') {
+    return <UnitSelect control={control} />
+  }
 
   const defaultValue: any = resultData[question.id]
+
+  const multilateral = watch('4') && watch('4') === 'multilateral'
+  const hyCordinator = watch('9') && watch('9') === 'coordinator'
+
+  // if mutlilateran and hyCordinator, do not render country
+  if (question.id === 8 && multilateral && hyCordinator) {
+    if (!watch('8')) {
+      setValue('8', 'Finland')
+    }
+    return null
+  }
+
+  // if mutlilateran and hyCordinator, do not ask the type of co-ordinating parter
+  if (question.id === 6 && multilateral && hyCordinator) {
+    if (!watch('6')) {
+      setValue('6', 'otherType')
+      setValue('22', 'unknown')
+    }
+    return null
+  }
 
   return (
     <Box>

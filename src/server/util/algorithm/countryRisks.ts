@@ -1,8 +1,37 @@
-import type { CountryData, FormValues } from '@types'
+import type { BaseCountry, CountryData, FormValues } from '@types'
 import type { UpdatedCountryData } from '@server/types'
+import { multilateralPartnerRisk } from './utils'
 
 import { gdprRisk } from './utils'
 import { getCountries } from 'src/server/services/countries'
+import { getCountryData } from 'src/server/routes/country'
+
+export const getMultilateraCountrylRisks = async (mContries: string[], formData) => {
+  const countries: BaseCountry[] = await getCountries()
+  if (!mContries) {
+    return []
+  }
+
+  const multilateralPartners = mContries
+    ? mContries.map(c => countries.find(country => country.name === c)?.iso2Code)
+    : []
+
+  const multilateralCountryData = await Promise.all(
+    multilateralPartners.map(async code => {
+      const countryData = await getCountryData(code)
+
+      // to keep compiler happy
+      if (!countryData) {
+        return null
+      }
+
+      const updatedCountryData = await getCountryRisks(countryData, formData)
+      return updatedCountryData
+    })
+  )
+
+  return multilateralCountryData.map(c => ({ ...c, universities: null, countryRisk: multilateralPartnerRisk(c) }))
+}
 
 const getCountryRisks = async (countryData: CountryData, formData: FormValues) => {
   const countries = await getCountries()

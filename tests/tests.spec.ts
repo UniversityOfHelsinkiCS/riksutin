@@ -125,7 +125,6 @@ test.describe('results', () => {
     await expect(page.getByText('Yhteistyön kokonaisriskitaso', { exact: true })).toBeVisible()
     await expect(page.getByText('Maan riskitaso', { exact: true })).toBeVisible()
     await expect(page.getByText('Korruptio', { exact: true })).toBeVisible()
-    await expect(page.getByText('Akateeminen vapaus', { exact: true })).toBeVisible()
     await expect(page.getByText('Poliittinen vakaus', { exact: true })).toBeVisible()
     await expect(page.getByText('Maan kehittyneisyys', { exact: true })).toBeVisible()
     await expect(page.getByText('GDPR', { exact: true })).toBeVisible()
@@ -133,6 +132,7 @@ test.describe('results', () => {
     await expect(page.getByText('Yliopiston riskitaso', { exact: true })).toBeVisible()
     await expect(page.getByText('Kaksikäyttötuotteiden riskitaso', { exact: true })).toBeVisible()
     await expect(page.getByText('Eettinen riskitaso', { exact: true })).toBeVisible()
+    await expect(page.getByText('Akateeminen vapaus', { exact: true })).toBeVisible()
   })
 
   test('answers section contains the question and the response', async () => {

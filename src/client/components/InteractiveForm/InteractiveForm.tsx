@@ -34,7 +34,7 @@ const InteractiveForm = () => {
 
   const { formStyles } = styles
 
-  const { handleSubmit, control, watch } = useForm({
+  const { handleSubmit, control, watch, setValue } = useForm({
     mode: 'onSubmit',
     shouldUnregister: true,
     defaultValues: resultData,
@@ -78,6 +78,7 @@ const InteractiveForm = () => {
               watch={watch}
               isSubmitted={isSubmitted}
               submitButtonLoading={submitButtonLoading}
+              setValue={setValue}
             />
           </form>
         </Grid>

@@ -20,7 +20,7 @@ export type NewWarning = {
 
 export type CountryData = {
   countryRisk: any
-  academicFreedom: number | null
+  academicFreedom?: number | undefined | null
   code: string
   name: string | undefined
   corruption: number | null
@@ -158,7 +158,7 @@ export interface Result {
 export interface Risk {
   id: string
   title: string
-  level: number | null
+  level: number | null | undefined
   infoText?: string
 }
 

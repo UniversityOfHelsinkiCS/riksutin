@@ -15,6 +15,7 @@ export interface InputProps {
   isSubmitted?: boolean
   selectedCountry?: string
   defaultValue?: string
+  setValue?: any
 }
 
 type SurveySave = typeof FORM_DATA_KEY

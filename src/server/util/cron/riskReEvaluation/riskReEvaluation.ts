@@ -3,7 +3,7 @@ import type { RiskData } from '@types'
 import { Entry, User } from '@dbmodels'
 import logger from '../../logger'
 import scheduleCronJob from '../schedule'
-import createRiskData from '../../algorithm/createRiskData'
+import createRiskData from '../../algorithm/riskData'
 import sendAlertEmail from './sendAlertEmail'
 
 export const riskReEvaluation = async (entry: Entry) => {

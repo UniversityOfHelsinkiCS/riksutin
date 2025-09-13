@@ -55,7 +55,7 @@ export const totalCountryRisk = (updatedCountryData: UpdatedCountryData | undefi
   return [totalCountryRiskLevel, countryRisksFiltered]
 }
 
-export const universityRisk = (university: string | undefined, countryUniversities: string[] | undefined) => {
+export const universityRisk = (university: string | undefined, countryUniversities: string[] | undefined | null) => {
   if (!university) return null
 
   if (countryUniversities?.includes(university)) {
