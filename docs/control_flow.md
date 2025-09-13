@@ -23,6 +23,11 @@ sequenceDiagram
     countryRisks ->> util: gdprRisk(countryData, formData
     deactivate countryRisks
     riskData ->> otherRisks: getOtherRisks(updatedCountryData, questions, formData)
+    activate otherRisks
+    otherRisks ->> util: totalCountryRisk(country, formData)
+    otherRisks ->> util: dualUseRisk(country, formData)
+    otherRisks ->> util: organisationRisk(formData)
+    deactivate otherRisks
     riskData ->> totalRisk: getTotalRisk(otherRisks, updatedCountryData, formData)
     deactivate riskData
 ```
