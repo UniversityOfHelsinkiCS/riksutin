@@ -32,6 +32,6 @@ sequenceDiagram
     activate totalRisk
     totalRisk ->> util: totalCountryRisk(country, formData)
     deactivate totalRisk
+    riskData --> entryRouter: resultJson
     deactivate riskData
-    totalRisk --> entryRouter: resultJson
 ```
