@@ -11,7 +11,7 @@ sequenceDiagram
     activate riskData
     riskData ->>+ countryRisks: getMultilateralRisks(countries, formData)
     activate countryRisks
-    Note right of riskData: for each country
+    Note right of countryRisks: for each country
     countryRisks ->> countryRouter: getCountryData(code)
     countryRisks ->> countryRisks: getCountryRisks(countryData, formData)
     deactivate countryRisks
