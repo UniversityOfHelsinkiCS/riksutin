@@ -18,8 +18,8 @@ sequenceDiagram
     countryRisks ->> util: multilateralPartnerRisk(updatedCountryData)
     deactivate countryRisks
     riskData ->> countryRouter: getCountryData(code)
-    activate countryRisks
     riskData ->> countryRisks: getCountryRisks(countryData, formData)
+    activate countryRisks
     countryRisks ->> util: gdprRisk(countryData, formData
     deactivate countryRisks
     riskData ->> otherRisks: getOtherRisks(updatedCountryData, questions, formData)
