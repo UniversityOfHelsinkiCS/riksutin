@@ -15,6 +15,7 @@ sequenceDiagram
     Note right of countryRisks: for each country
     countryRisks ->> countryRouter: getCountryData(code)
     countryRisks ->> countryRisks: getCountryRisks(countryData, formData)
+    countryRisks ->> util: multilateralPartnerRisk
     deactivate countryRisks
     riskData ->> countryRouter: getCountryData(code)
     riskData ->> countryRisks: getCountryRisks(countryData, formData)
