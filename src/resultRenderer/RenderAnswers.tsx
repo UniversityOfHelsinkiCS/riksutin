@@ -59,6 +59,8 @@ const RenderAnswers = ({
   const unit = units.find(faculty => faculty.code === answers.unit)
   const parsedUnit = unit ? `${unit.code} - ${unit.name[language as keyof Locales]}` : answers.unit
 
+  const hyCordinatedMultilateral = resultData['9'] === 'coordinator' && resultData['4'] === 'multilateral'
+
   return (
     <>
       <Typography variant="h6" style={{ fontSize: '24px', marginBottom: '20px' }}>
@@ -67,7 +69,7 @@ const RenderAnswers = ({
       <Div style={{ borderLeft: '1px solid lightgray' }}>
         {survey?.Questions.map(currentQuestion => (
           <Div key={currentQuestion.id}>
-            {!currentQuestion.parentId && (
+            {!currentQuestion.parentId && !(hyCordinatedMultilateral && currentQuestion.id === 6) && (
               <>
                 <Div style={{ margin: '16px' }} id={`question-${currentQuestion.id}`}>
                   <Typography style={{ fontWeight: '800' }}>

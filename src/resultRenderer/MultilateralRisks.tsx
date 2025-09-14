@@ -50,23 +50,9 @@ const Element = ({ level, id, results }) => {
 }
 
 const MultilateralRisks = ({ riskData, results }: { riskData: RiskData; results: any }) => {
-  const [showTable, setShowTable] = useState(process.env.NODE_ENV === 'development')
-
   const risks = ['academicFreedom', 'hci', 'sanctions', 'stability', 'safetyLevel', 'corruption', 'ruleOfLaw']
   const { multilateralCountries } = riskData
   const { TableContainer, Table, TableBody, TableRow, TableCell, Div, t } = useComponents()
-
-  if (!multilateralCountries) return null
-
-  if (!showTable) {
-    return (
-      <Div>
-        <Button variant="contained" onClick={() => setShowTable(!showTable)}>
-          show multilateral risks
-        </Button>
-      </Div>
-    )
-  }
 
   const getLabelFor = (id: string) => {
     if (id === 'hci') {
@@ -86,9 +72,6 @@ const MultilateralRisks = ({ riskData, results }: { riskData: RiskData; results:
 
   return (
     <Div>
-      <Button variant="contained" onClick={() => setShowTable(!showTable)}>
-        hide multilateral risks
-      </Button>
       <TableContainer>
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableBody>

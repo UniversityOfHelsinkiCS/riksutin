@@ -6,7 +6,7 @@ import { useComponents } from './context'
 export interface RiskElementProps {
   infoText?: string | null | undefined
   title: string
-  level: number | null
+  level: number | null | undefined
   style?: any
   ekstra?: string
 }

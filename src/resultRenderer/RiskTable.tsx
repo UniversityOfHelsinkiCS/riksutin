@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react'
 
-import type { CountryData, Locales, Risk, RiskData } from '@types'
+import type { CountryData, Locales, RiskData } from '@types'
 
 import RiskElement from './RiskElement'
 
@@ -10,7 +10,7 @@ import { useComponents } from './context'
 import { globalSouthCountries } from '@common/countryLists'
 import getRiskTexts from '@common/getRiskTexts'
 import getCountryRiskTexts from '@common/getCountryRiskTexts'
-import MultilateralRisks from './MultilateralRisks'
+import CountryRiskElements from './CountryRiskElements'
 
 const { resultStyles } = styles
 
@@ -29,9 +29,6 @@ const RiskTable = ({
 }) => {
   const { Div, Typography, TableContainer, Table, TableBody, TableRow, TableCell, t, language } = useComponents()
 
-  const selectedCountry: string = riskData.answers['8']
-  const selectedCountryCode = countries.find(country => country.name === selectedCountry)?.iso2Code
-
   const totalRisk = riskData.risks.find(risk => risk.id === 'total')
   const countryRisk = riskData.risks.find(risk => risk.id === 'country')
 
@@ -42,22 +39,6 @@ const RiskTable = ({
     language as keyof Locales
   ]
 
-  let ekstraText = ''
-  warnings.map(({ country, text, expiry_date }) => {
-    if (country === countryData.code) {
-      if (!expiry_date || new Date(expiry_date) >= new Date()) {
-        ekstraText += text[language]
-      }
-    }
-  })
-
-  let countryInfoText =
-    results.find(r => r.optionLabel === `country${countryRisk?.level}`)?.isSelected[language as keyof Locales] ?? ''
-
-  if (globalSouthCountries.includes(selectedCountryCode)) {
-    countryInfoText += '\n' + t('countrySpecificTexts:globalSouth')
-  }
-
   const countryRisksWithTexts = getCountryRiskTexts(countryData, results, riskData.answers, language)
 
   const otherRisksWithTexts = getRiskTexts(riskData.risks, results, riskData.answers, language)
@@ -67,7 +48,6 @@ const RiskTable = ({
       <Typography data-cy="result-section-title" variant="h6" style={{ marginBottom: '20px', fontSize: '24px' }}>
         {t('results:riskTableTitle')}
       </Typography>
-      {process.env.NODE_ENV === 'development' && <MultilateralRisks riskData={riskData} results={results} />}
       <Div style={resultStyles.resultElementWrapper}>
         <TableContainer>
           <Table>
@@ -86,39 +66,13 @@ const RiskTable = ({
               </TableRow>
               {countryRisksWithTexts && countryRisk && (
                 <>
-                  <TableRow>
-                    <TableCell colSpan={3}>
-                      <RiskElement
-                        title={t('riskTable:countryRiskLevel')}
-                        level={countryRisk.level}
-                        infoText={countryInfoText}
-                        ekstra={ekstraText}
-                      />
-                    </TableCell>
-                  </TableRow>
-                  {countryRisksWithTexts?.map((risk: Risk, id: number) => {
-                    if (risk.level && risk.level > 0) {
-                      return (
-                        <TableRow key={risk.id}>
-                          <TableCell colSpan={3}>
-                            <RiskElement
-                              level={risk.level}
-                              title={risk.title}
-                              infoText={risk.infoText}
-                              style={{ paddingLeft: '10px' }}
-                            />
-                          </TableCell>
-                        </TableRow>
-                      )
-                    } else {
-                      return (
-                        // eslint-disable-next-line react/no-array-index-key
-                        <TableRow key={id} style={{ display: 'none' }}>
-                          <TableCell colSpan={3} />
-                        </TableRow>
-                      )
-                    }
-                  })}
+                  <CountryRiskElements
+                    riskData={riskData}
+                    countryData={countryData}
+                    countries={results}
+                    warnings={warnings}
+                    results={results}
+                  />
                 </>
               )}
               {otherRisksWithTexts?.map(
@@ -134,7 +88,6 @@ const RiskTable = ({
             </TableBody>
           </Table>
         </TableContainer>
-        <MultilateralRisks riskData={riskData} results={results} />
       </Div>
     </>
   )
