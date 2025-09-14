@@ -98,7 +98,9 @@ const CountryRiskElements = ({
                 <p>
                   <strong>Monenkeskeinen Helsingin Yliopiston koordinoima projekti</strong>
                 </p>
-                <p>Osallistujat seuraavista maista: {multilateralCountyNames.join(', ')}</p>
+                <p>
+                  Osallistujat seuraavista maista: <em>{multilateralCountyNames.join(', ')}</em>
+                </p>
                 <p>Alla esitettävä maariski on laskettu suurimman riskin maan ({highestRiskCountry.name}) mukaan</p>
                 <MultilateralRiskMoral riskData={riskData} results={results} />
               </Typography>
