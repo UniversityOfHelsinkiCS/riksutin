@@ -98,7 +98,7 @@ const CountryRiskElements = ({
                 <p>
                   <strong>Monenkeskeinen Helsingin Yliopiston koordinoima projekti</strong>
                 </p>
-                <p>Osallistujat seuraavista maista {multilateralCountyNames.join(', ')}</p>
+                <p>Osallistujat seuraavista maista: {multilateralCountyNames.join(', ')}</p>
                 <p>Alla esitettävä maariski on laskettu suurimman riskin maan ({highestRiskCountry.name}) mukaan</p>
                 <MultilateralRiskMoral riskData={riskData} results={results} />
               </Typography>
@@ -108,7 +108,7 @@ const CountryRiskElements = ({
             <TableCell colSpan={3}>
               <RiskElement
                 title={`${t('riskTable:countryRiskLevel')} (${highestRiskCountry.name})`}
-                level={countryRisk.level}
+                level={countryRisk?.level}
                 infoText={countryInfoText}
                 ekstra={ekstraText}
               />
