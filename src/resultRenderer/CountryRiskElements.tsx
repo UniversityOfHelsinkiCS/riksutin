@@ -96,9 +96,10 @@ const CountryRiskElements = ({
             <TableCell colSpan={3}>
               <Typography style={{ fontWeight: '400' }}>
                 <p>
-                  <strong>Monenkeskeinen projekti</strong> osallistuvat maat {multilateralCountyNames.join(', ')}
+                  <strong>Monenkeskeinen Helsingin Yliopiston koordinoima projekti</strong>
                 </p>
-                <p>Alla esitettävä maariksi on laskettu suurimman riskin maan ({highestRiskCountry.name}) mukaan</p>
+                <p>Osallistujat seuraavista maista {multilateralCountyNames.join(', ')}</p>
+                <p>Alla esitettävä maariski on laskettu suurimman riskin maan ({highestRiskCountry.name}) mukaan</p>
                 <MultilateralRiskMoral riskData={riskData} results={results} />
               </Typography>
             </TableCell>
