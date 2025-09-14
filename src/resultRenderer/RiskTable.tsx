@@ -7,7 +7,6 @@ import RiskElement from './RiskElement'
 
 import styles from './styles'
 import { useComponents } from './context'
-import { globalSouthCountries } from '@common/countryLists'
 import getRiskTexts from '@common/getRiskTexts'
 import getCountryRiskTexts from '@common/getCountryRiskTexts'
 import CountryRiskElements from './CountryRiskElements'
@@ -17,7 +16,6 @@ const { resultStyles } = styles
 const RiskTable = ({
   riskData,
   countryData,
-  countries,
   results,
   warnings,
 }: {

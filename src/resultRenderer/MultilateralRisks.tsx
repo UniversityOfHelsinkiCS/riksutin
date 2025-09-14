@@ -6,7 +6,7 @@ import type { RiskData } from '@types'
 import { useComponents } from './context'
 import { riskColors } from './common'
 
-import { Button, Tooltip } from '@mui/material'
+import { Tooltip } from '@mui/material'
 
 const Element = ({ level, id, results }) => {
   const { Div, Typography } = useComponents()
