@@ -100,7 +100,9 @@ export type PossibleChoiceTypes =
   | 'organisationSelect'
   | 'universitySelect'
   | 'highRiskCountrySelect'
+  | 'nonRiskCountrySelect'
   | 'noneditable'
+  | 'multilateralInfo'
 
 type Attributes = {
   multiline: boolean

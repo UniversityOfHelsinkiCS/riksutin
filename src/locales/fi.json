@@ -50,7 +50,9 @@
     "requiredText": "Pakollinen kysymys",
     "requiredQuestionsNeedAnswers": "Vastaa seuraaviin pakollisiin kysymyksiin:",
     "fillerIsOwner": "Olen projektin omistaja",
-    "startWriting": "Aloita syöte saadaksesi ehdotuksia"
+    "startWriting": "Aloita syöte saadaksesi ehdotuksia",
+    "multilateralInfo": "Voit valita yhteensä 5 maata, nyt valittuna",
+    "multilateralWarning": "Voit valita yhteensä korkeintaan 5 maata"
   },
   "riskTable": {
     "countryRiskLevel": "Maan riskitaso",

@@ -1100,7 +1100,59 @@ const getQuestionData = (): Question[] => [
       type: 'highRiskCountrySelect',
       options: [],
     },
-    visibility: { options: [] },
+    visibility: { options: [''] },
+  },
+  {
+    id: 28,
+    surveyId: 1,
+    parentId: 4,
+    priority: 1,
+    title: {
+      fi: 'Valitse listasta muita maita, jonka yliopistoja tai muita organisaatioita konsortioosi kuuluu',
+      sv: '',
+      en: 'Select all applicable countries of especial risks, whose universities or other organisations belong to you consortium',
+    },
+    shortTitle: {
+      fi: 'Konsortion muut maat',
+      sv: '',
+      en: 'Select all applicable countries of especial risks, whose universities or other organisations belong to you consortium',
+    },
+    text: {
+      fi: '',
+      sv: '',
+      en: '',
+    },
+    optionData: {
+      type: 'nonRiskCountrySelect',
+      options: [],
+    },
+    visibility: { options: ['multilateral'] },
+  },
+  {
+    id: 29,
+    surveyId: 1,
+    parentId: 4,
+    priority: -1,
+    title: {
+      fi: '',
+      sv: '',
+      en: '',
+    },
+    shortTitle: {
+      fi: '',
+      sv: '',
+      en: '',
+    },
+    text: {
+      fi: '',
+      sv: '',
+      en: '',
+    },
+    optionData: {
+      type: 'multilateralInfo',
+      options: [],
+    },
+    visibility: { options: ['multilateral'] },
   },
 ]
 

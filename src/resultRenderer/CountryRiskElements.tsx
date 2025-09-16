@@ -61,7 +61,7 @@ const CountryRiskElements = ({
   const selectedCountry: string = riskData.answers['8']
   const hyCordinatedMultilateral = riskData.answers['9'] === 'coordinator' && riskData.answers['4'] === 'multilateral'
   const highestRiskCountry = riskData.country[0]
-  const multilateralCountyNames = riskData.answers['26']
+  const multilateralCountyNames = (riskData.answers['26'] ?? []).concat(riskData.answers['28'] ?? [])
   const selectedCountryCode = countries.find(country => country.name === selectedCountry)?.iso2Code
 
   const totalRisk = riskData.risks.find(risk => risk.id === 'total')

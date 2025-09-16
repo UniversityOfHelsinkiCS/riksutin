@@ -6,18 +6,24 @@ import { useTranslation } from 'react-i18next'
 import type { Locales } from '@types'
 import type { InputProps } from '@client/types'
 
-import { useHighRiskCountries } from '../../hooks/useCountries'
+import useCountries, { useHighRiskCountries } from '../../hooks/useCountries'
 
-const HighRiskCountrySelect = ({ control, question, children, watch }: InputProps) => {
-  const { countries } = useHighRiskCountries()
+const NonRiskCountrySelect = ({ control, question, children, watch }: InputProps) => {
+  const { countries: highriskCountries } = useHighRiskCountries()
+  const { countries: allCountries } = useCountries()
   const { i18n } = useTranslation()
   const { language } = i18n
+  const { t } = useTranslation()
 
-  if (!question || !countries || !watch) return null
+  if (!question || !highriskCountries || !allCountries || !watch) return null
 
   const highRisks = watch()[26] ? watch()[26] : []
   const noRisks = watch()[28] ? watch()[28] : []
   const contriesSelected = highRisks.length + noRisks.length
+
+  const countries = allCountries.filter(
+    country => !highriskCountries.some(hrCountry => hrCountry.iso2Code === country.iso2Code)
+  )
 
   countries.sort((a, b) => a.name.localeCompare(b.name))
 
@@ -44,7 +50,7 @@ const HighRiskCountrySelect = ({ control, question, children, watch }: InputProp
                     onChange(data)
                   } else {
                     // eslint-disable-next-line no-alert
-                    alert('Voit valita yhteensä korkeintaan 5 maata')
+                    alert(t('questions:multilateralWarning'))
                   }
                 }
               }}
@@ -71,4 +77,4 @@ const HighRiskCountrySelect = ({ control, question, children, watch }: InputProp
   )
 }
 
-export default HighRiskCountrySelect
+export default NonRiskCountrySelect

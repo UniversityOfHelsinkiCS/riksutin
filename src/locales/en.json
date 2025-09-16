@@ -53,7 +53,9 @@
     "requiredText": "Required",
     "requiredQuestionsNeedAnswers": "Answer the following required questions:",
     "fillerIsOwner": "I am the owner",
-    "startWriting": "Start writing to see proposals"    
+    "startWriting": "Start writing to see proposals",
+    "multilateralInfo": "You can select up to 5 countries, currently selected",
+    "multilateralWarning": "You can select up to 5 countries in total"
   },
   "riskTable": {
     "countryRiskLevel": "Risk level of the partner country",

@@ -18,12 +18,14 @@ import SelectUnit from '../Common/SelectUnit'
 import OrganisationSelect from '../QuestionTypes/OrganisationSelect'
 import UniversitySelect from '../QuestionTypes/UniversitySelect'
 import HighRiskCountrySelect from '../QuestionTypes/HighRiskCountriesSelect'
+import NonRiskCountrySelect from '../QuestionTypes/NonRiskCountriesSelect'
 import CountrySelect from '../QuestionTypes/CountrySelect'
 import EmployeeSelect from '../QuestionTypes/EmployeeSelect'
 import SelectTuhatProject from '../Common/TuhatProjectSelect'
 import Info from '../QuestionTypes/Info'
 import { useResultData } from 'src/client/contexts/ResultDataContext'
 import { ORGANISATION_ID } from '@userconfig'
+import MultilateralInfo from '../QuestionTypes/MultilateralInfo'
 
 const { cardStyles } = styles
 
@@ -43,7 +45,7 @@ const QuestionText = ({
   return (
     <>
       <Typography component="span" sx={{ color: 'red' }}>
-        {![1, 7, 26].includes(question.id) && '* '}
+        {![1, 7, 26, 28, 29].includes(question.id) && '* '}
       </Typography>
       <Typography component="span">
         {question.id === 8 && watch('4') === 'multilateral'
@@ -132,7 +134,9 @@ const RenderQuestion = ({ control, watch, question, questions, language, setValu
     organisationSelect: OrganisationSelect,
     universitySelect: UniversitySelect,
     highRiskCountrySelect: HighRiskCountrySelect,
+    nonRiskCountrySelect: NonRiskCountrySelect,
     noneditable: Info,
+    multilateralInfo: MultilateralInfo,
   }
 
   const QuestionType = components[question.optionData.type]

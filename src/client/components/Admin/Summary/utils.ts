@@ -8,7 +8,11 @@ export type TableValues = {
 const createTableData = (entries: Entry[], questions: Question[], faculties: FacultyOrUnit[]) => {
   const multiChoiceQuestions = questions
     .filter(question => {
-      return question.optionData.type === 'multipleChoice' || question.optionData.type === 'highRiskCountrySelect'
+      return (
+        question.optionData.type === 'multipleChoice' ||
+        question.optionData.type === 'highRiskCountrySelect' ||
+        question.optionData.type === 'nonRiskCountrySelect'
+      )
     })
     .map(q => q.id)
 

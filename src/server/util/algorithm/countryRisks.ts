@@ -6,14 +6,20 @@ import { gdprRisk } from './utils'
 import { getCountries } from 'src/server/services/countries'
 import { getCountryData } from 'src/server/routes/country'
 
-export const getMultilateraCountrylRisks = async (mContries: string[], formData) => {
+export const getMultilateraCountrylRisks = async (
+  riskCountries: string[] | undefined,
+  noRiskCountries: string[] | undefined,
+  formData
+) => {
   const countries: BaseCountry[] = await getCountries()
-  if (!mContries) {
+  const mCountries = (riskCountries ?? []).concat(noRiskCountries ?? [])
+
+  if (mCountries.length === 0) {
     return []
   }
 
-  const multilateralPartners = mContries
-    ? mContries.map(c => countries.find(country => country.name === c)?.iso2Code)
+  const multilateralPartners = mCountries
+    ? mCountries.map(c => countries.find(country => country.name === c)?.iso2Code)
     : []
 
   const multilateralCountryData = await Promise.all(
