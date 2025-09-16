@@ -36,10 +36,14 @@ export const getHighRiskCountries = async () => {
     const totalRisk = await calculateTotalRisk(country.iso2Code)
     if (totalRisk === 3) {
       highRiskCountries.push(country)
+      // eslint-disable-next-line no-console
+      console.log('ADDING')
     }
   }
 
   await set('high risk countries', highRiskCountries)
+  // eslint-disable-next-line no-console
+  console.log('high risk countries', highRiskCountries.length)
   return highRiskCountries
 }
 
