@@ -72,7 +72,10 @@
     "sanctions": "Pakotteet",
     "academicFreedom": "Akateeminen vapaus",
     "ruleOfLaw": "Oikeusvaltio",
-    "multiplierInfoText": "Alla mainittujen riskitekijöiden lisäksi kokonaisriskiin vaikuttavat antamasi tiedot Helsingin yliopiston roolista yhteistyössä, yhteistyön kesto, yhteistyösopimuksen olemassaolo ja aiempi yhteistyö."
+    "multiplierInfoText": "Alla mainittujen riskitekijöiden lisäksi kokonaisriskiin vaikuttavat antamasi tiedot Helsingin yliopiston roolista yhteistyössä, yhteistyön kesto, yhteistyösopimuksen olemassaolo ja aiempi yhteistyö.",
+    "hyMultilateral": "Monenkeskeinen Helsingin Yliopiston koordinoima projekti",
+    "hyMultilateralCountries": "Osallistujat seuraavista maista:",
+    "hyMultilateralHighest": "Alla esitettävä maariski on laskettu suurimman riskin maan mukaan"
   },
   "countrySpecificTexts": {
     "CN": "\n*Yhteistyössä Kiinan kanssa on syytä huomioida erityisesti Kiinan puolustusteollisuutta lähellä olevat yliopistot ja joko rajoittaa yhteistyötä, tai teettää erillinen, yksilöidympi riskiarvio. Lista näistä yliopistoista löytyy https://unitracker.aspi.org.au/. Lisäksi kannattaa huomioida kansallinen ohjeistus: https://okm.fi/en/-/recommendations-for-academic-cooperation-with-china*",

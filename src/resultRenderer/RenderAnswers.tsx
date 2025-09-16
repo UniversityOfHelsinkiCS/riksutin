@@ -98,7 +98,7 @@ const RenderAnswers = ({
                               {childQuestion.title[language as keyof Locales]}
                             </Typography>
                             <Typography>
-                              {childQuestion.id === 26
+                              {[26, 28].includes(childQuestion.id)
                                 ? answers[childQuestion.id].join(', ')
                                 : (answers[childQuestion.id] as string)}
                             </Typography>

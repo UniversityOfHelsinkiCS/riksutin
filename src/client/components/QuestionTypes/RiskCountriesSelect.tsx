@@ -8,24 +8,35 @@ import type { InputProps } from '@client/types'
 
 import useCountries, { useHighRiskCountries } from '../../hooks/useCountries'
 
-const NonRiskCountrySelect = ({ control, question, children, watch }: InputProps) => {
+const getCountryList = (allCountries, highriskCountries, type) => {
+  if (type === 'high') {
+    return allCountries
+      .filter(country => highriskCountries.some(hrCountry => hrCountry.iso2Code === country.iso2Code))
+      .sort((a, b) => a.name.localeCompare(b.name))
+  }
+
+  return allCountries
+    .filter(country => !highriskCountries.some(hrCountry => hrCountry.iso2Code === country.iso2Code))
+    .sort((a, b) => a.name.localeCompare(b.name))
+}
+
+const RiskCountrySelect = ({ control, question, children, watch, type }: InputProps & { type: string }) => {
   const { countries: highriskCountries } = useHighRiskCountries()
   const { countries: allCountries } = useCountries()
   const { i18n } = useTranslation()
   const { language } = i18n
   const { t } = useTranslation()
 
-  if (!question || !highriskCountries || !allCountries || !watch) return null
+  if (!question || !highriskCountries || !allCountries || !watch) {
+    return null
+  }
 
+  const countries = getCountryList(allCountries, highriskCountries, type)
   const highRisks = watch()[26] ? watch()[26] : []
   const noRisks = watch()[28] ? watch()[28] : []
   const contriesSelected = highRisks.length + noRisks.length
 
-  const countries = allCountries.filter(
-    country => !highriskCountries.some(hrCountry => hrCountry.iso2Code === country.iso2Code)
-  )
-
-  countries.sort((a, b) => a.name.localeCompare(b.name))
+  if (!question || !highriskCountries || !allCountries) return null
 
   return (
     <Box py={1}>
@@ -77,4 +88,22 @@ const NonRiskCountrySelect = ({ control, question, children, watch }: InputProps
   )
 }
 
-export default NonRiskCountrySelect
+export const NonRiskCountrySelect = ({ control, question, children, watch }: InputProps) => {
+  return (
+    <>
+      <RiskCountrySelect control={control} question={question} watch={watch} type="non">
+        {children}
+      </RiskCountrySelect>
+    </>
+  )
+}
+
+export const HighRiskCountrySelect = ({ control, question, children, watch }: InputProps) => {
+  return (
+    <>
+      <RiskCountrySelect control={control} question={question} watch={watch} type="high">
+        {children}
+      </RiskCountrySelect>
+    </>
+  )
+}
