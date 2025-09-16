@@ -74,6 +74,7 @@ countryRouter.get('/cache', async (req, res) => {
   }
   await cacheSanctionsData()
   await cacheHdrData()
+  await getHighRiskCountries()
 
   return res.status(200).send({ status: 'OK' })
 })
