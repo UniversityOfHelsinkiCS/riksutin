@@ -4,7 +4,7 @@ import { buildCache as perCountryCache } from '../../data/worldbank/util'
 import { cacheSanctionsData } from 'src/server/data/sanctions/sanctionsMap'
 import { cacheHdrData } from 'src/server/data/humanDevelopment'
 
-export const getHighRiskCountries = async () => {
+export const buildCaches = async () => {
   logger.info('Worldbank cache')
   await perCountryCache()
   logger.info('sanctionsmap cache')
@@ -17,7 +17,7 @@ export const getHighRiskCountries = async () => {
 const startCountryRiskCron = () => {
   const cronTime = '15 15 * * 5'
   logger.info('Country risk data cron job scheduled')
-  return scheduleCronJob(cronTime, getHighRiskCountries)
+  return scheduleCronJob(cronTime, buildCaches)
 }
 
 export default startCountryRiskCron
