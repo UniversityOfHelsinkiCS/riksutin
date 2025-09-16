@@ -3,30 +3,25 @@ import scheduleCronJob from '../schedule'
 import { getCountryData } from '../../../routes/country'
 import { set } from '../../redis'
 import { getCountries } from '../../../services/countries'
-import mockHighrisk from '../../../mocs/highrisk'
 
 const calculateTotalRisk = async (countryCode: string) => {
   const countryData = await getCountryData(countryCode)
   if (!countryData) return null
-  const { code, createdAt, gdpr, universities, sanctions, ...numberRisks } = countryData
-
-  const riskValues = Object.values(numberRisks)
+  const { name, code, createdAt, gdpr, universities, sanctions, ...numberRisks } = countryData
 
   const sanctionsRiskLevel: number = countryData.sanctions ? 2 : 1
 
-  const totalCountryRiskLevel =
-    Math.round(riskValues.concat(sanctionsRiskLevel).reduce((a, b) => a + b, 0) / riskValues.length) || 0
+  const riskValues = Object.values(numberRisks)
+    .concat(sanctionsRiskLevel)
+    .map(v => ([1, 2, 3].includes(v) ? v : 1))
+  // out of range values (such as null) default to 1
 
-  return totalCountryRiskLevel
+  return Math.round(riskValues.reduce((a, b) => a + b, 0) / riskValues.length) || 0
 }
 
 export const getHighRiskCountries = async () => {
-  if (process.env.NODE_ENV !== 'production') {
-    return mockHighrisk
-  }
-
   logger.info('Calculating risk level 3 countries')
-  const countries = await getCountries()
+  const countries = (await getCountries()).slice(0, 1)
   const highRiskCountries: {
     name: string
     iso2Code: string
@@ -34,18 +29,12 @@ export const getHighRiskCountries = async () => {
 
   for (const country of countries) {
     const totalRisk = await calculateTotalRisk(country.iso2Code)
-    // eslint-disable-next-line no-console
-    console.log(country.iso2Code, totalRisk)
     if (totalRisk === 3) {
       highRiskCountries.push(country)
-      // eslint-disable-next-line no-console
-      console.log('ADDING')
     }
   }
 
   await set('high risk countries', highRiskCountries)
-  // eslint-disable-next-line no-console
-  console.log('high risk countries', highRiskCountries.length)
   return highRiskCountries
 }
 
