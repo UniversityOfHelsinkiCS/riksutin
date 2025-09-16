@@ -55,7 +55,7 @@ countryRouter.get('/highrisk', async (req, res: any) => {
     }[]
   >('high risk countries')
 
-  //if (cached) return res.status(200).send(cached)
+  if (cached) return res.status(200).send(cached)
 
   const highRiskCountries = await getHighRiskCountries()
 
