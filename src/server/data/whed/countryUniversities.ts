@@ -3,7 +3,7 @@ import jsdom from 'jsdom'
 
 import { get, setPermanent } from '../../util/redis'
 import logger from 'src/server/util/logger'
-import { UNIVERSITIES_URL, NO_CACHE } from '@userconfig'
+import { UNIVERSITIES_URL, NO_CACHE, LOG_CACHE } from '@userconfig'
 
 const getKey = countryName => `${UNIVERSITIES_URL}?country=${countryName}`
 
@@ -21,7 +21,7 @@ export const cacheUniversityData = async (countryName: string) => {
   })
 
   const key = getKey(countryName)
-  console.log('HTTP POST REQUEST ', key)
+  if (LOG_CACHE) console.log('HTTP POST REQUEST ', key)
 
   const html = await response.text()
   const universityNames: string[] = parseHTML(html)
@@ -52,7 +52,7 @@ const getCountryUniversities = async (countryName: string | undefined) => {
 
   try {
     const key = getKey(countryName)
-    console.log('FROM CACHE ', key)
+    if (LOG_CACHE) console.log('FROM CACHE ', key)
     let names: string[] | null = await get(key)
     if (NO_CACHE || !names) {
       names = await cacheUniversityData(countryName)

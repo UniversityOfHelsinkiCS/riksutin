@@ -2,6 +2,7 @@ import type { CountryData, FormValues, Question } from '@types'
 import type { UpdatedCountryData } from '@server/types'
 
 import { euCountries, eeaCountries, adequateProtectionCountries } from '@common/countryLists'
+import { calculateTotalCountryRisk } from '../cron/highRiskCountries/highRiskCountries'
 
 export const gdprRisk = (country: CountryData | undefined, resultData: FormValues) => {
   if (resultData['17'] === 'noTransferPersonalData') return 1
@@ -43,16 +44,26 @@ export const multilateralPartnerRisk = (updatedCountryData: any) => {
 export const totalCountryRisk = (updatedCountryData: UpdatedCountryData | undefined, formData: FormValues) => {
   if (!updatedCountryData || !formData) return null
 
-  const { name, code, createdAt, universities, gdpr, ...numberRisks } = updatedCountryData
+  const { corruption, stability, hci, safetyLevel, academicFreedom, ruleOfLaw, sanctions, gdpr } = updatedCountryData
 
-  const countryRisksFiltered: number[] = gdpr ? Object.values(numberRisks).concat(gdpr) : Object.values(numberRisks)
+  const riskValues: number[] = [
+    corruption,
+    stability,
+    hci,
+    safetyLevel,
+    academicFreedom,
+    ruleOfLaw,
+    sanctions,
+    gdpr,
+  ].filter(v => v && [1, 2, 3].includes(v)) as number[]
 
-  if (!countryRisksFiltered || countryRisksFiltered.length === 0) return null
+  const totalCountryRiskLevel = riskValues && Math.round(riskValues.reduce((a, b) => a + b, 0) / riskValues.length)
 
-  const totalCountryRiskLevel =
-    Math.round(countryRisksFiltered.reduce((a, b) => a + b, 0) / countryRisksFiltered.length) || 0
+  //console.log('X totalCountryRisk')
+  //console.log({ corruption, stability, hci, safetyLevel, academicFreedom, ruleOfLaw, sanctions, gdpr })
+  //calculateTotalCountryRisk(code)
 
-  return [totalCountryRiskLevel, countryRisksFiltered]
+  return [totalCountryRiskLevel, riskValues]
 }
 
 export const universityRisk = (university: string | undefined, countryUniversities: string[] | undefined | null) => {

@@ -42,6 +42,7 @@ export const getCountryData = async (code: string | undefined): Promise<CountryD
     academicFreedom,
     ruleOfLaw,
     gdpr: null,
+    countryRisk: null,
   }
 }
 
@@ -53,7 +54,7 @@ countryRouter.get('/highrisk', async (req, res: any) => {
       name: string
       code: string
     }[]
-  >('high risk countries')
+  >('high_risk_countries')
 
   if (cached) return res.status(200).send(cached)
 

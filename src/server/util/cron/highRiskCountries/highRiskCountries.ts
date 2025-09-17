@@ -4,19 +4,28 @@ import { getCountryData } from '../../../routes/country'
 import { set } from '../../redis'
 import { getCountries } from '../../../services/countries'
 
-const calculateTotalRisk = async (countryCode: string) => {
+// remove export
+export const calculateTotalCountryRisk = async (countryCode: string) => {
   const countryData = await getCountryData(countryCode)
   if (!countryData) return null
-  const { name, code, createdAt, gdpr, universities, sanctions, ...numberRisks } = countryData
 
-  const sanctionsRiskLevel: number = countryData.sanctions ? 2 : 1
+  const { corruption, stability, hci, safetyLevel, academicFreedom, ruleOfLaw, sanctions, gdpr } = countryData
 
-  const riskValues = Object.values(numberRisks)
-    .concat(sanctionsRiskLevel)
-    .map(v => ([1, 2, 3].includes(v) ? v : 1))
-  // out of range values (such as null) default to 1
+  const riskValues: number[] = [
+    corruption,
+    stability,
+    hci,
+    safetyLevel,
+    academicFreedom,
+    ruleOfLaw,
+    sanctions,
+    gdpr,
+  ].filter(v => v && [1, 2, 3].includes(v)) as number[]
 
-  return Math.round(riskValues.reduce((a, b) => a + b, 0) / riskValues.length) || 0
+  // console.log('H calculateTotalRisk (highrisk calc)')
+  // console.log({ corruption, stability, hci, safetyLevel, academicFreedom, ruleOfLaw, sanctions, gdpr })
+  // console.log(riskValues)
+  return riskValues && Math.round(riskValues.reduce((a, b) => a + b, 0) / riskValues.length)
 }
 
 export const getHighRiskCountries = async () => {
@@ -28,13 +37,15 @@ export const getHighRiskCountries = async () => {
   }[] = []
 
   for (const country of countries) {
-    const totalRisk = await calculateTotalRisk(country.iso2Code)
+    const totalRisk = await calculateTotalCountryRisk(country.iso2Code)
+    // eslint-disable-next-line no-console
+    console.log(country.iso2Code, totalRisk)
     if (totalRisk === 3) {
       highRiskCountries.push(country)
     }
   }
 
-  await set('high risk countries', highRiskCountries)
+  await set('high_risk_countries', highRiskCountries)
   return highRiskCountries
 }
 

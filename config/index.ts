@@ -45,6 +45,7 @@ export const HDI_URL =
   process.env.HDI_URL ?? `https://hdrdata.org/api/CompositeIndices/query?apikey=${HDR_API_TOKEN}&year=${HDR_YEAR}`
 
 export const NO_CACHE = process.env.NO_CACHE ?? false
+export const LOG_CACHE = process.env.LOG_CACHE ?? false
 
 // EXTERNAL
 import type { InstanceExports } from '@config'

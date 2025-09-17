@@ -3,14 +3,14 @@ import type { Indicator } from '@server/types'
 import { get, setPermanent } from '../../util/redis'
 import { cacheSafetyLevel } from '../safetyLevel'
 import { cacheUniversityData } from '../whed/countryUniversities'
-import { WORLDBANK_BASE_URL, NO_CACHE } from '@userconfig'
+import { WORLDBANK_BASE_URL, NO_CACHE, LOG_CACHE } from '@userconfig'
 
 const params = 'per_page=1000&format=json'
 
 export const cacheData = async (path: string) => {
   const url = `${WORLDBANK_BASE_URL}/${path}?${params}`
 
-  console.log('HTTP REQUEST ', url)
+  if (LOG_CACHE) console.log('HTTP REQUEST ', url)
 
   const response = await fetch(url)
   const data = await response.json()
@@ -31,11 +31,11 @@ export const fetchData = async (path: string) => {
 
   const cached = await get(url)
   if (!NO_CACHE && cached) {
-    console.log('FROM CACHE', url)
+    if (LOG_CACHE) console.log('FROM CACHE', url)
     return cached
   }
 
-  console.log('fetch HTTP REQUEST ', url)
+  if (LOG_CACHE) console.log('fetch HTTP REQUEST ', url)
 
   const response = await fetch(url)
   const data = await response.json()

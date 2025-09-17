@@ -1,13 +1,13 @@
 /* eslint-disable no-console */
-import { NO_CACHE, SANCTIONS_URL } from '@userconfig'
+import { LOG_CACHE, NO_CACHE, SANCTIONS_URL } from '@userconfig'
 import { get, setPermanent } from '../../util/redis'
 
 const url = SANCTIONS_URL
 
-const fetchSanctionsData = async (code: string | undefined) => {
-  if (!code) return null
+const fetchSanctionsData = async (code: string | undefined): Promise<number> => {
+  if (!code) return 1
 
-  console.log('FROM CACHE', url)
+  if (LOG_CACHE) console.log('FROM CACHE', url)
 
   try {
     let data: any = await get(url)
@@ -17,20 +17,20 @@ const fetchSanctionsData = async (code: string | undefined) => {
 
     const countrySanctions = data.data.find(c => c.country.data.code === code)?.has_lists
 
-    console.log('countrySanctions', countrySanctions)
+    if (!countrySanctions) {
+      return 1
+    }
 
-    if (!countrySanctions) return null
-
-    return countrySanctions
+    return 3
   } catch (error) {
     console.log('failed', error)
-    return null
+    return 1
   }
 }
 
 export const cacheSanctionsData = async () => {
   try {
-    console.log('caching: HTTP get', url)
+    if (LOG_CACHE) console.log('caching: HTTP get', url)
     const res = await fetch(url)
     const data = await res.json()
 

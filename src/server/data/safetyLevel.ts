@@ -2,7 +2,7 @@
 import Parser from 'rss-parser'
 import jsdom from 'jsdom'
 import { get, setPermanent } from '../util/redis'
-import { NO_CACHE, SAFETY_LEVEL_BASE_URL } from '@userconfig'
+import { LOG_CACHE, NO_CACHE, SAFETY_LEVEL_BASE_URL } from '@userconfig'
 
 type SafetyLevel = [string, number]
 
@@ -52,7 +52,7 @@ const fetchSafetyLevelData = async (code: string) => {
 
   const url = getUrl(code)
 
-  console.log('FROM CACHE', url)
+  if (LOG_CACHE) console.log('FROM CACHE', url)
   let safetyLevelRisk: any = await get(url)
   if (NO_CACHE || !safetyLevelRisk) {
     safetyLevelRisk = await cacheSafetyLevel(code)
