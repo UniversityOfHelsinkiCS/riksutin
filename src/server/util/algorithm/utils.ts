@@ -23,21 +23,29 @@ export const gdprRisk = (country: CountryData | undefined, resultData: FormValue
   return null
 }
 
+// pls clean up this copy paste with totalCountryRisk and calculateTotalCountryRisk
 export const multilateralPartnerRisk = (updatedCountryData: any) => {
   if (!updatedCountryData) return null
 
-  const { name, code, createdAt, universities, gdpr, ...numberRisks } = updatedCountryData
+  const { corruption, stability, hci, safetyLevel, academicFreedom, ruleOfLaw, sanctions, gdpr } = updatedCountryData
 
-  const countryRisksFiltered: number[] = gdpr ? Object.values(numberRisks).concat(gdpr) : Object.values(numberRisks)
+  const riskValues: number[] = [
+    corruption,
+    stability,
+    hci,
+    safetyLevel,
+    academicFreedom,
+    ruleOfLaw,
+    sanctions,
+    gdpr,
+  ].filter(v => v && [1, 2, 3].includes(v)) as number[]
 
-  if (!countryRisksFiltered || countryRisksFiltered.length === 0) return null
-
-  const totalCountryRiskLevel = countryRisksFiltered.reduce((a, b) => a + b, 0) / countryRisksFiltered.length || 0
+  const totalCountryRiskLevel = riskValues && Math.round(riskValues.reduce((a, b) => a + b, 0) / riskValues.length)
 
   return {
     rawTotalCountryRiskLevel: totalCountryRiskLevel,
     totalCountryRiskLevel: Math.round(totalCountryRiskLevel),
-    countryRisksFiltered,
+    riskValues,
   }
 }
 

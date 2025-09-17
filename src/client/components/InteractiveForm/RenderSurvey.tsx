@@ -72,6 +72,8 @@ const RenderSurvey = ({
 
   const requiredFields = Object.keys(defaultValues).filter(value => !['1', '2', '7', 'faculty'].includes(value))
 
+  console.log('TOIMIIKO')
+
   return (
     <Box sx={cardStyles.outerBox}>
       {import.meta.env.MODE === 'development' && <ResetForm />}
