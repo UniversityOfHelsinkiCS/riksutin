@@ -2,7 +2,7 @@ import type { CountryData, FormValues, Question } from '@types'
 import type { UpdatedCountryData } from '@server/types'
 
 import { euCountries, eeaCountries, adequateProtectionCountries } from '@common/countryLists'
-import { calculateTotalCountryRisk } from '../cron/highRiskCountries/highRiskCountries'
+//import { calculateTotalCountryRisk } from '../cron/highRiskCountries/highRiskCountries'
 
 export const gdprRisk = (country: CountryData | undefined, resultData: FormValues) => {
   if (resultData['17'] === 'noTransferPersonalData') return 1
