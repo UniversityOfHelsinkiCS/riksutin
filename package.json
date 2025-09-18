@@ -19,6 +19,7 @@
     "start:dev:client": "npm run watch --workspace=client",
     "test": "npm run test --workspaces --if-present",
     "test:local": "npx playwright test",
+    "test:api": "npx playwright test tests/api.spec.ts",
     "lint": "eslint",
     "format": "prettier --write \"*.{ts,tsx,json,css,md}\"",
     "build": "npm run build --workspace=client",
