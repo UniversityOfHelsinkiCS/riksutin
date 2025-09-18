@@ -1,0 +1,655 @@
+[
+  { "page": 1, "pages": 1, "per_page": 1000, "total": 65, "sourceid": "2", "lastupdated": "2025-07-01" },
+  [
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "2024",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "2023",
+      "value": 54.2452812194824,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "2022",
+      "value": 55.1886787414551,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "2021",
+      "value": 56.1904754638672,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "2020",
+      "value": 52.8571434020996,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "2019",
+      "value": 43.8095245361328,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "2018",
+      "value": 45.238094329834,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "2017",
+      "value": 46.1904754638672,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "2016",
+      "value": 47.1428565979004,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "2015",
+      "value": 47.1428565979004,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "2014",
+      "value": 45.6730766296387,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "2013",
+      "value": 45.0236968994141,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "2012",
+      "value": 41.2322273254395,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "2011",
+      "value": 36.9668235778809,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "2010",
+      "value": 33.8095245361328,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "2009",
+      "value": 36.8421058654785,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "2008",
+      "value": 36.4077682495117,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "2007",
+      "value": 32.5242729187012,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "2006",
+      "value": 37.073169708252,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "2005",
+      "value": 32.1951217651367,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "2004",
+      "value": 33.4975357055664,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "2003",
+      "value": 43.9153442382812,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "2002",
+      "value": 35.9788360595703,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "2001",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "2000",
+      "value": 49.4680862426758,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1999",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1998",
+      "value": 45.9893035888672,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1997",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1996",
+      "value": 48.3870964050293,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1995",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1994",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1993",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1992",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1991",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1990",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1989",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1988",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1987",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1986",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1985",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1984",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1983",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1982",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1981",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1980",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1979",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1978",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1977",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1976",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1975",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1974",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1973",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1972",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1971",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1970",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1969",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1968",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1967",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1966",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1965",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1964",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1963",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1962",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1961",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "CN", "value": "China" },
+      "countryiso3code": "CHN",
+      "date": "1960",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    }
+  ]
+]

@@ -1,0 +1,850 @@
+[
+  { "page": 1, "pages": 1, "per_page": 1000, "total": 65, "sourceid": "2", "lastupdated": "2025-07-01" },
+  [
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "2024",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "2023",
+      "value": 1.42180097103119,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "2022",
+      "value": 0.943396210670471,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "2021",
+      "value": 1.41509437561035,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "2020",
+      "value": 0.471698105335236,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "2019",
+      "value": 0.943396210670471,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "2018",
+      "value": 0.471698105335236,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "2017",
+      "value": 0.476190477609634,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "2016",
+      "value": 0.952380955219269,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "2015",
+      "value": 0.952380955219269,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "2014",
+      "value": 2.85714292526245,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "2013",
+      "value": 1.42180097103119,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "2012",
+      "value": 1.89573454856873,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "2011",
+      "value": 1.42180097103119,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "2010",
+      "value": 1.42180097103119,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "2009",
+      "value": 0.473933637142181,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "2008",
+      "value": 0.480769217014313,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "2007",
+      "value": 1.44927537441254,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "2006",
+      "value": 1.44927537441254,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "2005",
+      "value": 2.42718458175659,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "2004",
+      "value": 1.94174754619598,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "2003",
+      "value": 2.01005029678345,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "2002",
+      "value": 1.58730161190033,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "2001",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "2000",
+      "value": 0.52910053730011,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1999",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1998",
+      "value": 0.531914889812469,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1997",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1996",
+      "value": 2.12765955924988,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1995",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1994",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1993",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1992",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1991",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1990",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1989",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1988",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1987",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1986",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1985",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1984",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1983",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1982",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1981",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1980",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1979",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1978",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1977",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1976",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1975",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1974",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1973",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1972",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1971",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1970",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1969",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1968",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1967",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1966",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1965",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1964",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1963",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1962",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1961",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "AF", "value": "Afghanistan" },
+      "countryiso3code": "AFG",
+      "date": "1960",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    }
+  ]
+]

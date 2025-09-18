@@ -1,0 +1,850 @@
+[
+  { "page": 1, "pages": 1, "per_page": 1000, "total": 65, "sourceid": "2", "lastupdated": "2025-07-01" },
+  [
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "2024",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "2023",
+      "value": 18.4834117889404,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "2022",
+      "value": 17.9245281219482,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "2021",
+      "value": 19.8113212585449,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "2020",
+      "value": 16.9811325073242,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "2019",
+      "value": 58.4905662536621,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "2018",
+      "value": 57.5471687316895,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "2017",
+      "value": 43.3333320617676,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "2016",
+      "value": 51.4285697937012,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "2015",
+      "value": 51.9047622680664,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "2014",
+      "value": 52.8571434020996,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "2013",
+      "value": 46.445499420166,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "2012",
+      "value": 47.8672981262207,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "2011",
+      "value": 42.1800956726074,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "2010",
+      "value": 42.1800956726074,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "2009",
+      "value": 62.5592422485352,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "2008",
+      "value": 62.5,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "2007",
+      "value": 55.0724639892578,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "2006",
+      "value": 50.2415466308594,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "2005",
+      "value": 56.3106803894043,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "2004",
+      "value": 51.4563102722168,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "2003",
+      "value": 69.8492431640625,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "2002",
+      "value": 56.6137580871582,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "2001",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "2000",
+      "value": 51.8518524169922,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1999",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1998",
+      "value": 50,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1997",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1996",
+      "value": 50,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1995",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1994",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1993",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1992",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1991",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1990",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1989",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1988",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1987",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1986",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1985",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1984",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1983",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1982",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1981",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1980",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1979",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1978",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1977",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1976",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1975",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1974",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1973",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1972",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1971",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1970",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1969",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1968",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1967",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1966",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1965",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1964",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1963",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1962",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1961",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "BY", "value": "Belarus" },
+      "countryiso3code": "BLR",
+      "date": "1960",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    }
+  ]
+]

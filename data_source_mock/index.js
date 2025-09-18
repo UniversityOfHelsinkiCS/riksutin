@@ -35,13 +35,17 @@ app.get('/hdr', async (req, res) => {
 })
 
 app.get('/country/:countryCode/indicator/:indicatorCode', async (req, res) => {
+  // source     https://api.worldbank.org/v2/country/${countryCode}/indicator/${indicatorCode}?per_page=1000&format=json
+  // indicators CC.PER.RNK PV.PER.RNK
   const { countryCode, indicatorCode } = req.params
 
-  console.log('MOCK', countryCode, indicatorCode)
+  const valid = ['ZN', 'AF', 'CN', 'BY']
 
-  const code = 'ZN'
+  const code = valid.includes(countryCode) ? countryCode : 'ZN'
   const ind = indicatorCode.slice(0, 2)
   const data = await fs.readFile(`./data/${code}_${ind}.json`, 'utf-8')
+
+  console.log('MOCK', code, indicatorCode, '(' + countryCode + ')')
 
   res.json(JSON.parse(data))
 })
