@@ -4,17 +4,17 @@ import type { UpdatedCountryData } from '@server/types'
 import { totalCountryRisk } from './utils'
 
 const getTotalRisk = (riskArray: Risk[], country: UpdatedCountryData | undefined, formData: FormValues) => {
-  const countryRiskValues = totalCountryRisk(country, formData)
+  const { totalCountryRiskLevel } = totalCountryRisk(country)
 
   const roleMultiplier = formData[9] === 'coordinator' ? 1.2 : 1
   const durationMultiplier = formData[12] === 'longDuration' ? 1.2 : 1
   const agreementMultiplier = formData[10] === 'agreementNotDone' ? 1.2 : 1
   const previousCollaborationMultiplier = formData[24] === 'noSuccessfulCollaboration' ? 1.2 : 1
 
-  const allRisks = riskArray
+  const allRisks: number[] = riskArray
     .map(value => value.level)
-    .concat(countryRiskValues ? countryRiskValues[1] : [])
-    .filter(value => value)
+    .concat(totalCountryRiskLevel)
+    .filter(value => value) as number[]
 
   let totalRiskLevel = Math.round(
     (allRisks.reduce((a, b) => a + b, 0) / allRisks.length) *
@@ -24,7 +24,9 @@ const getTotalRisk = (riskArray: Risk[], country: UpdatedCountryData | undefined
       previousCollaborationMultiplier
   )
 
-  if (allRisks.filter(value => value === 3).length >= 3) totalRiskLevel = 3
+  if (allRisks.filter(value => value === 3).length >= 3) {
+    totalRiskLevel = 3
+  }
 
   const totalRiskObject: Risk = {
     id: 'total',

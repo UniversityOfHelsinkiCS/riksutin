@@ -4,7 +4,7 @@ import type { UpdatedCountryData } from '@server/types'
 import { totalCountryRisk, dualUseRisk, organisationRisk, universityRisk, consortiumRisk } from './utils'
 
 const getOtherRisks = (country: UpdatedCountryData, questions: Question[], formData: FormValues) => {
-  const countryRiskValues = totalCountryRisk(country, formData)
+  const { totalCountryRiskLevel } = totalCountryRisk(country)
   const dualUseRiskValue = dualUseRisk(questions, formData, country)
   const organisationRiskValue = organisationRisk(formData)
   const ethicalRiskValue = questions
@@ -15,7 +15,7 @@ const getOtherRisks = (country: UpdatedCountryData, questions: Question[], formD
     {
       id: 'country',
       title: 'riskTable:countryRiskLevel',
-      level: countryRiskValues ? countryRiskValues[0] : null,
+      level: totalCountryRiskLevel,
     },
     {
       id: 'university',

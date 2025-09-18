@@ -23,9 +23,11 @@ export const gdprRisk = (country: CountryData | undefined, resultData: FormValue
   return null
 }
 
-// pls clean up this copy paste with totalCountryRisk and calculateTotalCountryRisk
-export const multilateralPartnerRisk = (updatedCountryData: any) => {
-  if (!updatedCountryData) return null
+export const totalCountryRisk = (updatedCountryData: UpdatedCountryData | null) => {
+  if (!updatedCountryData) {
+    // eslint-disable-next-line @typescript-eslint/only-throw-error
+    throw 'totalCountryRisk'
+  }
 
   const { corruption, stability, hci, safetyLevel, academicFreedom, ruleOfLaw, sanctions, gdpr } = updatedCountryData
 
@@ -40,38 +42,13 @@ export const multilateralPartnerRisk = (updatedCountryData: any) => {
     gdpr,
   ].filter(v => v && [1, 2, 3].includes(v)) as number[]
 
-  const totalCountryRiskLevel = riskValues && Math.round(riskValues.reduce((a, b) => a + b, 0) / riskValues.length)
+  const rawTotalCountryRiskLevel = riskValues && riskValues.reduce((a, b) => a + b, 0) / riskValues.length
 
   return {
-    rawTotalCountryRiskLevel: totalCountryRiskLevel,
-    totalCountryRiskLevel: Math.round(totalCountryRiskLevel),
+    rawTotalCountryRiskLevel,
+    totalCountryRiskLevel: Math.round(rawTotalCountryRiskLevel),
     riskValues,
   }
-}
-
-export const totalCountryRisk = (updatedCountryData: UpdatedCountryData | undefined, formData: FormValues) => {
-  if (!updatedCountryData || !formData) return null
-
-  const { corruption, stability, hci, safetyLevel, academicFreedom, ruleOfLaw, sanctions, gdpr } = updatedCountryData
-
-  const riskValues: number[] = [
-    corruption,
-    stability,
-    hci,
-    safetyLevel,
-    academicFreedom,
-    ruleOfLaw,
-    sanctions,
-    gdpr,
-  ].filter(v => v && [1, 2, 3].includes(v)) as number[]
-
-  const totalCountryRiskLevel = riskValues && Math.round(riskValues.reduce((a, b) => a + b, 0) / riskValues.length)
-
-  //console.log('X totalCountryRisk')
-  //console.log({ corruption, stability, hci, safetyLevel, academicFreedom, ruleOfLaw, sanctions, gdpr })
-  //calculateTotalCountryRisk(code)
-
-  return [totalCountryRiskLevel, riskValues]
 }
 
 export const universityRisk = (university: string | undefined, countryUniversities: string[] | undefined | null) => {

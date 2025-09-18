@@ -3,29 +3,14 @@ import scheduleCronJob from '../schedule'
 import { getCountryData } from '../../../routes/country'
 import { set } from '../../redis'
 import { getCountries } from '../../../services/countries'
+import { totalCountryRisk } from '../../algorithm/utils'
 
-// remove export
-export const calculateTotalCountryRisk = async (countryCode: string) => {
+const calculateTotalCountryRisk = async (countryCode: string) => {
   const countryData = await getCountryData(countryCode)
+
+  const { totalCountryRiskLevel } = totalCountryRisk(countryData)
   if (!countryData) return null
-
-  const { corruption, stability, hci, safetyLevel, academicFreedom, ruleOfLaw, sanctions, gdpr } = countryData
-
-  const riskValues: number[] = [
-    corruption,
-    stability,
-    hci,
-    safetyLevel,
-    academicFreedom,
-    ruleOfLaw,
-    sanctions,
-    gdpr,
-  ].filter(v => v && [1, 2, 3].includes(v)) as number[]
-
-  // console.log('H calculateTotalRisk (highrisk calc)')
-  // console.log({ corruption, stability, hci, safetyLevel, academicFreedom, ruleOfLaw, sanctions, gdpr })
-  // console.log(riskValues)
-  return riskValues && Math.round(riskValues.reduce((a, b) => a + b, 0) / riskValues.length)
+  return totalCountryRiskLevel
 }
 
 export const getHighRiskCountries = async () => {

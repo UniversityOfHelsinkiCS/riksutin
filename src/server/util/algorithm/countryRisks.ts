@@ -1,6 +1,6 @@
 import type { BaseCountry, CountryData, FormValues } from '@types'
 import type { UpdatedCountryData } from '@server/types'
-import { multilateralPartnerRisk } from './utils'
+import { totalCountryRisk } from './utils'
 
 import { gdprRisk } from './utils'
 import { getCountries } from 'src/server/services/countries'
@@ -36,7 +36,7 @@ export const getMultilateraCountrylRisks = async (
     })
   )
 
-  return multilateralCountryData.map(c => ({ ...c, universities: null, countryRisk: multilateralPartnerRisk(c) }))
+  return multilateralCountryData.map(c => ({ ...c, universities: null, countryRisk: totalCountryRisk(c) }))
 }
 
 const getCountryRisks = async (countryData: CountryData, formData: FormValues) => {
