@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import { testUser, riskResponse } from './helpers'
 
 test.describe.configure({ mode: 'serial' })
 
@@ -7,17 +8,8 @@ test.describe('api', () => {
     const payload = {
       data: {
         '1': 'Testi Kayttaja',
-        '2': {
-          id: 'hy-hlo-1441871',
-          username: 'testuser',
-          firstName: 'Testi',
-          lastName: 'Kayttaja',
-          email: 'grp-toska@helsinki.fi',
-          language: 'fi',
-          isAdmin: true,
-          iamGroups: ['grp-toska', 'hy-mltdk-employees'],
-        },
-        '3': 'asd',
+        '2': testUser,
+        '3': 'Toska',
         '4': 'bilateral',
         '6': 'university',
         '8': 'Afghanistan',
@@ -51,38 +43,14 @@ test.describe('api', () => {
     const data = await response.json()
 
     const expected = {
-      risks: [
-        {
-          id: 'country',
-          title: 'riskTable:countryRiskLevel',
-          level: 3,
-        },
-        {
-          id: 'university',
-          title: 'riskTable:universityRiskLevel',
-          level: 3,
-        },
-        {
-          id: 'dualUse',
-          title: 'riskTable:dualUseRiskLevel',
-          level: 1,
-        },
-        {
-          id: 'economic',
-          title: 'riskTable:economicRiskLevel',
-          level: 2,
-        },
-        {
-          id: 'ethical',
-          title: 'riskTable:ethicalRiskLevel',
-          level: 1,
-        },
-        {
-          id: 'total',
-          title: 'riskTable:totalRiskLevel',
-          level: 3,
-        },
-      ],
+      risks: riskResponse([
+        { id: 'country', level: 3 },
+        { id: 'university', level: 3 },
+        { id: 'dualUse', level: 1 },
+        { id: 'economic', level: 2 },
+        { id: 'ethical', level: 1 },
+        { id: 'total', level: 3 },
+      ]),
       multilateralCountries: [],
     }
 
