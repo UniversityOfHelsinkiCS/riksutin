@@ -146,6 +146,25 @@ test.describe('results', () => {
     await expect(organization.getByText('H523 - Tietojenkäsittelytieteen osasto')).toBeVisible()
   })
 
+  test('sending email succeeds', async () => {
+    await fetch('http://localhost:3000/pate/reset')
+
+    await page.locator('[data-cy="share-results-input"]').type('matti.luukkainen@helsinki.fi')
+    //await page.keyboard.press('Enter')
+    await page.getByRole('button', { name: 'Lähetä yhteenveto' }).click()
+    await expect(page.getByText('Yhteenveto on lähetetty sähköpostiisi')).toBeVisible()
+
+    const response = await fetch('http://localhost:3000/pate')
+    const data = await response.json()
+    expect(typeof data).toBe('object')
+    expect(data.length).toBe(1)
+    const { emails } = data[0]
+    expect(emails).toContainEqual({
+      to: 'grp-toska@helsinki.fi',
+      subject: 'Risk assessment results',
+    })
+  })
+
   test('user page exists and has content', async () => {
     await page.getByRole('link', { name: 'Aiemmat arviot' }).click()
     await expect(page.getByText('Aikaisemmat riskiarviosi')).toBeVisible()

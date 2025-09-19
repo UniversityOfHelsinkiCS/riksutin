@@ -5,8 +5,16 @@ import fs from 'fs/promises'
 const app = express()
 const PORT = process.env.PORT || 3000
 
+let sentMail = []
+
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+
+app.get('/', async (req, res) => {
+  res.send(
+    'I am the Riksutin data source mock, if you are looking for riksutin, go to <a href="http://localhost:8000">http://localhost:8000</a>'
+  )
+})
 
 app.get('/sanctions', async (req, res) => {
   const data = await fs.readFile('./data/sanctions.json', 'utf-8')
@@ -26,6 +34,27 @@ app.post('/universities', async (req, res) => {
   res.set('Content-Type', 'text/html; charset=UTF-8')
   console.log('MOCK universities', country)
   res.send(html)
+})
+
+app.post('/pate/upload', async (req, res) => {
+  console.log('MOCK pate upload')
+  res.json({ message: 'success' })
+})
+
+app.post('/pate', async (req, res) => {
+  const { body } = req
+  console.log('MOCK pate', body)
+  sentMail.push(body)
+  res.json({ message: 'success' })
+})
+
+app.get('/pate', async (req, res) => {
+  res.json(sentMail)
+})
+
+app.get('/pate/reset', async (req, res) => {
+  sentMail = []
+  res.json([])
 })
 
 app.get('/hdr', async (req, res) => {

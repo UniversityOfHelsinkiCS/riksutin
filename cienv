@@ -4,4 +4,5 @@ SAFETY_LEVEL_URL=http://mock:3000/um
 SANCTIONS_URL=http://mock:3000/sanctions
 HDI_URL=http://mock:3000/hdr
 UNIVERSITIES_URL=http://mock:3000/universities
+PATE_URL=http://mock:3000/pate
 NO_CACHE=true
