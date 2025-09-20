@@ -1,4 +1,5 @@
 import type { InputProps } from '@client/types'
+import { Typography } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 
 const MultilateralInfo = ({ watch, question }: InputProps) => {
@@ -11,8 +12,10 @@ const MultilateralInfo = ({ watch, question }: InputProps) => {
   const noRisks = watch()[28] ? watch()[28] : []
 
   return (
-    <div>
-      {t('questions:multilateralInfo')} {highRisks.length + noRisks.length}
+    <div style={{ marginTop: -20 }}>
+      <Typography sx={{ fontStyle: 'italic' }}>
+        {t('questions:multilateralInfo')} {highRisks.length + noRisks.length}
+      </Typography>
     </div>
   )
 }

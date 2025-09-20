@@ -39,3 +39,4 @@ blob-report/
 playwright/.cache/
 
 helper
+src/server/risk-assessment.pdf

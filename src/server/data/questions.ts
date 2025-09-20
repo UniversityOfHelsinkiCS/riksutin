@@ -1058,12 +1058,12 @@ const getQuestionData = (): Question[] => [
     title: {
       fi: 'Valitse listasta kaikki ne erityisen riskin maat, jonka yliopistoja tai muita organisaatioita konsortioosi kuuluu.',
       sv: '',
-      en: 'Select all applicable countries of especial risks, whose universities or other organisations belong to you consortium',
+      en: 'Select all high-risk countries, whose universities or other organisations are part of the consortium',
     },
     shortTitle: {
       fi: 'Konsortion erityisen riskin maat',
       sv: '',
-      en: 'Select all applicable countries of especial risks, whose universities or other organisations belong to you consortium',
+      en: 'High-risk countries of consortium',
     },
     text: {
       fi: '',
@@ -1106,16 +1106,16 @@ const getQuestionData = (): Question[] => [
     id: 28,
     surveyId: 1,
     parentId: 4,
-    priority: 1,
+    priority: 2,
     title: {
-      fi: 'Valitse listasta muita maita, jonka yliopistoja tai muita organisaatioita konsortioosi kuuluu',
+      fi: 'Valitse listasta muita maita, joiden riskiprofiilin haluat nähdä.',
       sv: '',
-      en: 'Select all applicable countries of especial risks, whose universities or other organisations belong to you consortium',
+      en: 'Select additional countries, whose risk profile you would like to review.',
     },
     shortTitle: {
-      fi: 'Konsortion muut maat',
+      fi: 'Muut maat',
       sv: '',
-      en: 'Select all applicable countries of especial risks, whose universities or other organisations belong to you consortium',
+      en: 'Other countries',
     },
     text: {
       fi: '',
@@ -1132,7 +1132,33 @@ const getQuestionData = (): Question[] => [
     id: 29,
     surveyId: 1,
     parentId: 4,
-    priority: -1,
+    priority: 1,
+    title: {
+      fi: '',
+      sv: '',
+      en: '',
+    },
+    shortTitle: {
+      fi: '',
+      sv: '',
+      en: '',
+    },
+    text: {
+      fi: '',
+      sv: '',
+      en: '',
+    },
+    optionData: {
+      type: 'multilateralInfo',
+      options: [],
+    },
+    visibility: { options: ['multilateral'] },
+  },
+  {
+    id: 30,
+    surveyId: 1,
+    parentId: 4,
+    priority: 3,
     title: {
       fi: '',
       sv: '',

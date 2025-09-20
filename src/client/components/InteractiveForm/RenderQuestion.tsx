@@ -44,7 +44,7 @@ const QuestionText = ({
   return (
     <>
       <Typography component="span" sx={{ color: 'red' }}>
-        {![1, 7, 26, 28, 29].includes(question.id) && '* '}
+        {![1, 7, 26, 28, 29, 30].includes(question.id) && '* '}
       </Typography>
       <Typography component="span">
         {question.id === 8 && watch('4') === 'multilateral'
@@ -170,6 +170,14 @@ const RenderQuestion = ({ control, watch, question, questions, language, setValu
     if (!watch('6')) {
       setValue('6', 'otherType')
       setValue('22', 'unknown')
+    }
+    return null
+  }
+
+  // if mutlilateran and hyCordinator, do not ask if previous co-op
+  if (question.id === 24 && multilateral && hyCordinator) {
+    if (!watch('24')) {
+      setValue('24', 'successfulCollaboration')
     }
     return null
   }

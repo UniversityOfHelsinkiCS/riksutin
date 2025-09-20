@@ -17,6 +17,7 @@
     "start:dev": "NODE_ENV=development concurrently \"npm run start:dev:server\" \"npm run start:dev:client\"",
     "start:dev:server": "npm run watch --workspace=server",
     "start:dev:client": "npm run watch --workspace=client",
+    "docker:down": "docker compose -f docker-compose.ci.yml down",
     "test": "npm run test --workspaces --if-present",
     "test:local": "npx playwright test",
     "test:api": "npx playwright test tests/api.spec.ts",

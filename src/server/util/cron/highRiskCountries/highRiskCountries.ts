@@ -4,6 +4,7 @@ import { getCountryData } from '../../../routes/country'
 import { set } from '../../redis'
 import { getCountries } from '../../../services/countries'
 import { totalCountryRisk } from '../../algorithm/utils'
+import mockHighrisk from '../../../mocs/highrisk'
 
 const calculateTotalCountryRisk = async (countryCode: string) => {
   const countryData = await getCountryData(countryCode)
@@ -14,6 +15,10 @@ const calculateTotalCountryRisk = async (countryCode: string) => {
 }
 
 export const getHighRiskCountries = async () => {
+  if (process.env.NODE_ENV !== 'production') {
+    return mockHighrisk
+  }
+
   logger.info('Calculating risk level 3 countries')
   const countries = await getCountries()
   const highRiskCountries: {
