@@ -61,7 +61,7 @@ const CountryRiskElements = ({
   results: any
   warnings: any
 }) => {
-  const { TableRow, TableCell, Typography, t, language } = useComponents()
+  const { TableRow, TableCell, Typography, Div, t, language } = useComponents()
   const selectedCountry: string = riskData.answers['8']
   const hyCordinatedMultilateral = riskData.answers['9'] === 'coordinator' && riskData.answers['4'] === 'multilateral'
   const highestRiskCountry = riskData.country[0]
@@ -98,16 +98,19 @@ const CountryRiskElements = ({
         <>
           <TableRow>
             <TableCell colSpan={3}>
-              <Typography style={{ fontWeight: '400' }} component="div">
-                <p>
-                  <strong>{t('riskTable:hyMultilateral')}</strong>
-                </p>
-                <p>
-                  {t('riskTable:hyMultilateralCountries')} <em>{multilateralCountyNames.join(', ')}</em>
-                </p>
-                <p>{t('riskTable:hyMultilateralHighest')}</p>
+              <Div component="div">
+                <Typography style={{ fontWeight: '800', paddingBottom: 10 }}>
+                  {t('riskTable:hyMultilateral')}
+                </Typography>
+                <Typography style={{ paddingBottom: 12 }}>
+                  {t('riskTable:hyMultilateralCountries')}
+                  <Typography component="span" fontStyle="italic" style={{ paddingLeft: 10 }}>
+                    {multilateralCountyNames.join(', ')}
+                  </Typography>
+                </Typography>
+                <Typography style={{ paddingBottom: 12 }}>{t('riskTable:hyMultilateralHighest')}</Typography>
                 <MultilateralRiskMoral riskData={riskData} results={results} />
-              </Typography>
+              </Div>
             </TableCell>
           </TableRow>
           <TableRow>
