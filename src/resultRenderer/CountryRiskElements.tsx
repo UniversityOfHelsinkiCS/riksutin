@@ -8,6 +8,7 @@ import { useComponents } from './context'
 import { globalSouthCountries } from '@common/countryLists'
 import getCountryRiskTexts from '@common/getCountryRiskTexts'
 import MultilateralRisks from './MultilateralRisks'
+import { useTranslation } from 'react-i18next'
 
 const MultilateralRiskMoral = ({ riskData, results }: { riskData: RiskData; results: any }) => {
   const style = {
@@ -22,13 +23,16 @@ const MultilateralRiskMoral = ({ riskData, results }: { riskData: RiskData; resu
     p: 4,
   }
 
+  const { t } = useTranslation()
+
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
+
   return (
     <>
       <Button variant="contained" onClick={handleOpen}>
-        Katso muiden maiden riskitasot
+        {t('riskTable:otherCountriesRiskLevels')}
       </Button>
       <Modal
         open={open}

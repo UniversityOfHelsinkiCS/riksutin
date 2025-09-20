@@ -78,7 +78,8 @@
     "multiplierInfoText": "In addition to the individual risk items below, the overall risk score is affected by information you have provided for the role University of Helsinki plays in the collaboration, the duration of the collaboration, the availability of an agreement and previous experiences with this partner.",
     "hyMultilateral": "Multilateral project coordinated by University of Helsinki",
     "hyMultilateralCountries": "Participants from the following countries:",
-    "hyMultilateralHighest": "The country risk shown below is calculated based on the country with the highest risk"
+    "hyMultilateralHighest": "The country risk shown below is calculated based on the country with the highest risk",
+    "otherCountriesRiskLevels": "See risk level of other countries"
   },
   "countrySpecificTexts": {
     "CN": "\n*In collaboration with P.R. China, it is imporant to take note of universities with close ties to Chinese military-industrial complex, and to either restrict collaboration, or commission a through risk assessment. Listing of these universities is available at https://unitracker.aspi.org.au/ Furthermore, it is worth noting the national recommendations concering China collaboration: https://okm.fi/en/-/recommendations-for-academic-cooperation-with-china*",
