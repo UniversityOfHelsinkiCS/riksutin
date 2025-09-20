@@ -98,11 +98,11 @@ const UnitSelect = ({ control }) => {
   return <CustomText control={control} id="unit" title="unitSelect:title" />
 }
 
-const RenderQuestion = ({ control, watch, question, questions, language, setValue }: InputProps) => {
+const RenderQuestion = ({ control, watch, question, questions, language }: InputProps) => {
   const { countries, isLoading } = useCountries()
   const { resultData } = useResultData()
 
-  if (isLoading || !question || !questions || !watch || !countries || !setValue) return null
+  if (isLoading || !question || !questions || !watch || !countries) return null
 
   const selectedCountry = watch('8')
   const selectedCountryCode = countries.find(country => country.name === selectedCountry)?.iso2Code
