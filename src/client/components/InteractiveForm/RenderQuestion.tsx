@@ -102,7 +102,7 @@ const RenderQuestion = ({ control, watch, question, questions, language, setValu
   const { countries, isLoading } = useCountries()
   const { resultData } = useResultData()
 
-  if (isLoading || !question || !questions || !watch || !countries) return null
+  if (isLoading || !question || !questions || !watch || !countries || !setValue) return null
 
   const selectedCountry = watch('8')
   const selectedCountryCode = countries.find(country => country.name === selectedCountry)?.iso2Code
@@ -157,28 +157,8 @@ const RenderQuestion = ({ control, watch, question, questions, language, setValu
   const multilateral = watch('4') && watch('4') === 'multilateral'
   const hyCordinator = watch('9') && watch('9') === 'coordinator'
 
-  // if mutlilateran and hyCordinator, do not render country
-  if (question.id === 8 && multilateral && hyCordinator) {
-    if (!watch('8')) {
-      setValue('8', 'Finland')
-    }
-    return null
-  }
-
-  // if mutlilateran and hyCordinator, do not ask the type of co-ordinating parter
-  if (question.id === 6 && multilateral && hyCordinator) {
-    if (!watch('6')) {
-      setValue('6', 'otherType')
-      setValue('22', 'unknown')
-    }
-    return null
-  }
-
-  // if mutlilateran and hyCordinator, do not ask if previous co-op
-  if (question.id === 24 && multilateral && hyCordinator) {
-    if (!watch('24')) {
-      setValue('24', 'successfulCollaboration')
-    }
+  // if mutlilateran and hyCordinator, some questions are irrelevant
+  if ([6, 8, 24].includes(question.id) && multilateral && hyCordinator) {
     return null
   }
 

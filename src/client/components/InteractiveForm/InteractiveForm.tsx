@@ -50,6 +50,15 @@ const InteractiveForm = () => {
   const onSubmit = async (data: FormValues) => {
     setSubmitButtonLoading(true)
     const tuhatData = sessionStorage.getItem(TUHAT_DATA_STORAGE_KEY) ?? '{}'
+
+    // if mutlilateran and hyCordinator, some questions have hardcoded answers
+    if (data['4'] === 'multilateral' && data['9'] === 'coordinator') {
+      data['8'] = 'Finland'
+      data['6'] = 'otherType'
+      data['22'] = 'unknown'
+      data['24'] = 'successfulCollaboration'
+    }
+
     const submittedData = { formData: data, tuhatData: JSON.parse(tuhatData) }
     try {
       const createdData = await mutation.mutateAsync(submittedData)

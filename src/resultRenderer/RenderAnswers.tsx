@@ -69,7 +69,7 @@ const RenderAnswers = ({
       <Div style={{ borderLeft: '1px solid lightgray' }}>
         {survey?.Questions.map(currentQuestion => (
           <Div key={currentQuestion.id}>
-            {!currentQuestion.parentId && !(hyCordinatedMultilateral && currentQuestion.id === 6) && (
+            {!currentQuestion.parentId && !(hyCordinatedMultilateral && [6, 8, 24].includes(currentQuestion.id)) && (
               <>
                 <Div style={{ margin: '16px' }} id={`question-${currentQuestion.id}`}>
                   <Typography style={{ fontWeight: '800' }}>
