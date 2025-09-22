@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { testUser, riskResponse, compareUnordered } from './helpers'
+import { testUser, riskResponse, compareUnordered, compareOrdered } from './helpers'
 
 test.describe.configure({ mode: 'serial' })
 
@@ -110,19 +110,34 @@ test.describe('api', () => {
       {
         name: 'Belarus',
         code: 'BY',
+        countryRisk: {
+          rawTotalCountryRiskLevel: 2.625,
+        },
       },
       {
         name: 'China',
         code: 'CN',
+        countryRisk: {
+          rawTotalCountryRiskLevel: 2.375,
+        },
       },
       {
         name: 'Denmark',
         code: 'DK',
+        countryRisk: {
+          rawTotalCountryRiskLevel: 1.2857142857142858,
+        },
       },
-      { name: 'Sweden', code: 'SE' },
+      {
+        name: 'Sweden',
+        code: 'SE',
+        countryRisk: {
+          rawTotalCountryRiskLevel: 1.25,
+        },
+      },
     ]
 
     expect(data.country[0].code).toStrictEqual('AF')
-    //compareUnordered(data.risks, expectedCountries)
+    compareOrdered(data.multilateralCountries, expectedCountries)
   })
 })

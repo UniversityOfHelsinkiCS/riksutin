@@ -39,9 +39,8 @@ export const compareUnordered = (actual: any[], expected: any[]) => {
 
 export const compareOrdered = (actual: any[], expected: any[]) => {
   expect(actual.length).toBe(expected.length)
-  for (let i = 0; i < expected.length; i++) {
-    for (const key of Object.keys(expected[i])) {
-      expect(actual[i][key]).toStrictEqual(expected[i][key])
-    }
+
+  for (let i = 0; i < actual.length; i++) {
+    expect(actual[i]).toMatchObject(expected[i])
   }
 }
