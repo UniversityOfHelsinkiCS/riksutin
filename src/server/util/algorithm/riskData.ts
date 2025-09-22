@@ -39,7 +39,7 @@ const createRiskData = async (formData: FormValues) => {
     answers: formData,
     risks: otherRisks.concat(totalRisk),
     country: new Array(updatedCountryData),
-    multilateralCountries: multilateralCountries.length > 0 ? multilateralCountries.slice(1) : [],
+    multilateralCountries: multilateralCountries as any,
   }
 
   return riskData

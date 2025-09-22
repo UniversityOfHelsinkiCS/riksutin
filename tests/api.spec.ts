@@ -108,6 +108,13 @@ test.describe('api', () => {
 
     const expectedCountries = [
       {
+        name: 'Afghanistan',
+        code: 'AF',
+        countryRisk: {
+          rawTotalCountryRiskLevel: 2.75,
+        },
+      },
+      {
         name: 'Belarus',
         code: 'BY',
         countryRisk: {

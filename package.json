@@ -25,7 +25,7 @@
     "format": "prettier --write \"*.{ts,tsx,json,css,md}\"",
     "build": "npm run build --workspace=client",
     "prepare": "husky install",
-    "build:local:test": "docker exec -it riksutin_test npm install"
+    "build:local:test": "docker exec -it riksutin_test npm run build"
   },
   "browserslist": {
     "production": [

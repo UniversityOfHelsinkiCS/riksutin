@@ -54,6 +54,8 @@ const MultilateralRisks = ({ riskData, results }: { riskData: RiskData; results:
   const { multilateralCountries } = riskData
   const { TableContainer, Table, TableBody, TableRow, TableCell, Div, t } = useComponents()
 
+  const restMultilateral = multilateralCountries.slice(1)
+
   const getLabelFor = (id: string) => {
     if (id === 'hci') {
       return t('riskTable:HCIrank')
@@ -68,7 +70,7 @@ const MultilateralRisks = ({ riskData, results }: { riskData: RiskData; results:
     return t(`riskTable:${id}`)
   }
 
-  const width = `${70 / multilateralCountries.length}%`
+  const width = `${70 / restMultilateral.length}%`
 
   return (
     <Div>
@@ -77,13 +79,13 @@ const MultilateralRisks = ({ riskData, results }: { riskData: RiskData; results:
           <TableBody>
             <TableRow>
               <TableCell></TableCell>
-              {multilateralCountries.map(c => (
+              {restMultilateral.map(c => (
                 <TableCell key={c.code}>{c.name}</TableCell>
               ))}
             </TableRow>
             <TableRow>
               <TableCell>{t('riskTable:countryRiskLevel')}</TableCell>
-              {multilateralCountries.map(c => (
+              {restMultilateral.map(c => (
                 <TableCell key={c.code}>
                   <Element level={c.countryRisk.totalCountryRiskLevel} id="country" results={results} />
                 </TableCell>
@@ -92,7 +94,7 @@ const MultilateralRisks = ({ riskData, results }: { riskData: RiskData; results:
             {risks.map(riskId => (
               <TableRow key={riskId}>
                 <TableCell sx={{ width: '30.0%' }}>{getLabelFor(riskId)}</TableCell>
-                {multilateralCountries.map(country => (
+                {restMultilateral.map(country => (
                   <TableCell key={country.code} sx={{ width }}>
                     <Element level={country[riskId] ? country[riskId] : 4} id={riskId} results={results} />
                   </TableCell>
