@@ -1,0 +1,850 @@
+[
+  { "page": 1, "pages": 1, "per_page": 1000, "total": 65, "sourceid": "2", "lastupdated": "2025-07-01" },
+  [
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "2024",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "2023",
+      "value": 52.1327018737793,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "2022",
+      "value": 50.9433975219727,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "2021",
+      "value": 48.5849075317383,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "2020",
+      "value": 43.3962249755859,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "2019",
+      "value": 43.3962249755859,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "2018",
+      "value": 50.9433975219727,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "2017",
+      "value": 52.3809509277344,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "2016",
+      "value": 50,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "2015",
+      "value": 53.3333320617676,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "2014",
+      "value": 52.3809509277344,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "2013",
+      "value": 61.6113739013672,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "2012",
+      "value": 68.2464447021484,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "2011",
+      "value": 63.5071105957031,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "2010",
+      "value": 63.0331764221191,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "2009",
+      "value": 65.4028472900391,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "2008",
+      "value": 60.0961532592773,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "2007",
+      "value": 56.5217399597168,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "2006",
+      "value": 56.038646697998,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "2005",
+      "value": 50,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "2004",
+      "value": 52.9126205444336,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "2003",
+      "value": 50.7537689208984,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "2002",
+      "value": 35.4497337341309,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "2001",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "2000",
+      "value": 46.560848236084,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1999",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1998",
+      "value": 54.2553176879883,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1997",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1996",
+      "value": 42.0212783813477,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1995",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1994",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1993",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1992",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1991",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1990",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1989",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1988",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1987",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1986",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1985",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1984",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1983",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1982",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1981",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1980",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1979",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1978",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1977",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1976",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1975",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1974",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1973",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1972",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1971",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1970",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1969",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1968",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1967",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1966",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1965",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1964",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1963",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1962",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1961",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "ZM", "value": "Zambia" },
+      "countryiso3code": "ZMB",
+      "date": "1960",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    }
+  ]
+]

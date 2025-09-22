@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test'
-import { testUser, riskResponse } from './helpers'
+import { testUser, riskResponse, compareUnordered } from './helpers'
 
 test.describe.configure({ mode: 'serial' })
 
 test.describe('api', () => {
-  test('can set filler as the owner', async () => {
+  test('unilateral project', async () => {
     const payload = {
       data: {
         '1': 'Testi Kayttaja',
@@ -42,18 +42,87 @@ test.describe('api', () => {
 
     const data = await response.json()
 
-    const expected = {
-      risks: riskResponse([
-        { id: 'country', level: 3 },
-        { id: 'university', level: 3 },
-        { id: 'dualUse', level: 1 },
-        { id: 'economic', level: 2 },
-        { id: 'ethical', level: 1 },
-        { id: 'total', level: 3 },
-      ]),
-      multilateralCountries: [],
+    const expectedRisks = riskResponse([
+      { id: 'country', level: 3 },
+      { id: 'dualUse', level: 1 },
+      { id: 'economic', level: 2 },
+      { id: 'ethical', level: 1 },
+      { id: 'total', level: 3 },
+      { id: 'university', level: 3 },
+    ])
+
+    compareUnordered(data.risks, expectedRisks)
+  })
+
+  test('multilateral project', async () => {
+    const payload = {
+      data: {
+        '1': 'Testi Kayttaja',
+        '2': testUser,
+        '3': 'multilateral gene manipulaton',
+        '4': 'multilateral',
+        '6': 'otherType',
+        '7': '',
+        '8': 'Finland',
+        '9': 'coordinator',
+        '10': 'agreementNotDone',
+        '11': ['education', 'educationExport'],
+        '12': 'mediumDuration',
+        '13': 'noExternalFunding',
+        '16': 'largeBudget',
+        '17': 'noTransferPersonalData',
+        '22': 'unknown',
+        '23': 'noTransferMilitaryKnowledge',
+        '24': 'successfulCollaboration',
+        '25': 'maybeEthicalIssues',
+        '26': ['Afghanistan', 'Belarus', 'China'],
+        '28': ['Denmark', 'Sweden'],
+        faculty: 'H40',
+        unit: 'H528',
+        tuhatProjectExists: 'tuhatOptionNegative',
+      },
+      sessionToken: 'e1e841e1-1368-4deb-b9f9-227ab1261e64',
+      tuhatData: {},
     }
 
-    expect(data.risks).toStrictEqual(expected.risks)
+    const response = await fetch('http://localhost:8000/api/entries/1/dryrun', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+
+    expect(response.status).toBe(201)
+
+    const data = await response.json()
+
+    const expectedRisks = riskResponse([
+      { id: 'country', level: 3 },
+      { id: 'dualUse', level: 1 },
+      { id: 'economic', level: 3 },
+      { id: 'ethical', level: 2 },
+      { id: 'consortium', level: 3 },
+      { id: 'total', level: 3 },
+    ])
+
+    compareUnordered(data.risks, expectedRisks)
+
+    const expectedCountries = [
+      {
+        name: 'Belarus',
+        code: 'BY',
+      },
+      {
+        name: 'China',
+        code: 'CN',
+      },
+      {
+        name: 'Denmark',
+        code: 'DK',
+      },
+      { name: 'Sweden', code: 'SE' },
+    ]
+
+    expect(data.country[0].code).toStrictEqual('AF')
+    //compareUnordered(data.risks, expectedCountries)
   })
 })

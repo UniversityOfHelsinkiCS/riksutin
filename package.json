@@ -13,7 +13,7 @@
     "start": "docker compose up",
     "start:prod": "NODE_ENV=production npm run build --workspace=server",
     "start:test": "NODE_ENV=test npm run build --workspace=server",
-    "start:local:test": "docker compose -f docker-compose.ci.yml up",
+    "start:local:test": "docker compose -f docker-compose.ci.yml up --build",
     "start:dev": "NODE_ENV=development concurrently \"npm run start:dev:server\" \"npm run start:dev:client\"",
     "start:dev:server": "npm run watch --workspace=server",
     "start:dev:client": "npm run watch --workspace=client",
@@ -24,7 +24,8 @@
     "lint": "eslint",
     "format": "prettier --write \"*.{ts,tsx,json,css,md}\"",
     "build": "npm run build --workspace=client",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "build:local:test": "docker exec -it riksutin_test npm install"
   },
   "browserslist": {
     "production": [

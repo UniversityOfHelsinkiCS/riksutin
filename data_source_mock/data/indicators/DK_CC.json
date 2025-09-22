@@ -1,0 +1,655 @@
+[
+  { "page": 1, "pages": 1, "per_page": 1000, "total": 65, "sourceid": "2", "lastupdated": "2025-07-01" },
+  [
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2024",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2023",
+      "value": 100,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2022",
+      "value": 100,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2021",
+      "value": 100,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2020",
+      "value": 100,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2019",
+      "value": 99.523811340332,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2018",
+      "value": 99.523811340332,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2017",
+      "value": 99.0476226806641,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2016",
+      "value": 99.523811340332,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2015",
+      "value": 98.5714263916016,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2014",
+      "value": 100,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2013",
+      "value": 100,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2012",
+      "value": 100,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2011",
+      "value": 100,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2010",
+      "value": 100,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2009",
+      "value": 100,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2008",
+      "value": 100,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2007",
+      "value": 100,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2006",
+      "value": 100,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2005",
+      "value": 99.0243911743164,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2004",
+      "value": 99.5073928833008,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2003",
+      "value": 99.4709014892578,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2002",
+      "value": 99.4709014892578,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2001",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2000",
+      "value": 99.4680862426758,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1999",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1998",
+      "value": 99.4652404785156,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1997",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1996",
+      "value": 100,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1995",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1994",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1993",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1992",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1991",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1990",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1989",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1988",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1987",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1986",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1985",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1984",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1983",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1982",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1981",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1980",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1979",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1978",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1977",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1976",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1975",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1974",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1973",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1972",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1971",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1970",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1969",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1968",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1967",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1966",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1965",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1964",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1963",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1962",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1961",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": { "id": "CC.PER.RNK", "value": "Control of Corruption: Percentile Rank" },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1960",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    }
+  ]
+]

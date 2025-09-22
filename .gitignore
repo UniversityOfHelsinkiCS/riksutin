@@ -40,3 +40,4 @@ playwright/.cache/
 
 helper
 src/server/risk-assessment.pdf
+.s3cfg

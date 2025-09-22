@@ -1,0 +1,850 @@
+[
+  { "page": 1, "pages": 1, "per_page": 1000, "total": 65, "sourceid": "2", "lastupdated": "2025-07-01" },
+  [
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "2024",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "2023",
+      "value": 73.459716796875,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "2022",
+      "value": 79.2452850341797,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "2021",
+      "value": 84.4339599609375,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "2020",
+      "value": 81.6037750244141,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "2019",
+      "value": 82.5471725463867,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "2018",
+      "value": 79.2452850341797,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "2017",
+      "value": 80.476188659668,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "2016",
+      "value": 87.1428604125977,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "2015",
+      "value": 79.523811340332,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "2014",
+      "value": 88.0952377319336,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "2013",
+      "value": 90.0473937988281,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "2012",
+      "value": 90.0473937988281,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "2011",
+      "value": 92.4170608520508,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "2010",
+      "value": 87.6777267456055,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "2009",
+      "value": 87.2037887573242,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "2008",
+      "value": 90.3846130371094,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "2007",
+      "value": 95.6521759033203,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "2006",
+      "value": 95.6521759033203,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "2005",
+      "value": 94.6601943969727,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "2004",
+      "value": 96.6019439697266,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "2003",
+      "value": 96.4824142456055,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "2002",
+      "value": 95.7671966552734,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "2001",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "2000",
+      "value": 94.1798934936523,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1999",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1998",
+      "value": 96.2765960693359,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1997",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1996",
+      "value": 99.4680862426758,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1995",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1994",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1993",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1992",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1991",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1990",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1989",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1988",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1987",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1986",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1985",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1984",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1983",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1982",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1981",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1980",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1979",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1978",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1977",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1976",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1975",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1974",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1973",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1972",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1971",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1970",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1969",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1968",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1967",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1966",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1965",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1964",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1963",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1962",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1961",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "SE", "value": "Sweden" },
+      "countryiso3code": "SWE",
+      "date": "1960",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    }
+  ]
+]

@@ -1,0 +1,850 @@
+[
+  { "page": 1, "pages": 1, "per_page": 1000, "total": 65, "sourceid": "2", "lastupdated": "2025-07-01" },
+  [
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2024",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2023",
+      "value": 76.7772521972656,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2022",
+      "value": 76.8867950439453,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2021",
+      "value": 80.1886825561523,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2020",
+      "value": 78.301887512207,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2019",
+      "value": 81.1320724487305,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2018",
+      "value": 80.1886825561523,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2017",
+      "value": 75.2380981445312,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2016",
+      "value": 75.2380981445312,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2015",
+      "value": 76.6666641235352,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2014",
+      "value": 78.5714263916016,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2013",
+      "value": 80.0947875976562,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2012",
+      "value": 75.8293838500977,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2011",
+      "value": 87.2037887573242,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2010",
+      "value": 86.2559204101562,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2009",
+      "value": 85.3080596923828,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2008",
+      "value": 86.0576934814453,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2007",
+      "value": 91.3043441772461,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2006",
+      "value": 85.0241546630859,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2005",
+      "value": 85.4368896484375,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2004",
+      "value": 83.980583190918,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2003",
+      "value": 93.9698486328125,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2002",
+      "value": 96.8253936767578,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2001",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "2000",
+      "value": 95.7671966552734,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1999",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1998",
+      "value": 97.3404235839844,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1997",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1996",
+      "value": 97.8723373413086,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1995",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1994",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1993",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1992",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1991",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1990",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1989",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1988",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1987",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1986",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1985",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1984",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1983",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1982",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1981",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1980",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1979",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1978",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1977",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1976",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1975",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1974",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1973",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1972",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1971",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1970",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1969",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1968",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1967",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1966",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1965",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1964",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1963",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1962",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1961",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "PV.PER.RNK",
+        "value": "Political Stability and Absence of Violence\/Terrorism: Percentile Rank"
+      },
+      "country": { "id": "DK", "value": "Denmark" },
+      "countryiso3code": "DNK",
+      "date": "1960",
+      "value": null,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    }
+  ]
+]

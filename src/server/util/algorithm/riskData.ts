@@ -18,7 +18,7 @@ const createRiskData = async (formData: FormValues) => {
 
   const multilateralCountries = await getMultilateraCountrylRisks(formData['26'], formData['28'], formData)
   // if HY cordinates, we do the calculation based on highest risk partner
-  if (multilateral && hyCordinates) {
+  if (multilateral && hyCordinates && multilateralCountries.length > 0) {
     multilateralCountries.sort(
       (a, b) => (b?.countryRisk?.rawTotalCountryRiskLevel ?? 0) - (a?.countryRisk?.rawTotalCountryRiskLevel ?? 0)
     )

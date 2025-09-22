@@ -68,11 +68,20 @@ app.get('/country/:countryCode/indicator/:indicatorCode', async (req, res) => {
   // indicators CC.PER.RNK PV.PER.RNK
   const { countryCode, indicatorCode } = req.params
 
-  const valid = ['ZN', 'AF', 'CN', 'BY']
+  const valid = ['ZM', 'AF', 'CN', 'BY', 'SE', 'DK']
 
-  const code = valid.includes(countryCode) ? countryCode : 'ZN'
+  /*
+    ZM: Sambia
+    AF: Afganistan
+    CN: Kiina
+    BY: Valko-Venäjä (Belarus)
+    SE: Ruotsi
+    DK: Tanska
+  */
+
+  const code = valid.includes(countryCode) ? countryCode : 'ZM'
   const ind = indicatorCode.slice(0, 2)
-  const data = await fs.readFile(`./data/${code}_${ind}.json`, 'utf-8')
+  const data = await fs.readFile(`./data/indicators/${code}_${ind}.json`, 'utf-8')
 
   console.log('MOCK', code, indicatorCode, '(' + countryCode + ')')
 
