@@ -7,7 +7,6 @@ test('has title', async ({ page }) => {
 
 test.describe.configure({ mode: 'serial' })
 
-/*
 test.describe('form', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/')
@@ -60,9 +59,7 @@ test.describe('form', () => {
     await page.getByLabel('Valitse sijaintimaa').click()
   })
 })
-*/
 
-/*
 test.describe('a bilateral project', () => {
   let page: Page
 
@@ -176,7 +173,6 @@ test.describe('a bilateral project', () => {
     await expect(projectLinks.first()).toBeVisible()
   })
 })
-*/
 
 test.describe('a multilateral project', () => {
   let page: Page
