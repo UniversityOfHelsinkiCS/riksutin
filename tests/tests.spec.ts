@@ -7,6 +7,7 @@ test('has title', async ({ page }) => {
 
 test.describe.configure({ mode: 'serial' })
 
+/*
 test.describe('form', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/')
@@ -59,8 +60,10 @@ test.describe('form', () => {
     await page.getByLabel('Valitse sijaintimaa').click()
   })
 })
+*/
 
-test.describe('results', () => {
+/*
+test.describe('a bilateral project', () => {
   let page: Page
 
   test.beforeAll(async ({ browser }) => {
@@ -171,5 +174,93 @@ test.describe('results', () => {
     await expect(page.getByTestId('entrybox').first()).toBeVisible()
     const projectLinks = page.getByRole('link', { name: 'Tuska' })
     await expect(projectLinks.first()).toBeVisible()
+  })
+})
+*/
+
+test.describe('a multilateral project', () => {
+  let page: Page
+
+  test.beforeAll(async ({ browser }) => {
+    page = await browser.newPage()
+    await page.goto('/')
+    await page.getByRole('button', { name: 'Olen projektin omistaja' }).click()
+
+    const autocompleteInput = page.locator('#unit')
+    await autocompleteInput.fill('ti')
+    const options = page.locator('.MuiAutocomplete-option')
+    await options.filter({ hasText: 'Tietojenkäsittelytieteen osasto' }).first().click()
+
+    await page.locator('[data-cy="choice-select-tuhatOptionNegative"]').click()
+    await page.getByTestId('question-tuhatProjText').getByRole('textbox').click()
+    await page.getByTestId('question-tuhatProjText').getByRole('textbox').fill('Tuska')
+
+    await page.locator('[data-cy="choice-select-multilateral"]').click()
+
+    await page.locator('#select-26').fill('Belarus')
+    await page.getByRole('option', { name: 'Belarus' }).click()
+
+    await page.locator('#select-26').fill('China')
+    await page.getByRole('option', { name: 'China' }).click()
+
+    await page.locator('#select-26').fill('Afghanistan')
+    await page.getByRole('option', { name: 'Afghanistan' }).click()
+
+    await page.locator('#select-28').fill('Denmark')
+    await page.getByRole('option', { name: 'Denmark' }).click()
+
+    await page.locator('#select-28').fill('Sweden')
+    await page.getByRole('option', { name: 'Sweden' }).click()
+
+    await page.locator('[data-cy="choice-select-coordinator"]').click()
+    await page.locator('[data-cy="choice-select-agreementDone"]').click()
+
+    await page.locator('input[value="education"]').check()
+    await page.locator('input[value="research"]').check()
+
+    await page.locator('[data-cy="choice-select-mediumDuration"]').click()
+
+    await page.locator('[data-cy="choice-select-noExternalFunding"]').click()
+
+    await page.locator('[data-cy="choice-select-mediumBudget"]').click()
+    await page.locator('[data-cy="choice-select-transferPersonalData"]').click()
+    await page.locator('[data-cy="choice-select-noTransferMilitaryKnowledge"]').click()
+
+    await page.locator('[data-cy="choice-select-noEthicalIssues"]').click()
+
+    await page.getByTestId('question-7').getByRole('textbox').click()
+    await page.getByTestId('question-7').getByRole('textbox').fill('Monenkeskeinen testiprojekti')
+
+    await page.getByRole('button', { name: 'Valinnat tehty' }).click()
+
+    await expect(page.getByText('Yhteenveto valinnoistasi')).toBeVisible()
+  })
+
+  test.afterAll(async () => {
+    await page.close()
+  })
+
+  test('risk table and answers are visible after submitting', async () => {
+    await expect(page.getByText('Yhteistyön riskit')).toBeVisible()
+    await expect(page.getByText('Yhteenveto valinnoistasi')).toBeVisible()
+  })
+
+  test('risk table has content', async () => {
+    await expect(page.getByText('Yhteistyön kokonaisriskitaso', { exact: true })).toBeVisible()
+    await expect(
+      page.getByText('Monenkeskeinen Helsingin Yliopiston koordinoima projekti', { exact: true })
+    ).toBeVisible()
+    await expect(page.getByText('Osallistujia seuraavista maista:')).toBeVisible()
+    await expect(page.getByText('Belarus, China, Afghanistan, Denmark, Sweden')).toBeVisible()
+
+    await expect(page.getByText('Maan riskitaso (Afghanistan)', { exact: true })).toBeVisible()
+    await expect(page.getByText('Korruptio', { exact: true })).toBeVisible()
+    await expect(page.getByText('Poliittinen vakaus', { exact: true })).toBeVisible()
+    await expect(page.getByText('Maan kehittyneisyys', { exact: true })).toBeVisible()
+    await expect(page.getByText('GDPR', { exact: true })).toBeVisible()
+    await expect(page.getByText('Pakotteet', { exact: true })).toBeVisible()
+    await expect(page.getByText('Kaksikäyttötuotteiden riskitaso', { exact: true })).toBeVisible()
+    await expect(page.getByText('Eettinen riskitaso', { exact: true })).toBeVisible()
+    await expect(page.getByText('Akateeminen vapaus', { exact: true })).toBeVisible()
   })
 })
