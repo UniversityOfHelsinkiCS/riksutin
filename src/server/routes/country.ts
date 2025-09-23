@@ -12,6 +12,7 @@ import parseRuleOfLaw from '../data/ruleOfLaw/parseRuleOfLaw'
 import { getCountries, cacheCountries } from '../services/countries'
 import getHumanDevelopment, { cacheHdrData } from '../data/humanDevelopment'
 import getAcademicFreedom from '../data/academicfreedom'
+import { getWarnings } from '../services/warning'
 
 export const getCountryData = async (code: string | undefined): Promise<CountryData | null> => {
   if (!code) return null
@@ -48,7 +49,30 @@ export const getCountryData = async (code: string | undefined): Promise<CountryD
 
 const countryRouter = express.Router()
 
+const warnedCountries = async () => {
+  const warnings = await getWarnings()
+  const coutries = await getCountries()
+
+  return warnings
+    .map(w => w.country)
+    .map(id => coutries.find(c => c.iso2Code === id))
+    .filter(Boolean)
+}
+
+const uniqConcat = (first, second) => {
+  const result = [...first]
+  for (const c of second) {
+    if (!first.map(k => k.iso2Code).includes(c.iso2Code)) {
+      result.push(c)
+    }
+  }
+
+  return result.sort((a, b) => a.name.localeCompare(b.name))
+}
+
 countryRouter.get('/highrisk', async (req, res: any) => {
+  const warned = await warnedCountries()
+
   const cached = await get<
     {
       name: string
@@ -56,11 +80,13 @@ countryRouter.get('/highrisk', async (req, res: any) => {
     }[]
   >('high_risk_countries')
 
-  if (cached) return res.status(200).send(cached)
+  if (cached) {
+    return res.status(200).send(uniqConcat(cached, warned))
+  }
 
   const highRiskCountries = await getHighRiskCountries()
 
-  return res.status(200).send(highRiskCountries)
+  return res.status(200).send(uniqConcat(highRiskCountries, warned))
 })
 
 countryRouter.get('/', async (_, res) => {

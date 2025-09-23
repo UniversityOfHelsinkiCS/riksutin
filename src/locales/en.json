@@ -54,8 +54,9 @@
     "requiredQuestionsNeedAnswers": "Answer the following required questions:",
     "fillerIsOwner": "I am the owner",
     "startWriting": "Start writing to see proposals",
-    "multilateralInfo": "You can select up to 5 countries, currently selected",
-    "multilateralWarning": "You can select up to 5 countries in total"
+    "multilateralInfo": "You select 1-5 countries, currently selected",
+    "multilateralWarning": "You can select up to 5 countries in total",
+    "multilateralNoCountriesWarning": "Select at least 1 country to the consortion"
   },
   "riskTable": {
     "countryRiskLevel": "Risk level of the partner country",

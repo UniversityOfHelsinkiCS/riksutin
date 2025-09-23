@@ -1152,7 +1152,7 @@ const getQuestionData = (): Question[] => [
       type: 'multilateralInfo',
       options: [],
     },
-    visibility: { options: ['multilateral'] },
+    visibility: { options: ['xmultilateral'] },
   },
   {
     id: 30,

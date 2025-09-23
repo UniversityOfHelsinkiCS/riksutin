@@ -12,7 +12,7 @@ const MultilateralInfo = ({ watch, question }: InputProps) => {
   const noRisks = watch()[28] ? watch()[28] : []
 
   return (
-    <div style={{ marginTop: -20 }}>
+    <div style={{ marginTop: 10 }}>
       <Typography sx={{ fontStyle: 'italic' }}>
         {t('questions:multilateralInfo')} {highRisks.length + noRisks.length}
       </Typography>

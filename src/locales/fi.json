@@ -51,8 +51,9 @@
     "requiredQuestionsNeedAnswers": "Vastaa seuraaviin pakollisiin kysymyksiin:",
     "fillerIsOwner": "Olen projektin omistaja",
     "startWriting": "Aloita syöte saadaksesi ehdotuksia",
-    "multilateralInfo": "Voit valita yhteensä 5 maata, nyt valittuna",
-    "multilateralWarning": "Voit valita yhteensä korkeintaan 5 maata"
+    "multilateralInfo": "Valitse 1-5 maata, nyt valittuna",
+    "multilateralWarning": "Voit valita yhteensä korkeintaan 5 maata",
+    "multilateralNoCountriesWarning": "Valitse vähintään yksi maa yhteistyökonsortion koostumukseen"
   },
   "riskTable": {
     "countryRiskLevel": "Maan riskitaso",

@@ -48,11 +48,23 @@ const InteractiveForm = () => {
   if (!survey || isLoading || !results) return null
 
   const onSubmit = async (data: FormValues) => {
+    const hyCordMultilat = data['4'] === 'multilateral' && data['9'] === 'coordinator'
+
+    const highRisks = data[26] ? data[26] : []
+    const noRisks = data[28] ? data[28] : []
+    const partners = highRisks.concat(noRisks)
+
+    if (hyCordMultilat && partners.length === 0) {
+      // eslint-disable-next-line no-alert
+      alert(t('questions:multilateralNoCountriesWarning'))
+      return
+    }
+
     setSubmitButtonLoading(true)
     const tuhatData = sessionStorage.getItem(TUHAT_DATA_STORAGE_KEY) ?? '{}'
 
     // if mutlilateran and hyCordinator, some questions have hardcoded answers
-    if (data['4'] === 'multilateral' && data['9'] === 'coordinator') {
+    if (hyCordMultilat) {
       data['8'] = 'Finland'
       data['6'] = 'otherType'
       data['22'] = 'unknown'
