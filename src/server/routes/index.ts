@@ -18,6 +18,7 @@ import countryRouter from './country'
 import organizationRouter from './organization'
 import warningsRouter from './warning'
 import tuhatProjectsRouter from './tuhatProject'
+import { setMockUser } from '../mocs/user'
 
 const router = express()
 
@@ -32,6 +33,15 @@ router.use(express.json())
 if (inDevelopment || inE2EMode || inAcualStaging) router.use(userMiddleware)
 
 router.use(accessLogger)
+
+if (inDevelopment || inE2EMode) {
+  router.get('/mock/user', (req, res) => {
+    const { type } = req.query
+    const setTo: any = type ?? 'admin'
+    setMockUser(setTo)
+    res.send('changed mock user to ' + setTo)
+  })
+}
 
 router.get('/ping', (_, res) => res.send('pong'))
 router.get('/error', () => {

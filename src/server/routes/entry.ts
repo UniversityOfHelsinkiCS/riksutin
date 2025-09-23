@@ -91,7 +91,7 @@ const SendEmailBodySchema = z.object({
   targets: z.array(z.string()),
 })
 
-entryRouter.post('/:entryId/send-email', adminHandler, async (req: RequestWithUser, res: any) => {
+entryRouter.post('/:entryId/send-email', async (req: RequestWithUser, res: any) => {
   const { entryId } = req.params
   const userId = req.user?.id
   const { targets } = SendEmailBodySchema.parse(req.body)

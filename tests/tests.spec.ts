@@ -8,6 +8,11 @@ test('has title', async ({ page }) => {
 test.describe.configure({ mode: 'serial' })
 
 test.describe('form', () => {
+  test.beforeAll(async () => {
+    // tests as nonadmin user
+    await fetch('http://localhost:8000/api/mock/user?type=normal')
+  })
+
   test.beforeEach(async ({ page }) => {
     await page.goto('/')
   })
@@ -16,7 +21,7 @@ test.describe('form', () => {
     await page.getByRole('button', { name: 'Olen projektin omistaja' }).click()
 
     const input = page.locator('#select-2')
-    await expect(input).toHaveValue('Testi Kayttaja (grp-toska@helsinki.fi)')
+    await expect(input).toHaveValue('Matti Luukkainen (matti.luukkainen@helsinki.fi)')
   })
 
   test('owner can be selected', async ({ page }) => {
@@ -65,6 +70,9 @@ test.describe('a bilateral project', () => {
 
   test.beforeAll(async ({ browser }) => {
     page = await browser.newPage()
+    // tests as nonadmin user
+    await fetch('http://localhost:8000/api/mock/user?type=normal')
+
     await page.goto('/')
     await page.getByRole('button', { name: 'Olen projektin omistaja' }).click()
 
@@ -139,7 +147,7 @@ test.describe('a bilateral project', () => {
     const owner = page.locator('#question-2')
     await expect(owner).toBeVisible()
     await expect(owner.getByText('Projektin omistaja')).toBeVisible()
-    await expect(owner).toContainText('Testi Kayttaja (grp-toska@helsinki.fi)')
+    await expect(owner).toContainText('Matti Luukkainen (matti.luukkainen@helsinki.fi)')
 
     const organization = page.locator('#question-3')
     await expect(organization.getByText('Projektin omistava yksikkö')).toBeVisible()
@@ -149,7 +157,7 @@ test.describe('a bilateral project', () => {
   test('sending email succeeds', async () => {
     await fetch('http://localhost:3000/pate/reset')
 
-    await page.locator('[data-cy="share-results-input"]').type('matti.luukkainen@helsinki.fi')
+    await page.locator('[data-cy="share-results-input"]').type('outi.savolainen@helsinki.fi')
     //await page.keyboard.press('Enter')
     await page.getByRole('button', { name: 'Lähetä yhteenveto' }).click()
     await expect(page.getByText('Yhteenveto on lähetetty sähköpostiisi')).toBeVisible()
@@ -160,7 +168,7 @@ test.describe('a bilateral project', () => {
     expect(data.length).toBe(1)
     const { emails } = data[0]
     expect(emails).toContainEqual({
-      to: 'grp-toska@helsinki.fi',
+      to: 'matti.luukkainen@helsinki.fi',
       subject: 'Risk assessment results',
     })
   })

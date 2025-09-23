@@ -1,9 +1,9 @@
-import mockUser from '../mocs/user'
+import { getMockUser } from '../mocs/user'
 
 const userMiddleware = (req, _, next) => {
   if (req.path.includes('/login')) return next()
 
-  req.user = mockUser
+  req.user = getMockUser()
 
   return next()
 }
