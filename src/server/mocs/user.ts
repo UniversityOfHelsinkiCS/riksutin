@@ -1,4 +1,4 @@
-let userType = 'admin'
+let userType = 'normal'
 
 const mockUsers = {
   admin: {
@@ -12,8 +12,8 @@ const mockUsers = {
     iamGroups: ['grp-toska', 'hy-mltdk-employees'],
   },
   normal: {
-    id: 'testnormaluser',
-    username: 'hy-hlo-1441872',
+    id: 'normaltestuser',
+    username: 'hy-hlo-22222',
     firstName: 'Matti',
     lastName: 'Luukkainen',
     email: 'matti.luukkainen@helsinki.fi',

@@ -8,11 +8,6 @@ test('has title', async ({ page }) => {
 test.describe.configure({ mode: 'serial' })
 
 test.describe('form', () => {
-  test.beforeAll(async () => {
-    // tests as nonadmin user
-    await fetch('http://localhost:8000/api/mock/user?type=normal')
-  })
-
   test.beforeEach(async ({ page }) => {
     await page.goto('/')
   })
@@ -70,8 +65,6 @@ test.describe('a bilateral project', () => {
 
   test.beforeAll(async ({ browser }) => {
     page = await browser.newPage()
-    // tests as nonadmin user
-    await fetch('http://localhost:8000/api/mock/user?type=normal')
 
     await page.goto('/')
     await page.getByRole('button', { name: 'Olen projektin omistaja' }).click()
@@ -81,7 +74,6 @@ test.describe('a bilateral project', () => {
     const options = page.locator('.MuiAutocomplete-option')
     await options.filter({ hasText: 'Tietojenkäsittelytieteen osasto' }).first().click()
 
-    // TUHAT negative
     await page.locator('[data-cy="choice-select-tuhatOptionNegative"]').click()
     await page.getByTestId('question-tuhatProjText').getByRole('textbox').click()
     await page.getByTestId('question-tuhatProjText').getByRole('textbox').fill('Tuska')

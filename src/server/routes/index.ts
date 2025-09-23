@@ -37,7 +37,7 @@ router.use(accessLogger)
 if (inDevelopment || inE2EMode) {
   router.get('/mock/user', (req, res) => {
     const { type } = req.query
-    const setTo: any = type ?? 'admin'
+    const setTo: any = type ?? 'normal'
     setMockUser(setTo)
     res.send('changed mock user to ' + setTo)
   })
