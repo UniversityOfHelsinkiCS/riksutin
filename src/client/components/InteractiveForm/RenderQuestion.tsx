@@ -162,6 +162,10 @@ const RenderQuestion = ({ control, watch, question, questions, language }: Input
     return null
   }
 
+  if ([28, 30].includes(question.id) && multilateral && !hyCordinator) {
+    return null
+  }
+
   return (
     <Box>
       <Box sx={cardStyles.questionsContainer}>
