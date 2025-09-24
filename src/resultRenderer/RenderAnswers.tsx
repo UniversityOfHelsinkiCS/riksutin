@@ -61,6 +61,13 @@ const RenderAnswers = ({
 
   const hyCordinatedMultilateral = resultData['9'] === 'coordinator' && resultData['4'] === 'multilateral'
 
+  const arrayToString = answers => {
+    if (answers.length === 0) {
+      return t('results:selectionEmpty')
+    }
+    return answers.join(', ')
+  }
+
   return (
     <>
       <Typography variant="h6" style={{ fontSize: '24px', marginBottom: '20px' }}>
@@ -99,7 +106,7 @@ const RenderAnswers = ({
                             </Typography>
                             <Typography>
                               {[26, 28].includes(childQuestion.id)
-                                ? answers[childQuestion.id].join(', ')
+                                ? arrayToString(answers[childQuestion.id])
                                 : (answers[childQuestion.id] as string)}
                             </Typography>
                           </Div>

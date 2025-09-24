@@ -19,6 +19,7 @@ import { useResultData } from '../../contexts/ResultDataContext'
 
 import styles from '../../styles'
 import { useNavigate } from 'react-router-dom'
+import { noDefault, NO_SELECTION } from 'src/client/util/multilataral'
 
 const InteractiveForm = () => {
   const { survey, isLoading } = useSurvey()
@@ -34,8 +35,8 @@ const InteractiveForm = () => {
 
   const { formStyles } = styles
 
-  resultData[26] = [t('questions:noHighRisk')]
-  resultData[28] = [t('questions:noOtherCountries')]
+  resultData[26] = [NO_SELECTION]
+  resultData[28] = [NO_SELECTION]
 
   const { handleSubmit, control, watch, setValue } = useForm({
     mode: 'onSubmit',
@@ -52,8 +53,6 @@ const InteractiveForm = () => {
 
   const onSubmit = async (data: FormValues) => {
     const hyCordMultilat = data['4'] === 'multilateral' && data['9'] === 'coordinator'
-
-    const noDefault = d => ![t('questions:noHighRisk'), t('questions:noOtherCountries')].includes(d)
 
     // remove defaults from multilateral country lists
     data[26] = data[26] ? data[26].filter(noDefault) : []

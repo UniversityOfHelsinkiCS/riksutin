@@ -7,6 +7,7 @@ import type { Locales } from '@types'
 import type { InputProps } from '@client/types'
 
 import useCountries, { useHighRiskCountries } from '../../hooks/useCountries'
+import { noDefault, NO_SELECTION } from 'src/client/util/multilataral'
 
 const getCountryList = (allCountries, highriskCountries, type) => {
   if (type === 'high') {
@@ -35,15 +36,21 @@ const RiskCountrySelect = ({ control, question, children, watch, type }: InputPr
   const highRisks = watch()[26] ? watch()[26] : []
   const noRisks = watch()[28] ? watch()[28] : []
 
-  if (!question || !highriskCountries || !allCountries) return null
-
-  const noSelection = question.id === 26 ? t('questions:noHighRisk') : t('questions:noOtherCountries')
-
-  const noDefault = d => d !== noSelection
+  if (!question || !highriskCountries || !allCountries) {
+    return null
+  }
 
   const contriesSelected = highRisks.filter(noDefault).length + noRisks.filter(noDefault).length
 
-  const options = [noSelection].concat(countries.map(country => country.name))
+  const options = [NO_SELECTION].concat(countries.map(country => country.name))
+
+  const getLabel = option => {
+    if (option === NO_SELECTION) {
+      return question.id === 26 ? t('questions:noHighRisk') : t('questions:noOtherCountries')
+    }
+
+    return option
+  }
 
   return (
     <Box py={1}>
@@ -57,10 +64,10 @@ const RiskCountrySelect = ({ control, question, children, watch, type }: InputPr
               disablePortal
               id={`select-${question.id.toString()}`}
               options={options}
-              getOptionLabel={option => option}
+              getOptionLabel={getLabel}
               onChange={(e, data, reason) => {
                 if (reason === 'removeOption') {
-                  const acualData = data.length === 0 ? [noSelection] : data
+                  const acualData = data.length === 0 ? [NO_SELECTION] : data
                   onChange(acualData)
                   return
                 }

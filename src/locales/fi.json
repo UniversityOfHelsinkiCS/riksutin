@@ -103,7 +103,8 @@
     "sendSuccess": "Yhteenveto on lähetetty sähköpostiisi",
     "endMessage": "Kiitos Risk-i:n käytöstä!",
     "backToMessage": "Takaisin valintoihin",
-    "selectedCountry": "Valitsemasi yhteistyökumppanin sijaintimaa"
+    "selectedCountry": "Valitsemasi yhteistyökumppanin sijaintimaa",
+    "selectionEmpty": "Ei valittuja maita"
   },
   "contact": {
     "emailErrorMessage": "Palvelimeen ei saatu yhteyttä"

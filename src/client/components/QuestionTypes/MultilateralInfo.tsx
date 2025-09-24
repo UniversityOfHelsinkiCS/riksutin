@@ -1,6 +1,7 @@
 import type { InputProps } from '@client/types'
 import { Typography } from '@mui/material'
 import { useTranslation } from 'react-i18next'
+import { noDefault } from 'src/client/util/multilataral'
 
 const MultilateralInfo = ({ watch, question }: InputProps) => {
   const { t } = useTranslation()
@@ -8,7 +9,6 @@ const MultilateralInfo = ({ watch, question }: InputProps) => {
     return null
   }
 
-  const noDefault = d => ![t('questions:noHighRisk'), t('questions:noOtherCountries')].includes(d)
   const highRisks = watch()[26] ? watch()[26].filter(noDefault) : []
   const noRisks = watch()[28] ? watch()[28].filter(noDefault) : []
 

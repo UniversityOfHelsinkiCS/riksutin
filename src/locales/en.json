@@ -106,7 +106,8 @@
     "sendSuccess": "Summary has been sent to your email",
     "endMessage": "Thank you for using Risk-i!",
     "backToMessage": "Back to selections",
-    "selectedCountry": "Valitsemasi yhteistyökumppanin sijaintimaa"
+    "selectedCountry": "Selected partner country",
+    "selectionEmpty": "No countries selected"
   },
   "contact": {
     "emailErrorMessage": "Failed to connect to the server"
