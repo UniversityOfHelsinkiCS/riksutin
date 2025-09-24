@@ -10,6 +10,7 @@ import { useComponents } from './context'
 import getRiskTexts from '@common/getRiskTexts'
 import getCountryRiskTexts from '@common/getCountryRiskTexts'
 import CountryRiskElements from './CountryRiskElements'
+import { Alert } from '@mui/material'
 
 const { resultStyles } = styles
 
@@ -41,8 +42,17 @@ const RiskTable = ({
 
   const otherRisksWithTexts = getRiskTexts(riskData.risks, results, riskData.answers, language)
 
+  const hyMultilateral = riskData.answers['9'] === 'coordinator' && riskData.answers['4'] === 'multilateral'
+
+  const outdated = hyMultilateral && !riskData.multilateralCountries
+
   return (
     <>
+      {outdated && (
+        <Alert severity="error" sx={{ marginBottom: 5 }}>
+          {t('results:outdated')}
+        </Alert>
+      )}
       <Typography data-cy="result-section-title" variant="h6" style={{ marginBottom: '20px', fontSize: '24px' }}>
         {t('results:riskTableTitle')}
       </Typography>

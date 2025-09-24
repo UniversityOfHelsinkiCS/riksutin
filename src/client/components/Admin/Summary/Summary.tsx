@@ -21,6 +21,7 @@ const { riskColors } = styles
 type TableProps = {
   tableValues: TableValues[]
   questionTitles: TableValues
+  isOutdated: any
 }
 
 const additionalColumnNames: TableValues = {
@@ -31,39 +32,40 @@ const additionalColumnNames: TableValues = {
   unit: 'Yksikkö',
 }
 
-const Table = ({ tableValues, questionTitles }: TableProps) => {
+const Table = ({ tableValues, questionTitles, isOutdated }: TableProps) => {
   const deleteMutation = useDeleteEntryMutation()
-
-  const columns = useMemo<MRT_ColumnDef<TableValues>[]>(
-    () =>
-      tableValues.length
-        ? Object.keys(tableValues[0]).map(columnId => ({
-            header: questionTitles[columnId] ?? additionalColumnNames[columnId] ?? columnId,
-            accessorKey: columnId,
-            id: columnId,
-            Cell: ({ cell, row }) => (
-              <Box
-                component="span"
-                sx={() => ({
-                  ...(columnId === 'total' && {
-                    backgroundColor: riskColors[cell.getValue<number>()] ?? riskColors[3],
-                    borderRadius: '0.25rem',
-                    fontWeight: 'bold',
-                    p: '0.75rem',
-                  }),
-                })}
-              >
-                {columnId === '3' ? (
+  const columns = useMemo<MRT_ColumnDef<TableValues>[]>(() => {
+    const outdatedWarning = { paddingRight: 10, color: 'red', fontSize: 'x-large' }
+    return tableValues.length
+      ? Object.keys(tableValues[0]).map(columnId => ({
+          header: questionTitles[columnId] ?? additionalColumnNames[columnId] ?? columnId,
+          accessorKey: columnId,
+          id: columnId,
+          Cell: ({ cell, row }) => (
+            <Box
+              component="span"
+              sx={() => ({
+                ...(columnId === 'total' && {
+                  backgroundColor: riskColors[cell.getValue<number>()] ?? riskColors[3],
+                  borderRadius: '0.25rem',
+                  fontWeight: 'bold',
+                  p: '0.75rem',
+                }),
+              })}
+            >
+              {columnId === '3' ? (
+                <>
+                  {isOutdated(row.getValue('id')) && <span style={outdatedWarning}>!</span>}
                   <Link to={`/admin/entry/${row.getValue('id')}`}>{cell.getValue<string>()}</Link>
-                ) : (
-                  cell.getValue<number>()
-                )}
-              </Box>
-            ),
-          }))
-        : [],
-    [tableValues]
-  )
+                </>
+              ) : (
+                cell.getValue<number>()
+              )}
+            </Box>
+          ),
+        }))
+      : []
+  }, [tableValues, questionTitles, isOutdated])
 
   const columnIds = Object.keys(tableValues[0])
 
@@ -183,6 +185,13 @@ const Summary = () => {
 
   const questionTitles = Object.fromEntries(questions.map(q => [q.id.toString(), headerTitle(q)]))
 
+  const isOutdated = id => {
+    const { answers, multilateralCountries } = entries.find(e => e.id === Number(id))?.data as any
+    const hyMultilateral = answers['9'] === 'coordinator' && answers['4'] === 'multilateral'
+
+    return hyMultilateral && !multilateralCountries
+  }
+
   return (
     <>
       <Typography variant="h5" m={4}>
@@ -194,7 +203,7 @@ const Summary = () => {
           px: 8,
         }}
       >
-        <Table tableValues={tableData} questionTitles={questionTitles} />
+        <Table tableValues={tableData} questionTitles={questionTitles} isOutdated={isOutdated} />
       </Box>
     </>
   )

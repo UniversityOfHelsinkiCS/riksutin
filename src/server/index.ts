@@ -45,7 +45,7 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'test') {
 
 app.listen(PORT, async () => {
   await connectToDatabase()
-  if (process.env.NODE_ENV !== 'xproduction') {
+  if (process.env.NODE_ENV !== 'production') {
     await seed()
   }
   await setupAuthentication()

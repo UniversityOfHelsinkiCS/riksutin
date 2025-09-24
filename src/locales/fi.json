@@ -104,7 +104,8 @@
     "endMessage": "Kiitos Risk-i:n käytöstä!",
     "backToMessage": "Takaisin valintoihin",
     "selectedCountry": "Valitsemasi yhteistyökumppanin sijaintimaa",
-    "selectionEmpty": "Ei valittuja maita"
+    "selectionEmpty": "Ei valittuja maita",
+    "outdated": "HY:n koordinoimien monenkeskeisten hankkeiden arviointitapa on muuttunut, suosittelemme että projektille tehdään uusi riskiarvio."
   },
   "contact": {
     "emailErrorMessage": "Palvelimeen ei saatu yhteyttä"

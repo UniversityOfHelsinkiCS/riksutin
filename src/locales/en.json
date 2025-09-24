@@ -107,7 +107,8 @@
     "endMessage": "Thank you for using Risk-i!",
     "backToMessage": "Back to selections",
     "selectedCountry": "Selected partner country",
-    "selectionEmpty": "No countries selected"
+    "selectionEmpty": "No countries selected",
+    "outdated": "The assessment method for multilateral projects coordinated by the University of Helsinki has changed. We recommend that you perform a new risk assessment for the project."
   },
   "contact": {
     "emailErrorMessage": "Failed to connect to the server"
