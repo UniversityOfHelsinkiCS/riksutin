@@ -8,8 +8,9 @@ const MultilateralInfo = ({ watch, question }: InputProps) => {
     return null
   }
 
-  const highRisks = watch()[26] ? watch()[26] : []
-  const noRisks = watch()[28] ? watch()[28] : []
+  const noDefault = d => ![t('questions:noHighRisk'), t('questions:noOtherCountries')].includes(d)
+  const highRisks = watch()[26] ? watch()[26].filter(noDefault) : []
+  const noRisks = watch()[28] ? watch()[28].filter(noDefault) : []
 
   return (
     <div style={{ marginTop: 10 }}>

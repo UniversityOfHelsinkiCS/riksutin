@@ -117,7 +117,7 @@ const CountryRiskElements = ({
                   </Typography>
                 </Typography>
                 <Typography style={{ paddingBottom: 12 }}>{t('riskTable:hyMultilateralHighest')}</Typography>
-                <MultilateralRiskMoral riskData={riskData} results={results} />
+                {multilateralCountyNames.length > 1 && <MultilateralRiskMoral riskData={riskData} results={results} />}
               </Div>
             </TableCell>
           </TableRow>

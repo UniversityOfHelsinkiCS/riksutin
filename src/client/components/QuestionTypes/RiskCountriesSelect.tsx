@@ -34,9 +34,16 @@ const RiskCountrySelect = ({ control, question, children, watch, type }: InputPr
   const countries = getCountryList(allCountries, highriskCountries, type)
   const highRisks = watch()[26] ? watch()[26] : []
   const noRisks = watch()[28] ? watch()[28] : []
-  const contriesSelected = highRisks.length + noRisks.length
 
   if (!question || !highriskCountries || !allCountries) return null
+
+  const noSelection = question.id === 26 ? t('questions:noHighRisk') : t('questions:noOtherCountries')
+
+  const noDefault = d => d !== noSelection
+
+  const contriesSelected = highRisks.filter(noDefault).length + noRisks.filter(noDefault).length
+
+  const options = [noSelection].concat(countries.map(country => country.name))
 
   return (
     <Box py={1}>
@@ -49,16 +56,17 @@ const RiskCountrySelect = ({ control, question, children, watch, type }: InputPr
               multiple
               disablePortal
               id={`select-${question.id.toString()}`}
-              options={countries.map(country => country.name)}
+              options={options}
               getOptionLabel={option => option}
               onChange={(e, data, reason) => {
                 if (reason === 'removeOption') {
-                  onChange(data)
+                  const acualData = data.length === 0 ? [noSelection] : data
+                  onChange(acualData)
                   return
                 }
                 if (reason === 'selectOption') {
                   if (contriesSelected < 5) {
-                    onChange(data)
+                    onChange(data.filter(noDefault))
                   } else {
                     // eslint-disable-next-line no-alert
                     alert(t('questions:multilateralWarning'))

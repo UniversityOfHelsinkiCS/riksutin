@@ -34,6 +34,9 @@ const InteractiveForm = () => {
 
   const { formStyles } = styles
 
+  resultData[26] = [t('questions:noHighRisk')]
+  resultData[28] = [t('questions:noOtherCountries')]
+
   const { handleSubmit, control, watch, setValue } = useForm({
     mode: 'onSubmit',
     shouldUnregister: true,
@@ -50,9 +53,12 @@ const InteractiveForm = () => {
   const onSubmit = async (data: FormValues) => {
     const hyCordMultilat = data['4'] === 'multilateral' && data['9'] === 'coordinator'
 
-    const highRisks = data[26] ? data[26] : []
-    const noRisks = data[28] ? data[28] : []
-    const partners = highRisks.concat(noRisks)
+    const noDefault = d => ![t('questions:noHighRisk'), t('questions:noOtherCountries')].includes(d)
+
+    // remove defaults from multilateral country lists
+    data[26] = data[26] ? data[26].filter(noDefault) : []
+    data[28] = data[28] ? data[28].filter(noDefault) : []
+    const partners = data[26].concat(data[28])
 
     if (hyCordMultilat && partners.length === 0) {
       // eslint-disable-next-line no-alert
