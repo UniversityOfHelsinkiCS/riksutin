@@ -49,7 +49,9 @@ const InteractiveForm = () => {
 
   usePersistForm({ value: watch(), sessionStorageKey: FORM_DATA_KEY })
 
-  if (!survey || isLoading || !results) return null
+  if (!survey || isLoading || !results) {
+    return null
+  }
 
   const onSubmit = async (data: FormValues) => {
     const hyCordMultilat = data['4'] === 'multilateral' && data['9'] === 'coordinator'

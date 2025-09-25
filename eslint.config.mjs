@@ -53,6 +53,7 @@ export default [
   {
     rules: {
       camelcase: 'off', // TODO: Enable this rule (at least for frontend)
+      'curly': 'error',
       'class-methods-use-this': 'error',
       'consistent-return': 'error',
       'id-denylist': ['error'],

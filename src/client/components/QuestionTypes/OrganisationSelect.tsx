@@ -22,7 +22,9 @@ const OrganisationList = ({
 
   organisations?.sort((a, b) => a.localeCompare(b))
 
-  if (!organisations) return <LoadingProgress />
+  if (!organisations) {
+    return <LoadingProgress />
+  }
 
   return organisations.length === 0 ? (
     <Typography data-cy="result-section-title" variant="body1" sx={{ mt: 2, paddingBottom: 2 }}>
@@ -69,7 +71,9 @@ const OrganisationList = ({
 }
 
 const OrganisationSelect = ({ control, question, children, watch }: InputProps) => {
-  if (!question || !watch) return null
+  if (!question || !watch) {
+    return null
+  }
 
   const input = watch(question.id.toString())
 

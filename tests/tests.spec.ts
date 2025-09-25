@@ -60,7 +60,6 @@ test.describe('form', () => {
   })
 })
 
-/*
 test.describe('a bilateral project', () => {
   let page: Page
 
@@ -261,7 +260,6 @@ test.describe('a multilateral project', () => {
     await expect(page.getByText('Akateeminen vapaus', { exact: true })).toBeVisible()
   })
 })
-*/
 
 test.describe('a bilateral project nonuniversity project with external funding', () => {
   let page: Page
@@ -289,6 +287,12 @@ test.describe('a bilateral project nonuniversity project with external funding',
     await page.locator('[data-cy="choice-select-company"]').click()
     await page.getByTestId('question-22').locator('input').fill('nokia')
     // await page.getByRole('option', { name: 'Nokia Bell Labs' }).click()
+    /* 
+      for some reason the frontend does not render the selection in the tests
+      despite based on logging it gets the data correctly
+      so the spinner just stays there
+      see https://github.com/UniversityOfHelsinkiCS/riksutin/blob/master/src/client/components/QuestionTypes/OrganisationSelect.tsx#L25
+    */
 
     await page.locator('[data-cy="choice-select-succefultCollaboration"]').click()
     await page.locator('[data-cy="choice-select-partner"]').click()

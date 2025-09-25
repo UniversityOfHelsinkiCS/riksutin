@@ -31,8 +31,9 @@ const RiskTable = ({
   const totalRisk = riskData.risks.find(risk => risk.id === 'total')
   const countryRisk = riskData.risks.find(risk => risk.id === 'country')
 
-  if (!totalRisk) return null
-  if (!countryData) return null
+  if (!totalRisk || !countryData) {
+    return null
+  }
 
   const totalRiskText = results.find(r => r.optionLabel === `total${totalRisk.level}`)?.isSelected[
     language as keyof Locales
