@@ -5,7 +5,9 @@ import { Express } from 'express-serve-static-core'
 import { inProduction, inStaging, inE2EMode, SENTRY_DNS, SENTRY_GIT_SHA } from '@config'
 
 const initializeSentry = (router: Express) => {
-  if (!inProduction || inStaging || inE2EMode) return
+  if (!inProduction || inStaging || inE2EMode) {
+    return
+  }
 
   initSentry({
     dsn: SENTRY_DNS,

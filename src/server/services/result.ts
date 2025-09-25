@@ -40,7 +40,9 @@ export const createResult = async (surveyId: string, newResultValues: NewResult)
 export const updateResult = async (resultId: string, updatedResultValues: UpdatedResult): Promise<Result> => {
   const result = await Result.findByPk(resultId)
 
-  if (!result) throw new NotFoundError('Result to update not found')
+  if (!result) {
+    throw new NotFoundError('Result to update not found')
+  }
 
   const request = UpdatedResultZod.safeParse(updatedResultValues)
 
@@ -59,7 +61,9 @@ export const updateResult = async (resultId: string, updatedResultValues: Update
 export const deleteResult = async (resultId: string): Promise<Result> => {
   const result = await Result.findByPk(resultId)
 
-  if (!result) throw new NotFoundError('Result to delete not found')
+  if (!result) {
+    throw new NotFoundError('Result to delete not found')
+  }
 
   await result.destroy()
 

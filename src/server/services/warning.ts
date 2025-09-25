@@ -23,7 +23,9 @@ export const getWarningWithId = async (id: string): Promise<Warning[]> => {
 export const createWarning = async (newWarningValues: Warning): Promise<Warning> => {
   const request = NewWarningZod.safeParse(newWarningValues)
 
-  if (!request.success) throw new ZodValidationError('Validation of the new result inputs failed', request.error.issues)
+  if (!request.success) {
+    throw new ZodValidationError('Validation of the new result inputs failed', request.error.issues)
+  }
 
   const newWarning = await Warning.create({
     country: newWarningValues.country,
@@ -41,7 +43,9 @@ export const createWarning = async (newWarningValues: Warning): Promise<Warning>
 export const deleteWarning = async (warningId: string): Promise<Warning> => {
   const warning = await Warning.findByPk(warningId)
 
-  if (!warning) throw new NotFoundError('No warning with this id')
+  if (!warning) {
+    throw new NotFoundError('No warning with this id')
+  }
   await warning.destroy()
   return warning
 }
@@ -49,12 +53,15 @@ export const deleteWarning = async (warningId: string): Promise<Warning> => {
 export const updateWarning = async (warningId: string, updatedWarningValues: UpdatedWarning): Promise<Warning> => {
   const warning = await Warning.findByPk(warningId)
 
-  if (!warning) throw new NotFoundError('Question to update not found')
+  if (!warning) {
+    throw new NotFoundError('Question to update not found')
+  }
 
   const request = UpdatedWarningZod.safeParse(updatedWarningValues)
 
-  if (!request.success)
+  if (!request.success) {
     throw new ZodValidationError('Validation of the warning update values failed', request.error.issues)
+  }
   const { data } = request
 
   Object.assign(warning, data)

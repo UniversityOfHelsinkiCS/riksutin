@@ -25,7 +25,9 @@ export const getUserEntries = async (userId: string): Promise<Entry[]> => {
     order: [['createdAt', 'DESC']],
   })
 
-  if (!entries) throw new NotFoundError('Entries not found')
+  if (!entries) {
+    throw new NotFoundError('Entries not found')
+  }
 
   return entries
 }
@@ -33,12 +35,15 @@ export const getUserEntries = async (userId: string): Promise<Entry[]> => {
 export const getEntry = async (entryId: string, userId: string): Promise<Entry> => {
   const entry = await Entry.findByPk(entryId, { include: Survey })
 
-  if (!entry) throw new NotFoundError('Entry not found')
+  if (!entry) {
+    throw new NotFoundError('Entry not found')
+  }
 
   const user = await User.findByPk(userId)
 
-  if (entry.userId !== userId && entry.ownerId !== userId && !user?.isAdmin)
+  if (entry.userId !== userId && entry.ownerId !== userId && !user?.isAdmin) {
     throw new UnauthorizedError('Unauthorized access')
+  }
 
   return entry
 }

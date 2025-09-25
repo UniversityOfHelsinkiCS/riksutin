@@ -16,7 +16,9 @@ export const getSurvey = async (surveyName: string): Promise<Survey> => {
     },
   })
 
-  if (!survey) throw new NotFoundError('Survey not found')
+  if (!survey) {
+    throw new NotFoundError('Survey not found')
+  }
 
   survey.Questions = survey.Questions.sort(sortByPriority)
 
@@ -33,7 +35,9 @@ export const updateSurvey = async (surveyName: string, updates: UpdatedSurveyInf
     },
   })
 
-  if (!survey) throw new NotFoundError('Survey to update not found')
+  if (!survey) {
+    throw new NotFoundError('Survey to update not found')
+  }
 
   const request = UpdatedSurveyInfoZod.safeParse(updates)
 

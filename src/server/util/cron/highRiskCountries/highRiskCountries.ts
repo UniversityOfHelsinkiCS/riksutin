@@ -10,7 +10,9 @@ const calculateTotalCountryRisk = async (countryCode: string) => {
   const countryData = await getCountryData(countryCode)
 
   const { totalCountryRiskLevel } = totalCountryRisk(countryData)
-  if (!countryData) return null
+  if (!countryData) {
+    return null
+  }
   return totalCountryRiskLevel
 }
 

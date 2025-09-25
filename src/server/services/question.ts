@@ -29,12 +29,15 @@ export const getQuestions = async (surveyId: string): Promise<Question[]> => {
 export const createQuestion = async (surveyId: string, newQuestionValues: NewQuestion): Promise<Question> => {
   const survey = await Survey.findByPk(surveyId)
 
-  if (!survey) throw new NotFoundError('Survey not found while creating a new question')
+  if (!survey) {
+    throw new NotFoundError('Survey not found while creating a new question')
+  }
 
   const request = NewQuestionZod.safeParse(newQuestionValues)
 
-  if (!request.success)
+  if (!request.success) {
     throw new ZodValidationError('Validation of the new question values failed', request.error.issues)
+  }
   const { data } = request
   const { options } = data.optionData
 
@@ -64,12 +67,15 @@ export const createQuestion = async (surveyId: string, newQuestionValues: NewQue
 export const updateQuestion = async (questionId: string, updatedQuestionValues: UpdatedQuestion): Promise<Question> => {
   const question = await Question.findByPk(questionId)
 
-  if (!question) throw new NotFoundError('Question to update not found')
+  if (!question) {
+    throw new NotFoundError('Question to update not found')
+  }
 
   const request = UpdatedQuestionZod.safeParse(updatedQuestionValues)
 
-  if (!request.success)
+  if (!request.success) {
     throw new ZodValidationError('Validation of the question update values failed', request.error.issues)
+  }
   const { data } = request
 
   Object.assign(question, data)
@@ -85,16 +91,21 @@ export const updateQuestionPriority = async (
 ): Promise<Question> => {
   const question = await Question.findByPk(questionId)
 
-  if (!question) throw new NotFoundError('Question to reprioritize not found')
+  if (!question) {
+    throw new NotFoundError('Question to reprioritize not found')
+  }
 
   const request = UpdatedQuestionLocationZod.safeParse(updatedQuestionValues)
 
-  if (!request.success)
+  if (!request.success) {
     throw new ZodValidationError('Validation of the question priority change values failed', request.error.issues)
+  }
   const body = request.data
 
   if ((!body.parentId && !question.parentId) || body.parentId === question.parentId) {
-    if (body.priority === question.priority) throw new Error('Question position not modified')
+    if (body.priority === question.priority) {
+      throw new Error('Question position not modified')
+    }
 
     if (body.priority < question.priority) {
       await Question.increment('priority', {
@@ -149,7 +160,9 @@ export const updateQuestionPriority = async (
 export const deleteQuestion = async (questionId: string): Promise<Question> => {
   const question = await Question.findByPk(questionId)
 
-  if (!question) throw new NotFoundError('Question to delete not found')
+  if (!question) {
+    throw new NotFoundError('Question to delete not found')
+  }
 
   await question.destroy()
 

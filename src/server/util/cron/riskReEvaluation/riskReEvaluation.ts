@@ -9,7 +9,9 @@ import sendAlertEmail from './sendAlertEmail'
 export const riskReEvaluation = async (entry: Entry) => {
   const { answers } = entry.data
   const reCalculatedData = await createRiskData(answers)
-  if (!reCalculatedData) return null
+  if (!reCalculatedData) {
+    return null
+  }
 
   const reCalculatedDataObject = {
     createdAt: new Date().toISOString(),
@@ -32,7 +34,9 @@ const run = async () => {
   entries.forEach(async entry => {
     const updatedRisks = await riskReEvaluation(entry)
 
-    if (!updatedRisks) return null
+    if (!updatedRisks) {
+      return null
+    }
 
     const originalTotalRiskLevel = entry.data.risks.find(risk => risk.id === 'total')?.level
     const updatedTotalRiskLevel = updatedRisks.risks.find(risk => risk.id === 'total')?.level
