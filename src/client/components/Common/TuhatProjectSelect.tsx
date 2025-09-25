@@ -51,10 +51,14 @@ const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
   const { tuhatProjects, isLoading: tuhatProjectsLoading } = useTuhatProjects(projectOwnerId)
   const projectOwnerField = watch?.('2') ?? ''
   useEffect(() => {
-    if (projectOwnerField) setProjectOwnerId(projectOwnerField.username)
+    if (projectOwnerField) {
+      setProjectOwnerId(projectOwnerField.username)
+    }
   }, [projectOwnerField])
 
-  if (!question || !watch || !control) return null
+  if (!question || !watch || !control) {
+    return null
+  }
 
   if (tuhatProjectsLoading || tuhatProjects === undefined) {
     return (

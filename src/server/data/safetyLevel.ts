@@ -52,7 +52,9 @@ const fetchSafetyLevelData = async (code: string) => {
 
   const url = getUrl(code)
 
-  if (LOG_CACHE) console.log('FROM CACHE', url)
+  if (LOG_CACHE) {
+    console.log('FROM CACHE', url)
+  }
   let safetyLevelRisk: any = await get(url)
   if (NO_CACHE || !safetyLevelRisk) {
     safetyLevelRisk = await cacheSafetyLevel(code)
