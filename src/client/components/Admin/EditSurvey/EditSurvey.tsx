@@ -31,7 +31,7 @@ const SurveyItem = ({ language, survey }: { language: keyof Locales; survey: Sur
         ...survey.text,
         [language]: surveyText,
       },
-    }
+    } as UpdatedSurveyInfo
 
     try {
       await mutation.mutateAsync(updatedSurveyInfo)

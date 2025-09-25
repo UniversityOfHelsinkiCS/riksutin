@@ -32,7 +32,7 @@ const QuestionItem = ({ language, question }: { language: keyof Locales; questio
         ...question.text,
         [language]: questionText,
       },
-    }
+    } as UpdatedQuestion
 
     try {
       await mutation.mutateAsync(updatedQuestion)

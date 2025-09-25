@@ -23,7 +23,9 @@ const ResultDataProvider = ({ children }: { children: React.ReactNode }) => {
 
     const faculty = userFaculties && userFaculties.length > 0 ? userFaculties[0].code : extraOrganisations[0].code
 
-    if (savedData) return JSON.parse(savedData)
+    if (savedData) {
+      return JSON.parse(savedData)
+    }
 
     return {
       1: `${user?.firstName} ${user?.lastName}`,

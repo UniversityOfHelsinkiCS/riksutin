@@ -19,7 +19,9 @@ const OptionSection = ({
 }) => {
   const { t } = useTranslation()
 
-  if (!selectedQuestion || !['singleChoice', 'multipleChoice'].includes(selectedQuestion.optionData.type)) return null
+  if (!selectedQuestion || !['singleChoice', 'multipleChoice'].includes(selectedQuestion.optionData.type)) {
+    return null
+  }
 
   const options = selectedQuestion?.optionData.options || []
 
@@ -60,7 +62,9 @@ const EditQuestions = () => {
   const { survey } = useSurvey()
   const { questions, isLoading } = useQuestions(survey?.id)
 
-  if (isLoading || !survey || !questions || !questionId) return null
+  if (isLoading || !survey || !questions || !questionId) {
+    return null
+  }
 
   const selectedLanguage = 'en'
 

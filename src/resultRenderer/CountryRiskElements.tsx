@@ -79,8 +79,9 @@ const CountryRiskElements = ({
   const totalRisk = riskData.risks.find(risk => risk.id === 'total')
   const countryRisk = riskData.risks.find(risk => risk.id === 'country')
 
-  if (!totalRisk) return null
-  if (!countryData) return null
+  if (!totalRisk || !countryData) {
+    return null
+  }
 
   let ekstraText = ''
   warnings.map(({ country, text, expiry_date }) => {

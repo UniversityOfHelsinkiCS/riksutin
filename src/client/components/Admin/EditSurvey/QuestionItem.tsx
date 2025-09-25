@@ -67,7 +67,9 @@ const QuestionItemPositionHandles = ({ question, questions }: PositionHandleProp
   const onMoveLeft = () => {
     const parentQuestion = questions.find(q => q.id === question.parentId)
 
-    if (!parentQuestion) return
+    if (!parentQuestion) {
+      return
+    }
 
     const destination = {
       parentId: parentQuestion.parentId,
@@ -81,7 +83,9 @@ const QuestionItemPositionHandles = ({ question, questions }: PositionHandleProp
   const onMoveRight = () => {
     const precedingQuestion = parentChildQuestions.find(q => q.priority === question.priority - 1)
 
-    if (!precedingQuestion) return
+    if (!precedingQuestion) {
+      return
+    }
 
     const precedingChilds = questions.filter(q => q.parentId === precedingQuestion.id)
 

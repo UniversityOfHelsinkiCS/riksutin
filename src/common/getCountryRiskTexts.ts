@@ -6,7 +6,9 @@ const getCountryRisks = (
   resultData: FormValues,
   language: string
 ) => {
-  if (!country || !results || !resultData) return null
+  if (!country || !results || !resultData) {
+    return null
+  }
 
   const corruptionText = results.find(r => r.optionLabel === `corruption${country.corruption}`)?.isSelected[
     language as keyof Locales

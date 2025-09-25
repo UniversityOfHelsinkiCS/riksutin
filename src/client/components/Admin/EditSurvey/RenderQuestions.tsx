@@ -11,7 +11,9 @@ interface RenderQuestionsProps {
 }
 
 const RenderQuestions = ({ question, questions, language }: RenderQuestionsProps) => {
-  if (!question || !questions) return null
+  if (!question || !questions) {
+    return null
+  }
 
   const childQuestions = questions.filter(childQuestion => question.id === childQuestion.parentId)
 

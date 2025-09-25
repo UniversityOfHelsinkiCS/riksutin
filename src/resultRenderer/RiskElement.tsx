@@ -13,7 +13,9 @@ export interface RiskElementProps {
 
 const RiskElement = ({ infoText, title, level, style, ekstra }: RiskElementProps) => {
   const { Div, Markdown, Typography, t } = useComponents()
-  if (!level) return null
+  if (!level) {
+    return null
+  }
 
   return (
     <Div

@@ -31,7 +31,9 @@ const ResultItem = ({ language, result }: { language: keyof Locales; result: Res
     }
   }
 
-  if (!resultIsSelected) return null
+  if (!resultIsSelected) {
+    return null
+  }
 
   return (
     <Box

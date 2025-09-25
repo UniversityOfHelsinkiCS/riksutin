@@ -73,7 +73,9 @@ const Table = ({ tableValues, questionTitles, isOutdated }: TableProps) => {
 
   const handleDeleteRiskAssessment = (row: MRT_Row<TableValues>) => {
     // eslint-disable-next-line no-alert
-    if (!window.confirm('Haluatko poistaa valitun riskiarvion?')) return
+    if (!window.confirm('Haluatko poistaa valitun riskiarvion?')) {
+      return
+    }
 
     try {
       deleteMutation.mutate(row.original.id!.toString())
@@ -159,13 +161,15 @@ const Summary = () => {
   const { questions } = useQuestions(1)
   const { faculties, isLoading: facultiesLoading } = useFaculties()
 
-  if (!questions || !entries || facultiesLoading || !faculties) return null
+  if (!questions || !entries || facultiesLoading || !faculties) {
+    return null
+  }
 
   const organisations = faculties.concat(extraOrganisations)
 
   const entriesWithData = entries.filter(entry => entry.data.answers && entry.data.country && entry.data.risks)
 
-  if (entriesWithData.length === 0)
+  if (entriesWithData.length === 0) {
     return (
       <Box sx={{ m: 3 }}>
         <Typography variant="h6" sx={{ my: 4, pl: 1 }}>
@@ -173,6 +177,7 @@ const Summary = () => {
         </Typography>
       </Box>
     )
+  }
 
   const tableData = createTableData(entriesWithData, questions, organisations)
 

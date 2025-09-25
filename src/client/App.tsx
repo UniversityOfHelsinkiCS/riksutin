@@ -17,7 +17,9 @@ const App = () => {
   const { user, isLoading } = useLoggedInUser()
   const { isLoading: userFacultiesLoading } = useUserFaculties()
 
-  if (isLoading || userFacultiesLoading) return null
+  if (isLoading || userFacultiesLoading) {
+    return null
+  }
   if (!user?.id) {
     window.location.href = `${FULL_URL}/api/login`
     return null

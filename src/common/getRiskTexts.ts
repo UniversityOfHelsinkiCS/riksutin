@@ -1,7 +1,9 @@
 import type { FormValues, Locales, Result, Risk } from '@types'
 
 const getRiskTexts = (risks: Risk[], results: Result[], resultData: FormValues, language: string) => {
-  if (!risks || !results || !resultData) return null
+  if (!risks || !results || !resultData) {
+    return null
+  }
 
   const risksWithTexts: Risk[] = []
 
