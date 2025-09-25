@@ -175,7 +175,6 @@ test.describe('a bilateral project', () => {
   })
 })
 
-/*
 test.describe('a multilateral project', () => {
   let page: Page
 
@@ -194,6 +193,7 @@ test.describe('a multilateral project', () => {
     await page.getByTestId('question-tuhatProjText').getByRole('textbox').fill('Tuska')
 
     await page.locator('[data-cy="choice-select-multilateral"]').click()
+    await page.locator('[data-cy="choice-select-coordinator"]').click()
 
     await page.locator('#select-26').fill('Belarus')
     await page.getByRole('option', { name: 'Belarus' }).click()
@@ -210,7 +210,6 @@ test.describe('a multilateral project', () => {
     await page.locator('#select-28').fill('Sweden')
     await page.getByRole('option', { name: 'Sweden' }).click()
 
-    await page.locator('[data-cy="choice-select-coordinator"]').click()
     await page.locator('[data-cy="choice-select-agreementDone"]').click()
 
     await page.locator('input[value="education"]').check()
@@ -262,7 +261,6 @@ test.describe('a multilateral project', () => {
     await expect(page.getByText('Akateeminen vapaus', { exact: true })).toBeVisible()
   })
 })
-*/
 
 test.describe('a bilateral project nonuniversity project with external funding', () => {
   let page: Page
