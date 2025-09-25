@@ -58,7 +58,9 @@ const UserEntry = () => {
     setTabValue(newValue)
   }
 
-  if (!entryId || !entry || !survey) return null
+  if (!entryId || !entry || !survey) {
+    return null
+  }
 
   const { answers, country, updatedData } = entry.data
 

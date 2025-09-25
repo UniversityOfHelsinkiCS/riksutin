@@ -10,7 +10,9 @@ const RiskTableDOM = ({ riskData, countryData }: { riskData: RiskData; countryDa
   const { countries, isLoading } = useCountries()
   const { warnings } = useWarnings()
 
-  if (!riskData || !countries || isLoading || !results || !warnings) return null
+  if (!riskData || !countries || isLoading || !results || !warnings) {
+    return null
+  }
 
   return (
     <RiskTable

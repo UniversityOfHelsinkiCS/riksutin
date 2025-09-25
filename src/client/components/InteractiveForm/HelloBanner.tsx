@@ -15,7 +15,9 @@ const HelloBanner = () => {
 
   const { cardStyles } = styles
 
-  if (!survey || surveyIsLoading) return null
+  if (!survey || surveyIsLoading) {
+    return null
+  }
 
   return (
     <Box id="hello-component" sx={cardStyles.helloBox}>

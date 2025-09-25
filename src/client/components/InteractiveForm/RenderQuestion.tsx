@@ -39,7 +39,9 @@ const QuestionText = ({
 }) => {
   const { t } = useTranslation()
 
-  if (question.id === 20) return null
+  if (question.id === 20) {
+    return null
+  }
 
   return (
     <>
@@ -89,12 +91,16 @@ const CustomText = ({ control, id, title }) => {
 }
 
 const FacultySelect = ({ control }) => {
-  if (ORGANISATION_ID === 'hy') return <SelectFaculty control={control} />
+  if (ORGANISATION_ID === 'hy') {
+    return <SelectFaculty control={control} />
+  }
   return <CustomText control={control} id="faculty" title="facultySelect:title" />
 }
 
 const UnitSelect = ({ control }) => {
-  if (ORGANISATION_ID === 'hy') return <SelectUnit control={control} />
+  if (ORGANISATION_ID === 'hy') {
+    return <SelectUnit control={control} />
+  }
   return <CustomText control={control} id="unit" title="unitSelect:title" />
 }
 
@@ -102,7 +108,9 @@ const RenderQuestion = ({ control, watch, question, questions, language }: Input
   const { countries, isLoading } = useCountries()
   const { resultData } = useResultData()
 
-  if (isLoading || !question || !questions || !watch || !countries) return null
+  if (isLoading || !question || !questions || !watch || !countries) {
+    return null
+  }
 
   const selectedCountry = watch('8')
   const selectedCountryCode = countries.find(country => country.name === selectedCountry)?.iso2Code
@@ -110,15 +118,21 @@ const RenderQuestion = ({ control, watch, question, questions, language }: Input
   if (question.visibility?.options) {
     const [...options] = question.visibility.options
 
-    if (!question.parentId) return null
+    if (!question.parentId) {
+      return null
+    }
 
     const parent = watch(question.parentId.toString())
 
     if (typeof parent === 'object') {
       const hasAllValuesSelected = question.visibility.options.some(x => parent.includes(x))
 
-      if (!hasAllValuesSelected) return null
-    } else if (!options.includes(parent)) return null
+      if (!hasAllValuesSelected) {
+        return null
+      }
+    } else if (!options.includes(parent)) {
+      return null
+    }
   }
 
   const components: {
@@ -140,7 +154,9 @@ const RenderQuestion = ({ control, watch, question, questions, language }: Input
 
   const QuestionType = components[question.optionData.type]
 
-  if (!QuestionType) return null
+  if (!QuestionType) {
+    return null
+  }
 
   const childQuestions = questions.filter(childQuestion => question.id === childQuestion.parentId)
 

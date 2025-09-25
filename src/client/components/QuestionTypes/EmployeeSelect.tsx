@@ -28,7 +28,9 @@ const EmployeeSelect = ({ control, question, watch }: InputProps) => {
 
   const { user, isLoading } = useLoggedInUser()
 
-  if (!question || isLoading || !user) return null
+  if (!question || isLoading || !user) {
+    return null
+  }
 
   // for requires these values
   const loggedUserForForm = {

@@ -8,7 +8,9 @@ import Markdown from './Markdown'
 const ShowMore = ({ text, expanded = false }: { text: string | undefined | null; expanded?: boolean }) => {
   const [expand, setExpand] = useState(expanded)
 
-  if (!text) return null
+  if (!text) {
+    return null
+  }
 
   return (
     <>

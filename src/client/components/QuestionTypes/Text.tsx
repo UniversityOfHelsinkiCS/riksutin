@@ -6,7 +6,9 @@ import type { InputProps } from '@client/types'
 
 const Text = ({ control, question, defaultValue }: InputProps) => {
   const { t } = useTranslation()
-  if (!question) return null
+  if (!question) {
+    return null
+  }
 
   const props = question.optionData?.attributes ?? {}
 

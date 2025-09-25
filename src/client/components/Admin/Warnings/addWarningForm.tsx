@@ -20,9 +20,13 @@ const WarningForm = ({ showForm, setShowForm, setNewStatusText, setNewErrorText 
   const addWarning = async event => {
     event.preventDefault()
 
-    if (!countries) return null
+    if (!countries) {
+      return null
+    }
     const countryCode = countries.find(country => country.name === newCountry)?.iso2Code
-    if (!countryCode) return null
+    if (!countryCode) {
+      return null
+    }
 
     const warningObject = {
       country: countryCode,
@@ -75,7 +79,9 @@ const WarningForm = ({ showForm, setShowForm, setNewStatusText, setNewErrorText 
   }
 
   const countryNames = countries?.map(c => c.name)
-  if (!countryNames) return null
+  if (!countryNames) {
+    return null
+  }
 
   return (
     <div>

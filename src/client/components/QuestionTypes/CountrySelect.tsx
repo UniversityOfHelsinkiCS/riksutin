@@ -14,7 +14,9 @@ const CountrySelect = ({ control, question, children }: InputProps) => {
   const { t, i18n } = useTranslation()
   const { language } = i18n
 
-  if (!question) return null
+  if (!question) {
+    return null
+  }
 
   const countryNames = countries.map(({ name }) => name).sort()
 

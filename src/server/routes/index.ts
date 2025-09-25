@@ -30,7 +30,9 @@ router.use(SentryHandlers.tracingHandler())
 router.use(cors())
 router.use(express.json())
 
-if (inDevelopment || inE2EMode || inAcualStaging) router.use(userMiddleware)
+if (inDevelopment || inE2EMode || inAcualStaging) {
+  router.use(userMiddleware)
+}
 
 router.use(accessLogger)
 

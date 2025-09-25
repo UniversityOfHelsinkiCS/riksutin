@@ -41,7 +41,9 @@ entryRouter.get('/:entryId/update', async (req: RequestWithUser, res: any) => {
   const entry = await getEntry(entryId, userId)
   const updatedRisks = await riskReEvaluation(entry)
 
-  if (!updatedRisks) return null
+  if (!updatedRisks) {
+    return null
+  }
 
   await entry.update({
     data: updatedRisks,
@@ -54,11 +56,15 @@ entryRouter.get('/:entryId/update', async (req: RequestWithUser, res: any) => {
 
 entryRouter.delete('/:entryId/delete', async (req: RequestWithUser, res: any) => {
   const { entryId } = req.params
-  if (!req.user?.isAdmin) throw new Error('Unauthorized')
+  if (!req.user?.isAdmin) {
+    throw new Error('Unauthorized')
+  }
 
   const entry = await Entry.findByPk(entryId)
 
-  if (!entry) return res.status(404).send('Entry not found')
+  if (!entry) {
+    return res.status(404).send('Entry not found')
+  }
 
   await entry.destroy()
 
@@ -79,7 +85,9 @@ entryRouter.post('/:surveyId', async (req: RequestWithUser, res: any) => {
 
   const riskData = await createRiskData(data)
 
-  if (!riskData) return res.status(500).send('Error when calculating risks')
+  if (!riskData) {
+    return res.status(500).send('Error when calculating risks')
+  }
 
   const updatedData: EntryValues = { sessionToken, data: riskData, tuhatData }
   const entry = await createEntry(userId, surveyId, updatedData)
@@ -98,7 +106,9 @@ entryRouter.post('/:entryId/send-email', async (req: RequestWithUser, res: any) 
 
   const entry = await getEntry(entryId, userId)
 
-  if (!entry) return res.status(404).send('Entry not found')
+  if (!entry) {
+    return res.status(404).send('Entry not found')
+  }
 
   await sendResult(entry, targets)
 

@@ -8,8 +8,12 @@ const getAcademicFreedom = code => {
 
   const value = Number(country.v2xca_academ)
 
-  if (value > 0.66) return 1
-  if (value > 0.33) return 2
+  if (value > 0.66) {
+    return 1
+  }
+  if (value > 0.33) {
+    return 2
+  }
 
   return 3
 }

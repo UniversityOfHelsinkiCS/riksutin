@@ -8,7 +8,9 @@ import { UNIVERSITIES_URL, NO_CACHE, LOG_CACHE } from '@userconfig'
 const getKey = countryName => `${UNIVERSITIES_URL}?country=${countryName}`
 
 export const cacheUniversityData = async (countryName: string) => {
-  if (countryName === 'United States') countryName = 'United States of America'
+  if (countryName === 'United States') {
+    countryName = 'United States of America'
+  }
 
   const formdata = new FormData()
 
@@ -21,7 +23,9 @@ export const cacheUniversityData = async (countryName: string) => {
   })
 
   const key = getKey(countryName)
-  if (LOG_CACHE) console.log('HTTP POST REQUEST ', key)
+  if (LOG_CACHE) {
+    console.log('HTTP POST REQUEST ', key)
+  }
 
   const html = await response.text()
   const universityNames: string[] = parseHTML(html)
@@ -48,11 +52,15 @@ const parseHTML = (html: string): string[] => {
 }
 
 const getCountryUniversities = async (countryName: string | undefined) => {
-  if (!countryName) return null
+  if (!countryName) {
+    return null
+  }
 
   try {
     const key = getKey(countryName)
-    if (LOG_CACHE) console.log('FROM CACHE ', key)
+    if (LOG_CACHE) {
+      console.log('FROM CACHE ', key)
+    }
     let names: string[] | null = await get(key)
     if (NO_CACHE || !names) {
       names = await cacheUniversityData(countryName)

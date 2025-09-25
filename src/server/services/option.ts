@@ -50,7 +50,9 @@ export const updateOption = async (
 
   const option = question.optionData.options.find(aOption => aOption.id === optionId)
 
-  if (!option) throw new NotFoundError('Option to update not found')
+  if (!option) {
+    throw new NotFoundError('Option to update not found')
+  }
 
   const request = UpdatedOptionZod.safeParse(updatedOptionValues)
 
@@ -82,7 +84,9 @@ export const deleteOption = async (questionId: string, optionId: string): Promis
 
   const option = question.optionData.options.find(aOption => aOption.id === optionId)
 
-  if (!option) throw new NotFoundError('Option to delete not found')
+  if (!option) {
+    throw new NotFoundError('Option to delete not found')
+  }
 
   const updates = question.optionData.options.filter(aOption => aOption.id !== optionId)
 

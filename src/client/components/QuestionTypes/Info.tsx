@@ -4,7 +4,9 @@ import { Box, TextField } from '@mui/material'
 import type { InputProps } from '@client/types'
 
 const Text = ({ control, question, defaultValue }: InputProps) => {
-  if (!question) return null
+  if (!question) {
+    return null
+  }
 
   const props = question.optionData?.attributes ?? {}
 

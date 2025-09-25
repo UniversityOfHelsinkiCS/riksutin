@@ -9,9 +9,13 @@ const Admin = () => {
   const location = useLocation()
   const { user, isLoading } = useLoggedInUser()
 
-  if (isLoading) return null
+  if (isLoading) {
+    return null
+  }
 
-  if (!user?.isAdmin) return <Navigate to="/" />
+  if (!user?.isAdmin) {
+    return <Navigate to="/" />
+  }
 
   const pathParts = location.pathname.split('/').filter(Boolean)
 

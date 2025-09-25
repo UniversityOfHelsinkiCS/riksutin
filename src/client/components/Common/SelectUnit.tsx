@@ -30,7 +30,9 @@ const SelectUnit = ({ control }: InputProps) => {
     setUnit(resultData.unit)
   }, [resultData])
 
-  if (unitsLoading || !units) return null
+  if (unitsLoading || !units) {
+    return null
+  }
 
   const selectedUnit = units.find(u => u.code === unit)
 

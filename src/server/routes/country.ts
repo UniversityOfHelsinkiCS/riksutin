@@ -15,7 +15,9 @@ import getAcademicFreedom from '../data/academicfreedom'
 import { getWarnings } from '../services/warning'
 
 export const getCountryData = async (code: string | undefined): Promise<CountryData | null> => {
-  if (!code) return null
+  if (!code) {
+    return null
+  }
 
   const countries = await getCountries()
   const country = countries.find(country => country.iso2Code === code.toUpperCase())

@@ -46,16 +46,21 @@ const UniversitySelect = ({ control, question, selectedCountry }: InputProps) =>
   const [showUniversityList, setShowUniversityList] = useState(true)
   const { language } = i18n
 
-  if (!selectedCountry)
+  if (!selectedCountry) {
     return (
       <Box>
         <i>{t('questions:selectUniversityInfoMessage')}</i>
       </Box>
     )
+  }
 
-  if (!question) return null
+  if (!question) {
+    return null
+  }
 
-  if (isLoading) return <LoadingProgress />
+  if (isLoading) {
+    return <LoadingProgress />
+  }
 
   const autocompleteOptions = country?.universities.sort() ?? question.optionData.options
 

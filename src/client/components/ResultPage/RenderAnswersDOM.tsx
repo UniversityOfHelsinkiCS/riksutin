@@ -8,8 +8,12 @@ const RenderAnswersDOM = ({ survey, resultData }: { survey: Survey; resultData: 
   const { faculties, isLoading: facultiesLoading } = useFaculties()
   const { faculties: units, isLoading: unitsLoading } = useUnits()
 
-  if (facultiesLoading || !faculties) return null
-  if (unitsLoading || !units) return null
+  if (facultiesLoading || !faculties) {
+    return null
+  }
+  if (unitsLoading || !units) {
+    return null
+  }
 
   return <RenderAnswers survey={survey} resultData={resultData} faculties={faculties} units={units} />
 }

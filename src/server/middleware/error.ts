@@ -11,7 +11,9 @@ import ZodValidationError from '../errors/ValidationError'
 const errorHandler = (error: Error, _req: Request, res: Response, next: NextFunction) => {
   logger.error(`${error.message} ${error.name} ${error.stack}`)
 
-  if (inProduction) Sentry.captureException(error)
+  if (inProduction) {
+    Sentry.captureException(error)
+  }
 
   if (error.name === 'ZodValidationError') {
     return res.status(400).send({

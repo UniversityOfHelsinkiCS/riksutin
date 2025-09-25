@@ -20,13 +20,19 @@ const WarningObject = ({ country, text, expiryDate, id, updatedAt, createdAt, se
   const { mutate: deleteWarning } = useDeleteWarning()
   const { t } = useTranslation()
 
-  if (!countries) return null
+  if (!countries) {
+    return null
+  }
 
   const countryObj = countries.find(countryObj => countryObj.iso2Code == country)
 
-  if (!countryObj) return null
+  if (!countryObj) {
+    return null
+  }
 
-  if (!warnings) return null
+  if (!warnings) {
+    return null
+  }
 
   const handleDelete = event => {
     event.preventDefault()
@@ -115,7 +121,9 @@ const RenderWarnings = ({ setNewErrorText, setNewInfoText }) => {
   const { t } = useTranslation()
   const { warnings } = useWarnings()
 
-  if (!warnings) return null
+  if (!warnings) {
+    return null
+  }
 
   warnings.sort(function (a, b) {
     const x = a.country.toLowerCase()

@@ -11,7 +11,9 @@ const parse_line = rawLine => {
   const line = rawLine.split(',')
 
   //if (line[1] !== '"FIN"') return
-  if (line[3] != 2024) return
+  if (line[3] != 2024) {
+    return
+  }
 
   const object = {}
 

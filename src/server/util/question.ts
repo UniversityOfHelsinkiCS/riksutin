@@ -7,7 +7,9 @@ export const nextAvailablePriority = async (parentId: number | null) => {
     where: { parentId },
   })
 
-  if (priority === null) return 0
+  if (priority === null) {
+    return 0
+  }
 
   result += priority
 

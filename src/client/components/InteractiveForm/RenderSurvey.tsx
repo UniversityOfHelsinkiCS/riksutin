@@ -64,7 +64,9 @@ const RenderSurvey = ({
   const { resultData } = useResultData()
   const [showQuestions, setShowQuestions] = useState(Boolean(resultData))
 
-  if (!questions || !watch || !defaultValues) return null
+  if (!questions || !watch || !defaultValues) {
+    return null
+  }
 
   const { cardStyles, formStyles } = styles
 

@@ -17,7 +17,9 @@ export const cacheHdrData = async () => {
 }
 
 const getHumanDevelopment = async (name: string | undefined, id: string | undefined) => {
-  if (!name) return null
+  if (!name) {
+    return null
+  }
 
   let data: any = await get(HDI_URL)
   if (NO_CACHE || !data) {

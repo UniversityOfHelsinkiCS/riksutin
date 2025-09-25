@@ -21,9 +21,13 @@ const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt, setNewI
   const addEditedWarning = async event => {
     event.preventDefault()
 
-    if (!countries) return null
+    if (!countries) {
+      return null
+    }
     const countryCode = countries.find(country => country.name === newCountry)?.iso2Code
-    if (!countryCode) return null
+    if (!countryCode) {
+      return null
+    }
 
     const warningObject = {
       id,
@@ -77,7 +81,9 @@ const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt, setNewI
   }
 
   const countryNames = countries?.map(c => c.name)
-  if (!countryNames) return null
+  if (!countryNames) {
+    return null
+  }
 
   return (
     <div>

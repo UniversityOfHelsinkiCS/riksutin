@@ -41,7 +41,9 @@ export const ResultSelect = () => {
 
   const { resultId } = useParams()
   const { results } = useResults(1)
-  if (!results) return null
+  if (!results) {
+    return null
+  }
 
   const handleResultChange = (event: SelectChangeEvent) => {
     navigate({
@@ -72,7 +74,9 @@ export const QuestionSelect = () => {
 
   const { survey } = useSurvey()
   const { questions, isSuccess } = useQuestions(survey?.id)
-  if (!isSuccess || !questions) return null
+  if (!isSuccess || !questions) {
+    return null
+  }
 
   const handleQuestionChange = (event: SelectChangeEvent) => {
     navigate({

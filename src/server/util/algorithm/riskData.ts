@@ -29,7 +29,9 @@ const createRiskData = async (formData: FormValues) => {
 
   const countryData = await getCountryData(selectedCountryCode)
 
-  if (!countryData) return null
+  if (!countryData) {
+    return null
+  }
 
   const updatedCountryData = await getCountryRisks(countryData, formData)
   const otherRisks = getOtherRisks(updatedCountryData, questions, formData)

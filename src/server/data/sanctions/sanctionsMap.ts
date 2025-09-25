@@ -5,9 +5,13 @@ import { get, setPermanent } from '../../util/redis'
 const url = SANCTIONS_URL
 
 const fetchSanctionsData = async (code: string | undefined): Promise<number> => {
-  if (!code) return 1
+  if (!code) {
+    return 1
+  }
 
-  if (LOG_CACHE) console.log('FROM CACHE', url)
+  if (LOG_CACHE) {
+    console.log('FROM CACHE', url)
+  }
 
   try {
     let data: any = await get(url)
@@ -30,7 +34,9 @@ const fetchSanctionsData = async (code: string | undefined): Promise<number> => 
 
 export const cacheSanctionsData = async () => {
   try {
-    if (LOG_CACHE) console.log('caching: HTTP get', url)
+    if (LOG_CACHE) {
+      console.log('caching: HTTP get', url)
+    }
     const res = await fetch(url)
     const data = await res.json()
 

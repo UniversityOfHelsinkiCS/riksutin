@@ -34,7 +34,9 @@ const NavBar = () => {
 
   useEffect(() => {
     // HACK:
-    if (user?.language === 'en') i18n.changeLanguage('en').catch(_ => {})
+    if (user?.language === 'en') {
+      i18n.changeLanguage('en').catch(_ => {})
+    }
   }, [user, i18n])
 
   const { language } = i18n
@@ -53,7 +55,9 @@ const NavBar = () => {
 
   const { navStyles } = styles
 
-  if (isLoading) return null
+  if (isLoading) {
+    return null
+  }
 
   const { isAdmin } = user as any
 

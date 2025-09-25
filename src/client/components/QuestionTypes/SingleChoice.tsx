@@ -7,7 +7,9 @@ import type { InputProps } from '@client/types'
 
 const SingleChoice = ({ control, question, children, language }: InputProps) => {
   const { t } = useTranslation()
-  if (!question) return null
+  if (!question) {
+    return null
+  }
 
   return (
     <>

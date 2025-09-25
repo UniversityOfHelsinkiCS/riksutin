@@ -73,7 +73,9 @@ const verifyLogin = async (
 }
 
 const setupAuthentication = async () => {
-  if (inE2EMode || inDevelopment || inAcualStaging) return
+  if (inE2EMode || inDevelopment || inAcualStaging) {
+    return
+  }
 
   const client = await getClient()
 
@@ -86,7 +88,9 @@ const setupAuthentication = async () => {
   passport.deserializeUser(async ({ id, iamGroups }: { id: string; iamGroups: string[] }, done) => {
     const user = await User.findByPk(id)
 
-    if (!user) return done(new Error('User not found'))
+    if (!user) {
+      return done(new Error('User not found'))
+    }
 
     return done(null, { ...user.dataValues, iamGroups })
   })

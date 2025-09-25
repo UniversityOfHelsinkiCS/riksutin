@@ -10,7 +10,9 @@ const params = 'per_page=1000&format=json'
 export const cacheData = async (path: string) => {
   const url = `${WORLDBANK_BASE_URL}/${path}?${params}`
 
-  if (LOG_CACHE) console.log('HTTP REQUEST ', url)
+  if (LOG_CACHE) {
+    console.log('HTTP REQUEST ', url)
+  }
 
   const response = await fetch(url)
   const data = await response.json()
@@ -31,11 +33,15 @@ export const fetchData = async (path: string) => {
 
   const cached = await get(url)
   if (!NO_CACHE && cached) {
-    if (LOG_CACHE) console.log('FROM CACHE', url)
+    if (LOG_CACHE) {
+      console.log('FROM CACHE', url)
+    }
     return cached
   }
 
-  if (LOG_CACHE) console.log('fetch HTTP REQUEST ', url)
+  if (LOG_CACHE) {
+    console.log('fetch HTTP REQUEST ', url)
+  }
 
   const response = await fetch(url)
   const data = await response.json()

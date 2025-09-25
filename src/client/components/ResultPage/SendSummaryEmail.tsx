@@ -35,11 +35,15 @@ const SendSummaryEmail = ({ entryId }: { entryId: string }) => {
   })
 
   useEffect(() => {
-    if (user?.email) reset({ emails: [user?.email] })
+    if (user?.email) {
+      reset({ emails: [user?.email] })
+    }
   }, [reset, user])
 
   const onSubmit = ({ emails }: ShareResultEmails) => {
-    if (errors?.emails || emails.length === 0 || isSent) return
+    if (errors?.emails || emails.length === 0 || isSent) {
+      return
+    }
 
     setIsSent(true)
     sendEmail(emails, entryId)
@@ -54,7 +58,9 @@ const SendSummaryEmail = ({ entryId }: { entryId: string }) => {
       })
   }
 
-  if (isLoading || !user?.email || location.pathname === '/public') return null
+  if (isLoading || !user?.email || location.pathname === '/public') {
+    return null
+  }
 
   return (
     <Box sx={cardStyles.nestedSubSection}>

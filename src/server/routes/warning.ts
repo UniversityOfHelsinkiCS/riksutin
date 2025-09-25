@@ -22,8 +22,6 @@ warningsRouter.post('/', adminHandler, async (req: RequestWithUser, res: any) =>
     const newWarning = await createWarning(req.body)
     return res.status(201).send(newWarning)
   } catch (error: any) {
-    //console.log("virhe routessa")
-    //res.status(400).send({ error: error.message })
     res.status(400).json({ error: 'routevirhe: ' + error.message })
   }
 })
