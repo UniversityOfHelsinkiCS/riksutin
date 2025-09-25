@@ -119,7 +119,7 @@
     "projectName": "Yhteistyöprojektin nimi",
     "updateRiskAssessment": "Päivitä riskiarvio",
     "updateSuccess": "Riskien uudelleenarviointi onnistui!",
-    "backButton": "Palaa yhteenvetonäkymään",
+    "backButton": "Takaisin lomakkeelle",
     "printButton": "Luo PDF"
   },
   "admin": {

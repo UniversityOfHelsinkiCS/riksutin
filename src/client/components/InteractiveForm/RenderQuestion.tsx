@@ -172,13 +172,15 @@ const RenderQuestion = ({ control, watch, question, questions, language }: Input
 
   const multilateral = watch('4') && watch('4') === 'multilateral'
   const hyCordinator = watch('9') && watch('9') === 'coordinator'
+  const hyMultilateral = multilateral && hyCordinator
 
   // if mutlilateran and hyCordinator, some questions are irrelevant
-  if ([6, 8, 24].includes(question.id) && multilateral && hyCordinator) {
+  if ([6, 8, 24].includes(question.id) && hyMultilateral) {
     return null
   }
 
-  if ([28, 30].includes(question.id) && multilateral && !hyCordinator) {
+  // these questions are relevant only if mutlilateran and hyCordinator
+  if ([26, 27, 28, 30].includes(question.id) && !hyMultilateral) {
     return null
   }
 

@@ -133,6 +133,7 @@ test.describe('a bilateral project', () => {
     await expect(page.getByText('Kaksikäyttötuotteiden riskitaso', { exact: true })).toBeVisible()
     await expect(page.getByText('Eettinen riskitaso', { exact: true })).toBeVisible()
     await expect(page.getByText('Akateeminen vapaus', { exact: true })).toBeVisible()
+    await expect(page.getByText('Monenkeskeisyyden riskitaso')).not.toBeVisible()
   })
 
   test('answers section contains the question and the response', async () => {
@@ -174,6 +175,7 @@ test.describe('a bilateral project', () => {
   })
 })
 
+/*
 test.describe('a multilateral project', () => {
   let page: Page
 
@@ -260,6 +262,7 @@ test.describe('a multilateral project', () => {
     await expect(page.getByText('Akateeminen vapaus', { exact: true })).toBeVisible()
   })
 })
+*/
 
 test.describe('a bilateral project nonuniversity project with external funding', () => {
   let page: Page

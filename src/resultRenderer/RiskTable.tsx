@@ -47,6 +47,14 @@ const RiskTable = ({
 
   const outdated = hyMultilateral && !riskData.multilateralCountries
 
+  const forMultilateral = risk => {
+    if (risk.id !== 'consortium') {
+      return true
+    }
+
+    return hyMultilateral
+  }
+
   return (
     <>
       {outdated && (
@@ -86,7 +94,8 @@ const RiskTable = ({
               )}
               {otherRisksWithTexts?.map(
                 risk =>
-                  !['country', 'total'].includes(risk.id) && (
+                  !['country', 'total'].includes(risk.id) &&
+                  forMultilateral(risk) && (
                     <TableRow key={risk.id}>
                       <TableCell colSpan={3}>
                         <RiskElement title={risk.title} level={risk.level} infoText={risk.infoText} />

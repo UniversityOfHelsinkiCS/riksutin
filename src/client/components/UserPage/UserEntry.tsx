@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Box, Button, Tab, Tabs } from '@mui/material'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 
-import { Link, useLocation, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import RiskTableDOM from '../ResultPage/RiskTableDOM'
 import { useEntry } from '../../hooks/useEntry'
@@ -48,7 +48,6 @@ const TabPanel = (props: TabPanelProps) => {
 
 const UserEntry = () => {
   const { entryId } = useParams()
-  const location = useLocation()
   const { survey } = useSurvey()
   const { entry } = useEntry(entryId)
   const [tabValue, setTabValue] = useState(0)
@@ -64,14 +63,12 @@ const UserEntry = () => {
 
   const { answers, country, updatedData } = entry.data
 
-  const parentPage = location.pathname.split('/')[1] === 'admin' ? '/admin/summary' : '/user'
-
   return (
     <MuiComponentProvider>
       <div>
         <Box sx={{ m: 3 }}>
           <Box sx={{ width: '100%', my: 2 }}>
-            <Link to={parentPage} style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
               <Button variant="outlined">
                 <ArrowBackIcon sx={{ mr: 1 }} />
                 {t('userPage:backButton')}
