@@ -30,7 +30,7 @@ export const PATE_URL = inProduction
   ? 'https://api-toska.apps.ocp-prod-0.k8s.it.helsinki.fi/pate/'
   : process.env.PATE_URL
 
-export const EMPLOYEE_GW_API_URL = 'https://gw-api-test.it.helsinki.fi'
+export const EMPLOYEE_GW_API_URL = 'https://gw.api.helsinki.fi'
 export const UNIT_GW_API_URL = 'https://gw.api.helsinki.fi'
 
 const FULL_URL = inProduction ? PRODUCTION_URL : inStaging ? STAGING_URL : DEVELOPMENT_URL
