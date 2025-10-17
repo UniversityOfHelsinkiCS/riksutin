@@ -58,4 +58,5 @@ export const {
 
 //
 export const SENTRY_DNS = 'https://64dd6a17eea106fe721e79664269a1b1@toska.it.helsinki.fi/12'
+export const SENTRY_DNS_FRONT = 'https://17529705a380a84da9a7b3719677b2fe@toska.it.helsinki.fi/13'
 export const SENTRY_GIT_SHA = process.env.REACT_APP_GIT_SHA
