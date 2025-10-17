@@ -46,7 +46,7 @@ export interface Risk {
   id: string // unique id
   title: string // title for the risk that is rendered in the risk table
   level: any // risk level which can be a number from 1 to 3 or a falsy value
-  infoText?: string // info text tells more information about the risk level and if the level requires some additional actions. The text is appended to the risk object in the client-side.
+  infoText?: string // info text tells more information about the risk level and if the level requires some additional actions. The text is appended to the risk object on the client-side.
 }
 ```
 
