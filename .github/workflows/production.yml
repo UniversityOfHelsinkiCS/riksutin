@@ -48,9 +48,9 @@ jobs:
       - name: Create Sentry release
         uses: getsentry/action-release@v3
         env:
-          SENTRY_URL: https://toska.it.helsinki.fi/
+          SENTRY_URL: ${{ secrets.SENTRY_URL}}
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_TOKEN }}
-          SENTRY_ORG: sentry
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
           SENTRY_PROJECT: riksutin
         with:
           environment: production
