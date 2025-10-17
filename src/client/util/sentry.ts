@@ -1,5 +1,4 @@
 import * as Sentry from '@sentry/browser'
-import { Integrations } from '@sentry/tracing'
 import { inProduction, inStaging, inE2EMode, SENTRY_DNS, SENTRY_GIT_SHA } from '@config'
 
 const initializeSentry = () => {
@@ -10,7 +9,7 @@ const initializeSentry = () => {
   Sentry.init({
     dsn: SENTRY_DNS,
     release: SENTRY_GIT_SHA,
-    integrations: [new Integrations.BrowserTracing()],
+    integrations: [Sentry.browserTracingIntegration()],
     tracesSampleRate: 1.0,
     sendDefaultPii: true,
   })

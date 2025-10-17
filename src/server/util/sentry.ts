@@ -1,10 +1,8 @@
-import { init as initSentry, Integrations } from '@sentry/node'
-import { Integrations as TracingIntegrations } from '@sentry/tracing'
-import { Express } from 'express-serve-static-core'
+import { init as initSentry, httpIntegration } from '@sentry/node'
 
 import { inProduction, inStaging, inE2EMode, SENTRY_DNS, SENTRY_GIT_SHA } from '@config'
 
-const initializeSentry = (router: Express) => {
+const initializeSentry = () => {
   if (!inProduction || inStaging || inE2EMode) {
     return
   }
@@ -12,9 +10,8 @@ const initializeSentry = (router: Express) => {
   initSentry({
     dsn: SENTRY_DNS,
     release: SENTRY_GIT_SHA,
-    integrations: [new Integrations.Http({ tracing: true }), new TracingIntegrations.Express({ router })],
+    integrations: [httpIntegration({ breadcrumbs: true })],
     tracesSampleRate: 1.0,
-    sendDefaultPii: true,
   })
 }
 

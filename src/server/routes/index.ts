@@ -1,10 +1,10 @@
 import express from 'express'
 import cors from 'cors'
-import { Handlers as SentryHandlers } from '@sentry/node'
+import * as Sentry from '@sentry/node'
 
 import { inDevelopment, inE2EMode, inAcualStaging } from '@config'
-import userMiddleware from '../middleware/user'
 import initializeSentry from '../util/sentry'
+import userMiddleware from '../middleware/user'
 import errorHandler from '../middleware/error'
 import accessLogger from '../middleware/access'
 import facultyRouter from './faculty'
@@ -22,10 +22,7 @@ import { setMockUser } from '../mocs/user'
 
 const router = express()
 
-initializeSentry(router)
-
-router.use(SentryHandlers.requestHandler())
-router.use(SentryHandlers.tracingHandler())
+initializeSentry()
 
 router.use(cors())
 router.use(express.json())
@@ -62,7 +59,7 @@ router.use('/organizations', organizationRouter)
 router.use('/warnings', warningsRouter)
 router.use('/tuhatprojects', tuhatProjectsRouter)
 
-router.use(SentryHandlers.errorHandler())
+Sentry.setupExpressErrorHandler(router)
 router.use(errorHandler)
 
 export default router

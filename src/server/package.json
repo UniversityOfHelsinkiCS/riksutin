@@ -9,8 +9,7 @@
   },
   "dependencies": {
     "@react-pdf/renderer": "4.3.0",
-    "@sentry/node": "^7.31.1",
-    "@sentry/tracing": "^7.31.1",
+    "@sentry/node": "^10.20.0",
     "axios": "^1.7.9",
     "connect-redis": "^8.0.1",
     "cors": "^2.8.5",
