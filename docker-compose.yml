@@ -30,5 +30,14 @@ services:
     image: redis:7-alpine
     container_name: riksutin_redis
 
+  mock:
+    build:
+      context:
+        data_source_mock 
+    container_name: data_source_mock
+    ports:
+      - 3001:3000
+
+
 volumes:
   pg_data:
