@@ -14,6 +14,7 @@ const initializeSentry = (router: Express) => {
     release: SENTRY_GIT_SHA,
     integrations: [new Integrations.Http({ tracing: true }), new TracingIntegrations.Express({ router })],
     tracesSampleRate: 1.0,
+    sendDefaultPii: true,
   })
 }
 

@@ -57,5 +57,5 @@ export const {
 } = Object.assign(defaults, implementationSpecific)
 
 //
-export const SENTRY_DNS = 'https://144f4b59d562a36afcdca13de964eb9a@toska.cs.helsinki.fi/3'
+export const SENTRY_DNS = 'https://64dd6a17eea106fe721e79664269a1b1@toska.it.helsinki.fi/12'
 export const SENTRY_GIT_SHA = process.env.REACT_APP_GIT_SHA
