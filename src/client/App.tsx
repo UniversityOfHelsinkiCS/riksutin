@@ -9,15 +9,12 @@ import useLoggedInUser from './hooks/useLoggedInUser'
 import { ResultDataProvider } from './contexts/ResultDataContext'
 import Footer from './components/Footer'
 import NavBar from './components/NavBar/NavBar'
-import useUserFaculties from './hooks/useUserFaculties'
 
 const App = () => {
   const theme = useTheme()
 
   const { user, isLoading } = useLoggedInUser()
-  const { isLoading: userFacultiesLoading } = useUserFaculties()
-
-  if (isLoading || userFacultiesLoading) {
+  if (isLoading) {
     return null
   }
   if (!user?.id) {
