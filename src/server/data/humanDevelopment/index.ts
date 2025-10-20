@@ -2,6 +2,12 @@
 import { get, setPermanent } from '../../util/redis'
 
 import { HDI_URL, NO_CACHE } from '@userconfig'
+import fs from 'fs'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 export const cacheHdrData = async () => {
   try {
@@ -16,7 +22,8 @@ export const cacheHdrData = async () => {
   }
 }
 
-const getHumanDevelopment = async (name: string | undefined, id: string | undefined) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const getHumanDevelopmentApi = async (name: string | undefined, id: string | undefined) => {
   if (!name) {
     return null
   }
@@ -54,4 +61,30 @@ const getHumanDevelopment = async (name: string | undefined, id: string | undefi
   return 3
 }
 
-export default getHumanDevelopment
+const getHumanDevelopmentLocal = (name: string | undefined, id: string | undefined) => {
+  console.log(name, id)
+
+  try {
+    const hdiFilePath = path.join(__dirname, 'hdi.json')
+    const hdiData = JSON.parse(fs.readFileSync(hdiFilePath, 'utf8'))
+    const countryData = hdiData.find(c => c.countryIsoCode === id)
+    console.log(countryData)
+
+    const recordIndex = Number(countryData.value)
+    const level1 = 64
+    const level2 = 128
+
+    if (recordIndex <= level1) {
+      return 1
+    }
+    if (recordIndex <= level2) {
+      return 2
+    }
+    return 3
+  } catch (error) {
+    console.log('HDI error', error)
+    return 3
+  }
+}
+
+export default getHumanDevelopmentLocal
