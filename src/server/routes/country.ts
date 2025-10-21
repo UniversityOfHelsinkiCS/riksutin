@@ -26,6 +26,7 @@ export const getCountryData = async (code: string | undefined): Promise<CountryD
 
   const corruption = await getCountryIndicator(code, 'CC.PER.RNK')
   const stability = await getCountryIndicator(code, 'PV.PER.RNK')
+  // eslint-disable-next-line @typescript-eslint/await-thenable
   const hci = await getHumanDevelopment(name, countryId)
   const safetyLevel = await fetchSafetyLevelData(code)
   const universities = await getCountryUniversities(name)
