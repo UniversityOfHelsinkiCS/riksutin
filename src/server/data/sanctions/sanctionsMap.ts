@@ -56,7 +56,9 @@ export const cacheSanctionsData = async () => {
       throw new Error('suspicious data' + url)
     }
 
-    throw new Error('test' + url)
+    if (inProduction) {
+      throw new Error('test' + url)
+    }
     return data
   } catch (error) {
     console.log('failed caching: HTTP get', url)
