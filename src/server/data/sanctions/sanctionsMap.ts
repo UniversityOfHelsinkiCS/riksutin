@@ -22,6 +22,8 @@ const fetchSanctionsData = async (code: string | undefined): Promise<number> => 
 
     const countrySanctions = data.filter(c => c.country_code === code && c.has_lists)
 
+    console.log('countrySanctions', countrySanctions)
+
     if (countrySanctions.length === 0) {
       return 1
     }
