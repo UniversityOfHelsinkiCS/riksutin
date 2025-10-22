@@ -57,14 +57,15 @@ export const cacheSanctionsData = async () => {
     }
 
     if (inProduction) {
-      throw new Error('test' + url)
+      throw new Error('testing ' + url)
     }
     return data
   } catch (error) {
-    console.log('failed caching: HTTP get', url)
+    console.log('failed caching: HTTP get', url, error)
     if (inProduction) {
       Sentry.captureException(error)
     }
+    return []
   }
 }
 

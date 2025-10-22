@@ -111,9 +111,9 @@ countryRouter.get('/cache', async (req, res) => {
 })
 
 countryRouter.get('/cache/sanction', async (req, res) => {
-  await cacheSanctionsData()
+  const result = await cacheSanctionsData()
 
-  return res.status(200).send({ status: 'OK' })
+  return res.status(200).send({ status: 'OK', result })
 })
 
 countryRouter.get('/cache/highrisk', async (req, res) => {
