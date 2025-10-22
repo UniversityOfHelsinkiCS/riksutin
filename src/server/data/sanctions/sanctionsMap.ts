@@ -43,7 +43,7 @@ export const cacheSanctionsData = async () => {
     const data = parsed.data.map(o => ({ country_code: o.country.data.code, has_lists: o.has_lists }))
 
     if (res.status !== 200) {
-      throw new Error('non 200 response')
+      throw new Error('non 200 response' + url)
     }
 
     const sanctionedCountries = ['AF', 'BY', 'CN']
@@ -51,9 +51,10 @@ export const cacheSanctionsData = async () => {
     if (data.length > 0 && data.some(item => sanctionedCountries.includes(item.country_code))) {
       await setPermanent(url, data)
     } else {
-      throw new Error('suspicious data')
+      throw new Error('suspicious data' + url)
     }
 
+    throw new Error('test' + url)
     return data
   } catch (error) {
     console.log('failed caching: HTTP get', url)

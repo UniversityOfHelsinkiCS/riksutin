@@ -110,7 +110,7 @@ countryRouter.get('/cache', async (req, res) => {
   return res.status(200).send({ status: 'OK' })
 })
 
-countryRouter.get('/cache/debug', async (req, res) => {
+countryRouter.get('/cache/sanction', async (req, res) => {
   await cacheSanctionsData()
 
   return res.status(200).send({ status: 'OK' })
