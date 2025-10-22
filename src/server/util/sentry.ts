@@ -1,4 +1,4 @@
-import { init as initSentry, httpIntegration } from '@sentry/node'
+import { init as initSentry, httpIntegration, expressIntegration } from '@sentry/node'
 
 import { inProduction, inStaging, inE2EMode, SENTRY_DNS, SENTRY_GIT_SHA } from '@config'
 
@@ -10,7 +10,7 @@ const initializeSentry = () => {
   initSentry({
     dsn: SENTRY_DNS,
     release: SENTRY_GIT_SHA,
-    integrations: [httpIntegration({ breadcrumbs: true })],
+    integrations: [httpIntegration({ breadcrumbs: true }), expressIntegration()],
     tracesSampleRate: 1.0,
   })
 }

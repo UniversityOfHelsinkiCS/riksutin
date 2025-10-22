@@ -11,7 +11,6 @@ const initializeSentry = () => {
     release: SENTRY_GIT_SHA,
     integrations: [Sentry.browserTracingIntegration()],
     tracesSampleRate: 1.0,
-    sendDefaultPii: true,
   })
 }
 
