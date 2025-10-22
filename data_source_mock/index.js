@@ -4,6 +4,7 @@ import fs from 'fs/promises'
 
 const app = express()
 const PORT = process.env.PORT || 3000
+const BROKEN_SANCTIONS = process.env.BROKEN_SANCTIONS || false
 
 let sentMail = []
 
@@ -17,9 +18,14 @@ app.get('/', async (req, res) => {
 })
 
 app.get('/sanctions', async (req, res) => {
+  if (BROKEN_SANCTIONS) {
+    console.log('MOCK sanctions, broken', BROKEN_SANCTIONS)
+    return res.status(Number(BROKEN_SANCTIONS)).send({ message: 'errored' })
+  }
+
   const data = await fs.readFile('./data/sanctions.json', 'utf-8')
   console.log('MOCK sanctions')
-  res.json(JSON.parse(data))
+  return res.json(JSON.parse(data))
 })
 
 app.get('/countries', async (req, res) => {
@@ -97,4 +103,5 @@ app.get('/um/o/rss', async (req, res) => {
 
 app.listen(PORT, () => {
   console.log('MOCK started in port', PORT)
+  console.log('BROKEN_SANCTIONS', BROKEN_SANCTIONS)
 })

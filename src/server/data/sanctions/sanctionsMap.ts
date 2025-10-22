@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
-import { LOG_CACHE, NO_CACHE, SANCTIONS_URL } from '@userconfig'
+import { inProduction, LOG_CACHE, NO_CACHE, SANCTIONS_URL } from '@userconfig'
 import { get, setPermanent } from '../../util/redis'
+import * as Sentry from '@sentry/node'
 
 const url = SANCTIONS_URL
 
@@ -56,6 +57,9 @@ export const cacheSanctionsData = async () => {
     return data
   } catch (error) {
     console.log('failed caching: HTTP get', url)
+    if (inProduction) {
+      Sentry.captureException(error)
+    }
   }
 }
 
