@@ -10,6 +10,7 @@ import getCountryUniversities from '../data/whed/countryUniversities'
 import fetchSanctionsData, { cacheSanctionsData } from '../data/sanctions/sanctionsMap'
 import parseRuleOfLaw from '../data/ruleOfLaw/parseRuleOfLaw'
 import { getCountries, cacheCountries } from '../services/countries'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import getHumanDevelopment, { cacheHdrData } from '../data/humanDevelopment'
 import getAcademicFreedom from '../data/academicfreedom'
 import { getWarnings } from '../services/warning'
@@ -103,8 +104,14 @@ countryRouter.get('/cache', async (req, res) => {
     await cacheCountries()
   }
   await cacheSanctionsData()
-  await cacheHdrData()
+  //await cacheHdrData()
   await getHighRiskCountries()
+
+  return res.status(200).send({ status: 'OK' })
+})
+
+countryRouter.get('/cache/debug', async (req, res) => {
+  await cacheSanctionsData()
 
   return res.status(200).send({ status: 'OK' })
 })

@@ -19,9 +19,9 @@ const fetchSanctionsData = async (code: string | undefined): Promise<number> => 
       data = await cacheSanctionsData()
     }
 
-    const countrySanctions = data.data.find(c => c.country.data.code === code)?.has_lists
+    const countrySanctions = data.filter(c => c.country_code === code && c.has_lists)
 
-    if (!countrySanctions) {
+    if (countrySanctions.length === 0) {
       return 1
     }
 
@@ -38,12 +38,24 @@ export const cacheSanctionsData = async () => {
       console.log('caching: HTTP get', url)
     }
     const res = await fetch(url)
-    const data = await res.json()
+    const parsed = await res.json()
+    const data = parsed.data.map(o => ({ country_code: o.country.data.code, has_lists: o.has_lists }))
 
-    await setPermanent(url, data)
+    if (res.status !== 200) {
+      throw new Error('non 200 response')
+    }
+
+    const sanctionedCountries = ['AF', 'BY', 'CN']
+
+    if (data.length > 0 && data.some(item => sanctionedCountries.includes(item.country_code))) {
+      await setPermanent(url, data)
+    } else {
+      throw new Error('suspicious data')
+    }
+
     return data
   } catch (error) {
-    console.log('failed')
+    console.log('failed caching: HTTP get', url)
   }
 }
 
