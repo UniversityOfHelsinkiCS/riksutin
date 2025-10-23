@@ -56,8 +56,7 @@ export const fetchData = async (path: string) => {
     console.log('fetch HTTP REQUEST ', url)
   }
 
-  const response = await fetch(url)
-  const data = await response.json()
+  const data = await buildCountryCache()
 
   return data
 }
