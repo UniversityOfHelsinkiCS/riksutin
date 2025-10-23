@@ -1,12 +1,12 @@
 import type { Info, Indicator } from '@server/types'
-import { fetchData, getLatestIndicator, riskLevelCheck } from './util'
+import { fetchIndicatorData, getLatestIndicator, riskLevelCheck } from './util'
 
 type Response = [Info, Indicator[]]
 
 const getCountryIndicator = async (countryCode: string, indicatorCode: string) => {
   const url = `country/${countryCode}/indicator/${indicatorCode}`
 
-  const [_, data]: Response = await fetchData(url)
+  const [_, data]: Response = await fetchIndicatorData(url)
 
   const indicatorData = data.filter(({ value }) => value !== null)
 

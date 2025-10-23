@@ -1,10 +1,10 @@
 import type { Info, FullCountry } from '@server/types'
-import { fetchData } from './util'
+import { fetchIndicatorData } from './util'
 
 type Response = [Info, FullCountry[]]
 
 const getCountries = async () => {
-  const [_, data]: Response = await fetchData('countries')
+  const [_, data]: Response = await fetchIndicatorData('countries')
 
   const countries = data.filter(({ region }) => region.value !== 'Aggregates')
 

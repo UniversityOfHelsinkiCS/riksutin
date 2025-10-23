@@ -1,7 +1,7 @@
-import { fetchData, buildCache } from '../data/worldbank/util'
+import { getCountryData, buildCache } from '../data/worldbank/util'
 
 export const getCountries = async () => {
-  const countries = await fetchData('countries')
+  const countries = await getCountryData()
   return countries
 }
 

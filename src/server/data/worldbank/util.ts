@@ -40,8 +40,8 @@ export const cacheCountryIndicator = async (countryCode: string, indicatorCode: 
   await cacheData(url)
 }
 
-export const fetchData = async (path: string) => {
-  const url = `${WORLDBANK_BASE_URL}/${path}?${params}`
+export const getCountryData = async () => {
+  const url = `${WORLDBANK_BASE_URL}/countries?${params}`
 
   const cached = await getPermanent(url)
 
@@ -57,6 +57,34 @@ export const fetchData = async (path: string) => {
   }
 
   const data = await buildCountryCache()
+
+  return data
+}
+
+export const buildCountryCache = async () => {
+  console.log('caching countryies')
+  const result = await cacheData('countries')
+  return result
+}
+
+export const fetchIndicatorData = async (path: string) => {
+  const url = `${WORLDBANK_BASE_URL}/${path}?${params}`
+
+  const cached = await getPermanent(url)
+
+  if (!NO_CACHE && cached) {
+    if (LOG_CACHE) {
+      console.log('FROM CACHE', url)
+    }
+    return cached
+  }
+
+  if (LOG_CACHE) {
+    console.log('fetch HTTP REQUEST ', url)
+  }
+
+  const response = await fetch(url)
+  const data = await response.json()
 
   return data
 }
@@ -89,12 +117,6 @@ export const riskLevelCheck = (start: number, end: number, res: number | undefin
 
 const sleep = (ms: number) => {
   return new Promise(resolve => setTimeout(resolve, ms))
-}
-
-export const buildCountryCache = async () => {
-  console.log('caching countryies')
-  const result = await cacheData('countries')
-  return result
 }
 
 export const buildCache = async () => {
