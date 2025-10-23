@@ -45,9 +45,6 @@ export const fetchData = async (path: string) => {
 
   const cached = await getPermanent(url)
 
-  console.log('KASE', cached)
-
-  console.log(NO_CACHE, !NO_CACHE && cached)
   if (!NO_CACHE && cached) {
     if (LOG_CACHE) {
       console.log('FROM CACHE', url)
