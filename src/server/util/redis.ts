@@ -5,8 +5,6 @@ import { REDIS_HOST } from '@server/config'
 
 import { Cache } from '@dbmodels'
 
-const ttl = 60 * 60 * 24 * 30 // 30 days
-
 export const redis = new Redis({
   host: REDIS_HOST,
   port: 6379,
@@ -15,10 +13,6 @@ export const redis = new Redis({
 export const redisStore = new RedisStore({
   client: redis,
 })
-
-export const set = async <T>(key: string, value: T) => {
-  await redis.set(key, JSON.stringify(value), 'EX', ttl)
-}
 
 export const get = async <T>(key: string): Promise<T | null> => {
   const value = await redis.get(key)

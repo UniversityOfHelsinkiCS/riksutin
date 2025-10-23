@@ -1,7 +1,7 @@
 import logger from '../../logger'
 import scheduleCronJob from '../schedule'
 import { getCountryData } from '../../../routes/country'
-import { set } from '../../redis'
+import { setPermanent } from '../../redis'
 import { getCountries } from '../../../services/countries'
 import { totalCountryRisk } from '../../algorithm/utils'
 import mockHighrisk from '../../../mocs/highrisk'
@@ -16,7 +16,7 @@ const calculateTotalCountryRisk = async (countryCode: string) => {
   return totalCountryRiskLevel
 }
 
-export const getHighRiskCountries = async () => {
+export const cacheHighRiskCountries = async () => {
   if (process.env.NODE_ENV !== 'production') {
     return mockHighrisk
   }
@@ -37,14 +37,14 @@ export const getHighRiskCountries = async () => {
     }
   }
 
-  await set('high_risk_countries', highRiskCountries)
+  await setPermanent('high_risk_countries', highRiskCountries)
   return highRiskCountries
 }
 
 const startCountryCron = () => {
   const cronTime = '0 18 * * 1'
   logger.info('Cron job scheduled')
-  return scheduleCronJob(cronTime, getHighRiskCountries)
+  return scheduleCronJob(cronTime, cacheHighRiskCountries)
 }
 
 export default startCountryCron

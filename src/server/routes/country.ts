@@ -2,7 +2,7 @@ import express from 'express'
 
 import type { CountryData } from '@types'
 
-import { getHighRiskCountries } from '../util/cron/highRiskCountries/highRiskCountries'
+import { cacheHighRiskCountries } from '../util/cron/highRiskCountries/highRiskCountries'
 import { get } from '../util/redis'
 import getCountryIndicator from '../data/worldbank/indicator'
 import fetchSafetyLevelData from '../data/safetyLevel'
@@ -89,7 +89,7 @@ countryRouter.get('/highrisk', async (req, res: any) => {
     return res.status(200).send(uniqConcat(cached, warned))
   }
 
-  const highRiskCountries = await getHighRiskCountries()
+  const highRiskCountries = await cacheHighRiskCountries()
 
   return res.status(200).send(uniqConcat(highRiskCountries, warned))
 })
@@ -106,7 +106,7 @@ countryRouter.get('/cache', async (req, res) => {
   }
   await cacheSanctionsData()
   //await cacheHdrData()
-  await getHighRiskCountries()
+  await cacheHighRiskCountries()
 
   return res.status(200).send({ status: 'OK' })
 })
@@ -118,7 +118,7 @@ countryRouter.get('/cache/debug', async (req, res) => {
 })
 
 countryRouter.get('/cache/highrisk', async (req, res) => {
-  await getHighRiskCountries()
+  await cacheHighRiskCountries()
 
   return res.status(200).send({ status: 'OK' })
 })

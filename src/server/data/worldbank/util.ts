@@ -22,6 +22,7 @@ export const cacheData = async (path: string) => {
     const countries = data
       .filter(({ region }) => region.value !== 'Aggregates')
       .map(c => ({ id: c.id, name: c.name, iso2Code: c.iso2Code }))
+
     await setPermanent(url, countries)
 
     return countries
