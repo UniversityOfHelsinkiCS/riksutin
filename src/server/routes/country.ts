@@ -14,6 +14,7 @@ import { getCountries, cacheCountries } from '../services/countries'
 import getHumanDevelopment, { cacheHdrData } from '../data/humanDevelopment'
 import getAcademicFreedom from '../data/academicfreedom'
 import { getWarnings } from '../services/warning'
+import { buildCountryCache } from '../data/worldbank/util'
 
 export const getCountryData = async (code: string | undefined): Promise<CountryData | null> => {
   if (!code) {
@@ -110,8 +111,8 @@ countryRouter.get('/cache', async (req, res) => {
   return res.status(200).send({ status: 'OK' })
 })
 
-countryRouter.get('/cache/sanction', async (req, res) => {
-  const result = await cacheSanctionsData()
+countryRouter.get('/cache/debug', async (req, res) => {
+  const result = await buildCountryCache()
 
   return res.status(200).send({ status: 'OK', result })
 })

@@ -25,6 +25,12 @@ export const get = async <T>(key: string): Promise<T | null> => {
   return JSON.parse(value ?? 'null')
 }
 
+export const getPermanent = async (key: string) => {
+  const row = await Cache.findOne({ where: { key } })
+
+  return row?.value
+}
+
 export const setPermanent = async <T>(key: string, value: T) => {
   // we are also saving the cached data to psql, just in case if something blows up...
   const existing = await Cache.findOne({ where: { key } })

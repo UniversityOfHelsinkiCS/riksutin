@@ -1,9 +1,10 @@
 /* eslint-disable no-console */
 import type { Indicator } from '@server/types'
-import { get, setPermanent } from '../../util/redis'
+import { get, getPermanent, setPermanent } from '../../util/redis'
 import { cacheSafetyLevel } from '../safetyLevel'
 import { cacheUniversityData } from '../whed/countryUniversities'
-import { WORLDBANK_BASE_URL, NO_CACHE, LOG_CACHE } from '@userconfig'
+import { WORLDBANK_BASE_URL, NO_CACHE, LOG_CACHE, inProduction } from '@userconfig'
+import * as Sentry from '@sentry/node'
 
 const params = 'per_page=1000&format=json'
 
@@ -14,12 +15,23 @@ export const cacheData = async (path: string) => {
     console.log('HTTP REQUEST ', url)
   }
 
-  const response = await fetch(url)
-  const data = await response.json()
+  try {
+    const response = await fetch(url)
+    const [_, data] = await response.json()
 
-  await setPermanent(url, data)
+    const countries = data
+      .filter(({ region }) => region.value !== 'Aggregates')
+      .map(c => ({ id: c.id, name: c.name, iso2Code: c.iso2Code }))
+    await setPermanent(url, countries)
 
-  return data
+    return countries
+  } catch (error) {
+    console.log('failed caching: HTTP get', url, error)
+    if (inProduction) {
+      Sentry.captureException(error)
+    }
+    return []
+  }
 }
 
 export const cacheCountryIndicator = async (countryCode: string, indicatorCode: string) => {
@@ -31,7 +43,11 @@ export const cacheCountryIndicator = async (countryCode: string, indicatorCode: 
 export const fetchData = async (path: string) => {
   const url = `${WORLDBANK_BASE_URL}/${path}?${params}`
 
-  const cached = await get(url)
+  const cached = await getPermanent(url)
+
+  console.log('KASE', cached)
+
+  console.log(NO_CACHE, !NO_CACHE && cached)
   if (!NO_CACHE && cached) {
     if (LOG_CACHE) {
       console.log('FROM CACHE', url)
@@ -79,6 +95,12 @@ const sleep = (ms: number) => {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
+export const buildCountryCache = async () => {
+  console.log('caching countryies')
+  const result = await cacheData('countries')
+  return result
+}
+
 export const buildCache = async () => {
   console.log('caching country data: started')
   await cacheData('countries')
@@ -87,7 +109,7 @@ export const buildCache = async () => {
   const [_, data]: any = await get(countriesUrl)
   const countries = data.filter(({ region }) => region.value !== 'Aggregates')
   const codes = countries.map(c => c.iso2Code)
-  console.log('contries', codes.length)
+  console.log('countries', codes.length)
 
   const failed: string[] = []
 

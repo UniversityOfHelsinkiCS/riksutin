@@ -5,6 +5,7 @@ import fs from 'fs/promises'
 const app = express()
 const PORT = process.env.PORT || 3000
 const BROKEN_SANCTIONS = process.env.BROKEN_SANCTIONS || false
+const BROKEN_COUNTRIES = process.env.BROKEN_COUNTRIES || false
 
 let sentMail = []
 
@@ -18,7 +19,7 @@ app.get('/', async (req, res) => {
 })
 
 app.get('/sanctions', async (req, res) => {
-  if (BROKEN_SANCTIONS) {
+  if (BROKEN_SANCTIONS && !req.query.ok) {
     console.log('MOCK sanctions, broken', BROKEN_SANCTIONS)
     return res.status(Number(BROKEN_SANCTIONS)).send({ message: 'errored' })
   }
@@ -29,9 +30,14 @@ app.get('/sanctions', async (req, res) => {
 })
 
 app.get('/countries', async (req, res) => {
+  if (BROKEN_COUNTRIES && !req.query.ok) {
+    console.log('MOCK countries, broken', BROKEN_COUNTRIES)
+    return res.status(Number(BROKEN_COUNTRIES)).send({ message: 'errored' })
+  }
+
   const data = await fs.readFile('./data/worldbank_countries.json', 'utf-8')
   console.log('MOCK countries')
-  res.json(JSON.parse(data))
+  return res.json(JSON.parse(data))
 })
 
 app.post('/universities', async (req, res) => {
@@ -104,4 +110,5 @@ app.get('/um/o/rss', async (req, res) => {
 app.listen(PORT, () => {
   console.log('MOCK started in port', PORT)
   console.log('BROKEN_SANCTIONS', BROKEN_SANCTIONS)
+  console.log('BROKEN_COUNTRIES', BROKEN_COUNTRIES)
 })
