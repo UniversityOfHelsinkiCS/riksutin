@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import { useState } from 'react'
 
 const AdminDebugView = () => {
@@ -8,6 +9,9 @@ const AdminDebugView = () => {
     setMessages(prev => [newMessage, ...prev].slice(0, 10))
   }
   const handleExplode = async () => {
+    if (!window.confirm('Are you sure you want to call the explode API?')) {
+      return
+    }
     try {
       const response = await fetch('/api/explode', {
         method: 'GET',
@@ -24,6 +28,9 @@ const AdminDebugView = () => {
   }
 
   const fronExplosion = () => {
+    if (!window.confirm('Are you sure you want to trigger a frontend explosion?')) {
+      return
+    }
     try {
       throw new Error('frontti paskana')
     } catch (error) {
@@ -32,6 +39,9 @@ const AdminDebugView = () => {
   }
 
   const handleCacheCountries = async () => {
+    if (!window.confirm('Are you sure you want to cache countries?')) {
+      return
+    }
     try {
       const response = await fetch('/api/countries/cache', {
         method: 'GET',
@@ -48,6 +58,9 @@ const AdminDebugView = () => {
   }
 
   const handleCacheCountriesAll = async () => {
+    if (!window.confirm('Are you sure you want to cache all countries? This may take a while.')) {
+      return
+    }
     try {
       const response = await fetch('/api/countries/cache?all=true', {
         method: 'GET',
@@ -64,6 +77,9 @@ const AdminDebugView = () => {
   }
 
   const handleCacheHighRisk = async () => {
+    if (!window.confirm('Are you sure you want to cache high risk countries?')) {
+      return
+    }
     try {
       const response = await fetch('/api/countries/cache/highrisk', {
         method: 'GET',
@@ -80,6 +96,9 @@ const AdminDebugView = () => {
   }
 
   const handleCacheDebug = async () => {
+    if (!window.confirm('Are you sure you want to run cache debug?')) {
+      return
+    }
     try {
       const response = await fetch('/api/countries/cache/debug', {
         method: 'GET',
