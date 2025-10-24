@@ -8,8 +8,31 @@ import * as Sentry from '@sentry/node'
 
 const params = 'per_page=1000&format=json'
 
-export const cacheData = async (path: string) => {
-  const url = `${WORLDBANK_BASE_URL}/${path}?${params}`
+/* countries */
+
+export const getCountryData = async () => {
+  const url = `${WORLDBANK_BASE_URL}/countries?${params}`
+
+  const cached = await getPermanent(url)
+
+  if (!NO_CACHE && cached) {
+    if (LOG_CACHE) {
+      console.log('FROM CACHE', url)
+    }
+    return cached
+  }
+
+  if (LOG_CACHE) {
+    console.log('fetch HTTP REQUEST ', url)
+  }
+
+  const data = await cacheCountryData()
+
+  return data
+}
+
+export const cacheCountryData = async () => {
+  const url = `${WORLDBANK_BASE_URL}/countries?${params}`
 
   if (LOG_CACHE) {
     console.log('HTTP REQUEST ', url)
@@ -35,37 +58,42 @@ export const cacheData = async (path: string) => {
   }
 }
 
-export const cacheCountryIndicator = async (countryCode: string, indicatorCode: string) => {
-  const url = `country/${countryCode}/indicator/${indicatorCode}`
+/* */
 
-  await cacheData(url)
-}
-
-export const getCountryData = async () => {
-  const url = `${WORLDBANK_BASE_URL}/countries?${params}`
-
-  const cached = await getPermanent(url)
-
-  if (!NO_CACHE && cached) {
-    if (LOG_CACHE) {
-      console.log('FROM CACHE', url)
-    }
-    return cached
-  }
+export const cacheIndicatorData = async (path: string) => {
+  const url = `${WORLDBANK_BASE_URL}/${path}?${params}`
 
   if (LOG_CACHE) {
-    console.log('fetch HTTP REQUEST ', url)
+    console.log('HTTP REQUEST ', url)
   }
 
-  const data = await buildCountryCache()
+  try {
+    const response = await fetch(url)
+    const [_, data] = await response.json()
 
-  return data
+    const indicatorData = data.filter(({ value }) => value !== null)
+
+    if (indicatorData.length === 0) {
+      return null
+    }
+
+    const { value } = getLatestIndicator(indicatorData)
+
+    await setPermanent(url, value)
+
+    return value
+  } catch (error) {
+    console.log('failed caching: HTTP get', url, error)
+    if (inProduction) {
+      Sentry.captureException(error)
+    }
+    return null
+  }
 }
 
-export const buildCountryCache = async () => {
-  console.log('caching countryies')
-  const result = await cacheData('countries')
-  return result
+export const cacheCountryIndicator = async (countryCode: string, indicatorCode: string) => {
+  const url = `country/${countryCode}/indicator/${indicatorCode}`
+  return await cacheIndicatorData(url)
 }
 
 export const fetchIndicatorData = async (path: string) => {
@@ -84,8 +112,7 @@ export const fetchIndicatorData = async (path: string) => {
     console.log('fetch HTTP REQUEST ', url)
   }
 
-  const response = await fetch(url)
-  const data = await response.json()
+  const data = await cacheIndicatorData(path)
 
   return data
 }
@@ -122,7 +149,6 @@ const sleep = (ms: number) => {
 
 export const buildCache = async () => {
   console.log('caching country data: started')
-  await cacheData('countries')
 
   const countriesUrl = `${WORLDBANK_BASE_URL}/countries?${params}`
   const [_, data]: any = await get(countriesUrl)
@@ -158,4 +184,41 @@ export const buildCache = async () => {
   console.log('failed:', failed)
 
   console.log('caching country data: done')
+}
+
+export const buildIndividualCountryCaches = async () => {
+  const countries = await getCountryData()
+
+  const codes = countries.map(c => c.iso2Code)
+  console.log('countries', codes.length, codes)
+
+  const failed: string[] = []
+
+  for (const code of codes) {
+    console.log(code)
+    try {
+      //await cacheSafetyLevel(code)
+    } catch (e) {
+      failed.push(code)
+    }
+    try {
+      //const countryName = countries.find(c => c.iso2Code === code).name
+      //await cacheUniversityData(countryName)
+    } catch (e) {
+      failed.push(code)
+    }
+    try {
+      await cacheCountryIndicator(code, 'CC.PER.RNK')
+      await cacheCountryIndicator(code, 'PV.PER.RNK')
+    } catch (e) {
+      failed.push(code)
+    }
+
+    await sleep(50)
+  }
+
+  console.log('failed:', failed)
+
+  console.log('caching country data: done')
+  return { countries: countries.length, failed }
 }
