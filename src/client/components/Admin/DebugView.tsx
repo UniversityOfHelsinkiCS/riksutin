@@ -119,7 +119,6 @@ const AdminDebugView = () => {
     <div style={{ padding: '20px' }}>
       <h2>Admin Debug View</h2>
 
-      {/* Messages Display */}
       {messages.length > 0 && (
         <div style={{ marginBottom: '20px' }}>
           <h3>Messages:</h3>
