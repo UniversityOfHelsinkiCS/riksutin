@@ -15,20 +15,26 @@ const errorHandler = (error: Error, req: Request, res: Response, next: NextFunct
   const user = req.user as User
 
   if (inProduction) {
-    if (user) {
-      // eslint-disable-next-line no-console
-      console.log('USER added to sentry')
-      Sentry.setUser({
-        id: user.id,
-        email: user.email,
-        username: user.username,
-      })
-    } else {
-      // eslint-disable-next-line no-console
-      console.log('NO USER added to sentry')
-    }
+    // User context should already be set by sentryUserMiddleware
+    // Just add error-specific context and capture the exception
+    Sentry.withScope(scope => {
+      if (user) {
+        // eslint-disable-next-line no-console
+        console.log('Error occurred for user:', { id: user.id, email: user.email, username: user.username })
+      } else {
+        // eslint-disable-next-line no-console
+        console.log('Error occurred for anonymous user')
+      }
 
-    Sentry.captureException(error)
+      // Add error-specific context
+      scope.setContext('error', {
+        name: error.name,
+        message: error.message,
+        stack: error.stack,
+      })
+
+      Sentry.captureException(error)
+    })
   }
 
   if (error.name === 'ZodValidationError') {

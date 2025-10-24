@@ -5,6 +5,7 @@ import * as Sentry from '@sentry/node'
 import { inDevelopment, inE2EMode, inAcualStaging } from '@config'
 import initializeSentry from '../util/sentry'
 import userMiddleware from '../middleware/user'
+import sentryUserMiddleware from '../middleware/sentry'
 import errorHandler from '../middleware/error'
 import accessLogger from '../middleware/access'
 import facultyRouter from './faculty'
@@ -31,6 +32,9 @@ router.use(express.json())
 if (inDevelopment || inE2EMode || inAcualStaging) {
   router.use(userMiddleware)
 }
+
+// Set Sentry user context after user middleware
+router.use(sentryUserMiddleware)
 
 router.use(accessLogger)
 
