@@ -5,4 +5,4 @@ SANCTIONS_URL=http://mock:3000/sanctions
 HDI_URL=http://mock:3000/hdr
 UNIVERSITIES_URL=http://mock:3000/universities
 PATE_URL=http://mock:3000/pate
-#NO_CACHE=true
+NO_CACHE=true
