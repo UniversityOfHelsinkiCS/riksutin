@@ -12,6 +12,7 @@ const initializeSentry = () => {
     release: SENTRY_GIT_SHA,
     integrations: [httpIntegration({ breadcrumbs: true }), expressIntegration()],
     tracesSampleRate: 1.0,
+    sendDefaultPii: true,
   })
 }
 

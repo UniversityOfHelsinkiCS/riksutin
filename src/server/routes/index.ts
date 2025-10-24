@@ -19,6 +19,7 @@ import organizationRouter from './organization'
 import warningsRouter from './warning'
 import tuhatProjectsRouter from './tuhatProject'
 import { setMockUser } from '../mocs/user'
+import adminHandler from '../middleware/admin'
 
 const router = express()
 
@@ -43,7 +44,7 @@ if (inDevelopment || inE2EMode) {
 }
 
 router.get('/ping', (_, res) => res.send('pong'))
-router.get('/error', () => {
+router.get('/explode', adminHandler, () => {
   throw new Error('Test error')
 })
 
@@ -58,6 +59,10 @@ router.use('/countries', countryRouter)
 router.use('/organizations', organizationRouter)
 router.use('/warnings', warningsRouter)
 router.use('/tuhatprojects', tuhatProjectsRouter)
+
+router.get('/explode', () => {
+  throw new Error('bad thing happened')
+})
 
 Sentry.setupExpressErrorHandler(router)
 router.use(errorHandler)

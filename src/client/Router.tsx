@@ -11,6 +11,7 @@ import EditQuestions from './components/Admin/EditQuestions/EditQuestions'
 import RenderEditQuestions from './components/Admin/EditQuestions/RenderEditQuestions'
 import RenderEditSurvey from './components/Admin/EditSurvey/RenderEditSurvey'
 import Summary from './components/Admin/Summary/Summary'
+import AdminDebugView from './components/Admin/DebugView'
 import RootBoundary from './components/Errors/RootBoundary'
 import NotFound from './components/Errors/NotFound'
 
@@ -40,6 +41,11 @@ const router = createBrowserRouter(
           path: '/user/:entryId',
           element: <UserEntry />,
           errorElement: <RootBoundary />,
+        },
+
+        {
+          path: '/admin/debug',
+          element: <AdminDebugView />,
         },
         {
           path: '/admin',

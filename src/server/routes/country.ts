@@ -15,6 +15,7 @@ import getHumanDevelopment, { cacheHdrData } from '../data/humanDevelopment'
 import getAcademicFreedom from '../data/academicfreedom'
 import { getWarnings } from '../services/warning'
 import { buildCountryCache } from '../data/worldbank/util'
+import adminHandler from '../middleware/admin'
 
 export const getCountryData = async (code: string | undefined): Promise<CountryData | null> => {
   if (!code) {
@@ -100,7 +101,13 @@ countryRouter.get('/', async (_, res) => {
   return res.status(200).send(countries)
 })
 
-countryRouter.get('/cache', async (req, res) => {
+countryRouter.get('/:code', async (req, res) => {
+  const country = await getCountryData(req.params.code)
+
+  return res.status(200).send(country)
+})
+
+countryRouter.get('/cache', adminHandler, async (req, res) => {
   if (req.query.all === 'true') {
     await cacheCountries()
   }
@@ -111,22 +118,16 @@ countryRouter.get('/cache', async (req, res) => {
   return res.status(200).send({ status: 'OK' })
 })
 
-countryRouter.get('/cache/debug', async (req, res) => {
+countryRouter.get('/cache/debug', adminHandler, async (req, res) => {
   const result = await buildCountryCache()
 
   return res.status(200).send({ status: 'OK', result })
 })
 
-countryRouter.get('/cache/highrisk', async (req, res) => {
+countryRouter.get('/cache/highrisk', adminHandler, async (req, res) => {
   await cacheHighRiskCountries()
 
   return res.status(200).send({ status: 'OK' })
-})
-
-countryRouter.get('/:code', async (req, res) => {
-  const country = await getCountryData(req.params.code)
-
-  return res.status(200).send(country)
 })
 
 export default countryRouter
