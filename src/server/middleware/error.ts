@@ -7,11 +7,25 @@ import { inProduction } from '@config'
 import logger from '../util/logger'
 
 import ZodValidationError from '../errors/ValidationError'
+import { User } from '@types'
 
-const errorHandler = (error: Error, _req: Request, res: Response, next: NextFunction) => {
+const errorHandler = (error: Error, req: Request, res: Response, next: NextFunction) => {
   logger.error(`${error.message} ${error.name} ${error.stack}`)
 
+  const user = req.user as User
+
+  // eslint-disable-next-line no-console
+  console.log('user', user)
+
   if (inProduction) {
+    if (user) {
+      Sentry.setUser({
+        id: user.id,
+        email: user.email,
+        username: user.username,
+      })
+    }
+
     Sentry.captureException(error)
   }
 
