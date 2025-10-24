@@ -14,16 +14,18 @@ const errorHandler = (error: Error, req: Request, res: Response, next: NextFunct
 
   const user = req.user as User
 
-  // eslint-disable-next-line no-console
-  console.log('user', user)
-
   if (inProduction) {
     if (user) {
+      // eslint-disable-next-line no-console
+      console.log('USER added to sentry')
       Sentry.setUser({
         id: user.id,
         email: user.email,
         username: user.username,
       })
+    } else {
+      // eslint-disable-next-line no-console
+      console.log('NO USER added to sentry')
     }
 
     Sentry.captureException(error)
