@@ -913,9 +913,9 @@ const getResultData = (): Result[] => [
     },
     data: {
       title: {
-        fi: 'Talouden kokonaisriski, 2',
+        fi: 'Kohonnut talouden kokonaisriski, 2',
         sv: '',
-        en: 'Total economic risk, 2',
+        en: 'Increased total economic risk, 2',
       },
     },
   },
@@ -930,9 +930,9 @@ const getResultData = (): Result[] => [
     },
     data: {
       title: {
-        fi: 'Talouden kokonaisriski, 3',
+        fi: 'Kohonnut talouden kokonaisriski, 3',
         sv: '',
-        en: 'Total economic risk, 3',
+        en: 'Increased total economic risk, 3',
       },
     },
   },
