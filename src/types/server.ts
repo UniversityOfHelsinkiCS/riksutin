@@ -96,6 +96,7 @@ export interface RequestWithUser extends Request {
 export interface EntryValues {
   data: RiskData
   tuhatData: TuhatData
+  testVersion: boolean
   sessionToken: string
 }
 

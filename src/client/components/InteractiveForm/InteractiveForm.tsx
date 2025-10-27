@@ -30,6 +30,7 @@ const InteractiveForm = () => {
 
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [submitButtonLoading, setSubmitButtonLoading] = useState(false)
+  const [saveAsTestVersion, setSaveAsTestVersion] = useState(false)
 
   const { resultData } = useResultData()
 
@@ -44,9 +45,6 @@ const InteractiveForm = () => {
     defaultValues: resultData,
   })
 
-  // eslint-disable-next-line no-console
-  console.log(watch())
-
   usePersistForm({ value: watch(), sessionStorageKey: FORM_DATA_KEY })
 
   if (!survey || isLoading || !results) {
@@ -54,6 +52,13 @@ const InteractiveForm = () => {
   }
 
   const onSubmit = async (data: FormValues) => {
+    if (saveAsTestVersion) {
+      // eslint-disable-next-line no-alert
+      if (!window.confirm(`${t('testVersion:saveAsTestFormVerification')}`)) {
+        setIsSubmitted(false)
+        return
+      }
+    }
     const hyCordMultilat = data['4'] === 'multilateral' && data['9'] === 'coordinator'
 
     // remove defaults from multilateral country lists
@@ -78,7 +83,7 @@ const InteractiveForm = () => {
       data['24'] = 'successfulCollaboration'
     }
 
-    const submittedData = { formData: data, tuhatData: JSON.parse(tuhatData) }
+    const submittedData = { formData: data, tuhatData: JSON.parse(tuhatData), testVersion: saveAsTestVersion }
     try {
       const createdData = await mutation.mutateAsync(submittedData)
       setIsSubmitted(true)
@@ -107,6 +112,8 @@ const InteractiveForm = () => {
               isSubmitted={isSubmitted}
               submitButtonLoading={submitButtonLoading}
               setValue={setValue}
+              saveAsTestVersion={saveAsTestVersion}
+              setSaveAsTestVersion={setSaveAsTestVersion}
             />
           </form>
         </Grid>

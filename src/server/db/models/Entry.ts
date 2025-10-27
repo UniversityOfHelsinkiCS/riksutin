@@ -20,6 +20,8 @@ class Entry extends Model<InferAttributes<Entry>, InferCreationAttributes<Entry>
   declare sessionToken: string
 
   declare reminderSent: CreationOptional<boolean>
+
+  declare testVersion: boolean
 }
 
 Entry.init(
@@ -56,6 +58,11 @@ Entry.init(
       defaultValue: '',
     },
     reminderSent: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
+    testVersion: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,

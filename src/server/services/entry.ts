@@ -49,7 +49,8 @@ export const getEntry = async (entryId: string, userId: string): Promise<Entry> 
 }
 
 export const createEntry = async (userId: string, surveyId: string, body: EntryValues) => {
-  const { sessionToken, data, tuhatData } = body
+  const { sessionToken, data, tuhatData, testVersion } = body
+
   let ownerId = ''
   if (!data.answers['2']) {
     ownerId = userId
@@ -86,6 +87,7 @@ export const createEntry = async (userId: string, surveyId: string, body: EntryV
     sessionToken,
     reminderSent: false,
     tuhatData,
+    testVersion,
   })
 
   return newEntry
