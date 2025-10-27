@@ -171,10 +171,12 @@ export const buildCache = async () => {
     } catch (e) {
       failed.push(code)
     }
-    try {
-      await cacheCountryIndicator(code, 'CC.PER.RNK')
-      await cacheCountryIndicator(code, 'PV.PER.RNK')
-    } catch (e) {
+    const cc = await cacheCountryIndicator(code, 'CC.PER.RNK')
+    if (!cc) {
+      failed.push(code)
+    }
+    const pv = await cacheCountryIndicator(code, 'PV.PER.RNK')
+    if (!pv) {
       failed.push(code)
     }
 
@@ -207,10 +209,13 @@ export const buildIndividualCountryCaches = async () => {
     } catch (e) {
       failed.push(code)
     }
-    try {
-      await cacheCountryIndicator(code, 'CC.PER.RNK')
-      await cacheCountryIndicator(code, 'PV.PER.RNK')
-    } catch (e) {
+
+    const cc = await cacheCountryIndicator(code, 'CC.PER.RNK')
+    if (!cc) {
+      failed.push(code)
+    }
+    const pv = await cacheCountryIndicator(code, 'PV.PER.RNK')
+    if (!pv) {
       failed.push(code)
     }
 

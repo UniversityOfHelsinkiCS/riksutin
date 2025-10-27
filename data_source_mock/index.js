@@ -6,6 +6,7 @@ const app = express()
 const PORT = process.env.PORT || 3000
 const BROKEN_SANCTIONS = process.env.BROKEN_SANCTIONS || false
 const BROKEN_COUNTRIES = process.env.BROKEN_COUNTRIES || false
+const BROKEN_INDICATORS = process.env.BROKEN_INDICATORS || false
 
 let sentMail = []
 
@@ -97,6 +98,11 @@ app.get('/country/:countryCode/indicator/:indicatorCode', async (req, res) => {
 
   console.log('MOCK', code, indicatorCode, '(' + countryCode + ')')
 
+  if (BROKEN_INDICATORS && !req.query.ok && countryCode[0] == 'B') {
+    console.log('MOCK country indicators, broken', BROKEN_INDICATORS)
+    return res.status(Number(BROKEN_INDICATORS)).send({ message: 'errored' })
+  }
+
   res.json(JSON.parse(data))
 })
 
@@ -111,4 +117,5 @@ app.listen(PORT, () => {
   console.log('MOCK started in port', PORT)
   console.log('BROKEN_SANCTIONS', BROKEN_SANCTIONS)
   console.log('BROKEN_COUNTRIES', BROKEN_COUNTRIES)
+  console.log('BROKEN_INDICATORS', BROKEN_INDICATORS)
 })
