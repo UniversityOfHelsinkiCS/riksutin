@@ -5,7 +5,7 @@ const getCountryIndicator = async (countryCode: string, indicatorCode: string) =
 
   const value = await fetchIndicatorData(url)
 
-  if (!value || value == 0) {
+  if (!value) {
     return null
   }
 
