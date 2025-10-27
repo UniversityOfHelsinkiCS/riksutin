@@ -155,23 +155,6 @@ const getResultData = (): Result[] => [
     },
   },
   {
-    id: 9,
-    surveyId: 1,
-    optionLabel: 'HCI4',
-    isSelected: {
-      fi: '*Ei tiedossa*',
-      sv: '*Unknown*',
-      en: '*Unknown*',
-    },
-    data: {
-      title: {
-        fi: 'Maan kehittyneisyys',
-        sv: '',
-        en: 'Human development',
-      },
-    },
-  },
-  {
     id: 10,
     surveyId: 1,
     optionLabel: 'academicFreedom1',
@@ -599,7 +582,7 @@ const getResultData = (): Result[] => [
   {
     id: 35,
     surveyId: 1,
-    optionLabel: 'economic3',
+    optionLabel: 'economicScope3',
     isSelected: {
       fi: '*Yhteistyön taloudellinen laajuus on huomattava, ja siihen liittyvä riskitaso on merkittävä*',
       sv: '',
@@ -607,16 +590,16 @@ const getResultData = (): Result[] => [
     },
     data: {
       title: {
-        fi: 'Taloudellinen riski, 3',
+        fi: 'Taloudellinen laajuus riski, 3',
         sv: '',
-        en: 'Economical risk, 3',
+        en: 'Economical Scope risk, 3',
       },
     },
   },
   {
     id: 36,
     surveyId: 1,
-    optionLabel: 'economic2',
+    optionLabel: 'economicScope2',
     isSelected: {
       fi: '*Yhteistyön taloudellinen laajuus on kohtalainen ja siihen liittyvä riskitaso on kohonnut*',
       sv: '',
@@ -633,7 +616,7 @@ const getResultData = (): Result[] => [
   {
     id: 37,
     surveyId: 1,
-    optionLabel: 'economic1',
+    optionLabel: 'economicScope1',
     isSelected: {
       fi: '*Yhteistyön taloudellinen laajuus ei ole merkittävä, eikä muodosta merkittävää riskiä*',
       sv: '',
@@ -814,6 +797,159 @@ const getResultData = (): Result[] => [
         fi: 'Pakotteet, 1',
         sv: '',
         en: 'Sanctions, 1',
+      },
+    },
+  },
+  {
+    id: 48,
+    surveyId: 1,
+    optionLabel: 'economicExchange1',
+    isSelected: {
+      fi: '*Yhteistyösi talous on sidottu Euroon, mikä on hyvä tapa välttää valuuttakurssiriskejä.*',
+      sv: '',
+      en: '*Your collaboration is based on funding in Euro, which is a good away of avoiding currency risks.*',
+    },
+    data: {
+      title: {
+        fi: 'Valuuttariski, 1',
+        sv: '',
+        en: 'Economic exchange risk, 1',
+      },
+    },
+  },
+  {
+    id: 49,
+    surveyId: 1,
+    optionLabel: 'economicExchange2',
+    isSelected: {
+      fi: '*Yhteistyösi talous on osittain riippuvainen valuuttakurssien vaihtelusta. Varmista, ettei valuuttakurssiriski muodostu liian suureksi ja jos mahdollista, pyri siihen, että yhteistyösi olisi kokonaan europerusteista. Konsultoi tarvittaessa yksikkösi talousasiantuntijoita.*',
+      sv: '',
+      en: '*Your collaborition is somewhat vulnerable to currency exchange risks. Please ensure that the currency risk is not excessive, and consider using Euro as the only currency, if possible. Consult your unit`s financial experts.*',
+    },
+    data: {
+      title: {
+        fi: 'Valuuttariski, 2',
+        sv: '',
+        en: 'Economic exchange risk, 2',
+      },
+    },
+  },
+  {
+    id: 50,
+    surveyId: 1,
+    optionLabel: 'economicExchange3',
+    isSelected: {
+      fi: '*Yhteistyösi talous on riippuvainen valuuttakurssien vaihtelusta. Varmista, että yhteistyösopimuksessa on riittävät mekanismit valuuttakurssiriskin hallitsemiseksi ja konsultoi yksikkösi talousasiantuntijoita. Suhteuta valuuttakurssiriskien hallintatavavat hankkeen kokonaisrahoituksen määrään sen koko keston aikana.*',
+      sv: '',
+      en: '*Your collaboration is vulnerable to currency exchange risks. Please ensure that your collaboration agreement has sufficient safeguards for managing the currency exchange risks. Consult your unit`s financial experts. Use proportionate measures on how to manage currency exchange risks with respect to the total funding of the project for the entire duration of it.*',
+    },
+    data: {
+      title: {
+        fi: 'Valuuttariski, 3',
+        sv: '',
+        en: 'Economic exchange risk, 3',
+      },
+    },
+  },
+  {
+    id: 51,
+    surveyId: 1,
+    optionLabel: 'economic1',
+    isSelected: {
+      fi: ' ',
+      sv: ' ',
+      en: ' ',
+    },
+    data: {
+      title: {
+        fi: 'Talouden kokonaisriski, 1',
+        sv: ' ',
+        en: 'Total economic risk, 1',
+      },
+    },
+  },
+  {
+    id: 52,
+    surveyId: 1,
+    optionLabel: 'economic2',
+    isSelected: {
+      fi: ' ',
+      sv: '',
+      en: ' ',
+    },
+    data: {
+      title: {
+        fi: 'Talouden kokonaisriski, 2',
+        sv: ' ',
+        en: 'Total economic risk, 2',
+      },
+    },
+  },
+  {
+    id: 53,
+    surveyId: 1,
+    optionLabel: 'economic3',
+    isSelected: {
+      fi: ' ',
+      sv: '',
+      en: ' ',
+    },
+    data: {
+      title: {
+        fi: 'Talouden kokonaisriski, 3',
+        sv: '',
+        en: 'Total economic risk, 3',
+      },
+    },
+  },
+  {
+    id: 54,
+    surveyId: 1,
+    optionLabel: 'economicAdditional2',
+    isSelected: {
+      fi: 'Talouden kokoanaisriski on noussut. Kokonaisriskiin vaikuttavat talouden laajuuden ja valuuttakurssiriskin lisäksi se, että onko rahoitus yritysperustainen ja onko samalta rahoittajalta saatu aikaisempaa rahoitusta.',
+      sv: '',
+      en: 'The overall economic risk has increased. In additional to the scope of the economy and currency exchange rate risks the overall risk is influenced by whether the financing is company-based and whether there has been previous funding from the same funder.',
+    },
+    data: {
+      title: {
+        fi: 'Talouden kokonaisriski, 2',
+        sv: '',
+        en: 'Total economic risk, 2',
+      },
+    },
+  },
+  {
+    id: 55,
+    surveyId: 1,
+    optionLabel: 'economicAdditional3',
+    isSelected: {
+      fi: 'Talouden kokoanaisriski on noussut. Kokonaisriskiin vaikuttavat talouden laajuuden ja valuuttakurssiriskin lisäksi se, että onko rahoitus yritysperustainen ja onko ollut aikaisempaa yhteistyötä.',
+      sv: '',
+      en: 'The overall economic risk has increased. In additional to the scope of the economy and currency exchange rate risks the overall risk is influenced by whether the financing is company-based and whether there has been prior collaboration',
+    },
+    data: {
+      title: {
+        fi: 'Talouden kokonaisriski, 3',
+        sv: '',
+        en: 'Total economic risk, 3',
+      },
+    },
+  },
+  {
+    id: 56,
+    surveyId: 1,
+    optionLabel: 'HCI4',
+    isSelected: {
+      fi: '*Ei tiedossa*',
+      sv: '*Unknown*',
+      en: '*Unknown*',
+    },
+    data: {
+      title: {
+        fi: 'Maan kehittyneisyys',
+        sv: '',
+        en: 'Human development',
       },
     },
   },
