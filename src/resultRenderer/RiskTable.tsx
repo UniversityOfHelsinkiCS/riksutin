@@ -27,11 +27,11 @@ const RiskTable = ({
   warnings: any
 }) => {
   const { Div, Typography, TableContainer, Table, TableBody, TableRow, TableCell, t, language } = useComponents()
-
   const totalRisk = riskData.risks.find(risk => risk.id === 'total')
   const countryRisk = riskData.risks.find(risk => risk.id === 'country')
+  const totalEconomicRisk = riskData.risks.find(risk => risk.id === 'economic' || risk.id === 'economicAdditional')
 
-  if (!totalRisk || !countryData) {
+  if (!totalRisk || !totalEconomicRisk || !countryData) {
     return null
   }
 
@@ -42,6 +42,8 @@ const RiskTable = ({
   const countryRisksWithTexts = getCountryRiskTexts(countryData, results, riskData.answers, language)
 
   const otherRisksWithTexts = getRiskTexts(riskData.risks, results, riskData.answers, language)
+  const totalEconomicRiskText = results.find(r => r.optionLabel === `${totalEconomicRisk.id}${totalEconomicRisk.level}`)
+    ?.isSelected[language as keyof Locales]
 
   const hyMultilateral = riskData.answers['9'] === 'coordinator' && riskData.answers['4'] === 'multilateral'
 
@@ -94,10 +96,43 @@ const RiskTable = ({
               )}
               {otherRisksWithTexts?.map(
                 risk =>
-                  !['country', 'total'].includes(risk.id) &&
+                  ['university', 'consortium'].includes(risk.id) &&
                   forMultilateral(risk) && (
                     <TableRow key={risk.id}>
-                      <TableCell colSpan={3}>
+                      <TableCell colSpan={1} sx={{ borderBottom: 'none' }}>
+                        <RiskElement title={risk.title} level={risk.level} infoText={risk.infoText} />
+                      </TableCell>
+                    </TableRow>
+                  )
+              )}
+              {totalEconomicRisk && (
+                <TableRow>
+                  <TableCell sx={{ borderBottom: 'none' }}>
+                    <RiskElement
+                      infoText={totalEconomicRiskText}
+                      title={totalEconomicRisk.title}
+                      level={totalEconomicRisk.level}
+                    />
+                  </TableCell>
+                </TableRow>
+              )}
+              {otherRisksWithTexts?.map(
+                risk =>
+                  ['economicScope', 'economicExchange'].includes(risk.id) &&
+                  forMultilateral(risk) && (
+                    <TableRow key={risk.id}>
+                      <TableCell colSpan={3} sx={{ paddingLeft: '35pt', borderBottom: 'none' }}>
+                        <RiskElement title={risk.title} level={risk.level} infoText={risk.infoText} />
+                      </TableCell>
+                    </TableRow>
+                  )
+              )}
+              {otherRisksWithTexts?.map(
+                risk =>
+                  ['ethical', 'dualUse'].includes(risk.id) &&
+                  forMultilateral(risk) && (
+                    <TableRow key={risk.id}>
+                      <TableCell colSpan={1} sx={{ borderBottom: 'none' }}>
                         <RiskElement title={risk.title} level={risk.level} infoText={risk.infoText} />
                       </TableCell>
                     </TableRow>

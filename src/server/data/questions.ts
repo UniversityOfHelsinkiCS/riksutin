@@ -475,7 +475,7 @@ const getQuestionData = (): Question[] => [
       en: 'Is external funding included in this collaboration?',
     },
     shortTitle: {
-      fi: 'Ulkopuolista rahoitus',
+      fi: 'Ulkopuolinen rahoitus',
       sv: 'External funding',
       en: 'External funding',
     },
@@ -515,7 +515,7 @@ const getQuestionData = (): Question[] => [
     id: 14,
     surveyId: 1,
     parentId: 13,
-    priority: 0,
+    priority: 1,
     title: {
       fi: 'Onko yksikkösi saanut aiemmin rahoitusta samalta rahoittajalta?',
       sv: 'Has your unit been previously funded by the same funder?',
@@ -1179,6 +1179,63 @@ const getQuestionData = (): Question[] => [
       options: [],
     },
     visibility: { options: ['multilateral'] },
+  },
+  {
+    id: 31,
+    surveyId: 1,
+    parentId: 13,
+    priority: 0,
+    title: {
+      fi: 'Myönnetäänkö ulkopuolinen rahoitus',
+      sv: 'Will the external funding be awarded in',
+      en: 'Choose from the alternatives according to which currency the application or agreement will be based on',
+    },
+    shortTitle: {
+      fi: '',
+      sv: '',
+      en: '',
+    },
+    text: {
+      fi: 'Vastaa sen mukaan, mitä hakemuksessa tai sopimuksessa on sovittu käytettävästä valuutasta.',
+      sv: 'Choose from the alternatives according to which currency the application or agreement will be based on.',
+      en: 'Choose from the alternatives according to which currency the application or agreement will be based on.',
+    },
+    optionData: {
+      type: 'singleChoice',
+      options: [
+        {
+          id: 'inEuros',
+          label: 'inEuros',
+          title: {
+            fi: 'Euroissa',
+            sv: 'In Euros',
+            en: 'In Euros',
+          },
+          risk: 1,
+        },
+        {
+          id: 'partlyEuros',
+          label: 'partlyEuros',
+          title: {
+            fi: 'Osittain euroissa, osittain muussa valuutassa',
+            sv: 'Partly in Euros, partly in other currency',
+            en: 'Partly in Euros, partly in other currency',
+          },
+          risk: 2,
+        },
+        {
+          id: 'otherCurrency',
+          label: 'otherCurrency',
+          title: {
+            fi: 'Muussa valuutassa',
+            sv: 'In other currency',
+            en: 'In other currency',
+          },
+          risk: 3,
+        },
+      ],
+    },
+    visibility: { options: ['externalFunding'] },
   },
 ]
 

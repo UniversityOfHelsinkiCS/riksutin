@@ -7,6 +7,17 @@ const getOtherRisks = (country: UpdatedCountryData, questions: Question[], formD
   const { totalCountryRiskLevel } = totalCountryRisk(country)
   const dualUseRiskValue = dualUseRisk(questions, formData, country)
   const organisationRiskValue = organisationRisk(formData)
+  const economicCurrencyRisk =
+    questions.find(question => question.id === 31)?.optionData.options.find(o => o.id === formData[31])?.risk ?? 1
+  const economicScopeRisk =
+    questions.find(question => question.id === 16)?.optionData.options.find(o => o.id === formData[16])?.risk ?? 1
+  const economicAdditionalRisk =
+    (formData[14] && formData[14] === 'notPreviouslyFunded') ||
+    (formData[15] && (formData[15] === 'internationalCompany' || formData[15] === 'finnishCompany'))
+      ? 1
+      : 0
+
+  const totalEconomicalRisk = Math.round((economicCurrencyRisk + economicScopeRisk) / 2) + economicAdditionalRisk
   const ethicalRiskValue = questions
     .find(question => question.id === 25)
     ?.optionData.options.find((o: { id: any }) => o.id === formData[25])?.risk
@@ -38,9 +49,19 @@ const getOtherRisks = (country: UpdatedCountryData, questions: Question[], formD
       level: organisationRiskValue,
     },
     {
-      id: 'economic',
+      id: economicAdditionalRisk > 0 ? 'economicAdditional' : 'economic',
       title: 'riskTable:economicRiskLevel',
-      level: questions.find(question => question.id === 16)?.optionData.options.find(o => o.id === formData[16])?.risk,
+      level: totalEconomicalRisk < 4 ? totalEconomicalRisk : 3,
+    },
+    {
+      id: 'economicScope',
+      title: 'riskTable:economicScopeRiskLevel',
+      level: economicScopeRisk,
+    },
+    {
+      id: 'economicExchange',
+      title: 'riskTable:economicExchangeRiskLevel',
+      level: economicCurrencyRisk,
     },
     {
       id: 'ethical',
