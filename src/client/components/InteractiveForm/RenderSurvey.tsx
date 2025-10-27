@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Button, Typography, FormControlLabel, Checkbox } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
 
 import type { Locales, Question } from '@types'
@@ -50,6 +50,8 @@ const RenderSurvey = ({
   isSubmitted,
   submitButtonLoading,
   setValue,
+  saveAsTestVersion,
+  setSaveAsTestVersion,
 }: {
   control: Control<any>
   watch: UseFormWatch<any>
@@ -57,6 +59,8 @@ const RenderSurvey = ({
   isSubmitted: boolean
   submitButtonLoading: boolean
   setValue?: any
+  saveAsTestVersion: boolean
+  setSaveAsTestVersion?: any
 }) => {
   const { t, i18n } = useTranslation()
   const { defaultValues } = useFormState({ control })
@@ -102,17 +106,27 @@ const RenderSurvey = ({
               {t('openForm')}
             </Button>
           ) : (
-            <SurveyButtons>
-              <LoadingButton
-                sx={formStyles.stackButton}
-                type="submit"
-                data-cy="submit-form-button"
-                variant="contained"
-                loading={submitButtonLoading}
-              >
-                {isSubmitted ? t('updateSubmit') : t('submit')}
-              </LoadingButton>
-            </SurveyButtons>
+            <>
+              <FormControlLabel
+                key={'testVersionCheck'}
+                value={saveAsTestVersion}
+                data-cy={'saveAsTestVersion'}
+                checked={saveAsTestVersion}
+                control={<Checkbox onChange={() => setSaveAsTestVersion(!saveAsTestVersion)} />}
+                label={t('testVersion:saveAsTestForm')}
+              />
+              <SurveyButtons>
+                <LoadingButton
+                  sx={formStyles.stackButton}
+                  type="submit"
+                  data-cy="submit-form-button"
+                  variant="contained"
+                  loading={submitButtonLoading}
+                >
+                  {isSubmitted ? t('updateSubmit') : t('submit')}
+                </LoadingButton>
+              </SurveyButtons>
+            </>
           )}
         </Box>
       </Box>
