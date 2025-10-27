@@ -1,13 +1,18 @@
 {
   "common": {
     "appName": "International collaboration risk assessment",
-    "submit": "Selections made",
+    "submit": "Save",
     "updateSubmit": "Update selections",
     "reset": "Start over",
     "openForm": "Continue to questions",
     "admin": "Administration",
     "submitError": "Failed to submit results, please try again later",
     "requiredText": "Required"
+  },
+  "testVersion": {
+    "saveAsTestForm": "Save as test",
+    "saveAsTestFormInfo": "",
+    "saveAsTestFormVerification": "Are you certain you want to save a test version only? System administration deletes test versions reugularly. Test versions cannot be edited or changed into actual assessments."
   },
   "footer": {
     "contactSupport": "Contact support: <mailTo>{{supportEmail}}</mailTo>"
@@ -64,7 +69,9 @@
     "countryRiskLevel": "Risk level of the partner country",
     "universityRiskLevel": "Risk level of the partner university",
     "durationRiskLevel": "Risk level of the project duration",
-    "economicRiskLevel": "Economic risk level",
+    "economicRiskLevel": "Total economic risk level",
+    "economicScopeRiskLevel": "Economic scope",
+    "economicExchangeRiskLevel": "Exchange rate risk ",
     "dualUseRiskLevel": "Risk level of the dual use",
     "organisationRiskLevel": "Risk level of the partner organisation",
     "ethicalRiskLevel": "Ethical risk level",
@@ -82,7 +89,13 @@
     "hyMultilateral": "Multilateral project coordinated by University of Helsinki",
     "hyMultilateralCountries": "Participants from the following countries:",
     "hyMultilateralHighest": "The country risk shown below is calculated based on the country with the highest risk",
-    "otherCountriesRiskLevels": "See risk level of other countries"
+    "otherCountriesRiskLevels": "See risk level of other countries",
+    "riskMultipliers": "The overall risk score is determined by the individual risk items below and is affected by the following information you have provided:",
+    "roleMultiplier": " the role of the University of Helsinki",
+    "durationMultiplier": "duration of the collaboration",
+    "agreementMultiplier": "the availability of the agreement",
+    "previousCollaborationMultiplier": "previous experiences with this partner",
+    "and": "and"
   },
   "countrySpecificTexts": {
     "CN": "\n*In collaboration with P.R. China, it is imporant to take note of universities with close ties to Chinese military-industrial complex, and to either restrict collaboration, or commission a through risk assessment. Listing of these universities is available at https://unitracker.aspi.org.au/ Furthermore, it is worth noting the national recommendations concering China collaboration: https://okm.fi/en/-/recommendations-for-academic-cooperation-with-china*",

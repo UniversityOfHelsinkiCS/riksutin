@@ -1,7 +1,7 @@
 {
   "common": {
     "appName": "Kansainvälisen yhteistyön riskiarvio",
-    "submit": "Valinnat tehty",
+    "submit": "Tallenna",
     "updateSubmit": "Päivitä valinnat",
     "reset": "Aloita alusta",
     "openForm": "Jatka kysymyksiin",
@@ -40,6 +40,11 @@
     "noResults": "Yhteistyökumppaniasi ei löytynyt tietokannasta",
     "autocompleteLabel": "Organisaatio"
   },
+  "testVersion": {
+    "saveAsTestForm": "Tallenna testinä",
+    "saveAsTestFormInfo": "",
+    "saveAsTestFormVerification": "Oletko varma, että haluat tallentaa testiversion? Ylläpito poistaa säännöllisesti testiversiot tietokannasta. Testiversioita ei voi muokata tai vaihtaa varsinaiseksi arvioiksi."
+  },
   "questions": {
     "additionalPartnerOrganisationCountryQuestion": "Koordinoivan yhteistyöorganisaation sijaintimaa",
     "additionalPartnerOrganisationTypeQuestion": "Koordinoivan yhteistyöorganisaation tyyppi",
@@ -55,13 +60,16 @@
     "multilateralWarning": "Voit valita yhteensä korkeintaan 5 maata",
     "multilateralNoCountriesWarning": "Valitse vähintään yksi maa yhteistyökonsortion koostumukseen",
     "noHighRisk": "Yhteistyökonsortioon ei sisälly erityisen riskin maita",
-    "noOtherCountries": "Ei muita maita valittuna"
+    "noOtherCountries": "Ei muita maita valittuna",
+    "externalFunding": "Myönnetäänkö ulkopuolinen rahoitus"
   },
   "riskTable": {
     "countryRiskLevel": "Maan riskitaso",
     "universityRiskLevel": "Yliopiston riskitaso",
     "durationRiskLevel": "Yhteistyön keston riskitaso",
-    "economicRiskLevel": "Yhteistyön taloudellinen riskitaso",
+    "economicRiskLevel": "Yhteistyön taloudellinen kokonaisriskitaso",
+    "economicScopeRiskLevel": "Taloudellinen laajuus",
+    "economicExchangeRiskLevel": "Valuuttakurssiriski ",
     "dualUseRiskLevel": "Kaksikäyttötuotteiden riskitaso",
     "organisationRiskLevel": "Yhteistyöorganisaation riskitaso",
     "ethicalRiskLevel": "Eettinen riskitaso",
@@ -79,7 +87,13 @@
     "hyMultilateral": "Monenkeskeinen Helsingin Yliopiston koordinoima projekti",
     "hyMultilateralCountries": "Osallistujia seuraavista maista:",
     "hyMultilateralHighest": "Alla esitettävä maariski on laskettu suurimman riskin maan mukaan",
-    "otherCountriesRiskLevels": "Katso muiden maiden riskitasot"
+    "otherCountriesRiskLevels": "Katso muiden maiden riskitasot",
+    "riskMultipliers": "Kokonaisriskiarvioon vaikuttavat alla olevien riskitekijöiden lisäksi",
+    "roleMultiplier": "HY toimii koordinaatorina",
+    "durationMultiplier": "projektin kesto ylittää 60 kuukautta",
+    "agreementMultiplier": "sopimusta ei olla tehty",
+    "previousCollaborationMultiplier": "ei aikaisempaa yhteistyötä",
+    "and": "ja"
   },
   "countrySpecificTexts": {
     "CN": "\n*Yhteistyössä Kiinan kanssa on syytä huomioida erityisesti Kiinan puolustusteollisuutta lähellä olevat yliopistot ja joko rajoittaa yhteistyötä, tai teettää erillinen, yksilöidympi riskiarvio. Lista näistä yliopistoista löytyy https://unitracker.aspi.org.au/. Lisäksi kannattaa huomioida kansallinen ohjeistus: https://okm.fi/en/-/recommendations-for-academic-cooperation-with-china*",
