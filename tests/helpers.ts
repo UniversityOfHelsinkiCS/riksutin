@@ -12,7 +12,18 @@ export const testUser = {
 }
 
 export const riskResponse = object => {
-  const ids = ['consortium', 'country', 'dualUse', 'economic', 'ethical', 'total', 'university'].sort()
+  const ids = [
+    'consortium',
+    'country',
+    'dualUse',
+    'economic',
+    'economicScope',
+    'economicExchange',
+    'economicAdditional',
+    'ethical',
+    'total',
+    'university',
+  ].sort()
 
   const risks = ids.reduce((acc, id) => {
     const found = object.find(f => f.id === id)

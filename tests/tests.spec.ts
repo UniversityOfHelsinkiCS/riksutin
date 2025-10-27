@@ -107,7 +107,7 @@ test.describe('a bilateral project', () => {
     await page.getByTestId('question-7').getByRole('textbox').click()
     await page.getByTestId('question-7').getByRole('textbox').fill('Testiprojekti')
 
-    await page.getByRole('button', { name: 'Valinnat tehty' }).click()
+    await page.getByRole('button', { name: 'Tallenna' }).click()
 
     await expect(page.getByText('Yhteenveto valinnoistasi')).toBeVisible()
   })
@@ -228,7 +228,7 @@ test.describe('a multilateral project', () => {
     await page.getByTestId('question-7').getByRole('textbox').click()
     await page.getByTestId('question-7').getByRole('textbox').fill('Monenkeskeinen testiprojekti')
 
-    await page.getByRole('button', { name: 'Valinnat tehty' }).click()
+    await page.getByRole('button', { name: 'Tallenna' }).click()
 
     await expect(page.getByText('Yhteenveto valinnoistasi')).toBeVisible()
   })
@@ -317,7 +317,7 @@ test.describe('a bilateral project nonuniversity project with external funding',
     await page.getByTestId('question-7').getByRole('textbox').click()
     await page.getByTestId('question-7').getByRole('textbox').fill('Testiprojekti')
 
-    await page.getByRole('button', { name: 'Valinnat tehty' }).click()
+    await page.getByRole('button', { name: 'Tallenna' }).click()
 
     await expect(page.getByText('Yhteenveto valinnoistasi')).toBeVisible()
   })
