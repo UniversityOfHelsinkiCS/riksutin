@@ -84,7 +84,9 @@ const UserPage = () => {
             {entriesWithData.map(entry => (
               <TableRow key={entry.id} data-testid="entrybox">
                 <TableCell component="th" scope="row">
-                  <Link to={`/user/${entry.id.toString()}`}>{entry.data.answers['3']}</Link>
+                  <Link
+                    to={`/user/${entry.id.toString()}`}
+                  >{`${entry.data.answers['3']} ${entry.testVersion ? '-TEST VERSION-' : ''}`}</Link>
                 </TableCell>
                 <TableCell component="th" scope="row">
                   {new Date(entry.createdAt).toLocaleDateString()} {new Date(entry.createdAt).toLocaleTimeString()}
