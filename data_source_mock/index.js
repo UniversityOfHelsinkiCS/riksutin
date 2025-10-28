@@ -76,6 +76,7 @@ app.get('/hdr', async (req, res) => {
   res.json(JSON.parse(data))
 })
 
+// eslint-disable-next-line consistent-return
 app.get('/country/:countryCode/indicator/:indicatorCode', async (req, res) => {
   // source     https://api.worldbank.org/v2/country/${countryCode}/indicator/${indicatorCode}?per_page=1000&format=json
   // indicators CC.PER.RNK PV.PER.RNK
