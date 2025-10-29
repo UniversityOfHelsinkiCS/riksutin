@@ -1,5 +1,7 @@
 /* eslint-disable no-alert */
+import * as Sentry from '@sentry/node'
 import { useState } from 'react'
+import { inProduction } from '@userconfig'
 
 const AdminDebugView = () => {
   const [messages, setMessages] = useState<{ type: 'success' | 'error'; text: string; timestamp: number }[]>([])
@@ -7,6 +9,9 @@ const AdminDebugView = () => {
   const addMessage = (type: 'success' | 'error', text: string) => {
     const newMessage = { type, text, timestamp: Date.now() }
     setMessages(prev => [newMessage, ...prev].slice(0, 10))
+    if (inProduction && type === 'error') {
+      Sentry.captureException(text)
+    }
   }
   const handleExplode = async () => {
     if (!window.confirm('Are you sure you want to call the explode API?')) {
