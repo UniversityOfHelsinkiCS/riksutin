@@ -10,7 +10,7 @@
     "requiredText": "Required"
   },
   "testVersion": {
-    "saveAsTestForm": "Save as test",
+    "saveAsTestForm": "Save as test (System admins will delete test versions regularly)",
     "saveAsTestFormInfo": "",
     "saveAsTestFormVerification": "Are you certain you want to save a test version only? System administration deletes test versions reugularly. Test versions cannot be edited or changed into actual assessments."
   },

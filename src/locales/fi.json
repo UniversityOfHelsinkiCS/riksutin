@@ -8,6 +8,11 @@
     "admin": "Ylläpito",
     "submitError": "Tulosten lähettäminen epäonnistui, kokeile uudelleen hetken päästä"
   },
+  "testVersion": {
+    "saveAsTestForm": "Tallenna testinä (Järjestelmän ylläpito poistaa testiversiot säännöllisesti)",
+    "saveAsTestFormInfo": "",
+    "saveAsTestFormVerification": "Oletko varma, että haluat tallentaa testiversion? Ylläpito poistaa säännöllisesti testiversiot tietokannasta. Testiversioita ei voi muokata tai vaihtaa varsinaiseksi arvioiksi."
+  },
   "footer": {
     "contactSupport": "Ota yhteyttä tukeen: <mailTo>{{supportEmail}}</mailTo>"
   },
@@ -39,11 +44,6 @@
     "listInfoText": "Valitse yhteistyökumppanisi nimi listalta",
     "noResults": "Yhteistyökumppaniasi ei löytynyt tietokannasta",
     "autocompleteLabel": "Organisaatio"
-  },
-  "testVersion": {
-    "saveAsTestForm": "Tallenna testinä",
-    "saveAsTestFormInfo": "",
-    "saveAsTestFormVerification": "Oletko varma, että haluat tallentaa testiversion? Ylläpito poistaa säännöllisesti testiversiot tietokannasta. Testiversioita ei voi muokata tai vaihtaa varsinaiseksi arvioiksi."
   },
   "questions": {
     "additionalPartnerOrganisationCountryQuestion": "Koordinoivan yhteistyöorganisaation sijaintimaa",

@@ -8,7 +8,7 @@ const getOtherRisks = (country: UpdatedCountryData, questions: Question[], formD
   const dualUseRiskValue = dualUseRisk(questions, formData, country)
   const organisationRiskValue = organisationRisk(formData)
   const economicCurrencyRisk =
-    questions.find(question => question.id === 31)?.optionData.options.find(o => o.id === formData[31])?.risk ?? 1
+    questions.find(question => question.id === 31)?.optionData.options.find(o => o.id === formData[31])?.risk ?? 0
   const economicScopeRisk =
     questions.find(question => question.id === 16)?.optionData.options.find(o => o.id === formData[16])?.risk ?? 1
   const economicAdditionalRisk =
@@ -17,7 +17,9 @@ const getOtherRisks = (country: UpdatedCountryData, questions: Question[], formD
       ? 1
       : 0
 
-  const totalEconomicalRisk = Math.round((economicCurrencyRisk + economicScopeRisk) / 2) + economicAdditionalRisk
+  const economicDivider = economicCurrencyRisk === 0 ? 1 : 2
+  const totalEconomicalRisk =
+    Math.round((economicCurrencyRisk + economicScopeRisk) / economicDivider) + economicAdditionalRisk
   const ethicalRiskValue = questions
     .find(question => question.id === 25)
     ?.optionData.options.find((o: { id: any }) => o.id === formData[25])?.risk
@@ -54,21 +56,26 @@ const getOtherRisks = (country: UpdatedCountryData, questions: Question[], formD
       level: totalEconomicalRisk < 4 ? totalEconomicalRisk : 3,
     },
     {
-      id: 'economicScope',
-      title: 'riskTable:economicScopeRiskLevel',
-      level: economicScopeRisk,
-    },
-    {
-      id: 'economicExchange',
-      title: 'riskTable:economicExchangeRiskLevel',
-      level: economicCurrencyRisk,
-    },
-    {
       id: 'ethical',
       title: 'riskTable:ethicalRiskLevel',
       level: ethicalRiskValue,
     },
   ]
+  if (economicCurrencyRisk !== 0) {
+    const economicCurrency = {
+      id: 'economicExchange',
+      title: 'riskTable:economicExchangeRiskLevel',
+      level: economicCurrencyRisk,
+    }
+    riskArray.push(economicCurrency)
+  }
+  // Ensure the correct order of economic risks, and thus add this here
+  const economicScope = {
+    id: 'economicScope',
+    title: 'riskTable:economicScopeRiskLevel',
+    level: economicScopeRisk,
+  }
+  riskArray.push(economicScope)
 
   if (formData[26]) {
     const consortium: Risk = {
