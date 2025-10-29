@@ -57,6 +57,23 @@ const RiskTable = ({
     return hyMultilateral
   }
 
+  const multiplierArray = [
+    riskData.answers['9'] === 'coordinator' ? t('riskTable:roleMultiplier') : '',
+    riskData.answers['12'] === 'longDuration' ? t('riskTable:durationMultiplier') : '',
+    riskData.answers['10'] === 'agreementNotDone' ? t('riskTable:agreementMultiplier') : '',
+    riskData.answers['24'] === 'noSuccessfulCollaboration' ? t('riskTable:previousCollaborationMultiplier') : '',
+  ]
+
+  const multiplierInfoText =
+    multiplierArray.filter(m => m !== '').length > 0
+      ? t(
+          `${t('riskTable:riskMultipliers')} ${multiplierArray
+            .filter(m => m !== '')
+            .join(', ')
+            .replace(/,(?=[^,]+$)/, ` ${t('riskTable:and')}`)}.`
+        )
+      : ''
+
   return (
     <>
       {outdated && (
@@ -79,7 +96,7 @@ const RiskTable = ({
               <TableRow>
                 <TableCell colSpan={3}>
                   <Div style={{ paddingTop: '10px', paddingBottom: '10px' }}>
-                    <Typography variant="body1">{t('riskTable:multiplierInfoText')}</Typography>
+                    <Typography variant="body1">{multiplierInfoText}</Typography>
                   </Div>
                 </TableCell>
               </TableRow>

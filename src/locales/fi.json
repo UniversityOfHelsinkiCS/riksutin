@@ -88,11 +88,11 @@
     "hyMultilateralCountries": "Osallistujia seuraavista maista:",
     "hyMultilateralHighest": "Alla esitettävä maariski on laskettu suurimman riskin maan mukaan",
     "otherCountriesRiskLevels": "Katso muiden maiden riskitasot",
-    "riskMultipliers": "Kokonaisriskiarvioon vaikuttavat alla olevien riskitekijöiden lisäksi",
-    "roleMultiplier": "HY toimii koordinaatorina",
-    "durationMultiplier": "projektin kesto ylittää 60 kuukautta",
-    "agreementMultiplier": "sopimusta ei olla tehty",
-    "previousCollaborationMultiplier": "ei aikaisempaa yhteistyötä",
+    "riskMultipliers": "Alla mainittujen riskitekijöiden lisäksi kokonaisriskiin vaikuttavat antamasi tiedot",
+    "roleMultiplier": "Helsingin yliopiston roolista yhteistyössä",
+    "durationMultiplier": "yhteistyön kestosta",
+    "agreementMultiplier": "yhteistyösopimuksen olemassaolosta",
+    "previousCollaborationMultiplier": "aiemmasta yhteistyöstä",
     "and": "ja"
   },
   "countrySpecificTexts": {
