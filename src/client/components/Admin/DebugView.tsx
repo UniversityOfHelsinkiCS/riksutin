@@ -31,11 +31,8 @@ const AdminDebugView = () => {
     if (!window.confirm('Are you sure you want to trigger a frontend explosion?')) {
       return
     }
-    try {
-      throw new Error('frontti paskana')
-    } catch (error) {
-      addMessage('error', `Frontend explosion: ${error}`)
-    }
+    addMessage('error', 'Frontend explosion, see the console')
+    throw new Error('frontti paskana')
   }
 
   const handleCacheCountries = async () => {
