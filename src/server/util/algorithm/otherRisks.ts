@@ -51,7 +51,7 @@ const getOtherRisks = (country: UpdatedCountryData, questions: Question[], formD
       level: organisationRiskValue,
     },
     {
-      id: economicAdditionalRisk > 0 ? 'economicAdditional' : 'economic',
+      id: 'economic',
       title: 'riskTable:economicRiskLevel',
       level: totalEconomicalRisk < 4 ? totalEconomicalRisk : 3,
     },

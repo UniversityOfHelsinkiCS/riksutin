@@ -19,7 +19,6 @@ export const riskResponse = object => {
     'economic',
     'economicScope',
     'economicExchange',
-    'economicAdditional',
     'ethical',
     'total',
     'university',

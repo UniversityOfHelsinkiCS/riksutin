@@ -93,7 +93,10 @@
     "durationMultiplier": "yhteistyön kestosta",
     "agreementMultiplier": "yhteistyösopimuksen olemassaolosta",
     "previousCollaborationMultiplier": "aiemmasta yhteistyöstä",
-    "and": "ja"
+    "and": "ja",
+    "economicAdditional": "Talouden kokoanaisriski on noussut. Kokonaisriskiin vaikuttavat talouden laajuuden ja valuuttakurssiriskin lisäksi se, että ",
+    "companyBased": "onko rahoittajana yritys",
+    "previousFunding": "onko yksikkösi ilmoituksen mukaan saanut samalta rahoittajalta aiempaa rahoitusta"
   },
   "countrySpecificTexts": {
     "CN": "\n*Yhteistyössä Kiinan kanssa on syytä huomioida erityisesti Kiinan puolustusteollisuutta lähellä olevat yliopistot ja joko rajoittaa yhteistyötä, tai teettää erillinen, yksilöidympi riskiarvio. Lista näistä yliopistoista löytyy https://unitracker.aspi.org.au/. Lisäksi kannattaa huomioida kansallinen ohjeistus: https://okm.fi/en/-/recommendations-for-academic-cooperation-with-china*",

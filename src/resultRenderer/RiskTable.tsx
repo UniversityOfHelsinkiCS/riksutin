@@ -29,7 +29,7 @@ const RiskTable = ({
   const { Div, Typography, TableContainer, Table, TableBody, TableRow, TableCell, t, language } = useComponents()
   const totalRisk = riskData.risks.find(risk => risk.id === 'total')
   const countryRisk = riskData.risks.find(risk => risk.id === 'country')
-  const totalEconomicRisk = riskData.risks.find(risk => risk.id === 'economic' || risk.id === 'economicAdditional')
+  const totalEconomicRisk = riskData.risks.find(risk => risk.id === 'economic')
 
   if (!totalRisk || !totalEconomicRisk || !countryData) {
     return null
@@ -42,8 +42,6 @@ const RiskTable = ({
   const countryRisksWithTexts = getCountryRiskTexts(countryData, results, riskData.answers, language)
 
   const otherRisksWithTexts = getRiskTexts(riskData.risks, results, riskData.answers, language)
-  const totalEconomicRiskText = results.find(r => r.optionLabel === `${totalEconomicRisk.id}${totalEconomicRisk.level}`)
-    ?.isSelected[language as keyof Locales]
 
   const hyMultilateral = riskData.answers['9'] === 'coordinator' && riskData.answers['4'] === 'multilateral'
 
@@ -64,6 +62,14 @@ const RiskTable = ({
     riskData.answers['24'] === 'noSuccessfulCollaboration' ? t('riskTable:previousCollaborationMultiplier') : '',
   ]
 
+  const economiAdditionalArray = [
+    riskData.answers['14'] && riskData.answers['14'] === 'notPreviouslyFunded' ? t('riskTable:previousFunding') : '',
+    riskData.answers['15'] &&
+    (riskData.answers['15'] === 'internationalCompany' || riskData.answers['15'] === 'finnishCompany')
+      ? t('riskTable:companyBased')
+      : '',
+  ]
+
   const multiplierInfoText =
     multiplierArray.filter(m => m !== '').length > 0
       ? t(
@@ -73,6 +79,16 @@ const RiskTable = ({
             .replace(/,(?=[^,]+$)/, ` ${t('riskTable:and')}`)}.`
         )
       : ''
+
+  const economiAdditionalInfoText =
+    economiAdditionalArray.filter(m => m !== '').length > 0
+      ? t(
+          `${t('riskTable:economicAdditional')} ${economiAdditionalArray
+            .filter(m => m !== '')
+            .join(', ')
+            .replace(/,(?=[^,]+$)/, ` ${t('riskTable:and')}`)}.`
+        )
+      : ' '
 
   return (
     <>
@@ -126,7 +142,7 @@ const RiskTable = ({
                 <TableRow>
                   <TableCell sx={{ borderBottom: 'none' }}>
                     <RiskElement
-                      infoText={totalEconomicRiskText}
+                      infoText={economiAdditionalInfoText}
                       title={totalEconomicRisk.title}
                       level={totalEconomicRisk.level}
                     />

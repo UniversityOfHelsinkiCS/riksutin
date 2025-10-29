@@ -905,40 +905,6 @@ const getResultData = (): Result[] => [
   {
     id: 54,
     surveyId: 1,
-    optionLabel: 'economicAdditional2',
-    isSelected: {
-      fi: 'Talouden kokoanaisriski on noussut. Kokonaisriskiin vaikuttavat talouden laajuuden ja valuuttakurssiriskin lisäksi se, että onko rahoitus yritysperustainen ja onko samalta rahoittajalta saatu aikaisempaa rahoitusta.',
-      sv: '',
-      en: 'The overall economic risk has increased. In additional to the scope of the economy and currency exchange rate risks the overall risk is influenced by whether the financing is company-based and whether there has been previous funding from the same funder.',
-    },
-    data: {
-      title: {
-        fi: 'Kohonnut talouden kokonaisriski, 2',
-        sv: '',
-        en: 'Increased total economic risk, 2',
-      },
-    },
-  },
-  {
-    id: 55,
-    surveyId: 1,
-    optionLabel: 'economicAdditional3',
-    isSelected: {
-      fi: 'Talouden kokoanaisriski on noussut. Kokonaisriskiin vaikuttavat talouden laajuuden ja valuuttakurssiriskin lisäksi se, että onko rahoitus yritysperustainen ja onko ollut aikaisempaa yhteistyötä.',
-      sv: '',
-      en: 'The overall economic risk has increased. In additional to the scope of the economy and currency exchange rate risks the overall risk is influenced by whether the financing is company-based and whether there has been prior collaboration',
-    },
-    data: {
-      title: {
-        fi: 'Kohonnut talouden kokonaisriski, 3',
-        sv: '',
-        en: 'Increased total economic risk, 3',
-      },
-    },
-  },
-  {
-    id: 56,
-    surveyId: 1,
     optionLabel: 'HCI4',
     isSelected: {
       fi: '*Ei tiedossa*',
