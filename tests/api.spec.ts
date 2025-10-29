@@ -46,7 +46,6 @@ test.describe('api', () => {
       { id: 'country', level: 3 },
       { id: 'dualUse', level: 1 },
       { id: 'economic', level: 2 },
-      { id: 'economicExchange', level: 1 },
       { id: 'economicScope', level: 2 },
       { id: 'ethical', level: 1 },
       { id: 'total', level: 3 },
@@ -100,8 +99,7 @@ test.describe('api', () => {
     const expectedRisks = riskResponse([
       { id: 'country', level: 3 },
       { id: 'dualUse', level: 1 },
-      { id: 'economic', level: 2 },
-      { id: 'economicExchange', level: 1 },
+      { id: 'economic', level: 3 },
       { id: 'economicScope', level: 3 },
       { id: 'ethical', level: 2 },
       { id: 'consortium', level: 3 },
