@@ -11,7 +11,7 @@ const getTotalRisk = (riskArray: Risk[], country: UpdatedCountryData | undefined
   const agreementMultiplier = formData[10] === 'agreementNotDone' ? 1.2 : 1
   const previousCollaborationMultiplier = formData[24] === 'noSuccessfulCollaboration' ? 1.2 : 1
 
-  // Compute only the overall economy risk to the overall risk
+  // Compute only the overall economy risk to the overall risk, and exclude the childrens
   const riskFiltered = riskArray.filter(value => !['economicScope', 'economicExchange'].includes(value.id))
   const allRisks: number[] = riskFiltered
     .map(value => value.level)

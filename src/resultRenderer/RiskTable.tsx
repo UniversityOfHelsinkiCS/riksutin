@@ -40,6 +40,10 @@ const RiskTable = ({
   ]
 
   const countryRisksWithTexts = getCountryRiskTexts(countryData, results, riskData.answers, language)
+  // Some older non-updated risk results do not contain economiScope, and those should have its text in
+  // total economic risk.
+  const riskWithEconomicScope =
+    countryRisksWithTexts && countryRisksWithTexts.filter(risk => risk.id === 'economicScope').length > 0 ? true : false
 
   const otherRisksWithTexts = getRiskTexts(riskData.risks, results, riskData.answers, language)
 
@@ -88,7 +92,11 @@ const RiskTable = ({
             .join(', ')
             .replace(/,(?=[^,]+$)/, ` ${t('riskTable:and')}`)}.`
         )
-      : ' '
+      : riskWithEconomicScope
+        ? ' '
+        : results.find(r => r.optionLabel === `economicScope${totalEconomicRisk.level}`)?.isSelected[
+            language as keyof Locales
+          ]
 
   return (
     <>
