@@ -123,7 +123,7 @@ const CountryRiskElements = ({
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell colSpan={3} sx={{ paddingLeft: '15pt', borderBottom: 'none' }}>
+            <TableCell colSpan={3} sx={{ borderBottom: 'none' }}>
               <RiskElement
                 title={`${t('riskTable:countryRiskLevel')} (${highestRiskCountry.name})`}
                 level={countryRisk?.level}
@@ -135,7 +135,7 @@ const CountryRiskElements = ({
         </>
       ) : (
         <TableRow>
-          <TableCell colSpan={3} sx={{ paddingLeft: '15pt', borderBottom: 'none' }}>
+          <TableCell colSpan={3} sx={{ borderBottom: 'none' }}>
             <RiskElement
               title={t('riskTable:countryRiskLevel')}
               level={countryRisk ? countryRisk.level : null}
@@ -149,7 +149,7 @@ const CountryRiskElements = ({
         if (risk.level && risk.level > 0) {
           return (
             <TableRow key={risk.id}>
-              <TableCell colSpan={1} sx={{ paddingLeft: '35pt', borderBottom: 'none' }}>
+              <TableCell colSpan={3} sx={{ paddingLeft: '35pt', borderBottom: 'none' }}>
                 <RiskElement
                   level={risk.level}
                   title={risk.title}
