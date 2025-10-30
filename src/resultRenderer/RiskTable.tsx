@@ -140,7 +140,7 @@ const RiskTable = ({
                   ['university', 'consortium'].includes(risk.id) &&
                   forMultilateral(risk) && (
                     <TableRow key={risk.id}>
-                      <TableCell colSpan={1} sx={{ borderBottom: 'none' }}>
+                      <TableCell colSpan={3} sx={{ borderBottom: 'none' }}>
                         <RiskElement title={risk.title} level={risk.level} infoText={risk.infoText} />
                       </TableCell>
                     </TableRow>
@@ -162,8 +162,8 @@ const RiskTable = ({
                   ['economicScope', 'economicExchange'].includes(risk.id) &&
                   forMultilateral(risk) && (
                     <TableRow key={risk.id}>
-                      <TableCell colSpan={3} sx={{ paddingLeft: '35pt', borderBottom: 'none' }}>
-                        <RiskElement title={risk.title} level={risk.level} infoText={risk.infoText} />
+                      <TableCell colSpan={1} sx={{ paddingLeft: '35pt', borderBottom: 'none' }}>
+                        <RiskElement title={risk.title} level={risk.level} infoText={risk.infoText} childCell />
                       </TableCell>
                     </TableRow>
                   )

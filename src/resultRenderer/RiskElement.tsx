@@ -9,9 +9,10 @@ export interface RiskElementProps {
   level: number | null | undefined
   style?: any
   ekstra?: string
+  childCell?: boolean
 }
 
-const RiskElement = ({ infoText, title, level, style, ekstra }: RiskElementProps) => {
+const RiskElement = ({ infoText, title, level, style, ekstra, childCell }: RiskElementProps) => {
   const { Div, Markdown, Typography, t } = useComponents()
   if (!level) {
     return null
@@ -27,18 +28,24 @@ const RiskElement = ({ infoText, title, level, style, ekstra }: RiskElementProps
         borderBottom: '1px solid lightgray',
       }}
     >
-      <Div style={{ width: '30%', padding: '10px' }}>
-        <Div style={style}>
-          <Markdown>{t(title)}</Markdown>
-        </Div>
+      <Div style={{ width: childCell ? '28%' : '30%', padding: '10px' }}>
+        {childCell ? (
+          <Div style={style}>
+            <Markdown>{t(title)}</Markdown>
+          </Div>
+        ) : (
+          <Div style={style}>
+            <Markdown>{`**${t(title)}**`}</Markdown>
+          </Div>
+        )}
       </Div>
       <Div style={{ padding: '10px' }}>
         <Div
           style={{
             borderRadius: '10px',
-            width: '40px',
-            height: '40px',
-            display: 'flex',
+            width: childCell ? '33px' : '40px',
+            height: childCell ? '33px' : '40px',
+            display: 'grid',
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: riskColors[level],

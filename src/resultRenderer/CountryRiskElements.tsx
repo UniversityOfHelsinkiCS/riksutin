@@ -149,12 +149,13 @@ const CountryRiskElements = ({
         if (risk.level && risk.level > 0) {
           return (
             <TableRow key={risk.id}>
-              <TableCell colSpan={3} sx={{ paddingLeft: '35pt', borderBottom: 'none' }}>
+              <TableCell colSpan={1} sx={{ paddingLeft: '35pt', borderBottom: 'none' }}>
                 <RiskElement
                   level={risk.level}
                   title={risk.title}
                   infoText={risk.infoText}
                   style={{ paddingLeft: '10px' }}
+                  childCell
                 />
               </TableCell>
             </TableRow>
