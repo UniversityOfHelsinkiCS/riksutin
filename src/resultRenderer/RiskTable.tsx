@@ -40,12 +40,11 @@ const RiskTable = ({
   ]
 
   const countryRisksWithTexts = getCountryRiskTexts(countryData, results, riskData.answers, language)
+  const otherRisksWithTexts = getRiskTexts(riskData.risks, results, riskData.answers, language)
   // Some older non-updated risk results do not contain economiScope, and those should have its text in
   // total economic risk.
   const riskWithEconomicScope =
-    countryRisksWithTexts && countryRisksWithTexts.filter(risk => risk.id === 'economicScope').length > 0 ? true : false
-
-  const otherRisksWithTexts = getRiskTexts(riskData.risks, results, riskData.answers, language)
+    otherRisksWithTexts && otherRisksWithTexts.filter(risk => risk.id === 'economicScope').length > 0 ? true : false
 
   const hyMultilateral = riskData.answers['9'] === 'coordinator' && riskData.answers['4'] === 'multilateral'
 
