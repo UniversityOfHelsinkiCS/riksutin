@@ -89,7 +89,8 @@ const RiskTable = ({
           `${t('riskTable:economicAdditional')} ${economiAdditionalArray
             .filter(m => m !== '')
             .join(', ')
-            .replace(/,(?=[^,]+$)/, ` ${t('riskTable:and')}`)}.`
+            .replace(' yritys,', ` yritys ${t('riskTable:and')}`)
+            .replace(' company,', ` company ${t('riskTable:and')}`)}.`
         )
       : riskWithEconomicScope
         ? ' '
