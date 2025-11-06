@@ -96,49 +96,47 @@ This file contains a function `getCountryRisks`. It updates `sanctions`, `gdpr` 
 The file contains a `getOtherRisks` function that creates a `Risk[]` object which looks like this:
 
 ```typescript
-const riskArray: Risk[] = [
-  {
-    id: 'country',
-    title: 'riskTable:countryRiskLevel',
-    level: countryRiskValues ? countryRiskValues[0] : null,
-  },
-  {
-    id: 'university',
-    title: 'riskTable:universityRiskLevel',
-    level: universityRisk(formData['20'], country?.universities),
-  },
-  {
-    id: 'duration',
-    title: 'riskTable:durationRiskLevel',
-    level: questions
-      .find((question) => question.id === 12)
-      ?.optionData.options.find((o) => o.id === formData[12])?.risk,
-  },
-  {
-    id: 'dualUse',
-    title: 'riskTable:dualUseRiskLevel',
-    level: dualUseRiskValue,
-  },
-  {
-    id: 'organisation',
-    title: 'riskTable:organisationRiskLevel',
-    level: organisationRiskValue,
-  },
-  {
-    id: 'economic',
-    title: 'riskTable:economicRiskLevel',
-    level: questions
-      .find((question) => question.id === 16)
-      ?.optionData.options.find((o) => o.id === formData[16])?.risk,
-  },
-  {
-    id: 'ethical',
-    title: 'riskTable:ethicalRiskLevel',
-    level: ethicalRiskValue,
-  },
-]
+  const riskArray: Risk[] = [
+    {
+      id: 'country',
+      title: 'riskTable:countryRiskLevel',
+      level: totalCountryRiskLevel,
+    },
+    {
+      id: 'university',
+      title: 'riskTable:universityRiskLevel',
+      level: universityRisk(formData['20'], country?.universities),
+    },
+    {
+      id: 'duration',
+      title: 'riskTable:durationRiskLevel',
+      level: questions.find(question => question.id === 12)?.optionData.options.find(o => o.id === formData[12])?.risk,
+    },
+    {
+      id: 'dualUse',
+      title: 'riskTable:dualUseRiskLevel',
+      level: dualUseRiskValue,
+    },
+    {
+      id: 'organisation',
+      title: 'riskTable:organisationRiskLevel',
+      level: organisationRiskValue,
+    },
+    {
+      id: 'economic',
+      title: 'riskTable:economicRiskLevel',
+      level: totalEconomicalRisk < 4 ? totalEconomicalRisk : 3,
+    },
+    {
+      id: 'ethical',
+      title: 'riskTable:ethicalRiskLevel',
+      level: ethicalRiskValue,
+    },
+  ]
 ```
-
+If the project is funded by the company or there are no previous funding from the same funder, the economic risk is increased by one.
+Economic scope risk is added separately to ensure correct order of risks in the risk table.
+Economic currency risk is added if necessary.
 Consortium risk is added to the array if necessary.
 
 Finally all risks that have null or undefined risk level are filtered out.
