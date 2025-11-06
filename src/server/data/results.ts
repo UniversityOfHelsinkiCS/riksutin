@@ -58,8 +58,8 @@ const getResultData = (): Result[] => [
     optionLabel: 'safetyLevel1',
     isSelected: {
       fi: '*Yhteistyömaahan matkustamiseen ei liity rajoituksia. Varmistu halutessasi tarkemmin tilanteesta ulkoministeriön [matkustustiedotteista](https://um.fi/matkustustiedotteet-a-o). Helsingin yliopiston matkustusturvalllsuutta koskevat ohjeet löytyvät https://flamma.helsinki.fi/fi/group/matkustaminen/matkustusturvallisuus*',
-      sv: '*Travelling to this country is not restricted. Feel free to find additional information from the Ministry of Foreign Affairs [travel advisory](https://um.fi/matkustustiedotteet-a-o), in Finnish only. University`s travel safety instructions are available at https://flamma.helsinki.fi/en/group/matkustaminen/matkustusturvallisuus*',
-      en: '*Travelling to this country is not restricted. Feel free to find additional information from the Ministry of Foreign Affairs [travel advisory](https://um.fi/matkustustiedotteet-a-o), in Finnish only. University`s travel safety instructions are available at https://flamma.helsinki.fi/en/group/matkustaminen/matkustusturvallisuus*',
+      sv: "*Travelling to this country is not restricted. Feel free to find additional information from the Ministry of Foreign Affairs [travel advisory](https://um.fi/matkustustiedotteet-a-o), in Finnish only. University's travel safety instructions are available at https://flamma.helsinki.fi/en/group/matkustaminen/matkustusturvallisuus*",
+      en: "*Travelling to this country is not restricted. Feel free to find additional information from the Ministry of Foreign Affairs [travel advisory](https://um.fi/matkustustiedotteet-a-o), in Finnish only. University's travel safety instructions are available at https://flamma.helsinki.fi/en/group/matkustaminen/matkustusturvallisuus*",
     },
     data: {
       title: {
@@ -75,8 +75,8 @@ const getResultData = (): Result[] => [
     optionLabel: 'safetyLevel2',
     isSelected: {
       fi: '*Yhteistyömaahan matkustamiseen liittyy rajoituksia, jotka on syytä ottaa huomioon. Tutki tarkemmat yksityiskohdat ulkoministeriön [matkustustiedotteista](https://um.fi/matkustustiedotteet-a-o). Helsingin yliopiston matkustusturvalllsuutta koskevat ohjeet löytyvät https://flamma.helsinki.fi/fi/group/matkustaminen/matkustusturvallisuus*',
-      sv: '*Travelling to this country may be restricted. Please review details at the Ministry of Foreign Affairs [travel advisory](https://um.fi/matkustustiedotteet-a-o), in Finnish only. University`s travel safety instructions are available at https://flamma.helsinki.fi/en/group/matkustaminen/matkustusturvallisuus*',
-      en: '*Travelling to this country may be restricted. Please review details at the Ministry of Foreign Affairs [travel advisory](https://um.fi/matkustustiedotteet-a-o), in Finnish only. University`s travel safety instructions are available at https://flamma.helsinki.fi/en/group/matkustaminen/matkustusturvallisuus*',
+      sv: "*Travelling to this country may be restricted. Please review details at the Ministry of Foreign Affairs [travel advisory](https://um.fi/matkustustiedotteet-a-o), in Finnish only. University's travel safety instructions are available at https://flamma.helsinki.fi/en/group/matkustaminen/matkustusturvallisuus*",
+      en: "*Travelling to this country may be restricted. Please review details at the Ministry of Foreign Affairs [travel advisory](https://um.fi/matkustustiedotteet-a-o), in Finnish only. University's travel safety instructions are available at https://flamma.helsinki.fi/en/group/matkustaminen/matkustusturvallisuus*",
     },
     data: {
       title: {
@@ -92,8 +92,8 @@ const getResultData = (): Result[] => [
     optionLabel: 'safetyLevel3',
     isSelected: {
       fi: '*Yhteistyömaahan matkustaminen ei ole tällä hetkellä mahdollista. Tutki tarkemmat yksityiskohdat ulkoministeriön [matkustustiedotteista](https://um.fi/matkustustiedotteet-a-o). Helsingin yliopiston matkustusturvalllsuutta koskevat ohjeet löytyvät https://flamma.helsinki.fi/fi/group/matkustaminen/matkustusturvallisuus*',
-      sv: '*Travelling to this country is not possible at the moment. Please review details at the Ministry of Foreign Affairs [travel advisory](https://um.fi/matkustustiedotteet-a-o), in Finnish only. University`s travel safety instructions are available at https://flamma.helsinki.fi/en/group/matkustaminen/matkustusturvallisuus*',
-      en: '*Travelling to this country is not possible at the moment. Please review details at the Ministry of Foreign Affairs [travel advisory](https://um.fi/matkustustiedotteet-a-o), in Finnish only. University`s travel safety instructions are available at https://flamma.helsinki.fi/en/group/matkustaminen/matkustusturvallisuus*',
+      sv: "*Travelling to this country is not possible at the moment. Please review details at the Ministry of Foreign Affairs [travel advisory](https://um.fi/matkustustiedotteet-a-o), in Finnish only. University's travel safety instructions are available at https://flamma.helsinki.fi/en/group/matkustaminen/matkustusturvallisuus*",
+      en: "*Travelling to this country is not possible at the moment. Please review details at the Ministry of Foreign Affairs [travel advisory](https://um.fi/matkustustiedotteet-a-o), in Finnish only. University's travel safety instructions are available at https://flamma.helsinki.fi/en/group/matkustaminen/matkustusturvallisuus*",
     },
     data: {
       title: {
@@ -397,7 +397,7 @@ const getResultData = (): Result[] => [
     surveyId: 1,
     optionLabel: 'organisation3',
     isSelected: {
-      fi: '*Yhteistyökumppani ei kuulu EUn komission tunnistamiin kumppaniorganisaatioihin, eikä sen kanssa ole tehty aiempaa yhteistyötä. Selvitä kumppanin taustat ennen yhteistyöhön sitoutmista ja sen aloittamista.*',
+      fi: '*Yhteistyökumppani ei kuulu EUn komission tunnistamiin kumppaniorganisaatioihin, eikä sen kanssa ole tehty aiempaa yhteistyötä. Selvitä kumppanin taustat ennen yhteistyöhön sitoutumista ja sen aloittamista.*',
       sv: '',
       en: "*Partner organisation does not appear on EU Comission list of approved organisations, and there is no history of previous collaboration. Please investigate the partner's background before committing to collaboration.*",
     },
@@ -414,9 +414,9 @@ const getResultData = (): Result[] => [
     surveyId: 1,
     optionLabel: 'dualUse1',
     isSelected: {
-      fi: '*Antamiesi tietojen perusteella yhteistyö ei sisällä kaksoiskäyttöriskejä. Jos tästä kuitenkin on jotain epävarmuutta, tutustu yliopiston ohjeisiin.*',
+      fi: '*Antamiesi tietojen perusteella yhteistyö ei sisällä kaksoiskäyttöriskejä. Jos tästä kuitenkin on jotain epävarmuutta, tutustu yliopiston [ohjeisiin](https://flamma.helsinki.fi/fi/group/tutkimuksen-tuki/pakotteet-ja-kaksikayttoasiat-tutkimuksessa).*',
       sv: '',
-      en: '*Based on your response, this collaboration does not pose Dual Use risks. If there is any doubt, please review the instructions at Flamma.*',
+      en: '*Based on your response, this collaboration does not pose Dual Use risks. If there is any doubt, please review the [instructions at Flamma](https://flamma.helsinki.fi/fi/group/tutkimuksen-tuki/pakotteet-ja-kaksikayttoasiat-tutkimuksessa).*',
     },
     data: {
       title: {
@@ -431,9 +431,9 @@ const getResultData = (): Result[] => [
     surveyId: 1,
     optionLabel: 'dualUse2',
     isSelected: {
-      fi: '*Olet ilmoittanut, että ei ole tiedossa onko yhteistyössä mahdollisuus siihen, että kumppanille siirtyy sotilaskäyttöön soveltuvaa teknologiaa tai osaamista. Intressimme ja myös lakisääteinen velvollisuutemme on varmistaa, että asiantuntijuuttamme tai teknologiaamme ei päädy sotilaalliseen loppukäyttöön pakotemaissa. Tutustu tarkasti Flammassa oleviin ohjeisiin ja ota yhteyttä tarvittaessa yliopiston tutkimuspalveluiden asiantuntijoihin.*',
+      fi: '*Olet ilmoittanut, että ei ole tiedossa onko yhteistyössä mahdollisuus siihen, että kumppanille siirtyy sotilaskäyttöön soveltuvaa teknologiaa tai osaamista. Intressimme ja myös lakisääteinen velvollisuutemme on varmistaa, että asiantuntijuuttamme tai teknologiaamme ei päädy sotilaalliseen loppukäyttöön pakotemaissa. Tutustu tarkasti [Flammassa oleviin ohjeisiin](https://flamma.helsinki.fi/fi/group/tutkimuksen-tuki/pakotteet-ja-kaksikayttoasiat-tutkimuksessa) ja ota yhteyttä tarvittaessa yliopiston tutkimuspalveluiden asiantuntijoihin.*',
       sv: '',
-      en: '*According to the information provided, the possibility of military technology or related knowledge being tranferred to the partner in question in not certain. It is our interest, and legal requirement to ensure that our expertise or technology does not end up in military use in sanctioned countries. Please review related instructions in Flamma and contact Research Services experts, if necessary..*',
+      en: '*According to the information provided, the possibility of military technology or related knowledge being transferred to the partner in question is not certain. It is our interest, and legal requirement to ensure that our expertise or technology does not end up in military use in sanctioned countries. Please review [related instructions in Flamma](https://flamma.helsinki.fi/fi/group/tutkimuksen-tuki/pakotteet-ja-kaksikayttoasiat-tutkimuksessa) and contact Research Services experts, if necessary.*',
     },
     data: {
       title: {
@@ -448,9 +448,9 @@ const getResultData = (): Result[] => [
     surveyId: 1,
     optionLabel: 'dualUse3',
     isSelected: {
-      fi: '*Olet ilmoittanut, että yhteistyössä on mahdollisuus siihen, että kumppanille siirtyy sotilaskäyttöön soveltuvaa teknologiaa tai osaamista. Intressimme ja myös lakisääteinen velvollisuutemme on varmistaa, että asiantuntijuuttamme tai teknologiaamme ei päädy sotilaalliseen loppukäyttöön pakotemaissa. Tutustu tarkasti Flammassa oleviin ohjeisiin ja ota yhteyttä tarvittaessa yliopiston tutkimuspalveluiden asiantuntijoihin.*',
+      fi: '*Olet ilmoittanut, että yhteistyössä on mahdollisuus siihen, että kumppanille siirtyy sotilaskäyttöön soveltuvaa teknologiaa tai osaamista. Intressimme ja myös lakisääteinen velvollisuutemme on varmistaa, että asiantuntijuuttamme tai teknologiaamme ei päädy sotilaalliseen loppukäyttöön pakotemaissa. Tutustu tarkasti [Flammassa oleviin ohjeisiin](https://flamma.helsinki.fi/fi/group/tutkimuksen-tuki/pakotteet-ja-kaksikayttoasiat-tutkimuksessa) ja ota yhteyttä tarvittaessa yliopiston tutkimuspalveluiden asiantuntijoihin.*',
       sv: '',
-      en: '*According to the information provided, there is a possibility of military technology or related knowledge being tranferred to the partner in question. It is our interest, and legal requirement to ensure that our expertise or technology does not end up in military use in sanctioned countries. Please review related instructions in Flamma and contact Research Services experts, if necessary.*',
+      en: '*According to the information provided, there is a possibility of military technology or related knowledge being transferred to the partner in question. It is our interest, and legal requirement to ensure that our expertise or technology does not end up in military use in sanctioned countries. Please review [related instructions in Flamma](https://flamma.helsinki.fi/fi/group/tutkimuksen-tuki/pakotteet-ja-kaksikayttoasiat-tutkimuksessa) and contact Research Services experts, if necessary.*',
     },
     data: {
       title: {
@@ -465,9 +465,9 @@ const getResultData = (): Result[] => [
     surveyId: 1,
     optionLabel: 'university1',
     isSelected: {
-      fi: '*Yhteistyöyliopisto on listattu World Higher Education -tietokannassa.*',
+      fi: '*Yhteistyöyliopisto on listattu World Higher Education -tietokannassa. Tämä tarkoittaa, että yliopisto kuuluu varmuudella sijaintimaansa viralliseen koulutusjärjestelmään. Tämä on minimtaso, eikä välttämättä ole tae sen laadusta.*',
       sv: '',
-      en: '*Partner university is listed in the World Higher Education database.*',
+      en: '*Partner university is listed in the World Higher Education database. This is an assurance that the university is part of the official higher education system of its country of location. This is a minimum standard, but does not guarantee the quality of the institution.*',
     },
     data: {
       title: {
@@ -499,9 +499,9 @@ const getResultData = (): Result[] => [
     surveyId: 1,
     optionLabel: 'university3',
     isSelected: {
-      fi: '*Yhteistyöyliopistoa ei löydy World Higher Education -tietokannasta. Varmista, että kyseessä on maansa virallisesti hyväksyttyihin kuuluva yliopisto.*',
+      fi: '*Yhteistyöyliopistoa ei löydy World Higher Education -tietokannasta. Varmista, että kyseessä on maansa viralliseen korkakoulujärjestelmään kuuluva yliopisto. Voit hyödyntää nettihakuja, tai olla tarvittaessa yhteydessä grp-int-risks@helsinki.fi*',
       sv: '',
-      en: '*Collaboration university is not part of the World Higher Education database. Please take steps to make sure, the partner is a legitimate university.*',
+      en: '*Collaboration university is not part of the World Higher Education database and therefore likely not part of the higher education system of the country where it is based. Please take steps to make sure, the partner is a legitimate university by additional web searches or contacting grp-int-risks@helsinki.fi*',
     },
     data: {
       title: {
@@ -601,9 +601,9 @@ const getResultData = (): Result[] => [
     surveyId: 1,
     optionLabel: 'economicScope2',
     isSelected: {
-      fi: '*Yhteistyön taloudellinen laajuus on kohtalainen ja siihen liittyvä riskitaso on kohonnut*',
+      fi: '*Yhteistyön taloudellinen laajuus on kohtalainen ja siihen liittyvä riskitaso on kohonnut. Varmista, että yksikkösi talouden lähipalvelut käy etukäteen läpi hankkeen budjetin.*',
       sv: '',
-      en: '*The financial scope of the collaboration is moderate, and the related risk level is elevated*',
+      en: "*The financial scope of the collaboration is moderate, and the related risk level is elevated.Make sure that your unit's financial experts have reviewed the budget in advance.*",
     },
     data: {
       title: {
@@ -618,9 +618,9 @@ const getResultData = (): Result[] => [
     surveyId: 1,
     optionLabel: 'economicScope1',
     isSelected: {
-      fi: '*Yhteistyön taloudellinen laajuus ei ole merkittävä, eikä muodosta merkittävää riskiä*',
+      fi: '*Yhteistyön taloudellinen laajuus ei ole merkittävä, eikä muodosta merkittävää riskiä. Varmista tarvittaessa ykskkösi talouden lähipalveluilta, että hankkeen budjetti on asianmukainen.*',
       sv: '',
-      en: '*The financial scope of the collaboration is not significant, and does not pose a substantial risk*',
+      en: "*The financial scope of the collaboration is not significant, and does not pose a substantial risk. Consult your unit's financial experts to make sure that the project budget is appropriate.*",
     },
     data: {
       title: {
@@ -635,7 +635,7 @@ const getResultData = (): Result[] => [
     surveyId: 1,
     optionLabel: 'consortium1',
     isSelected: {
-      fi: '*Monenkeskisessä yhteistyössäsi ei ole  yhteistyökumppaneita, jotka sijaitsevan korkean riski maissa*',
+      fi: '*Monenkeskisessä yhteistyössäsi ei ole yhteistyökumppaneita, jotka sijaitsevan korkean riski maissa*',
       sv: '',
       en: '*Your multilateral collaboration does not include partners from high-risk countries*',
     },
@@ -737,9 +737,9 @@ const getResultData = (): Result[] => [
     surveyId: 1,
     optionLabel: 'country1',
     isSelected: {
-      fi: '*Maan yhteenlaskettu kokonaisriskitaso on matala*',
+      fi: '*Maan yhteenlaskettu kokonaisriskitaso on matala.*',
       sv: '',
-      en: '*Total risk level of the selected country is low*',
+      en: '*Total risk level of the selected country is low.*',
     },
     data: {
       title: {
@@ -754,9 +754,9 @@ const getResultData = (): Result[] => [
     surveyId: 1,
     optionLabel: 'country2',
     isSelected: {
-      fi: '*Maan yhteenlaskettu kokonaisriskitaso on kohonnut*',
+      fi: '*Maan yhteenlaskettu kokonaisriskitaso on kohonnut.*',
       sv: '',
-      en: '*Total risk level of the selected country is elevated*',
+      en: '*Total risk level of the selected country is elevated.*',
     },
     data: {
       title: {
@@ -771,9 +771,9 @@ const getResultData = (): Result[] => [
     surveyId: 1,
     optionLabel: 'country3',
     isSelected: {
-      fi: '*Maan yhteenlaskettu kokonaisriskitaso on korkea*',
+      fi: '*Maan yhteenlaskettu kokonaisriskitaso on korkea.*',
       sv: '',
-      en: '*Total risk level of the selected country is high*',
+      en: '*Total risk level of the selected country is high.*',
     },
     data: {
       title: {
@@ -788,9 +788,9 @@ const getResultData = (): Result[] => [
     surveyId: 1,
     optionLabel: 'sanctions1',
     isSelected: {
-      fi: '*Maahan ei kohdistu pakotteita*',
+      fi: '*Yhteistyökumppanisi sijaitsee maassa, johon ei kohdistu YK- tai EU-pakotteita. Pakotteilla ei siis ole vaikutusta yhteistyöhankkeeseesi.*',
       sv: '',
-      en: '*There are no sanctions*',
+      en: '*Your collaboration partner is located in a country, which is no sanctioned by UN or EU. Sanctions have no effect on your collaboration.*',
     },
     data: {
       title: {
@@ -824,7 +824,7 @@ const getResultData = (): Result[] => [
     isSelected: {
       fi: '*Yhteistyösi talous on osittain riippuvainen valuuttakurssien vaihtelusta. Varmista, ettei valuuttakurssiriski muodostu liian suureksi ja jos mahdollista, pyri siihen, että yhteistyösi olisi kokonaan europerusteista. Konsultoi tarvittaessa yksikkösi talousasiantuntijoita.*',
       sv: '',
-      en: '*Your collaborition is somewhat vulnerable to currency exchange risks. Please ensure that the currency risk is not excessive, and consider using Euro as the only currency, if possible. Consult your unit`s financial experts.*',
+      en: "*Your collaborition is somewhat vulnerable to currency exchange risks. Please ensure that the currency risk is not excessive, and consider using Euro as the only currency, if possible. Consult your unit's financial experts.*",
     },
     data: {
       title: {
@@ -841,7 +841,7 @@ const getResultData = (): Result[] => [
     isSelected: {
       fi: '*Yhteistyösi talous on riippuvainen valuuttakurssien vaihtelusta. Varmista, että yhteistyösopimuksessa on riittävät mekanismit valuuttakurssiriskin hallitsemiseksi ja konsultoi yksikkösi talousasiantuntijoita. Suhteuta valuuttakurssiriskien hallintatavavat hankkeen kokonaisrahoituksen määrään sen koko keston aikana.*',
       sv: '',
-      en: '*Your collaboration is vulnerable to currency exchange risks. Please ensure that your collaboration agreement has sufficient safeguards for managing the currency exchange risks. Consult your unit`s financial experts. Use proportionate measures on how to manage currency exchange risks with respect to the total funding of the project for the entire duration of it.*',
+      en: "*Your collaboration is vulnerable to currency exchange risks. Please ensure that your collaboration agreement has sufficient safeguards for managing the currency exchange risks. Consult your unit's financial experts. Use proportionate measures on how to manage currency exchange risks with respect to the total funding of the project for the entire duration of it.*",
     },
     data: {
       title: {
