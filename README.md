@@ -1,4 +1,4 @@
-# Riksutin [![Release](https://github.com/UniversityOfHelsinkiCS/riksutin/actions/workflows/production.yml/badge.svg)](https://github.com/UniversityOfHelsinkiCS/riksutin/actions/workflows/production.yml) ![Release](https://github.com/UniversityOfHelsinkiCS/riksutin/actions/workflows/staging.yml/badge.svg)
+# Riksutin [![Release](https://github.com/UniversityOfHelsinkiCS/riksutin/actions/workflows/production.yml/badge.svg)](https://github.com/UniversityOfHelsinkiCS/riksutin/actions/workflows/production.yml) [![Release](https://github.com/UniversityOfHelsinkiCS/riksutin/actions/workflows/staging.yml/badge.svg)](https://github.com/UniversityOfHelsinkiCS/riksutin/actions)
 
 Riksutin (officially known as **Risk-i** or **International collaboration risk assessment application**) is a tool created for researchers and staff of University of Helsinki who are planning a project that includes collaboration with organisations, such as universities, from other countries.
 
