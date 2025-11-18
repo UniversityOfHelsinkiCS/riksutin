@@ -95,26 +95,28 @@ const RenderAnswers = ({
                       : ((answers[currentQuestion.id] as string) ?? '')}
                   </Typography>
                 </Div>
-                {survey?.Questions.filter(childQuestion => childQuestion.parentId === currentQuestion.id)?.map(
-                  childQuestion => (
-                    <Div key={childQuestion.id} style={{ margin: '16px' }}>
-                      <Div style={{ borderLeft: '1px solid lightgray' }}>
-                        {answers[childQuestion.id] && (
-                          <Div style={{ margin: '16px' }}>
-                            <Typography style={{ fontWeight: '800' }}>
-                              {childQuestion.title[language as keyof Locales]}
-                            </Typography>
-                            <Typography>
-                              {[26, 28].includes(childQuestion.id)
-                                ? arrayToString(answers[childQuestion.id])
-                                : (answers[childQuestion.id] as string)}
-                            </Typography>
-                          </Div>
-                        )}
-                      </Div>
+                {survey?.Questions.filter(
+                  childQuestion =>
+                    childQuestion.parentId === currentQuestion.id &&
+                    !(resultData[9] !== 'coordinator' && childQuestion.parentId === 4)
+                )?.map(childQuestion => (
+                  <Div key={childQuestion.id} style={{ margin: '16px' }}>
+                    <Div style={{ borderLeft: '1px solid lightgray' }}>
+                      {answers[childQuestion.id] && (
+                        <Div style={{ margin: '16px' }}>
+                          <Typography style={{ fontWeight: '800' }}>
+                            {childQuestion.title[language as keyof Locales]}
+                          </Typography>
+                          <Typography>
+                            {[26, 28].includes(childQuestion.id)
+                              ? arrayToString(answers[childQuestion.id])
+                              : (answers[childQuestion.id] as string)}
+                          </Typography>
+                        </Div>
+                      )}
                     </Div>
-                  )
-                )}
+                  </Div>
+                ))}
               </>
             )}
             {currentQuestion.id === 6 && answers[21] && (
