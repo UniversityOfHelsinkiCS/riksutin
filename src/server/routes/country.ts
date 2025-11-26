@@ -107,7 +107,7 @@ countryRouter.get('/:code', async (req, res) => {
   return res.status(200).send(country)
 })
 
-countryRouter.get('/cache', adminHandler, async (req, res) => {
+countryRouter.get('/cache/flush', adminHandler, async (req, res) => {
   if (req.query.all === 'true') {
     await cacheCountries()
   }
