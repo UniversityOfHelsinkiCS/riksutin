@@ -191,7 +191,7 @@ export const buildCache = async () => {
 export const buildIndividualCountryCaches2 = async () => {
   const countries = await getCountryData()
 
-  const codes = countries.map(c => c.iso2Code).slice(0, 20)
+  const codes = countries.map(c => c.iso2Code)
   console.log('countries', codes.length, codes)
 
   const failed: string[] = []

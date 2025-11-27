@@ -22,6 +22,10 @@ export const cacheSafetyLevel = async (code: string) => {
   console.log('HTTP REQUEST ', url)
   try {
     const response = await fetch(url)
+    if (response.status === 404) {
+      return 1
+    }
+
     if (!response.ok) {
       return -1
     }
@@ -44,6 +48,8 @@ export const cacheSafetyLevel = async (code: string) => {
     const safetyLevelRisk = safetyLevels.find(level => level[0] === safetyLevel)?.[1] ?? null
 
     if (!safetyLevelRisk) {
+      console.log(safetyLevels)
+      console.log('!safetyLevelRisk', code)
       return -1
     }
 
