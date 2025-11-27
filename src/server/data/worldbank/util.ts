@@ -188,6 +188,30 @@ export const buildCache = async () => {
   console.log('caching country data: done')
 }
 
+export const buildIndividualCountryCaches2 = async () => {
+  const countries = await getCountryData()
+
+  const codes = countries.map(c => c.iso2Code).slice(0, 20)
+  console.log('countries', codes.length, codes)
+
+  const failed: string[] = []
+
+  for (const code of codes) {
+    console.log(code)
+    const um = await cacheSafetyLevel(code)
+    if (um < 0) {
+      failed.push(code)
+    }
+
+    await sleep(50)
+  }
+
+  console.log('failed:', failed)
+
+  console.log('caching country data: done')
+  return { countries: countries.length, failed }
+}
+
 export const buildIndividualCountryCaches = async () => {
   const countries = await getCountryData()
 
@@ -198,9 +222,8 @@ export const buildIndividualCountryCaches = async () => {
 
   for (const code of codes) {
     console.log(code)
-    try {
-      //await cacheSafetyLevel(code)
-    } catch (e) {
+    const um = await cacheSafetyLevel(code)
+    if (um < 0) {
       failed.push(code)
     }
     try {

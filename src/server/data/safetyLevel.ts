@@ -21,7 +21,13 @@ export const cacheSafetyLevel = async (code: string) => {
 
   console.log('HTTP REQUEST ', url)
   try {
-    const feed = await parser.parseURL(url)
+    const response = await fetch(url)
+    if (!response.ok) {
+      return -1
+    }
+
+    const xmlText = await response.text()
+    const feed = await parser.parseString(xmlText)
 
     const element = feed.items
     const dom = new JSDOM(element[0].encoded)
@@ -36,6 +42,10 @@ export const cacheSafetyLevel = async (code: string) => {
     ]
 
     const safetyLevelRisk = safetyLevels.find(level => level[0] === safetyLevel)?.[1] ?? null
+
+    if (!safetyLevelRisk) {
+      return -1
+    }
 
     await setPermanent(url, safetyLevelRisk)
     return safetyLevelRisk

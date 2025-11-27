@@ -14,7 +14,7 @@ import { getCountries, cacheCountries } from '../services/countries'
 import getHumanDevelopment, { cacheHdrData } from '../data/humanDevelopment'
 import getAcademicFreedom from '../data/academicfreedom'
 import { getWarnings } from '../services/warning'
-import { buildIndividualCountryCaches, cacheCountryData } from '../data/worldbank/util'
+import { buildIndividualCountryCaches, buildIndividualCountryCaches2, cacheCountryData } from '../data/worldbank/util'
 import adminHandler from '../middleware/admin'
 
 export const getCountryData = async (code: string | undefined): Promise<CountryData | null> => {
@@ -114,12 +114,13 @@ countryRouter.get('/cache/flush', adminHandler, async (req, res) => {
   await cacheSanctionsData()
   await cacheCountryData()
   await cacheHighRiskCountries()
+  await buildIndividualCountryCaches()
 
   return res.status(200).send({ status: 'OK' })
 })
 
 countryRouter.get('/cache/debug', async (req, res) => {
-  const result = await buildIndividualCountryCaches()
+  const result = await buildIndividualCountryCaches2()
 
   return res.status(200).send({ status: 'OK', result })
 })

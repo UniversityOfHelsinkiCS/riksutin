@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 3000
 const BROKEN_SANCTIONS = process.env.BROKEN_SANCTIONS || false
 const BROKEN_COUNTRIES = process.env.BROKEN_COUNTRIES || false
 const BROKEN_INDICATORS = process.env.BROKEN_INDICATORS || false
+const BROKEN_UM = process.env.BROKEN_UM | false
 
 let sentMail = []
 
@@ -109,9 +110,14 @@ app.get('/country/:countryCode/indicator/:indicatorCode', async (req, res) => {
 
 app.get('/um/o/rss', async (req, res) => {
   console.log('MOCK UM')
+  if (BROKEN_UM && !req.query.ok) {
+    console.log('MOCK UM, broken', BROKEN_UM)
+    return res.status(Number(BROKEN_UM)).send({ message: 'errored' })
+  }
+
   const xml = await fs.readFile('./data/travelinfo.xml', 'utf-8')
   res.set('Content-Type', 'application/rss+xml;charset=UTF-8')
-  res.send(xml)
+  return res.send(xml)
 })
 
 app.listen(PORT, () => {
@@ -119,4 +125,5 @@ app.listen(PORT, () => {
   console.log('BROKEN_SANCTIONS', BROKEN_SANCTIONS)
   console.log('BROKEN_COUNTRIES', BROKEN_COUNTRIES)
   console.log('BROKEN_INDICATORS', BROKEN_INDICATORS)
+  console.log('BROKEN_UM', BROKEN_UM)
 })
