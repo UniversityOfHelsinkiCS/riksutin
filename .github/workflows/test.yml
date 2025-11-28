@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Build project for eslint
-        run: npm install
+        run: npm ci
       - name: Run eslint
         run: npm run lint
         
