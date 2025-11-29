@@ -22,12 +22,17 @@ export const cacheUniversityData = async (countryName: string) => {
     body: formdata,
   })
 
+  if (!response.ok) {
+    return null
+  }
+
   const key = getKey(countryName)
   if (LOG_CACHE) {
     console.log('HTTP POST REQUEST ', key)
   }
 
   const html = await response.text()
+
   const universityNames: string[] = parseHTML(html)
 
   await setPermanent(key, universityNames)

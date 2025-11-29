@@ -160,23 +160,25 @@ export const buildCache = async () => {
 
   for (const code of codes) {
     console.log(code)
-    try {
-      await cacheSafetyLevel(code)
-    } catch (e) {
+
+    const safetyOk = await cacheSafetyLevel(code)
+    if (safetyOk < 0) {
       failed.push(code)
     }
-    try {
-      const countryName = countries.find(c => c.iso2Code === code).name
-      await cacheUniversityData(countryName)
-    } catch (e) {
+
+    const countryName = countries.find(c => c.iso2Code === code).name
+    const univOk = await cacheUniversityData(countryName)
+    if (!univOk) {
       failed.push(code)
     }
-    const cc = await cacheCountryIndicator(code, 'CC.PER.RNK')
-    if (!cc) {
+
+    const ccOk = await cacheCountryIndicator(code, 'CC.PER.RNK')
+    if (!ccOk) {
       failed.push(code)
     }
-    const pv = await cacheCountryIndicator(code, 'PV.PER.RNK')
-    if (!pv) {
+
+    const pvOk = await cacheCountryIndicator(code, 'PV.PER.RNK')
+    if (!pvOk) {
       failed.push(code)
     }
 
@@ -191,15 +193,16 @@ export const buildCache = async () => {
 export const buildIndividualCountryCaches2 = async () => {
   const countries = await getCountryData()
 
-  const codes = countries.map(c => c.iso2Code)
-  console.log('countries', codes.length, codes)
+  const codes = countries.map(c => c.iso2Code).slice(0, 10)
+  console.log('CACHE2 countries', codes.length, codes)
 
   const failed: string[] = []
 
   for (const code of codes) {
     console.log(code)
-    const um = await cacheSafetyLevel(code)
-    if (um < 0) {
+    const countryName = countries.find(c => c.iso2Code === code).name
+    const ok = await cacheUniversityData(countryName)
+    if (!ok) {
       failed.push(code)
     }
 

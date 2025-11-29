@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 3000
 const BROKEN_SANCTIONS = process.env.BROKEN_SANCTIONS || false
 const BROKEN_COUNTRIES = process.env.BROKEN_COUNTRIES || false
 const BROKEN_INDICATORS = process.env.BROKEN_INDICATORS || false
+const BROKEN_UNIVERSITIES = process.env.BROKEN_UNIVERSITIES || false
 const BROKEN_UM = process.env.BROKEN_UM | false
 
 let sentMail = []
@@ -43,11 +44,16 @@ app.get('/countries', async (req, res) => {
 })
 
 app.post('/universities', async (req, res) => {
+  if (BROKEN_UNIVERSITIES && !req.query.ok) {
+    console.log('MOCK universities, broken', BROKEN_UNIVERSITIES)
+    return res.status(Number(BROKEN_UNIVERSITIES)).send({ message: 'errored' })
+  }
+
   const { country } = req.query
   const html = await fs.readFile('./data/univ.html', 'utf-8')
   res.set('Content-Type', 'text/html; charset=UTF-8')
   console.log('MOCK universities', country)
-  res.send(html)
+  return res.send(html)
 })
 
 app.post('/pate/upload', async (req, res) => {
@@ -124,6 +130,7 @@ app.listen(PORT, () => {
   console.log('MOCK started in port', PORT)
   console.log('BROKEN_SANCTIONS', BROKEN_SANCTIONS)
   console.log('BROKEN_COUNTRIES', BROKEN_COUNTRIES)
+  console.log('BROKEN_UNIVERSITIES', BROKEN_UNIVERSITIES)
   console.log('BROKEN_INDICATORS', BROKEN_INDICATORS)
   console.log('BROKEN_UM', BROKEN_UM)
 })
