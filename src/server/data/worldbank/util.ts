@@ -193,7 +193,7 @@ export const buildCache = async () => {
 export const buildIndividualCountryCaches2 = async () => {
   const countries = await getCountryData()
 
-  const codes = countries.map(c => c.iso2Code).slice(0, 10)
+  const codes = countries.map(c => c.iso2Code)
   console.log('CACHE2 countries', codes.length, codes)
 
   const failed: string[] = []
@@ -229,10 +229,10 @@ export const buildIndividualCountryCaches = async () => {
     if (um < 0) {
       failed.push(code)
     }
-    try {
-      //const countryName = countries.find(c => c.iso2Code === code).name
-      //await cacheUniversityData(countryName)
-    } catch (e) {
+
+    const countryName = countries.find(c => c.iso2Code === code).name
+    const okUniv = await cacheUniversityData(countryName)
+    if (!okUniv) {
       failed.push(code)
     }
 
