@@ -118,6 +118,11 @@ countryRouter.get('/cache/flush', adminHandler, async (req, res) => {
   return res.status(200).send({ status: 'OK' })
 })
 
+countryRouter.get('/cache/debug', adminHandler, async (req, res) => {
+  const failed = await buildPerCountryCache()
+  return res.status(200).send({ failed })
+})
+
 countryRouter.get('/cache/highrisk', adminHandler, async (req, res) => {
   await cacheHighRiskCountries()
 

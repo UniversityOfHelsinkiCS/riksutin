@@ -22,11 +22,13 @@ export const cacheUniversityData = async (countryName: string) => {
     body: formdata,
   })
 
+  const key = getKey(countryName)
+
   if (!response.ok) {
+    console.log('HTTP POST FAIL ', key)
     return null
   }
 
-  const key = getKey(countryName)
   if (LOG_CACHE) {
     console.log('HTTP POST REQUEST ', key)
   }

@@ -19,7 +19,10 @@ export const cacheSafetyLevel = async (code: string) => {
 
   const url = getUrl(code)
 
-  console.log('HTTP REQUEST ', url)
+  if (LOG_CACHE) {
+    console.log('HTTP REQUEST ', url)
+  }
+
   try {
     const response = await fetch(url)
     if (response.status === 404) {
@@ -27,6 +30,7 @@ export const cacheSafetyLevel = async (code: string) => {
     }
 
     if (!response.ok) {
+      console.log('HTTP REQUEST FAIL ', url)
       return -1
     }
 

@@ -58,8 +58,6 @@ export const cacheCountryData = async () => {
   }
 }
 
-/* */
-
 export const cacheIndicatorData = async (path: string) => {
   const url = `${WORLDBANK_BASE_URL}/${path}?${params}`
 
@@ -151,39 +149,45 @@ export const buildPerCountryCache = async () => {
   console.log('caching country data: started')
 
   const countries = await getCountryData()
-  const codes = countries.map(c => c.iso2Code)
+  const codes = countries.map(c => c.iso2Code).slice(0, 10)
   console.log('countries', codes.length)
 
-  const failed: string[] = []
+  const failed = {
+    safety: [] as string[],
+    university: [] as string[],
+    corruption: [] as string[],
+    violence: [] as string[],
+  }
 
   for (const code of codes) {
     console.log(code)
 
     const safetyOk = await cacheSafetyLevel(code)
     if (safetyOk < 0) {
-      failed.push(code)
+      failed.safety.push(code)
     }
 
     const countryName = countries.find(c => c.iso2Code === code).name
     const univOk = await cacheUniversityData(countryName)
     if (!univOk) {
-      failed.push(code)
+      failed.university.push(code)
     }
 
     const ccOk = await cacheCountryIndicator(code, 'CC.PER.RNK')
     if (!ccOk) {
-      failed.push(code)
+      failed.corruption.push(code)
     }
 
     const pvOk = await cacheCountryIndicator(code, 'PV.PER.RNK')
     if (!pvOk) {
-      failed.push(code)
+      failed.violence.push(code)
     }
 
-    await sleep(50)
+    await sleep(500)
   }
 
   console.log('failed:', failed)
 
   console.log('caching country data: done')
+  return failed
 }
