@@ -149,7 +149,7 @@ export const buildPerCountryCache = async () => {
   console.log('caching country data: started')
 
   const countries = await getCountryData()
-  const codes = countries.map(c => c.iso2Code).slice(0, 10)
+  const codes = countries.map(c => c.iso2Code)
   console.log('countries', codes.length)
 
   const failed = {
