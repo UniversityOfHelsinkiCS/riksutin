@@ -9,12 +9,11 @@ import fetchSafetyLevelData from '../data/safetyLevel'
 import getCountryUniversities from '../data/whed/countryUniversities'
 import fetchSanctionsData, { cacheSanctionsData } from '../data/sanctions/sanctionsMap'
 import parseRuleOfLaw from '../data/ruleOfLaw/parseRuleOfLaw'
-import { getCountries, cacheCountries } from '../services/countries'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import getHumanDevelopment, { cacheHdrData } from '../data/humanDevelopment'
+import { getCountries } from '../services/countries'
+import getHumanDevelopment from '../data/humanDevelopment'
 import getAcademicFreedom from '../data/academicfreedom'
 import { getWarnings } from '../services/warning'
-import { buildIndividualCountryCaches, buildIndividualCountryCaches2, cacheCountryData } from '../data/worldbank/util'
+import { buildPerCountryCache, cacheCountryData } from '../data/worldbank/util'
 import adminHandler from '../middleware/admin'
 
 export const getCountryData = async (code: string | undefined): Promise<CountryData | null> => {
@@ -108,21 +107,15 @@ countryRouter.get('/:code', async (req, res) => {
 })
 
 countryRouter.get('/cache/flush', adminHandler, async (req, res) => {
-  if (req.query.all === 'true') {
-    await cacheCountries()
-  }
   await cacheSanctionsData()
   await cacheCountryData()
   await cacheHighRiskCountries()
-  await buildIndividualCountryCaches()
+
+  if (req.query.all === 'true') {
+    await buildPerCountryCache()
+  }
 
   return res.status(200).send({ status: 'OK' })
-})
-
-countryRouter.get('/cache/debug', async (req, res) => {
-  const result = await buildIndividualCountryCaches2()
-
-  return res.status(200).send({ status: 'OK', result })
 })
 
 countryRouter.get('/cache/highrisk', adminHandler, async (req, res) => {

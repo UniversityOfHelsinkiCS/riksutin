@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import type { Indicator } from '@server/types'
-import { get, getPermanent, setPermanent } from '../../util/redis'
+import { getPermanent, setPermanent } from '../../util/redis'
 import { cacheSafetyLevel } from '../safetyLevel'
 import { cacheUniversityData } from '../whed/countryUniversities'
 import { WORLDBANK_BASE_URL, NO_CACHE, LOG_CACHE, inProduction } from '@userconfig'
@@ -147,12 +147,10 @@ const sleep = (ms: number) => {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-export const buildCache = async () => {
+export const buildPerCountryCache = async () => {
   console.log('caching country data: started')
 
-  const countriesUrl = `${WORLDBANK_BASE_URL}/countries?${params}`
-  const [_, data]: any = await get(countriesUrl)
-  const countries = data.filter(({ region }) => region.value !== 'Aggregates')
+  const countries = await getCountryData()
   const codes = countries.map(c => c.iso2Code)
   console.log('countries', codes.length)
 
@@ -188,68 +186,4 @@ export const buildCache = async () => {
   console.log('failed:', failed)
 
   console.log('caching country data: done')
-}
-
-export const buildIndividualCountryCaches2 = async () => {
-  const countries = await getCountryData()
-
-  const codes = countries.map(c => c.iso2Code)
-  console.log('CACHE2 countries', codes.length, codes)
-
-  const failed: string[] = []
-
-  for (const code of codes) {
-    console.log(code)
-    const countryName = countries.find(c => c.iso2Code === code).name
-    const ok = await cacheUniversityData(countryName)
-    if (!ok) {
-      failed.push(code)
-    }
-
-    await sleep(50)
-  }
-
-  console.log('failed:', failed)
-
-  console.log('caching country data: done')
-  return { countries: countries.length, failed }
-}
-
-export const buildIndividualCountryCaches = async () => {
-  const countries = await getCountryData()
-
-  const codes = countries.map(c => c.iso2Code)
-  console.log('countries', codes.length, codes)
-
-  const failed: string[] = []
-
-  for (const code of codes) {
-    console.log(code)
-    const um = await cacheSafetyLevel(code)
-    if (um < 0) {
-      failed.push(code)
-    }
-
-    const countryName = countries.find(c => c.iso2Code === code).name
-    const okUniv = await cacheUniversityData(countryName)
-    if (!okUniv) {
-      failed.push(code)
-    }
-
-    const cc = await cacheCountryIndicator(code, 'CC.PER.RNK')
-    if (!cc) {
-      failed.push(code)
-    }
-    const pv = await cacheCountryIndicator(code, 'PV.PER.RNK')
-    if (!pv) {
-      failed.push(code)
-    }
-
-    await sleep(50)
-  }
-
-  console.log('failed:', failed)
-
-  console.log('caching country data: done')
-  return { countries: countries.length, failed }
 }
