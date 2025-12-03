@@ -106,7 +106,7 @@ app.get('/country/:countryCode/indicator/:indicatorCode', async (req, res) => {
 
   console.log('MOCK', code, indicatorCode, '(' + countryCode + ')')
 
-  if (BROKEN_INDICATORS && !req.query.ok && countryCode[0] == 'B') {
+  if (BROKEN_INDICATORS && !req.query.ok) {
     console.log('MOCK country indicators, broken', BROKEN_INDICATORS)
     return res.status(Number(BROKEN_INDICATORS)).send({ message: 'errored' })
   }

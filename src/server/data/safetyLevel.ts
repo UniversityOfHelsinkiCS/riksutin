@@ -3,6 +3,7 @@ import Parser from 'rss-parser'
 import jsdom from 'jsdom'
 import { get, setPermanent } from '../util/redis'
 import { LOG_CACHE, NO_CACHE, SAFETY_LEVEL_BASE_URL } from '@userconfig'
+import * as Sentry from '@sentry/node'
 
 type SafetyLevel = [string, number]
 
@@ -31,6 +32,7 @@ export const cacheSafetyLevel = async (code: string) => {
 
     if (!response.ok) {
       console.log('HTTP REQUEST FAIL ', url)
+      Sentry.captureException('HTTP REQUEST FAIL ' + url)
       return -1
     }
 

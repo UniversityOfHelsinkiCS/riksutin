@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import jsdom from 'jsdom'
 
+import * as Sentry from '@sentry/node'
 import { get, setPermanent } from '../../util/redis'
 import logger from 'src/server/util/logger'
 import { UNIVERSITIES_URL, NO_CACHE, LOG_CACHE } from '@userconfig'
@@ -26,6 +27,7 @@ export const cacheUniversityData = async (countryName: string) => {
 
   if (!response.ok) {
     console.log('HTTP POST FAIL ', key)
+    Sentry.captureException('HTTP POST FAIL ' + key)
     return null
   }
 

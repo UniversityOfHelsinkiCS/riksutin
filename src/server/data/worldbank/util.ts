@@ -67,6 +67,13 @@ export const cacheIndicatorData = async (path: string) => {
 
   try {
     const response = await fetch(url)
+    if (!response.ok) {
+      console.log('failed caching: HTTP get', url, response.status)
+      if (inProduction) {
+        Sentry.captureException('failed caching: HTTP get ' + url + ' ' + response.status)
+      }
+      return undefined
+    }
     const [_, data] = await response.json()
 
     const indicatorData = data.filter(({ value }) => value !== null)
@@ -85,7 +92,7 @@ export const cacheIndicatorData = async (path: string) => {
     if (inProduction) {
       Sentry.captureException(error)
     }
-    return null
+    return undefined
   }
 }
 
@@ -174,12 +181,12 @@ export const buildPerCountryCache = async () => {
     }
 
     const ccOk = await cacheCountryIndicator(code, 'CC.PER.RNK')
-    if (!ccOk) {
+    if (ccOk === undefined) {
       failed.corruption.push(code)
     }
 
     const pvOk = await cacheCountryIndicator(code, 'PV.PER.RNK')
-    if (!pvOk) {
+    if (pvOk === undefined) {
       failed.violence.push(code)
     }
 
