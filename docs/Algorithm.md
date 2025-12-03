@@ -20,13 +20,13 @@ The object includes the following data. The source for data is in the brackets:
   - source https://v-dem.net/data/the-v-dem-dataset/
   - V-Dem Core, field v2xca_academ
 - Corruption ([Worldbank API](https://api.worldbank.org/v2))
+- Political stability ([Worldbank API](https://api.worldbank.org/v2))
 - Human development index [API](https://hdrdata.org/api/CompositeIndices/query?apikey=KEY_HERE&year=2023)  current data 2023
   - see https://github.com/UniversityOfHelsinkiCS/riksutin/blob/master/src/server/data/humanDevelopment/index.ts#L6
   - for data, see
      - https://hdr.undp.org/data-center/human-development-index#/indicies/HDI
      - https://hdrdata.org/api/CompositeIndices/query?apikey=KEY_HERE&year=2023
      - https://hdr.undp.org/sites/default/files/2023-24_HDR/HDRO_data_api_manual.pdf
-- Political stability ([Worldbank API](https://api.worldbank.org/v2))
 - Safety level ([Ministry for Foreign Affairs of Finland's matkustustiedotteet](https://um.fi/o/rss?dctype=matkustustiedotteet), RSS feed)
 - Sanctions ([EU sanctions map API](https://sanctionsmap.eu/api/v1/regime))
 - Rule of Law ([CSV](../src/server/data/ruleOfLaw/ruleOfLaw.csv)) https://worldjusticeproject.org/, current data 2024
