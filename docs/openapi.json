@@ -1,0 +1,451 @@
+{
+  "openapi": "3.2.0",
+  "info": {
+    "title": "RiskApi",
+    "description": "An API for risk analyses for projects in tuhat system. The risk analysis object depends of the answers given by the user. The fields not included the risk analysis are filtered away.",
+    "version": "1.0.0",
+    "licence": {
+      "name": "MIT"
+    },
+    "contact": {
+      "name": "Toska",
+      "email": "grp-toska@helsinki.fi"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://risk-i.helsinki.fi/api",
+      "description": "Production server"
+    },
+    {
+      "url": "https://riksutin.ext.ocp-test-0.k8s.it.helsinki.fi/api",
+      "description": "Staging server"
+    }
+  ],
+  "paths": {
+    "/riskiapi/projects": {
+      "get": {
+        "summary": "Get a list of risk analyses of all projects with tuhat id.",
+        "description": "Returns a list of risk analyses.",
+        "responses": {
+          "200": {
+            "description": "A list of risk analyes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "tuhatId": "string",
+                      "riskAnalysis": [
+                        {
+                          "totalRisk": {
+                            "title": "string",
+                            "level": "number",
+                            "infoText": "string"
+                          },
+                          "countryTotal": {
+                            "title": "string",
+                            "level": "number",
+                            "infoText": "string",
+                            "countries": {
+                              "totalCountriesData": [
+                                {
+                                  "code": "string",
+                                  "name": "string",
+                                  "countryRisk": {
+                                    "title": "string",
+                                    "riskValues": "array",
+                                    "totalCountryRiskLevel": "number",
+                                    "rawTotalCountryRiskLevel": "number",
+                                    "infoText": "string"
+                                  },
+                                  "corruption": {
+                                    "title": "string",
+                                    "level": "number",
+                                    "infoText": "string"
+                                  },
+                                  "safetyLevel": {
+                                    "title": "string",
+                                    "level": "number",
+                                    "infoText": "string"
+                                  },
+                                  "academicFreedom": {
+                                    "title": "string",
+                                    "level": "number",
+                                    "infoText": "string"
+                                  },
+                                  "stability": {
+                                    "title": "string",
+                                    "level": "number",
+                                    "infoText": "string"
+                                  },
+                                  "humanDevelopment": {
+                                    "title": "string",
+                                    "level": "number",
+                                    "infoText": "string"
+                                  },
+                                  "gdpr": {
+                                    "title": "string",
+                                    "level": "number",
+                                    "infoText": "string"
+                                  },
+                                  "sanctions": {
+                                    "title": "string",
+                                    "level": "number",
+                                    "infoText": "string"
+                                  },
+                                  "ruleOfLaw": {
+                                    "title": "string",
+                                    "level": "number",
+                                    "infoText": "string"
+                                  }
+                                }
+                              ],
+                              "multilateralCountriesData": [
+                                {
+                                  "code": "string",
+                                  "name": "string",
+                                  "countryRisk": {
+                                    "title": "string",
+                                    "riskValues": "array",
+                                    "totalCountryRiskLevel": "number",
+                                    "rawTotalCountryRiskLevel": "number",
+                                    "infoText": "string"
+                                  },
+                                  "corruption": {
+                                    "title": "string",
+                                    "level": "number",
+                                    "infoText": "string"
+                                  },
+                                  "safetyLevel": {
+                                    "title": "string",
+                                    "level": "number",
+                                    "infoText": "string"
+                                  },
+                                  "academicFreedom": {
+                                    "title": "string",
+                                    "level": "number",
+                                    "infoText": "string"
+                                  },
+                                  "stability": {
+                                    "title": "string",
+                                    "level": "number",
+                                    "infoText": "string"
+                                  },
+                                  "humanDevelopment": {
+                                    "title": "string",
+                                    "level": "number",
+                                    "infoText": "string"
+                                  },
+                                  "gdpr": {
+                                    "title": "string",
+                                    "level": "number",
+                                    "infoText": "string"
+                                  },
+                                  "sanctions": {
+                                    "title": "string",
+                                    "level": "number",
+                                    "infoText": "string"
+                                  },
+                                  "ruleOfLaw": {
+                                    "title": "string",
+                                    "level": "number",
+                                    "infoText": "string"
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "university": {
+                            "title": "string",
+                            "level": "number",
+                            "infoText": "string"
+                          },
+                          "organisation": {
+                            "title": "string",
+                            "level": "number",
+                            "infoText": "string"
+                          },
+                          "duration": {
+                            "title": "string",
+                            "level": "number",
+                            "infoText": "string"
+                          },
+                          "economic": {
+                            "title": "string",
+                            "level": "number",
+                            "infoText": "string",
+                            "economicExchange": {
+                              "title": "string",
+                              "level": "number",
+                              "infoText": "string"
+                            },
+                            "economicScope": {
+                              "title": "string",
+                              "level": "number",
+                              "infoText": "string"
+                            }
+                          },
+                          "dualUse": {
+                            "title": "string",
+                            "level": "number",
+                            "infoText": "string"
+                          },
+                          "ethical": {
+                            "title": "string",
+                            "level": "number",
+                            "infoText": "string"
+                          },
+                          "consortium": {
+                            "title": "string",
+                            "level": "number",
+                            "infoText": "string"
+                          }
+                        }
+                      ],
+                      "createdAt": "string",
+                      "updatedAt": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "securitySchemes": {
+          "api_key": {
+            "type": "apiKey",
+            "name": "api-key",
+            "in": "header"
+          }
+        }
+      }
+    },
+    "/riskiapi/projects/{projectUuid}": {
+      "get": {
+        "summary": "Get a product by project uuid",
+        "description": "Returns a project based on the provided uuid.",
+        "operationId": "getProjectByUuid",
+        "parameters": [
+          {
+            "name": "projectUuid",
+            "in": "path",
+            "description": "The uuid of the wanted project.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single risk analysis for a tuhat project.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tuhatId": "string",
+                    "riskAnalysis": [
+                      {
+                        "totalRisk": {
+                          "title": "string",
+                          "level": "number",
+                          "infoText": "string"
+                        },
+                        "countryTotal": {
+                          "title": "string",
+                          "level": "number",
+                          "infoText": "string",
+                          "countries": {
+                            "totalCountriesData": [
+                              {
+                                "code": "string",
+                                "name": "string",
+                                "countryRisk": {
+                                  "title": "string",
+                                  "riskValues": "array",
+                                  "totalCountryRiskLevel": "number",
+                                  "rawTotalCountryRiskLevel": "number",
+                                  "infoText": "string"
+                                },
+                                "corruption": {
+                                  "title": "string",
+                                  "level": "number",
+                                  "infoText": "string"
+                                },
+                                "safetyLevel": {
+                                  "title": "string",
+                                  "level": "number",
+                                  "infoText": "string"
+                                },
+                                "academicFreedom": {
+                                  "title": "string",
+                                  "level": "number",
+                                  "infoText": "string"
+                                },
+                                "stability": {
+                                  "title": "string",
+                                  "level": "number",
+                                  "infoText": "string"
+                                },
+                                "humanDevelopment": {
+                                  "title": "string",
+                                  "level": "number",
+                                  "infoText": "string"
+                                },
+                                "gdpr": {
+                                  "title": "string",
+                                  "level": "number",
+                                  "infoText": "string"
+                                },
+                                "sanctions": {
+                                  "title": "string",
+                                  "level": "number",
+                                  "infoText": "string"
+                                },
+                                "ruleOfLaw": {
+                                  "title": "string",
+                                  "level": "number",
+                                  "infoText": "string"
+                                }
+                              }
+                            ],
+                            "multilateralCountriesData": [
+                              {
+                                "code": "string",
+                                "name": "string",
+                                "countryRisk": {
+                                  "title": "string",
+                                  "riskValues": "array",
+                                  "totalCountryRiskLevel": "number",
+                                  "rawTotalCountryRiskLevel": "number",
+                                  "infoText": "string"
+                                },
+                                "corruption": {
+                                  "title": "string",
+                                  "level": "number",
+                                  "infoText": "string"
+                                },
+                                "safetyLevel": {
+                                  "title": "string",
+                                  "level": "number",
+                                  "infoText": "string"
+                                },
+                                "academicFreedom": {
+                                  "title": "string",
+                                  "level": "number",
+                                  "infoText": "string"
+                                },
+                                "stability": {
+                                  "title": "string",
+                                  "level": "number",
+                                  "infoText": "string"
+                                },
+                                "humanDevelopment": {
+                                  "title": "string",
+                                  "level": "number",
+                                  "infoText": "string"
+                                },
+                                "gdpr": {
+                                  "title": "string",
+                                  "level": "number",
+                                  "infoText": "string"
+                                },
+                                "sanctions": {
+                                  "title": "string",
+                                  "level": "number",
+                                  "infoText": "string"
+                                },
+                                "ruleOfLaw": {
+                                  "title": "string",
+                                  "level": "number",
+                                  "infoText": "string"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        "university": {
+                          "title": "string",
+                          "level": "number",
+                          "infoText": "string"
+                        },
+                        "organisation": {
+                          "title": "string",
+                          "level": "number",
+                          "infoText": "string"
+                        },
+                        "duration": {
+                          "title": "string",
+                          "level": "number",
+                          "infoText": "string"
+                        },
+                        "economic": {
+                          "title": "string",
+                          "level": "number",
+                          "infoText": "string",
+                          "economicExchange": {
+                            "title": "string",
+                            "level": "number",
+                            "infoText": "string"
+                          },
+                          "economicScope": {
+                            "title": "string",
+                            "level": "number",
+                            "infoText": "string"
+                          }
+                        },
+                        "dualUse": {
+                          "title": "string",
+                          "level": "number",
+                          "infoText": "string"
+                        },
+                        "ethical": {
+                          "title": "string",
+                          "level": "number",
+                          "infoText": "string"
+                        },
+                        "consortium": {
+                          "title": "string",
+                          "level": "number",
+                          "infoText": "string"
+                        }
+                      }
+                    ],
+                    "createdAt": "string",
+                    "updatedAt": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "401": {
+          "description": "Unauthorized"
+        },
+        "404": {
+          "description": "User not found"
+        },
+        "500": {
+          "description": "Internal server error"
+        }
+      },
+      "securitySchemes": {
+        "api_key": {
+          "type": "apiKey",
+          "name": "api-key",
+          "in": "header"
+        }
+      }
+    }
+  }
+}
