@@ -4,23 +4,29 @@
     "title": "Risk-i Api",
     "description": "An API for risk analyses for projects in tuhat system. The risk analysis object depends of the answers given by the user. The fields not included the risk analysis are filtered away.",
     "version": "1.0.0",
-    "licence": {
-      "name": "MIT"
+    "license": {
+      "name": "MIT",
+      "url": "https://mit-license.org/"
     },
     "contact": {
       "name": "Toska",
       "email": "grp-toska@helsinki.fi"
     }
   },
-  "host": "https://riksutin.ext.ocp-test-0.k8s.it.helsinki.fi",
-  "basePath": "/api",
-  "schemes": ["https"],
+  "host": "",
+  "basePath": "/riskiapi",
+  "tags": [
+    {
+      "name": "projects",
+      "description": "Risk analysis for projects in tuhat system."
+    }
+  ],
+  "schemes": ["https", "http"],
   "produces": ["application/json"],
   "paths": {
-    "/riskiapi/projects": {
+    "/projects": {
       "get": {
         "description": "Returns a list of risk analyses.",
-        "summary": "Get a list of risk analyses of all projects with tuhat id.",
         "produces": ["application/json"],
         "responses": {
           "200": {
@@ -39,16 +45,19 @@
             "description": "Internal server error"
           }
         },
-        "security": {
-          "api_key": []
-        }
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
       }
     },
-    "/riskiapi/projects/{projectUuid}": {
+    "/projects/{projectUuid}": {
       "get": {
         "summary": "Get a product by project uuid",
         "description": "Returns a project based on the provided uuid.",
         "operationId": "getProjectByUuid",
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "projectUuid",
@@ -61,7 +70,9 @@
         "responses": {
           "200": {
             "description": "A risk analysis for a specific tuhat uuid.",
-            "schema": { "$ref": "#/definitions/Project" }
+            "schema": {
+              "$ref": "#/definitions/Project"
+            }
           },
           "401": {
             "description": "Unauthorized"
@@ -73,9 +84,11 @@
             "description": "Internal server error"
           }
         },
-        "security": {
-          "api_key": []
-        }
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
       }
     }
   },
@@ -100,172 +113,182 @@
         "message": {
           "type": "string"
         }
-      },
-      "RiskObject": {
-        "type": "object",
-        "properties": {
-          "title": {
-            "type": "string"
-          },
-          "level": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "infoText": {
-            "type": "string"
-          }
+      }
+    },
+    "RiskObject": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "level": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "infoText": {
+          "type": "string"
         }
-      },
-      "CountryObject": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "countryRisk": {
-            "type": "object",
-            "properties": {
-              "title": {
-                "type": "string"
-              },
-              "riskValues": {
-                "type": "array",
-                "items": {
-                  "type": "integer",
-                  "format": "int32"
-                }
-              },
-              "totalCountryRiskLevel": {
+      }
+    },
+    "CountryObject": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "countryRisk": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "riskValues": {
+              "type": "array",
+              "items": {
                 "type": "integer",
                 "format": "int32"
-              },
-              "rawTotalCountryRiskLevel": {
-                "type": "number",
-                "format": "float"
-              },
-              "infoText": {
-                "type": "string"
               }
+            },
+            "totalCountryRiskLevel": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "rawTotalCountryRiskLevel": {
+              "type": "number",
+              "format": "float"
+            },
+            "infoText": {
+              "type": "string"
             }
-          },
-          "corruption": {
-            "$ref": "#/definitions/RiskObject"
-          },
-          "safetyLevel": {
-            "$ref": "#/definitions/RiskObject"
-          },
-          "academicFreedom": {
-            "$ref": "#/definitions/RiskObject"
-          },
-          "stability": {
-            "$ref": "#/definitions/RiskObject"
-          },
-          "humanDevelopment": {
-            "$ref": "#/definitions/RiskObject"
-          },
-          "gdpr": {
-            "$ref": "#/definitions/RiskObject"
-          },
-          "sanctions": {
-            "$ref": "#/definitions/RiskObject"
-          },
-          "ruleOfLaw": {
-            "$ref": "#/definitions/RiskObject"
           }
+        },
+        "corruption": {
+          "$ref": "#/definitions/RiskObject"
+        },
+        "safetyLevel": {
+          "$ref": "#/definitions/RiskObject"
+        },
+        "academicFreedom": {
+          "$ref": "#/definitions/RiskObject"
+        },
+        "stability": {
+          "$ref": "#/definitions/RiskObject"
+        },
+        "humanDevelopment": {
+          "$ref": "#/definitions/RiskObject"
+        },
+        "gdpr": {
+          "$ref": "#/definitions/RiskObject"
+        },
+        "sanctions": {
+          "$ref": "#/definitions/RiskObject"
+        },
+        "ruleOfLaw": {
+          "$ref": "#/definitions/RiskObject"
         }
-      },
-      "CountriesArray": {
-        "type": "array",
-        "items": {
-          "$ref": "#/definitions/CountryObject"
+      }
+    },
+    "CountriesArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/CountryObject"
+      }
+    },
+    "Countries": {
+      "type": "object",
+      "properties": {
+        "totalCountriesData": {
+          "$ref": "#/definitions/CountriesArray"
+        },
+        "multilateralCountriesData": {
+          "$ref": "#/definitions/CountriesArray"
         }
-      },
-      "Countries": {
-        "type": "object",
-        "properties": {
-          "totalCountriesData": {
-            "$ref": "#/definitions/CountriesArray"
-          },
-          "multilateralCountriesData": {
-            "$ref": "#/definitions/CountriesArray"
-          }
-        }
-      },
-      "RiskAnalysis": {
-        "type": "object",
-        "properties": {
-          "totalRisk": { "$ref": "#/definitions/RiskObject" },
-          "countryTotal": {
-            "type": "object",
-            "properties": {
-              "title": {
-                "type": "string"
-              },
-              "level": {
-                "type": "integer",
-                "format": "int32"
-              },
-              "infoText": {
-                "type": "string"
-              },
-              "countries": { "$ref": "#/definitions/Countries" }
+      }
+    },
+    "RiskAnalysis": {
+      "type": "object",
+      "properties": {
+        "totalRisk": {
+          "$ref": "#/definitions/RiskObject"
+        },
+        "countryTotal": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "level": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "infoText": {
+              "type": "string"
+            },
+            "countries": {
+              "$ref": "#/definitions/Countries"
             }
-          },
-          "university": { "$ref": "#/definitions/RiskObject" },
-          "organisation": { "$ref": "#/definitions/RiskObject" },
-          "duration": { "$ref": "#/definitions/RiskObject" },
-          "economic": {
-            "type": "object",
-            "properties": {
-              "title": {
-                "type": "string"
-              },
-              "level": {
-                "type": "integer",
-                "format": "int32"
-              },
-              "infoText": {
-                "type": "string"
-              },
-              "economicExchange": {
-                "$ref": "#/definitions/RiskObject"
-              },
-              "economicScope": {
-                "$ref": "#/definitions/RiskObject"
-              }
+          }
+        },
+        "university": {
+          "$ref": "#/definitions/RiskObject"
+        },
+        "organisation": {
+          "$ref": "#/definitions/RiskObject"
+        },
+        "duration": {
+          "$ref": "#/definitions/RiskObject"
+        },
+        "economic": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "level": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "infoText": {
+              "type": "string"
+            },
+            "economicExchange": {
+              "$ref": "#/definitions/RiskObject"
+            },
+            "economicScope": {
+              "$ref": "#/definitions/RiskObject"
             }
-          },
-          "dualUse": {
-            "$ref": "#/definitions/RiskObject"
-          },
-          "ethical": {
-            "$ref": "#/definitions/RiskObject"
-          },
-          "consortium": {
-            "$ref": "#/definitions/RiskObject"
           }
+        },
+        "dualUse": {
+          "$ref": "#/definitions/RiskObject"
+        },
+        "ethical": {
+          "$ref": "#/definitions/RiskObject"
+        },
+        "consortium": {
+          "$ref": "#/definitions/RiskObject"
         }
-      },
-      "Project": {
-        "type": "object",
-        "properties": {
-          "tuhatId": {
-            "type": "string"
-          },
-          "riskAnalysis": {
-            "$ref": "#/definitions/RiskAnalysis"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "dateTime"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "dateTime"
-          }
+      }
+    },
+    "Project": {
+      "type": "object",
+      "properties": {
+        "tuhatId": {
+          "type": "string"
+        },
+        "riskAnalysis": {
+          "$ref": "#/definitions/RiskAnalysis"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "dateTime"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "dateTime"
         }
       }
     }
