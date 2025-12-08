@@ -21,6 +21,7 @@ import warningsRouter from './warning'
 import tuhatProjectsRouter from './tuhatProject'
 import { setMockUser } from '../mocs/user'
 import adminHandler from '../middleware/admin'
+import myResearchApiRouter from './myResearchApi'
 
 const router = express()
 
@@ -63,9 +64,10 @@ router.use('/countries', countryRouter)
 router.use('/organizations', organizationRouter)
 router.use('/warnings', warningsRouter)
 router.use('/tuhatprojects', tuhatProjectsRouter)
+router.use('/riskiapi', myResearchApiRouter)
 
 router.get('/explode', () => {
-  throw new Error('bad thing happened')
+  throw new Error('Bad thing happened!')
 })
 
 Sentry.setupExpressErrorHandler(router)

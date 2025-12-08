@@ -1,4 +1,4 @@
-import type { BaseCountry, CountryData, Locales, RiskData, User } from '@types'
+import type { BaseCountry, Locales, CountryData, RiskData, User, countryRiskData } from '@types'
 
 import { Request } from 'express'
 import { Entry } from '@dbmodels'
@@ -54,7 +54,7 @@ type Reference = {
   }
 }
 
-export interface TuhatData {
+export type TuhatData = {
   tuhatId: string
   references: Reference[]
   endDate: string
@@ -129,4 +129,61 @@ export type Indicator = {
   unit: string
   obs_status: string
   decimal: number
+}
+
+// For MyResearch api
+type BaseObject = {
+  title: string
+  level: number
+  infoText: string
+}
+
+interface CountryObject extends BaseObject {
+  riskValues?: number[] | []
+  totalCountryRiskLevel?: number
+  rawTotalCountryRiskLevel?: number
+}
+
+export type CountriesData = {
+  code: string
+  name: string
+  countryRisk?: countryRiskData
+  academicFreedom?: CountryObject
+  corruption: CountryObject
+  stability: CountryObject
+  humanDevelopment: CountryObject
+  safetyLevel: CountryObject
+  sanctions: CountryObject
+  gdpr: CountryObject
+  ruleOfLaw: CountryObject
+}
+
+interface RiskAnalysisObject extends BaseObject {
+  economicExchange?: BaseObject
+  economicScope?: BaseObject
+  countriesData?: CountriesData[] | []
+  multilateralCountriesData?: CountriesData[] | []
+}
+
+export type RiskAnalysisData = {
+  totalRisk: RiskAnalysisObject
+  countryTotal: RiskAnalysisObject
+  university: RiskAnalysisObject
+  organisation: RiskAnalysisObject
+  duration: RiskAnalysisObject
+  economic: RiskAnalysisObject
+  dualUse: RiskAnalysisObject
+  ethical: RiskAnalysisObject
+  consortium: RiskAnalysisObject
+}
+
+export interface MyResearchData {
+  tuhatId: string
+  riskAnalysis: RiskAnalysisData
+  createdAt: Date
+  updatedAt: Date
+}
+
+export type Error = {
+  error: string
 }

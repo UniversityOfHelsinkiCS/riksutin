@@ -19,8 +19,9 @@ export const EMPLOYEE_API_TOKEN = process.env.EMPLOYEE_API_TOKEN ?? ''
 export const TUHAT_API_TOKEN = process.env.TUHAT_API_TOKEN ?? ''
 export const HDR_API_TOKEN = process.env.HDR_API_TOKEN ?? ''
 export const HDR_YEAR = process.env.HDR_YEAR ?? '2023'
-
 export const ORGANISATION_ID = process.env.ORGANISATION_ID ?? ''
+
+export const RESEARCH_API_KEY = process.env.RESEARCH_API_KEY ?? ''
 
 //Hy related
 export const JAMI_URL = inProduction

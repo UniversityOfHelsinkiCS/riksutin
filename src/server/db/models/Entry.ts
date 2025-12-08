@@ -22,6 +22,10 @@ class Entry extends Model<InferAttributes<Entry>, InferCreationAttributes<Entry>
   declare reminderSent: CreationOptional<boolean>
 
   declare testVersion: boolean
+
+  declare createdAt: CreationOptional<Date>
+
+  declare updatedAt: CreationOptional<Date>
 }
 
 Entry.init(
@@ -66,6 +70,14 @@ Entry.init(
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
     },
   },
   {

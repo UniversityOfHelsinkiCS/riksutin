@@ -18,8 +18,14 @@ export type NewWarning = {
   expiry_date?: string
 }
 
+export type countryRiskData = {
+  riskValues?: number[] | undefined | null
+  totalCountryRiskLevel?: number | undefined | null
+  rawTotalCountryRiskLevel?: number | undefined | null
+}
+
 export type CountryData = {
-  countryRisk: any
+  countryRisk: countryRiskData
   academicFreedom?: number | undefined | null
   code: string
   name: string | undefined
@@ -178,6 +184,7 @@ export interface RiskData {
     answers: FormValues
     risks: Risk[]
     country: CountryData[]
+    multilateralCountries: CountryData[]
     createdAt?: string
   }[]
   multilateralCountries: CountryData[]
