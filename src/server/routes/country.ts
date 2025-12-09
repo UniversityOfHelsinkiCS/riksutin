@@ -4,7 +4,7 @@ import type { CountryData } from '@types'
 
 import { cacheHighRiskCountries } from '../util/cron/highRiskCountries/highRiskCountries'
 import { get } from '../util/redis'
-import getCountryIndicator from '../data/worldbank/indicator'
+import getCountryIndicatorOld from '../data/worldbank/indicator'
 import fetchSafetyLevelData from '../data/safetyLevel'
 import getCountryUniversities from '../data/whed/countryUniversities'
 import fetchSanctionsData, { cacheSanctionsData } from '../data/sanctions/sanctionsMap'
@@ -15,6 +15,8 @@ import getAcademicFreedom from '../data/academicfreedom'
 import { getWarnings } from '../services/warning'
 import { buildPerCountryCache, cacheCountryData } from '../data/worldbank/util'
 import adminHandler from '../middleware/admin'
+import { getCountryIndicator } from '../data/worldbank_api'
+import { buildIndividualCountryCaches } from '../data/per_country_cache'
 
 export const getCountryData = async (code: string | undefined): Promise<CountryData | null> => {
   if (!code) {
@@ -26,8 +28,11 @@ export const getCountryData = async (code: string | undefined): Promise<CountryD
   const name = country?.name
   const countryId = country?.id
 
-  const corruption = await getCountryIndicator(code, 'CC.PER.RNK')
-  const stability = await getCountryIndicator(code, 'PV.PER.RNK')
+  const corruptionNew = await getCountryIndicator(countryId, 'WB_WDI_CC_PER_RNK')
+  const stabilityNew = await getCountryIndicator(countryId, 'WB_WDI_PV_PER_RNK')
+
+  const corruption = await getCountryIndicatorOld(code, 'CC.PER.RNK')
+  const stability = await getCountryIndicatorOld(code, 'PV.PER.RNK')
   // eslint-disable-next-line @typescript-eslint/await-thenable
   const hci = await getHumanDevelopment(name, countryId)
   const safetyLevel = await fetchSafetyLevelData(code)
@@ -41,6 +46,8 @@ export const getCountryData = async (code: string | undefined): Promise<CountryD
     code,
     corruption,
     stability,
+    corruptionNew,
+    stabilityNew,
     hci,
     safetyLevel,
     universities,
@@ -106,6 +113,18 @@ countryRouter.get('/:code', async (req, res) => {
   return res.status(200).send(country)
 })
 
+countryRouter.get('/:code/new', async (req, res) => {
+  const code = req.params.code.toUpperCase()
+  const countries = await getCountries()
+  const country = countries.find(country => country.iso2Code === code)
+  const countryId = country?.id
+
+  const corruption = await getCountryIndicator(countryId, 'WB_WDI_CC_PER_RNK')
+  const stability = await getCountryIndicator(countryId, 'WB_WDI_PV_PER_RNK')
+
+  return res.status(200).send({ countryId, corruption, stability })
+})
+
 countryRouter.get('/cache/flush', adminHandler, async (req, res) => {
   await cacheSanctionsData()
   await cacheCountryData()
@@ -119,7 +138,7 @@ countryRouter.get('/cache/flush', adminHandler, async (req, res) => {
 })
 
 countryRouter.get('/cache/debug', adminHandler, async (req, res) => {
-  const failed = await buildPerCountryCache()
+  const failed = await buildIndividualCountryCaches()
   return res.status(200).send({ failed })
 })
 
