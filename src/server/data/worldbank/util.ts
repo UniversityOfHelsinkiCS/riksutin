@@ -190,7 +190,7 @@ export const buildPerCountryCache = async () => {
       failed.violence.push(code)
     }
 
-    await sleep(500)
+    await sleep(1000)
   }
 
   console.log('failed:', failed)
