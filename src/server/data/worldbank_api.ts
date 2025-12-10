@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { inProduction, LOG_CACHE, NO_CACHE, WORLDBANK_360_BASE_URL } from '@userconfig'
+import { inProduction, LOG_CACHE, NO_CACHE, WORLDBANK_360_BASE_URL, WORLDBANK_YEAR } from '@userconfig'
 import { getPermanent, setPermanent } from '../util/redis'
 import * as Sentry from '@sentry/node'
 
@@ -67,7 +67,7 @@ export const fetchIndicatorData = async (path: string) => {
 }
 
 export const getCountryIndicator = async (countryCode: string, indicatorCode: string) => {
-  const path = `data?DATABASE_ID=WB_WDI&INDICATOR=${indicatorCode}&REF_AREA=${countryCode}&TIME_PERIOD=2023&UNIT_MEASURE=RANK&skip=0`
+  const path = `data?DATABASE_ID=WB_WDI&INDICATOR=${indicatorCode}&REF_AREA=${countryCode}&TIME_PERIOD=${WORLDBANK_YEAR}&UNIT_MEASURE=RANK&skip=0`
 
   const value = await fetchIndicatorData(path)
 
