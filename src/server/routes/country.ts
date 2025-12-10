@@ -4,7 +4,6 @@ import type { CountryData } from '@types'
 
 import { cacheHighRiskCountries } from '../util/cron/highRiskCountries/highRiskCountries'
 import { get } from '../util/redis'
-import getCountryIndicatorOld from '../data/worldbank/indicator'
 import fetchSafetyLevelData from '../data/safetyLevel'
 import getCountryUniversities from '../data/whed/countryUniversities'
 import fetchSanctionsData, { cacheSanctionsData } from '../data/sanctions/sanctionsMap'
@@ -28,11 +27,9 @@ export const getCountryData = async (code: string | undefined): Promise<CountryD
   const name = country?.name
   const countryId = country?.id
 
-  const corruptionNew = await getCountryIndicator(countryId, 'WB_WDI_CC_PER_RNK')
-  const stabilityNew = await getCountryIndicator(countryId, 'WB_WDI_PV_PER_RNK')
+  const corruption = await getCountryIndicator(countryId, 'WB_WDI_CC_PER_RNK')
+  const stability = await getCountryIndicator(countryId, 'WB_WDI_PV_PER_RNK')
 
-  const corruption = await getCountryIndicatorOld(code, 'CC.PER.RNK')
-  const stability = await getCountryIndicatorOld(code, 'PV.PER.RNK')
   // eslint-disable-next-line @typescript-eslint/await-thenable
   const hci = await getHumanDevelopment(name, countryId)
   const safetyLevel = await fetchSafetyLevelData(code)
@@ -46,8 +43,6 @@ export const getCountryData = async (code: string | undefined): Promise<CountryD
     code,
     corruption,
     stability,
-    corruptionNew,
-    stabilityNew,
     hci,
     safetyLevel,
     universities,

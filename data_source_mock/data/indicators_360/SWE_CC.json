@@ -1,0 +1,31 @@
+{
+  "count": 1,
+  "value": [
+    {
+      "OBS_VALUE": "97.6415",
+      "TIME_FORMAT": "P1Y",
+      "UNIT_MULT": 0,
+      "COMMENT_OBS": null,
+      "OBS_STATUS": "A",
+      "OBS_CONF": "PU",
+      "AGG_METHOD": "_Z",
+      "DECIMALS": "2",
+      "COMMENT_TS": "Control of Corruption: Percentile Rank",
+      "DATA_SOURCE": "WB_WDI",
+      "LATEST_DATA": true,
+      "DATABASE_ID": "WB_WDI",
+      "INDICATOR": "WB_WDI_CC_PER_RNK",
+      "REF_AREA": "SWE",
+      "SEX": "_T",
+      "AGE": "_T",
+      "URBANISATION": "_T",
+      "COMP_BREAKDOWN_1": "_Z",
+      "COMP_BREAKDOWN_2": "_Z",
+      "COMP_BREAKDOWN_3": "_Z",
+      "TIME_PERIOD": "2023",
+      "FREQ": "A",
+      "UNIT_MEASURE": "RANK",
+      "UNIT_TYPE": null
+    }
+  ]
+}

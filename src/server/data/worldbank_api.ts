@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { inProduction, LOG_CACHE, NO_CACHE } from '@userconfig'
+import { inProduction, LOG_CACHE, NO_CACHE, WORLDBANK_360_BASE_URL } from '@userconfig'
 import { getPermanent, setPermanent } from '../util/redis'
 import * as Sentry from '@sentry/node'
 
@@ -50,7 +50,7 @@ export const cacheIndicatorData = async (url: string) => {
 }
 
 export const fetchIndicatorData = async (path: string) => {
-  const url = 'https://data360api.worldbank.org/data360/' + path
+  const url = `${WORLDBANK_360_BASE_URL}/${path}`
 
   const cached = await getPermanent(url)
 

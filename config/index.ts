@@ -40,6 +40,8 @@ export const TESTER_EMAILS = JSON.parse(process.env.TESTER_EMAILS ?? '[]') as st
 
 export const SAFETY_LEVEL_BASE_URL = process.env.SAFETY_LEVEL_URL ?? 'https://um.fi'
 export const WORLDBANK_BASE_URL = process.env.WORLDBANK_URL ?? 'https://api.worldbank.org/v2'
+export const WORLDBANK_360_BASE_URL = process.env.WORLDBANK_360_URL ?? 'https://data360api.worldbank.org/data360'
+
 export const SANCTIONS_URL = process.env.SANCTIONS_URL ?? 'https://sanctionsmap.eu/api/v1/regime'
 export const UNIVERSITIES_URL = process.env.UNIVERSITIES_URL ?? 'https://whed.net/results_institutions.php'
 export const HDI_URL =

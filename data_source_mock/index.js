@@ -84,6 +84,36 @@ app.get('/hdr', async (req, res) => {
 })
 
 // eslint-disable-next-line consistent-return
+app.get('/wb360/data', async (req, res) => {
+  // source     data?DATABASE_ID=WB_WDI&INDICATOR=${indicatorCode}&REF_AREA=${countryCode}&TIME_PERIOD=2023&UNIT_MEASURE=RANK&skip=0`
+  const { REF_AREA: countryCode, INDICATOR: indicatorCode } = req.query
+
+  const valid = ['ZMB', 'AFG', 'CHN', 'BLR', 'SWE', 'DNK']
+
+  /*
+    ZMB: Sambia
+    AFG: Afganistan
+    CHN: Kiina
+    BLR: Valko-Venäjä (Belarus)
+    SWE: Ruotsi
+    DNK: Tanska
+  */
+
+  const code = valid.includes(countryCode) ? countryCode : 'ZMB'
+  const ind = indicatorCode.split('_')[2] || indicatorCode.slice(0, 2)
+  const data = await fs.readFile(`./data/indicators_360/${code}_${ind}.json`, 'utf-8')
+
+  console.log('MOCK', code, indicatorCode, '(' + countryCode + ')')
+
+  if (BROKEN_INDICATORS && !req.query.ok) {
+    console.log('MOCK country indicators, broken', BROKEN_INDICATORS)
+    return res.status(Number(BROKEN_INDICATORS)).send({ message: 'errored' })
+  }
+
+  res.json(JSON.parse(data))
+})
+
+// eslint-disable-next-line consistent-return
 app.get('/country/:countryCode/indicator/:indicatorCode', async (req, res) => {
   // source     https://api.worldbank.org/v2/country/${countryCode}/indicator/${indicatorCode}?per_page=1000&format=json
   // indicators CC.PER.RNK PV.PER.RNK
