@@ -19,21 +19,22 @@ The object includes the following data. The source for data is in the brackets:
 - Academic freedom, year used 2024
   - source https://v-dem.net/data/the-v-dem-dataset/
   - V-Dem Core, field v2xca_academ
-- Corruption ([Worldbank API](https://api.worldbank.org/v2))
-- Political stability ([Worldbank API](https://api.worldbank.org/v2))
-- Human development index [API](https://hdrdata.org/api/CompositeIndices/query?apikey=KEY_HERE&year=2023)  current data 2023
+- Corruption and Political stability, [Worldbank API](https://data360.worldbank.org/en/api#/Data/get_data360_data)
+  - current data from 2023, defined with env WORLDBANK_YEAR
+  - available indicators: https://data360api.worldbank.org/data360/indicators?datasetId=WB_WDI
+  - parameters for indicator https://data360api.worldbank.org/data360/disaggregation?datasetId=WB_WDI&indicatorId=WB_WDI_CC_PER_RNK
+  - example query https://data360api.worldbank.org/data360/data?DATABASE_ID=WB_WDI&INDICATOR=WB_WDI_PV_PER_RNK&REF_AREA=AUT&TIME_PERIOD=2023&UNIT_MEASURE=RANK&skip=0
+- Human development index [API](https://hdrdata.org/api/CompositeIndices/query?apikey=KEY_HERE&year=2023) current data 2023
   - see https://github.com/UniversityOfHelsinkiCS/riksutin/blob/master/src/server/data/humanDevelopment/index.ts#L6
   - for data, see
-     - https://hdr.undp.org/data-center/human-development-index#/indicies/HDI
-     - https://hdrdata.org/api/CompositeIndices/query?apikey=KEY_HERE&year=2023
-     - https://hdr.undp.org/sites/default/files/2023-24_HDR/HDRO_data_api_manual.pdf
+    - https://hdr.undp.org/data-center/human-development-index#/indicies/HDI
+    - https://hdrdata.org/api/CompositeIndices/query?apikey=KEY_HERE&year=2023
+    - https://hdr.undp.org/sites/default/files/2023-24_HDR/HDRO_data_api_manual.pdf
 - Safety level ([Ministry for Foreign Affairs of Finland's matkustustiedotteet](https://um.fi/o/rss?dctype=matkustustiedotteet), RSS feed)
 - Sanctions ([EU sanctions map API](https://sanctionsmap.eu/api/v1/regime))
 - Rule of Law ([CSV](../src/server/data/ruleOfLaw/ruleOfLaw.csv)) https://worldjusticeproject.org/, current data 2024
-  - go to https://worldjusticeproject.org/rule-of-law-index/global/2024/table open network tab, there is 2024.csv and other years 
+  - go to https://worldjusticeproject.org/rule-of-law-index/global/2024/table open network tab, there is 2024.csv and other years
 - Universities ([WHED](https://whed.net/results_institutions.php), scraper)
-
-(see also https://github.com/UniversityOfHelsinkiCS/riksutin/blob/master/docs/DataSources.md)
 
 Risk levels of sanctions, safety level, and universities are calculated based on the form data.
 
@@ -96,44 +97,45 @@ This file contains a function `getCountryRisks`. It updates `sanctions`, `gdpr` 
 The file contains a `getOtherRisks` function that creates a `Risk[]` object which looks like this:
 
 ```typescript
-  const riskArray: Risk[] = [
-    {
-      id: 'country',
-      title: 'riskTable:countryRiskLevel',
-      level: totalCountryRiskLevel,
-    },
-    {
-      id: 'university',
-      title: 'riskTable:universityRiskLevel',
-      level: universityRisk(formData['20'], country?.universities),
-    },
-    {
-      id: 'duration',
-      title: 'riskTable:durationRiskLevel',
-      level: questions.find(question => question.id === 12)?.optionData.options.find(o => o.id === formData[12])?.risk,
-    },
-    {
-      id: 'dualUse',
-      title: 'riskTable:dualUseRiskLevel',
-      level: dualUseRiskValue,
-    },
-    {
-      id: 'organisation',
-      title: 'riskTable:organisationRiskLevel',
-      level: organisationRiskValue,
-    },
-    {
-      id: 'economic',
-      title: 'riskTable:economicRiskLevel',
-      level: totalEconomicalRisk < 4 ? totalEconomicalRisk : 3,
-    },
-    {
-      id: 'ethical',
-      title: 'riskTable:ethicalRiskLevel',
-      level: ethicalRiskValue,
-    },
-  ]
+const riskArray: Risk[] = [
+  {
+    id: 'country',
+    title: 'riskTable:countryRiskLevel',
+    level: totalCountryRiskLevel,
+  },
+  {
+    id: 'university',
+    title: 'riskTable:universityRiskLevel',
+    level: universityRisk(formData['20'], country?.universities),
+  },
+  {
+    id: 'duration',
+    title: 'riskTable:durationRiskLevel',
+    level: questions.find(question => question.id === 12)?.optionData.options.find(o => o.id === formData[12])?.risk,
+  },
+  {
+    id: 'dualUse',
+    title: 'riskTable:dualUseRiskLevel',
+    level: dualUseRiskValue,
+  },
+  {
+    id: 'organisation',
+    title: 'riskTable:organisationRiskLevel',
+    level: organisationRiskValue,
+  },
+  {
+    id: 'economic',
+    title: 'riskTable:economicRiskLevel',
+    level: totalEconomicalRisk < 4 ? totalEconomicalRisk : 3,
+  },
+  {
+    id: 'ethical',
+    title: 'riskTable:ethicalRiskLevel',
+    level: ethicalRiskValue,
+  },
+]
 ```
+
 If the project is funded by the company or there are no previous funding from the same funder, the economic risk is increased by one.
 Economic scope risk is added separately to ensure correct order of risks in the risk table.
 Economic currency risk is added if necessary.

@@ -1,4 +1,6 @@
 /* eslint-disable no-console */
+import { cacheSafetyLevel } from './safetyLevel'
+import { cacheUniversityData } from './whed/countryUniversities'
 import { getCountryData } from './worldbank/util'
 import { getCountryIndicator } from './worldbank_api'
 
@@ -24,18 +26,15 @@ export const buildIndividualCountryCaches = async () => {
     console.log(code)
     const country = countries.find(country => country.iso2Code === code)
 
-    /*
     const safetyOk = await cacheSafetyLevel(code)
     if (safetyOk < 0) {
       failed.safety.push(code)
     }
 
-    const countryName = countries.find(c => c.iso2Code === code).name
     const univOk = await cacheUniversityData(country.name)
     if (!univOk) {
       failed.university.push(code)
     }
-    */
 
     const ccOk = await getCountryIndicator(country.id, 'WB_WDI_CC_PER_RNK')
     if (ccOk === undefined) {

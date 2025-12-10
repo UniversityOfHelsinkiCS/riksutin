@@ -1,3 +1,7 @@
+/*
+  this file mostly deprecated
+*/
+
 /* eslint-disable no-console */
 import type { Indicator } from '@server/types'
 import { getPermanent, setPermanent } from '../../util/redis'
@@ -57,6 +61,12 @@ export const cacheCountryData = async () => {
     return []
   }
 }
+
+/*
+
+the next deprecated
+
+*/
 
 export const cacheIndicatorData = async (path: string) => {
   const url = `${WORLDBANK_BASE_URL}/${path}?${params}`

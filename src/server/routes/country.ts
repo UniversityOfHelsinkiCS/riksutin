@@ -12,7 +12,7 @@ import { getCountries } from '../services/countries'
 import getHumanDevelopment from '../data/humanDevelopment'
 import getAcademicFreedom from '../data/academicfreedom'
 import { getWarnings } from '../services/warning'
-import { buildPerCountryCache, cacheCountryData } from '../data/worldbank/util'
+import { cacheCountryData } from '../data/worldbank/util'
 import adminHandler from '../middleware/admin'
 import { getCountryIndicator } from '../data/worldbank_api'
 import { buildIndividualCountryCaches } from '../data/per_country_cache'
@@ -126,7 +126,7 @@ countryRouter.get('/cache/flush', adminHandler, async (req, res) => {
   await cacheHighRiskCountries()
 
   if (req.query.all === 'true') {
-    await buildPerCountryCache()
+    await buildIndividualCountryCaches()
   }
 
   return res.status(200).send({ status: 'OK' })
