@@ -21,7 +21,7 @@ export const HDR_API_TOKEN = process.env.HDR_API_TOKEN ?? ''
 export const HDR_YEAR = process.env.HDR_YEAR ?? '2023'
 export const ORGANISATION_ID = process.env.ORGANISATION_ID ?? ''
 
-export const RESEARCH_API_KEY = process.env.RESEARCH_API_KEY ?? ''
+export const HYAPI_TOKEN = process.env.HYAPI_TOKEN ?? ''
 
 //Hy related
 export const JAMI_URL = inProduction
