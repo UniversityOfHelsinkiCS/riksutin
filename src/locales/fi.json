@@ -61,7 +61,8 @@
     "multilateralNoCountriesWarning": "Valitse vähintään yksi maa yhteistyökonsortion koostumukseen",
     "noHighRisk": "Yhteistyökonsortioon ei sisälly erityisen riskin maita",
     "noOtherCountries": "Ei muita maita valittuna",
-    "externalFunding": "Myönnetäänkö ulkopuolinen rahoitus"
+    "externalFunding": "Myönnetäänkö ulkopuolinen rahoitus",
+    "nonEU": "Ei-EU-maa"
   },
   "riskTable": {
     "countryRiskLevel": "Maan riskitaso",
