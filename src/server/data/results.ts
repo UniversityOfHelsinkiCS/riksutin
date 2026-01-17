@@ -919,6 +919,108 @@ const getResultData = (): Result[] => [
       },
     },
   },
+  {
+    id: 55,
+    surveyId: 1,
+    optionLabel: 'dualUseEU1',
+    isSelected: {
+      fi: '*Antamiesi tietojen perusteella yhteistyö ei sisällä kaksoiskäyttöriskejä. Jos tästä kuitenkin on jotain epävarmuutta, tutustu [yliopiston ohjeisiin.](https://flamma.helsinki.fi/fi/group/tutkimuksen-tuki/pakotteet-ja-kaksikayttoasiat-tutkimuksessa)*',
+      sv: '',
+      en: '*Based on your response, this collaboration does not pose Dual Use risks. If there is any doubt, please review the [instructions in Flamma](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/pakotteet-ja-kaksikayttoasiat-tutkimuksessa).*',
+    },
+    data: {
+      title: {
+        fi: 'Kaksikäyttötuotteet EU, 1',
+        sv: '',
+        en: 'Dual use EU, 1',
+      },
+    },
+  },
+  {
+    id: 56,
+    surveyId: 1,
+    optionLabel: 'dualUseEU2',
+    isSelected: {
+      fi: '*Olet ilmoittanut, että ei ole tiedossa onko yhteistyössä mahdollisuus siihen, että kumppanille siirtyy sotilaskäyttöön soveltuvaa teknologiaa tai osaamista. Koska kumppanisi on EU-maassa, et todennäköisesti tarvitse vientilupaa, Kiinnitä kuitenkin erityistä huomiota yhteistyön turvallisuusjärjestelyihin ja tutustu tarkasti [Flammassa oleviin ohjeisiin](https://flamma.helsinki.fi/fi/group/tutkimuksen-tuki/pakotteet-ja-kaksikayttoasiat-tutkimuksessa) ja ota yhteyttä tarvittaessa yliopiston  asiantuntijoihin.*',
+      sv: '',
+      en: '*According to the information provided, the possibility of military technology or related knowledge being tranferred to the partner in question in not certain. Since your partner is located in an EU member state, an export licence is most likely not required. However, you should consider the overall security arrangements for your collaboration and review [related instructions in Flamma](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/pakotteet-ja-kaksikayttoasiat-tutkimuksessa) and contact experts, if necessary.*',
+    },
+    data: {
+      title: {
+        fi: 'Kaksikäyttötuotteet EU, 2',
+        sv: '',
+        en: 'Dual use EU, 2',
+      },
+    },
+  },
+  {
+    id: 57,
+    surveyId: 1,
+    optionLabel: 'dualUseEU3',
+    isSelected: {
+      fi: '*Olet ilmoittanut, että yhteistyössä on mahdollisuus siihen, että kumppanille siirtyy sotilaskäyttöön soveltuvaa teknologiaa tai osaamista. Koska kumppanisi on EU-maassa, et todennäköisesti tarvitse vientilupaa, Kiinnitä kuitenkin erityistä huomiota yhteistyön turvallisuusjärjestelyihin ja tutustu tarkasti [Flammassa oleviin ohjeisiin](https://flamma.helsinki.fi/fi/group/tutkimuksen-tuki/pakotteet-ja-kaksikayttoasiat-tutkimuksessa) ja ota yhteyttä tarvittaessa yliopiston  asiantuntijoihin.*',
+      sv: '',
+      en: '*According to the information provided, there is a possibility of military technology or related knowledge being tranferred to the partner in question. Since your partner is located in an EU member state, an export licence is most likely not required. However, you should consider the overall security arrangements for your collaboration and review [related instructions in Flamma](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/pakotteet-ja-kaksikayttoasiat-tutkimuksessa) and contact  experts, if necessary.*',
+    },
+    data: {
+      title: {
+        fi: 'Kaksikäyttötuotteet, 3',
+        sv: '',
+        en: 'Dual use EU, 3',
+      },
+    },
+  },
+  {
+    id: 58,
+    surveyId: 1,
+    optionLabel: 'dualUseNonEU1',
+    isSelected: {
+      fi: '*Antamiesi tietojen perusteella yhteistyö ei sisällä kaksoiskäyttöriskejä. Jos tästä kuitenkin on jotain epävarmuutta, tutustu [yliopiston ohjeisiin.](https://flamma.helsinki.fi/fi/group/tutkimuksen-tuki/pakotteet-ja-kaksikayttoasiat-tutkimuksessa)*',
+      sv: '',
+      en: '*Based on your response, this collaboration does not pose Dual Use risks. If there is any doubt, please review the [instructions in Flamma](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/pakotteet-ja-kaksikayttoasiat-tutkimuksessa).*',
+    },
+    data: {
+      title: {
+        fi: 'Kaksikäyttötuotteet Non-EU, 1',
+        sv: '',
+        en: 'Dual use Non-EU, 1',
+      },
+    },
+  },
+  {
+    id: 59,
+    surveyId: 1,
+    optionLabel: 'dualUseNonEU2',
+    isSelected: {
+      fi: '*Olet ilmoittanut, että ei ole tiedossa onko yhteistyössä mahdollisuus siihen, että kumppanille siirtyy sotilaskäyttöön soveltuvaa teknologiaa tai osaamista. Intressimme ja myös lakisääteinen velvollisuutemme on varmistaa, että asiantuntijuuttamme tai teknologiaamme ei päädy sotilaalliseen loppukäyttöön. Tutustu tarkasti [Flammassa oleviin ohjeisiin](https://flamma.helsinki.fi/fi/group/tutkimuksen-tuki/pakotteet-ja-kaksikayttoasiat-tutkimuksessa) ja ota yhteyttä tarvittaessa yliopiston  asiantuntijoihin.*',
+      sv: '',
+      en: '*According to the information provided, the possibility of military technology or related knowledge being tranferred to the partner in question in not certain. It is our interest, and legal requirement to ensure that our expertise or technology does not end up in military use. Please review [related instructions in Flamma](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/pakotteet-ja-kaksikayttoasiat-tutkimuksessa) and contact experts, if necessary.*',
+    },
+    data: {
+      title: {
+        fi: 'Kaksikäyttötuotteet Non-EU, 2',
+        sv: '',
+        en: 'Dual use Non-EU, 2',
+      },
+    },
+  },
+  {
+    id: 60,
+    surveyId: 1,
+    optionLabel: 'dualUseNonEU3',
+    isSelected: {
+      fi: '*Olet ilmoittanut, että yhteistyössä on mahdollisuus siihen, että kumppanille siirtyy sotilaskäyttöön soveltuvaa teknologiaa tai osaamista. Intressimme ja myös lakisääteinen velvollisuutemme on varmistaa, että asiantuntijuuttamme tai teknologiaamme ei päädy sotilaalliseen loppukäyttöön. Tutustu tarkasti [Flammassa oleviin ohjeisiin](https://flamma.helsinki.fi/fi/group/tutkimuksen-tuki/pakotteet-ja-kaksikayttoasiat-tutkimuksessa) ja ota yhteyttä tarvittaessa yliopiston  asiantuntijoihin.*',
+      sv: '',
+      en: '*According to the information provided, there is a possibility of military technology or related knowledge being tranferred to the partner in question. It is our interest, and legal requirement to ensure that our expertise or technology does not end up in military use. Please review [related instructions in Flamma](https://flamma.helsinki.fi/en/group/tutkimuksen-tuki/pakotteet-ja-kaksikayttoasiat-tutkimuksessa) and contact  experts, if necessary.*',
+    },
+    data: {
+      title: {
+        fi: 'Kaksikäyttötuotteet Non-EU, 3',
+        sv: '',
+        en: 'Dual use Non-EU, 3',
+      },
+    },
+  },
 ]
 
 export default getResultData
