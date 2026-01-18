@@ -170,7 +170,7 @@ const RiskTable = ({
               )}
               {otherRisksWithTexts?.map(
                 risk =>
-                  ['ethical', 'dualUse'].includes(risk.id) &&
+                  ['ethical', 'dualUse', 'dualUseEU', 'dualUseNonEU'].includes(risk.id) &&
                   forMultilateral(risk) && (
                     <TableRow key={risk.id}>
                       <TableCell colSpan={3} sx={{ borderBottom: 'none' }}>

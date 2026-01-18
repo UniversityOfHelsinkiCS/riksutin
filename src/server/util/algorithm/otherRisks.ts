@@ -2,6 +2,7 @@ import type { FormValues, Question, Risk } from '@types'
 import type { UpdatedCountryData } from '@server/types'
 
 import { totalCountryRisk, dualUseRisk, organisationRisk, universityRisk, consortiumRisk } from './utils'
+import { euCountries } from '@common/countryLists'
 
 const getOtherRisks = (country: UpdatedCountryData, questions: Question[], formData: FormValues) => {
   const { totalCountryRiskLevel } = totalCountryRisk(country)
@@ -41,7 +42,7 @@ const getOtherRisks = (country: UpdatedCountryData, questions: Question[], formD
       level: questions.find(question => question.id === 12)?.optionData.options.find(o => o.id === formData[12])?.risk,
     },
     {
-      id: 'dualUse',
+      id: euCountries.includes(country.code) ? 'dualUseEU' : 'dualUseNonEU',
       title: 'riskTable:dualUseRiskLevel',
       level: dualUseRiskValue,
     },
@@ -85,7 +86,6 @@ const getOtherRisks = (country: UpdatedCountryData, questions: Question[], formD
     }
     riskArray.push(consortium)
   }
-
   const filteredArray = riskArray.filter(value => value.level !== null && value.level !== undefined)
 
   return filteredArray
