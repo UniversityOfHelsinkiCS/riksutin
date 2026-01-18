@@ -44,14 +44,13 @@ test.describe('api', () => {
 
     const expectedRisks = riskResponse([
       { id: 'country', level: 3 },
-      { id: 'dualUse', level: 1 },
+      { id: 'dualUseNonEU', level: 1 },
       { id: 'economic', level: 2 },
       { id: 'economicScope', level: 2 },
       { id: 'ethical', level: 1 },
       { id: 'total', level: 3 },
       { id: 'university', level: 3 },
     ])
-
     compareUnordered(data.risks, expectedRisks)
   })
 
@@ -98,7 +97,7 @@ test.describe('api', () => {
 
     const expectedRisks = riskResponse([
       { id: 'country', level: 3 },
-      { id: 'dualUse', level: 1 },
+      { id: 'dualUseNonEU', level: 1 },
       { id: 'economic', level: 3 },
       { id: 'economicScope', level: 3 },
       { id: 'ethical', level: 2 },

@@ -33,7 +33,8 @@ export const riskResponse = object => {
         ...acc,
         {
           id,
-          title: `riskTable:${id}RiskLevel`,
+          title:
+            id === 'dualUseEU' || id === 'dualUseNonEU' ? 'riskTable:dualUseRiskLevel' : `riskTable:${id}RiskLevel`,
           level: found.level,
         },
       ]
