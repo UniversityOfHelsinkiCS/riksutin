@@ -1,8 +1,7 @@
 import type { CountryData, FormValues, Question } from '@types'
 import type { UpdatedCountryData } from '@server/types'
 
-import { euCountries, eeaCountries, adequateProtectionCountries } from '@common/countryLists'
-//import { calculateTotalCountryRisk } from '../cron/highRiskCountries/highRiskCountries'
+import { eeaCountries, adequateProtectionCountries } from '@common/countryLists'
 
 export const gdprRisk = (country: CountryData | undefined, resultData: FormValues) => {
   if (resultData['17'] === 'noTransferPersonalData') {
@@ -74,9 +73,6 @@ export const universityRisk = (university: string | undefined, countryUniversiti
 export const dualUseRisk = (questions: Question[], resultData: FormValues, country: CountryData | undefined) => {
   if (!country) {
     return null
-  }
-  if (euCountries.includes(country.code)) {
-    return 1
   }
   return questions.find(question => question.id === 23)?.optionData.options.find(o => o.id === resultData[23])?.risk
 }
