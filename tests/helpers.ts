@@ -16,6 +16,8 @@ export const riskResponse = object => {
     'consortium',
     'country',
     'dualUse',
+    'dualUseEU',
+    'dualUseNonEU',
     'economic',
     'economicScope',
     'economicExchange',
