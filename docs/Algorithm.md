@@ -114,7 +114,7 @@ const riskArray: Risk[] = [
     level: questions.find(question => question.id === 12)?.optionData.options.find(o => o.id === formData[12])?.risk,
   },
   {
-    id: 'dualUse',
+    id: 'dualUse' || 'dualUseEU' || 'dualUseNonEU', // all possible id's for dualUse: the infotext depends based on the id
     title: 'riskTable:dualUseRiskLevel',
     level: dualUseRiskValue,
   },
