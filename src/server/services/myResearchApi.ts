@@ -104,7 +104,7 @@ const createRiskAnalysisObject = (project: Entry, results: Result[]): RiskAnalys
       ? t('riskTable:companyBased')
       : '',
   ]
-  // TODO Same functions as in RiskTable. do something
+  // TODO Same functions as in RiskTable. Refactor them to be in one place
   const multiplierInfoText =
     multiplierArray.filter(m => m !== '').length > 0
       ? t(
@@ -129,6 +129,7 @@ const createRiskAnalysisObject = (project: Entry, results: Result[]): RiskAnalys
         : (results.find(r => r.optionLabel === `economicScope${data.risks.find(obj => obj.id === 'economic')?.level}`)
             ?.isSelected['en' as keyof Locales] ?? '')
 
+  const dualUseId = data.risks.find(obj => obj.id.includes('dualUse'))?.id ?? 'dualUse'
   const formattedProject = {
     totalRisk: {
       title: t('riskTable:totalRiskLevel'),
@@ -176,8 +177,8 @@ const createRiskAnalysisObject = (project: Entry, results: Result[]): RiskAnalys
     },
     dualUse: {
       title: t('riskTable:dualUseRiskLevel'),
-      level: data.risks.find(obj => obj.id === 'dualUse')?.level ?? 0,
-      infoText: getResultText(project, results, 'dualUse'),
+      level: data.risks.find(obj => obj.id === dualUseId)?.level ?? 0,
+      infoText: getResultText(project, results, dualUseId),
     },
     ethical: {
       title: t('riskTable:ethicalRiskLevel'),

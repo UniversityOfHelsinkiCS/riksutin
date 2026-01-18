@@ -8,7 +8,6 @@ const myResearchApiRouter = express.Router()
 
 myResearchApiRouter.get<never, MyResearchData[] | Error, never, never>('/projects', async (req, res) => {
   const apiKey = req.get('api-key')
-
   if (!apiKey || !HY_API_TOKEN || apiKey !== HY_API_TOKEN) {
     return res.status(401).json({ error: 'unauthorised' })
   }
