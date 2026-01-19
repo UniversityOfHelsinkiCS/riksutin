@@ -52,29 +52,32 @@ const SelectUnit = ({ control }: InputProps) => {
         name="unit"
         defaultValue={unit}
         rules={{ required: true }}
-        render={({ field: { onChange }, fieldState: { error } }) => (
-          <Box justifyContent="center">
-            <Autocomplete
-              disablePortal
-              id={'unit'}
-              options={organisations}
-              getOptionLabel={option => `${option.code} - ${option.name[language as keyof Locales]}`}
-              onChange={(e, data) => {
-                onChange(data?.code)
-              }}
-              value={selectedUnit}
-              sx={{ width: '50%' }}
-              renderInput={params => (
-                <TextField
-                  helperText={error ? error.message : null}
-                  error={!!error}
-                  {...params}
-                  label={t('unitSelect:inputLabel')}
-                />
-              )}
-            />
-          </Box>
-        )}
+        render={({ field: { onChange, value }, fieldState: { error } }) => {
+          const currentSelectedUnit = units.find(u => u.code === value) ?? selectedUnit
+          return (
+            <Box justifyContent="center">
+              <Autocomplete
+                disablePortal
+                id={'unit'}
+                options={organisations}
+                getOptionLabel={option => `${option.code} - ${option.name[language as keyof Locales]}`}
+                onChange={(e, data) => {
+                  onChange(data?.code)
+                }}
+                value={currentSelectedUnit}
+                sx={{ width: '50%' }}
+                renderInput={params => (
+                  <TextField
+                    helperText={error ? error.message : null}
+                    error={!!error}
+                    {...params}
+                    label={t('unitSelect:inputLabel')}
+                  />
+                )}
+              />
+            </Box>
+          )
+        }}
       />
     </Box>
   )

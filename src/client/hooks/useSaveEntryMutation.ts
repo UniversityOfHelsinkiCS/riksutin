@@ -40,3 +40,19 @@ export const useUpdateEntryRisks = () => {
 
   return mutation
 }
+
+export const useUpdateEntryMutation = (entryId: string | undefined) => {
+  const mutationFn = async (data: { formData: FormValues; tuhatData: TuhatData | object; testVersion: boolean }) => {
+    const res = await apiClient.put(`/entries/${entryId}`, {
+      data: data.formData,
+      tuhatData: data.tuhatData,
+      testVersion: data.testVersion,
+    })
+
+    return res.data as Entry
+  }
+
+  const mutation = useMutation(mutationFn)
+
+  return mutation
+}

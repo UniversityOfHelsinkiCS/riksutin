@@ -4,6 +4,7 @@ import { PUBLIC_URL } from '@config'
 
 import App from './App'
 import InteractiveForm from './components/InteractiveForm/InteractiveForm'
+import EditEntry from './components/InteractiveForm/EditEntry'
 import UserPage from './components/UserPage/UserPage'
 import UserEntry from './components/UserPage/UserEntry'
 import Admin from './components/Admin/Admin'
@@ -40,6 +41,11 @@ const router = createBrowserRouter(
         {
           path: '/user/:entryId',
           element: <UserEntry />,
+          errorElement: <RootBoundary />,
+        },
+        {
+          path: '/user/:entryId/edit',
+          element: <EditEntry />,
           errorElement: <RootBoundary />,
         },
 

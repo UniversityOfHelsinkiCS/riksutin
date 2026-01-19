@@ -7,6 +7,8 @@
     "openForm": "Continue to questions",
     "admin": "Administration",
     "submitError": "Failed to submit results, please try again later",
+    "updateSuccess": "Entry updated successfully",
+    "updateError": "Failed to update entry, please try again later",
     "requiredText": "Required"
   },
   "testVersion": {
@@ -137,8 +139,14 @@
     "projectName": "Name of the collaboration project",
     "updateRiskAssessment": "Update risk assessment",
     "updateSuccess": "Risks were updated successfully!",
-    "backButton": "Return to the form",
-    "printButton": "Create PDF"
+    "backButton": "Create a new risk assesment",
+    "printButton": "Create PDF",
+    "editEntry": "Edit",
+    "actions": "Actions"
+  },
+  "editEntry": {
+    "editingEntryInfo": "Editing entry from {{date}} {{time}}.",
+    "previousUpdates": "This entry has {{count}} previous updates."
   },
   "admin": {
     "summaryTab": "Summary",

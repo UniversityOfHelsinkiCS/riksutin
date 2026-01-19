@@ -51,52 +51,54 @@ const EmployeeSelect = ({ control, question, watch }: InputProps) => {
         <Controller
           control={control}
           name={question.id.toString()}
-          defaultValue={input}
           rules={{
             required: { value: true, message: t('questions:requiredText') },
           }}
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <Stack direction="row" spacing={2} alignItems="center" sx={{ width: '84.5%' }}>
-              <Box flex={3}>
-                <Autocomplete
-                  disablePortal
-                  id={`select-${question.id.toString()}`}
-                  options={employees}
-                  getOptionLabel={(option: Option | null) =>
-                    option ? `${option.firstName} ${option.lastName} (${option.email})` : ''
-                  }
-                  noOptionsText={t('questions:startWriting')}
-                  loadingText={<LoadingProgress />}
-                  onChange={(e, data) => onChange(data)}
-                  sx={{ width: '80%' }}
-                  value={value}
-                  isOptionEqualToValue={(option, val) =>
-                    // the compiler here is wrong, do not remove val === ''
-                    (option != null && val != null && option.username === val.username) || val === null || val === ''
-                  }
-                  renderInput={params => (
-                    <TextField
-                      helperText={error ? error.message : null}
-                      error={!!error}
-                      {...params}
-                      label={question.optionData.label ? question.optionData.label[language as keyof Locales] : ''}
-                      onChange={e => setInput(e.target.value)}
-                    />
-                  )}
-                />
-              </Box>
-              <Box flex={1}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={() => onChange(loggedUserForForm)}
-                  sx={{ height: '56px', visibility: meSelected ? 'hidden' : '' }}
-                >
-                  {t('questions:fillerIsOwner')}
-                </Button>
-              </Box>
-            </Stack>
-          )}
+          render={({ field: { onChange, value }, fieldState: { error } }) => {
+            const currentValue = value || null
+            return (
+              <Stack direction="row" spacing={2} alignItems="center" sx={{ width: '84.5%' }}>
+                <Box flex={3}>
+                  <Autocomplete
+                    disablePortal
+                    id={`select-${question.id.toString()}`}
+                    options={employees}
+                    getOptionLabel={(option: Option | null) =>
+                      option ? `${option.firstName} ${option.lastName} (${option.email})` : ''
+                    }
+                    noOptionsText={t('questions:startWriting')}
+                    loadingText={<LoadingProgress />}
+                    onChange={(e, data) => onChange(data)}
+                    sx={{ width: '80%' }}
+                    value={currentValue}
+                    isOptionEqualToValue={(option, val) =>
+                      // the compiler here is wrong, do not remove val === ''
+                      (option != null && val != null && option.username === val.username) || val === null || val === ''
+                    }
+                    renderInput={params => (
+                      <TextField
+                        helperText={error ? error.message : null}
+                        error={!!error}
+                        {...params}
+                        label={question.optionData.label ? question.optionData.label[language as keyof Locales] : ''}
+                        onChange={e => setInput(e.target.value)}
+                      />
+                    )}
+                  />
+                </Box>
+                <Box flex={1}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => onChange(loggedUserForForm)}
+                    sx={{ height: '56px', visibility: meSelected ? 'hidden' : '' }}
+                  >
+                    {t('questions:fillerIsOwner')}
+                  </Button>
+                </Box>
+              </Stack>
+            )
+          }}
         />
       </Box>
     </>

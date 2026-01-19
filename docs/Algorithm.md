@@ -16,6 +16,7 @@ This app contains an algorithm that calculates different risks for the project b
 
 The object includes the following data. The source for data is in the brackets:
 
+- Countries [Old worldbank API](https://datahelpdesk.worldbank.org/knowledgebase/articles/898590-country-api-queries)
 - Academic freedom, year used 2024
   - source https://v-dem.net/data/the-v-dem-dataset/
   - V-Dem Core, field v2xca_academ

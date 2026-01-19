@@ -6,7 +6,9 @@
     "reset": "Aloita alusta",
     "openForm": "Jatka kysymyksiin",
     "admin": "Ylläpito",
-    "submitError": "Tulosten lähettäminen epäonnistui, kokeile uudelleen hetken päästä"
+    "submitError": "Tulosten lähettäminen epäonnistui, kokeile uudelleen hetken päästä",
+    "updateSuccess": "Merkintä päivitetty onnistuneesti",
+    "updateError": "Merkinnän päivitys epäonnistui, yritä myöhemmin uudelleen"
   },
   "testVersion": {
     "saveAsTestForm": "Tallenna testinä (Järjestelmän ylläpito poistaa testiversiot säännöllisesti)",
@@ -135,10 +137,17 @@
     "projectName": "Yhteistyöprojektin nimi",
     "updateRiskAssessment": "Päivitä riskiarvio",
     "updateSuccess": "Riskien uudelleenarviointi onnistui!",
-    "backButton": "Takaisin lomakkeelle",
-    "printButton": "Luo PDF"
+    "backButton": "Luo uusi riskiarvio",
+    "printButton": "Luo PDF",
+    "editEntry": "Muokkaa",
+    "actions": "Toiminnot"
+  },
+  "editEntry": {
+    "editingEntryInfo": "Muokataan merkintää ajalta {{date}} {{time}}.",
+    "previousUpdates": "Tällä merkinnällä on {{count}} aiempaa päivitystä."
   },
   "admin": {
+    "previousUpdates": "Tällä merkinnällä on {{count}} aiempaa päivitystä.",
     "summaryTab": "Yhteenveto",
     "summaryTitle": "Kaikki täytetyt kyselyt",
     "surveyTab": "Kyselyn muokkaus",

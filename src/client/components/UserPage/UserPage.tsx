@@ -12,7 +12,7 @@ import {
   Typography,
 } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { enqueueSnackbar } from 'notistack'
 import styles from '../../styles'
 import { useUserEntries } from '../../hooks/useEntry'
@@ -23,6 +23,7 @@ const { riskColors, resultStyles } = styles
 const UserPage = () => {
   const { entries } = useUserEntries()
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const mutation = useUpdateEntryRisks()
   const [updateButtonClicked, setUpdateButtonClicked] = useState('')
 
@@ -78,6 +79,7 @@ const UserPage = () => {
               <TableCell>{t('userPage:projectName')}</TableCell>
               <TableCell>{t('userPage:tableDate')}</TableCell>
               <TableCell align="center">{t('userPage:tableTotalRiskLevel')}</TableCell>
+              <TableCell align="center">{t('userPage:actions')}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -104,13 +106,22 @@ const UserPage = () => {
                     {entry.data.risks.find(r => r.id === 'total')?.level}
                   </Box>
                 </TableCell>
-                <TableCell colSpan={2}>
-                  <Button
-                    onClick={() => handleUpdateRiskAssessment(entry.id.toString())}
-                    disabled={updateButtonClicked === entry.id.toString()}
-                  >
-                    {t('userPage:updateRiskAssessment')}
-                  </Button>
+                <TableCell>
+                  <Box sx={{ display: 'flex', gap: 1 }}>
+                    <Button
+                      onClick={() => navigate(`/user/${entry.id}/edit`)}
+                      variant="outlined"
+                      data-testid="edit-entry-button"
+                    >
+                      {t('userPage:editEntry')}
+                    </Button>
+                    <Button
+                      onClick={() => handleUpdateRiskAssessment(entry.id.toString())}
+                      disabled={updateButtonClicked === entry.id.toString()}
+                    >
+                      {t('userPage:updateRiskAssessment')}
+                    </Button>
+                  </Box>
                 </TableCell>
               </TableRow>
             ))}

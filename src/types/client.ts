@@ -59,6 +59,7 @@ export type Entry = {
   SurveyId: number
   UserId: string
   createdAt: string
+  updatedAt?: string
   survey: Survey
   User: User
   testVersion: boolean

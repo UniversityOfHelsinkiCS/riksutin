@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Box, Button, Tab, Tabs } from '@mui/material'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import RiskTableDOM from '../ResultPage/RiskTableDOM'
 import { useEntry } from '../../hooks/useEntry'
@@ -52,6 +52,7 @@ const UserEntry = () => {
   const { entry } = useEntry(entryId)
   const [tabValue, setTabValue] = useState(0)
   const { t } = useTranslation()
+  const navigate = useNavigate()
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue)
@@ -67,17 +68,20 @@ const UserEntry = () => {
     <MuiComponentProvider>
       <div>
         <Box sx={{ m: 3 }}>
-          <Box sx={{ width: '100%', my: 2 }}>
+          <Box sx={{ width: '100%', my: 2, display: 'flex', gap: 1 }}>
             <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
               <Button variant="outlined">
                 <ArrowBackIcon sx={{ mr: 1 }} />
                 {t('userPage:backButton')}
               </Button>
             </Link>
+            <Button variant="outlined" onClick={() => navigate(`/user/${entryId}/edit`)}>
+              Muokkaa
+            </Button>
           </Box>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={tabValue} onChange={handleChange}>
-              <Tab sx={{ color: 'black' }} label={formatDate(entry.createdAt)} />
+              <Tab sx={{ color: 'black' }} label={formatDate(entry.updatedAt ?? entry.createdAt)} />
               {updatedData?.map((updated, index) => (
                 <Tab
                   /* eslint-disable-next-line react/no-array-index-key */

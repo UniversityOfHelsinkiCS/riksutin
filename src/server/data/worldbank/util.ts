@@ -64,7 +64,7 @@ export const cacheCountryData = async () => {
 
 /*
 
-the next deprecated
+all the next are deprecated
 
 */
 

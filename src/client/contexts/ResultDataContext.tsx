@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useMemo, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 
 import { FORM_DATA_KEY } from '@config'
 import type { FormValues } from '@types'
@@ -24,7 +24,12 @@ const ResultDataProvider = ({ children }: { children: React.ReactNode }) => {
     const faculty = userFaculties && userFaculties.length > 0 ? userFaculties[0].code : extraOrganisations[0].code
 
     if (savedData) {
-      return JSON.parse(savedData)
+      const parsed = JSON.parse(savedData)
+      // If saved faculty is OTHER but user now has faculties, use the first user faculty
+      if (parsed.faculty === 'OTHER' && userFaculties && userFaculties.length > 0) {
+        parsed.faculty = userFaculties[0].code
+      }
+      return parsed
     }
 
     return {
@@ -36,6 +41,15 @@ const ResultDataProvider = ({ children }: { children: React.ReactNode }) => {
   const savedFormData = getSavedInstance()
 
   const [resultData, setResultData] = useState<FormValues>(savedFormData)
+
+  useEffect(() => {
+    if (userFaculties && userFaculties.length > 0 && resultData.faculty === 'OTHER') {
+      setResultData(prev => ({
+        ...prev,
+        faculty: userFaculties[0].code,
+      }))
+    }
+  }, [userFaculties, resultData.faculty])
 
   const contextValue = useMemo(() => ({ resultData, setResultData }), [resultData, setResultData])
 

@@ -1,3 +1,7 @@
+/*
+  this file deprecated
+*/
+
 import { fetchIndicatorData, riskLevelCheck } from './util'
 
 const getCountryIndicator = async (countryCode: string, indicatorCode: string) => {

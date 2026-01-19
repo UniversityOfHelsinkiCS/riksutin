@@ -91,14 +91,14 @@ const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
           key={'projektname'}
           name={question.id.toString()}
           rules={{ required: true }}
-          defaultValue={''}
-          render={({ field: { onChange }, fieldState: { error } }) => (
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
             <Box justifyContent="center">
               <TextField
                 helperText={error ? error.message : null}
                 error={!!error}
                 data-testid={'question-projectText'}
                 onChange={onChange}
+                value={value}
                 fullWidth
                 placeholder={question.text[language as keyof Locales]}
               />
@@ -131,24 +131,26 @@ const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
         control={control}
         name="tuhatProjectExists"
         rules={{ required: true }}
-        defaultValue={''}
-        render={({ field }) => (
-          <Box justifyContent="center">
-            <FormControl sx={{ minWidth: 200 }}>
-              <RadioGroup {...field}>
-                {collabProjectOptions.map((singleOption: SingleChoiceType) => (
-                  <FormControlLabel
-                    data-cy={`choice-select-${singleOption.id}`}
-                    key={singleOption.id}
-                    value={singleOption.id}
-                    label={singleOption.title[language as keyof Locales]}
-                    control={<Radio />}
-                  />
-                ))}
-              </RadioGroup>
-            </FormControl>
-          </Box>
-        )}
+        render={({ field }) => {
+          const currentValue = field.value || ''
+          return (
+            <Box justifyContent="center">
+              <FormControl sx={{ minWidth: 200 }}>
+                <RadioGroup {...field} value={currentValue}>
+                  {collabProjectOptions.map((singleOption: SingleChoiceType) => (
+                    <FormControlLabel
+                      data-cy={`choice-select-${singleOption.id}`}
+                      key={singleOption.id}
+                      value={singleOption.id}
+                      label={singleOption.title[language as keyof Locales]}
+                      control={<Radio />}
+                    />
+                  ))}
+                </RadioGroup>
+              </FormControl>
+            </Box>
+          )
+        }}
       />
 
       {projectOptionChosen === 'tuhatOptionPositive' && (
@@ -162,7 +164,6 @@ const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
               message: 'Projektin nimi tarvitaan',
             },
           }}
-          defaultValue={''}
           render={({ field }) => (
             <FormControl sx={{ minWidth: 200 }}>
               <InputLabel>{t('tuhatProjectSelect:inputLabel')}</InputLabel>
@@ -194,7 +195,6 @@ const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
               message: 'Projekti tarvitaan',
             },
           }}
-          defaultValue={''}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <Box justifyContent="center">
               <TextField

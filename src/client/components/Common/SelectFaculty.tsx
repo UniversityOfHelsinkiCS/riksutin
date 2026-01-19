@@ -57,7 +57,8 @@ const SelectFaculty = ({ control }: InputProps) => {
       return
     }
 
-    setFaculty(userFaculties[0])
+    const defaultFaculty = userFaculties.length > 0 ? userFaculties[0] : extraOrganisations[0]
+    setFaculty(defaultFaculty)
   }, [userFaculties, userFacultiesLoading])
 
   if (facultiesLoading || !faculties || userFacultiesLoading || !userFaculties) {
@@ -66,8 +67,6 @@ const SelectFaculty = ({ control }: InputProps) => {
 
   const sortedFaculties = sortFaculties(faculties)
   const organisations = sortedFaculties.concat(extraOrganisations)
-
-  const defaultValue = userFaculties.length > 0 ? userFaculties[0] : extraOrganisations[0]
 
   return (
     <Box sx={cardStyles.questionsContainer}>
@@ -81,7 +80,6 @@ const SelectFaculty = ({ control }: InputProps) => {
         control={control}
         name="faculty"
         rules={{ required: true }}
-        defaultValue={defaultValue.code}
         render={({ field }) => (
           <FormControl sx={{ minWidth: 200 }}>
             <InputLabel>{t('facultySelect:inputLabel')}</InputLabel>

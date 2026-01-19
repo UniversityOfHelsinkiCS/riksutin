@@ -9,11 +9,11 @@ const sleep = (ms: number) => {
 }
 
 export const buildIndividualCountryCaches = async () => {
-  console.log('caching country data: started')
+  console.log('Caching country data: started')
 
   const countries = await getCountryData()
   const codes = countries.map(c => c.iso2Code)
-  console.log('countries', codes.length)
+  console.log('No of countries', codes.length)
 
   const failed = {
     safety: [] as string[],

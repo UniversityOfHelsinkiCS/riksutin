@@ -95,6 +95,58 @@ entryRouter.post('/:surveyId', async (req: RequestWithUser, res: any) => {
   return res.status(201).send(entry.toJSON())
 })
 
+entryRouter.put('/:entryId', async (req: RequestWithUser, res: any) => {
+  const { entryId } = req.params
+  const { data, tuhatData, testVersion } = req.body
+  const userId = req.user?.id
+
+  const entry = await getEntry(entryId, userId)
+
+  if (!entry) {
+    return res.status(404).send('Entry not found')
+  }
+
+  if (entry.userId !== userId && entry.ownerId !== userId) {
+    throw new Error('Unauthorized: You can only edit your own entries')
+  }
+
+  const riskData = await createRiskData(data)
+
+  if (!riskData) {
+    return res.status(500).send('Error when calculating risks')
+  }
+
+  // Preserve history - store current version in updatedData array
+  const currentData = entry.data
+  const updatedDataArray = currentData.updatedData ?? []
+
+  // Store the current state with the timestamp showing when this version was last active
+  // Use the current updatedAt (or createdAt if never updated) to show when this version was last modified
+  const previousVersionTimestamp = entry.updatedAt?.toISOString() ?? entry.createdAt.toISOString()
+
+  updatedDataArray.push({
+    answers: currentData.answers,
+    risks: currentData.risks,
+    country: currentData.country,
+    multilateralCountries: currentData.multilateralCountries,
+    createdAt: previousVersionTimestamp,
+  })
+
+  // Update entry with new data (updatedAt will be automatically set by Sequelize to current time)
+  await entry.update({
+    data: {
+      ...riskData,
+      updatedData: updatedDataArray,
+    },
+    tuhatData,
+    testVersion,
+  })
+
+  const updatedEntry = await entry.save()
+
+  return res.status(200).send(updatedEntry.toJSON())
+})
+
 const SendEmailBodySchema = z.object({
   targets: z.array(z.string()),
 })
