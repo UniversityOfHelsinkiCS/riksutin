@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { enqueueSnackbar } from 'notistack'
@@ -22,7 +22,7 @@ import { noDefault, NO_SELECTION } from 'src/client/util/multilataral'
 
 const EditEntry = () => {
   const { entryId } = useParams<{ entryId: string }>()
-  const { entry } = useEntry(entryId)
+  const { entry, isLoading: entryLoading } = useEntry(entryId)
   const { survey, isLoading } = useSurvey()
   const navigate = useNavigate()
   const { results } = useResults(survey?.id)
@@ -31,6 +31,7 @@ const EditEntry = () => {
 
   const [submitButtonLoading, setSubmitButtonLoading] = useState(false)
   const [saveAsTestVersion, setSaveAsTestVersion] = useState(entry?.testVersion ?? false)
+  const hasResetRef = useRef(false)
 
   const { formStyles } = styles
 
@@ -51,7 +52,7 @@ const EditEntry = () => {
     }
   }
 
-  const { handleSubmit, control, watch, setValue } = useForm({
+  const { handleSubmit, control, watch, setValue, reset } = useForm({
     mode: 'onSubmit',
     shouldUnregister: true,
     defaultValues,
@@ -59,8 +60,29 @@ const EditEntry = () => {
 
   usePersistForm({ value: watch(), sessionStorageKey: FORM_DATA_KEY })
 
+  // Update form values when entry loads (only once)
+  useEffect(() => {
+    if (entry && !entryLoading && !hasResetRef.current) {
+      const values: FormValues = entry.data?.answers ?? ({} as FormValues)
+      values[26] = values[26] ?? [NO_SELECTION]
+      values[28] = values[28] ?? [NO_SELECTION]
+
+      if (!values.tuhatProjectExists) {
+        const hasTuhatData = (entry as any).tuhatData && Object.keys((entry as any).tuhatData).length > 0
+        if (hasTuhatData) {
+          values.tuhatProjectExists = 'tuhatOptionPositive'
+        } else if (values['3']) {
+          values.tuhatProjectExists = 'tuhatOptionNegative'
+        }
+      }
+
+      reset(values, { keepDefaultValues: false })
+      hasResetRef.current = true
+    }
+  }, [entry, entryLoading, reset])
+
   // Wait for entry to load - must be after all hooks
-  if (!survey || isLoading || !results || !entry) {
+  if (!survey || isLoading || !results || !entry || entryLoading) {
     return null
   }
 
