@@ -80,6 +80,9 @@ const RenderSurvey = ({
 
   const requiredFields = Object.keys(defaultValues).filter(value => !['1', '2', '7', 'faculty'].includes(value))
 
+  // eslint-disable-next-line no-console
+  console.log(watch())
+
   return (
     <Box sx={cardStyles.outerBox}>
       {import.meta.env.MODE === 'development' && !isEditing && <ResetForm />}
