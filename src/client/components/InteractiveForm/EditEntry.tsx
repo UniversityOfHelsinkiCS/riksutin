@@ -116,7 +116,7 @@ const EditEntry = () => {
         <Grid item sm={12}>
           <Alert severity="info" sx={{ mb: 2 }}>
             {t('editEntry:editingEntryInfo', {
-              date: new Date(entry.createdAt).toLocaleDateString(),
+              date: new Date(entry.createdAt).toLocaleDateString('fi-FI'),
               time: new Date(entry.createdAt).toLocaleTimeString(),
             })}
             {entry.data.updatedData && entry.data.updatedData.length > 0 && (
@@ -136,6 +136,7 @@ const EditEntry = () => {
               setValue={setValue}
               saveAsTestVersion={saveAsTestVersion}
               setSaveAsTestVersion={setSaveAsTestVersion}
+              isEditing
             />
           </form>
         </Grid>

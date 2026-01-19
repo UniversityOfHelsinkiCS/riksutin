@@ -52,6 +52,7 @@ const RenderSurvey = ({
   setValue,
   saveAsTestVersion,
   setSaveAsTestVersion,
+  isEditing,
 }: {
   control: Control<any>
   watch: UseFormWatch<any>
@@ -61,6 +62,7 @@ const RenderSurvey = ({
   setValue?: any
   saveAsTestVersion: boolean
   setSaveAsTestVersion?: any
+  isEditing?: boolean
 }) => {
   const { t, i18n } = useTranslation()
   const { defaultValues } = useFormState({ control })
@@ -80,7 +82,7 @@ const RenderSurvey = ({
 
   return (
     <Box sx={cardStyles.outerBox}>
-      {import.meta.env.MODE === 'development' && <ResetForm />}
+      {import.meta.env.MODE === 'development' && !isEditing && <ResetForm />}
 
       <Box sx={cardStyles.card}>
         {questions.map(question => (
@@ -115,7 +117,7 @@ const RenderSurvey = ({
                 control={<Checkbox onChange={() => setSaveAsTestVersion(!saveAsTestVersion)} />}
                 label={t('testVersion:saveAsTestForm')}
               />
-              <SurveyButtons>
+              <SurveyButtons isEditing={isEditing}>
                 <LoadingButton
                   sx={formStyles.stackButton}
                   type="submit"

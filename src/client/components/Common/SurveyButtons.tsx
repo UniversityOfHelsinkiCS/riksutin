@@ -6,7 +6,7 @@ import ResetForm from './ResetForm'
 
 import styles from '../../styles'
 
-const SurveyButtons = ({ children }: InputProps) => {
+const SurveyButtons = ({ children, isEditing }: InputProps & { isEditing?: boolean }) => {
   const { formStyles } = styles
 
   return (
@@ -14,7 +14,7 @@ const SurveyButtons = ({ children }: InputProps) => {
       <Stack sx={formStyles.stack} direction="row">
         {children}
 
-        <ResetForm />
+        {!isEditing && <ResetForm />}
       </Stack>
     </Box>
   )
