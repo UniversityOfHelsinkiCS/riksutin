@@ -58,7 +58,7 @@ const EditEntry = () => {
 
   const { handleSubmit, control, watch, setValue, reset } = useForm({
     mode: 'onSubmit',
-    shouldUnregister: true,
+    shouldUnregister: false,
     defaultValues,
   })
 
