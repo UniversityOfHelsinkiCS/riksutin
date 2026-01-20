@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Box, Button, Tab, Tabs } from '@mui/material'
+import { Alert, Box, Button, Tab, Tabs } from '@mui/material'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 
 import { Link, useNavigate, useParams } from 'react-router-dom'
@@ -87,6 +87,11 @@ const UserEntry = () => {
   return (
     <MuiComponentProvider>
       <div>
+        {entry.testVersion && (
+          <Alert severity="warning" sx={{ m: 3, fontWeight: 'bold', fontSize: '1.1rem' }}>
+            {t('userPage:testVersionWarning')}
+          </Alert>
+        )}
         <Box sx={{ m: 3 }}>
           <Box sx={{ width: '100%', my: 2, display: 'flex', gap: 1 }}>
             <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -97,7 +102,7 @@ const UserEntry = () => {
             </Link>
             {tabValue === 0 && (
               <Button variant="outlined" onClick={() => navigate(`/user/${entryId}/edit`)}>
-                Muokkaa
+                {t('userPage:editEntry')}
               </Button>
             )}
           </Box>

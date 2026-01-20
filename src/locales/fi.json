@@ -13,7 +13,7 @@
   "testVersion": {
     "saveAsTestForm": "Tallenna testinä (Järjestelmän ylläpito poistaa testiversiot säännöllisesti)",
     "saveAsTestFormInfo": "",
-    "saveAsTestFormVerification": "Oletko varma, että haluat tallentaa testiversion? Ylläpito poistaa säännöllisesti testiversiot tietokannasta. Testiversioita ei voi muokata tai vaihtaa varsinaiseksi arvioiksi."
+    "saveAsTestFormVerification": "Oletko varma, että haluat tallentaa testiversion? Ylläpito poistaa säännöllisesti testiversiot tietokannasta."
   },
   "footer": {
     "contactSupport": "Ota yhteyttä tukeen: <mailTo>{{supportEmail}}</mailTo>"
@@ -141,7 +141,11 @@
     "backButton": "Luo uusi riskiarvio",
     "printButton": "Luo PDF",
     "editEntry": "Muokkaa",
-    "actions": "Toiminnot"
+    "actions": "Toiminnot",
+    "testVersionWarning": "Tämä on testilomake. Järjestelmän ylläpito poistaa testit säännöllisesti",
+    "deleteEntry": "Poista testiversio",
+    "deleteConfirmation": "Haluatko varmasti poistaa testiriskiarvion '{{projectName}}'?",
+    "deleteSuccess": "Testiriskiarvio poistettu onnistuneesti"
   },
   "editEntry": {
     "editingEntryInfo": "Muokataan merkintää ajalta {{date}} {{time}}.",

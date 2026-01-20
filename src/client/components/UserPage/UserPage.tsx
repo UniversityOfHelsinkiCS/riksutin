@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   CircularProgress,
+  IconButton,
   Table,
   TableBody,
   TableCell,
@@ -11,12 +12,14 @@ import {
   TableRow,
   Typography,
 } from '@mui/material'
+import DeleteIcon from '@mui/icons-material/Delete'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { enqueueSnackbar } from 'notistack'
 import styles from '../../styles'
 import { useUserEntries } from '../../hooks/useEntry'
 import { useUpdateEntryRisks } from '../../hooks/useSaveEntryMutation'
+import useDeleteEntryMutation from '../../hooks/useDeleteEntryMutation'
 
 const { riskColors, resultStyles } = styles
 
@@ -24,6 +27,7 @@ const UserPage = () => {
   const { entries } = useUserEntries()
   const { t } = useTranslation()
   const mutation = useUpdateEntryRisks()
+  const deleteMutation = useDeleteEntryMutation()
   const [updateButtonClicked, setUpdateButtonClicked] = useState('')
 
   if (!entries) {
@@ -44,6 +48,20 @@ const UserPage = () => {
     enqueueSnackbar(t('userPage:updateSuccess'), {
       variant: 'success',
     })
+  }
+
+  const handleDeleteEntry = (entryId: string, projectName: string) => {
+    // eslint-disable-next-line no-alert
+    if (!window.confirm(t('userPage:deleteConfirmation', { projectName }))) {
+      return
+    }
+
+    try {
+      deleteMutation.mutate(entryId)
+      enqueueSnackbar(t('userPage:deleteSuccess'), { variant: 'success' })
+    } catch (error: any) {
+      enqueueSnackbar(error.message, { variant: 'error' })
+    }
   }
 
   if (entries.length === 0) {
@@ -83,11 +101,25 @@ const UserPage = () => {
           </TableHead>
           <TableBody>
             {entriesWithData.map(entry => (
-              <TableRow key={entry.id} data-testid="entrybox">
+              <TableRow
+                key={entry.id}
+                data-testid="entrybox"
+                sx={{
+                  backgroundColor: entry.testVersion ? '#fffef5' : 'inherit',
+                }}
+              >
                 <TableCell component="th" scope="row">
-                  <Link
-                    to={`/user/${entry.id.toString()}`}
-                  >{`${entry.data.answers['3']} ${entry.testVersion ? '-TEST VERSION-' : ''}`}</Link>
+                  <Box>
+                    <Link to={`/user/${entry.id.toString()}`}>{entry.data.answers['3']}</Link>
+                    {entry.testVersion && (
+                      <Box
+                        component="div"
+                        sx={{ color: 'red', fontWeight: 'bold', fontSize: '0.75rem', marginTop: '4px' }}
+                      >
+                        TEST VERSION
+                      </Box>
+                    )}
+                  </Box>
                 </TableCell>
                 <TableCell component="th" scope="row">
                   {new Date(entry.createdAt).toLocaleDateString()} {new Date(entry.createdAt).toLocaleTimeString()}
@@ -113,6 +145,15 @@ const UserPage = () => {
                     >
                       {t('userPage:updateRiskAssessment')}
                     </Button>
+                    {entry.testVersion && (
+                      <IconButton
+                        onClick={() => handleDeleteEntry(entry.id.toString(), entry.data.answers['3'])}
+                        color="error"
+                        title={t('userPage:deleteEntry')}
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                    )}
                   </Box>
                 </TableCell>
               </TableRow>

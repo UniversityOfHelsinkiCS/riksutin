@@ -14,7 +14,7 @@
   "testVersion": {
     "saveAsTestForm": "Save as test (System admins will delete test versions regularly)",
     "saveAsTestFormInfo": "",
-    "saveAsTestFormVerification": "Are you certain you want to save a test version only? System administration deletes test versions reugularly. Test versions cannot be edited or changed into actual assessments."
+    "saveAsTestFormVerification": "Are you certain you want to save a test version only? System administration deletes test versions reugularly."
   },
   "footer": {
     "contactSupport": "Contact support: <mailTo>{{supportEmail}}</mailTo>"
@@ -143,7 +143,11 @@
     "backButton": "Create a new risk assesment",
     "printButton": "Create PDF",
     "editEntry": "Edit",
-    "actions": "Actions"
+    "actions": "Actions",
+    "testVersionWarning": "This entry is a test version. Tests will be deleted regularly by system administrators",
+    "deleteEntry": "Delete test version",
+    "deleteConfirmation": "Are you sure you want to delete the test risk assessment '{{projectName}}'?",
+    "deleteSuccess": "Test risk assessment deleted successfully"
   },
   "editEntry": {
     "editingEntryInfo": "Editing entry from {{date}} {{time}}.",
