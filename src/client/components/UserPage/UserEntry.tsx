@@ -75,9 +75,11 @@ const UserEntry = () => {
                 {t('userPage:backButton')}
               </Button>
             </Link>
-            <Button variant="outlined" onClick={() => navigate(`/user/${entryId}/edit`)}>
-              Muokkaa
-            </Button>
+            {tabValue === 0 && (
+              <Button variant="outlined" onClick={() => navigate(`/user/${entryId}/edit`)}>
+                Muokkaa
+              </Button>
+            )}
           </Box>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={tabValue} onChange={handleChange}>
@@ -95,14 +97,15 @@ const UserEntry = () => {
 
           <TabPanel value={tabValue} index={0}>
             <RiskTableDOM riskData={entry.data} countryData={country[0]} />
+            <RenderAnswersDOM survey={survey} resultData={answers} />
           </TabPanel>
           {updatedData?.map((updated, index) => (
             /* eslint-disable-next-line react/no-array-index-key */
             <TabPanel key={index} value={tabValue} index={index + 1}>
               <RiskTableDOM riskData={updated} countryData={country[0]} />
+              <RenderAnswersDOM survey={survey} resultData={updated.answers ?? answers} />
             </TabPanel>
           ))}
-          <RenderAnswersDOM survey={survey} resultData={answers} />
         </Box>
         <SendSummaryEmail entryId={entryId} />
       </div>

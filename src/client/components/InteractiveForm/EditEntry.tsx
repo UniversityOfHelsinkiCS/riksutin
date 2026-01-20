@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { useState, useEffect, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -41,9 +40,6 @@ const EditEntry = () => {
   defaultValues[26] = defaultValues[26] ?? [NO_SELECTION]
   defaultValues[28] = defaultValues[28] ?? [NO_SELECTION]
 
-  console.log('DEBUG1')
-  console.log(defaultValues)
-
   // For HY: Initialize tuhatProjectExists based on saved value or TUHAT data
   if (entry && !defaultValues.tuhatProjectExists) {
     // Only set if not already saved in answers
@@ -67,8 +63,6 @@ const EditEntry = () => {
   // Update form values when entry loads (only once)
   useEffect(() => {
     if (entry && !entryLoading && !hasResetRef.current) {
-      console.log('ANSWERS')
-      console.log(entry.data?.answers)
       const values: FormValues = entry.data?.answers ?? ({} as FormValues)
       values[26] = values[26] ?? [NO_SELECTION]
       values[28] = values[28] ?? [NO_SELECTION]
@@ -81,9 +75,6 @@ const EditEntry = () => {
           values.tuhatProjectExists = 'tuhatOptionNegative'
         }
       }
-
-      console.log('DEBUG2')
-      console.log(values)
 
       reset(values, { keepDefaultValues: false })
       hasResetRef.current = true
@@ -134,6 +125,7 @@ const EditEntry = () => {
       enqueueSnackbar(t('common:updateSuccess'), { variant: 'success' })
       navigate(`/user/${entryId}`)
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.log(error)
       enqueueSnackbar(t('common:updateError'), { variant: 'error' })
     }
