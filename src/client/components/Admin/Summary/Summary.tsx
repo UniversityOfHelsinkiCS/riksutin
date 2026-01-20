@@ -4,11 +4,12 @@ import { Box, Button, IconButton, Typography } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 import FileDownloadIcon from '@mui/icons-material/FileDownload'
 import { utils, writeFile } from 'xlsx'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { enqueueSnackbar } from 'notistack'
 import { useEntries } from '../../../hooks/useEntry'
 import useQuestions from '../../../hooks/useQuestions'
 import useDeleteEntryMutation from '../../../hooks/useDeleteEntryMutation'
+import useLoggedInUser from '../../../hooks/useLoggedInUser'
 import styles from '../../../styles'
 import useFaculties from '../../../hooks/useFaculties'
 import { extraOrganisations } from '@common/organisations'
@@ -179,6 +180,8 @@ const Summary = () => {
   const { entries } = useEntries()
   const { questions } = useQuestions(1)
   const { faculties, isLoading: facultiesLoading } = useFaculties()
+  const { user } = useLoggedInUser()
+  const navigate = useNavigate()
 
   if (!questions || !entries || facultiesLoading || !faculties) {
     return null
@@ -187,6 +190,8 @@ const Summary = () => {
   const organisations = faculties.concat(extraOrganisations)
 
   const entriesWithData = entries.filter(entry => entry.data.answers && entry.data.country && entry.data.risks)
+
+  const isToskaUser = user?.iamGroups?.includes('grp-toska')
 
   if (entriesWithData.length === 0) {
     return (
@@ -218,9 +223,14 @@ const Summary = () => {
 
   return (
     <>
-      <Typography variant="h5" m={4}>
-        Kaikki valmiit riskiarviot
-      </Typography>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', m: 4 }}>
+        <Typography variant="h5">Kaikki valmiit riskiarviot</Typography>
+        {isToskaUser && (
+          <Button variant="outlined" onClick={() => navigate('/admin/debug')}>
+            Debug View
+          </Button>
+        )}
+      </Box>
       <Box
         sx={{
           width: '100%',
