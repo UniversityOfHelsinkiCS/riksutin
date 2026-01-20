@@ -22,6 +22,7 @@ import tuhatProjectsRouter from './tuhatProject'
 import { setMockUser } from '../mocs/user'
 import adminHandler from '../middleware/admin'
 import myResearchApiRouter from './myResearchApi'
+import seed from '../db/seeders'
 
 const router = express()
 
@@ -51,6 +52,10 @@ if (inDevelopment || inE2EMode) {
 router.get('/ping', (_, res) => res.send('pong'))
 router.get('/explode', adminHandler, () => {
   throw new Error('Test error')
+})
+router.post('/seed', adminHandler, async (_, res) => {
+  await seed()
+  res.send('Database seeded successfully')
 })
 
 router.use('/faculties', facultyRouter)

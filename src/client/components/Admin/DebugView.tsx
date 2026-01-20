@@ -112,9 +112,28 @@ const AdminDebugView = () => {
     }
   }
 
+  const handleSeedDatabase = async () => {
+    if (!window.confirm('Are you sure you want to seed the database? This will add default data.')) {
+      return
+    }
+    try {
+      const response = await fetch('/api/seed', {
+        method: 'POST',
+      })
+
+      if (response.ok) {
+        addMessage('success', 'Database seeded successfully')
+      } else {
+        addMessage('error', `Failed to seed database: ${response.statusText}`)
+      }
+    } catch (error) {
+      addMessage('error', `Error seeding database: ${error}`)
+    }
+  }
+
   return (
     <div style={{ padding: '20px' }}>
-      <h2>Admin Debug View</h2>
+      <h2>Acual admin view</h2>
 
       {messages.length > 0 && (
         <div style={{ marginBottom: '20px' }}>
@@ -167,6 +186,20 @@ const AdminDebugView = () => {
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '300px' }}>
         <button
+          onClick={handleSeedDatabase}
+          style={{
+            padding: '10px 15px',
+            backgroundColor: '#20c997',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            fontSize: '14px',
+          }}
+        >
+          Seed Database
+        </button>
+        <button
           onClick={handleExplode}
           style={{
             padding: '10px 15px',
@@ -176,6 +209,7 @@ const AdminDebugView = () => {
             borderRadius: '4px',
             cursor: 'pointer',
             fontSize: '14px',
+            marginTop: 20,
           }}
         >
           Backend chaos monkey

@@ -13,8 +13,10 @@ const seed = async () => {
     seedResults()
     await seedUsers()
     logger.info('Seeding successful')
+    return true
   } catch (e) {
     logger.error('Seeding failed: ', e)
+    return false
   }
 }
 
