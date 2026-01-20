@@ -22,6 +22,7 @@ type TableProps = {
   tableValues: TableValues[]
   questionTitles: TableValues
   isOutdated: any
+  entries: any[]
 }
 
 const additionalColumnNames: TableValues = {
@@ -32,8 +33,13 @@ const additionalColumnNames: TableValues = {
   unit: 'Yksikkö',
 }
 
-const Table = ({ tableValues, questionTitles, isOutdated }: TableProps) => {
+const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps) => {
   const deleteMutation = useDeleteEntryMutation()
+
+  const isTestVersion = (id: string) => {
+    return entries.find(e => e.id === Number(id))?.testVersion || false
+  }
+
   const columns = useMemo<MRT_ColumnDef<TableValues>[]>(() => {
     const outdatedWarning = { paddingRight: 10, color: 'red', fontSize: 'x-large' }
     return tableValues.length
@@ -54,10 +60,18 @@ const Table = ({ tableValues, questionTitles, isOutdated }: TableProps) => {
               })}
             >
               {columnId === '3' ? (
-                <>
+                <Box>
                   {isOutdated(row.getValue('id')) && <span style={outdatedWarning}>!</span>}
                   <Link to={`/admin/entry/${row.getValue('id')}`}>{cell.getValue<string>()}</Link>
-                </>
+                  {isTestVersion(row.getValue('id')) && (
+                    <Box
+                      component="div"
+                      sx={{ color: 'red', fontWeight: 'bold', fontSize: '0.75rem', marginTop: '4px' }}
+                    >
+                      TEST VERSION
+                    </Box>
+                  )}
+                </Box>
               ) : (
                 cell.getValue<number>()
               )}
@@ -106,7 +120,12 @@ const Table = ({ tableValues, questionTitles, isOutdated }: TableProps) => {
     enableColumnOrdering: true,
     enableGlobalFilter: false,
     enableRowActions: true,
-    muiTableBodyRowProps: { hover: false },
+    muiTableBodyRowProps: ({ row }) => ({
+      hover: false,
+      sx: {
+        backgroundColor: isTestVersion(row.original.id) ? '#fffef5' : 'inherit',
+      },
+    }),
     muiTableBodyCellProps: {
       sx: {
         border: '1px solid rgba(81, 81, 81, .5)',
@@ -208,7 +227,12 @@ const Summary = () => {
           px: 8,
         }}
       >
-        <Table tableValues={tableData} questionTitles={questionTitles} isOutdated={isOutdated} />
+        <Table
+          tableValues={tableData}
+          questionTitles={questionTitles}
+          isOutdated={isOutdated}
+          entries={entriesWithData}
+        />
       </Box>
     </>
   )

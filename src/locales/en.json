@@ -110,6 +110,7 @@
     "title": "Project risk profile",
     "riskTableTitle": "Risks of the collaboration",
     "answerBoxTitle": "Summary of your choices",
+    "changedFieldsNote": "Questions with a light background indicate answers that have changed from the previous version.",
     "resultsMessage": "We have compiled a summary of your selections below",
     "proceedTitle": "Did you find what you were looking for?",
     "proceedToExit": "Yes",

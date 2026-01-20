@@ -13,11 +13,13 @@ const RenderAnswers = ({
   resultData,
   faculties,
   units,
+  changedFields,
 }: {
   survey: Survey
   resultData: FormValues
   faculties: FacultyOrUnit[]
   units: FacultyOrUnit[]
+  changedFields?: Set<number>
 }) => {
   const { Div, Typography, t, language } = useComponents()
 
@@ -73,12 +75,25 @@ const RenderAnswers = ({
       <Typography variant="h6" style={{ fontSize: '24px', marginBottom: '20px' }}>
         {t('results:answerBoxTitle')}
       </Typography>
+      {changedFields && changedFields.size > 0 && (
+        <Div style={{ backgroundColor: '#fffef0', padding: '12px', borderRadius: '4px', marginBottom: '16px' }}>
+          <Typography style={{ fontSize: '14px', fontStyle: 'italic' }}>{t('results:changedFieldsNote')}</Typography>
+        </Div>
+      )}
       <Div style={{ borderLeft: '1px solid lightgray' }}>
         {survey?.Questions.map(currentQuestion => (
           <Div key={currentQuestion.id}>
             {!currentQuestion.parentId && !(hyCordinatedMultilateral && [6, 8, 24].includes(currentQuestion.id)) && (
               <>
-                <Div style={{ margin: '16px' }} id={`question-${currentQuestion.id}`}>
+                <Div
+                  style={{
+                    margin: '16px',
+                    ...(changedFields?.has(currentQuestion.id)
+                      ? { backgroundColor: '#fffef0', padding: '8px', borderRadius: '4px' }
+                      : {}),
+                  }}
+                  id={`question-${currentQuestion.id}`}
+                >
                   <Typography style={{ fontWeight: '800' }}>
                     {currentQuestion.id === 8 && resultData[4] === 'multilateral'
                       ? t('questions:additionalPartnerOrganisationCountryQuestion')
@@ -98,7 +113,8 @@ const RenderAnswers = ({
                 {survey?.Questions.filter(
                   childQuestion =>
                     childQuestion.parentId === currentQuestion.id &&
-                    !(resultData[9] !== 'coordinator' && childQuestion.parentId === 4)
+                    !(hyCordinatedMultilateral && [6, 8, 24].includes(childQuestion.id)) &&
+                    !(!hyCordinatedMultilateral && [26, 27, 28, 30].includes(childQuestion.id))
                 )?.map(childQuestion => (
                   <Div key={childQuestion.id} style={{ margin: '16px' }}>
                     <Div style={{ borderLeft: '1px solid lightgray' }}>

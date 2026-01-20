@@ -26,9 +26,6 @@ const createTableData = (entries: Entry[], questions: Question[], faculties: Fac
     if (entry.data.answers.selectOrganisation) {
       entry.data.answers[22] = entry.data.answers.selectOrganisation
     }
-    if (entry.testVersion && !entry.data.answers[3].includes('TEST VERSION')) {
-      entry.data.answers[3] = `${entry.data.answers[3]} -TEST VERSION-`
-    }
     const formData = Object.fromEntries(
       questionIds.map(id => [
         id,

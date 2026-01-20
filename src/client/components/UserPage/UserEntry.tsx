@@ -64,6 +64,26 @@ const UserEntry = () => {
 
   const { answers, country, updatedData } = entry.data
 
+  // Helper function to compare answers and find changed fields
+  const getChangedFields = (currentAnswers: any, previousAnswers: any): Set<number> => {
+    const changed = new Set<number>()
+    if (!previousAnswers) {
+      return changed
+    }
+
+    Object.keys(currentAnswers).forEach(key => {
+      const numKey = Number(key)
+      if (!isNaN(numKey)) {
+        const current = JSON.stringify(currentAnswers[key])
+        const previous = JSON.stringify(previousAnswers[key])
+        if (current !== previous) {
+          changed.add(numKey)
+        }
+      }
+    })
+    return changed
+  }
+
   return (
     <MuiComponentProvider>
       <div>
@@ -97,15 +117,26 @@ const UserEntry = () => {
 
           <TabPanel value={tabValue} index={0}>
             <RiskTableDOM riskData={entry.data} countryData={country[0]} />
-            <RenderAnswersDOM survey={survey} resultData={answers} />
+            <RenderAnswersDOM
+              survey={survey}
+              resultData={answers}
+              changedFields={getChangedFields(answers, updatedData?.[0]?.answers)}
+            />
           </TabPanel>
-          {updatedData?.map((updated, index) => (
-            /* eslint-disable-next-line react/no-array-index-key */
-            <TabPanel key={index} value={tabValue} index={index + 1}>
-              <RiskTableDOM riskData={updated} countryData={country[0]} />
-              <RenderAnswersDOM survey={survey} resultData={updated.answers ?? answers} />
-            </TabPanel>
-          ))}
+          {updatedData?.map((updated, index) => {
+            const previousAnswers = updatedData[index + 1]?.answers
+            return (
+              /* eslint-disable-next-line react/no-array-index-key */
+              <TabPanel key={index} value={tabValue} index={index + 1}>
+                <RiskTableDOM riskData={updated} countryData={country[0]} />
+                <RenderAnswersDOM
+                  survey={survey}
+                  resultData={updated.answers ?? answers}
+                  changedFields={getChangedFields(updated.answers ?? answers, previousAnswers)}
+                />
+              </TabPanel>
+            )
+          })}
         </Box>
         <SendSummaryEmail entryId={entryId} />
       </div>
