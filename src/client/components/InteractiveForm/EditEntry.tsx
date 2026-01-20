@@ -11,7 +11,6 @@ import type { FormValues } from '@types'
 
 import useResults from '../../hooks/useResults'
 import useSurvey from '../../hooks/useSurvey'
-import usePersistForm from '../../hooks/usePersistForm'
 import { useUpdateEntryMutation } from '../../hooks/useSaveEntryMutation'
 import { useEntry } from '../../hooks/useEntry'
 
@@ -62,7 +61,13 @@ const EditEntry = () => {
     defaultValues,
   })
 
-  usePersistForm({ value: watch(), sessionStorageKey: FORM_DATA_KEY })
+  // Clear session storage when entering edit mode to avoid conflicts
+  useEffect(() => {
+    sessionStorage.removeItem(FORM_DATA_KEY)
+  }, [entryId])
+
+  // Don't persist form data when editing - it conflicts with loading entry data
+  // usePersistForm({ value: watch(), sessionStorageKey: FORM_DATA_KEY })
 
   // Update form values when entry loads (only once)
   useEffect(() => {
