@@ -53,6 +53,7 @@ const RenderSurvey = ({
   saveAsTestVersion,
   setSaveAsTestVersion,
   isEditing,
+  disableTestVersionToggle,
 }: {
   control: Control<any>
   watch: UseFormWatch<any>
@@ -63,6 +64,7 @@ const RenderSurvey = ({
   saveAsTestVersion: boolean
   setSaveAsTestVersion?: any
   isEditing?: boolean
+  disableTestVersionToggle?: boolean
 }) => {
   const { t, i18n } = useTranslation()
   const { defaultValues } = useFormState({ control })
@@ -114,14 +116,16 @@ const RenderSurvey = ({
             </Button>
           ) : (
             <>
-              <FormControlLabel
-                key={'testVersionCheck'}
-                value={saveAsTestVersion}
-                data-cy={'saveAsTestVersion'}
-                checked={saveAsTestVersion}
-                control={<Checkbox onChange={() => setSaveAsTestVersion(!saveAsTestVersion)} />}
-                label={t('testVersion:saveAsTestForm')}
-              />
+              {!disableTestVersionToggle && (
+                <FormControlLabel
+                  key={'testVersionCheck'}
+                  value={saveAsTestVersion}
+                  data-cy={'saveAsTestVersion'}
+                  checked={saveAsTestVersion}
+                  control={<Checkbox onChange={() => setSaveAsTestVersion(!saveAsTestVersion)} />}
+                  label={t('testVersion:saveAsTestForm')}
+                />
+              )}
               <SurveyButtons isEditing={isEditing}>
                 <LoadingButton
                   sx={formStyles.stackButton}

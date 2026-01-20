@@ -32,6 +32,7 @@ const EditEntry = () => {
   const [submitButtonLoading, setSubmitButtonLoading] = useState(false)
   const [saveAsTestVersion, setSaveAsTestVersion] = useState(entry?.testVersion ?? false)
   const hasResetRef = useRef(false)
+  const originalTestVersion = entry?.testVersion ?? false
 
   const { formStyles } = styles
 
@@ -159,6 +160,7 @@ const EditEntry = () => {
               saveAsTestVersion={saveAsTestVersion}
               setSaveAsTestVersion={setSaveAsTestVersion}
               isEditing
+              disableTestVersionToggle={!originalTestVersion}
             />
           </form>
         </Grid>
