@@ -101,20 +101,25 @@ const UserEntry = () => {
               </Button>
             </Link>
             {tabValue === 0 && (
-              <Button variant="outlined" onClick={() => navigate(`/user/${entryId}/edit`)}>
+              <Button variant="outlined" onClick={() => navigate(`/user/${entryId}/edit`)} data-testid="edit-button">
                 {t('userPage:editEntry')}
               </Button>
             )}
           </Box>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs value={tabValue} onChange={handleChange}>
-              <Tab sx={{ color: 'black' }} label={formatDate(entry.updatedAt ?? entry.createdAt)} />
+            <Tabs value={tabValue} onChange={handleChange} data-testid="version-tabs">
+              <Tab
+                sx={{ color: 'black' }}
+                label={formatDate(entry.updatedAt ?? entry.createdAt)}
+                data-testid="current-version-tab"
+              />
               {sortedUpdatedData?.map((updated, index) => (
                 <Tab
                   /* eslint-disable-next-line react/no-array-index-key */
                   key={index}
                   sx={{ color: 'black' }}
                   label={formatDate(updated.createdAt!)}
+                  data-testid={`version-tab-${index}`}
                 />
               ))}
             </Tabs>

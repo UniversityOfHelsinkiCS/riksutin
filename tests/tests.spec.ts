@@ -331,3 +331,124 @@ test.describe('a bilateral project nonuniversity project with external funding',
     await expect(page.getByText('Yhteenveto valinnoistasi')).toBeVisible()
   })
 })
+
+test.describe('editing an existing project', () => {
+  let page: Page
+
+  test.beforeAll(async ({ browser }) => {
+    page = await browser.newPage()
+
+    // First, create a project
+    await page.goto('/')
+    await page.getByRole('button', { name: 'Olen projektin omistaja' }).click()
+
+    const autocompleteInput = page.locator('#unit')
+    await autocompleteInput.fill('ti')
+    const options = page.locator('.MuiAutocomplete-option')
+    await options.filter({ hasText: 'Tietojenkäsittelytieteen osasto' }).first().click()
+
+    await page.locator('[data-cy="choice-select-tuhatOptionNegative"]').click()
+    await page.getByTestId('question-tuhatProjText').getByRole('textbox').click()
+    await page.getByTestId('question-tuhatProjText').getByRole('textbox').fill('Project to Edit')
+
+    await page.locator('[data-cy="choice-select-bilateral"]').click()
+
+    await page.getByLabel('Valitse sijaintimaa').click()
+    await page.getByRole('option', { name: 'Afghanistan' }).click()
+
+    await page.locator('[data-cy="choice-select-university"]').click()
+    await page.getByLabel('Valitse yliopisto').click()
+    await page.getByRole('option', { name: 'Kardan University' }).click()
+
+    await page.locator('[data-cy="choice-select-succefultCollaboration"]').click()
+    await page.locator('[data-cy="choice-select-partner"]').click()
+    await page.locator('[data-cy="choice-select-agreementDone"]').click()
+
+    await page.locator('input[value="education"]').check()
+
+    await page.locator('[data-cy="choice-select-mediumDuration"]').click()
+    await page.locator('[data-cy="choice-select-noExternalFunding"]').click()
+    await page.locator('[data-cy="choice-select-mediumBudget"]').click()
+    await page.locator('[data-cy="choice-select-transferPersonalData"]').click()
+    await page.locator('[data-cy="choice-select-noTransferMilitaryKnowledge"]').click()
+    await page.locator('[data-cy="choice-select-noEthicalIssues"]').click()
+
+    await page.getByTestId('question-7').getByRole('textbox').click()
+    await page.getByTestId('question-7').getByRole('textbox').fill('Initial description')
+
+    await page.getByRole('button', { name: 'Tallenna' }).click()
+    await expect(page.getByText('Yhteenveto valinnoistasi')).toBeVisible()
+
+    await expect(page.getByRole('button', { name: 'Muokkaa' })).toBeVisible()
+    await page.getByRole('button', { name: 'Muokkaa' }).click()
+
+    await expect(page.getByTestId('question-7').getByRole('textbox')).toBeVisible()
+
+    await page.getByTestId('question-7').getByRole('textbox').click()
+    await page.getByTestId('question-7').getByRole('textbox').clear()
+    await page.getByTestId('question-7').getByRole('textbox').fill('Updated description')
+
+    await page.getByLabel('Valitse sijaintimaa').click()
+    await page.getByRole('option', { name: 'Belarus' }).click()
+    await page.waitForTimeout(500)
+
+    await page.locator('[data-cy="choice-select-university"]').click()
+    await page.getByLabel('Valitse yliopisto').click()
+    await page.getByRole('option', { name: 'Ahlobait University' }).click()
+
+    await page.locator('[data-cy="choice-select-coordinator"]').click()
+    await page.locator('input[value="research"]').check()
+    await page.locator('[data-cy="choice-select-largeBudget"]').click()
+
+    await page.getByRole('button', { name: 'Päivitä valinnat' }).click()
+    await expect(page.getByText('Yhteenveto valinnoistasi')).toBeVisible()
+  }, 20000)
+
+  test.afterAll(async () => {
+    await page.close()
+  })
+
+  test('updated data is visible after editing', async () => {
+    await expect(page.getByText('Yhteistyön riskit')).toBeVisible()
+    await expect(page.getByText('Yhteenveto valinnoistasi')).toBeVisible()
+  })
+
+  test('updated project description is shown', async () => {
+    const description = page.locator('#question-7')
+    await expect(description).toBeVisible()
+    await expect(description).toContainText('Updated description')
+  })
+
+  test('updated role is shown', async () => {
+    const role = page.locator('#question-9')
+    await expect(role).toBeVisible()
+    await expect(role).toContainText('Yhteistyön koordinaattori')
+  })
+
+  test('updated country is shown in risk table', async () => {
+    await expect(page.getByText('Maan riskitaso', { exact: true })).toBeVisible()
+    const countrySection = page.locator('#question-8')
+    await expect(countrySection).toContainText('Belarus')
+  })
+
+  test('updated research areas are shown', async () => {
+    const researchAreas = page.locator('#question-11')
+    await expect(researchAreas).toBeVisible()
+    await expect(researchAreas).toContainText('Koulutus/opetusyhteistyö')
+    await expect(researchAreas).toContainText('Tutkimusyhteistyö')
+  })
+
+  test('version history can be viewed', async () => {
+    await expect(page.getByTestId('version-tabs')).toBeVisible()
+    await expect(page.getByTestId('version-tab-0')).toBeVisible()
+
+    await page.getByTestId('version-tab-0').click()
+
+    const countrySection = page.locator('#question-8')
+    await expect(countrySection).toContainText('Afghanistan')
+
+    const role = page.locator('#question-9')
+    await expect(role).toBeVisible()
+    await expect(role).toContainText('Kumppani tai tasaveroinen partneri')
+  })
+})
