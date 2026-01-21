@@ -63,8 +63,8 @@ const UserEntry = () => {
   }
 
   const { answers, country, updatedData } = entry.data
+  const sortedUpdatedData = updatedData ? [...updatedData].reverse() : []
 
-  // Helper function to compare answers and find changed fields
   const getChangedFields = (currentAnswers: any, previousAnswers: any): Set<number> => {
     const changed = new Set<number>()
     if (!previousAnswers) {
@@ -109,7 +109,7 @@ const UserEntry = () => {
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={tabValue} onChange={handleChange}>
               <Tab sx={{ color: 'black' }} label={formatDate(entry.updatedAt ?? entry.createdAt)} />
-              {updatedData?.map((updated, index) => (
+              {sortedUpdatedData?.map((updated, index) => (
                 <Tab
                   /* eslint-disable-next-line react/no-array-index-key */
                   key={index}
@@ -125,11 +125,11 @@ const UserEntry = () => {
             <RenderAnswersDOM
               survey={survey}
               resultData={answers}
-              changedFields={getChangedFields(answers, updatedData?.[0]?.answers)}
+              changedFields={getChangedFields(answers, sortedUpdatedData?.[0]?.answers)}
             />
           </TabPanel>
-          {updatedData?.map((updated, index) => {
-            const previousAnswers = updatedData[index + 1]?.answers
+          {sortedUpdatedData?.map((updated, index) => {
+            const previousAnswers = sortedUpdatedData[index + 1]?.answers
             return (
               /* eslint-disable-next-line react/no-array-index-key */
               <TabPanel key={index} value={tabValue} index={index + 1}>
