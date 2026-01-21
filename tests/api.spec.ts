@@ -297,4 +297,92 @@ test.describe('api', () => {
     expect(updatedEntry.data.updatedData[0].country[0].code).toBe('AF')
     expect(updatedEntry.data.updatedData[1].country[0].code).toBe('SE')
   })
+
+  test('only creator can view and edit an entry', async () => {
+    let mockUserResponse = await fetch(`${baseUrl}/api/mock/user?type=admin`)
+
+    const initialPayload = {
+      data: {
+        '1': 'Admin Creator',
+        '2': testUser,
+        '3': 'Admin Project',
+        '4': 'bilateral',
+        '6': 'university',
+        '8': 'Afghanistan',
+        '9': 'partner',
+        '10': 'agreementNotDone',
+        '11': ['education'],
+        '12': 'mediumDuration',
+        '13': 'noExternalFunding',
+        '16': 'mediumBudget',
+        '17': 'noTransferPersonalData',
+        '20': 'Kardan University',
+        '23': 'noTransferMilitaryKnowledge',
+        '24': 'noSuccessfulCollaboration',
+        '25': 'likelyNoEthicalIssues',
+        faculty: 'H40',
+        unit: 'H528',
+        tuhatProjectExists: 'tuhatOptionNegative',
+      },
+      sessionToken: 'access-control-test-session',
+      tuhatData: {},
+    }
+
+    const createResponse = await fetch(`${baseUrl}/api/entries/1`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(initialPayload),
+    })
+
+    expect(createResponse.status).toBe(201)
+    const createdEntry = await createResponse.json()
+    const entryId = createdEntry.id
+    mockUserResponse = await fetch(`${baseUrl}/api/mock/user?type=normal`)
+    expect(mockUserResponse.status).toBe(200)
+
+    const getResponse = await fetch(`${baseUrl}/api/entries/${entryId}`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    })
+
+    expect(getResponse.status).toBe(401)
+    const getError = await getResponse.json()
+    expect(getError.error).toContain('Unauthorized')
+
+    const updatePayload = {
+      data: {
+        '1': 'Unauthorized Edit',
+        '2': testUser,
+        '3': 'Should Not Work',
+        '4': 'bilateral',
+        '6': 'university',
+        '8': 'Sweden',
+        '9': 'partner',
+        '10': 'agreementDone',
+        '11': ['education', 'research'],
+        '12': 'mediumDuration',
+        '13': 'noExternalFunding',
+        '16': 'mediumBudget',
+        '17': 'noTransferPersonalData',
+        '20': 'Kardan University',
+        '23': 'noTransferMilitaryKnowledge',
+        '24': 'successfulCollaboration',
+        '25': 'likelyNoEthicalIssues',
+        faculty: 'H40',
+        unit: 'H528',
+        tuhatProjectExists: 'tuhatOptionNegative',
+      },
+      tuhatData: {},
+    }
+
+    const putResponse = await fetch(`${baseUrl}/api/entries/${entryId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatePayload),
+    })
+
+    expect(putResponse.status).toBe(401)
+    const putError = await putResponse.json()
+    expect(putError.error).toContain('Unauthorized')
+  })
 })
