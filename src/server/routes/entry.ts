@@ -116,12 +116,10 @@ entryRouter.put('/:entryId', async (req: RequestWithUser, res: any) => {
     return res.status(500).send('Error when calculating risks')
   }
 
-  // Preserve history - store current version in updatedData array
   const currentData = entry.data
   const updatedDataArray = currentData.updatedData ?? []
 
   // Store the current state with the timestamp showing when this version was last active
-  // Use the current updatedAt (or createdAt if never updated) to show when this version was last modified
   const previousVersionTimestamp = entry.updatedAt?.toISOString() ?? entry.createdAt.toISOString()
 
   updatedDataArray.push({
@@ -132,7 +130,6 @@ entryRouter.put('/:entryId', async (req: RequestWithUser, res: any) => {
     createdAt: previousVersionTimestamp,
   })
 
-  // Update entry with new data (updatedAt will be automatically set by Sequelize to current time)
   await entry.update({
     data: {
       ...riskData,
