@@ -42,7 +42,7 @@ jobs:
 
     - name: Print logs
       shell: bash
-      #if: failure()
+      if: failure()
       run: docker compose -f docker-compose.ci.yml logs --tail="all"
 
     - uses: actions/upload-artifact@v4
