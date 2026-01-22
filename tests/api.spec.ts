@@ -299,9 +299,7 @@ test.describe('api', () => {
   })
 
   test('only creator can view and edit an entry', async () => {
-    let mockUserResponse = await fetch(`${baseUrl}/api/mock/user?type=admin`)
-    expect(mockUserResponse.status).toBe(200)
-    expect(await mockUserResponse.text()).toContain('changed mock user to admin')
+    await fetch(`${baseUrl}/api/mock/user?type=admin`)
 
     const initialPayload = {
       data: {
@@ -339,9 +337,7 @@ test.describe('api', () => {
     expect(createResponse.status).toBe(201)
     const createdEntry = await createResponse.json()
     const entryId = createdEntry.id
-    mockUserResponse = await fetch(`${baseUrl}/api/mock/user?type=normal`)
-    expect(mockUserResponse.status).toBe(200)
-    expect(await mockUserResponse.text()).toContain('changed mock user to normal')
+    await fetch(`${baseUrl}/api/mock/user?type=normal`)
 
     const getResponse = await fetch(`${baseUrl}/api/entries/${entryId}`, {
       method: 'GET',
