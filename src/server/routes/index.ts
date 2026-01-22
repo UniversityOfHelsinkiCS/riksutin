@@ -60,17 +60,18 @@ router.post('/seed', adminHandler, async (_, res) => {
 
 router.use('/login', loginRouter)
 
-router.use(userAccessMiddleware)
-
 router.use('/faculties', facultyRouter)
 router.use('/surveys', surveyRouter)
 router.use('/questions', questionRouter)
 router.use('/results', resultRouter)
-router.use('/entries', entryRouter)
-router.use('/users', userRouter)
 router.use('/countries', countryRouter)
-router.use('/organizations', organizationRouter)
 router.use('/warnings', warningsRouter)
+
+router.use(userAccessMiddleware)
+
+router.use('/users', userRouter)
+router.use('/entries', entryRouter)
+router.use('/organizations', organizationRouter)
 router.use('/tuhatprojects', tuhatProjectsRouter)
 router.use('/riskiapi', myResearchApiRouter)
 
