@@ -9,7 +9,7 @@ const mockUsers = {
     email: 'grp-toska@helsinki.fi',
     language: 'fi',
     isAdmin: true,
-    iamGroups: ['grp-toska', 'hy-mltdk-employees'],
+    iamGroups: ['grp-toska', 'hy-employees'],
   },
   normal: {
     id: 'normaltestuser',
@@ -19,7 +19,17 @@ const mockUsers = {
     email: 'matti.luukkainen@helsinki.fi',
     language: 'fi',
     isAdmin: false,
-    iamGroups: ['hy-mltdk-employees'],
+    iamGroups: ['hy-employees'],
+  },
+  student: {
+    id: 'student',
+    username: 'hy-hlo-221212',
+    firstName: 'Matti',
+    lastName: 'Meikäläinen',
+    email: 'matti.meikalainen@helsinki.fi',
+    language: 'fi',
+    isAdmin: false,
+    iamGroups: [],
   },
 }
 

@@ -4,7 +4,8 @@ import * as Sentry from '@sentry/node'
 
 import { inDevelopment, inE2EMode, inAcualStaging } from '@config'
 import initializeSentry from '../util/sentry'
-import userMiddleware from '../middleware/user'
+import mockUserMiddleware from '../middleware/mockUser'
+import userAccessMiddleware from '../middleware/user'
 import sentryUserMiddleware from '../middleware/sentry'
 import errorHandler from '../middleware/error'
 import accessLogger from '../middleware/access'
@@ -32,10 +33,9 @@ router.use(cors())
 router.use(express.json())
 
 if (inDevelopment || inE2EMode || inAcualStaging) {
-  router.use(userMiddleware)
+  router.use(mockUserMiddleware)
 }
 
-// Set Sentry user context after user middleware
 router.use(sentryUserMiddleware)
 
 router.use(accessLogger)
@@ -58,13 +58,16 @@ router.post('/seed', adminHandler, async (_, res) => {
   res.send('Database seeded successfully')
 })
 
+router.use('/login', loginRouter)
+
+router.use(userAccessMiddleware)
+
 router.use('/faculties', facultyRouter)
 router.use('/surveys', surveyRouter)
 router.use('/questions', questionRouter)
 router.use('/results', resultRouter)
 router.use('/entries', entryRouter)
 router.use('/users', userRouter)
-router.use('/login', loginRouter)
 router.use('/countries', countryRouter)
 router.use('/organizations', organizationRouter)
 router.use('/warnings', warningsRouter)

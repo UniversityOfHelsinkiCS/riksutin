@@ -1,13 +1,12 @@
-import { getMockUser } from '../mocs/user'
+import { NextFunction, Response } from 'express'
+import UnauthorizedError from '../errors/UnauthorizedError'
 
-const userMiddleware = (req, _, next) => {
-  if (req.path.includes('/login')) {
-    return next()
+const userAccessHandler = (req, res: Response, next: NextFunction) => {
+  if (!req?.user?.iamGroups?.includes('hy-employees')) {
+    throw new UnauthorizedError('Unauthorized')
   }
-
-  req.user = getMockUser()
 
   return next()
 }
 
-export default userMiddleware
+export default userAccessHandler
