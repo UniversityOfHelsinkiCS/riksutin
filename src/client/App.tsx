@@ -9,6 +9,7 @@ import useLoggedInUser from './hooks/useLoggedInUser'
 import { ResultDataProvider } from './contexts/ResultDataContext'
 import Footer from './components/Footer'
 import NavBar from './components/NavBar/NavBar'
+import Unauthorized from './components/Errors/Unauthorized'
 
 const App = () => {
   const theme = useTheme()
@@ -20,6 +21,14 @@ const App = () => {
   if (!user?.id) {
     window.location.href = `${FULL_URL}/api/login`
     return null
+  }
+
+  if (!user?.iamGroups?.includes('hy-employees')) {
+    return (
+      <ThemeProvider theme={theme}>
+        <Unauthorized />
+      </ThemeProvider>
+    )
   }
 
   return (
