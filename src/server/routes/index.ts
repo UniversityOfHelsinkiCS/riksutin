@@ -67,13 +67,13 @@ router.use('/results', resultRouter)
 router.use('/countries', countryRouter)
 router.use('/warnings', warningsRouter)
 router.use('/users', userRouter)
+router.use('/riskiapi', myResearchApiRouter)
 
 router.use(userAccessMiddleware)
 
 router.use('/entries', entryRouter)
 router.use('/organizations', organizationRouter)
 router.use('/tuhatprojects', tuhatProjectsRouter)
-router.use('/riskiapi', myResearchApiRouter)
 
 router.get('/explode', () => {
   throw new Error('Bad thing happened!')

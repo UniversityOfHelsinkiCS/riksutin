@@ -385,3 +385,153 @@ test.describe('api', () => {
     expect(putError.error).toContain('Unauthorized')
   })
 })
+
+test.describe('riskiapi', () => {
+  const tuhatId1 = 'test-tuhat-project-123'
+  const tuhatId2 = 'test-tuhat-project-456'
+
+  test.beforeAll(async () => {
+    const payload1 = {
+      data: {
+        '1': 'Testi Kayttaja',
+        '2': testUser,
+        '3': 'Tuhat Project Test',
+        '4': 'bilateral',
+        '6': 'university',
+        '8': 'Afghanistan',
+        '9': 'partner',
+        '10': 'agreementNotDone',
+        '11': ['education'],
+        '12': 'mediumDuration',
+        '13': 'noExternalFunding',
+        '16': 'mediumBudget',
+        '17': 'noTransferPersonalData',
+        '20': 'Kardan University',
+        '23': 'noTransferMilitaryKnowledge',
+        '24': 'noSuccessfulCollaboration',
+        '25': 'likelyNoEthicalIssues',
+        faculty: 'H40',
+        unit: 'H528',
+        tuhatProjectExists: 'tuhatOptionPositive',
+      },
+      sessionToken: 'riskiapi-test-session',
+      tuhatData: {
+        tuhatId: tuhatId1,
+        name: { fi: 'Testiprojekti', en: 'Test Project' },
+        startDate: '2024-01-01',
+        endDate: '2025-12-31',
+      },
+    }
+
+    const payload2 = {
+      data: {
+        '1': 'Testi Kayttaja',
+        '2': testUser,
+        '3': 'Specific Tuhat Project',
+        '4': 'bilateral',
+        '6': 'university',
+        '8': 'Sweden',
+        '9': 'coordinator',
+        '10': 'agreementDone',
+        '11': ['research'],
+        '12': 'shortDuration',
+        '13': 'noExternalFunding',
+        '16': 'smallBudget',
+        '17': 'noTransferPersonalData',
+        '20': 'Stockholm University',
+        '23': 'noTransferMilitaryKnowledge',
+        '24': 'successfulCollaboration',
+        '25': 'likelyNoEthicalIssues',
+        faculty: 'H40',
+        unit: 'H528',
+        tuhatProjectExists: 'tuhatOptionPositive',
+      },
+      sessionToken: 'riskiapi-specific-test-session',
+      tuhatData: {
+        tuhatId: tuhatId2,
+        name: { fi: 'Yksittäinen projekti', en: 'Individual Project' },
+        startDate: '2024-06-01',
+        endDate: '2025-05-31',
+      },
+    }
+
+    await fetch(`${baseUrl}/api/entries/1`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload1),
+    })
+
+    await fetch(`${baseUrl}/api/entries/1`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload2),
+    })
+  })
+
+  test('GET /api/riskiapi/projects requires API key', async () => {
+    const response = await fetch(`${baseUrl}/api/riskiapi/projects`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    })
+
+    expect(response.status).toBe(401)
+    const data = await response.json()
+    expect(data.error).toBe('unauthorised')
+  })
+
+  test('GET /api/riskiapi/projects works with valid API key and returns data', async () => {
+    const response = await fetch(`${baseUrl}/api/riskiapi/projects`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'api-key': 'default',
+      },
+    })
+
+    expect(response.status).toBe(200)
+    const data = await response.json()
+    expect(Array.isArray(data)).toBe(true)
+    expect(data.length).toBeGreaterThan(0)
+
+    const project = data.find(p => p.tuhatId === tuhatId1)
+    expect(project).toBeDefined()
+    expect(project.tuhatId).toBe(tuhatId1)
+    expect(project.riskAnalysis).toBeDefined()
+    expect(project.riskAnalysis.totalRisk).toBeDefined()
+    expect(project.riskAnalysis.totalRisk.level).toBe(3)
+    expect(project.createdAt).toBeDefined()
+    expect(project.updatedAt).toBeDefined()
+  })
+
+  test('GET /api/riskiapi/projects/:projectUuid requires API key', async () => {
+    const response = await fetch(`${baseUrl}/api/riskiapi/projects/${tuhatId2}`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    })
+
+    expect(response.status).toBe(401)
+    const data = await response.json()
+    expect(data.error).toBe('unauthorised')
+  })
+
+  test('GET /api/riskiapi/projects/:projectUuid works with valid API key and returns data', async () => {
+    const response = await fetch(`${baseUrl}/api/riskiapi/projects/${tuhatId2}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'api-key': 'default',
+      },
+    })
+
+    expect(response.status).toBe(200)
+    const data = await response.json()
+    expect(data).toBeDefined()
+    expect(data.tuhatId).toBe(tuhatId2)
+    expect(data.riskAnalysis).toBeDefined()
+    expect(data.riskAnalysis.totalRisk).toBeDefined()
+    expect(data.riskAnalysis.totalRisk.level).toBe(1)
+    expect(data.riskAnalysis.countryTotal).toBeDefined()
+    expect(data.createdAt).toBeDefined()
+    expect(data.updatedAt).toBeDefined()
+  })
+})

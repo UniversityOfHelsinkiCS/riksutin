@@ -2,30 +2,29 @@ import express from 'express'
 
 import { getRisksWithTuhatProject, getRiskWithTuhatProjectId } from '../services/myResearchApi'
 import { MyResearchData, Error } from '@server/types'
-import { HY_API_TOKEN } from '@userconfig'
+import { validateApiKey } from '../middleware/apiKey'
 
 const myResearchApiRouter = express.Router()
 
-myResearchApiRouter.get<never, MyResearchData[] | Error, never, never>('/projects', async (req, res) => {
-  const apiKey = req.get('api-key')
-  if (!apiKey || !HY_API_TOKEN || apiKey !== HY_API_TOKEN) {
-    return res.status(401).json({ error: 'unauthorised' })
+myResearchApiRouter.get<never, MyResearchData[] | Error, never, never>(
+  '/projects',
+  validateApiKey,
+  async (req, res) => {
+    const tuhatProjects = await getRisksWithTuhatProject()
+
+    return res.send(tuhatProjects)
   }
+)
 
-  const tuhatProjects = await getRisksWithTuhatProject()
+myResearchApiRouter.get<never, MyResearchData | Error, never, never>(
+  '/projects/:projectUuid',
+  validateApiKey,
+  async (req, res) => {
+    const { projectUuid } = req.params
+    const tuhatProjects = await getRiskWithTuhatProjectId(projectUuid)
 
-  return res.send(tuhatProjects)
-})
-
-myResearchApiRouter.get<never, MyResearchData | Error, never, never>('/projects/:projectUuid', async (req, res) => {
-  const apiKey = req.get('api-key')
-  if (!apiKey || !HY_API_TOKEN || apiKey !== HY_API_TOKEN) {
-    return res.status(401).json({ error: 'unauthorised' })
+    return res.send(tuhatProjects)
   }
-  const { projectUuid } = req.params
-  const tuhatProjects = await getRiskWithTuhatProjectId(projectUuid)
-
-  return res.send(tuhatProjects)
-})
+)
 
 export default myResearchApiRouter
