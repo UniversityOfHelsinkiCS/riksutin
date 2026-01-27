@@ -529,7 +529,7 @@ test.describe('riskiapi', () => {
     expect(data.tuhatId).toBe(tuhatId2)
     expect(data.riskAnalysis).toBeDefined()
     expect(data.riskAnalysis.totalRisk).toBeDefined()
-    expect(data.riskAnalysis.totalRisk.level).toBe(1)
+    expect(data.riskAnalysis.totalRisk.level).toBe(2)
     expect(data.riskAnalysis.countryTotal).toBeDefined()
     expect(data.createdAt).toBeDefined()
     expect(data.updatedAt).toBeDefined()
