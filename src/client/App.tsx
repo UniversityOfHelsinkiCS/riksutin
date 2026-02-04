@@ -23,7 +23,9 @@ const App = () => {
     return null
   }
 
-  if (!user?.iamGroups?.includes('hy-employees')) {
+  const hasAccess = user?.iamGroups?.some((group: string) => ['hy-employees', 'grp-hyplus-kaikki'].includes(group))
+
+  if (!hasAccess) {
     return (
       <ThemeProvider theme={theme}>
         <Unauthorized />

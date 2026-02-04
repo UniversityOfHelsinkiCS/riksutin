@@ -2,7 +2,9 @@ import { NextFunction, Response } from 'express'
 import UnauthorizedError from '../errors/UnauthorizedError'
 
 const userAccessHandler = (req, res: Response, next: NextFunction) => {
-  if (!req?.user?.iamGroups?.includes('hy-employees')) {
+  const hasAccess = req?.user?.iamGroups?.some((group: string) => ['hy-employees', 'grp-hyplus-kaikki'].includes(group))
+
+  if (!hasAccess) {
     throw new UnauthorizedError('Unauthorized')
   }
 
