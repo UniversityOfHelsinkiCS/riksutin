@@ -1,11 +1,18 @@
-import { useMemo, useState } from 'react'
-import { MRT_Row, MaterialReactTable, useMaterialReactTable, type MRT_ColumnDef } from 'material-react-table'
+import { useMemo, useState, useEffect, useCallback, useRef } from 'react'
+import {
+  MRT_Row,
+  MRT_PaginationState,
+  MaterialReactTable,
+  useMaterialReactTable,
+  type MRT_ColumnDef,
+  type MRT_Updater,
+} from 'material-react-table'
 import { Box, Button, IconButton, Typography, Tooltip } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 import FileDownloadIcon from '@mui/icons-material/FileDownload'
 import WarningIcon from '@mui/icons-material/Warning'
 import { utils, writeFile } from 'xlsx'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { enqueueSnackbar } from 'notistack'
 import { useTranslation } from 'react-i18next'
 import { useEntries } from '../../../hooks/useEntry'
@@ -39,19 +46,54 @@ const additionalColumnNames: TableValues = {
 const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps) => {
   const deleteMutation = useDeleteEntryMutation()
   const { t } = useTranslation()
+  const [searchParams] = useSearchParams()
 
-  const isTestVersion = (id: string) => {
-    return entries.find(e => e.id === Number(id))?.testVersion || false
-  }
+  // Use ref to track if this is the first render
+  const isFirstRender = useRef(true)
 
-  const needsControlReport = (id: string) => {
-    const entry = entries.find(e => e.id === Number(id))
+  // Initialize pagination from URL only on first render
+  const [pagination, setPagination] = useState<MRT_PaginationState>(() => ({
+    pageIndex: parseInt(searchParams.get('page') ?? '0', 10),
+    pageSize: parseInt(searchParams.get('pageSize') ?? '10', 10),
+  }))
+
+  // Handle pagination change from the table
+  const handlePaginationChange = useCallback((updaterOrValue: MRT_Updater<MRT_PaginationState>) => {
+    setPagination(prev => {
+      const newValue = typeof updaterOrValue === 'function' ? updaterOrValue(prev) : updaterOrValue
+      return newValue
+    })
+  }, [])
+
+  // Update URL when pagination changes (without triggering React Router re-render)
+  useEffect(() => {
+    // Skip URL update on first render since it's already in sync
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
+    const newUrl = new URL(window.location.href)
+    newUrl.searchParams.set('page', pagination.pageIndex.toString())
+    newUrl.searchParams.set('pageSize', pagination.pageSize.toString())
+    window.history.replaceState({}, '', newUrl.toString())
+  }, [pagination.pageIndex, pagination.pageSize])
+
+  // Create stable references for row-level functions
+  const entriesRef = useRef(entries)
+  entriesRef.current = entries
+
+  const isTestVersion = useCallback((id: string) => {
+    return entriesRef.current.find(e => e.id === Number(id))?.testVersion || false
+  }, [])
+
+  const needsControlReport = useCallback((id: string) => {
+    const entry = entriesRef.current.find(e => e.id === Number(id))
     if (!entry) {
       return false
     }
     const totalRisk = entry.data?.risks?.find((r: any) => r.id === 'total')?.level
     return totalRisk === 3 && (!entry.controlReports || entry.controlReports.length === 0)
-  }
+  }, [])
 
   const columns = useMemo<MRT_ColumnDef<TableValues>[]>(() => {
     const outdatedWarning = { paddingRight: 10, color: 'red', fontSize: 'x-large' }
@@ -140,6 +182,8 @@ const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps)
     enableColumnOrdering: true,
     enableGlobalFilter: false,
     enableRowActions: true,
+    enablePagination: true,
+    autoResetPageIndex: false,
     muiTableBodyRowProps: ({ row }) => ({
       hover: false,
       sx: {
@@ -156,7 +200,9 @@ const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps)
         border: '1px solid rgba(81, 81, 81, .2)',
       },
     },
-    initialState: { columnVisibility: { id: false } },
+    initialState: {
+      columnVisibility: { id: false },
+    },
     renderRowActions: ({ row }) => (
       <IconButton onClick={() => handleDeleteRiskAssessment(row)}>
         <DeleteIcon color="error" />
@@ -169,8 +215,10 @@ const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps)
     },
     state: {
       columnOrder,
+      pagination,
     },
     onColumnOrderChange: setColumnOrder,
+    onPaginationChange: handlePaginationChange,
     renderTopToolbarCustomActions: ({ table }) => (
       <Box
         sx={{
@@ -202,15 +250,48 @@ const Summary = () => {
   const { user } = useLoggedInUser()
   const navigate = useNavigate()
 
+  const organisations = useMemo(() => (faculties ? faculties.concat(extraOrganisations) : []), [faculties])
+
+  const entriesWithData = useMemo(
+    () => (entries ?? []).filter(entry => entry.data.answers && entry.data.country && entry.data.risks),
+    [entries]
+  )
+
+  const tableData = useMemo(
+    () => (questions && entriesWithData.length > 0 ? createTableData(entriesWithData, questions, organisations) : []),
+    [entriesWithData, questions, organisations]
+  )
+
+  const questionTitles = useMemo(() => {
+    if (!questions) {
+      return {}
+    }
+    const headerTitle = q => {
+      if (q.shortTitle.fi) {
+        return q.shortTitle.fi
+      }
+      return q.title.fi ?? q.title.fi
+    }
+    return Object.fromEntries(questions.map(q => [q.id.toString(), headerTitle(q)]))
+  }, [questions])
+
+  const isOutdated = useMemo(() => {
+    return (id: any) => {
+      const entryData = entries?.find(e => e.id === Number(id))?.data as any
+      if (!entryData) {
+        return false
+      }
+      const { answers, multilateralCountries } = entryData
+      const hyMultilateral = answers['9'] === 'coordinator' && answers['4'] === 'multilateral'
+      return hyMultilateral && !multilateralCountries
+    }
+  }, [entries])
+
+  const isToskaUser = user?.iamGroups?.includes('grp-toska')
+
   if (!questions || !entries || facultiesLoading || !faculties) {
     return null
   }
-
-  const organisations = faculties.concat(extraOrganisations)
-
-  const entriesWithData = entries.filter(entry => entry.data.answers && entry.data.country && entry.data.risks)
-
-  const isToskaUser = user?.iamGroups?.includes('grp-toska')
 
   if (entriesWithData.length === 0) {
     return (
@@ -220,24 +301,6 @@ const Summary = () => {
         </Typography>
       </Box>
     )
-  }
-
-  const tableData = createTableData(entriesWithData, questions, organisations)
-
-  const headerTitle = q => {
-    if (q.shortTitle.fi) {
-      return q.shortTitle.fi
-    }
-    return q.title.fi ?? q.title.fi
-  }
-
-  const questionTitles = Object.fromEntries(questions.map(q => [q.id.toString(), headerTitle(q)]))
-
-  const isOutdated = id => {
-    const { answers, multilateralCountries } = entries.find(e => e.id === Number(id))?.data as any
-    const hyMultilateral = answers['9'] === 'coordinator' && answers['4'] === 'multilateral'
-
-    return hyMultilateral && !multilateralCountries
   }
 
   return (
