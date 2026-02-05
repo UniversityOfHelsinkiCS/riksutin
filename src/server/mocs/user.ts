@@ -1,4 +1,4 @@
-let userType = 'admin'
+let userType = 'normal'
 
 const mockUsers = {
   admin: {
