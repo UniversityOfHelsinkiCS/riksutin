@@ -11,8 +11,10 @@ import {
   TableHead,
   TableRow,
   Typography,
+  Tooltip,
 } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
+import WarningIcon from '@mui/icons-material/Warning'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { enqueueSnackbar } from 'notistack'
@@ -110,7 +112,15 @@ const UserPage = () => {
               >
                 <TableCell component="th" scope="row">
                   <Box>
-                    <Link to={`/user/${entry.id.toString()}`}>{entry.data.answers['3']}</Link>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <Link to={`/user/${entry.id.toString()}`}>{entry.data.answers['3']}</Link>
+                      {entry.data.risks.find(r => r.id === 'total')?.level === 3 &&
+                        (!entry.controlReports || entry.controlReports.length === 0) && (
+                          <Tooltip title={t('controlReport:noReportsWarning')}>
+                            <WarningIcon sx={{ color: '#e74c3c', fontSize: '1.2rem' }} />
+                          </Tooltip>
+                        )}
+                    </Box>
                     {entry.testVersion && (
                       <Box
                         component="div"

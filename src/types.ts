@@ -206,3 +206,12 @@ export interface Question {
 export type Visibility = {
   options?: string[]
 }
+
+export interface ControlReport {
+  id: string
+  entryId: number
+  text: string
+  createdBy: string
+  createdAt: string
+  updatedAt: string
+}

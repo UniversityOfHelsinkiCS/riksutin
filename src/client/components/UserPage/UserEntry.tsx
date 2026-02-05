@@ -10,6 +10,7 @@ import useSurvey from '../../hooks/useSurvey'
 import MuiComponentProvider from '../Common/MuiComponentProvider'
 import RenderAnswersDOM from '../ResultPage/RenderAnswersDOM'
 import SendSummaryEmail from '../ResultPage/SendSummaryEmail'
+import ControlReports from './ControlReports'
 
 interface TabPanelProps {
   children: React.ReactNode
@@ -49,7 +50,7 @@ const TabPanel = (props: TabPanelProps) => {
 const UserEntry = () => {
   const { entryId } = useParams()
   const { survey } = useSurvey()
-  const { entry } = useEntry(entryId)
+  const { entry, refetch } = useEntry(entryId)
   const [tabValue, setTabValue] = useState(0)
   const { t } = useTranslation()
   const navigate = useNavigate()
@@ -106,6 +107,21 @@ const UserEntry = () => {
               </Button>
             )}
           </Box>
+          {entry.data.risks.find(r => r.id === 'total')?.level === 3 && (
+            <>
+              {(!entry.controlReports || entry.controlReports.length === 0) && (
+                <Alert severity="error" sx={{ mb: 2 }}>
+                  {t('controlReport:noReportsWarning')}
+                </Alert>
+              )}
+              <ControlReports
+                entryId={entryId}
+                controlReports={entry.controlReports ?? []}
+                totalRiskLevel={entry.data.risks.find(r => r.id === 'total')?.level}
+                onUpdate={refetch}
+              />
+            </>
+          )}
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={tabValue} onChange={handleChange} data-testid="version-tabs">
               <Tab

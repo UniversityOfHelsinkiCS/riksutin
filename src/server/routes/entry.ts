@@ -2,12 +2,14 @@ import express from 'express'
 
 import type { EntryValues, RequestWithUser } from '@server/types'
 import z from 'zod'
-import { Entry } from '@dbmodels'
+import { Entry, ControlReport } from '@dbmodels'
 import { riskReEvaluation } from '../util/cron/riskReEvaluation/riskReEvaluation'
 import createRiskData from '../util/algorithm/riskData'
 import adminHandler from '../middleware/admin'
 import { createEntry, getEntries, getEntry, getUserEntries } from '../services/entry'
 import { sendResult } from '../services/sendResult'
+import { CreateControlReportZod, UpdateControlReportZod } from '../../validators/controlReport'
+import { notifyControlReportCreated } from '../services/notifyControlReport'
 
 const entryRouter = express.Router()
 
@@ -162,6 +164,97 @@ entryRouter.post('/:entryId/send-email', async (req: RequestWithUser, res: any) 
   await sendResult(entry, targets)
 
   return res.status(200).send('Email sent')
+})
+
+// Control Report routes
+entryRouter.post('/:entryId/control-report', adminHandler, async (req: RequestWithUser, res: any) => {
+  const { entryId } = req.params
+  const userId = req.user?.id
+  const { text } = CreateControlReportZod.parse(req.body)
+
+  const entry = await getEntry(entryId, userId)
+
+  if (!entry) {
+    return res.status(404).send('Entry not found')
+  }
+
+  // Check if total risk level is 3
+  const totalRisk = entry.data.risks.find(r => r.id === 'total')
+  if (totalRisk?.level !== 3) {
+    return res.status(400).send('Control reports can only be added to entries with total risk level 3')
+  }
+
+  const newReport = await ControlReport.create({
+    entryId: Number(entryId),
+    text,
+    createdBy: req.user.username,
+  })
+
+  // Send notification email
+  try {
+    await notifyControlReportCreated(entry)
+  } catch (error) {
+    // Log error but don't fail the request if email fails
+    // eslint-disable-next-line no-console
+    console.error('Failed to send control report notification:', error)
+  }
+
+  return res.status(201).send(newReport.toJSON())
+})
+
+entryRouter.put('/:entryId/control-report/:reportId', adminHandler, async (req: RequestWithUser, res: any) => {
+  const { entryId, reportId } = req.params
+  const userId = req.user?.id
+  const { text } = UpdateControlReportZod.parse(req.body)
+
+  const entry = await getEntry(entryId, userId)
+
+  if (!entry) {
+    return res.status(404).send('Entry not found')
+  }
+
+  const report = await ControlReport.findOne({
+    where: {
+      id: reportId,
+      entryId: Number(entryId),
+    },
+  })
+
+  if (!report) {
+    return res.status(404).send('Control report not found')
+  }
+
+  await report.update({
+    text,
+  })
+
+  return res.status(200).send(report.toJSON())
+})
+
+entryRouter.delete('/:entryId/control-report/:reportId', adminHandler, async (req: RequestWithUser, res: any) => {
+  const { entryId, reportId } = req.params
+  const userId = req.user?.id
+
+  const entry = await getEntry(entryId, userId)
+
+  if (!entry) {
+    return res.status(404).send('Entry not found')
+  }
+
+  const report = await ControlReport.findOne({
+    where: {
+      id: reportId,
+      entryId: Number(entryId),
+    },
+  })
+
+  if (!report) {
+    return res.status(404).send('Control report not found')
+  }
+
+  await report.destroy()
+
+  return res.status(204).send()
 })
 
 export default entryRouter

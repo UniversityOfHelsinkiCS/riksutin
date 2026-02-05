@@ -1,6 +1,6 @@
 import type { EntryValues } from '@server/types'
 
-import { Entry, Survey, User } from '@dbmodels'
+import { Entry, Survey, User, ControlReport } from '@dbmodels'
 import { Op } from 'sequelize'
 
 import NotFoundError from '../errors/NotFoundError'
@@ -9,7 +9,14 @@ import { EmployeeResponse } from '@routes/types'
 
 export const getEntries = async (): Promise<Entry[]> => {
   const entries = await Entry.findAll({
-    include: [Survey, User],
+    include: [
+      Survey,
+      User,
+      {
+        model: ControlReport,
+        as: 'controlReports',
+      },
+    ],
     order: [['createdAt', 'DESC']],
   })
 
@@ -21,7 +28,13 @@ export const getUserEntries = async (userId: string): Promise<Entry[]> => {
     where: {
       [Op.or]: [{ userId }, { ownerId: userId }],
     },
-    include: Survey,
+    include: [
+      Survey,
+      {
+        model: ControlReport,
+        as: 'controlReports',
+      },
+    ],
     order: [['createdAt', 'DESC']],
   })
 
@@ -33,7 +46,15 @@ export const getUserEntries = async (userId: string): Promise<Entry[]> => {
 }
 
 export const getEntry = async (entryId: string, userId: string): Promise<Entry> => {
-  const entry = await Entry.findByPk(entryId, { include: Survey })
+  const entry = await Entry.findByPk(entryId, {
+    include: [
+      Survey,
+      {
+        model: ControlReport,
+        as: 'controlReports',
+      },
+    ],
+  })
 
   if (!entry) {
     throw new NotFoundError('Entry not found')

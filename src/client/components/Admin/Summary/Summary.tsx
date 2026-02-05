@@ -1,11 +1,13 @@
 import { useMemo, useState } from 'react'
 import { MRT_Row, MaterialReactTable, useMaterialReactTable, type MRT_ColumnDef } from 'material-react-table'
-import { Box, Button, IconButton, Typography } from '@mui/material'
+import { Box, Button, IconButton, Typography, Tooltip } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 import FileDownloadIcon from '@mui/icons-material/FileDownload'
+import WarningIcon from '@mui/icons-material/Warning'
 import { utils, writeFile } from 'xlsx'
 import { Link, useNavigate } from 'react-router-dom'
 import { enqueueSnackbar } from 'notistack'
+import { useTranslation } from 'react-i18next'
 import { useEntries } from '../../../hooks/useEntry'
 import useQuestions from '../../../hooks/useQuestions'
 import useDeleteEntryMutation from '../../../hooks/useDeleteEntryMutation'
@@ -36,9 +38,19 @@ const additionalColumnNames: TableValues = {
 
 const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps) => {
   const deleteMutation = useDeleteEntryMutation()
+  const { t } = useTranslation()
 
   const isTestVersion = (id: string) => {
     return entries.find(e => e.id === Number(id))?.testVersion || false
+  }
+
+  const needsControlReport = (id: string) => {
+    const entry = entries.find(e => e.id === Number(id))
+    if (!entry) {
+      return false
+    }
+    const totalRisk = entry.data?.risks?.find((r: any) => r.id === 'total')?.level
+    return totalRisk === 3 && (!entry.controlReports || entry.controlReports.length === 0)
   }
 
   const columns = useMemo<MRT_ColumnDef<TableValues>[]>(() => {
@@ -63,7 +75,14 @@ const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps)
               {columnId === '3' ? (
                 <Box>
                   {isOutdated(row.getValue('id')) && <span style={outdatedWarning}>!</span>}
-                  <Link to={`/admin/entry/${row.getValue('id')}`}>{cell.getValue<string>()}</Link>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <Link to={`/admin/entry/${row.getValue('id')}`}>{cell.getValue<string>()}</Link>
+                    {needsControlReport(row.getValue('id')) && (
+                      <Tooltip title={t('controlReport:noReportsWarning')}>
+                        <WarningIcon sx={{ color: '#e74c3c', fontSize: '1.2rem' }} />
+                      </Tooltip>
+                    )}
+                  </Box>
                   {isTestVersion(row.getValue('id')) && (
                     <Box
                       component="div"
@@ -80,7 +99,7 @@ const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps)
           ),
         }))
       : []
-  }, [tableValues, questionTitles, isOutdated])
+  }, [tableValues, questionTitles, isOutdated, isTestVersion, needsControlReport, t])
 
   const columnIds = Object.keys(tableValues[0])
 

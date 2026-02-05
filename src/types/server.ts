@@ -1,4 +1,12 @@
-import type { BaseCountry, Locales, CountryData, RiskData, User, countryRiskData } from '@types'
+import type {
+  BaseCountry,
+  Locales,
+  CountryData,
+  RiskData,
+  User,
+  countryRiskData,
+  ControlReport as _ControlReport,
+} from '@types'
 
 import { Request } from 'express'
 import { Entry } from '@dbmodels'
