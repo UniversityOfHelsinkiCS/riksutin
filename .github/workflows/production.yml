@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Build image
         id: build-image
@@ -37,7 +37,7 @@ jobs:
     needs: build-and-push
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Pull image and create a container
         run: docker create --name riksutin quay.io/toska/riksutin:production
