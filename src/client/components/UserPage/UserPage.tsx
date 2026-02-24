@@ -22,6 +22,7 @@ import styles from '../../styles'
 import { useUserEntries } from '../../hooks/useEntry'
 import { useUpdateEntryRisks } from '../../hooks/useSaveEntryMutation'
 import useDeleteEntryMutation from '../../hooks/useDeleteEntryMutation'
+import { CONTROL_REPORT_CHECK_ENABLED } from '@config'
 
 const { riskColors, resultStyles } = styles
 
@@ -114,7 +115,8 @@ const UserPage = () => {
                   <Box>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                       <Link to={`/user/${entry.id.toString()}`}>{entry.data.answers['3']}</Link>
-                      {entry.data.risks.find(r => r.id === 'total')?.level === 3 &&
+                      {CONTROL_REPORT_CHECK_ENABLED &&
+                        entry.data.risks.find(r => r.id === 'total')?.level === 3 &&
                         (!entry.controlReports || entry.controlReports.length === 0) && (
                           <Tooltip title={t('controlReport:noReportsWarning')}>
                             <WarningIcon sx={{ color: '#e74c3c', fontSize: '1.2rem' }} />

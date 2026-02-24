@@ -4,6 +4,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { CONTROL_REPORT_CHECK_ENABLED } from '@config'
 import RiskTableDOM from '../ResultPage/RiskTableDOM'
 import { useEntry } from '../../hooks/useEntry'
 import useSurvey from '../../hooks/useSurvey'
@@ -107,7 +108,7 @@ const UserEntry = () => {
               </Button>
             )}
           </Box>
-          {entry.data.risks.find(r => r.id === 'total')?.level === 3 && (
+          {CONTROL_REPORT_CHECK_ENABLED && entry.data.risks.find(r => r.id === 'total')?.level === 3 && (
             <>
               {(!entry.controlReports || entry.controlReports.length === 0) && (
                 <Alert severity="error" sx={{ mb: 2 }}>
