@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { enqueueSnackbar } from 'notistack'
@@ -44,6 +44,10 @@ const InteractiveForm = () => {
     shouldUnregister: true,
     defaultValues: resultData,
   })
+
+  useEffect(() => {
+    setValue('faculty', resultData.faculty)
+  }, [resultData.faculty, setValue])
 
   usePersistForm({ value: watch(), sessionStorageKey: FORM_DATA_KEY })
 

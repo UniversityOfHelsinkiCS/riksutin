@@ -38,7 +38,7 @@ facultyRouter.get<never, any[], never, { search: string }>('/employees', async (
   const { search = '' } = req.query
   const employees = await getEmployees(search)
 
-  return res.send(employees)
+  return res.send(employees as any)
 })
 
 export default facultyRouter
