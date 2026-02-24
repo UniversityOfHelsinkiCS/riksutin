@@ -43,6 +43,9 @@ const UserPage = () => {
     )
   }
 
+  // eslint-disable-next-line no-console
+  console.log('CONTROL_REPORT_CHECK_ENABLED', CONTROL_REPORT_CHECK_ENABLED)
+
   const entriesWithData = entries?.filter(entry => entry.data.answers && entry.data.country && entry.data.risks)
 
   const handleUpdateRiskAssessment = async (entryId: string) => {
