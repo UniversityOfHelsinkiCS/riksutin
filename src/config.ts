@@ -62,4 +62,4 @@ export const SENTRY_DNS_FRONTEND = 'https://ef339d600209fafb712e65773c1b4644@tos
 export const SENTRY_GIT_SHA = process.env.REACT_APP_GIT_SHA
 
 // Feature toggles
-export const CONTROL_REPORT_CHECK_ENABLED = process.env.REACT_APP_CONTROL_REPORT_CHECK_ENABLED !== 'false'
+export const CONTROL_REPORT_CHECK_ENABLED = process.env.REACT_APP_CONTROL_REPORT_CHECK_ENABLED === 'true'
