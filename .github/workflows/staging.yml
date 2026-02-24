@@ -28,6 +28,7 @@ jobs:
             GIT_SHA=${{ github.sha }}
             STAGING=true
             ORGANISATION_ID=hy
+            REACT_APP_CONTROL_REPORT_CHECK_ENABLED=false
 
       - name: Push to quay.io
         uses: redhat-actions/push-to-registry@v2

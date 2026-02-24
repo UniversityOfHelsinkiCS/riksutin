@@ -23,6 +23,7 @@ import styles from '../../../styles'
 import useFaculties from '../../../hooks/useFaculties'
 import { extraOrganisations } from '@common/organisations'
 import createTableData from './utils'
+import { CONTROL_REPORT_CHECK_ENABLED } from '@config'
 
 import type { TableValues } from './utils'
 
@@ -87,6 +88,9 @@ const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps)
   }, [])
 
   const needsControlReport = useCallback((id: string) => {
+    if (!CONTROL_REPORT_CHECK_ENABLED) {
+      return false
+    }
     const entry = entriesRef.current.find(e => e.id === Number(id))
     if (!entry) {
       return false
