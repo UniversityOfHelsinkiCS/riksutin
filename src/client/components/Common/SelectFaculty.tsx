@@ -58,6 +58,8 @@ const SelectFaculty = ({ control }: InputProps) => {
     }
 
     const defaultFaculty = userFaculties.length > 0 ? userFaculties[0] : extraOrganisations[0]
+    // eslint-disable-next-line no-console
+    console.log('defaultFaculty', defaultFaculty)
     setFaculty(defaultFaculty)
   }, [userFaculties, userFacultiesLoading])
 

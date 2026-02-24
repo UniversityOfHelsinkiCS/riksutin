@@ -35,7 +35,7 @@ export const getFaculties = async (): Promise<FacultyOrUnit[]> => {
 
 export const getUserFaculties = async (userId: string, iamGroups: string[]): Promise<FacultyOrUnit[]> => {
   if (inDevelopment || inE2EMode) {
-    return mockFaculty
+    return mockFaculty.slice(0, 1)
   }
 
   if (!userId) {
