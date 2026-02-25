@@ -11,8 +11,6 @@ services:
     image: riksutin_app_for_test
     env_file:
       - cienv
-    volumes:
-      - ./:/opt/app-root/src
     ports:
       - 8000:8000
     container_name: riksutin_test
