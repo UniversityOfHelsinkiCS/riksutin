@@ -1,39 +1,4 @@
 services:
   app:
     build:
-      context: .
-      args:
-        - E2E=true
-        - NPM_COMMAND=start:test
-    environment:
-      - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
-      - ORGANISATION_ID=hy
-    image: riksutin_app_for_test
-    env_file:
-      - cienv
-    volumes:
-      - ./:/opt/app-root/src
-    ports:
-      - 8000:8000
-    container_name: riksutin_test
-    command: npm run start:test
-
-  db:
-    image: postgres:15.7
-    environment:
-      - POSTGRES_PASSWORD=postgres
-    ports:
-      - 5432:5432
-    container_name: riksutin_test_db
-
-  redis:
-    image: redis:7-alpine
-    container_name: riksutin_test_redis
-
-  mock:
-    build:
-      context:
-        data_source_mock 
-    container_name: data_source_mock
-    ports:
-      - 3000:3000
+      dockerfile: Dockerfile
