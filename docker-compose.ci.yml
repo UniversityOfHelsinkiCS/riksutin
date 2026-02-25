@@ -5,6 +5,7 @@ services:
       args:
         - E2E=true
         - NPM_COMMAND=start:test
+        - ORGANISATION_ID=hy
     environment:
       - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
       - ORGANISATION_ID=hy
