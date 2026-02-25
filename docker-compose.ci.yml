@@ -2,6 +2,7 @@ services:
   app:
     build:
       context: .
+      dockerfile: Dockerfile.ci
       args:
         - E2E=true
         - NPM_COMMAND=start:test
