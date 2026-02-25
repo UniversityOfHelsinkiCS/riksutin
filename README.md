@@ -13,8 +13,6 @@ Riksutin (officially known as **Risk-i** or **International collaboration risk a
 
 Start app with `npm run start:local:test`, wait until the frontend is build and app is served in [http://localhost:3000/](http://localhost:3000/).
 
-Note that at the moment you need to build the project locally when code is changed, see https://github.com/UniversityOfHelsinkiCS/riksutin/issues/126 this can be done with `npm run build:local:test`
-
 Run tests with `npm run test:local`. You get the UI mode with params `-- --ui`.
 
 The envs for testing are in `cienv`
