@@ -5,13 +5,14 @@ services:
       args:
         - E2E=true
         - NPM_COMMAND=start:test
-        - ORGANISATION_ID=hy
     environment:
       - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
       - ORGANISATION_ID=hy
     image: riksutin_app_for_test
     env_file:
       - cienv
+    volumes:
+      - ./:/opt/app-root/src
     ports:
       - 8000:8000
     container_name: riksutin_test

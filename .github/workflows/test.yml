@@ -26,6 +26,9 @@ jobs:
     - name: Install dependencies
       run: npm ci --workspaces
 
+    - name: Build
+      run: ORGANISATION_ID=hy npm run build
+
     - name: Start the application
       run: HDR_API_TOKEN=${{ secrets.HDR_API_TOKEN }} docker compose -f docker-compose.ci.yml up -d
 
