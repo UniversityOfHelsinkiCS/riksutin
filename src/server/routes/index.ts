@@ -61,13 +61,13 @@ router.post('/seed', adminHandler, async (_, res) => {
 router.use('/login', loginRouter)
 
 router.use(ensureAuthenticated)
+router.use('/users', userRouter)
 
 router.use('/surveys', surveyRouter)
 router.use('/questions', questionRouter)
 router.use('/results', resultRouter)
 router.use('/countries', countryRouter)
 router.use('/riskiapi', myResearchApiRouter)
-router.use('/users', userRouter)
 
 router.use(ensureEmployee)
 
