@@ -59,9 +59,9 @@ router.post('/seed', adminHandler, async (_, res) => {
 })
 
 router.use('/login', loginRouter)
+router.use('/users', userRouter)
 
 router.use(ensureAuthenticated)
-router.use('/users', userRouter)
 
 router.use('/surveys', surveyRouter)
 router.use('/questions', questionRouter)
