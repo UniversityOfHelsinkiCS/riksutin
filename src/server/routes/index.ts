@@ -5,7 +5,7 @@ import * as Sentry from '@sentry/node'
 import { inDevelopment, inE2EMode, inAcualStaging } from '@config'
 import initializeSentry from '../util/sentry'
 import mockUserMiddleware from '../middleware/mockUser'
-import userAccessMiddleware from '../middleware/user'
+import { ensureEmployee, ensureAuthenticated } from '../middleware/user'
 import sentryUserMiddleware from '../middleware/sentry'
 import errorHandler from '../middleware/error'
 import accessLogger from '../middleware/access'
@@ -60,17 +60,19 @@ router.post('/seed', adminHandler, async (_, res) => {
 
 router.use('/login', loginRouter)
 
-router.use('/faculties', facultyRouter)
+router.use(ensureAuthenticated)
+
 router.use('/surveys', surveyRouter)
 router.use('/questions', questionRouter)
 router.use('/results', resultRouter)
 router.use('/countries', countryRouter)
-router.use('/warnings', warningsRouter)
-router.use('/users', userRouter)
 router.use('/riskiapi', myResearchApiRouter)
 
-router.use(userAccessMiddleware)
+router.use(ensureEmployee)
 
+router.use('/faculties', facultyRouter)
+router.use('/warnings', warningsRouter)
+router.use('/users', userRouter)
 router.use('/entries', entryRouter)
 router.use('/organizations', organizationRouter)
 router.use('/tuhatprojects', tuhatProjectsRouter)

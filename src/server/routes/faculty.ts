@@ -3,6 +3,7 @@ import express from 'express'
 import type { RequestWithUser } from '@server/types'
 
 import { getFaculties, getUserFaculties, getEmployees, getUnits } from '../services/faculty'
+import { ensureAuthenticated } from '../middleware/user'
 
 const facultyRouter = express.Router()
 
@@ -18,14 +19,6 @@ facultyRouter.get('/units', async (req, res) => {
   return res.send(units)
 })
 
-const ensureAuthenticated = (req, res, next) => {
-  if (!req.user) {
-    return res.status(401).send('Unauthorized')
-  }
-
-  next()
-}
-
 facultyRouter.get('/user', ensureAuthenticated, async (req: RequestWithUser, res: any) => {
   const { id, iamGroups = [] } = req.user
 
@@ -34,7 +27,7 @@ facultyRouter.get('/user', ensureAuthenticated, async (req: RequestWithUser, res
   return res.send(faculties)
 })
 
-facultyRouter.get<never, any[], never, { search: string }>('/employees', async (req, res) => {
+facultyRouter.get<never, any[], never, { search: string }>('/employees', ensureAuthenticated, async (req, res) => {
   const { search = '' } = req.query
   const employees = await getEmployees(search)
 
