@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React from 'react'
 import type { FacultyOrUnit, FormValues, Locales, Question } from '@types'
 import type { Survey } from '@client/types'
 
@@ -84,7 +86,7 @@ const RenderAnswers = ({
 
   const hyCordinatedMultilateral = resultData['9'] === 'coordinator' && resultData['4'] === 'multilateral'
 
-  const arrayToString = answers => {
+  const arrayToString = (answers: string[]) => {
     if (answers.length === 0) {
       return t('results:selectionEmpty')
     }

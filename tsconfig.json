@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "jsx": "react-jsx",
+    "jsx": "react",
     "moduleDetection": "force",
     "allowJs": false,
     "esModuleInterop": true,
