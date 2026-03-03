@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Risk-i Api",
-    "description": "An API for risk analyses for projects in tuhat system. The risk analysis object depends of the answers given by the user. The fields not included the risk analysis are filtered away.",
+    "description": "An API for existing risk analyses for projects in tuhat system. The risk analysis object depends of the answers given by the user. The fields not included the risk analysis are filtered away.",
     "version": "1.0.0",
     "license": {
       "name": "MIT",

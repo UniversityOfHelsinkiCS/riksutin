@@ -241,7 +241,6 @@ export const getRiskWithTuhatProjectId = async (projectId: string): Promise<MyRe
       testVersion: {
         [Op.not]: true,
       },
-
       tuhatData: {
         tuhatId: projectId,
       },

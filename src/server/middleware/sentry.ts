@@ -8,14 +8,13 @@ import { User } from '@types'
  * Middleware to set Sentry user context for each request
  * This should be applied after user authentication middleware
  */
-const sentryUserMiddleware = (req: Request, res: Response, next: NextFunction) => {
+const sentryUserMiddleware = (req: Request, _res: Response, next: NextFunction) => {
   if (!inProduction) {
     return next()
   }
 
   const user = req.user as User
 
-  // Set user
   Sentry.setUser(
     user
       ? {
@@ -26,7 +25,6 @@ const sentryUserMiddleware = (req: Request, res: Response, next: NextFunction) =
       : null
   )
 
-  // Add request context
   Sentry.setContext('request', {
     url: req.url,
     method: req.method,
