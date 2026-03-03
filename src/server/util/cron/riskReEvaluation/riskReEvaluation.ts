@@ -43,7 +43,7 @@ const run = async () => {
 
     try {
       if (
-        originalTotalRiskLevel !== undefined &&
+        originalTotalRiskLevel != null &&
         updatedTotalRiskLevel === 3 &&
         updatedTotalRiskLevel > originalTotalRiskLevel
       ) {
