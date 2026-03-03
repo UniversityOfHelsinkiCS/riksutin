@@ -1,7 +1,7 @@
 import type { FormValues, Question, Risk } from '@types'
 import type { UpdatedCountryData } from '@server/types'
 
-import { totalCountryRisk, dualUseRisk, organisationRisk, universityRisk, consortiumRisk } from './utils'
+import { totalCountryRisk, dualUseRisk, organisationRisk, universityRisk, consortiumRisk, ethicalRisk } from './utils'
 import { euCountries } from '@common/countryLists'
 
 const getOtherRisks = (country: UpdatedCountryData, questions: Question[], formData: FormValues) => {
@@ -21,9 +21,7 @@ const getOtherRisks = (country: UpdatedCountryData, questions: Question[], formD
   const economicDivider = economicCurrencyRisk === 0 ? 1 : 2
   const totalEconomicalRisk =
     Math.round((economicCurrencyRisk + economicScopeRisk) / economicDivider) + economicAdditionalRisk
-  const ethicalRiskValue = questions
-    .find(question => question.id === 25)
-    ?.optionData.options.find((o: { id: any }) => o.id === formData[25])?.risk
+  const ethicalRiskValue = ethicalRisk(questions, formData)
 
   const riskArray: Risk[] = [
     {

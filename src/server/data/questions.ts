@@ -758,15 +758,6 @@ const getQuestionData = (): Question[] => [
             en: 'No',
           },
         },
-        {
-          id: 'notSureTransferPersonalData',
-          label: 'notSureTransferPersonalData',
-          title: {
-            fi: 'Ei tiedossa',
-            sv: 'Not sure',
-            en: 'Not sure',
-          },
-        },
       ],
     },
     visibility: {},
@@ -914,16 +905,6 @@ const getQuestionData = (): Question[] => [
           },
           risk: 1,
         },
-        {
-          id: 'notSureTransferMilitaryKnowledge',
-          label: 'notSureTransferMilitaryKnowledge',
-          title: {
-            fi: 'Ei tiedossa',
-            sv: 'Not sure',
-            en: 'Not sure',
-          },
-          risk: 2,
-        },
       ],
     },
     visibility: {},
@@ -1007,16 +988,6 @@ const getQuestionData = (): Question[] => [
           risk: 1,
         },
         {
-          id: 'likelyNoEthicalIssues',
-          label: 'likelyNoEthicalIssues',
-          title: {
-            fi: 'Melko varmasti ei',
-            sv: '',
-            en: 'Likely not',
-          },
-          risk: 1,
-        },
-        {
           id: 'maybeEthicalIssues',
           label: 'maybeEthicalIssues',
           title: {
@@ -1025,16 +996,6 @@ const getQuestionData = (): Question[] => [
             en: 'Maybe',
           },
           risk: 2,
-        },
-        {
-          id: 'likelyEthicalIssues',
-          label: 'likelyEthicalIssues',
-          title: {
-            fi: 'Melko varmasti',
-            sv: '',
-            en: 'Possibly',
-          },
-          risk: 3,
         },
         {
           id: 'ethicalIssues',
@@ -1236,6 +1197,50 @@ const getQuestionData = (): Question[] => [
       ],
     },
     visibility: { options: ['externalFunding'] },
+  },
+  {
+    id: 32,
+    surveyId: 1,
+    parentId: 13,
+    priority: 0,
+    title: {
+      fi: 'Rahoittajataho:',
+      sv: 'Funder:',
+      en: 'Funder:',
+    },
+    text: {
+      fi: '',
+      sv: '',
+      en: '',
+    },
+    optionData: { type: 'text', options: [] },
+    visibility: { options: ['externalFunding'] },
+  },
+  {
+    id: 33,
+    surveyId: 1,
+    parentId: 25,
+    priority: 0,
+    title: {
+      fi: 'Kuvaile yhteistyön mahdollisia eettisiä ongelmakohtia.',
+      sv: 'Describe the possible ethical concerns in this collaboration',
+      en: 'Describe the possible ethical concerns in this collaboration.',
+    },
+    text: {
+      fi: '',
+      sv: '',
+      en: '',
+    },
+    optionData: {
+      type: 'text',
+      options: [],
+      attributes: {
+        multiline: true,
+        minRows: 3,
+        inputProps: { maxLength: 500 },
+      },
+    },
+    visibility: { options: ['maybeEthicalIssues', 'ethicalIssues'] },
   },
 ]
 

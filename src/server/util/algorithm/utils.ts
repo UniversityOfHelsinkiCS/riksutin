@@ -74,7 +74,24 @@ export const dualUseRisk = (questions: Question[], resultData: FormValues, count
   if (!country) {
     return null
   }
+  // The option notSureTransferMilitaryKnowledge do not exist, but forms filled with this option do.
+  if (resultData[23]?.id === 'notSureTransferMilitaryKnowledge') {
+    return 3
+  }
   return questions.find(question => question.id === 23)?.optionData.options.find(o => o.id === resultData[23])?.risk
+}
+
+export const ethicalRisk = (questions: Question[], resultData: FormValues) => {
+  // Options likelyEthicalIssues and likelyNoEthicalIssues do not exists, but forms filled with these options do.
+  if (resultData[25].id === 'likelyNoEthicalIssues') {
+    return 1
+  }
+  if (resultData[25].id === 'likelyEthicalIssues') {
+    return 3
+  }
+  return questions
+    .find(question => question.id === 25)
+    ?.optionData.options.find((o: { id: any }) => o.id === resultData[25])?.risk
 }
 
 export const organisationRisk = (resultData: FormValues) => {

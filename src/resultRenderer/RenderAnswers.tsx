@@ -1,7 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React from 'react'
-
-import type { FacultyOrUnit, FormValues, Locales } from '@types'
+import type { FacultyOrUnit, FormValues, Locales, Question } from '@types'
 import type { Survey } from '@client/types'
 
 import { extraOrganisations } from '@common/organisations'
@@ -28,11 +25,35 @@ const RenderAnswers = ({
   const multiChoiceQuestions = survey.Questions.filter(question => question.optionData.type === 'multipleChoice')
 
   const singleChoiceQuestions = survey.Questions.filter(question => question.optionData.type === 'singleChoice')
-
+  const getText = (question: Question, answer: string) => {
+    // The following options do not exists in questions, but in some answers they do
+    if (question.id === 23 && answer === 'notSureTransferMilitaryKnowledge') {
+      return {
+        fi: 'Ei tiedossa',
+        sv: 'Not sure',
+        en: 'Not sure',
+      }[language as keyof Locales]
+    }
+    if (question.id === 25 && answer === 'likelyEthicalIssues') {
+      return {
+        fi: 'Melko varmasti',
+        sv: 'Possibly',
+        en: 'Possibly',
+      }[language as keyof Locales]
+    }
+    if (question.id === 25 && answer === 'likelyNoEthicalIssues') {
+      return {
+        fi: 'Melko varmasti ei',
+        sv: 'Likely not',
+        en: 'Likely not',
+      }[language as keyof Locales]
+    }
+    return question.optionData.options.find(o => o.id === answer)?.title[language as keyof Locales]
+  }
   const singleChoiceAnswers = singleChoiceQuestions.map(question => {
     const questionId = question.id
     const answer = resultData[questionId]
-    const text = question.optionData.options.find(o => o.id === answer)?.title[language as keyof Locales]
+    const text = getText(question, answer)
 
     return { [questionId]: text ?? '' }
   })
