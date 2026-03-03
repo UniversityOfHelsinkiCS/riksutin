@@ -67,12 +67,12 @@ router.use('/questions', questionRouter)
 router.use('/results', resultRouter)
 router.use('/countries', countryRouter)
 router.use('/riskiapi', myResearchApiRouter)
+router.use('/users', userRouter)
 
 router.use(ensureEmployee)
 
 router.use('/faculties', facultyRouter)
 router.use('/warnings', warningsRouter)
-router.use('/users', userRouter)
 router.use('/entries', entryRouter)
 router.use('/organizations', organizationRouter)
 router.use('/tuhatprojects', tuhatProjectsRouter)
