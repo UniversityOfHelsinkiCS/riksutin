@@ -29,25 +29,21 @@ const RenderAnswers = ({
   const singleChoiceQuestions = survey.Questions.filter(question => question.optionData.type === 'singleChoice')
   const getText = (question: Question, answer: string) => {
     // The following options do not exists in questions, but in some answers they do
-    if (question.id === 23 && answer === 'notSureTransferMilitaryKnowledge') {
+    if (
+      (question.id === 23 && answer === 'notSureTransferMilitaryKnowledge') ||
+      (question.id === 17 && answer === 'notSureTransferPersonalData')
+    ) {
       return {
         fi: 'Ei tiedossa',
         sv: 'Not sure',
         en: 'Not sure',
       }[language as keyof Locales]
     }
-    if (question.id === 25 && answer === 'likelyEthicalIssues') {
+    if (question.id === 25 && ['likelyEthicalIssues', 'likelyNoEthicalIssues'].includes(answer)) {
       return {
-        fi: 'Melko varmasti',
-        sv: 'Possibly',
-        en: 'Possibly',
-      }[language as keyof Locales]
-    }
-    if (question.id === 25 && answer === 'likelyNoEthicalIssues') {
-      return {
-        fi: 'Melko varmasti ei',
-        sv: 'Likely not',
-        en: 'Likely not',
+        fi: answer === 'likelyEthicalIssues' ? 'Melko varmasti' : 'Melko varmasti ei',
+        sv: answer === 'likelyEthicalIssues' ? 'Possibly' : 'Likely not',
+        en: answer === 'likelyEthicalIssues' ? 'Possibly' : 'Likely not',
       }[language as keyof Locales]
     }
     return question.optionData.options.find(o => o.id === answer)?.title[language as keyof Locales]
