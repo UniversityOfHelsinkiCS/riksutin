@@ -729,8 +729,8 @@ const getQuestionData = (): Question[] => [
     },
     shortTitle: {
       fi: 'Henkilötietojen siirto',
-      sv: 'Does the collaboration require transferring personal data to the partner institution?',
-      en: 'Does the collaboration require transferring personal data to the partner institution?',
+      sv: 'Transferring personal data',
+      en: 'Transferring personal data',
     },
     text: {
       fi: 'Valitse annetuista vaihtoehdoista sen mukaan, että onko yhteistyösi aikana todennäköistä, että opiskelijoiden, henkilöstön tai yhteistyötahojen edustajien henkilötietoja joudutaan yliopiston toimesta siirtämään yhteistyökumppanille',
@@ -1145,7 +1145,7 @@ const getQuestionData = (): Question[] => [
     id: 31,
     surveyId: 1,
     parentId: 13,
-    priority: 0,
+    priority: 2,
     title: {
       fi: 'Myönnetäänkö ulkopuolinen rahoitus',
       sv: 'Will the external funding be awarded in',
@@ -1202,7 +1202,7 @@ const getQuestionData = (): Question[] => [
     id: 32,
     surveyId: 1,
     parentId: 13,
-    priority: 0,
+    priority: 3,
     title: {
       fi: 'Rahoittajataho:',
       sv: 'Funder:',

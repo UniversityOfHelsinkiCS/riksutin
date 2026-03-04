@@ -49,7 +49,7 @@ const createTableData = (entries: Entry[], questions: Question[], faculties: Fac
             (value: string) =>
               questions
                 .find(question => question.id === idAsInt)
-                ?.optionData.options.find(option => option.id === value)?.title.fi
+                ?.optionData.options.find(option => option.id === value)?.title.fi ?? value
           )
 
           return [key, texts.join(', ') ?? '']
