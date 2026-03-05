@@ -80,7 +80,7 @@ const RenderAnswers = ({
   const unit = units.find(faculty => faculty.code === answers.unit)
   const parsedUnit = unit ? `${unit.code} - ${unit.name[language as keyof Locales]}` : answers.unit
 
-  const hyCordinatedMultilateral = resultData['9'] === 'coordinator' && resultData['4'] === 'multilateral'
+  const multilateral = resultData['4'] === 'multilateral'
 
   const arrayToString = (answers: string[]) => {
     if (answers.length === 0) {
@@ -102,7 +102,7 @@ const RenderAnswers = ({
       <Div style={{ borderLeft: '1px solid lightgray' }}>
         {survey?.Questions.map(currentQuestion => (
           <Div key={currentQuestion.id}>
-            {!currentQuestion.parentId && !(hyCordinatedMultilateral && [6, 8, 24].includes(currentQuestion.id)) && (
+            {!currentQuestion.parentId && !(multilateral && [6, 8, 24].includes(currentQuestion.id)) && (
               <>
                 <Div
                   style={{
@@ -132,8 +132,8 @@ const RenderAnswers = ({
                 {survey?.Questions.filter(
                   childQuestion =>
                     childQuestion.parentId === currentQuestion.id &&
-                    !(hyCordinatedMultilateral && [6, 8, 24].includes(childQuestion.id)) &&
-                    !(!hyCordinatedMultilateral && [26, 27, 28, 30].includes(childQuestion.id))
+                    !(multilateral && [6, 8, 24].includes(childQuestion.id)) &&
+                    !(!multilateral && [26, 27, 28, 30].includes(childQuestion.id))
                 )?.map(childQuestion => (
                   <Div key={childQuestion.id} style={{ margin: '16px' }}>
                     <Div style={{ borderLeft: '1px solid lightgray' }}>

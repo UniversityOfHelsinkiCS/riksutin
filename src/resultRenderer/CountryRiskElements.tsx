@@ -10,7 +10,7 @@ import getCountryRiskTexts from '@common/getCountryRiskTexts'
 import MultilateralRisks from './MultilateralRisks'
 import { useTranslation } from 'react-i18next'
 
-const MultilateralRiskMoral = ({ riskData, results }: { riskData: RiskData; results: any }) => {
+const MultilateralRiskModal = ({ riskData, results }: { riskData: RiskData; results: any }) => {
   const style = {
     position: 'absolute',
     top: '50%',
@@ -70,7 +70,8 @@ const CountryRiskElements = ({
 }) => {
   const { TableRow, TableCell, Typography, Div, t, language } = useComponents()
   const selectedCountry: string = riskData.answers['8']
-  const hyCordinatedMultilateral = riskData.answers['9'] === 'coordinator' && riskData.answers['4'] === 'multilateral'
+  const multilateral = riskData.answers['4'] === 'multilateral'
+  const hyCordinated = riskData.answers['9'] === 'coordinator'
   const highestRiskCountry = riskData.country[0]
   const multilateralCountyNames = asArray(riskData.answers['26']).concat(asArray(riskData.answers['28']))
 
@@ -101,24 +102,25 @@ const CountryRiskElements = ({
 
   const countryRisksWithTexts = getCountryRiskTexts(countryData, results, riskData.answers, language)
 
+  const heading = hyCordinated ? 'riskTable:hyMultilateral' : 'riskTable:otherMultilateral'
+  const riskShownFor = hyCordinated ? 'riskTable:hyMultilateralHighest' : 'riskTable:otherMultilateralHighest'
+
   return (
     <>
-      {hyCordinatedMultilateral ? (
+      {multilateral ? (
         <>
           <TableRow>
             <TableCell colSpan={3}>
               <Div component="div">
-                <Typography style={{ fontWeight: '800', paddingBottom: 10 }}>
-                  {t('riskTable:hyMultilateral')}
-                </Typography>
+                <Typography style={{ fontWeight: '800', paddingBottom: 10 }}>{t(heading)}</Typography>
                 <Typography style={{ paddingBottom: 12 }}>
                   {t('riskTable:hyMultilateralCountries')}
                   <Typography component="span" fontStyle="italic" style={{ paddingLeft: 10 }}>
                     {multilateralCountyNames.join(', ')}
                   </Typography>
                 </Typography>
-                <Typography style={{ paddingBottom: 12 }}>{t('riskTable:hyMultilateralHighest')}</Typography>
-                {multilateralCountyNames.length > 1 && <MultilateralRiskMoral riskData={riskData} results={results} />}
+                <Typography style={{ paddingBottom: 12 }}>{t(riskShownFor)}</Typography>
+                {multilateralCountyNames.length > 1 && <MultilateralRiskModal riskData={riskData} results={results} />}
               </Div>
             </TableCell>
           </TableRow>

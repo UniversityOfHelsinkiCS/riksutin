@@ -87,6 +87,8 @@
     "sanctions": "Sanctions",
     "academicFreedom": "Academic freedom",
     "ruleOfLaw": "Rule of Law",
+    "otherMultilateral": "Multilateral project",
+    "otherMultilateralHighest": "The country risk shown below is calculated based on the coordinating country",
     "hyMultilateral": "Multilateral project coordinated by University of Helsinki",
     "hyMultilateralCountries": "Participants from the following countries:",
     "hyMultilateralHighest": "The country risk shown below is calculated based on the country with the highest risk",

@@ -180,7 +180,7 @@ const RenderQuestion = ({ control, watch, question, questions, language }: Input
   }
 
   // these questions are relevant only if mutlilateran and hyCordinator
-  if ([26, 27, 28, 30].includes(question.id) && !hyMultilateral) {
+  if ([26, 27, 28, 30].includes(question.id) && !multilateral) {
     return null
   }
 
