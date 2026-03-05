@@ -255,7 +255,7 @@
   "controlReport": {
     "title": "Valvontaraportit",
     "addButton": "Lisää valvontaraportti",
-    "editButton": "Muokkaa valvontaraporttia",
+    "editButton": "Muokkaa raporttia",
     "deleteButton": "Poista",
     "saveButton": "Tallenna",
     "cancelButton": "Peruuta",
