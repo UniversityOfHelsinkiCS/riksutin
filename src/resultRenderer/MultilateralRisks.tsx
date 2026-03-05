@@ -54,7 +54,9 @@ const MultilateralRisks = ({ riskData, results }: { riskData: RiskData; results:
   const { multilateralCountries } = riskData
   const { TableContainer, Table, TableBody, TableRow, TableCell, Div, t } = useComponents()
 
-  const restMultilateral = multilateralCountries.slice(1)
+  const hyCoordinated = riskData.answers[9] === 'coordinator'
+
+  const restMultilateral = hyCoordinated ? multilateralCountries.slice(1) : multilateralCountries
 
   const getLabelFor = (id: string) => {
     if (id === 'hci') {
