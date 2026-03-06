@@ -6,13 +6,21 @@ import { get, setPermanent } from '../../util/redis'
 import logger from 'src/server/util/logger'
 import { UNIVERSITIES_URL, NO_CACHE, LOG_CACHE } from '@userconfig'
 
+const normalizeCountryName = (countryName: string) => {
+  if (countryName === 'United States') {
+    return 'United States of America'
+  }
+
+  if (countryName === 'Hong Kong SAR, China') {
+    return 'China - Hong Kong SAR'
+  }
+
+  return countryName
+}
+
 const getKey = countryName => `${UNIVERSITIES_URL}?country=${countryName}`
 
 export const cacheUniversityData = async (countryName: string) => {
-  if (countryName === 'United States') {
-    countryName = 'United States of America'
-  }
-
   const formdata = new FormData()
 
   formdata.append('Chp1', countryName)
@@ -65,14 +73,16 @@ const getCountryUniversities = async (countryName: string | undefined) => {
     return null
   }
 
+  const normalizedCountryName = normalizeCountryName(countryName)
+
   try {
-    const key = getKey(countryName)
+    const key = getKey(normalizedCountryName)
     if (LOG_CACHE) {
       console.log('FROM CACHE ', key)
     }
     let names: string[] | null = await get(key)
     if (NO_CACHE || !names) {
-      names = await cacheUniversityData(countryName)
+      names = await cacheUniversityData(normalizedCountryName)
     }
 
     return names
