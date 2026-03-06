@@ -1213,7 +1213,15 @@ const getQuestionData = (): Question[] => [
       sv: '',
       en: '',
     },
-    optionData: { type: 'text', options: [] },
+    optionData: {
+      type: 'text',
+      options: [],
+      attributes: {
+        multiline: true,
+        minRows: 3,
+        inputProps: { maxLength: 500 },
+      },
+    },
     visibility: { options: ['externalFunding'] },
   },
   {
