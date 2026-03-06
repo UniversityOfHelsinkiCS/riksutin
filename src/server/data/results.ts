@@ -635,7 +635,7 @@ const getResultData = (): Result[] => [
     surveyId: 1,
     optionLabel: 'consortium1',
     isSelected: {
-      fi: '*Monenkeskisessä yhteistyössäsi ei ole yhteistyökumppaneita, jotka sijaitsevan korkean riski maissa*',
+      fi: '*Monenkeskisessä yhteistyössäsi ei ole yhteistyökumppaneita, jotka sijaitsevan korkean riskin maissa*',
       sv: '',
       en: '*Your multilateral collaboration does not include partners from high-risk countries*',
     },
@@ -652,7 +652,7 @@ const getResultData = (): Result[] => [
     surveyId: 1,
     optionLabel: 'consortium2',
     isSelected: {
-      fi: '*Monenkeskisessä yhteistyössäsi on yksi yhteistyökumppani, joka sijaitsee korkean riski maassa. Harkitse, edelyttääkö tämä erityisiä riskien arvioinnin jatkotoimia ja ole tarvittaessa yhteydesssä risk-i@helsinki.fi*',
+      fi: '*Monenkeskisessä yhteistyössäsi on yksi yhteistyökumppani, joka sijaitsee korkean riskin maassa. Harkitse, edellyttääkö tämä erityisiä riskien arvioinnin jatkotoimia ja ole tarvittaessa yhteydessä risk-i@helsinki.fi*',
       sv: '',
       en: '*Your multilateral collaboration includes a partner from a high-risk country. Please consider, if this warrants further risk assessment actions. You may also consult risk-i@helsinki.fi*',
     },
@@ -669,7 +669,7 @@ const getResultData = (): Result[] => [
     surveyId: 1,
     optionLabel: 'consortium3',
     isSelected: {
-      fi: '*Monenkeskisessä yhteistyössäsi on useampia yhteistyökumppaneita, jotka sijaitsevat korkean riski maissa. Ota tarvittaessa yhteydesssä risk-i@helsinki.fi*',
+      fi: '*Monenkeskisessä yhteistyössäsi on useampia yhteistyökumppaneita, jotka sijaitsevat korkean riskin maissa. Ota tarvittaessa yhteydessä risk-i@helsinki.fi*',
       sv: '',
       en: '*Your multilateral collaboration includes several partners from a high-risk country. Please consult risk-i@helsinki.fi*',
     },
@@ -686,7 +686,7 @@ const getResultData = (): Result[] => [
     surveyId: 1,
     optionLabel: 'ruleOfLaw1',
     isSelected: {
-      fi: '*Yhteistyökumppanisi sijaitsee maassa, joka on oikeusvaltiio, mikä tarkoittaa muun muasssa, että sopimuksiin liittyvä oikeussuoja on lähtökohtaisesti vahva. Tämä on kuitenkin vain perusta ja yhteistyösopimus on joka tapauksessa syytä laatia huolella.*',
+      fi: '*Yhteistyökumppanisi sijaitsee maassa, joka on oikeusvaltio, mikä tarkoittaa muun muassa, että sopimuksiin liittyvä oikeussuoja on lähtökohtaisesti vahva. Tämä on kuitenkin vain perusta ja yhteistyösopimus on joka tapauksessa syytä laatia huolella.*',
       sv: '',
       en: '*Your collaboration partner is located in a country, where rule of law is prevalent and agreements are normally followed and respected. As this is merely the point of departure, it is still necessary to  draw up an agreement with appropriate care.*',
     },
