@@ -5,6 +5,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { CONTROL_REPORT_CHECK_ENABLED } from '@config'
+import { getRiskParts } from '@common/getRiskParts'
 import RiskTableDOM from '../ResultPage/RiskTableDOM'
 import { useEntry } from '../../hooks/useEntry'
 import useSurvey from '../../hooks/useSurvey'
@@ -98,13 +99,15 @@ const UserEntry = () => {
         )}
         <Box sx={{ m: 3 }}>
           <Box sx={{ width: '100%', my: 2, display: 'flex', gap: 1, alignItems: 'center' }}>
-            <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-              <Button variant="outlined">
-                <ArrowBackIcon sx={{ mr: 1 }} />
-                {t('userPage:backButton')}
-              </Button>
-            </Link>
-            {tabValue === 0 && (
+            {!isAdminView && (
+              <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+                <Button variant="outlined">
+                  <ArrowBackIcon sx={{ mr: 1 }} />
+                  {t('userPage:backButton')}
+                </Button>
+              </Link>
+            )}
+            {!isAdminView && tabValue === 0 && (
               <Button variant="outlined" onClick={() => navigate(`/user/${entryId}/edit`)} data-testid="edit-button">
                 {t('userPage:editEntry')}
               </Button>
@@ -123,6 +126,7 @@ const UserEntry = () => {
               entryId={entryId}
               controlReports={entry.controlReports ?? []}
               entryState={entry.state}
+              parts={getRiskParts(entry.data)}
               onUpdate={refetch}
             />
           )}

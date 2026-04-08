@@ -7,7 +7,7 @@ import {
   type MRT_ColumnDef,
   type MRT_Updater,
 } from 'material-react-table'
-import { Box, Button, Chip, IconButton, Typography } from '@mui/material'
+import { Box, Button, Chip, IconButton, Tooltip, Typography } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 import FileDownloadIcon from '@mui/icons-material/FileDownload'
 import { utils, writeFile } from 'xlsx'
@@ -23,6 +23,7 @@ import useFaculties from '../../../hooks/useFaculties'
 import { extraOrganisations } from '@common/organisations'
 import createTableData from './utils'
 import { getEntryStateColor, getEntryStateLabel } from '@common/entryStates'
+import { getRiskParts } from '@common/getRiskParts'
 
 import type { TableValues } from './utils'
 
@@ -119,7 +120,14 @@ const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps)
                       if (!state) {
                         return null
                       }
-                      return <Chip label={getEntryStateLabel(state)} color={getEntryStateColor(state)} size="small" />
+                      const entry = entriesRef.current.find(e => e.id === Number(row.getValue('id')))
+                      const parts = entry ? getRiskParts(entry.data) : []
+                      const tooltipTitle = parts.map(p => t(p)).join('\n')
+                      return (
+                        <Tooltip title={<span style={{ whiteSpace: 'pre-line' }}>{tooltipTitle}</span>} placement="top">
+                          <Chip label={t(getEntryStateLabel(state))} color={getEntryStateColor(state)} size="small" />
+                        </Tooltip>
+                      )
                     })()}
                   </Box>
                   {isTestVersion(row.getValue('id')) && (

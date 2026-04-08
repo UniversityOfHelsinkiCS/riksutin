@@ -255,6 +255,7 @@
   },
   "controlReport": {
     "title": "Käsittelytoimenpiteet",
+    "thresholdsExceeded": "Ylittyvät kynnysarvot",
     "subTitle": "Toimenpiteet ja kommentit",
     "addButton": "Lisää Käsittelytoimenpide",
     "editButton": "Muokkaa raporttia",
@@ -272,7 +273,7 @@
     "englishText": "Raportti englanniksi",
     "markdownSupported": "Markdown-muotoilu on tuettu.",
     "adminOnly": "Näytetään vain käsittelijöille",
-    "stateLabel": "Asian käsittelyvaihe",
+    "stateLabel": "Käsittelyn vaihe",
     "changeState": "Vaihda vaihetta",
     "createSuccess": "Käsittelytoimenpide luotu onnistuneesti",
     "updateSuccess": "Käsittelytoimenpide päivitetty onnistuneesti",
@@ -283,5 +284,20 @@
   },
   "pdf": {
     "footer": "Raportin on luonut {{appName}}, {{date}}"
+  },
+  "entryStates": {
+    "pending": "Edellyttää asiantuntijaryhmän käsittelyä",
+    "expertGroup": "Otettu asiantuntijaryhmän käsittelyyn",
+    "approved": "Asia käsitelty, hanke voi edetä käsittelytoimenpiteissä yksilöidyllä tavalla",
+    "blocked": "Asia käsitelty, eteneminen estetty",
+    "managementGroup": "Asia nostettu johtoryhmän käsittelyyn"
+  },
+  "riskComponent": {
+    "total": "Yhteistyön kokonaisriskitaso 3",
+    "economicRisk": "Talouden kokonaisriski 3",
+    "nonEuroCurrency": "Muun valuutan kuin euron käyttäminen",
+    "dualUseRisk": "Kaksoiskäytön riskitaso 3",
+    "gdprRisk": "EU:n ulkopuolelle siirrettävien henkilötietojen riskitaso 3",
+    "highRiskCountry": "Yhteistyömaa/-maiden joukossa Israel, Venäjä tai Valko-Venäjä"
   }
 }

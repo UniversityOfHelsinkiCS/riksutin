@@ -17,6 +17,7 @@ import {
   RadioGroup,
   Typography,
   Alert,
+  Tooltip,
 } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
@@ -36,10 +37,11 @@ interface ControlReportsProps {
   entryId: string
   controlReports: ControlReport[]
   entryState?: string | null
+  parts?: string[]
   onUpdate: () => void
 }
 
-const ControlReports = ({ entryId, controlReports, entryState, onUpdate }: ControlReportsProps) => {
+const ControlReports = ({ entryId, controlReports, entryState, parts, onUpdate }: ControlReportsProps) => {
   const { t } = useTranslation()
   const { user } = useLoggedInUser()
   const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -150,6 +152,25 @@ const ControlReports = ({ entryId, controlReports, entryState, onUpdate }: Contr
       <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 1 }}>
         {t('controlReport:title')}
       </Typography>
+      {parts && parts.length > 0 && (
+        <Box sx={{ mb: 2 }}>
+          <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 0.5 }}>
+            {t('controlReport:thresholdsExceeded')}
+          </Typography>
+          <Box component="ul" sx={{ mt: 0, pl: 3 }}>
+            {parts.map(part => (
+              <li key={part}>
+                <Typography variant="body2">{t(part)}</Typography>
+              </li>
+            ))}
+          </Box>
+        </Box>
+      )}
+      {effectiveState && (
+        <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1 }}>
+          {t('controlReport:stateLabel')}
+        </Typography>
+      )}
       {isAdmin && effectiveState ? (
         <Box sx={{ mb: 2 }}>
           {showStateSelector ? (
@@ -167,7 +188,7 @@ const ControlReports = ({ entryId, controlReports, entryState, onUpdate }: Contr
                     key={state}
                     value={state}
                     control={<Radio size="small" />}
-                    label={getEntryStateLabel(state)}
+                    label={t(getEntryStateLabel(state))}
                   />
                 ))}
               </RadioGroup>
@@ -175,7 +196,16 @@ const ControlReports = ({ entryId, controlReports, entryState, onUpdate }: Contr
           ) : (
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               {effectiveState && (
-                <Chip label={getEntryStateLabel(effectiveState)} color={getEntryStateColor(effectiveState)} />
+                <Tooltip
+                  title={
+                    <span style={{ whiteSpace: 'pre-line' }}>
+                      {parts && parts.length > 0 ? parts.map(p => t(p)).join('\n') : ''}
+                    </span>
+                  }
+                  placement="top"
+                >
+                  <Chip label={t(getEntryStateLabel(effectiveState))} color={getEntryStateColor(effectiveState)} />
+                </Tooltip>
               )}
               <Button size="small" onClick={() => setShowStateSelector(true)}>
                 {t('controlReport:changeState')}
@@ -186,7 +216,16 @@ const ControlReports = ({ entryId, controlReports, entryState, onUpdate }: Contr
       ) : (
         effectiveState && (
           <Box sx={{ mb: 2 }}>
-            <Chip label={getEntryStateLabel(effectiveState)} color={getEntryStateColor(effectiveState)} />
+            <Tooltip
+              title={
+                <span style={{ whiteSpace: 'pre-line' }}>
+                  {parts && parts.length > 0 ? parts.map(p => t(p)).join('\n') : ''}
+                </span>
+              }
+              placement="top"
+            >
+              <Chip label={t(getEntryStateLabel(effectiveState))} color={getEntryStateColor(effectiveState)} />
+            </Tooltip>
           </Box>
         )
       )}
@@ -197,7 +236,7 @@ const ControlReports = ({ entryId, controlReports, entryState, onUpdate }: Contr
         </Alert>
       )}
 
-      <Typography variant="h6" sx={{ mb: 2 }}>
+      <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2 }}>
         {t('controlReport:subTitle')}
       </Typography>
 

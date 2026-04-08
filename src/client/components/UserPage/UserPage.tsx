@@ -11,6 +11,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Tooltip,
   Typography,
 } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
@@ -22,6 +23,7 @@ import { useUserEntries } from '../../hooks/useEntry'
 import { useUpdateEntryRisks } from '../../hooks/useSaveEntryMutation'
 import useDeleteEntryMutation from '../../hooks/useDeleteEntryMutation'
 import { getEntryStateColor, getEntryStateLabel } from '@common/entryStates'
+import { getRiskParts } from '@common/getRiskParts'
 
 const { riskColors, resultStyles } = styles
 
@@ -115,11 +117,22 @@ const UserPage = () => {
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                       <Link to={`/user/${entry.id.toString()}`}>{entry.data.answers['3']}</Link>
                       {entry.state && (
-                        <Chip
-                          label={getEntryStateLabel(entry.state)}
-                          color={getEntryStateColor(entry.state)}
-                          size="small"
-                        />
+                        <Tooltip
+                          title={
+                            <span style={{ whiteSpace: 'pre-line' }}>
+                              {getRiskParts(entry.data)
+                                .map(p => t(p))
+                                .join('\n')}
+                            </span>
+                          }
+                          placement="top"
+                        >
+                          <Chip
+                            label={t(getEntryStateLabel(entry.state))}
+                            color={getEntryStateColor(entry.state)}
+                            size="small"
+                          />
+                        </Tooltip>
                       )}
                     </Box>
                     {entry.testVersion && (

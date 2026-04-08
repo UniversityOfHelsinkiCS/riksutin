@@ -9,11 +9,11 @@ export const ENTRY_STATES = {
 export type EntryState = (typeof ENTRY_STATES)[keyof typeof ENTRY_STATES]
 
 export const ENTRY_STATE_LABELS: Record<EntryState, string> = {
-  [ENTRY_STATES.PENDING]: 'Edellyttää asiantuntijaryhmän käsittelyä',
-  [ENTRY_STATES.EXPERT_GROUP]: 'Otettu asiantuntijaryhmän käsittelyyn',
-  [ENTRY_STATES.APPROVED]: 'Asia käsitelty, hanke voi edetä käsittelytoimenpiteissä yksilöidyllä tavalla',
-  [ENTRY_STATES.BLOCKED]: 'Asia käsitelty, eteneminen estetty',
-  [ENTRY_STATES.MANAGEMENT_GROUP]: 'Asia nostettu johtoryhmän käsittelyyn',
+  [ENTRY_STATES.PENDING]: 'entryStates:pending',
+  [ENTRY_STATES.EXPERT_GROUP]: 'entryStates:expertGroup',
+  [ENTRY_STATES.APPROVED]: 'entryStates:approved',
+  [ENTRY_STATES.BLOCKED]: 'entryStates:blocked',
+  [ENTRY_STATES.MANAGEMENT_GROUP]: 'entryStates:managementGroup',
 }
 
 export const getEntryStateColor = (state: string): 'error' | 'success' | 'warning' | 'info' | 'default' => {
