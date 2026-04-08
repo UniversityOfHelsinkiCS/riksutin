@@ -12,7 +12,7 @@ test.describe('admin endpoints access control', () => {
     })
 
     test.skip('PUT /api/surveys/:name is not accessible', async () => {
-      const response = await fetch(`${baseUrl}/api/surveys/universitysurvey`, {
+      const response = await fetch(`${baseUrl}/api/surveys/testSurvey`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ enabled: true }),
