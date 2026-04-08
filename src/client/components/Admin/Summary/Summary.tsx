@@ -22,7 +22,7 @@ import styles from '../../../styles'
 import useFaculties from '../../../hooks/useFaculties'
 import { extraOrganisations } from '@common/organisations'
 import createTableData from './utils'
-import { ENTRY_STATES, ENTRY_STATE_LABELS, EntryState } from '@common/entryStates'
+import { getEntryStateColor, getEntryStateLabel } from '@common/entryStates'
 
 import type { TableValues } from './utils'
 
@@ -119,17 +119,7 @@ const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps)
                       if (!state) {
                         return null
                       }
-                      const color =
-                        state === ENTRY_STATES.BLOCKED
-                          ? 'error'
-                          : state === ENTRY_STATES.APPROVED
-                            ? 'success'
-                            : state === ENTRY_STATES.PENDING
-                              ? 'warning'
-                              : 'info'
-                      return (
-                        <Chip label={ENTRY_STATE_LABELS[state as EntryState] ?? state} color={color} size="small" />
-                      )
+                      return <Chip label={getEntryStateLabel(state)} color={getEntryStateColor(state)} size="small" />
                     })()}
                   </Box>
                   {isTestVersion(row.getValue('id')) && (

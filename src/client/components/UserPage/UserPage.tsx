@@ -21,7 +21,7 @@ import styles from '../../styles'
 import { useUserEntries } from '../../hooks/useEntry'
 import { useUpdateEntryRisks } from '../../hooks/useSaveEntryMutation'
 import useDeleteEntryMutation from '../../hooks/useDeleteEntryMutation'
-import { ENTRY_STATES, ENTRY_STATE_LABELS, EntryState } from '@common/entryStates'
+import { getEntryStateColor, getEntryStateLabel } from '@common/entryStates'
 
 const { riskColors, resultStyles } = styles
 
@@ -116,16 +116,8 @@ const UserPage = () => {
                       <Link to={`/user/${entry.id.toString()}`}>{entry.data.answers['3']}</Link>
                       {entry.state && (
                         <Chip
-                          label={ENTRY_STATE_LABELS[entry.state as EntryState] ?? entry.state}
-                          color={
-                            entry.state === ENTRY_STATES.BLOCKED
-                              ? 'error'
-                              : entry.state === ENTRY_STATES.APPROVED
-                                ? 'success'
-                                : entry.state === ENTRY_STATES.PENDING
-                                  ? 'warning'
-                                  : 'info'
-                          }
+                          label={getEntryStateLabel(entry.state)}
+                          color={getEntryStateColor(entry.state)}
                           size="small"
                         />
                       )}

@@ -26,7 +26,7 @@ import { enqueueSnackbar } from 'notistack'
 import MDEditor from '@uiw/react-md-editor'
 
 import { ControlReport } from '@types'
-import { ENTRY_STATES, ENTRY_STATE_LABELS, EntryState } from '@common/entryStates'
+import { ENTRY_STATES, EntryState, getEntryStateColor, getEntryStateLabel } from '@common/entryStates'
 import useLoggedInUser from '../../hooks/useLoggedInUser'
 import Markdown from '../Common/Markdown'
 import apiClient from '../../util/apiClient'
@@ -167,7 +167,7 @@ const ControlReports = ({ entryId, controlReports, entryState, onUpdate }: Contr
                     key={state}
                     value={state}
                     control={<Radio size="small" />}
-                    label={ENTRY_STATE_LABELS[state]}
+                    label={getEntryStateLabel(state)}
                   />
                 ))}
               </RadioGroup>
@@ -175,18 +175,7 @@ const ControlReports = ({ entryId, controlReports, entryState, onUpdate }: Contr
           ) : (
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               {effectiveState && (
-                <Chip
-                  label={ENTRY_STATE_LABELS[effectiveState as EntryState] ?? effectiveState}
-                  color={
-                    effectiveState === ENTRY_STATES.BLOCKED
-                      ? 'error'
-                      : effectiveState === ENTRY_STATES.APPROVED
-                        ? 'success'
-                        : effectiveState === ENTRY_STATES.PENDING
-                          ? 'warning'
-                          : 'default'
-                  }
-                />
+                <Chip label={getEntryStateLabel(effectiveState)} color={getEntryStateColor(effectiveState)} />
               )}
               <Button size="small" onClick={() => setShowStateSelector(true)}>
                 {t('controlReport:changeState')}
@@ -197,18 +186,7 @@ const ControlReports = ({ entryId, controlReports, entryState, onUpdate }: Contr
       ) : (
         effectiveState && (
           <Box sx={{ mb: 2 }}>
-            <Chip
-              label={ENTRY_STATE_LABELS[effectiveState as EntryState] ?? effectiveState}
-              color={
-                effectiveState === ENTRY_STATES.BLOCKED
-                  ? 'error'
-                  : effectiveState === ENTRY_STATES.APPROVED
-                    ? 'success'
-                    : effectiveState === ENTRY_STATES.PENDING
-                      ? 'warning'
-                      : 'default'
-              }
-            />
+            <Chip label={getEntryStateLabel(effectiveState)} color={getEntryStateColor(effectiveState)} />
           </Box>
         )
       )}

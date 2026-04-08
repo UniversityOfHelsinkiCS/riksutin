@@ -15,3 +15,18 @@ export const ENTRY_STATE_LABELS: Record<EntryState, string> = {
   [ENTRY_STATES.BLOCKED]: 'Asia käsitelty, eteneminen estetty',
   [ENTRY_STATES.MANAGEMENT_GROUP]: 'Asia nostettu johtoryhmän käsittelyyn',
 }
+
+export const getEntryStateColor = (state: string): 'error' | 'success' | 'warning' | 'info' | 'default' => {
+  if (state === ENTRY_STATES.BLOCKED) {
+    return 'error'
+  }
+  if (state === ENTRY_STATES.APPROVED) {
+    return 'success'
+  }
+  if (state === ENTRY_STATES.PENDING) {
+    return 'warning'
+  }
+  return 'warning'
+}
+
+export const getEntryStateLabel = (state: string): string => ENTRY_STATE_LABELS[state as EntryState] ?? state
