@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { Alert, Box, Button, Tab, Tabs } from '@mui/material'
+import { Alert, Box, Button, Chip, Tab, Tabs } from '@mui/material'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { CONTROL_REPORT_CHECK_ENABLED } from '@config'
 import RiskTableDOM from '../ResultPage/RiskTableDOM'
@@ -55,6 +55,8 @@ const UserEntry = () => {
   const [tabValue, setTabValue] = useState(0)
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const location = useLocation()
+  const isAdminView = location.pathname.startsWith('/admin')
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue)
@@ -95,7 +97,7 @@ const UserEntry = () => {
           </Alert>
         )}
         <Box sx={{ m: 3 }}>
-          <Box sx={{ width: '100%', my: 2, display: 'flex', gap: 1 }}>
+          <Box sx={{ width: '100%', my: 2, display: 'flex', gap: 1, alignItems: 'center' }}>
             <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
               <Button variant="outlined">
                 <ArrowBackIcon sx={{ mr: 1 }} />
@@ -107,21 +109,22 @@ const UserEntry = () => {
                 {t('userPage:editEntry')}
               </Button>
             )}
-          </Box>
-          {CONTROL_REPORT_CHECK_ENABLED && entry.data.risks.find(r => r.id === 'total')?.level === 3 && (
-            <>
-              {(!entry.controlReports || entry.controlReports.length === 0) && (
-                <Alert severity="error" sx={{ mb: 2 }}>
-                  {t('controlReport:noReportsWarning')}
-                </Alert>
-              )}
-              <ControlReports
-                entryId={entryId}
-                controlReports={entry.controlReports ?? []}
-                totalRiskLevel={entry.data.risks.find(r => r.id === 'total')?.level}
-                onUpdate={refetch}
+            {isAdminView && entry.language && (
+              <Chip
+                label={`${t('userPage:filledInLanguage')}: ${new Intl.DisplayNames([entry.language], { type: 'language' }).of(entry.language)}`}
+                size="small"
+                variant="outlined"
+                sx={{ ml: 'auto' }}
               />
-            </>
+            )}
+          </Box>
+          {CONTROL_REPORT_CHECK_ENABLED && entry.state && (
+            <ControlReports
+              entryId={entryId}
+              controlReports={entry.controlReports ?? []}
+              entryState={entry.state}
+              onUpdate={refetch}
+            />
           )}
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={tabValue} onChange={handleChange} data-testid="version-tabs">

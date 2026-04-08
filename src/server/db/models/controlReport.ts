@@ -11,6 +11,8 @@ class ControlReport extends Model<InferAttributes<ControlReport>, InferCreationA
 
   declare createdBy: string
 
+  declare adminOnly: boolean
+
   declare createdAt: CreationOptional<Date>
 
   declare updatedAt: CreationOptional<Date>
@@ -38,6 +40,11 @@ ControlReport.init(
     createdBy: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    adminOnly: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
     },
     createdAt: {
       type: DataTypes.DATE,

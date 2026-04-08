@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid'
 import { useMutation } from 'react-query'
+import { useTranslation } from 'react-i18next'
 
 import { SESSION_TOKEN } from '@config'
 
@@ -9,6 +10,8 @@ import type { FormValues, TuhatData } from '@types'
 import apiClient from '../util/apiClient'
 
 export const useSaveEntryMutation = (surveyId: number | undefined) => {
+  const { i18n } = useTranslation()
+
   const mutationFn = async (data: { formData: FormValues; tuhatData: TuhatData | object; testVersion: boolean }) => {
     let sessionToken = sessionStorage.getItem(SESSION_TOKEN)
     if (!sessionToken) {
@@ -22,6 +25,7 @@ export const useSaveEntryMutation = (surveyId: number | undefined) => {
       sessionToken,
       tuhatData: data.tuhatData,
       testVersion: data.testVersion,
+      language: i18n.language,
     })
 
     return res.data as Entry

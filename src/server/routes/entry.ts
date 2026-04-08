@@ -10,6 +10,7 @@ import { createEntry, getEntries, getEntry, getUserEntries } from '../services/e
 import { sendResult } from '../services/sendResult'
 import { CreateControlReportZod, UpdateControlReportZod } from '../../validators/controlReport'
 import { notifyControlReportCreated } from '../services/notifyControlReport'
+import { ENTRY_STATES } from '../../common/entryStates'
 
 const entryRouter = express.Router()
 
@@ -82,7 +83,7 @@ entryRouter.post('/:surveyId/dryrun', async (req: RequestWithUser, res: any) => 
 
 entryRouter.post('/:surveyId', async (req: RequestWithUser, res: any) => {
   const { surveyId } = req.params
-  const { sessionToken, data, tuhatData, testVersion } = req.body
+  const { sessionToken, data, tuhatData, testVersion, language } = req.body
   const userId = req.user?.id || `publicUser-${sessionToken}`
 
   const riskData = await createRiskData(data)
@@ -91,7 +92,7 @@ entryRouter.post('/:surveyId', async (req: RequestWithUser, res: any) => {
     return res.status(500).send('Error when calculating risks')
   }
 
-  const updatedData: EntryValues = { sessionToken, data: riskData, tuhatData, testVersion }
+  const updatedData: EntryValues = { sessionToken, data: riskData, tuhatData, testVersion, language }
   const entry = await createEntry(userId, surveyId, updatedData)
 
   return res.status(201).send(entry.toJSON())
@@ -170,7 +171,7 @@ entryRouter.post('/:entryId/send-email', async (req: RequestWithUser, res: any) 
 entryRouter.post('/:entryId/control-report', adminHandler, async (req: RequestWithUser, res: any) => {
   const { entryId } = req.params
   const userId = req.user?.id
-  const { text } = CreateControlReportZod.parse(req.body)
+  const { text, adminOnly } = CreateControlReportZod.parse(req.body)
 
   const entry = await getEntry(entryId, userId)
 
@@ -187,8 +188,13 @@ entryRouter.post('/:entryId/control-report', adminHandler, async (req: RequestWi
   const newReport = await ControlReport.create({
     entryId: Number(entryId),
     text,
-    createdBy: req.user.username,
+    adminOnly,
+    createdBy: [req.user.firstName, req.user.lastName].filter(Boolean).join(' ') || req.user.username,
   })
+
+  if (entry.state === ENTRY_STATES.PENDING) {
+    await entry.update({ state: ENTRY_STATES.EXPERT_GROUP })
+  }
 
   // Send notification email
   try {
@@ -205,7 +211,7 @@ entryRouter.post('/:entryId/control-report', adminHandler, async (req: RequestWi
 entryRouter.put('/:entryId/control-report/:reportId', adminHandler, async (req: RequestWithUser, res: any) => {
   const { entryId, reportId } = req.params
   const userId = req.user?.id
-  const { text } = UpdateControlReportZod.parse(req.body)
+  const { text, adminOnly } = UpdateControlReportZod.parse(req.body)
 
   const entry = await getEntry(entryId, userId)
 
@@ -226,6 +232,7 @@ entryRouter.put('/:entryId/control-report/:reportId', adminHandler, async (req: 
 
   await report.update({
     text,
+    adminOnly,
   })
 
   return res.status(200).send(report.toJSON())
@@ -255,6 +262,25 @@ entryRouter.delete('/:entryId/control-report/:reportId', adminHandler, async (re
   await report.destroy()
 
   return res.status(204).send()
+})
+
+entryRouter.patch('/:entryId/state', adminHandler, async (req: RequestWithUser, res: any) => {
+  const { entryId } = req.params
+  const { state } = req.body
+
+  if (state !== null && !Object.values(ENTRY_STATES).includes(state)) {
+    return res.status(400).send('Invalid state value')
+  }
+
+  const entry = await Entry.findByPk(entryId)
+
+  if (!entry) {
+    return res.status(404).send('Entry not found')
+  }
+
+  await entry.update({ state: state ?? null })
+
+  return res.status(200).send(entry.toJSON())
 })
 
 export default entryRouter

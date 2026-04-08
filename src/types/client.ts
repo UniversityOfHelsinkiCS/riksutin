@@ -63,5 +63,6 @@ export type Entry = {
   survey: Survey
   User: User
   testVersion: boolean
+  state?: string | null
   controlReports?: ControlReport[]
 }

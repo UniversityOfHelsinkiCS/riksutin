@@ -3,14 +3,14 @@ import sendEmail from '../util/mailer'
 import logger from '../util/logger'
 
 export const notifyControlReportCreated = async (entry: Entry) => {
-  const subject = 'Control Report Created / Valvontaraportti luotu'
+  const subject = 'Control Report Created / Käsittelytoimenpide luotu'
 
   const projectName = entry.data.answers[3] || 'your project'
 
   const text = `A Control Report has been created for your project ${projectName}.
 Review it at: risk-i.helsinki.fi/user/${entry.id}
 
-Projektillesi ${projectName} on luotu valvontaraportti.
+Projektillesi ${projectName} on luotu Käsittelytoimenpide.
 Tutustu siihen osoitteessa: risk-i.helsinki.fi/user/${entry.id}`
 
   // Get both creator and owner

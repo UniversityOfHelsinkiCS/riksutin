@@ -147,7 +147,8 @@
     "testVersionWarning": "Tämä on testilomake. Järjestelmän ylläpito poistaa testit säännöllisesti",
     "deleteEntry": "Poista testiversio",
     "deleteConfirmation": "Haluatko varmasti poistaa testiriskiarvion '{{projectName}}'?",
-    "deleteSuccess": "Testiriskiarvio poistettu onnistuneesti"
+    "deleteSuccess": "Testiriskiarvio poistettu onnistuneesti",
+    "filledInLanguage": "Täytetty kielellä"
   },
   "editEntry": {
     "editingEntryInfo": "Muokataan merkintää ajalta {{date}} {{time}}.",
@@ -253,28 +254,32 @@
     "bodyText": "Olet täyttänyt kansainvälisen yhteistyön riskiarviolomakkeen ja liitteenä on arvioinnin tulokset, joita voit hyödyntää haluamallasi tavalla. Huomioithan, että voit päivittää itse riskiarvioinnin, jos hankkeessasi tapahtuu olennaisia muutoksia. Saat myös automaattisesti päivityksen, jos olosuhteissa tapahtuu merkittäviä muutoksia. Ole tarvittaessa yhteydessä risk-i@helsinki.fi."
   },
   "controlReport": {
-    "title": "Valvontaraportit",
-    "addButton": "Lisää valvontaraportti",
+    "title": "Käsittelytoimenpiteet",
+    "subTitle": "Toimenpiteet ja kommentit",
+    "addButton": "Lisää Käsittelytoimenpide",
     "editButton": "Muokkaa raporttia",
     "deleteButton": "Poista",
     "saveButton": "Tallenna",
     "cancelButton": "Peruuta",
-    "confirmDelete": "Haluatko varmasti poistaa tämän valvontaraportin?",
-    "riskLevel3Required": "Valvontaraportteja voidaan lisätä vain merkintöihin, joiden kokonaisriskitaso on 3 (merkittävä).",
-    "adminOnly": "Valvontaraportteja voivat lisätä vain ylläpitäjät.",
+    "confirmDelete": "Haluatko varmasti poistaa tämän käsittelytoimenpideraportin?",
+    "riskLevel3Required": "Käsittelytoimenpideraportteja voidaan lisätä vain merkintöihin, joiden kokonaisriskitaso on 3 (merkittävä).",
+    "adminOnly": "Käsittelytoimenpideraportteja voivat lisätä vain ylläpitäjät.",
     "createdBy": "Luonut",
     "lastUpdated": "Viimeksi päivitetty",
-    "noReports": "Ei valvontaraportteja saatavilla.",
-    "noReportsWarning": "Tällä merkinnällä on merkittävä riskitaso (3), mutta valvontaraportteja ei ole vielä luotu.",
+    "noReports": "Ei käsittelytoimenpideraportteja saatavilla.",
+    "noReportsWarning": "Tällä merkinnällä on merkittävä riskitaso (3), mutta käsittelytoimenpiteet eivät ole vielä käynnistyneet.",
     "finnishText": "Raportti suomeksi",
     "englishText": "Raportti englanniksi",
     "markdownSupported": "Markdown-muotoilu on tuettu.",
-    "createSuccess": "Valvontaraportti luotu onnistuneesti",
-    "updateSuccess": "Valvontaraportti päivitetty onnistuneesti",
-    "deleteSuccess": "Valvontaraportti poistettu onnistuneesti",
-    "createError": "Valvontaraportin luominen epäonnistui",
-    "updateError": "Valvontaraportin päivitys epäonnistui",
-    "deleteError": "Valvontaraportin poisto epäonnistui"
+    "adminOnly": "Näytetään vain käsittelijöille",
+    "stateLabel": "Asian käsittelyvaihe",
+    "changeState": "Vaihda vaihetta",
+    "createSuccess": "Käsittelytoimenpide luotu onnistuneesti",
+    "updateSuccess": "Käsittelytoimenpide päivitetty onnistuneesti",
+    "deleteSuccess": "Käsittelytoimenpide poistettu onnistuneesti",
+    "createError": "Käsittelytoimenpideraportin luominen epäonnistui",
+    "updateError": "Käsittelytoimenpideraportin päivitys epäonnistui",
+    "deleteError": "Käsittelytoimenpideraportin poisto epäonnistui"
   },
   "pdf": {
     "footer": "Raportin on luonut {{appName}}, {{date}}"

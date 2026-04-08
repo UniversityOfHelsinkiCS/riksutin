@@ -106,6 +106,7 @@ export interface EntryValues {
   tuhatData: TuhatData
   testVersion: boolean
   sessionToken: string
+  language: string
 }
 
 export interface EntryWithUser extends Entry {

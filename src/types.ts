@@ -212,6 +212,7 @@ export interface ControlReport {
   entryId: number
   text: string
   createdBy: string
+  adminOnly: boolean
   createdAt: string
   updatedAt: string
 }

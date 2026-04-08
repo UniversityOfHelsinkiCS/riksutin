@@ -7,10 +7,9 @@ import {
   type MRT_ColumnDef,
   type MRT_Updater,
 } from 'material-react-table'
-import { Box, Button, IconButton, Typography, Tooltip } from '@mui/material'
+import { Box, Button, Chip, IconButton, Typography } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 import FileDownloadIcon from '@mui/icons-material/FileDownload'
-import WarningIcon from '@mui/icons-material/Warning'
 import { utils, writeFile } from 'xlsx'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { enqueueSnackbar } from 'notistack'
@@ -23,7 +22,7 @@ import styles from '../../../styles'
 import useFaculties from '../../../hooks/useFaculties'
 import { extraOrganisations } from '@common/organisations'
 import createTableData from './utils'
-import { CONTROL_REPORT_CHECK_ENABLED } from '@config'
+import { ENTRY_STATES, ENTRY_STATE_LABELS, EntryState } from '@common/entryStates'
 
 import type { TableValues } from './utils'
 
@@ -87,16 +86,8 @@ const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps)
     return entriesRef.current.find(e => e.id === Number(id))?.testVersion || false
   }, [])
 
-  const needsControlReport = useCallback((id: string) => {
-    if (!CONTROL_REPORT_CHECK_ENABLED) {
-      return false
-    }
-    const entry = entriesRef.current.find(e => e.id === Number(id))
-    if (!entry) {
-      return false
-    }
-    const totalRisk = entry.data?.risks?.find((r: any) => r.id === 'total')?.level
-    return totalRisk === 3 && (!entry.controlReports || entry.controlReports.length === 0)
+  const getEntryState = useCallback((id: string): string | null => {
+    return entriesRef.current.find(e => e.id === Number(id))?.state ?? null
   }, [])
 
   const columns = useMemo<MRT_ColumnDef<TableValues>[]>(() => {
@@ -123,11 +114,23 @@ const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps)
                   {isOutdated(row.getValue('id')) && <span style={outdatedWarning}>!</span>}
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                     <Link to={`/admin/entry/${row.getValue('id')}`}>{cell.getValue<string>()}</Link>
-                    {needsControlReport(row.getValue('id')) && (
-                      <Tooltip title={t('controlReport:noReportsWarning')}>
-                        <WarningIcon sx={{ color: '#e74c3c', fontSize: '1.2rem' }} />
-                      </Tooltip>
-                    )}
+                    {(() => {
+                      const state = getEntryState(row.getValue('id'))
+                      if (!state) {
+                        return null
+                      }
+                      const color =
+                        state === ENTRY_STATES.BLOCKED
+                          ? 'error'
+                          : state === ENTRY_STATES.APPROVED
+                            ? 'success'
+                            : state === ENTRY_STATES.PENDING
+                              ? 'warning'
+                              : 'info'
+                      return (
+                        <Chip label={ENTRY_STATE_LABELS[state as EntryState] ?? state} color={color} size="small" />
+                      )
+                    })()}
                   </Box>
                   {isTestVersion(row.getValue('id')) && (
                     <Box
@@ -145,7 +148,7 @@ const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps)
           ),
         }))
       : []
-  }, [tableValues, questionTitles, isOutdated, isTestVersion, needsControlReport, t])
+  }, [tableValues, questionTitles, isOutdated, isTestVersion, getEntryState, t])
 
   const columnIds = Object.keys(tableValues[0])
 

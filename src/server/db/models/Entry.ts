@@ -23,6 +23,10 @@ class Entry extends Model<InferAttributes<Entry>, InferCreationAttributes<Entry>
 
   declare testVersion: boolean
 
+  declare language: CreationOptional<string>
+
+  declare state: CreationOptional<string>
+
   declare createdAt: CreationOptional<Date>
 
   declare updatedAt: CreationOptional<Date>
@@ -70,6 +74,14 @@ Entry.init(
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,
+    },
+    language: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    state: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     createdAt: {
       type: DataTypes.DATE,

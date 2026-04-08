@@ -2,6 +2,7 @@ import { useState } from 'react'
 import {
   Box,
   Button,
+  Chip,
   CircularProgress,
   IconButton,
   Table,
@@ -11,10 +12,8 @@ import {
   TableHead,
   TableRow,
   Typography,
-  Tooltip,
 } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
-import WarningIcon from '@mui/icons-material/Warning'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { enqueueSnackbar } from 'notistack'
@@ -22,7 +21,7 @@ import styles from '../../styles'
 import { useUserEntries } from '../../hooks/useEntry'
 import { useUpdateEntryRisks } from '../../hooks/useSaveEntryMutation'
 import useDeleteEntryMutation from '../../hooks/useDeleteEntryMutation'
-import { CONTROL_REPORT_CHECK_ENABLED } from '@config'
+import { ENTRY_STATES, ENTRY_STATE_LABELS, EntryState } from '@common/entryStates'
 
 const { riskColors, resultStyles } = styles
 
@@ -115,13 +114,21 @@ const UserPage = () => {
                   <Box>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                       <Link to={`/user/${entry.id.toString()}`}>{entry.data.answers['3']}</Link>
-                      {CONTROL_REPORT_CHECK_ENABLED &&
-                        entry.data.risks.find(r => r.id === 'total')?.level === 3 &&
-                        (!entry.controlReports || entry.controlReports.length === 0) && (
-                          <Tooltip title={t('controlReport:noReportsWarning')}>
-                            <WarningIcon sx={{ color: '#e74c3c', fontSize: '1.2rem' }} />
-                          </Tooltip>
-                        )}
+                      {entry.state && (
+                        <Chip
+                          label={ENTRY_STATE_LABELS[entry.state as EntryState] ?? entry.state}
+                          color={
+                            entry.state === ENTRY_STATES.BLOCKED
+                              ? 'error'
+                              : entry.state === ENTRY_STATES.APPROVED
+                                ? 'success'
+                                : entry.state === ENTRY_STATES.PENDING
+                                  ? 'warning'
+                                  : 'info'
+                          }
+                          size="small"
+                        />
+                      )}
                     </Box>
                     {entry.testVersion && (
                       <Box
