@@ -6,7 +6,6 @@ import { Op } from 'sequelize'
 import NotFoundError from '../errors/NotFoundError'
 import UnauthorizedError from '../errors/UnauthorizedError'
 import { EmployeeResponse } from '@routes/types'
-import { control_raport_check } from '../util/control_raport_check'
 
 export const getEntries = async (): Promise<Entry[]> => {
   const entries = await Entry.findAll({
@@ -71,7 +70,7 @@ export const getEntry = async (entryId: string, userId: string): Promise<Entry> 
 }
 
 export const createEntry = async (userId: string, surveyId: string, body: EntryValues) => {
-  const { sessionToken, data, tuhatData, testVersion, language } = body
+  const { sessionToken, data, tuhatData, testVersion, language, state } = body
 
   let ownerId = ''
   if (!data.answers['2']) {
@@ -111,7 +110,7 @@ export const createEntry = async (userId: string, surveyId: string, body: EntryV
     tuhatData,
     testVersion,
     language,
-    state: control_raport_check(data).state,
+    state,
   })
 
   return newEntry

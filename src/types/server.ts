@@ -107,6 +107,7 @@ export interface EntryValues {
   testVersion: boolean
   sessionToken: string
   language: string
+  state?: string
 }
 
 export interface EntryWithUser extends Entry {

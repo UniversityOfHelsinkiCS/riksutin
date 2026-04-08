@@ -5,7 +5,7 @@ import type { RiskData } from '@types'
 
 const HIGH_RISK_COUNTRY_CODES = ['IL', 'RU', 'BY']
 
-export const control_raport_check = (data: RiskData): { state: string | undefined; parts: string[] } => {
+export const controlRaportCheck = (data: RiskData): { state: string | undefined; parts: string[] } => {
   const totalRisk = (data as any)?.risks?.find((r: any) => r.id === 'total')?.level
   const total = totalRisk > 2
 

@@ -7,6 +7,9 @@ import { riskReEvaluation } from '../util/cron/riskReEvaluation/riskReEvaluation
 import createRiskData from '../util/algorithm/riskData'
 import adminHandler from '../middleware/admin'
 import { createEntry, getEntries, getEntry, getUserEntries } from '../services/entry'
+import { controlRaportCheck } from '../util/control_raport_check'
+import sendEmail from '../util/mailer'
+import i18n from '../util/i18n'
 import { sendResult } from '../services/sendResult'
 import { CreateControlReportZod, UpdateControlReportZod } from '../../validators/controlReport'
 import { notifyControlReportCreated } from '../services/notifyControlReport'
@@ -78,7 +81,8 @@ entryRouter.delete('/:entryId/delete', async (req: RequestWithUser, res: any) =>
 entryRouter.post('/:surveyId/dryrun', async (req: RequestWithUser, res: any) => {
   const { data } = req.body
   const riskData = await createRiskData(data)
-  return res.status(201).send(riskData)
+  const { state } = controlRaportCheck(riskData as unknown as any)
+  return res.status(201).send({ ...riskData, state })
 })
 
 entryRouter.post('/:surveyId', async (req: RequestWithUser, res: any) => {
@@ -92,8 +96,18 @@ entryRouter.post('/:surveyId', async (req: RequestWithUser, res: any) => {
     return res.status(500).send('Error when calculating risks')
   }
 
-  const updatedData: EntryValues = { sessionToken, data: riskData, tuhatData, testVersion, language }
+  const { state, parts } = controlRaportCheck(riskData)
+  const updatedData: EntryValues = { sessionToken, data: riskData, tuhatData, testVersion, language, state }
   const entry = await createEntry(userId, surveyId, updatedData)
+
+  if (state === ENTRY_STATES.PENDING) {
+    const t = i18n.getFixedT('fi')
+    const partsList = parts.map(p => `- ${t(p)}`).join('\n')
+    const body = `Uusi tarkastelua vaativa riskiarvio luotu.\n\nYlittyvät kynnysarvot:\n${partsList}\n\nTarkastele riskiarviota osoitteessa: https://risk-i.helsinki.fi/admin/${entry.id}`
+    await sendEmail(['matti.luukkainen@helsinki.fi'], body, '[risk-i] Uusi tarkastelua vaativa riskiarvio luotu')
+    // eslint-disable-next-line no-console
+    console.log('MAIL SEND', body)
+  }
 
   return res.status(201).send(entry.toJSON())
 })
