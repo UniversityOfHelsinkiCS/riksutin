@@ -128,6 +128,7 @@ const UserEntry = () => {
               entryState={entry.state}
               parts={getRiskParts(entry.data)}
               onUpdate={refetch}
+              isAdminView={isAdminView}
             />
           )}
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>

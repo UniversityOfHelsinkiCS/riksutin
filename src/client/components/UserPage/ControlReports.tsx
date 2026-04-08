@@ -39,9 +39,17 @@ interface ControlReportsProps {
   entryState?: string | null
   parts?: string[]
   onUpdate: () => void
+  isAdminView?: boolean
 }
 
-const ControlReports = ({ entryId, controlReports, entryState, parts, onUpdate }: ControlReportsProps) => {
+const ControlReports = ({
+  entryId,
+  controlReports,
+  entryState,
+  parts,
+  onUpdate,
+  isAdminView = false,
+}: ControlReportsProps) => {
   const { t } = useTranslation()
   const { user } = useLoggedInUser()
   const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -66,7 +74,7 @@ const ControlReports = ({ entryId, controlReports, entryState, parts, onUpdate }
 
   const { cardStyles } = styles
 
-  const isAdmin = user?.isAdmin
+  const isAdmin = user?.isAdmin && isAdminView
   const canAddReport = isAdmin && effectiveState !== null
 
   const handleOpenDialog = (report?: ControlReport) => {
