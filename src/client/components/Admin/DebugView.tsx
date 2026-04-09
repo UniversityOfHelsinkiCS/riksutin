@@ -112,6 +112,22 @@ const AdminDebugView = () => {
     }
   }
 
+  const handleTestEmail = async () => {
+    if (!window.confirm('Send test email to matti.luukkainen@helsinki.fi?')) {
+      return
+    }
+    try {
+      const response = await fetch('/api/debug/test-email', { method: 'POST' })
+      if (response.ok) {
+        addMessage('success', 'Test email sent to matti.luukkainen@helsinki.fi')
+      } else {
+        addMessage('error', `Failed to send test email: ${response.statusText}`)
+      }
+    } catch (error) {
+      addMessage('error', `Error sending test email: ${error}`)
+    }
+  }
+
   const handleSeedDatabase = async () => {
     if (!window.confirm('Are you sure you want to seed the database? This will add default data.')) {
       return
@@ -284,6 +300,21 @@ const AdminDebugView = () => {
           }}
         >
           Cache Debug
+        </button>
+        <button
+          onClick={handleTestEmail}
+          style={{
+            padding: '10px 15px',
+            backgroundColor: '#0dcaf0',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            fontSize: '14px',
+            marginTop: 20,
+          }}
+        >
+          Send Test Email
         </button>
       </div>
     </div>

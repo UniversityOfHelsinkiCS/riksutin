@@ -24,6 +24,7 @@ import { setMockUser } from '../mocs/user'
 import adminHandler from '../middleware/admin'
 import myResearchApiRouter from './myResearchApi'
 import seed from '../db/seeders'
+import sendEmail from '../util/mailer'
 
 const router = express()
 
@@ -56,6 +57,14 @@ router.get('/explode', adminHandler, () => {
 router.post('/seed', adminHandler, async (_, res) => {
   await seed()
   res.send('Database seeded successfully')
+})
+router.post('/debug/test-email', adminHandler, async (_, res) => {
+  await sendEmail(
+    ['matti.luukkainen@helsinki.fi'],
+    'Tämä on testisähköposti.',
+    '[risk-i] Uusi tarkastelua vaativa riskiarvio luotu'
+  )
+  res.send('Test email sent')
 })
 
 router.use('/login', loginRouter)
