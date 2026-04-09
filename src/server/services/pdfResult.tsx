@@ -1,6 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react'
 import { Entry, Result } from '@dbmodels'
+import type { ControlReport } from '@dbmodels'
 
 import ReactPdf from '@react-pdf/renderer'
 
@@ -14,6 +15,8 @@ import i18n from '../util/i18n'
 import { TFunction } from 'i18next'
 import { DEFAULT_SURVEY_NAME, supportEmail } from '@config'
 import { getWarnings } from '../services/warning'
+import { getRiskParts } from '@common/getRiskParts'
+import { ENTRY_STATE_LABELS, EntryState } from '@common/entryStates'
 
 export const createPdfResultBuffer = async (entry: Entry) => {
   const t = i18n.getFixedT('en')
@@ -38,6 +41,9 @@ export const createPdfResultBuffer = async (entry: Entry) => {
       units={units}
       t={t}
       warnings={warnings}
+      controlReports={((entry as any).controlReports ?? []).filter((r: ControlReport) => !r.adminOnly)}
+      entryState={(entry as any).state ?? null}
+      parts={getRiskParts(entry.data)}
     />
   )
 
@@ -67,6 +73,9 @@ const ResultDocument = ({
   units,
   t,
   warnings,
+  controlReports,
+  entryState,
+  parts,
 }: {
   entry: RiskData
   countries: Country[]
@@ -77,6 +86,9 @@ const ResultDocument = ({
   units: FacultyOrUnit[]
   t: TFunction
   warnings: any
+  controlReports: ControlReport[]
+  entryState: EntryState | null
+  parts: string[]
 }) => {
   const { country } = entry
 
@@ -105,6 +117,43 @@ const ResultDocument = ({
           }}
         >
           <View style={{ padding: '10px', fontSize: '10px' }}>
+            {entryState && (
+              <View style={{ marginBottom: '12px' }}>
+                <Text style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '8px' }}>Käsittelytoimenpiteet</Text>
+
+                <Text style={{ fontSize: '11px', fontWeight: 'bold', marginBottom: '4px' }}>Ylittyvät kynnysarvot</Text>
+                {parts.map(p => (
+                  <Text
+                    key={p}
+                    style={{ fontSize: '9px', marginLeft: '8px' }}
+                  >{`\u2022 ${i18n.getFixedT('fi')(p)}`}</Text>
+                ))}
+
+                {entryState && (
+                  <View style={{ marginTop: '8px' }}>
+                    <Text style={{ fontSize: '11px', fontWeight: 'bold', marginBottom: '4px' }}>Käsittelyn vaihe</Text>
+                    <Text style={{ fontSize: '9px' }}>{i18n.getFixedT('fi')(ENTRY_STATE_LABELS[entryState])}</Text>
+                  </View>
+                )}
+
+                {controlReports.length > 0 && (
+                  <View style={{ marginTop: '8px' }}>
+                    <Text style={{ fontSize: '11px', fontWeight: 'bold', marginBottom: '4px' }}>
+                      Toimenpiteet ja kommentit
+                    </Text>
+                    {controlReports.map(report => (
+                      <View key={report.id} style={{ marginBottom: '6px', padding: '6px', border: '1px solid #ccc' }}>
+                        <Text style={{ fontSize: '8px', color: '#666', marginBottom: '4px' }}>
+                          {`Luonut: ${report.createdBy}   Viimeksi päivitetty: ${new Date(report.createdAt).toLocaleDateString('fi')}`}
+                        </Text>
+                        <Text style={{ fontSize: '9px' }}>{report.text}</Text>
+                      </View>
+                    ))}
+                  </View>
+                )}
+              </View>
+            )}
+
             <RiskTable
               countries={countries}
               countryData={country[0]}
