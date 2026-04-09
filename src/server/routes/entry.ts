@@ -8,7 +8,7 @@ import createRiskData from '../util/algorithm/riskData'
 import adminHandler from '../middleware/admin'
 import { createEntry, getEntries, getEntry, getUserEntries } from '../services/entry'
 import { controlRaportCheck } from '../util/control_raport_check'
-//import sendEmail from '../util/mailer'
+import sendEmail from '../util/mailer'
 import i18n from '../util/i18n'
 import { sendResult } from '../services/sendResult'
 import { CreateControlReportZod, UpdateControlReportZod } from '../../validators/controlReport'
@@ -104,8 +104,7 @@ entryRouter.post('/:surveyId', async (req: RequestWithUser, res: any) => {
     const t = i18n.getFixedT('fi')
     const partsList = parts.map(p => `- ${t(p)}`).join('\n')
     const body = `Uusi tarkastelua vaativa riskiarvio luotu.\n\nYlittyvät kynnysarvot:\n${partsList}\n\nTarkastele riskiarviota osoitteessa: https://risk-i.helsinki.fi/admin/${entry.id}`
-    // eslint-disable-next-line no-irregular-whitespace
-    // await sendEmail(['matti.luukkainen@helsinki.fi'], body, '[risk-i] Uusi tarkastelua vaativa riskiarvio luotu')
+    await sendEmail(['matti.luukkainen@helsinki.fi'], body, '[risk-i] Uusi tarkastelua vaativa riskiarvio luotu')
     // eslint-disable-next-line no-console
     console.log('MAIL SEND', body)
   }
