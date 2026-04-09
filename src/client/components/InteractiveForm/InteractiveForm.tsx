@@ -93,6 +93,7 @@ const InteractiveForm = () => {
       setIsSubmitted(true)
       sessionStorage.clear()
       navigate(`/user/${createdData.id}`)
+      window.scrollTo(0, 0)
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log(error)

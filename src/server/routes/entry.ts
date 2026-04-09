@@ -96,10 +96,9 @@ entryRouter.post('/:surveyId', async (req: RequestWithUser, res: any) => {
   const { state, parts } = controlRaportCheck(riskData)
   const updatedData: EntryValues = { sessionToken, data: riskData, tuhatData, testVersion, language, state }
   const entry = await createEntry(userId, surveyId, updatedData)
-  const recipients = ['matti.luukkainen@helsinki.fi', 'markus.laitinen@helsinki.fi']
 
   if (state === ENTRY_STATES.PENDING) {
-    await sendPendingEntryEmail(entry.id, parts, recipients)
+    await sendPendingEntryEmail(entry.id, parts, riskData)
   }
 
   return res.status(201).send(entry.toJSON())
