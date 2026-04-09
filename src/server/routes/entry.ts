@@ -78,8 +78,8 @@ entryRouter.delete('/:entryId/delete', async (req: RequestWithUser, res: any) =>
 entryRouter.post('/:surveyId/dryrun', async (req: RequestWithUser, res: any) => {
   const { data } = req.body
   const riskData = await createRiskData(data)
-  const { state } = controlRaportCheck(riskData as unknown as any)
-  return res.status(201).send({ ...riskData, state })
+  const { state, parts } = controlRaportCheck(riskData as unknown as any)
+  return res.status(201).send({ ...riskData, state, parts })
 })
 
 entryRouter.post('/:surveyId', async (req: RequestWithUser, res: any) => {
