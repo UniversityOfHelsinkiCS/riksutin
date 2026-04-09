@@ -7,15 +7,11 @@ import { riskReEvaluation } from '../util/cron/riskReEvaluation/riskReEvaluation
 import createRiskData from '../util/algorithm/riskData'
 import adminHandler from '../middleware/admin'
 import { createEntry, getEntries, getEntry, getUserEntries } from '../services/entry'
-import { controlRaportCheck } from '../util/control_raport_check'
-import sendEmail from '../util/mailer'
-import i18n from '../util/i18n'
+import { controlRaportCheck, sendPendingEntryEmail } from '../util/control_raport_check'
 import { sendResult } from '../services/sendResult'
 import { CreateControlReportZod, UpdateControlReportZod } from '../../validators/controlReport'
 import { notifyControlReportCreated } from '../services/notifyControlReport'
 import { ENTRY_STATES } from '../../common/entryStates'
-import { inProduction } from '@config'
-
 const entryRouter = express.Router()
 
 entryRouter.get('/', adminHandler, async (req, res) => {
@@ -103,14 +99,7 @@ entryRouter.post('/:surveyId', async (req: RequestWithUser, res: any) => {
   const recipients = ['matti.luukkainen@helsinki.fi', 'markus.laitinen@helsinki.fi']
 
   if (state === ENTRY_STATES.PENDING) {
-    const BASE_URL = inProduction ? 'https://riksutin.ext.ocp-test-0.k8s.it.helsinki.fi/' : 'https://risk-i.helsinki.fi'
-    const url = `${BASE_URL}/admin/${entry.id}`
-    const t = i18n.getFixedT('fi')
-    const partsList = parts.map(p => `- ${t(p)}`).join('\n')
-    const body = `Uusi tarkastelua vaativa riskiarvio luotu.\n\nYlittyvät kynnysarvot:\n${partsList}\n\nTarkastele riskiarviota osoitteessa: ${url}`
-    await sendEmail(recipients, body, '[risk-i] Uusi tarkastelua vaativa riskiarvio luotu')
-    // eslint-disable-next-line no-console
-    console.log('MAIL SEND', body)
+    await sendPendingEntryEmail(entry.id, parts, recipients)
   }
 
   return res.status(201).send(entry.toJSON())
