@@ -87,6 +87,9 @@ const sendEmail = async (
     settings: acualSettings,
   }
 
+  // eslint-disable-next-line no-console
+  console.log('PATE_URL', PATE_URL)
+
   await pateClient.post('/', mail)
 
   logger.info('Email sent')
