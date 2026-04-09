@@ -31,7 +31,7 @@ export const JAMI_URL = inProduction
 export const PATE_URL = inProduction
   ? 'https://api-toska.apps.ocp-prod-0.k8s.it.helsinki.fi/pate/'
   : inStaging
-    ? 'https://api-toska.apps.ocp-test-0.k8s.it.helsinki.fi/jami/'
+    ? 'https://api-toska.apps.ocp-test-0.k8s.it.helsinki.fi/pate/'
     : process.env.PATE_URL
 
 export const EMPLOYEE_GW_API_URL = 'https://gw.api.helsinki.fi'
