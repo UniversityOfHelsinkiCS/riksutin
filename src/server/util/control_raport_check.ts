@@ -37,7 +37,7 @@ export const controlRaportCheck = (data: RiskData): { state: string | undefined;
 }
 
 export const sendPendingEntryEmail = async (entryId: number, parts: string[], recipients: string[]) => {
-  const BASE_URL = inProduction ? 'https://risk-i.helsinki.fi' : 'https://riksutin.ext.ocp-test-0.k8s.it.helsinki.fi/'
+  const BASE_URL = inProduction ? 'https://risk-i.helsinki.fi' : 'https://riksutin.ext.ocp-test-0.k8s.it.helsinki.fi'
   const url = `${BASE_URL}/admin/${entryId}`
   const t = i18n.getFixedT('fi')
   const partsListHtml = parts.map(p => `<li>${t(p)}</li>`).join('')
