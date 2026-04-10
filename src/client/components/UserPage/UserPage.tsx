@@ -22,7 +22,7 @@ import styles from '../../styles'
 import { useUserEntries } from '../../hooks/useEntry'
 import { useUpdateEntryRisks } from '../../hooks/useSaveEntryMutation'
 import useDeleteEntryMutation from '../../hooks/useDeleteEntryMutation'
-import { getEntryStateColor, getEntryStateLabel } from '@common/entryStates'
+import { getEntryStateColor, getEntryStateLabel, getEntryStateSx } from '@common/entryStates'
 import { getRiskParts } from '@common/getRiskParts'
 
 const { riskColors, resultStyles } = styles
@@ -114,27 +114,30 @@ const UserPage = () => {
               >
                 <TableCell component="th" scope="row">
                   <Box>
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <Box>
                       <Link to={`/user/${entry.id.toString()}`}>{entry.data.answers['3']}</Link>
-                      {entry.state && (
-                        <Tooltip
-                          title={
-                            <span style={{ whiteSpace: 'pre-line' }}>
-                              {getRiskParts(entry.data)
-                                .map(p => t(p))
-                                .join('\n')}
-                            </span>
-                          }
-                          placement="top"
-                        >
+                    </Box>
+                    {entry.state && (
+                      <Tooltip
+                        title={
+                          <span style={{ whiteSpace: 'pre-line' }}>
+                            {getRiskParts(entry.data)
+                              .map(p => t(p))
+                              .join('\n')}
+                          </span>
+                        }
+                        placement="top"
+                      >
+                        <Box component="div" sx={{ marginTop: '4px' }}>
                           <Chip
                             label={t(getEntryStateLabel(entry.state))}
                             color={getEntryStateColor(entry.state)}
                             size="small"
+                            sx={getEntryStateSx(entry.state)}
                           />
-                        </Tooltip>
-                      )}
-                    </Box>
+                        </Box>
+                      </Tooltip>
+                    )}
                     {entry.testVersion && (
                       <Box
                         component="div"

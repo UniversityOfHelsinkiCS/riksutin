@@ -26,7 +26,17 @@ export const getEntryStateColor = (state: string): 'error' | 'success' | 'warnin
   if (state === ENTRY_STATES.PENDING) {
     return 'warning'
   }
+  if (state === ENTRY_STATES.EXPERT_GROUP) {
+    return 'info'
+  }
   return 'warning'
+}
+
+export const getEntryStateSx = (state: string): object => {
+  if (state === ENTRY_STATES.EXPERT_GROUP) {
+    return { backgroundColor: '#f9c74f', color: 'rgba(0,0,0,0.87)', '&:hover': { backgroundColor: '#f9c74f' } }
+  }
+  return {}
 }
 
 export const getEntryStateLabel = (state: string): string => ENTRY_STATE_LABELS[state as EntryState] ?? state

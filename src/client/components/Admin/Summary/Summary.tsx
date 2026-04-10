@@ -22,7 +22,7 @@ import styles from '../../../styles'
 import useFaculties from '../../../hooks/useFaculties'
 import { extraOrganisations } from '@common/organisations'
 import createTableData from './utils'
-import { getEntryStateColor, getEntryStateLabel } from '@common/entryStates'
+import { getEntryStateColor, getEntryStateLabel, getEntryStateSx } from '@common/entryStates'
 import { getRiskParts } from '@common/getRiskParts'
 
 import type { TableValues } from './utils'
@@ -113,23 +113,30 @@ const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps)
               {columnId === '3' ? (
                 <Box>
                   {isOutdated(row.getValue('id')) && <span style={outdatedWarning}>!</span>}
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <Box>
                     <Link to={`/admin/entry/${row.getValue('id')}`}>{cell.getValue<string>()}</Link>
-                    {(() => {
-                      const state = getEntryState(row.getValue('id'))
-                      if (!state) {
-                        return null
-                      }
-                      const entry = entriesRef.current.find(e => e.id === Number(row.getValue('id')))
-                      const parts = entry ? getRiskParts(entry.data) : []
-                      const tooltipTitle = parts.map(p => t(p)).join('\n')
-                      return (
-                        <Tooltip title={<span style={{ whiteSpace: 'pre-line' }}>{tooltipTitle}</span>} placement="top">
-                          <Chip label={t(getEntryStateLabel(state))} color={getEntryStateColor(state)} size="small" />
-                        </Tooltip>
-                      )
-                    })()}
                   </Box>
+                  {(() => {
+                    const state = getEntryState(row.getValue('id'))
+                    if (!state) {
+                      return null
+                    }
+                    const entry = entriesRef.current.find(e => e.id === Number(row.getValue('id')))
+                    const parts = entry ? getRiskParts(entry.data) : []
+                    const tooltipTitle = parts.map(p => t(p)).join('\n')
+                    return (
+                      <Tooltip title={<span style={{ whiteSpace: 'pre-line' }}>{tooltipTitle}</span>} placement="top">
+                        <Box component="div" sx={{ marginTop: '4px' }}>
+                          <Chip
+                            label={t(getEntryStateLabel(state))}
+                            color={getEntryStateColor(state)}
+                            size="small"
+                            sx={getEntryStateSx(state)}
+                          />
+                        </Box>
+                      </Tooltip>
+                    )
+                  })()}
                   {isTestVersion(row.getValue('id')) && (
                     <Box
                       component="div"

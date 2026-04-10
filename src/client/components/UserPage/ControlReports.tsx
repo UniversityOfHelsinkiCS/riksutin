@@ -17,7 +17,6 @@ import {
   RadioGroup,
   Typography,
   Alert,
-  Tooltip,
 } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
@@ -27,7 +26,7 @@ import { enqueueSnackbar } from 'notistack'
 import MDEditor from '@uiw/react-md-editor'
 
 import { ControlReport } from '@types'
-import { ENTRY_STATES, EntryState, getEntryStateColor, getEntryStateLabel } from '@common/entryStates'
+import { ENTRY_STATES, EntryState, getEntryStateColor, getEntryStateLabel, getEntryStateSx } from '@common/entryStates'
 import useLoggedInUser from '../../hooks/useLoggedInUser'
 import Markdown from '../Common/Markdown'
 import apiClient from '../../util/apiClient'
@@ -200,20 +199,18 @@ const ControlReports = ({
                   />
                 ))}
               </RadioGroup>
+              <Button size="small" onClick={() => setShowStateSelector(false)} sx={{ alignSelf: 'flex-start', mt: 1 }}>
+                {t('controlReport:cancelButton')}
+              </Button>
             </FormControl>
           ) : (
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               {effectiveState && (
-                <Tooltip
-                  title={
-                    <span style={{ whiteSpace: 'pre-line' }}>
-                      {parts && parts.length > 0 ? parts.map(p => t(p)).join('\n') : ''}
-                    </span>
-                  }
-                  placement="top"
-                >
-                  <Chip label={t(getEntryStateLabel(effectiveState))} color={getEntryStateColor(effectiveState)} />
-                </Tooltip>
+                <Chip
+                  label={t(getEntryStateLabel(effectiveState))}
+                  color={getEntryStateColor(effectiveState)}
+                  sx={getEntryStateSx(effectiveState)}
+                />
               )}
               <Button size="small" onClick={() => setShowStateSelector(true)}>
                 {t('controlReport:changeState')}
@@ -224,16 +221,11 @@ const ControlReports = ({
       ) : (
         effectiveState && (
           <Box sx={{ mb: 2 }}>
-            <Tooltip
-              title={
-                <span style={{ whiteSpace: 'pre-line' }}>
-                  {parts && parts.length > 0 ? parts.map(p => t(p)).join('\n') : ''}
-                </span>
-              }
-              placement="top"
-            >
-              <Chip label={t(getEntryStateLabel(effectiveState))} color={getEntryStateColor(effectiveState)} />
-            </Tooltip>
+            <Chip
+              label={t(getEntryStateLabel(effectiveState))}
+              color={getEntryStateColor(effectiveState)}
+              sx={getEntryStateSx(effectiveState)}
+            />
           </Box>
         )
       )}
