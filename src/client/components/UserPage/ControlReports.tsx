@@ -179,12 +179,12 @@ const ControlReports = ({
     `${new Date(dateString).toLocaleDateString()} ${new Date(dateString).toLocaleTimeString()}`
 
   return (
-    <Box sx={cardStyles.nestedSubSection}>
+    <Box sx={cardStyles.nestedSubSection} data-testid="control-reports-section">
       <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 1 }}>
         {t('controlReport:title')}
       </Typography>
       {parts && parts.length > 0 && (
-        <Box sx={{ mb: 2 }}>
+        <Box sx={{ mb: 2 }} data-testid="risk-threshold-parts">
           <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 0.5 }}>
             {t('controlReport:thresholdsExceeded')}
           </Typography>
@@ -207,6 +207,7 @@ const ControlReports = ({
           {showStateSelector ? (
             <FormControl size="small">
               <RadioGroup
+                data-testid="state-selector"
                 value={effectiveState ?? ''}
                 onChange={e => {
                   handleStateSelect(e.target.value as EntryState)
@@ -229,6 +230,7 @@ const ControlReports = ({
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               {effectiveState && (
                 <Chip
+                  data-testid="entry-state-chip"
                   label={t(getEntryStateLabel(effectiveState))}
                   color={getEntryStateColor(effectiveState)}
                   sx={getEntryStateSx(effectiveState)}
@@ -244,6 +246,7 @@ const ControlReports = ({
         effectiveState && (
           <Box sx={{ mb: 2 }}>
             <Chip
+              data-testid="entry-state-chip"
               label={t(getEntryStateLabel(effectiveState))}
               color={getEntryStateColor(effectiveState)}
               sx={getEntryStateSx(effectiveState)}
@@ -259,7 +262,7 @@ const ControlReports = ({
       )}
 
       {isAdmin && stateChanges && stateChanges.length > 0 && (
-        <Box sx={{ mb: 3 }}>
+        <Box sx={{ mb: 3 }} data-testid="state-change-history">
           <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1 }}>
             {t('controlReport:stateHistory')}
           </Typography>
@@ -292,7 +295,12 @@ const ControlReports = ({
           {controlReports
             .filter(report => !report.adminOnly || isAdmin)
             .map(report => (
-              <Card key={report.id} variant="outlined" sx={report.adminOnly ? { borderStyle: 'dashed' } : {}}>
+              <Card
+                key={report.id}
+                variant="outlined"
+                sx={report.adminOnly ? { borderStyle: 'dashed' } : {}}
+                data-testid={report.adminOnly ? 'control-report-admin-only' : 'control-report-item'}
+              >
                 <CardContent>
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 2 }}>
                     <Box>
@@ -326,7 +334,12 @@ const ControlReports = ({
 
       {canAddReport && (
         <Box sx={{ mt: 2 }}>
-          <Button variant="contained" startIcon={<AddIcon />} onClick={() => handleOpenDialog()}>
+          <Button
+            variant="contained"
+            startIcon={<AddIcon />}
+            onClick={() => handleOpenDialog()}
+            data-testid="add-report-button"
+          >
             {t('controlReport:addButton')}
           </Button>
         </Box>

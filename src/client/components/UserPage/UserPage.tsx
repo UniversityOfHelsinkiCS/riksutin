@@ -130,6 +130,7 @@ const UserPage = () => {
                       >
                         <Box component="div" sx={{ marginTop: '4px' }}>
                           <Chip
+                            data-testid="entry-state-chip"
                             label={t(getEntryStateLabel(entry.state))}
                             color={getEntryStateColor(entry.state)}
                             size="small"

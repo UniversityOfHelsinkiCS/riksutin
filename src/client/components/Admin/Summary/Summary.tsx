@@ -128,6 +128,7 @@ const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps)
                       <Tooltip title={<span style={{ whiteSpace: 'pre-line' }}>{tooltipTitle}</span>} placement="top">
                         <Box component="div" sx={{ marginTop: '4px' }}>
                           <Chip
+                            data-testid="entry-state-chip"
                             label={t(getEntryStateLabel(state))}
                             color={getEntryStateColor(state)}
                             size="small"
