@@ -260,3 +260,116 @@ test.describe('käsittelytoimenpide feature', () => {
     await expect(history).toContainText('Asia käsitelty, hanke voi edetä käsittelytoimenpiteissä yksilöidyllä tavalla')
   })
 })
+
+test.describe('manual set-pending button', () => {
+  let page: Page
+  let context: BrowserContext
+  let entryId: string
+
+  test.beforeAll(async ({ browser }) => {
+    await fetch(`${baseUrl}/api/mock/user?type=admin`)
+
+    // Delete any existing "Matalan riskin projekti" entries from previous test runs
+    const entriesRes = await fetch(`${baseUrl}/api/entries`)
+    const entries = await entriesRes.json()
+    for (const entry of entries) {
+      if (entry.data?.answers?.['3'] === 'Matalan riskin projekti') {
+        // eslint-disable-next-line no-await-in-loop
+        await fetch(`${baseUrl}/api/entries/${entry.id}/delete`, { method: 'DELETE' })
+      }
+    }
+
+    await fetch('http://localhost:3000/pate/reset')
+
+    context = await browser.newContext({
+      recordVideo: { dir: 'test-results/videos', size: { width: 640, height: 480 } },
+    })
+    page = await context.newPage()
+
+    // Create a low-risk entry that does NOT trigger automatic PENDING state
+    await page.goto('/')
+    await page.getByRole('button', { name: 'Olen projektin omistaja' }).click()
+
+    const autocompleteInput = page.locator('#unit')
+    await autocompleteInput.fill('ti')
+    const options = page.locator('.MuiAutocomplete-option')
+    await options.filter({ hasText: 'Tietojenkäsittelytieteen osasto' }).first().click()
+
+    await page.locator('[data-cy="choice-select-tuhatOptionNegative"]').click()
+    await page.getByTestId('question-tuhatProjText').getByRole('textbox').click()
+    await page.getByTestId('question-tuhatProjText').getByRole('textbox').fill('Matalan riskin projekti')
+
+    await page.locator('[data-cy="choice-select-bilateral"]').click()
+
+    await page.getByLabel('Valitse sijaintimaa').click()
+    await page.getByRole('option', { name: 'Germany' }).click()
+
+    await page.locator('[data-cy="choice-select-university"]').click()
+    await page.getByLabel('Valitse yliopisto').click()
+    const uniOptions = page.locator('.MuiAutocomplete-option')
+    await uniOptions.first().click()
+
+    await page.locator('[data-cy="choice-select-succefultCollaboration"]').click()
+    await page.locator('[data-cy="choice-select-partner"]').click()
+    await page.locator('[data-cy="choice-select-agreementDone"]').click()
+
+    await page.locator('input[value="education"]').check()
+
+    await page.locator('[data-cy="choice-select-mediumDuration"]').click()
+    await page.locator('[data-cy="choice-select-noExternalFunding"]').click()
+    await page.locator('[data-cy="choice-select-mediumBudget"]').click()
+    await page.locator('[data-cy="choice-select-noTransferPersonalData"]').click()
+    await page.locator('[data-cy="choice-select-noTransferMilitaryKnowledge"]').click()
+    await page.locator('[data-cy="choice-select-noEthicalIssues"]').click()
+
+    await page.getByTestId('question-7').getByRole('textbox').click()
+    await page.getByTestId('question-7').getByRole('textbox').fill('Matalan riskin projekti')
+
+    await page.getByRole('button', { name: 'Tallenna' }).click()
+    await expect(page.getByText('Yhteenveto valinnoistasi')).toBeVisible()
+
+    const url = page.url()
+    const match = /\/user\/(\d+)/.exec(url)
+    expect(match).toBeTruthy()
+    entryId = match![1]
+  })
+
+  test.afterAll(async () => {
+    await fetch(`${baseUrl}/api/mock/user?type=normal`)
+    await page.close()
+    await context.close()
+  })
+
+  test('admin sees set-pending button for entry without state', async () => {
+    await page.goto(`/admin/entry/${entryId}`)
+    await page.waitForLoadState('networkidle')
+
+    await expect(page.getByRole('button', { name: 'Käynnistä käsittelytoimenpide' })).toBeVisible()
+    await expect(page.getByTestId('entry-state-chip')).not.toBeVisible()
+  })
+
+  test('clicking button opens confirmation dialog', async () => {
+    await page.getByRole('button', { name: 'Käynnistä käsittelytoimenpide' }).click()
+
+    await expect(page.getByRole('dialog')).toBeVisible()
+    await expect(page.getByRole('dialog').getByRole('button', { name: 'Vahvista' })).toBeVisible()
+    await expect(page.getByRole('dialog').getByRole('button', { name: 'Peruuta' })).toBeVisible()
+  })
+
+  test('cancelling dialog leaves entry state unchanged', async () => {
+    await page.getByRole('dialog').getByRole('button', { name: 'Peruuta' }).click()
+
+    await expect(page.getByRole('dialog')).not.toBeVisible()
+    await expect(page.getByRole('button', { name: 'Käynnistä käsittelytoimenpide' })).toBeVisible()
+    await expect(page.getByTestId('entry-state-chip')).not.toBeVisible()
+  })
+
+  test('confirming sets entry to PENDING state', async () => {
+    await page.getByRole('button', { name: 'Käynnistä käsittelytoimenpide' }).click()
+    await page.getByRole('dialog').getByRole('button', { name: 'Vahvista' }).click()
+
+    await expect(page.getByTestId('entry-state-chip')).toBeVisible({ timeout: 10000 })
+    await expect(page.getByTestId('entry-state-chip')).toContainText('Edellyttää asiantuntijaryhmän käsittelyä')
+    await expect(page.getByRole('button', { name: 'Käynnistä käsittelytoimenpide' })).not.toBeVisible()
+  })
+})

@@ -1,9 +1,22 @@
 import { useState } from 'react'
-import { Alert, Box, Button, Chip, Tab, Tabs } from '@mui/material'
+import {
+  Alert,
+  Box,
+  Button,
+  Chip,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Tab,
+  Tabs,
+} from '@mui/material'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { enqueueSnackbar } from 'notistack'
 import { CONTROL_REPORT_CHECK_ENABLED } from '@config'
 import { getRiskParts } from '@common/getRiskParts'
 import RiskTableDOM from '../ResultPage/RiskTableDOM'
@@ -13,6 +26,7 @@ import MuiComponentProvider from '../Common/MuiComponentProvider'
 import RenderAnswersDOM from '../ResultPage/RenderAnswersDOM'
 import SendSummaryEmail from '../ResultPage/SendSummaryEmail'
 import ControlReports from './ControlReports'
+import apiClient from '../../util/apiClient'
 
 interface TabPanelProps {
   children: React.ReactNode
@@ -54,6 +68,7 @@ const UserEntry = () => {
   const { survey } = useSurvey()
   const { entry, refetch } = useEntry(entryId)
   const [tabValue, setTabValue] = useState(0)
+  const [setPendingConfirmOpen, setSetPendingConfirmOpen] = useState(false)
   const { t } = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
@@ -61,6 +76,18 @@ const UserEntry = () => {
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue)
+  }
+
+  const handleSetPending = async () => {
+    try {
+      await apiClient.post(`/entries/${entryId}/set-pending`)
+      enqueueSnackbar(t('controlReport:setPendingSuccess'), { variant: 'success' })
+      void refetch()
+    } catch (error) {
+      enqueueSnackbar(t('controlReport:setPendingError'), { variant: 'error' })
+    } finally {
+      setSetPendingConfirmOpen(false)
+    }
   }
 
   if (!entryId || !entry || !survey) {
@@ -132,6 +159,25 @@ const UserEntry = () => {
               isAdminView={isAdminView}
             />
           )}
+          {CONTROL_REPORT_CHECK_ENABLED && isAdminView && !entry.state && (
+            <Box sx={{ mb: 2 }}>
+              <Button variant="outlined" color="warning" onClick={() => setSetPendingConfirmOpen(true)}>
+                {t('controlReport:setPendingButton')}
+              </Button>
+            </Box>
+          )}
+          <Dialog open={setPendingConfirmOpen} onClose={() => setSetPendingConfirmOpen(false)}>
+            <DialogTitle>{t('controlReport:setPendingConfirmTitle')}</DialogTitle>
+            <DialogContent>
+              <DialogContentText>{t('controlReport:setPendingConfirmText')}</DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={() => setSetPendingConfirmOpen(false)}>{t('controlReport:cancelButton')}</Button>
+              <Button onClick={handleSetPending} color="warning" variant="contained">
+                {t('controlReport:confirmButton')}
+              </Button>
+            </DialogActions>
+          </Dialog>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={tabValue} onChange={handleChange} data-testid="version-tabs">
               <Tab

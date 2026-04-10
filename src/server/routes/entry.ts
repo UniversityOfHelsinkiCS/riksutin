@@ -276,6 +276,35 @@ entryRouter.delete('/:entryId/control-report/:reportId', adminHandler, async (re
   return res.status(204).send()
 })
 
+entryRouter.post('/:entryId/set-pending', adminHandler, async (req: RequestWithUser, res: any) => {
+  const { entryId } = req.params
+
+  const entry = await Entry.findByPk(entryId)
+
+  if (!entry) {
+    return res.status(404).send('Entry not found')
+  }
+
+  if (entry.state) {
+    return res.status(400).send('Entry already has a state set')
+  }
+
+  const changedBy = [req.user.firstName, req.user.lastName].filter(Boolean).join(' ') || req.user.username
+
+  await entry.update({ state: ENTRY_STATES.PENDING })
+  await EntryStateChange.create({
+    entryId: Number(entryId),
+    fromState: null,
+    toState: ENTRY_STATES.PENDING,
+    changedBy,
+  })
+
+  const { parts } = controlRaportCheck(entry.data)
+  await sendPendingEntryEmail(entry.id, parts, entry.data)
+
+  return res.status(200).send(entry.toJSON())
+})
+
 entryRouter.patch('/:entryId/state', adminHandler, async (req: RequestWithUser, res: any) => {
   const { entryId } = req.params
   const { state } = req.body
