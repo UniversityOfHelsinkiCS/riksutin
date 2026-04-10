@@ -143,6 +143,8 @@
     "backButton": "Luo uusi riskiarvio",
     "printButton": "Luo PDF",
     "editEntry": "Muokkaa",
+    "editDisabledTooltip": "Ei voi muokata riskiarviota ennen asiantuntijaryhmän käsittelyä",
+    "editExpiredTooltip": "Et voi muokata yli 12 kk vanhaa riskiarviota. Tee uusi riskiarvio.",
     "actions": "Toiminnot",
     "testVersionWarning": "Tämä on testilomake. Järjestelmän ylläpito poistaa testit säännöllisesti",
     "deleteEntry": "Poista testiversio",

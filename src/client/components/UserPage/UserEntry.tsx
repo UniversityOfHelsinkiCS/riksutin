@@ -11,6 +11,7 @@ import {
   DialogTitle,
   Tab,
   Tabs,
+  Tooltip,
 } from '@mui/material'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 
@@ -135,16 +136,33 @@ const UserEntry = () => {
                 </Button>
               </Link>
             )}
-            {!isAdminView && tabValue === 0 && (
-              <Button
-                variant="outlined"
-                onClick={() => navigate(`/user/${entryId}/edit`)}
-                data-testid="edit-button"
-                disabled={entry.state === ENTRY_STATES.PENDING || entry.state === ENTRY_STATES.EXPERT_GROUP}
-              >
-                {t('userPage:editEntry')}
-              </Button>
-            )}
+            {!isAdminView &&
+              tabValue === 0 &&
+              (() => {
+                const isStateLocked = entry.state === ENTRY_STATES.PENDING || entry.state === ENTRY_STATES.EXPERT_GROUP
+                const isExpired =
+                  new Date().getTime() - new Date(entry.createdAt).getTime() > 12 * 30 * 24 * 60 * 60 * 1000
+                const isDisabled = isStateLocked || isExpired
+                const tooltipTitle = isStateLocked
+                  ? t('userPage:editDisabledTooltip')
+                  : isExpired
+                    ? t('userPage:editExpiredTooltip')
+                    : ''
+                return (
+                  <Tooltip title={tooltipTitle}>
+                    <span>
+                      <Button
+                        variant="outlined"
+                        onClick={() => navigate(`/user/${entryId}/edit`)}
+                        data-testid="edit-button"
+                        disabled={isDisabled}
+                      >
+                        {t('userPage:editEntry')}
+                      </Button>
+                    </span>
+                  </Tooltip>
+                )
+              })()}
             {isAdminView && entry.language && (
               <Chip
                 label={`${t('userPage:filledInLanguage')}: ${new Intl.DisplayNames([entry.language], { type: 'language' }).of(entry.language)}`}

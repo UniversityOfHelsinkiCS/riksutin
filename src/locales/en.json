@@ -145,6 +145,8 @@
     "backButton": "Create a new risk assesment",
     "printButton": "Create PDF",
     "editEntry": "Edit",
+    "editDisabledTooltip": "Cannot edit until processed",
+    "editExpiredTooltip": "You cannot edit a risk assessment older than 12 months. Please create a new one.",
     "actions": "Actions",
     "testVersionWarning": "This entry is a test version. Tests will be deleted regularly by system administrators",
     "deleteEntry": "Delete test version",
