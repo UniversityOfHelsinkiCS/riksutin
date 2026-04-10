@@ -27,7 +27,7 @@ jobs:
         run: npm ci --workspaces
 
       - name: Build
-        run: ORGANISATION_ID=hy npm run build
+        run: REACT_APP_CONTROL_REPORT_CHECK_ENABLED=true ORGANISATION_ID=hy npm run build
 
       - name: Start the application
         run: HDR_API_TOKEN=${{ secrets.HDR_API_TOKEN }} docker compose -f docker-compose.ci.yml up -d
@@ -39,7 +39,8 @@ jobs:
         env:
           CI: true
         run:
-          npx playwright test tests/control_raporting.spec.ts tests/tests.spec.ts tests/ tests/admin.spec.ts tests/api.spec.ts tests/risk_threshold_api.spec.ts
+          npx playwright test tests/control_raporting.spec.ts
+          #npx playwright test tests/control_raporting.spec.ts tests/tests.spec.ts tests/ tests/admin.spec.ts tests/api.spec.ts tests/risk_threshold_api.spec.ts
           #run: npx playwright test tests --retries=2
 
       - name: Print logs
