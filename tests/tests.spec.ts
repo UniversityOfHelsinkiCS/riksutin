@@ -354,7 +354,7 @@ test.describe('editing an existing project', () => {
     await page.locator('[data-cy="choice-select-bilateral"]').click()
 
     await page.getByLabel('Valitse sijaintimaa').click()
-    await page.getByRole('option', { name: 'Afghanistan' }).click()
+    await page.getByRole('option', { name: 'Germany' }).click()
 
     await page.locator('[data-cy="choice-select-university"]').click()
     await page.getByLabel('Valitse yliopisto').click()
@@ -369,7 +369,7 @@ test.describe('editing an existing project', () => {
     await page.locator('[data-cy="choice-select-mediumDuration"]').click()
     await page.locator('[data-cy="choice-select-noExternalFunding"]').click()
     await page.locator('[data-cy="choice-select-mediumBudget"]').click()
-    await page.locator('[data-cy="choice-select-transferPersonalData"]').click()
+    await page.locator('[data-cy="choice-select-noTransferPersonalData"]').click()
     await page.locator('[data-cy="choice-select-noTransferMilitaryKnowledge"]').click()
     await page.locator('[data-cy="choice-select-noEthicalIssues"]').click()
 
@@ -445,7 +445,7 @@ test.describe('editing an existing project', () => {
     await page.getByTestId('version-tab-0').click()
 
     const countrySection = page.locator('#question-8')
-    await expect(countrySection).toContainText('Afghanistan')
+    await expect(countrySection).toContainText('Germany')
 
     const role = page.locator('#question-9')
     await expect(role).toBeVisible()
