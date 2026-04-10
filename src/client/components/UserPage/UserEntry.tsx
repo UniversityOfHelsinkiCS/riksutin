@@ -18,6 +18,7 @@ import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { enqueueSnackbar } from 'notistack'
 import { CONTROL_REPORT_CHECK_ENABLED } from '@config'
+import { ENTRY_STATES } from '@common/entryStates'
 import { getRiskParts } from '@common/getRiskParts'
 import RiskTableDOM from '../ResultPage/RiskTableDOM'
 import { useEntry } from '../../hooks/useEntry'
@@ -135,7 +136,12 @@ const UserEntry = () => {
               </Link>
             )}
             {!isAdminView && tabValue === 0 && (
-              <Button variant="outlined" onClick={() => navigate(`/user/${entryId}/edit`)} data-testid="edit-button">
+              <Button
+                variant="outlined"
+                onClick={() => navigate(`/user/${entryId}/edit`)}
+                data-testid="edit-button"
+                disabled={entry.state === ENTRY_STATES.PENDING || entry.state === ENTRY_STATES.EXPERT_GROUP}
+              >
                 {t('userPage:editEntry')}
               </Button>
             )}
