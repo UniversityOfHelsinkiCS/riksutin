@@ -299,9 +299,6 @@ entryRouter.post('/:entryId/set-pending', adminHandler, async (req: RequestWithU
     changedBy,
   })
 
-  const { parts } = controlRaportCheck(entry.data)
-  await sendPendingEntryEmail(entry.id, parts, entry.data)
-
   return res.status(200).send(entry.toJSON())
 })
 
