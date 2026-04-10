@@ -38,7 +38,7 @@ jobs:
       - name: Run Playwright tests
         env:
           CI: true
-        run: npx playwright test --retries=2
+        run: npx playwright test tests --retries=2
 
       - name: Print logs
         shell: bash
