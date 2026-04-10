@@ -101,7 +101,6 @@ test.describe('käsittelytoimenpide feature', () => {
     expect(pendingEmail).toBeTruthy()
   })
 
-  /*
   test('user entry page shows PENDING state chip and risk thresholds', async () => {
     await page.goto(`/user/${entryId}`)
 
@@ -139,7 +138,6 @@ test.describe('käsittelytoimenpide feature', () => {
     await expect(stateChips.first()).toBeVisible()
     await expect(stateChips.first()).toContainText('Edellyttää asiantuntijaryhmän käsittelyä')
   })
-  */
 
   test('admin adds a control report and state transitions to EXPERT_GROUP', async () => {
     await fetch(`${baseUrl}/api/mock/user?type=admin`)
@@ -165,7 +163,6 @@ test.describe('käsittelytoimenpide feature', () => {
     await expect(page.getByTestId('entry-state-chip')).toContainText('Otettu asiantuntijaryhmän käsittelyyn')
   })
 
-  /*
   test('normal report is visible in user entry page with EXPERT_GROUP state', async () => {
     await page.goto(`/user/${entryId}`)
 
@@ -262,5 +259,4 @@ test.describe('käsittelytoimenpide feature', () => {
     // Manual transition: EXPERT_GROUP -> APPROVED
     await expect(history).toContainText('Asia käsitelty, hanke voi edetä käsittelytoimenpiteissä yksilöidyllä tavalla')
   })
-    */
 })
