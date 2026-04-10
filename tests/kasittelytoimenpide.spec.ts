@@ -1,4 +1,4 @@
-import { test, expect, type Page } from '@playwright/test'
+import { test, expect, type Page, type BrowserContext } from '@playwright/test'
 
 const baseUrl = 'http://localhost:8000'
 
@@ -6,6 +6,7 @@ test.describe.configure({ mode: 'serial' })
 
 test.describe('käsittelytoimenpide feature', () => {
   let page: Page
+  let context: BrowserContext
   let entryId: string
 
   test.beforeAll(async ({ browser }) => {
@@ -27,13 +28,17 @@ test.describe('käsittelytoimenpide feature', () => {
     // Reset mail mock
     await fetch('http://localhost:3000/pate/reset')
 
-    page = await browser.newPage()
+    context = await browser.newContext({
+      recordVideo: { dir: 'test-results/videos', size: { width: 640, height: 480 } },
+    })
+    page = await context.newPage()
   })
 
   test.afterAll(async () => {
     // Reset mock user to normal so other tests are not affected
     await fetch(`${baseUrl}/api/mock/user?type=normal`)
     await page.close()
+    await context.close()
   })
 
   test('creating a high risk entry sets PENDING state and sends notification email', async () => {
@@ -138,17 +143,20 @@ test.describe('käsittelytoimenpide feature', () => {
 
   test('admin adds a control report and state transitions to EXPERT_GROUP', async () => {
     await fetch(`${baseUrl}/api/mock/user?type=admin`)
-    // Create control report via API (MDEditor doesn't cooperate with Playwright fill/type)
-    const response = await fetch(`${baseUrl}/api/entries/${entryId}/control-report`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text: 'Tämä on ensimmäinen toimenpide', adminOnly: false }),
-    })
-    expect(response.status).toBe(201)
-
-    // Reload admin entry page to verify
     await page.goto(`/admin/entry/${entryId}`)
     await page.waitForLoadState('networkidle')
+
+    // Open the add control report dialog
+    await page.getByRole('button', { name: 'Lisää Käsittelytoimenpide' }).click()
+
+    // Fill in the textarea and save
+    await page.getByRole('dialog').getByRole('textbox').fill('Tämä on ensimmäinen toimenpide')
+    await page.screenshot({ path: 'test-results/debug-before-save.png' })
+    await page.getByRole('dialog').getByRole('button', { name: 'Tallenna' }).click()
+
+    // Wait a moment for snackbar or dialog to react
+    await page.waitForTimeout(2000)
+    await page.screenshot({ path: 'test-results/debug-after-save.png' })
 
     // Report text should appear in a report card
     await expect(page.getByTestId('control-report-item').getByText('Tämä on ensimmäinen toimenpide')).toBeVisible()
