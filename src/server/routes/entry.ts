@@ -2,7 +2,7 @@ import express from 'express'
 
 import type { EntryValues, RequestWithUser } from '@server/types'
 import z from 'zod'
-import { Entry, ControlReport } from '@dbmodels'
+import { Entry, ControlReport, EntryStateChange } from '@dbmodels'
 import { riskReEvaluation } from '../util/cron/riskReEvaluation/riskReEvaluation'
 import createRiskData from '../util/algorithm/riskData'
 import adminHandler from '../middleware/admin'
@@ -94,10 +94,11 @@ entryRouter.post('/:surveyId', async (req: RequestWithUser, res: any) => {
   }
 
   const { state, parts } = controlRaportCheck(riskData)
-  const updatedData: EntryValues = { sessionToken, data: riskData, tuhatData, testVersion, language, state }
+  const entryState = testVersion ? undefined : state
+  const updatedData: EntryValues = { sessionToken, data: riskData, tuhatData, testVersion, language, state: entryState }
   const entry = await createEntry(userId, surveyId, updatedData)
 
-  if (state === ENTRY_STATES.PENDING) {
+  if (entryState === ENTRY_STATES.PENDING) {
     await sendPendingEntryEmail(entry.id, parts, riskData)
   }
 
@@ -199,7 +200,14 @@ entryRouter.post('/:entryId/control-report', adminHandler, async (req: RequestWi
   })
 
   if (entry.state === ENTRY_STATES.PENDING) {
+    const changedBy = [req.user.firstName, req.user.lastName].filter(Boolean).join(' ') || req.user.username
     await entry.update({ state: ENTRY_STATES.EXPERT_GROUP })
+    await EntryStateChange.create({
+      entryId: Number(entryId),
+      fromState: ENTRY_STATES.PENDING,
+      toState: ENTRY_STATES.EXPERT_GROUP,
+      changedBy,
+    })
   }
 
   // Send notification email
@@ -284,7 +292,19 @@ entryRouter.patch('/:entryId/state', adminHandler, async (req: RequestWithUser, 
     return res.status(404).send('Entry not found')
   }
 
-  await entry.update({ state: state ?? null })
+  const fromState = entry.state ?? null
+  const toState = state ?? null
+  await entry.update({ state: toState })
+
+  if (toState !== null) {
+    const changedBy = [req.user.firstName, req.user.lastName].filter(Boolean).join(' ') || req.user.username
+    await EntryStateChange.create({
+      entryId: Number(entryId),
+      fromState,
+      toState,
+      changedBy,
+    })
+  }
 
   return res.status(200).send(entry.toJSON())
 })

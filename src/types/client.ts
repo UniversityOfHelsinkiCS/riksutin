@@ -1,6 +1,6 @@
 import { Control, UseFormWatch, UseFormRegister } from 'react-hook-form'
 
-import type { FormValues, Locales, Question, RiskData, TuhatData, User, ControlReport } from '@types'
+import type { FormValues, Locales, Question, RiskData, TuhatData, User, ControlReport, EntryStateChange } from '@types'
 
 import { FORM_DATA_KEY, TUHAT_DATA_STORAGE_KEY } from '@config'
 
@@ -66,4 +66,5 @@ export type Entry = {
   language?: string | null
   state?: string | null
   controlReports?: ControlReport[]
+  stateChanges?: EntryStateChange[]
 }

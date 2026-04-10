@@ -1,3 +1,4 @@
+// note: tests fail if userType !== normal
 let userType = 'normal'
 
 const mockUsers = {

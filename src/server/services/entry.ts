@@ -1,6 +1,6 @@
 import type { EntryValues } from '@server/types'
 
-import { Entry, Survey, User, ControlReport } from '@dbmodels'
+import { Entry, Survey, User, ControlReport, EntryStateChange } from '@dbmodels'
 import { Op } from 'sequelize'
 
 import NotFoundError from '../errors/NotFoundError'
@@ -52,6 +52,10 @@ export const getEntry = async (entryId: string, userId: string): Promise<Entry> 
       {
         model: ControlReport,
         as: 'controlReports',
+      },
+      {
+        model: EntryStateChange,
+        as: 'stateChanges',
       },
     ],
   })

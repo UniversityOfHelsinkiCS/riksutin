@@ -125,6 +125,7 @@ const UserEntry = () => {
             <ControlReports
               entryId={entryId}
               controlReports={entry.controlReports ?? []}
+              stateChanges={entry.stateChanges}
               entryState={entry.state}
               parts={getRiskParts(entry.data)}
               onUpdate={refetch}

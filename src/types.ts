@@ -216,3 +216,12 @@ export interface ControlReport {
   createdAt: string
   updatedAt: string
 }
+
+export interface EntryStateChange {
+  id: string
+  entryId: number
+  fromState: string | null
+  toState: string
+  changedBy: string
+  createdAt: string
+}

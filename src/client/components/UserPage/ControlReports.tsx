@@ -25,7 +25,7 @@ import { useTranslation } from 'react-i18next'
 import { enqueueSnackbar } from 'notistack'
 import MDEditor from '@uiw/react-md-editor'
 
-import { ControlReport } from '@types'
+import { ControlReport, EntryStateChange } from '@types'
 import { ENTRY_STATES, EntryState, getEntryStateColor, getEntryStateLabel, getEntryStateSx } from '@common/entryStates'
 import useLoggedInUser from '../../hooks/useLoggedInUser'
 import Markdown from '../Common/Markdown'
@@ -35,6 +35,7 @@ import styles from '../../styles'
 interface ControlReportsProps {
   entryId: string
   controlReports: ControlReport[]
+  stateChanges?: EntryStateChange[]
   entryState?: string | null
   parts?: string[]
   onUpdate: () => void
@@ -44,6 +45,7 @@ interface ControlReportsProps {
 const ControlReports = ({
   entryId,
   controlReports,
+  stateChanges,
   entryState,
   parts,
   onUpdate,
@@ -59,6 +61,8 @@ const ControlReports = ({
   const [reportToDelete, setReportToDelete] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showStateSelector, setShowStateSelector] = useState(false)
+  const [pendingState, setPendingState] = useState<EntryState | null>(null)
+  const [stateConfirmOpen, setStateConfirmOpen] = useState(false)
 
   const effectiveState = entryState ?? (controlReports.length > 0 ? ENTRY_STATES.EXPERT_GROUP : null)
 
@@ -69,6 +73,26 @@ const ControlReports = ({
     } catch (error) {
       enqueueSnackbar('Tilan päivitys epäonnistui', { variant: 'error' })
     }
+  }
+
+  const handleStateSelect = (newState: EntryState) => {
+    setPendingState(newState)
+    setStateConfirmOpen(true)
+    setShowStateSelector(false)
+  }
+
+  const handleStateConfirm = async () => {
+    if (!pendingState) {
+      return
+    }
+    setStateConfirmOpen(false)
+    await handleStateChange(pendingState)
+    setPendingState(null)
+  }
+
+  const handleStateConfirmCancel = () => {
+    setStateConfirmOpen(false)
+    setPendingState(null)
   }
 
   const { cardStyles } = styles
@@ -185,9 +209,7 @@ const ControlReports = ({
               <RadioGroup
                 value={effectiveState ?? ''}
                 onChange={e => {
-                  // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                  handleStateChange(e.target.value as EntryState)
-                  setShowStateSelector(false)
+                  handleStateSelect(e.target.value as EntryState)
                 }}
               >
                 {Object.values(ENTRY_STATES).map(state => (
@@ -234,6 +256,27 @@ const ControlReports = ({
         <Alert severity="info" sx={{ mb: 2 }}>
           {t('controlReport:riskLevel3Required')}
         </Alert>
+      )}
+
+      {isAdmin && stateChanges && stateChanges.length > 0 && (
+        <Box sx={{ mb: 3 }}>
+          <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1 }}>
+            {t('controlReport:stateHistory')}
+          </Typography>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+            {stateChanges
+              .slice()
+              .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
+              .map(change => (
+                <Typography key={change.id} variant="body2" color="text.secondary">
+                  {formatDate(change.createdAt)} &middot; {change.changedBy} &middot;{' '}
+                  {change.fromState ? t(getEntryStateLabel(change.fromState as any)) : '—'}
+                  {' → '}
+                  {t(getEntryStateLabel(change.toState as any))}
+                </Typography>
+              ))}
+          </Box>
+        </Box>
       )}
 
       <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2 }}>
@@ -329,6 +372,24 @@ const ControlReports = ({
           </Button>
           <Button onClick={handleDeleteConfirm} color="error" variant="contained" disabled={isSubmitting}>
             {t('controlReport:deleteButton')}
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* State Change Confirmation Dialog */}
+      <Dialog open={stateConfirmOpen} onClose={handleStateConfirmCancel}>
+        <DialogTitle>{t('controlReport:confirmStateChangeTitle')}</DialogTitle>
+        <DialogContent>
+          <Typography>
+            {effectiveState ? t(getEntryStateLabel(effectiveState)) : '—'}
+            {' → '}
+            {pendingState ? t(getEntryStateLabel(pendingState)) : ''}
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleStateConfirmCancel}>{t('controlReport:cancelButton')}</Button>
+          <Button onClick={handleStateConfirm} variant="contained">
+            {t('controlReport:confirmButton')}
           </Button>
         </DialogActions>
       </Dialog>
