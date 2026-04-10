@@ -15,6 +15,7 @@ import {
   IconButton,
   Radio,
   RadioGroup,
+  TextField,
   Typography,
   Alert,
 } from '@mui/material'
@@ -23,7 +24,6 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import AddIcon from '@mui/icons-material/Add'
 import { useTranslation } from 'react-i18next'
 import { enqueueSnackbar } from 'notistack'
-import MDEditor from '@uiw/react-md-editor'
 
 import { ControlReport, EntryStateChange } from '@types'
 import { ENTRY_STATES, EntryState, getEntryStateColor, getEntryStateLabel, getEntryStateSx } from '@common/entryStates'
@@ -351,13 +351,14 @@ const ControlReports = ({
       <Dialog open={isDialogOpen} onClose={handleCloseDialog} maxWidth="md" fullWidth>
         <DialogTitle>{editingReport ? t('controlReport:editButton') : t('controlReport:addButton')}</DialogTitle>
         <DialogContent>
-          <Typography variant="caption" color="text.secondary" sx={{ mb: 2, display: 'block' }}>
-            {t('controlReport:markdownSupported')}
-          </Typography>
-
-          <Box sx={{ mb: 2 }}>
-            <MDEditor value={text} onChange={value => setText(value ?? '')} height={300} preview="edit" />
-          </Box>
+          <TextField
+            multiline
+            minRows={6}
+            fullWidth
+            value={text}
+            onChange={e => setText(e.target.value)}
+            sx={{ mt: 1 }}
+          />
           <FormControlLabel
             control={<Checkbox checked={adminOnly} onChange={e => setAdminOnly(e.target.checked)} />}
             label={t('controlReport:adminOnly')}
