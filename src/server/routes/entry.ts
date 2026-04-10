@@ -186,9 +186,7 @@ entryRouter.post('/:entryId/control-report', adminHandler, async (req: RequestWi
     return res.status(404).send('Entry not found')
   }
 
-  // Check if total risk level is 3
-  const totalRisk = entry.data.risks.find(r => r.id === 'total')
-  if (totalRisk?.level !== 3) {
+  if (entry.state == null) {
     return res.status(400).send('Control reports can only be added to entries with total risk level 3')
   }
 
