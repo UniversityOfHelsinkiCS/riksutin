@@ -300,7 +300,9 @@
     "expertGroup": "Otettu asiantuntijaryhmän käsittelyyn",
     "approved": "Asia käsitelty, hanke voi edetä käsittelytoimenpiteissä yksilöidyllä tavalla",
     "blocked": "Asia käsitelty, eteneminen estetty",
-    "managementGroup": "Asia nostettu johtoryhmän käsittelyyn"
+    "managementGroup": "Asia nostettu johtoryhmän käsittelyyn",
+    "fromStateFormEdit": "[muutos riskiarviolomakkeella]",
+    "fromStateManualTrigger": "[manuaalisesti käynnistetty prosessi]"
   },
   "riskComponent": {
     "total": "Yhteistyön kokonaisriskitaso 3",

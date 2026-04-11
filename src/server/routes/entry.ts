@@ -15,7 +15,7 @@ import {
 } from '../util/control_raport_check'
 import { sendResult } from '../services/sendResult'
 import { CreateControlReportZod, UpdateControlReportZod } from '../../validators/controlReport'
-import { ENTRY_STATES } from '../../common/entryStates'
+import { ENTRY_STATES, FROM_STATE_FORM_EDIT, FROM_STATE_MANUAL_TRIGGER } from '../../common/entryStates'
 const entryRouter = express.Router()
 
 entryRouter.get('/', adminHandler, async (req, res) => {
@@ -162,7 +162,7 @@ entryRouter.put('/:entryId', async (req: RequestWithUser, res: any) => {
     const changedBy = [req.user?.firstName, req.user?.lastName].filter(Boolean).join(' ') || req.user?.username
     await EntryStateChange.create({
       entryId: Number(entryId),
-      fromState: null,
+      fromState: FROM_STATE_FORM_EDIT,
       toState: ENTRY_STATES.PENDING,
       changedBy,
     })
@@ -313,7 +313,7 @@ entryRouter.post('/:entryId/set-pending', adminHandler, async (req: RequestWithU
   await entry.update({ state: ENTRY_STATES.PENDING })
   await EntryStateChange.create({
     entryId: Number(entryId),
-    fromState: null,
+    fromState: FROM_STATE_MANUAL_TRIGGER,
     toState: ENTRY_STATES.PENDING,
     changedBy,
   })

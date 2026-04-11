@@ -300,7 +300,9 @@
     "expertGroup": "Taken up by expert group",
     "approved": "Case processed, project may proceed as specified in the control measures",
     "blocked": "Case processed, progress blocked",
-    "managementGroup": "Case escalated to management group"
+    "managementGroup": "Case escalated to management group",
+    "fromStateFormEdit": "[changed via risk assessment form]",
+    "fromStateManualTrigger": "[manually triggered process]"
   },
   "riskComponent": {
     "total": "Overall collaboration risk level 3",

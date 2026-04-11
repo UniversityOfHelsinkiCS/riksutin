@@ -8,12 +8,17 @@ export const ENTRY_STATES = {
 
 export type EntryState = (typeof ENTRY_STATES)[keyof typeof ENTRY_STATES]
 
-export const ENTRY_STATE_LABELS: Record<EntryState, string> = {
+export const FROM_STATE_FORM_EDIT = 'FORM_EDIT'
+export const FROM_STATE_MANUAL_TRIGGER = 'MANUAL_TRIGGER'
+
+export const ENTRY_STATE_LABELS: Record<string, string> = {
   [ENTRY_STATES.PENDING]: 'entryStates:pending',
   [ENTRY_STATES.EXPERT_GROUP]: 'entryStates:expertGroup',
   [ENTRY_STATES.APPROVED]: 'entryStates:approved',
   [ENTRY_STATES.BLOCKED]: 'entryStates:blocked',
   [ENTRY_STATES.MANAGEMENT_GROUP]: 'entryStates:managementGroup',
+  [FROM_STATE_FORM_EDIT]: 'entryStates:fromStateFormEdit',
+  [FROM_STATE_MANUAL_TRIGGER]: 'entryStates:fromStateManualTrigger',
 }
 
 export const getEntryStateColor = (state: string): 'error' | 'success' | 'warning' | 'info' | 'default' => {
