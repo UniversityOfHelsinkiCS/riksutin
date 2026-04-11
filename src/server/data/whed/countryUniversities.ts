@@ -19,6 +19,10 @@ const normalizeCountryName = (countryName: string) => {
     return 'China - Macao SAR'
   }
 
+  if (countryName === 'Taiwan') {
+    return 'China - Taiwan'
+  }
+
   return countryName
 }
 
