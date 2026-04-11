@@ -144,6 +144,9 @@ test.describe('käsittelytoimenpide feature', () => {
     await page.goto(`/admin/entry/${entryId}`)
     await page.waitForLoadState('networkidle')
 
+    // Reset mail mock before adding report
+    await fetch('http://localhost:3000/pate/reset')
+
     // Open the add control report dialog
     await page.getByRole('button', { name: 'Lisää Käsittelytoimenpide' }).click()
 
@@ -161,6 +164,14 @@ test.describe('käsittelytoimenpide feature', () => {
 
     // State should have auto-transitioned from PENDING to EXPERT_GROUP
     await expect(page.getByTestId('entry-state-chip')).toContainText('Otettu asiantuntijaryhmän käsittelyyn')
+
+    // Filler should receive "käsittely aloitettu" notification email
+    const response = await fetch('http://localhost:3000/pate')
+    const data = await response.json()
+    const startedEmail = data.find((m: any) =>
+      m.emails?.some((e: any) => e.subject === '[risk-i] Riskiarvion käsittely aloitettu')
+    )
+    expect(startedEmail).toBeTruthy()
   })
 
   test('normal report is visible in user entry page with EXPERT_GROUP state', async () => {
@@ -219,6 +230,9 @@ test.describe('käsittelytoimenpide feature', () => {
     await page.goto(`/admin/entry/${entryId}`)
     await page.waitForLoadState('networkidle')
 
+    // Reset mail mock before state change
+    await fetch('http://localhost:3000/pate/reset')
+
     // Click "Vaihda vaihetta" to open the state selector
     await page.getByRole('button', { name: 'Vaihda vaihetta' }).click()
 
@@ -232,6 +246,14 @@ test.describe('käsittelytoimenpide feature', () => {
     await expect(page.getByTestId('entry-state-chip')).toContainText(
       'Asia käsitelty, hanke voi edetä käsittelytoimenpiteissä yksilöidyllä tavalla'
     )
+
+    // Filler should receive "käsitelty" notification email
+    const response = await fetch('http://localhost:3000/pate')
+    const data = await response.json()
+    const decisionEmail = data.find((m: any) =>
+      m.emails?.some((e: any) => e.subject === '[risk-i] Riskiarvio käsitelty')
+    )
+    expect(decisionEmail).toBeTruthy()
   })
 
   test('state change to APPROVED is reflected in user entry page', async () => {

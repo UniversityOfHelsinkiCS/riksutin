@@ -7,10 +7,14 @@ import { riskReEvaluation } from '../util/cron/riskReEvaluation/riskReEvaluation
 import createRiskData from '../util/algorithm/riskData'
 import adminHandler from '../middleware/admin'
 import { createEntry, getEntries, getEntry, getUserEntries } from '../services/entry'
-import { controlRaportCheck, sendPendingEntryEmail } from '../util/control_raport_check'
+import {
+  controlRaportCheck,
+  sendPendingEntryEmail,
+  sendControlReportStartedEmail,
+  sendStateDecisionEmail,
+} from '../util/control_raport_check'
 import { sendResult } from '../services/sendResult'
 import { CreateControlReportZod, UpdateControlReportZod } from '../../validators/controlReport'
-import { notifyControlReportCreated } from '../services/notifyControlReport'
 import { ENTRY_STATES } from '../../common/entryStates'
 const entryRouter = express.Router()
 
@@ -208,13 +212,12 @@ entryRouter.post('/:entryId/control-report', adminHandler, async (req: RequestWi
     })
   }
 
-  // Send notification email
+  // Send notification email to filler when manual processing starts
   try {
-    await notifyControlReportCreated(entry)
+    await sendControlReportStartedEmail(entry)
   } catch (error) {
-    // Log error but don't fail the request if email fails
     // eslint-disable-next-line no-console
-    console.error('Failed to send control report notification:', error)
+    console.error('Failed to send control report started notification:', error)
   }
 
   return res.status(201).send(newReport.toJSON())
@@ -328,6 +331,15 @@ entryRouter.patch('/:entryId/state', adminHandler, async (req: RequestWithUser, 
       toState,
       changedBy,
     })
+  }
+
+  if (toState === ENTRY_STATES.APPROVED || toState === ENTRY_STATES.BLOCKED) {
+    try {
+      await sendStateDecisionEmail(entry, toState)
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Failed to send state decision notification:', error)
+    }
   }
 
   return res.status(200).send(entry.toJSON())

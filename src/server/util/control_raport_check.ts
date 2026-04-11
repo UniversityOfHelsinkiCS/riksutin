@@ -3,8 +3,10 @@ import { getRiskParts } from '@common/getRiskParts'
 import { inProduction } from '@config'
 import sendEmail from './mailer'
 import i18n from './i18n'
+import logger from './logger'
 
 import type { RiskData } from '@types'
+import { Entry, User } from '@dbmodels'
 
 const HIGH_RISK_COUNTRY_CODES = ['IL', 'RU', 'BY']
 
@@ -74,4 +76,62 @@ export const sendPendingEntryEmail = async (entryId: number, parts: string[], ri
   await sendEmail(recipients, text, '[risk-i] Uusi tarkastelua vaativa riskiarvio luotu')
   // eslint-disable-next-line no-console
   console.log('MAIL SEND', text)
+}
+
+const getFillerRecipients = async (entry: Entry): Promise<string[]> => {
+  const creator = await User.findByPk(entry.userId)
+  const owner = await User.findByPk(entry.ownerId)
+  const recipients: string[] = []
+  if (creator?.email) {
+    recipients.push(creator.email)
+  }
+  if (owner?.email && owner.id !== creator?.id) {
+    recipients.push(owner.email)
+  }
+  return recipients
+}
+
+const USER_BASE_URL = inProduction
+  ? 'https://risk-i.helsinki.fi/user'
+  : 'https://riksutin.ext.ocp-test-0.k8s.it.helsinki.fi/user'
+
+export const sendControlReportStartedEmail = async (entry: Entry) => {
+  const recipients = await getFillerRecipients(entry)
+  if (recipients.length === 0) {
+    logger.warn('No recipients found for control report started notification', { entryId: entry.id })
+    return
+  }
+
+  const projectName: string = entry.data.answers[3] || ''
+  const url = `${USER_BASE_URL}/${entry.id}`
+
+  const text = [
+    '<p>Riskiarviotasi on alettu käsittelemään.</p>',
+    projectName ? `<p><strong>Hankkeen nimi:</strong> ${projectName}</p>` : '',
+    `<p>Katso tiedot osoitteesta: <a href="${url}">${url}</a></p>`,
+  ].join('')
+
+  await sendEmail(recipients, text, '[risk-i] Riskiarvion käsittely aloitettu')
+  logger.info('Control report started notification sent', { entryId: entry.id, recipients })
+}
+
+export const sendStateDecisionEmail = async (entry: Entry, newState: string) => {
+  const recipients = await getFillerRecipients(entry)
+  if (recipients.length === 0) {
+    logger.warn('No recipients found for state decision notification', { entryId: entry.id })
+    return
+  }
+
+  const projectName: string = entry.data.answers[3] || ''
+  const url = `${USER_BASE_URL}/${entry.id}`
+
+  const text = [
+    `<p>Riskiarvio käsitelty, katso tiedot osoitteesta: <a href="${url}">${url}</a></p>`,
+    projectName ? `<p><strong>Hankkeen nimi:</strong> ${projectName}</p>` : '',
+  ].join('')
+
+  const subject = '[risk-i] Riskiarvio käsitelty'
+
+  await sendEmail(recipients, text, subject)
+  logger.info('State decision notification sent', { entryId: entry.id, newState, recipients })
 }
