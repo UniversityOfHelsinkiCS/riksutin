@@ -125,6 +125,7 @@ const EditEntry = () => {
       sessionStorage.clear()
       enqueueSnackbar(t('common:updateSuccess'), { variant: 'success' })
       navigate(`/user/${entryId}`)
+      window.scrollTo(0, 0)
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log(error)

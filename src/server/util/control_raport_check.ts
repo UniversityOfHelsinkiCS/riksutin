@@ -78,6 +78,8 @@ export const sendPendingEntryEmail = async (entryId: number, parts: string[], ri
   console.log('MAIL SEND', text)
 }
 
+const EXCLUDED_RECIPIENTS = ['testi.kayttaja@example.org']
+
 const getFillerRecipients = async (entry: Entry): Promise<string[]> => {
   const creator = await User.findByPk(entry.userId)
   const owner = await User.findByPk(entry.ownerId)
@@ -88,7 +90,7 @@ const getFillerRecipients = async (entry: Entry): Promise<string[]> => {
   if (owner?.email && owner.id !== creator?.id) {
     recipients.push(owner.email)
   }
-  return recipients
+  return recipients.filter(r => !EXCLUDED_RECIPIENTS.includes(r))
 }
 
 const USER_BASE_URL = inProduction

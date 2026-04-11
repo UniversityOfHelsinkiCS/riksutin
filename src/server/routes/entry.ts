@@ -130,6 +130,10 @@ entryRouter.put('/:entryId', async (req: RequestWithUser, res: any) => {
     return res.status(500).send('Error when calculating risks')
   }
 
+  const { state, parts } = controlRaportCheck(riskData)
+  const entryState = testVersion ? undefined : state
+  const shouldTriggerControl = entry.state == null && entryState === ENTRY_STATES.PENDING
+
   const currentData = entry.data
   const updatedDataArray = currentData.updatedData ?? []
 
@@ -151,7 +155,19 @@ entryRouter.put('/:entryId', async (req: RequestWithUser, res: any) => {
     },
     tuhatData,
     testVersion,
+    ...(entry.state == null ? { state: entryState } : {}),
   })
+
+  if (shouldTriggerControl) {
+    const changedBy = [req.user?.firstName, req.user?.lastName].filter(Boolean).join(' ') || req.user?.username
+    await EntryStateChange.create({
+      entryId: Number(entryId),
+      fromState: null,
+      toState: ENTRY_STATES.PENDING,
+      changedBy,
+    })
+    await sendPendingEntryEmail(entry.id, parts, riskData)
+  }
 
   const updatedEntry = await entry.save()
 

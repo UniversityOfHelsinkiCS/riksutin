@@ -395,3 +395,146 @@ test.describe('manual set-pending button', () => {
     await expect(page.getByRole('button', { name: 'Käynnistä käsittelytoimenpide' })).not.toBeVisible()
   })
 })
+
+test.describe('editing entry triggers control process', () => {
+  let entryId: string
+
+  const normalUser = {
+    id: 'normaltestuser',
+    username: 'hy-hlo-22222',
+    firstName: 'Matti',
+    lastName: 'Luukkainen',
+    email: 'matti.luukkainen@helsinki.fi',
+    language: 'fi',
+    isAdmin: false,
+  }
+
+  const lowRiskData = {
+    '1': 'Matti Luukkainen',
+    '2': normalUser,
+    '3': 'Edit Control Trigger Test',
+    '4': 'bilateral',
+    '6': 'university',
+    '8': 'Sweden',
+    '9': 'coordinator',
+    '10': 'agreementDone',
+    '11': ['education'],
+    '12': 'shortDuration',
+    '13': 'noExternalFunding',
+    '16': 'smallBudget',
+    '17': 'noTransferPersonalData',
+    '20': 'Ahlobait University',
+    '23': 'noTransferMilitaryKnowledge',
+    '24': 'noSuccessfulCollaboration',
+    '25': 'noEthicalIssues',
+    faculty: 'H40',
+    unit: 'H528',
+    tuhatProjectExists: 'tuhatOptionNegative',
+  }
+
+  const highRiskData = {
+    '1': 'Matti Luukkainen',
+    '2': normalUser,
+    '3': 'Edit Control Trigger Test',
+    '4': 'bilateral',
+    '6': 'university',
+    '8': 'Afghanistan',
+    '9': 'partner',
+    '10': 'agreementNotDone',
+    '11': ['education', 'educationExport'],
+    '12': 'mediumDuration',
+    '13': 'noExternalFunding',
+    '16': 'mediumBudget',
+    '17': 'noTransferPersonalData',
+    '20': 'Kardan University',
+    '23': 'noTransferMilitaryKnowledge',
+    '24': 'noSuccessfulCollaboration',
+    '25': 'noEthicalIssues',
+    faculty: 'H40',
+    unit: 'H528',
+    tuhatProjectExists: 'tuhatOptionNegative',
+  }
+
+  test.beforeAll(async () => {
+    // Use admin to clean up leftover entries from previous runs
+    await fetch(`${baseUrl}/api/mock/user?type=admin`)
+    const entriesRes = await fetch(`${baseUrl}/api/entries`)
+    const entries = await entriesRes.json()
+    for (const entry of entries) {
+      if (entry.data?.answers?.['3'] === 'Edit Control Trigger Test') {
+        // eslint-disable-next-line no-await-in-loop
+        await fetch(`${baseUrl}/api/entries/${entry.id}/delete`, { method: 'DELETE' })
+      }
+    }
+
+    // Switch to normal user for the test
+    await fetch(`${baseUrl}/api/mock/user?type=normal`)
+    await fetch('http://localhost:3000/pate/reset')
+  })
+
+  test.afterAll(async () => {
+    // Delete the created entry (requires admin)
+    await fetch(`${baseUrl}/api/mock/user?type=admin`)
+    if (entryId) {
+      await fetch(`${baseUrl}/api/entries/${entryId}/delete`, { method: 'DELETE' })
+    }
+    await fetch(`${baseUrl}/api/mock/user?type=normal`)
+  })
+
+  test('editing a low-risk entry to cross risk threshold sets PENDING and sends notification email', async () => {
+    // Create a low-risk entry → no state expected
+    const createResponse = await fetch(`${baseUrl}/api/entries/1`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ data: lowRiskData, sessionToken: 'edit-control-test-token', tuhatData: {} }),
+    })
+    expect(createResponse.status).toBe(201)
+    const createdEntry = await createResponse.json()
+    entryId = String(createdEntry.id)
+    expect(createdEntry.state).toBeFalsy()
+
+    await fetch('http://localhost:3000/pate/reset')
+
+    // Edit with high-risk data → should trigger control process
+    const updateResponse = await fetch(`${baseUrl}/api/entries/${entryId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ data: highRiskData, tuhatData: {} }),
+    })
+    expect(updateResponse.status).toBe(200)
+    const updatedEntry = await updateResponse.json()
+
+    expect(updatedEntry.state).toBe('PENDING')
+
+    const pateResponse = await fetch('http://localhost:3000/pate')
+    const emails = await pateResponse.json()
+    const pendingEmail = emails.find((m: any) =>
+      m.emails?.some((e: any) => e.subject === '[risk-i] Uusi tarkastelua vaativa riskiarvio luotu')
+    )
+    expect(pendingEmail).toBeTruthy()
+  })
+
+  test('editing an already-PENDING entry does not send a duplicate notification email', async () => {
+    await fetch('http://localhost:3000/pate/reset')
+
+    // Edit again with identical high-risk data; entry is already PENDING
+    const updateResponse = await fetch(`${baseUrl}/api/entries/${entryId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ data: highRiskData, tuhatData: {} }),
+    })
+    expect(updateResponse.status).toBe(200)
+    const updatedEntry = await updateResponse.json()
+
+    // State must remain PENDING (not reset)
+    expect(updatedEntry.state).toBe('PENDING')
+
+    // No new notification email should have been sent
+    const pateResponse = await fetch('http://localhost:3000/pate')
+    const emails = await pateResponse.json()
+    const pendingEmails = emails.filter((m: any) =>
+      m.emails?.some((e: any) => e.subject === '[risk-i] Uusi tarkastelua vaativa riskiarvio luotu')
+    )
+    expect(pendingEmails.length).toBe(0)
+  })
+})
