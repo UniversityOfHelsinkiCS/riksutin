@@ -16,6 +16,7 @@ import {
 import { sendResult } from '../services/sendResult'
 import { CreateControlReportZod, UpdateControlReportZod } from '../../validators/controlReport'
 import { ENTRY_STATES, FROM_STATE_FORM_EDIT, FROM_STATE_MANUAL_TRIGGER } from '../../common/entryStates'
+import { CONTROL_REPORT_CHECK_DISABLED } from '@server/config'
 const entryRouter = express.Router()
 
 entryRouter.get('/', adminHandler, async (req, res) => {
@@ -98,11 +99,11 @@ entryRouter.post('/:surveyId', async (req: RequestWithUser, res: any) => {
   }
 
   const { state, parts } = controlRaportCheck(riskData)
-  const entryState = testVersion ? undefined : state
+  const entryState = testVersion || CONTROL_REPORT_CHECK_DISABLED ? undefined : state
   const updatedData: EntryValues = { sessionToken, data: riskData, tuhatData, testVersion, language, state: entryState }
   const entry = await createEntry(userId, surveyId, updatedData)
 
-  if (entryState === ENTRY_STATES.PENDING) {
+  if (!CONTROL_REPORT_CHECK_DISABLED && entryState === ENTRY_STATES.PENDING) {
     await sendPendingEntryEmail(entry.id, parts, riskData)
   }
 
@@ -131,8 +132,9 @@ entryRouter.put('/:entryId', async (req: RequestWithUser, res: any) => {
   }
 
   const { state, parts } = controlRaportCheck(riskData)
-  const entryState = testVersion ? undefined : state
-  const shouldTriggerControl = entry.state == null && entryState === ENTRY_STATES.PENDING
+  const entryState = testVersion || CONTROL_REPORT_CHECK_DISABLED ? undefined : state
+  const shouldTriggerControl =
+    !CONTROL_REPORT_CHECK_DISABLED && entry.state == null && entryState === ENTRY_STATES.PENDING
 
   const currentData = entry.data
   const updatedDataArray = currentData.updatedData ?? []
@@ -158,7 +160,7 @@ entryRouter.put('/:entryId', async (req: RequestWithUser, res: any) => {
     ...(entry.state == null ? { state: entryState } : {}),
   })
 
-  if (shouldTriggerControl) {
+  if (!CONTROL_REPORT_CHECK_DISABLED && shouldTriggerControl) {
     const changedBy = [req.user?.firstName, req.user?.lastName].filter(Boolean).join(' ') || req.user?.username
     await EntryStateChange.create({
       entryId: Number(entryId),
@@ -229,11 +231,13 @@ entryRouter.post('/:entryId/control-report', adminHandler, async (req: RequestWi
   }
 
   // Send notification email to filler when manual processing starts
-  try {
-    await sendControlReportStartedEmail(entry)
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error('Failed to send control report started notification:', error)
+  if (!CONTROL_REPORT_CHECK_DISABLED) {
+    try {
+      await sendControlReportStartedEmail(entry)
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Failed to send control report started notification:', error)
+    }
   }
 
   return res.status(201).send(newReport.toJSON())
@@ -349,7 +353,7 @@ entryRouter.patch('/:entryId/state', adminHandler, async (req: RequestWithUser, 
     })
   }
 
-  if (toState === ENTRY_STATES.APPROVED || toState === ENTRY_STATES.BLOCKED) {
+  if (!CONTROL_REPORT_CHECK_DISABLED && (toState === ENTRY_STATES.APPROVED || toState === ENTRY_STATES.BLOCKED)) {
     try {
       await sendStateDecisionEmail(entry, toState)
     } catch (error) {
