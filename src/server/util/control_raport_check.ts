@@ -104,17 +104,35 @@ export const sendControlReportStartedEmail = async (entry: Entry) => {
     return
   }
 
+  const language = entry.language === 'fi' ? 'fi' : 'en'
   const projectName: string = entry.data.answers[3] || ''
   const url = `${USER_BASE_URL}/${entry.id}`
 
+  const content = {
+    fi: {
+      intro:
+        '<p>Tallentamasi riskiarvio ylittää yhden tai useamman määritellyn kynnysarvon. Riskiarviotasi on otettu asiantuntijaryhmän käsittelyym.</p>',
+      projectLabel: 'Hankkeen nimi',
+      viewDetails: 'Katso tiedot osoitteesta',
+      subject: '[risk-i] Riskiarvion käsittely aloitettu',
+    },
+    en: {
+      intro:
+        '<p>Your risk assessment has triggered one or more risk thresholds. Your assessment is being reviewed by the expert group.</p>',
+      projectLabel: 'Project name',
+      viewDetails: 'View details at',
+      subject: '[risk-i] Risk assessment review started',
+    },
+  }
+
   const text = [
-    '<p>Riskiarviotasi on alettu käsittelemään.</p>',
-    projectName ? `<p><strong>Hankkeen nimi:</strong> ${projectName}</p>` : '',
-    `<p>Katso tiedot osoitteesta: <a href="${url}">${url}</a></p>`,
+    content[language].intro,
+    projectName ? `<p><strong>${content[language].projectLabel}:</strong> ${projectName}</p>` : '',
+    `<p>${content[language].viewDetails}: <a href="${url}">${url}</a></p>`,
   ].join('')
 
-  await sendEmail(recipients, text, '[risk-i] Riskiarvion käsittely aloitettu')
-  logger.info('Control report started notification sent', { entryId: entry.id, recipients })
+  await sendEmail(recipients, text, content[language].subject)
+  logger.info('Control report started notification sent', { entryId: entry.id, recipients, language })
 }
 
 export const sendStateDecisionEmail = async (entry: Entry, newState: string) => {
@@ -124,16 +142,30 @@ export const sendStateDecisionEmail = async (entry: Entry, newState: string) => 
     return
   }
 
+  const language = entry.language === 'fi' ? 'fi' : 'en'
   const projectName: string = entry.data.answers[3] || ''
   const url = `${USER_BASE_URL}/${entry.id}`
 
+  const content = {
+    fi: {
+      intro: 'Riskiarvio käsitelty',
+      viewDetails: 'katso tiedot osoitteesta',
+      projectLabel: 'Hankkeen nimi',
+      subject: '[risk-i] Riskiarvio käsitelty',
+    },
+    en: {
+      intro: 'Risk assessment reviewed',
+      viewDetails: 'view details at',
+      projectLabel: 'Project name',
+      subject: '[risk-i] Risk assessment reviewed',
+    },
+  }
+
   const text = [
-    `<p>Riskiarvio käsitelty, katso tiedot osoitteesta: <a href="${url}">${url}</a></p>`,
-    projectName ? `<p><strong>Hankkeen nimi:</strong> ${projectName}</p>` : '',
+    `<p>${content[language].intro}, ${content[language].viewDetails}: <a href="${url}">${url}</a></p>`,
+    projectName ? `<p><strong>${content[language].projectLabel}:</strong> ${projectName}</p>` : '',
   ].join('')
 
-  const subject = '[risk-i] Riskiarvio käsitelty'
-
-  await sendEmail(recipients, text, subject)
-  logger.info('State decision notification sent', { entryId: entry.id, newState, recipients })
+  await sendEmail(recipients, text, content[language].subject)
+  logger.info('State decision notification sent', { entryId: entry.id, newState, recipients, language })
 }

@@ -22,6 +22,7 @@ import {
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import AddIcon from '@mui/icons-material/Add'
+import InfoIcon from '@mui/icons-material/Info'
 import { useTranslation } from 'react-i18next'
 import { enqueueSnackbar } from 'notistack'
 
@@ -180,22 +181,31 @@ const ControlReports = ({
 
   return (
     <Box sx={cardStyles.nestedSubSection} data-testid="control-reports-section">
-      <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 1 }}>
-        {t('controlReport:title')}
-      </Typography>
       {parts && parts.length > 0 && (
-        <Box sx={{ mb: 2 }} data-testid="risk-threshold-parts">
-          <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 0.5 }}>
-            {t('controlReport:thresholdsExceeded')}
-          </Typography>
-          <Box component="ul" sx={{ mt: 0, pl: 3 }}>
-            {parts.map(part => (
-              <li key={part}>
-                <Typography variant="body2">{t(part)}</Typography>
-              </li>
-            ))}
+        <>
+          <Alert
+            severity="warning"
+            icon={<InfoIcon sx={{ fontSize: '2rem', mr: 1.5 }} />}
+            sx={{ mb: 2, '& .MuiAlert-icon': { alignItems: 'center' } }}
+            data-testid="threshold-notification"
+          >
+            <Typography variant="body1" sx={{ fontSize: '1.1rem' }}>
+              {t('controlReport:thresholdNotification')}
+            </Typography>
+          </Alert>
+          <Box sx={{ mb: 2 }} data-testid="risk-threshold-parts">
+            <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 0.5 }}>
+              {t('controlReport:thresholdsExceeded')}
+            </Typography>
+            <Box component="ul" sx={{ mt: 0, pl: 3 }}>
+              {parts.map(part => (
+                <li key={part}>
+                  <Typography variant="body2">{t(part)}</Typography>
+                </li>
+              ))}
+            </Box>
           </Box>
-        </Box>
+        </>
       )}
       {effectiveState && (
         <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1 }}>
