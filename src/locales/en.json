@@ -267,7 +267,7 @@
     "cancelButton": "Cancel",
     "confirmDelete": "Are you sure you want to delete this review entry?",
     "riskLevel3Required": "Review entries can only be added when risk thresholds have been exceeded.",
-    "adminOnly": "Review entries can only be added by administrators.",
+    "adminOnly": "Visible only to reviewers",
     "createdBy": "Created by",
     "lastUpdated": "Last updated",
     "noReports": "Not yet created.",

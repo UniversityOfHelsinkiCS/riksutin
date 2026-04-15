@@ -266,7 +266,7 @@
     "cancelButton": "Peruuta",
     "confirmDelete": "Haluatko varmasti poistaa tämän käsittelytoimenpideraportin?",
     "riskLevel3Required": "Käsittelytoimenpiteitä voidaan lisätä vain, kun riskikynnysarvot on ylitetty.",
-    "adminOnly": "Käsittelytoimenpiteitä voivat lisätä vain ylläpitäjät.",
+    "adminOnly": "Vain käsittelijöille näkyvä toimenpide",
     "createdBy": "Luonut",
     "lastUpdated": "Viimeksi päivitetty",
     "noReports": "Ei vielä luotu.",
