@@ -65,7 +65,7 @@ export const sendPendingEntryEmail = async (entryId: number, parts: string[], ri
   const funder: string = riskData.answers[32] || ''
 
   const text = [
-    '<p>Uusi tarkastelua vaativa riskiarvio luotu.</p>',
+    '<p>Uusi tarkastelua vaativa riskiarvio on luotu.</p>',
     `<p><strong>Hankkeen nimi:</strong> ${projectName}</p>`,
     `<p><strong>Yhteistyön muodot:</strong></p><ul>${collaborationFormsHtml}</ul>`,
     hasExternalFunding ? `<p><strong>Rahoittaja:</strong> ${funder}</p>` : '',
@@ -111,7 +111,7 @@ export const sendControlReportStartedEmail = async (entry: Entry) => {
   const content = {
     fi: {
       intro:
-        '<p>Tallentamasi riskiarvio ylittää yhden tai useamman määritellyn kynnysarvon. Riskiarviotasi on otettu asiantuntijaryhmän käsittelyym.</p>',
+        '<p>Tallentamasi riskiarvio ylittää yhden tai useamman määritellyn kynnysarvon. Riskiarviosi on otettu asiantuntijaryhmän käsittelyyn.</p>',
       projectLabel: 'Hankkeen nimi',
       viewDetails: 'Katso tiedot osoitteesta',
       subject: '[risk-i] Riskiarvion käsittely aloitettu',
