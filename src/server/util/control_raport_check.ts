@@ -50,7 +50,7 @@ const COLLABORATION_FORM_LABELS: Record<string, string> = {
 }
 
 export const sendPendingEntryEmail = async (entryId: number, parts: string[], riskData: RiskData) => {
-  const recipients = ['matti.luukkainen@helsinki.fi']
+  const recipients = ['matti.luukkainen@helsinki.fi', 'markus.laitinen@helsinki.fi']
   const BASE_URL = inProduction
     ? 'https://risk-i.helsinki.fi/admin'
     : 'https://riksutin.ext.ocp-test-0.k8s.it.helsinki.fi/admin/entry'
@@ -75,7 +75,7 @@ export const sendPendingEntryEmail = async (entryId: number, parts: string[], ri
 
   await sendEmail(recipients, text, '[risk-i] Uusi tarkastelua vaativa riskiarvio luotu')
   // eslint-disable-next-line no-console
-  console.log('MAIL SEND', text)
+  console.log('MAIL SEND', recipients, text)
 }
 
 const EXCLUDED_RECIPIENTS = ['testi.kayttaja@example.org']
