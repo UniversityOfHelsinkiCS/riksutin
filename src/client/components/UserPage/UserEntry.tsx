@@ -3,7 +3,6 @@ import {
   Alert,
   Box,
   Button,
-  Chip,
   Dialog,
   DialogActions,
   DialogContent,
@@ -127,7 +126,7 @@ const UserEntry = () => {
           </Alert>
         )}
         <Box sx={{ m: 3 }}>
-          <Box sx={{ width: '100%', my: 2, display: 'flex', gap: 1, alignItems: 'center' }}>
+          <Box sx={{ width: '100%', my: 2, display: 'flex', gap: 1, alignItems: 'center', flexWrap: 'wrap' }}>
             {!isAdminView && (
               <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
                 <Button variant="outlined">
@@ -163,14 +162,6 @@ const UserEntry = () => {
                   </Tooltip>
                 )
               })()}
-            {isAdminView && entry.language && (
-              <Chip
-                label={`${t('userPage:filledInLanguage')}: ${new Intl.DisplayNames([entry.language], { type: 'language' }).of(entry.language)}`}
-                size="small"
-                variant="outlined"
-                sx={{ ml: 'auto' }}
-              />
-            )}
           </Box>
           {CONTROL_REPORT_CHECK_ENABLED && entry.state && (
             <ControlReports
@@ -181,6 +172,7 @@ const UserEntry = () => {
               parts={getRiskParts(entry.data)}
               onUpdate={refetch}
               isAdminView={isAdminView}
+              entryLanguage={entry.language}
             />
           )}
           {CONTROL_REPORT_CHECK_ENABLED && isAdminView && !entry.state && (

@@ -152,7 +152,7 @@
     "deleteEntry": "Delete test version",
     "deleteConfirmation": "Are you sure you want to delete the test risk assessment '{{projectName}}'?",
     "deleteSuccess": "Test risk assessment deleted successfully",
-    "filledInLanguage": "Filled in language"
+    "filledInLanguage": "Risk assessment filled in language"
   },
   "editEntry": {
     "editingEntryInfo": "Editing entry from {{date}} {{time}}.",
@@ -258,6 +258,7 @@
   },
   "controlReport": {
     "thresholdNotification": "Your risk assessment has triggered the system for one or more items, which warrants a closer analysis by the University Services Risk Assessment Group. This Group will evaluate the identified risks and assists in their management. You can keep track of next steps through this form. You may also contact the Group by email: grp-risk-i@helsinki.fi",
+    "thresholdNotificationAdmin": "Submitted risk assessment exceeds one or more defined risk thresholds",
     "thresholdsExceeded": "Risk triggers",
     "subTitle": "Actions and comments by Risk Assessment Group",
     "addButton": "Add Review Entry",

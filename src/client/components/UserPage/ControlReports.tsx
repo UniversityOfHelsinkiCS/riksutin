@@ -41,6 +41,7 @@ interface ControlReportsProps {
   parts?: string[]
   onUpdate: () => void
   isAdminView?: boolean
+  entryLanguage?: string
 }
 
 const ControlReports = ({
@@ -51,6 +52,7 @@ const ControlReports = ({
   parts,
   onUpdate,
   isAdminView = false,
+  entryLanguage,
 }: ControlReportsProps) => {
   const { t } = useTranslation()
   const { user } = useLoggedInUser()
@@ -190,7 +192,7 @@ const ControlReports = ({
             data-testid="threshold-notification"
           >
             <Typography variant="body1" sx={{ fontSize: '1.1rem' }}>
-              {t('controlReport:thresholdNotification')}
+              {t(isAdminView ? 'controlReport:thresholdNotificationAdmin' : 'controlReport:thresholdNotification')}
             </Typography>
           </Alert>
           <Box sx={{ mb: 2 }} data-testid="risk-threshold-parts">
@@ -352,6 +354,16 @@ const ControlReports = ({
           >
             {t('controlReport:addButton')}
           </Button>
+        </Box>
+      )}
+
+      {isAdminView && entryLanguage && (
+        <Box sx={{ mt: 2 }}>
+          <Chip
+            label={`${t('userPage:filledInLanguage')}: ${new Intl.DisplayNames([entryLanguage], { type: 'language' }).of(entryLanguage)}`}
+            size="small"
+            variant="outlined"
+          />
         </Box>
       )}
 

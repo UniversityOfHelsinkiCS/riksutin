@@ -150,7 +150,7 @@
     "deleteEntry": "Poista testiversio",
     "deleteConfirmation": "Haluatko varmasti poistaa testiriskiarvion '{{projectName}}'?",
     "deleteSuccess": "Testiriskiarvio poistettu onnistuneesti",
-    "filledInLanguage": "Täytetty kielellä"
+    "filledInLanguage": "Riskiarvio täytetty kielellä"
   },
   "editEntry": {
     "editingEntryInfo": "Muokataan merkintää ajalta {{date}} {{time}}.",
@@ -257,6 +257,7 @@
   },
   "controlReport": {
     "thresholdNotification": "Tallentamasi riskiarvio ylittää yhden tai useamman työkaluun määritellyn kynnysarvon, mikä tarkoittaa arvion siirtymistä YPAn riskienarvioinnin asiantuntijaryhmän käsittelyyn. Asiantuntijaryhmä arvioi hankeen tunnistetut riskit ja auttaa arvioimaan niiden hallitsemista. Voit seurata asian käsittelyvaihetta tämän yhteenvedon avulla. Voit tarvittaessa ottaa yhteyttä ryhmään sähköpostitse: grp-risk-i@helsinki.fi",
+    "thresholdNotificationAdmin": "Talletettu riskiarvio ylittää yhden tai useamman työkaluun määritellyn kynnysarvon",
     "thresholdsExceeded": "Ylittyvät kynnysarvot",
     "subTitle": "Asiantuntijaryhmän toimenpiteet ja kommentit",
     "addButton": "Lisää Käsittelytoimenpide",
