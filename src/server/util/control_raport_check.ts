@@ -1,6 +1,7 @@
 import { ENTRY_STATES } from '@common/entryStates'
 import { getRiskParts } from '@common/getRiskParts'
 import { inProduction } from '@config'
+import { CONTROL_REPORT_CHECK_DISABLED } from './config'
 import sendEmail from './mailer'
 import i18n from './i18n'
 import logger from './logger'
@@ -10,7 +11,10 @@ import { Entry, User } from '@dbmodels'
 
 const HIGH_RISK_COUNTRY_CODES = ['IL', 'RU', 'BY']
 
-export const controlRaportCheck = (data: RiskData): { state: string | undefined; parts: string[] } => {
+export const controlRaportCheck = (
+  data: RiskData,
+  testVersion = false
+): { state: string | undefined; parts: string[] } => {
   const totalRisk = (data as any)?.risks?.find((r: any) => r.id === 'total')?.level
   const total = totalRisk > 2
 
@@ -31,9 +35,11 @@ export const controlRaportCheck = (data: RiskData): { state: string | undefined;
     total || highEconomicRisk || nonEuroCurrency || highDualUseRisk || highGdprRisk || highRiskCountry
 
   const parts = getRiskParts(data)
+  const calculatedState = shouldBePending ? ENTRY_STATES.PENDING : undefined
+  const state = testVersion || CONTROL_REPORT_CHECK_DISABLED ? undefined : calculatedState
 
   return {
-    state: shouldBePending ? ENTRY_STATES.PENDING : undefined,
+    state,
     parts,
   }
 }
@@ -50,7 +56,7 @@ const COLLABORATION_FORM_LABELS: Record<string, string> = {
 }
 
 export const sendPendingEntryEmail = async (entryId: number, parts: string[], riskData: RiskData) => {
-  const recipients = ['matti.luukkainen@helsinki.fi', 'markus.laitinen@helsinki.fi']
+  const recipients = ['matti.luukkainen@helsinki.fi'] //, 'markus.laitinen@helsinki.fi']
   const BASE_URL = inProduction
     ? 'https://risk-i.helsinki.fi/admin'
     : 'https://riksutin.ext.ocp-test-0.k8s.it.helsinki.fi/admin/entry'
