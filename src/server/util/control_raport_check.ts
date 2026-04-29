@@ -85,7 +85,7 @@ export const sendPendingEntryEmail = async (entryId: number, parts: string[], ri
 
   await sendEmail(recipients, text, '[risk-i] Uusi tarkastelua vaativa riskiarvio luotu')
   // eslint-disable-next-line no-console
-  console.log('MAIL SEND', recipients, text)
+  console.log('PENDING MAIL SEND TO ADMINS', recipients, text)
 }
 
 const EXCLUDED_RECIPIENTS = ['testi.kayttaja@example.org']
@@ -141,6 +141,8 @@ export const sendControlReportStartedEmail = async (entry: Entry) => {
   ].join('')
 
   await sendEmail(recipients, text, content[language].subject)
+  // eslint-disable-next-line no-console
+  console.log('PROCESS STARTED MAIL SEND TO', recipients, text)
   logger.info('Control report started notification sent', { entryId: entry.id, recipients, language })
 }
 
@@ -176,5 +178,7 @@ export const sendStateDecisionEmail = async (entry: Entry, newState: string) => 
   ].join('')
 
   await sendEmail(recipients, text, content[language].subject)
+  // eslint-disable-next-line no-console
+  console.log('PROCESS DECIDED MAIL SEND TO', recipients, text)
   logger.info('State decision notification sent', { entryId: entry.id, newState, recipients, language })
 }
