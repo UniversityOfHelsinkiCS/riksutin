@@ -60,7 +60,15 @@ const COLLABORATION_FORM_LABELS: Record<string, string> = {
 }
 
 export const sendPendingEntryEmail = async (entryId: number, parts: string[], riskData: RiskData) => {
-  const recipients = ['matti.luukkainen@helsinki.fi'] //, 'markus.laitinen@helsinki.fi']
+  const recipients = ['matti.luukkainen@helsinki.fi']
+  if (inProduction) {
+    if (!CONTROL_REPORT_CHECK_DISABLED) {
+      recipients.push('grp-risk-i@helsinki.fi')
+    }
+  } else {
+    recipients.push('markus.laitinen@helsinki.fi')
+  }
+
   const BASE_URL = inProduction
     ? 'https://risk-i.helsinki.fi/admin'
     : 'https://riksutin.ext.ocp-test-0.k8s.it.helsinki.fi/admin/entry'
