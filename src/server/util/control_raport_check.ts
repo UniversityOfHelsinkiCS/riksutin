@@ -121,16 +121,16 @@ export const sendControlReportStartedEmail = async (entry: Entry) => {
   const content = {
     fi: {
       intro:
-        '<p>Tallentamasi riskiarvio ylittää yhden tai useamman määritellyn kynnysarvon. Riskiarviosi on otettu asiantuntijaryhmän käsittelyyn.</p>',
+        `<p>RISK-I -työkalulla tallentamasi riskiarvio ylittää yhden tai useamman määritellyn kynnysarvon eli sen riskitaso on arvioitu korkeaksi. Riskiarviosi on sen takia otettu yliopistopalveluiden riskienarvioinnin ja -hallinnan asiantuntijaryhmän käsittelyyn.  Asiantuntijaryhmän tehtävänä on auttaa sinua varmistamaan, että tunnistetut riskit on hallittu. Ryhmän edustaja joko ottaa sinuun yhteyttä tai kuittaa asian valmiiksi kahden viikon sisällä. Voit seurata asian etenemistä laatimastasi arviosta <a href="${url}">${url}</a>.</p>` +
+        '<p>Tutustu yliopiston <a href="https://flamma.helsinki.fi/fi/group/kansainvalisyys/vastuullinen-kansainvalinen-yhteistyo#menu1-2">ohjeistukseen</a> vastuullisen kansainvälisyyden toteuttamisesta erityisesti niiden asioiden osalta, joissa yhteistyösi riskitaso on kohonnut.</p>',
       projectLabel: 'Hankkeen nimi',
-      viewDetails: 'Katso tiedot osoitteesta',
       subject: '[risk-i] Riskiarvion käsittely aloitettu',
     },
     en: {
       intro:
-        '<p>Your risk assessment has triggered one or more risk thresholds. Your assessment is being reviewed by the expert group.</p>',
+        `<p>The risk assessment you completed using RISK-I has exceeded one or more risk thresholds. As a result, your submission will require further review by the University Services' Risk Assessment and Management Group. This group will assist you in ensuring that any elevated risks are appropriately managed. A member of the group will contact you, or confirm that the risks have been addressed, within two weeks. You can monitor the progress of your submission by reviewing it at <a href="${url}">${url}</a>.</p>` +
+        '<p>Please also review the <a href="https://flamma.helsinki.fi/en/group/kansainvalisyys/vastuullinen-kansainvalinen-yhteistyo#menu1-2">guidelines</a> for responsible internationalisation, paying particular attention to the areas identified as having elevated risk levels.</p>',
       projectLabel: 'Project name',
-      viewDetails: 'View details at',
       subject: '[risk-i] Risk assessment review started',
     },
   }
@@ -138,7 +138,6 @@ export const sendControlReportStartedEmail = async (entry: Entry) => {
   const text = [
     content[language].intro,
     projectName ? `<p><strong>${content[language].projectLabel}:</strong> ${projectName}</p>` : '',
-    `<p>${content[language].viewDetails}: <a href="${url}">${url}</a></p>`,
   ].join('')
 
   await sendEmail(recipients, text, content[language].subject)
