@@ -62,13 +62,10 @@ const getHumanDevelopmentApi = async (name: string | undefined, id: string | und
 }
 
 const getHumanDevelopmentLocal = (name: string | undefined, id: string | undefined) => {
-  console.log(name, id)
-
   try {
     const hdiFilePath = path.join(__dirname, 'hdi.json')
     const hdiData = JSON.parse(fs.readFileSync(hdiFilePath, 'utf8'))
     const countryData = hdiData.find(c => c.countryIsoCode === id)
-    console.log(countryData)
 
     const recordIndex = Number(countryData.value)
     const level1 = 64

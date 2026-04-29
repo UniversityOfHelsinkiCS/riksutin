@@ -36,10 +36,14 @@ export const controlRaportCheck = (
 
   const parts = getRiskParts(data)
   const calculatedState = shouldBePending ? ENTRY_STATES.PENDING : undefined
-  const state = testVersion || CONTROL_REPORT_CHECK_DISABLED ? undefined : calculatedState
+
+  const responsibleMail = data.answers?.['2']?.email
+
+  const doNotSetState =
+    testVersion || (CONTROL_REPORT_CHECK_DISABLED && responsibleMail !== 'matti.luukkainen@helsinki.fi')
 
   return {
-    state,
+    state: doNotSetState ? undefined : calculatedState,
     parts,
   }
 }
