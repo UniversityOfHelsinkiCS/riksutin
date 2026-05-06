@@ -70,7 +70,7 @@ export const sendPendingEntryEmail = async (entryId: number, parts: string[], ri
   }
 
   const BASE_URL = inProduction
-    ? 'https://risk-i.helsinki.fi/admin'
+    ? 'https://risk-i.helsinki.fi/admin/entry'
     : 'https://riksutin.ext.ocp-test-0.k8s.it.helsinki.fi/admin/entry'
   const url = `${BASE_URL}/${entryId}`
   const t = i18n.getFixedT('fi')
