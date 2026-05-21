@@ -7,27 +7,26 @@ const loginRouter = express.Router()
 
 const fallbackUrl = PUBLIC_URL.length > 0 ? PUBLIC_URL : '/'
 
-const getSafeReturnUrl = (rawReturnUrl: unknown, req: express.Request) => {
+const getSafeReturnUrl = (rawReturnUrl: unknown) => {
   if (typeof rawReturnUrl !== 'string' || !rawReturnUrl) {
     return fallbackUrl
   }
 
-  try {
-    const requestHost = req.get('x-forwarded-host') ?? req.get('host')
-    const parsedUrl = new URL(rawReturnUrl, `http://${requestHost}`)
+  if (rawReturnUrl.startsWith('/') && !rawReturnUrl.startsWith('//')) {
+    return rawReturnUrl
+  }
 
-    if (!requestHost || parsedUrl.host !== requestHost) {
-      return fallbackUrl
-    }
+  try {
+    const parsedUrl = new URL(rawReturnUrl)
 
     return `${parsedUrl.pathname}${parsedUrl.search}${parsedUrl.hash}`
   } catch {
-    return rawReturnUrl.startsWith('/') && !rawReturnUrl.startsWith('//') ? rawReturnUrl : fallbackUrl
+    return fallbackUrl
   }
 }
 
 loginRouter.get('/', (req, res, next) => {
-  req.session.returnUrl = getSafeReturnUrl(req.query.returnUrl, req)
+  req.session.returnUrl = getSafeReturnUrl(req.query.returnUrl)
   passport.authenticate('oidc')(req, res, next)
 })
 
