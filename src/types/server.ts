@@ -9,6 +9,7 @@ import type {
 } from '@types'
 
 import { Request } from 'express'
+import 'express-session'
 import { Entry } from '@dbmodels'
 
 type Region = {
@@ -196,4 +197,10 @@ export interface MyResearchData {
 
 export type Error = {
   error: string
+}
+
+declare module 'express-session' {
+  interface SessionData {
+    returnUrl?: string
+  }
 }

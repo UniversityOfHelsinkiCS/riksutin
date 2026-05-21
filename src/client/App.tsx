@@ -19,7 +19,7 @@ const App = () => {
     return null
   }
   if (!user?.id) {
-    const returnUrl = encodeURIComponent(window.location.pathname + window.location.search)
+    const returnUrl = encodeURIComponent(window.location.href)
     window.location.href = `${FULL_URL}/api/login?returnUrl=${returnUrl}`
     return null
   }
