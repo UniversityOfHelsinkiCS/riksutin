@@ -7,6 +7,8 @@ Riksutin (officially known as **Risk-i** or **International collaboration risk a
 - Install npm, docker and docker compose
 - Clone the repository
 - Copy `.env.template` as `.env` file and fill in the required values
+- Install safe-chain: `curl -fsSL https://github.com/AikidoSec/safe-chain/releases/latest/download/install-safe-chain.sh | sh`
+- Restart terminal and verify: `npm safe-chain-verify`
 - Run `npm i` and `npm start` to setup and start the development environment
 
 ## Running tests locally (and in CI)

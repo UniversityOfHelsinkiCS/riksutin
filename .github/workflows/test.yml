@@ -8,6 +8,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install safe-chain
+        run: |
+          curl -fsSL https://github.com/AikidoSec/safe-chain/releases/latest/download/install-safe-chain.sh | sh -s -- --ci
+          echo "$HOME/.safe-chain/shims" >> $GITHUB_PATH
+          echo "$HOME/.safe-chain/bin" >> $GITHUB_PATH
+      - name: Verify safe-chain
+        run: npm safe-chain-verify
       - name: Build project for eslint
         run: npm ci
       - name: Run eslint
@@ -22,6 +32,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+
+      - name: Install safe-chain
+        run: |
+          curl -fsSL https://github.com/AikidoSec/safe-chain/releases/latest/download/install-safe-chain.sh | sh -s -- --ci
+          echo "$HOME/.safe-chain/shims" >> $GITHUB_PATH
+          echo "$HOME/.safe-chain/bin" >> $GITHUB_PATH
+
+      - name: Verify safe-chain
+        run: npm safe-chain-verify
 
       - name: Install dependencies
         run: npm ci --workspaces
