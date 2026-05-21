@@ -5,18 +5,18 @@ import { PUBLIC_URL } from '@config'
 
 const loginRouter = express.Router()
 
-const getSafeReturnUrl = (rawReturnUrl: unknown, req: express.Request) => {
-  const fallbackUrl = PUBLIC_URL || '/'
+const fallbackUrl = PUBLIC_URL.length > 0 ? PUBLIC_URL : '/'
 
+const getSafeReturnUrl = (rawReturnUrl: unknown, req: express.Request) => {
   if (typeof rawReturnUrl !== 'string' || !rawReturnUrl) {
     return fallbackUrl
   }
 
   try {
-    const currentOrigin = `${req.protocol}://${req.get('host')}`
-    const parsedUrl = new URL(rawReturnUrl, currentOrigin)
+    const requestHost = req.get('x-forwarded-host') ?? req.get('host')
+    const parsedUrl = new URL(rawReturnUrl, `http://${requestHost}`)
 
-    if (parsedUrl.origin !== currentOrigin) {
+    if (!requestHost || parsedUrl.host !== requestHost) {
       return fallbackUrl
     }
 
@@ -31,8 +31,7 @@ loginRouter.get('/', (req, res, next) => {
   passport.authenticate('oidc')(req, res, next)
 })
 
-loginRouter.get('/callback', passport.authenticate('oidc', { failureRedirect: PUBLIC_URL || '/' }), (req, res) => {
-  const fallbackUrl = PUBLIC_URL.length > 0 ? PUBLIC_URL : '/'
+loginRouter.get('/callback', passport.authenticate('oidc', { failureRedirect: fallbackUrl }), (req, res) => {
   const returnUrl = req.session?.returnUrl ?? fallbackUrl
   delete req.session.returnUrl
   res.redirect(returnUrl)
