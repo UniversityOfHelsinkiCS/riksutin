@@ -12,6 +12,7 @@ export interface InstanceExports {
   appName: string
   contactEmail: string
   supportEmail: string
+  expertGroupEmail: string
 
   DEFAULT_SURVEY_NAME: string
   PUBLIC_URL: string
@@ -28,6 +29,7 @@ const defaults: InstanceExports = {
   appName: 'Riskiarviointi',
   contactEmail: '',
   supportEmail: 'grp-int-risks@helsinki.fi',
+  expertGroupEmail: 'grp-risk-i@helsinki.fi',
 
   DEFAULT_SURVEY_NAME: process.env.DEFAULT_SURVEY_NAME ?? 'testSurvey',
   PUBLIC_URL: process.env.PUBLIC_URL ?? '',
@@ -44,6 +46,7 @@ export const {
   appName,
   contactEmail,
   supportEmail,
+  expertGroupEmail,
 
   DEFAULT_SURVEY_NAME,
   PUBLIC_URL,

@@ -1,6 +1,6 @@
 import { ENTRY_STATES } from '@common/entryStates'
 import { getRiskParts } from '@common/getRiskParts'
-import { inProduction } from '@config'
+import { expertGroupEmail, inProduction } from '@config'
 import { CONTROL_REPORT_CHECK_DISABLED } from './config'
 import sendEmail from './mailer'
 import i18n from './i18n'
@@ -66,7 +66,7 @@ export const sendPendingEntryEmail = async (entryId: number, parts: string[], ri
   const recipients = ['matti.luukkainen@helsinki.fi']
   if (inProduction) {
     if (!CONTROL_REPORT_CHECK_DISABLED) {
-      recipients.push('grp-risk-i@helsinki.fi')
+      recipients.push(expertGroupEmail)
     }
   } else {
     recipients.push('markus.laitinen@helsinki.fi')

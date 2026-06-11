@@ -2,11 +2,12 @@ import { Entry, EntryStateChange } from '@dbmodels'
 import { Op } from 'sequelize'
 
 import { ENTRY_STATES } from '@common/entryStates'
+import { expertGroupEmail } from '@config'
 import logger from '../../logger'
 import scheduleCronJob from '../schedule'
 import sendEmail from '../../mailer'
 
-const RECIPIENT = 'matti.luukkainen@helsinki.fi'
+const RECIPIENTS = ['matti.luukkainen@helsinki.fi', expertGroupEmail]
 const APP_URL = 'risk-i.helsinki.fi'
 
 const weeksAgo = (weeks: number): Date => {
@@ -29,7 +30,7 @@ const formatEntryLine = (entry: Entry): string => {
 }
 
 const getPendingEntries = async (): Promise<Entry[]> => {
-  const TWO = 0
+  const TWO = 2
   const twoWeeksAgo = weeksAgo(TWO)
 
   const staleStateChanges = await EntryStateChange.findAll({
@@ -66,11 +67,11 @@ const runPendingCheck = async (): Promise<void> => {
   const text = `<p>Seuraavien riskiarvioiden luomisesta on kulunut yli kaksi viikkoa:</p><ul>${lines}</ul>`
 
   logger.info(`stateMonitor: sending PENDING alert for ${entries.length} entries`)
-  await sendEmail([RECIPIENT], text, subject)
+  await sendEmail(RECIPIENTS, text, subject)
 }
 
 const getExpertGroupEntries = async (): Promise<Entry[]> => {
-  const FOUR = 0
+  const FOUR = 4
   const fourWeeksAgo = weeksAgo(FOUR)
 
   const oldPendingChanges = await EntryStateChange.findAll({
@@ -107,7 +108,7 @@ export const runExpertGroupCheck = async (): Promise<void> => {
   const text = `<p>Seuraavien riskiarvioiden käsittely on kestänyt jo yli neljä viikkoa:</p><ul>${lines}</ul>`
 
   logger.info(`stateMonitor: sending EXPERT_GROUP alert for ${entries.length} entries`)
-  await sendEmail([RECIPIENT], text, subject)
+  await sendEmail(RECIPIENTS, text, subject)
 }
 
 export const runCombinedReport = async (): Promise<void> => {
@@ -136,7 +137,7 @@ export const runCombinedReport = async (): Promise<void> => {
   logger.info(
     `stateMonitor: sending combined report (pending=${pendingEntries.length}, expertGroup=${expertEntries.length})`
   )
-  await sendEmail([RECIPIENT], text, subject)
+  await sendEmail(RECIPIENTS, text, subject)
 }
 
 export const run = async (): Promise<void> => {
