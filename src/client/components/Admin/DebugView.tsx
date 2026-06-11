@@ -112,6 +112,22 @@ const AdminDebugView = () => {
     }
   }
 
+  const handleStateMonitor = async () => {
+    if (!window.confirm('Run state monitor job now? This will send emails if stale entries are found.')) {
+      return
+    }
+    try {
+      const response = await fetch('/api/debug/state-monitor', { method: 'POST' })
+      if (response.ok) {
+        addMessage('success', 'State monitor job completed')
+      } else {
+        addMessage('error', `Failed to run state monitor: ${response.statusText}`)
+      }
+    } catch (error) {
+      addMessage('error', `Error running state monitor: ${error}`)
+    }
+  }
+
   const handleTestEmail = async () => {
     if (!window.confirm('Send test email to matti.luukkainen@helsinki.fi?')) {
       return
@@ -300,6 +316,21 @@ const AdminDebugView = () => {
           }}
         >
           Cache Debug
+        </button>
+        <button
+          onClick={handleStateMonitor}
+          style={{
+            padding: '10px 15px',
+            backgroundColor: '#0d6efd',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            fontSize: '14px',
+            marginTop: 20,
+          }}
+        >
+          Run State Monitor
         </button>
         <button
           onClick={handleTestEmail}

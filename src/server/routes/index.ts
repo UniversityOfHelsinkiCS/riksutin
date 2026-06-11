@@ -25,6 +25,7 @@ import adminHandler from '../middleware/admin'
 import myResearchApiRouter from './myResearchApi'
 import seed from '../db/seeders'
 import sendEmail from '../util/mailer'
+import { run as runStateMonitor } from '../util/cron/stateMonitor/stateMonitor'
 
 const router = express()
 
@@ -57,6 +58,10 @@ router.get('/explode', adminHandler, () => {
 router.post('/seed', adminHandler, async (_, res) => {
   await seed()
   res.send('Database seeded successfully')
+})
+router.post('/debug/state-monitor', adminHandler, async (_, res) => {
+  await runStateMonitor()
+  res.send('State monitor job completed')
 })
 router.post('/debug/test-email', adminHandler, async (_, res) => {
   await sendEmail(
