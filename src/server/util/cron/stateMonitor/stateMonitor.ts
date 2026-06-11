@@ -28,7 +28,7 @@ const formatEntryLine = (entry: Entry): string => {
   return `<li><strong>${projectName}</strong>: <a href="${url}">${url}</a></li>`
 }
 
-const runPendingCheck = async (): Promise<void> => {
+const getPendingEntries = async (): Promise<Entry[]> => {
   const twoWeeksAgo = weeksAgo(0)
 
   const staleStateChanges = await EntryStateChange.findAll({
@@ -39,18 +39,21 @@ const runPendingCheck = async (): Promise<void> => {
   })
 
   if (staleStateChanges.length === 0) {
-    logger.info('stateMonitor: no stale PENDING entries found')
-    return
+    return []
   }
 
   const entryIds = staleStateChanges.map(sc => sc.entryId)
 
-  const entries = await Entry.findAll({
+  return Entry.findAll({
     where: {
       id: { [Op.in]: entryIds },
       state: ENTRY_STATES.PENDING,
     },
   })
+}
+
+const runPendingCheck = async (): Promise<void> => {
+  const entries = await getPendingEntries()
 
   if (entries.length === 0) {
     logger.info('stateMonitor: no entries still in PENDING state')
@@ -65,7 +68,7 @@ const runPendingCheck = async (): Promise<void> => {
   await sendEmail([RECIPIENT], text, subject)
 }
 
-export const runExpertGroupCheck = async (): Promise<void> => {
+const getExpertGroupEntries = async (): Promise<Entry[]> => {
   const fourWeeksAgo = weeksAgo(1)
 
   const oldPendingChanges = await EntryStateChange.findAll({
@@ -76,18 +79,21 @@ export const runExpertGroupCheck = async (): Promise<void> => {
   })
 
   if (oldPendingChanges.length === 0) {
-    logger.info('stateMonitor: no entries entered PENDING 4+ weeks ago')
-    return
+    return []
   }
 
   const entryIds = oldPendingChanges.map(sc => sc.entryId)
 
-  const entries = await Entry.findAll({
+  return Entry.findAll({
     where: {
       id: { [Op.in]: entryIds },
       state: ENTRY_STATES.EXPERT_GROUP,
     },
   })
+}
+
+export const runExpertGroupCheck = async (): Promise<void> => {
+  const entries = await getExpertGroupEntries()
 
   if (entries.length === 0) {
     logger.info('stateMonitor: no entries in EXPERT_GROUP that entered PENDING 4+ weeks ago')
@@ -95,7 +101,7 @@ export const runExpertGroupCheck = async (): Promise<void> => {
   }
 
   const lines = entries.map(formatEntryLine).join('')
-  const subject = 'Risk-i: jo yli neljä viikkoa kestäneitä riskiarvion käsittelyjä'
+  const subject = 'Risk-i: käsittelemättömiä riskiarvioita'
   const text = `<p>Seuraavien riskiarvioiden käsittely on kestänyt jo yli neljä viikkoa:</p><ul>${lines}</ul>`
 
   logger.info(`stateMonitor: sending EXPERT_GROUP alert for ${entries.length} entries`)
@@ -103,13 +109,42 @@ export const runExpertGroupCheck = async (): Promise<void> => {
 }
 
 export const run = async (): Promise<void> => {
+  if (isFirstMondayOfMonth()) {
+    logger.info('stateMonitor: first Monday of month — sending combined weekly/monthly report')
+
+    const [pendingEntries, expertEntries] = await Promise.all([getPendingEntries(), getExpertGroupEntries()])
+
+    if (pendingEntries.length === 0 && expertEntries.length === 0) {
+      logger.info('stateMonitor: no entries found for combined first Monday report')
+      return
+    }
+
+    const sections: string[] = []
+
+    if (pendingEntries.length > 0) {
+      const pendingLines = pendingEntries.map(formatEntryLine).join('')
+      sections.push(`<p>Seuraavien riskiarvioiden luomisesta on kulunut yli kaksi viikkoa:</p><ul>${pendingLines}</ul>`)
+    }
+
+    if (expertEntries.length > 0) {
+      const expertLines = expertEntries.map(formatEntryLine).join('')
+      sections.push(
+        `<p>Seuraavien riskiarvioiden käsittely on kestänyt jo yli neljä viikkoa:</p><ul>${expertLines}</ul>`
+      )
+    }
+
+    const subject = 'Risk-i: viikko- ja kuukausiseuranta riskiarvioille'
+    const text = sections.join('')
+
+    logger.info(
+      `stateMonitor: sending combined report (pending=${pendingEntries.length}, expertGroup=${expertEntries.length})`
+    )
+    await sendEmail([RECIPIENT], text, subject)
+    return
+  }
+
   logger.info('stateMonitor: running weekly PENDING check')
   await runPendingCheck()
-
-  if (isFirstMondayOfMonth()) {
-    logger.info('stateMonitor: first Monday of month — running EXPERT_GROUP check')
-    await runExpertGroupCheck()
-  }
 }
 
 const startStateMonitorCron = (): void => {
