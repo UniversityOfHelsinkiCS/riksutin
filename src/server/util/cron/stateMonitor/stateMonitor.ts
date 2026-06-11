@@ -24,7 +24,8 @@ const entryLink = (entryId: number): string => `https://${APP_URL}/admin/entries
 
 const formatEntryLine = (entry: Entry): string => {
   const projectName: string = entry.data?.answers?.[3] ?? `Entry #${entry.id}`
-  return `  - ${projectName}: ${entryLink(entry.id)}`
+  const url = entryLink(entry.id)
+  return `<li><strong>${projectName}</strong>: <a href="${url}">${url}</a></li>`
 }
 
 const runPendingCheck = async (): Promise<void> => {
@@ -56,16 +57,16 @@ const runPendingCheck = async (): Promise<void> => {
     return
   }
 
-  const lines = entries.map(formatEntryLine).join('\n')
-  const subject = 'Risk-i: Entries stuck in PENDING state for 2+ weeks'
-  const text = `The following entries have been in PENDING state for at least 2 weeks:\n\n${lines}\n`
+  const lines = entries.map(formatEntryLine).join('')
+  const subject = 'Risk-i: käsittelemättömiä riskiarvioita'
+  const text = `<p>Seuraavien riskiarvioiden luomisesta on kulunut yli kaksi viikkoa:</p><ul>${lines}</ul>`
 
   logger.info(`stateMonitor: sending PENDING alert for ${entries.length} entries`)
   await sendEmail([RECIPIENT], text, subject)
 }
 
-const runExpertGroupCheck = async (): Promise<void> => {
-  const fourWeeksAgo = weeksAgo(2)
+export const runExpertGroupCheck = async (): Promise<void> => {
+  const fourWeeksAgo = weeksAgo(1)
 
   const oldPendingChanges = await EntryStateChange.findAll({
     where: {
@@ -93,9 +94,9 @@ const runExpertGroupCheck = async (): Promise<void> => {
     return
   }
 
-  const lines = entries.map(formatEntryLine).join('\n')
-  const subject = 'Risk-i: Entries in EXPERT_GROUP state — entered PENDING 4+ weeks ago'
-  const text = `The following entries entered PENDING state more than 4 weeks ago and are currently in EXPERT_GROUP state:\n\n${lines}\n`
+  const lines = entries.map(formatEntryLine).join('')
+  const subject = 'Risk-i: jo yli neljä viikkoa kestäneitä riskiarvion käsittelyjä'
+  const text = `<p>Seuraavien riskiarvioiden käsittely on kestänyt jo yli neljä viikkoa:</p><ul>${lines}</ul>`
 
   logger.info(`stateMonitor: sending EXPERT_GROUP alert for ${entries.length} entries`)
   await sendEmail([RECIPIENT], text, subject)

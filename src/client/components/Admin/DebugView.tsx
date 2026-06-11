@@ -128,6 +128,22 @@ const AdminDebugView = () => {
     }
   }
 
+  const handleStateMonitorMonthly = async () => {
+    if (!window.confirm('Run monthly (expert group) state monitor check now?')) {
+      return
+    }
+    try {
+      const response = await fetch('/api/debug/state-monitor-monthly', { method: 'POST' })
+      if (response.ok) {
+        addMessage('success', 'State monitor monthly check completed')
+      } else {
+        addMessage('error', `Failed to run monthly check: ${response.statusText}`)
+      }
+    } catch (error) {
+      addMessage('error', `Error running monthly check: ${error}`)
+    }
+  }
+
   const handleTestEmail = async () => {
     if (!window.confirm('Send test email to matti.luukkainen@helsinki.fi?')) {
       return
@@ -330,7 +346,21 @@ const AdminDebugView = () => {
             marginTop: 20,
           }}
         >
-          Run State Monitor
+          Run State Monitor (weekly)
+        </button>
+        <button
+          onClick={handleStateMonitorMonthly}
+          style={{
+            padding: '10px 15px',
+            backgroundColor: '#0d6efd',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            fontSize: '14px',
+          }}
+        >
+          Run State Monitor (monthly)
         </button>
         <button
           onClick={handleTestEmail}
