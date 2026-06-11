@@ -131,7 +131,7 @@ export const runCombinedReport = async (): Promise<void> => {
     sections.push(`<p>Seuraavien riskiarvioiden käsittely on kestänyt jo yli neljä viikkoa:</p><ul>${expertLines}</ul>`)
   }
 
-  const subject = 'Risk-i: viikko- ja kuukausiseuranta riskiarvioille'
+  const subject = 'Risk-i: käsittelemättömiä riskiarvioita'
   const text = sections.join('')
 
   logger.info(
