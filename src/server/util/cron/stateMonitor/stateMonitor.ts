@@ -110,38 +110,39 @@ export const runExpertGroupCheck = async (): Promise<void> => {
   await sendEmail([RECIPIENT], text, subject)
 }
 
+export const runCombinedReport = async (): Promise<void> => {
+  const [pendingEntries, expertEntries] = await Promise.all([getPendingEntries(), getExpertGroupEntries()])
+
+  if (pendingEntries.length === 0 && expertEntries.length === 0) {
+    logger.info('stateMonitor: no entries found for combined report')
+    return
+  }
+
+  const sections: string[] = []
+
+  if (pendingEntries.length > 0) {
+    const pendingLines = pendingEntries.map(formatEntryLine).join('')
+    sections.push(`<p>Seuraavien riskiarvioiden luomisesta on kulunut yli kaksi viikkoa:</p><ul>${pendingLines}</ul>`)
+  }
+
+  if (expertEntries.length > 0) {
+    const expertLines = expertEntries.map(formatEntryLine).join('')
+    sections.push(`<p>Seuraavien riskiarvioiden käsittely on kestänyt jo yli neljä viikkoa:</p><ul>${expertLines}</ul>`)
+  }
+
+  const subject = 'Risk-i: viikko- ja kuukausiseuranta riskiarvioille'
+  const text = sections.join('')
+
+  logger.info(
+    `stateMonitor: sending combined report (pending=${pendingEntries.length}, expertGroup=${expertEntries.length})`
+  )
+  await sendEmail([RECIPIENT], text, subject)
+}
+
 export const run = async (): Promise<void> => {
   if (isFirstMondayOfMonth()) {
     logger.info('stateMonitor: first Monday of month — sending combined weekly/monthly report')
-
-    const [pendingEntries, expertEntries] = await Promise.all([getPendingEntries(), getExpertGroupEntries()])
-
-    if (pendingEntries.length === 0 && expertEntries.length === 0) {
-      logger.info('stateMonitor: no entries found for combined first Monday report')
-      return
-    }
-
-    const sections: string[] = []
-
-    if (pendingEntries.length > 0) {
-      const pendingLines = pendingEntries.map(formatEntryLine).join('')
-      sections.push(`<p>Seuraavien riskiarvioiden luomisesta on kulunut yli kaksi viikkoa:</p><ul>${pendingLines}</ul>`)
-    }
-
-    if (expertEntries.length > 0) {
-      const expertLines = expertEntries.map(formatEntryLine).join('')
-      sections.push(
-        `<p>Seuraavien riskiarvioiden käsittely on kestänyt jo yli neljä viikkoa:</p><ul>${expertLines}</ul>`
-      )
-    }
-
-    const subject = 'Risk-i: viikko- ja kuukausiseuranta riskiarvioille'
-    const text = sections.join('')
-
-    logger.info(
-      `stateMonitor: sending combined report (pending=${pendingEntries.length}, expertGroup=${expertEntries.length})`
-    )
-    await sendEmail([RECIPIENT], text, subject)
+    await runCombinedReport()
     return
   }
 

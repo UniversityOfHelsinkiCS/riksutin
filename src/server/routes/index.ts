@@ -25,7 +25,7 @@ import adminHandler from '../middleware/admin'
 import myResearchApiRouter from './myResearchApi'
 import seed from '../db/seeders'
 import sendEmail from '../util/mailer'
-import { run as runStateMonitor, runExpertGroupCheck } from '../util/cron/stateMonitor/stateMonitor'
+import { run as runStateMonitor, runCombinedReport } from '../util/cron/stateMonitor/stateMonitor'
 
 const router = express()
 
@@ -64,8 +64,8 @@ router.post('/debug/state-monitor', adminHandler, async (_, res) => {
   res.send('State monitor job completed')
 })
 router.post('/debug/state-monitor-monthly', adminHandler, async (_, res) => {
-  await runExpertGroupCheck()
-  res.send('State monitor monthly (expert group) check completed')
+  await runCombinedReport()
+  res.send('State monitor monthly combined check completed')
 })
 router.post('/debug/test-email', adminHandler, async (_, res) => {
   await sendEmail(
