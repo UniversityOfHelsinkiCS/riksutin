@@ -70,7 +70,7 @@ const runPendingCheck = async (): Promise<void> => {
 }
 
 const getExpertGroupEntries = async (): Promise<Entry[]> => {
-  const FOUR = 1
+  const FOUR = 0
   const fourWeeksAgo = weeksAgo(FOUR)
 
   const oldPendingChanges = await EntryStateChange.findAll({
