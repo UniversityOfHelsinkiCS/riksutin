@@ -304,7 +304,7 @@
   "riskComponent": {
     "total": "Overall collaboration risk level 3",
     "economicRisk": "Overall economic risk level 3",
-    "nonEuroCurrency": "Use of currency other than euro",
+    "ethicalRisk": "Ethical risk level 2 or 3",
     "dualUseRisk": "Dual-use risk level 3",
     "gdprRisk": "Risk level 3 for personal data transferred outside the EU",
     "highRiskCountry": "Partner country/countries include Israel, Russia or Belarus"

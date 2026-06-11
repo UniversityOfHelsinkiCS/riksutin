@@ -108,13 +108,28 @@ test.describe('dryrun state and parts calculation', () => {
     })
 
     expect(result.state).toBeUndefined()
-    expect(result.parts).not.toContain('riskComponent:nonEuroCurrency')
+    expect(result.parts).toEqual([])
+    expect(result.parts).not.toContain('riskComponent:total')
+    expect(result.parts).not.toContain('riskComponent:highRiskCountry')
+  })
+
+  test('ethical risk level 2 triggers PENDING with ethicalRisk part', async () => {
+    // Set ethical issues to force ethical risk >= 2 while keeping other risks low
+    const result = await dryrun({
+      ...baseData,
+      '8': 'Denmark',
+      '20': 'University of Copenhagen',
+      '25': 'ethicalIssues',
+    })
+
+    expect(result.state).toBe('PENDING')
+    expect(result.parts).toContain('riskComponent:ethicalRisk')
     expect(result.parts).not.toContain('riskComponent:total')
     expect(result.parts).not.toContain('riskComponent:highRiskCountry')
   })
 
   test('multiple risk factors produce multiple parts', async () => {
-    // Afghanistan (total=3) + otherCurrency → both total and nonEuroCurrency in parts
+    // Afghanistan (total=3) + non-euro currency → only total remains as a risk component
     const result = await dryrun({
       ...baseData,
       '8': 'Afghanistan',
@@ -130,6 +145,6 @@ test.describe('dryrun state and parts calculation', () => {
 
     expect(result.state).toBe('PENDING')
     expect(result.parts).toContain('riskComponent:total')
-    expect(result.parts).not.toContain('riskComponent:nonEuroCurrency')
+    expect(result.parts).not.toContain('riskComponent:ethicalRisk')
   })
 })

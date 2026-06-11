@@ -15,11 +15,16 @@ export const controlRaportCheck = (
   data: RiskData,
   testVersion = false
 ): { state: string | undefined; parts: string[] } => {
+  //console.log(JSON.stringify(data, null, 2))
+
   const totalRisk = (data as any)?.risks?.find((r: any) => r.id === 'total')?.level
   const total = totalRisk > 2
 
   const economicRisk = (data as any)?.risks?.find((r: any) => r.id === 'economic')?.level
   const highEconomicRisk = economicRisk === 3
+
+  const ethicalRisk = (data as any)?.risks?.find((r: any) => r.id === 'ethical')?.level
+  const highEthicalRisk = ethicalRisk >= 2
 
   const dualUseRisk = (data as any)?.risks?.find((r: any) => r.id?.includes('dualUse'))?.level
   const highDualUseRisk = dualUseRisk === 3
@@ -29,7 +34,8 @@ export const controlRaportCheck = (
   const allCountries = [...(data.country ?? []), ...(data.multilateralCountries ?? [])]
   const highRiskCountry = allCountries.some(c => HIGH_RISK_COUNTRY_CODES.includes(c.code))
 
-  const shouldBePending = total || highEconomicRisk || highDualUseRisk || highGdprRisk || highRiskCountry
+  const shouldBePending =
+    total || highEconomicRisk || highEthicalRisk || highDualUseRisk || highGdprRisk || highRiskCountry
 
   const parts = getRiskParts(data)
   const calculatedState = shouldBePending ? ENTRY_STATES.PENDING : undefined
@@ -78,12 +84,16 @@ export const sendPendingEntryEmail = async (entryId: number, parts: string[], ri
   const collaborationFormsHtml = collaborationForms.map(f => `<li>${COLLABORATION_FORM_LABELS[f] ?? f}</li>`).join('')
   const hasExternalFunding = riskData.answers[13] === 'externalFunding'
   const funder: string = riskData.answers[32] || ''
+  const ethicalRisk = (riskData as any)?.risks?.find((r: any) => r.id === 'ethical')?.level
+  const hasEthicalRisk = ethicalRisk >= 2
+  const ethicalRiskDescription: string = riskData.answers[33] || ''
 
   const text = [
     '<p>Uusi tarkastelua vaativa riskiarvio on luotu.</p>',
     `<p><strong>Hankkeen nimi:</strong> ${projectName}</p>`,
     `<p><strong>Yhteistyön muodot:</strong></p><ul>${collaborationFormsHtml}</ul>`,
     hasExternalFunding ? `<p><strong>Rahoittaja:</strong> ${funder}</p>` : '',
+    hasEthicalRisk ? `<p><strong>Eettisen riskin kuvaus:</strong> ${ethicalRiskDescription}</p>` : '',
     `<p><strong>Ylittyvät kynnysarvot:</strong></p><ul>${partsListHtml}</ul>`,
     `<p>Tarkastele riskiarviota osoitteessa: <a href="${url}">${url}</a></p>`,
   ].join('')

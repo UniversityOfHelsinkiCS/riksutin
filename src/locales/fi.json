@@ -303,7 +303,7 @@
   "riskComponent": {
     "total": "Yhteistyön kokonaisriskitaso 3",
     "economicRisk": "Talouden kokonaisriski 3",
-    "nonEuroCurrency": "Muun valuutan kuin euron käyttäminen",
+    "ethicalRisk": "Eettinen riski tasolla 2 tai 3",
     "dualUseRisk": "Kaksoiskäytön riskitaso 3",
     "gdprRisk": "EU:n ulkopuolelle siirrettävien henkilötietojen riskitaso 3",
     "highRiskCountry": "Yhteistyömaa/-maiden joukossa Israel, Venäjä tai Valko-Venäjä"

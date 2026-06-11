@@ -15,9 +15,9 @@ export const getRiskParts = (data: RiskData): string[] => {
     parts.push('riskComponent:economicRisk')
   }
 
-  const nonEuroCurrency = data.answers['31'] === 'otherCurrency' || data.answers['31'] === 'partlyEuros'
-  if (nonEuroCurrency) {
-    parts.push('riskComponent:nonEuroCurrency')
+  const ethicalRisk = data?.risks?.find((r: any) => r.id === 'ethical')?.level
+  if (ethicalRisk >= 2) {
+    parts.push('riskComponent:ethicalRisk')
   }
 
   const dualUseRisk = data?.risks?.find((r: any) => r.id?.includes('dualUse'))?.level

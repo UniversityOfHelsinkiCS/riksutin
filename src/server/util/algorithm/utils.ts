@@ -89,6 +89,7 @@ export const ethicalRisk = (questions: Question[], resultData: FormValues) => {
   if (resultData[25].id === 'likelyEthicalIssues') {
     return 3
   }
+
   return questions
     .find(question => question.id === 25)
     ?.optionData.options.find((o: { id: any }) => o.id === resultData[25])?.risk
