@@ -98,8 +98,8 @@ test.describe('dryrun state and parts calculation', () => {
     expect(result.parts).toContain('riskComponent:highRiskCountry')
   })
 
-  test('non-euro currency triggers PENDING with nonEuroCurrency part', async () => {
-    // Denmark (low risk, not in HIGH_RISK_COUNTRY_CODES) + otherCurrency → only currency triggers
+  test('non-euro currency does not affect state or parts', async () => {
+    // Denmark (low risk) + otherCurrency → nonEuro is not a risk, no parts, no PENDING
     const result = await dryrun({
       ...baseData,
       '8': 'Denmark',
@@ -107,22 +107,10 @@ test.describe('dryrun state and parts calculation', () => {
       '31': 'otherCurrency',
     })
 
-    expect(result.state).toBe('PENDING')
-    expect(result.parts).toContain('riskComponent:nonEuroCurrency')
+    expect(result.state).toBeUndefined()
+    expect(result.parts).not.toContain('riskComponent:nonEuroCurrency')
     expect(result.parts).not.toContain('riskComponent:total')
     expect(result.parts).not.toContain('riskComponent:highRiskCountry')
-  })
-
-  test('partlyEuros currency triggers PENDING with nonEuroCurrency part', async () => {
-    const result = await dryrun({
-      ...baseData,
-      '8': 'Denmark',
-      '20': 'University of Copenhagen',
-      '31': 'partlyEuros',
-    })
-
-    expect(result.state).toBe('PENDING')
-    expect(result.parts).toContain('riskComponent:nonEuroCurrency')
   })
 
   test('multiple risk factors produce multiple parts', async () => {
@@ -142,6 +130,6 @@ test.describe('dryrun state and parts calculation', () => {
 
     expect(result.state).toBe('PENDING')
     expect(result.parts).toContain('riskComponent:total')
-    expect(result.parts).toContain('riskComponent:nonEuroCurrency')
+    expect(result.parts).not.toContain('riskComponent:nonEuroCurrency')
   })
 })
