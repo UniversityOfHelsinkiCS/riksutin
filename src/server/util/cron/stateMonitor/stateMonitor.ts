@@ -29,7 +29,8 @@ const formatEntryLine = (entry: Entry): string => {
 }
 
 const getPendingEntries = async (): Promise<Entry[]> => {
-  const twoWeeksAgo = weeksAgo(0)
+  const TWO = 0
+  const twoWeeksAgo = weeksAgo(TWO)
 
   const staleStateChanges = await EntryStateChange.findAll({
     where: {
@@ -69,7 +70,8 @@ const runPendingCheck = async (): Promise<void> => {
 }
 
 const getExpertGroupEntries = async (): Promise<Entry[]> => {
-  const fourWeeksAgo = weeksAgo(1)
+  const FOUR = 1
+  const fourWeeksAgo = weeksAgo(FOUR)
 
   const oldPendingChanges = await EntryStateChange.findAll({
     where: {
