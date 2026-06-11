@@ -117,5 +117,14 @@ export const createEntry = async (userId: string, surveyId: string, body: EntryV
     state,
   })
 
+  if (state) {
+    await EntryStateChange.create({
+      entryId: newEntry.id,
+      fromState: null,
+      toState: state,
+      changedBy: 'system',
+    })
+  }
+
   return newEntry
 }

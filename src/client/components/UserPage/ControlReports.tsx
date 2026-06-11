@@ -273,7 +273,7 @@ const ControlReports = ({
         </Alert>
       )}
 
-      {isAdmin && stateChanges && stateChanges.length > 0 && (
+      {isAdmin && stateChanges && stateChanges.filter(sc => sc.changedBy !== 'system').length > 0 && (
         <Box sx={{ mb: 3 }} data-testid="state-change-history">
           <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1 }}>
             {t('controlReport:stateHistory')}
@@ -281,6 +281,7 @@ const ControlReports = ({
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
             {stateChanges
               .slice()
+              .filter(change => change.changedBy !== 'system')
               .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
               .map(change => (
                 <Typography key={change.id} variant="body2" color="text.secondary">
