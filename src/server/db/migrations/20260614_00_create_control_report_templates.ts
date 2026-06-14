@@ -9,6 +9,11 @@ export const up: Migration = async ({ context: queryInterface }) => {
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4,
     },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: '',
+    },
     risks: {
       type: DataTypes.JSONB,
       allowNull: false,
@@ -33,6 +38,7 @@ export const up: Migration = async ({ context: queryInterface }) => {
 
   await queryInterface.addIndex('control_report_templates', ['risks'], {
     using: 'gin',
+    name: 'control_report_templates_risks_gin',
   })
   await queryInterface.addIndex('control_report_templates', ['language'])
 }
