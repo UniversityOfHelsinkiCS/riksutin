@@ -1,5 +1,5 @@
 // note: tests fail if userType !== normal
-let userType = 'admin'
+let userType = 'normal'
 
 const mockUsers = {
   admin: {
