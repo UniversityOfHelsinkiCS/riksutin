@@ -20,6 +20,7 @@ import RenderEditResults from './components/Admin/EditResults/RenderEditResults'
 import EditResults from './components/Admin/EditResults/EditResults'
 
 import RenderMainWarningsPage from './components/Admin/Warnings'
+import ControlReportTemplates from './components/Admin/ControlReportTemplates'
 
 const router = createBrowserRouter(
   [
@@ -93,6 +94,10 @@ const router = createBrowserRouter(
             {
               path: 'warnings',
               element: <RenderMainWarningsPage />,
+            },
+            {
+              path: 'control-report-templates',
+              element: <ControlReportTemplates />,
             },
           ],
         },

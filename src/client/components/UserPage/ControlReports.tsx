@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Box,
   Button,
@@ -14,11 +14,11 @@ import {
   FormControlLabel,
   IconButton,
   Radio,
-  RadioGroup,
   TextField,
   Typography,
   Alert,
 } from '@mui/material'
+import { RadioGroup } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import AddIcon from '@mui/icons-material/Add'
@@ -26,7 +26,7 @@ import InfoIcon from '@mui/icons-material/Info'
 import { useTranslation } from 'react-i18next'
 import { enqueueSnackbar } from 'notistack'
 
-import { ControlReport, EntryStateChange } from '@types'
+import { ControlReport, ControlReportTemplate, EntryStateChange } from '@types'
 import { ENTRY_STATES, EntryState, getEntryStateColor, getEntryStateLabel, getEntryStateSx } from '@common/entryStates'
 import useLoggedInUser from '../../hooks/useLoggedInUser'
 import Markdown from '../Common/Markdown'
@@ -66,8 +66,35 @@ const ControlReports = ({
   const [showStateSelector, setShowStateSelector] = useState(false)
   const [pendingState, setPendingState] = useState<EntryState | null>(null)
   const [stateConfirmOpen, setStateConfirmOpen] = useState(false)
+  const [templateDialogOpen, setTemplateDialogOpen] = useState(false)
+  const [templates, setTemplates] = useState<ControlReportTemplate[]>([])
+  const [selectedTemplateId, setSelectedTemplateId] = useState('')
+  const [previewTemplateId, setPreviewTemplateId] = useState('')
+
+  const riskLabel = (risk: ControlReportTemplate['risks'][number]) =>
+    t(`controlReportTemplate:riskOption.${risk.replace('riskComponent:', '')}`)
+
+  const truncateLabel = (label: string, maxLength = 26) =>
+    label.length > maxLength ? `${label.slice(0, maxLength - 3)}...` : label
+
+  const getTemplateRiskSummary = (template: ControlReportTemplate) => {
+    const labels = template.risks.map(riskLabel)
+
+    if (labels.length <= 1) {
+      return labels.join(', ')
+    }
+
+    return labels.map(label => truncateLabel(label)).join(', ')
+  }
 
   const effectiveState = entryState ?? (controlReports.length > 0 ? ENTRY_STATES.EXPERT_GROUP : null)
+  const previewTemplate = templates.find(template => template.id === previewTemplateId) ?? null
+  const largestPreviewTemplate = templates.reduce<ControlReportTemplate | null>((largest, current) => {
+    if (!largest) {
+      return current
+    }
+    return current.text.length > largest.text.length ? current : largest
+  }, null)
 
   const handleStateChange = async (newState: EntryState) => {
     try {
@@ -118,9 +145,67 @@ const ControlReports = ({
 
   const handleCloseDialog = () => {
     setIsDialogOpen(false)
+    setTemplateDialogOpen(false)
     setEditingReport(null)
     setText('')
     setAdminOnly(false)
+    setSelectedTemplateId('')
+    setPreviewTemplateId('')
+  }
+
+  useEffect(() => {
+    if (!isDialogOpen || !isAdmin || !entryLanguage) {
+      return
+    }
+
+    const fetchTemplates = async () => {
+      try {
+        const response = await apiClient.get<ControlReportTemplate[]>(
+          `/control-report-templates?language=${entryLanguage}`
+        )
+        setTemplates(response.data)
+      } catch (error) {
+        enqueueSnackbar(t('controlReport:templateLoadError'), { variant: 'error' })
+      }
+    }
+
+    void fetchTemplates()
+  }, [entryLanguage, isAdmin, isDialogOpen, t])
+
+  const appendTemplate = (template: ControlReportTemplate) => {
+    setText(currentText => {
+      const trimmed = currentText.trim()
+      if (!trimmed) {
+        return template.text
+      }
+      return `${currentText}\n\n${template.text}`
+    })
+    setSelectedTemplateId('')
+  }
+
+  const handleOpenTemplateDialog = () => {
+    setTemplateDialogOpen(true)
+    setSelectedTemplateId('')
+    setPreviewTemplateId('')
+  }
+
+  const handleCloseTemplateDialog = () => {
+    setTemplateDialogOpen(false)
+    setSelectedTemplateId('')
+  }
+
+  const handleApplyTemplate = () => {
+    if (!selectedTemplateId) {
+      return
+    }
+
+    const template = templates.find(item => item.id === selectedTemplateId)
+    if (!template) {
+      return
+    }
+
+    appendTemplate(template)
+    setTemplateDialogOpen(false)
   }
 
   const handleSave = async () => {
@@ -372,7 +457,14 @@ const ControlReports = ({
 
       {/* Edit/Create Dialog */}
       <Dialog open={isDialogOpen} onClose={handleCloseDialog} maxWidth="md" fullWidth>
-        <DialogTitle>{editingReport ? t('controlReport:editButton') : t('controlReport:addButton')}</DialogTitle>
+        <DialogTitle sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 2 }}>
+          <span>{editingReport ? t('controlReport:editButton') : t('controlReport:addButton')}</span>
+          {isAdmin && !editingReport && templates.length > 0 && (
+            <Button variant="outlined" onClick={handleOpenTemplateDialog}>
+              {t('controlReport:templateLabel')}
+            </Button>
+          )}
+        </DialogTitle>
         <DialogContent>
           <TextField
             multiline
@@ -394,6 +486,108 @@ const ControlReports = ({
           <Button onClick={handleSave} variant="contained" disabled={isSubmitting}>
             {t('controlReport:saveButton')}
           </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Template Selection Dialog */}
+      <Dialog open={templateDialogOpen} onClose={handleCloseTemplateDialog} maxWidth="lg" fullWidth>
+        <DialogTitle>{t('controlReport:templateSelectTitle')}</DialogTitle>
+        <DialogContent>
+          <Box
+            sx={{
+              mt: 1,
+              display: 'grid',
+              gap: 2,
+              gridTemplateColumns: { xs: '1fr', md: 'minmax(0, 1fr) 360px' },
+            }}
+          >
+            <Box>
+              <Box sx={{ border: '1px solid', borderColor: 'divider', borderRadius: 1, overflow: 'hidden' }}>
+                {templates.map(template => {
+                  const isSelected = selectedTemplateId === template.id
+                  return (
+                    <Button
+                      key={template.id}
+                      fullWidth
+                      onClick={() => {
+                        setSelectedTemplateId(template.id)
+                        setPreviewTemplateId(template.id)
+                      }}
+                      sx={{
+                        justifyContent: 'flex-start',
+                        textTransform: 'none',
+                        borderRadius: 0,
+                        px: 2,
+                        py: 1.25,
+                        borderBottom: '1px solid',
+                        borderColor: 'divider',
+                        bgcolor: isSelected ? 'action.selected' : 'transparent',
+                      }}
+                    >
+                      <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', minWidth: 0 }}>
+                        <Typography sx={{ fontWeight: 500 }}>{template.name}</Typography>
+                        <Typography variant="caption" color="text.secondary" sx={{ minWidth: 0, fontSize: '0.68rem' }}>
+                          {getTemplateRiskSummary(template)}
+                        </Typography>
+                      </Box>
+                    </Button>
+                  )
+                })}
+              </Box>
+              <Box sx={{ mt: 1.5, display: 'flex', justifyContent: 'flex-start' }}>
+                <Button onClick={handleApplyTemplate} variant="contained" disabled={!selectedTemplateId}>
+                  {t('controlReport:insertTemplateButton')}
+                </Button>
+              </Box>
+            </Box>
+            <Box
+              sx={{
+                border: '1px solid',
+                borderColor: 'divider',
+                borderRadius: 1,
+                bgcolor: 'background.paper',
+                position: 'relative',
+                minHeight: 140,
+              }}
+            >
+              {largestPreviewTemplate && (
+                <Box sx={{ p: 1.5, visibility: 'hidden', pointerEvents: 'none' }} aria-hidden>
+                  <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1 }}>
+                    {largestPreviewTemplate.name}
+                  </Typography>
+                  <Box sx={{ display: 'flex', gap: 0.5, flexWrap: 'wrap', mb: 1 }}>
+                    {largestPreviewTemplate.risks.map(risk => (
+                      <Chip key={risk} label={riskLabel(risk)} size="small" sx={{ fontSize: '0.7rem' }} />
+                    ))}
+                  </Box>
+                  <Typography variant="body2" sx={{ whiteSpace: 'pre-wrap', fontSize: '0.8rem' }}>
+                    {largestPreviewTemplate.text}
+                  </Typography>
+                </Box>
+              )}
+
+              <Box sx={{ position: 'absolute', inset: 0, p: 1.5, overflowY: 'auto' }}>
+                {previewTemplate && (
+                  <>
+                    <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1 }}>
+                      {previewTemplate.name}
+                    </Typography>
+                    <Box sx={{ display: 'flex', gap: 0.5, flexWrap: 'wrap', mb: 1 }}>
+                      {previewTemplate.risks.map(risk => (
+                        <Chip key={risk} label={riskLabel(risk)} size="small" sx={{ fontSize: '0.7rem' }} />
+                      ))}
+                    </Box>
+                    <Typography variant="body2" sx={{ whiteSpace: 'pre-wrap', fontSize: '0.8rem' }}>
+                      {previewTemplate.text}
+                    </Typography>
+                  </>
+                )}
+              </Box>
+            </Box>
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseTemplateDialog}>{t('controlReport:cancelButton')}</Button>
         </DialogActions>
       </Dialog>
 

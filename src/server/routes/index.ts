@@ -19,6 +19,7 @@ import questionRouter from './question'
 import countryRouter from './country'
 import organizationRouter from './organization'
 import warningsRouter from './warning'
+import controlReportTemplateRouter from './controlReportTemplate'
 import tuhatProjectsRouter from './tuhatProject'
 import { setMockUser } from '../mocs/user'
 import adminHandler from '../middleware/admin'
@@ -91,6 +92,7 @@ router.use(ensureEmployee)
 
 router.use('/faculties', facultyRouter)
 router.use('/warnings', warningsRouter)
+router.use('/control-report-templates', controlReportTemplateRouter)
 router.use('/entries', entryRouter)
 router.use('/organizations', organizationRouter)
 router.use('/tuhatprojects', tuhatProjectsRouter)

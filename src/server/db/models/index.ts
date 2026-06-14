@@ -5,6 +5,7 @@ import User from './User'
 import Entry from './Entry'
 import Cache from './Cache'
 import ControlReport from './controlReport'
+import ControlReportTemplate from './controlReportTemplate'
 import EntryStateChange from './EntryStateChange'
 
 import Warning from './Warning'
@@ -26,4 +27,4 @@ ControlReport.belongsTo(Entry, { foreignKey: 'entryId' })
 Entry.hasMany(EntryStateChange, { foreignKey: 'entryId', as: 'stateChanges' })
 EntryStateChange.belongsTo(Entry, { foreignKey: 'entryId' })
 
-export { Survey, Question, Result, User, Entry, Warning, Cache, ControlReport, EntryStateChange }
+export { Survey, Question, Result, User, Entry, Warning, Cache, ControlReport, ControlReportTemplate, EntryStateChange }

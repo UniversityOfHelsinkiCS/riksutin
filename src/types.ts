@@ -18,6 +18,33 @@ export type NewWarning = {
   expiry_date?: string
 }
 
+export type ControlReportTemplateRisk =
+  | 'riskComponent:total'
+  | 'riskComponent:economicRisk'
+  | 'riskComponent:ethicalRisk'
+  | 'riskComponent:dualUseRisk'
+  | 'riskComponent:gdprRisk'
+  | 'riskComponent:highRiskCountry'
+
+export type ControlReportTemplateLanguage = 'fi' | 'en'
+
+export interface ControlReportTemplate {
+  id: string
+  name: string
+  risks: ControlReportTemplateRisk[]
+  language: ControlReportTemplateLanguage
+  text: string
+  createdAt: string
+  updatedAt: string
+}
+
+export type NewControlReportTemplate = {
+  name: string
+  risks: ControlReportTemplateRisk[]
+  language: ControlReportTemplateLanguage
+  text: string
+}
+
 export type countryRiskData = {
   riskValues?: number[] | undefined | null
   totalCountryRiskLevel?: number | undefined | null

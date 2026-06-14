@@ -15,9 +15,15 @@ const transports: winston.transport[] = []
 transports.push(new winston.transports.File({ filename: 'debug.log' }))
 
 if (!inProduction) {
-  const devFormat = printf(
-    ({ level, message, timestamp: time, ...rest }) => `${time} ${level}: ${message} ${JSON.stringify(rest)}`
-  )
+  const devFormat = printf(({ level, message, timestamp: time, ...rest }) => {
+    let restStr = ''
+    try {
+      restStr = JSON.stringify(rest)
+    } catch (_) {
+      restStr = '[unserializable]'
+    }
+    return `${time} ${level}: ${message} ${restStr}`
+  })
 
   transports.push(
     new winston.transports.Console({

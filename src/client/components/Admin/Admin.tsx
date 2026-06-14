@@ -36,6 +36,12 @@ const Admin = () => {
         <Tab component={Link} to="./edit-questions" label={t('admin:questionTab')} value="edit-questions" />
         <Tab component={Link} to="./edit-results" label={t('admin:resultTab')} value="edit-results" />
         <Tab component={Link} to="./warnings" label={t('admin:warningTab')} value="warnings" />
+        <Tab
+          component={Link}
+          to="./control-report-templates"
+          label={t('admin:controlReportTemplateTab')}
+          value="control-report-templates"
+        />
       </Tabs>
       <Outlet />
     </Box>
