@@ -1,7 +1,7 @@
 import { Issuer, Strategy, TokenSet, UnknownObject, UserinfoResponse } from 'openid-client'
 import passport from 'passport'
 
-import { inE2EMode, inDevelopment } from '@config'
+import { inE2EMode, inDevelopment, useLocalOIDC } from '@config'
 import { OIDC_ISSUER, OIDC_CLIENT_ID, OIDC_CLIENT_SECRET, OIDC_REDIRECT_URI } from '@userconfig'
 import type { User as UserType } from '@types'
 import type { UserInfo } from '@server/types'
@@ -73,7 +73,7 @@ const verifyLogin = async (
 }
 
 const setupAuthentication = async () => {
-  if (inE2EMode || inDevelopment) {
+  if (inE2EMode || (inDevelopment && !useLocalOIDC)) {
     return
   }
 

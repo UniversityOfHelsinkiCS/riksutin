@@ -1,17 +1,20 @@
 // INTERNAL
 export const inStaging = process.env.REACT_APP_STAGING === 'true'
 export const inProduction = !inStaging && process.env.NODE_ENV === 'production'
+export const inDevelopment = process.env.NODE_ENV === 'development'
 
 export const OIDC_CLIENT_ID = process.env.OIDC_CLIENT_ID ?? ''
 export const OIDC_CLIENT_SECRET = process.env.OIDC_CLIENT_SECRET ?? ''
 export const OIDC_REDIRECT_URI = process.env.OIDC_REDIRECT_URI ?? ''
-export const OIDC_ISSUER = inProduction
-  ? 'https://login.helsinki.fi/.well-known/openid-configuration'
-  : 'https://login-test.it.helsinki.fi/.well-known/openid-configuration'
+export const OIDC_ISSUER = inDevelopment
+  ? 'http://login.toska.localhost:3042/.well-known/openid-configuration'
+  : inProduction
+    ? 'https://login.helsinki.fi/.well-known/openid-configuration'
+    : 'https://login-test.it.helsinki.fi/.well-known/openid-configuration'
 
 export const PRODUCTION_URL = 'https://risk-i.helsinki.fi'
 export const STAGING_URL = 'https://riksutin.ext.ocp-test-0.k8s.it.helsinki.fi'
-export const DEVELOPMENT_URL = 'http://localhost:3000'
+export const DEVELOPMENT_URL = 'http://riksutin.toska.localhost:3000'
 
 export const API_TOKEN = process.env.API_TOKEN ?? ''
 export const UNIT_API_TOKEN = process.env.UNIT_API_TOKEN ?? ''
