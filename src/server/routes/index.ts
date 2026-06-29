@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import * as Sentry from '@sentry/node'
 
-import { inDevelopment, inE2EMode } from '@config'
+import { inDevelopment, inE2EMode, useLocalOIDC } from '@config'
 import initializeSentry from '../util/sentry'
 import mockUserMiddleware from '../middleware/mockUser'
 import { ensureEmployee, ensureAuthenticated } from '../middleware/user'
@@ -35,7 +35,7 @@ initializeSentry()
 router.use(cors())
 router.use(express.json())
 
-if (inDevelopment || inE2EMode) {
+if ((inDevelopment && !useLocalOIDC) || inE2EMode) {
   router.use(mockUserMiddleware)
 }
 

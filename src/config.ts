@@ -6,6 +6,7 @@ export const inE2EMode = process.env.REACT_APP_E2E === 'true'
 export const inDevelopment = process.env.NODE_ENV === 'development'
 export const inStaging = process.env.REACT_APP_STAGING === 'true'
 export const inProduction = !inStaging && process.env.NODE_ENV === 'production'
+export const useLocalOIDC = process.env.LOCALOIDC === 'true'
 
 // Config
 export interface InstanceExports {
@@ -24,7 +25,7 @@ export interface InstanceExports {
   LOCATION_KEY: string
 }
 
-const DEFAULT_URL = 'http://localhost:3000'
+const DEFAULT_URL = 'http://riksutin.toska.localhost:3000'
 const defaults: InstanceExports = {
   appName: 'Riskiarviointi',
   contactEmail: '',
