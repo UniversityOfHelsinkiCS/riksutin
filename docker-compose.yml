@@ -7,6 +7,7 @@ services:
     environment:
       - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
       - ORGANISATION_ID=hy
+      # - LOCALOIDC=true
     env_file: ".env"
     volumes:
       - ./:/opt/app-root/src
@@ -39,6 +40,13 @@ services:
     ports:
       - 3001:3000
 
+  # login.toska.localhost:
+  #   image: toska-login-local
+  #   ports: 
+  #     - 3042:3042
+  #   volumes:
+  #     - ./toska_login/accounts.json:/opt/app-root/src/accounts.json
+  #     - ./toska_login/configuration.json:/opt/app-root/src/configuration.json
 
 volumes:
   pg_data:
