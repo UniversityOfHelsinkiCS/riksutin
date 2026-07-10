@@ -1,7 +1,7 @@
 import type { InputProps } from '@client/types'
 import { Typography } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import { noDefault } from 'src/client/util/multilataral'
+import { noDefault } from '../../util/multilataral'
 
 const MultilateralInfo = ({ watch, question }: InputProps) => {
   const { t } = useTranslation()

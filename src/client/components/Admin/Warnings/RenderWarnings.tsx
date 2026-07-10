@@ -1,7 +1,7 @@
-import { useWarnings } from 'src/client/hooks/useWarnings'
-import useCountries from 'src/client/hooks/useCountries'
+import { useWarnings } from '../../../hooks/useWarnings'
+import useCountries from '../../../hooks/useCountries'
 import { useTranslation } from 'react-i18next'
-import { useDeleteWarning } from 'src/client/hooks/useWarnings'
+import { useDeleteWarning } from '../../../hooks/useWarnings'
 import EditWarningForm from './editWarningForm'
 import Markdown from '../../Common/Markdown'
 

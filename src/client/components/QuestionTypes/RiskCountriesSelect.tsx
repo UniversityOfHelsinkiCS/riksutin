@@ -7,7 +7,7 @@ import type { Locales } from '@types'
 import type { InputProps } from '@client/types'
 
 import useCountries, { useHighRiskCountries } from '../../hooks/useCountries'
-import { noDefault, NO_SELECTION } from 'src/client/util/multilataral'
+import { noDefault, NO_SELECTION } from '../../util/multilataral'
 
 const getCountryList = (allCountries, highriskCountries, type) => {
   if (type === 'high') {

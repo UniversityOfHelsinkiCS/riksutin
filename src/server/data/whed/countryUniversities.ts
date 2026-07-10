@@ -3,7 +3,7 @@ import jsdom from 'jsdom'
 
 import * as Sentry from '@sentry/node'
 import { get, setPermanent } from '../../util/redis'
-import logger from 'src/server/util/logger'
+import logger from '../../util/logger'
 import { UNIVERSITIES_URL, NO_CACHE, LOG_CACHE } from '@userconfig'
 
 const normalizeCountryName = (countryName: string) => {

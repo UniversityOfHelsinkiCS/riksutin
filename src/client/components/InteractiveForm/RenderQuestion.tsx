@@ -22,7 +22,7 @@ import CountrySelect from '../QuestionTypes/CountrySelect'
 import EmployeeSelect from '../QuestionTypes/EmployeeSelect'
 import SelectTuhatProject from '../Common/TuhatProjectSelect'
 import Info from '../QuestionTypes/Info'
-import { useResultData } from 'src/client/contexts/ResultDataContext'
+import { useResultData } from '../../contexts/ResultDataContext'
 import { ORGANISATION_ID } from '@userconfig'
 import MultilateralInfo from '../QuestionTypes/MultilateralInfo'
 

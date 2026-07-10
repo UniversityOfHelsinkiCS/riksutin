@@ -10,7 +10,7 @@ import type { InputProps } from '@client/types'
 import useEmployee from '../../hooks/useEmployeeData'
 import ShowMore from '../Common/ShowMore'
 import LoadingProgress from '../Common/LoadingProgress'
-import useLoggedInUser from 'src/client/hooks/useLoggedInUser'
+import useLoggedInUser from '../../hooks/useLoggedInUser'
 
 type Option = {
   username: string

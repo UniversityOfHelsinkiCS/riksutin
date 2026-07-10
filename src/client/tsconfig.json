@@ -4,7 +4,7 @@
     "jsx": "react-jsx",
     "lib": ["esnext", "dom", "dom.iterable"],
 
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "module": "esnext",
     "target": "esnext"
   },

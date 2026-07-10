@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { useCreateWarning } from 'src/client/hooks/useWarnings'
+import { useCreateWarning } from '../../../hooks/useWarnings'
 import useCountries from '../../../hooks/useCountries'
 
 import { Autocomplete, TextField } from '@mui/material'

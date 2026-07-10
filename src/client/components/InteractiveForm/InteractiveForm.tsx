@@ -19,7 +19,7 @@ import { useResultData } from '../../contexts/ResultDataContext'
 
 import styles from '../../styles'
 import { useNavigate } from 'react-router-dom'
-import { noDefault, NO_SELECTION } from 'src/client/util/multilataral'
+import { noDefault, NO_SELECTION } from '../../util/multilataral'
 
 const InteractiveForm = () => {
   const { survey, isLoading } = useSurvey()

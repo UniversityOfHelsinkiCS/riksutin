@@ -15,23 +15,22 @@
     "useDefineForClassFields": true,
     "noImplicitAny": false,
 
-    "baseUrl": ".",
     "paths": {
-      "@types": ["src/types.ts"],
-      "@routes/types": ["src/types/routes.ts"],
-      "@client/types": ["src/types/client.ts"],
-      "@server/types": ["src/types/server.ts"],
-      "@dbmodels": ["src/server/db/models/index.ts"],
+      "@types": ["./src/types.ts"],
+      "@routes/types": ["./src/types/routes.ts"],
+      "@client/types": ["./src/types/client.ts"],
+      "@server/types": ["./src/types/server.ts"],
+      "@dbmodels": ["./src/server/db/models/index.ts"],
 
-      "@userconfig": ["config/index.ts"],
-      "@userservices/*": ["config/services/*"],
+      "@userconfig": ["./config/index.ts"],
+      "@userservices/*": ["./config/services/*"],
 
-      "@config": ["src/config.ts"],
-      "@server/config": ["src/server/util/config.ts"],
-      "@validators/*": ["src/validators/*"],
+      "@config": ["./src/config.ts"],
+      "@server/config": ["./src/server/util/config.ts"],
+      "@validators/*": ["./src/validators/*"],
 
-      "@common/*": ["src/common/*"],
-      "@resultRenderer/*": ["src/resultRenderer/*"]
+      "@common/*": ["./src/common/*"],
+      "@resultRenderer/*": ["./src/resultRenderer/*"]
     }
   }
 }

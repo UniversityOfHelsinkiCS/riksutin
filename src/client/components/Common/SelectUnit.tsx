@@ -11,7 +11,7 @@ import useUnits from '../../hooks/useUnits'
 import { extraOrganisations } from '@common/organisations'
 
 import styles from '../../styles'
-import { useResultData } from 'src/client/contexts/ResultDataContext'
+import { useResultData } from '../../contexts/ResultDataContext'
 
 const sortFaculties = (faculties: FacultyOrUnit[]) => {
   return faculties.sort((a, b) => a.code?.localeCompare(b.code) ?? 0)

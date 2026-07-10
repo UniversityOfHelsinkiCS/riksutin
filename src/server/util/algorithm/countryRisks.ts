@@ -3,8 +3,8 @@ import type { UpdatedCountryData } from '@server/types'
 import { totalCountryRisk } from './utils'
 
 import { gdprRisk } from './utils'
-import { getCountries } from 'src/server/services/countries'
-import { getCountryData } from 'src/server/routes/country'
+import { getCountries } from '../../services/countries'
+import { getCountryData } from '../../routes/country'
 
 export const getMultilateraCountrylRisks = async (
   riskCountries: string[] | undefined,

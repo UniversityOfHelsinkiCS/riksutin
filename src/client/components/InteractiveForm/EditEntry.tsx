@@ -18,7 +18,7 @@ import HelloBanner from './HelloBanner'
 import RenderSurvey from './RenderSurvey'
 
 import styles from '../../styles'
-import { noDefault, NO_SELECTION } from 'src/client/util/multilataral'
+import { noDefault, NO_SELECTION } from '../../util/multilataral'
 
 const EditEntry = () => {
   const { entryId } = useParams<{ entryId: string }>()

@@ -1,11 +1,10 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Box, Button, Typography, FormControlLabel, Checkbox } from '@mui/material'
-import LoadingButton from '@mui/lab/LoadingButton'
+import { Box, Button, Typography, FormControlLabel, Checkbox, CircularProgress } from '@mui/material'
 
 import type { Locales, Question } from '@types'
 
-import { Control, UseFormWatch } from 'react-hook-form/dist/types'
+import { Control, UseFormWatch } from 'react-hook-form'
 import { useFormState } from 'react-hook-form'
 import RenderQuestion from './RenderQuestion'
 import SurveyButtons from '../Common/SurveyButtons'
@@ -127,15 +126,9 @@ const RenderSurvey = ({
                 />
               )}
               <SurveyButtons isEditing={isEditing}>
-                <LoadingButton
-                  sx={formStyles.stackButton}
-                  type="submit"
-                  data-cy="submit-form-button"
-                  variant="contained"
-                  loading={submitButtonLoading}
-                >
-                  {isSubmitted ? t('updateSubmit') : t('submit')}
-                </LoadingButton>
+                <Button type="submit" data-cy="submit-form-button" variant="contained">
+                  {submitButtonLoading ? <CircularProgress /> : isSubmitted ? t('updateSubmit') : t('submit')}
+                </Button>
               </SurveyButtons>
             </>
           )}
