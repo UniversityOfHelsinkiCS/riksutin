@@ -1,7 +1,4 @@
-import os from 'os'
-
 import winston from 'winston'
-import { WinstonGelfTransporter } from 'winston-gelf-transporter'
 import LokiTransport from 'winston-loki'
 
 import { inProduction } from '@config'
@@ -63,20 +60,6 @@ if (!inProduction) {
     new LokiTransport({
       host: LOKI_HOST,
       labels: { app: 'riksutin', environment: process.env.NODE_ENV ?? 'production' },
-    })
-  )
-
-  transports.push(
-    new WinstonGelfTransporter({
-      handleExceptions: true,
-      host: 'toska.cs.helsinki.fi',
-      port: 9503,
-      protocol: 'udp',
-      hostName: os.hostname(),
-      additional: {
-        app: 'riksutin',
-        environment: 'production',
-      },
     })
   )
 }
