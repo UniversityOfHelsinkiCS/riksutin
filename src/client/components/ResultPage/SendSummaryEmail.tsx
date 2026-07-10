@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 import { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { enqueueSnackbar } from 'notistack'
@@ -84,7 +85,7 @@ const SendSummaryEmail = ({ entryId }: { entryId: string }) => {
                   handleHomeEndKeys
                   disabled={isSent}
                   onChange={(_, data) => field.onChange(data)}
-                  renderTags={(value, getTagProps) =>
+                  renderValue={(value, getTagProps) =>
                     value.map((option, index) => (
                       <Chip
                         {...getTagProps({ index })}
