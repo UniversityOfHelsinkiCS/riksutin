@@ -1,13 +1,9 @@
-FROM node:20
+FROM node:24
 
 WORKDIR /app
 
 COPY package*.json ./
-
-RUN curl -fsSL https://github.com/AikidoSec/safe-chain/releases/latest/download/install-safe-chain.sh | sh -s -- --ci
-ENV PATH="/root/.safe-chain/shims:/root/.safe-chain/bin:${PATH}"
-RUN npm safe-chain-verify
-
+COPY .npmrc  ./
 RUN npm ci --production
 
 COPY . .

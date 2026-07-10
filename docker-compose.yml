@@ -11,6 +11,11 @@ services:
     env_file: ".env"
     volumes:
       - ./:/opt/app-root/src
+      - base-nodemod:/opt/app-root/src/node_modules
+      - client-nodemod:/opt/app-root/src/src/client/node_modules
+      - server-nodemod:/opt/app-root/src/src/server/node_modules
+      - tests-nodemod:/opt/app-root/src/tests/node_modules
+      - validators-nodemod:/opt/app-root/src/src/validators/node_modules
     ports:
       - 3000:3000
       - 8000:8000
@@ -26,7 +31,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - pg_data:/data
+      - pg-data:/data
     container_name: riksutin_db
     networks:
       - riksutin_internal
@@ -59,7 +64,18 @@ services:
   #     - riksutin_internal
 
 volumes:
-  pg_data:
+  pg-data:
+    name: riksutin-pg-data
+  base-nodemod:
+    name: riksutin-base-nodemod
+  client-nodemod:
+    name: riksutin-client-nodemod
+  server-nodemod:
+    name: riksutin-server-nodemod
+  tests-nodemod:
+    name: riksutin-tests-nodemod
+  validators-nodemod:
+    name: riksutin-validators-nodemod
 
 networks:
   riksutin_internal:
