@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 import { useState } from 'react'
 import { Controller } from 'react-hook-form'
 import { Autocomplete, Box, TextField, Typography, Button, Stack } from '@mui/material'
@@ -40,7 +41,7 @@ const EmployeeSelect = ({ control, question, watch }: InputProps) => {
   }
 
   const selection = watch ? watch()[question.id] : undefined
-  const meSelected = selection && selection.username === loggedUserForForm.username
+  const meSelected = selection?.username === loggedUserForForm.username
 
   return (
     <>
@@ -57,8 +58,8 @@ const EmployeeSelect = ({ control, question, watch }: InputProps) => {
           render={({ field: { onChange, value }, fieldState: { error } }) => {
             const currentValue = value || null
             return (
-              <Stack direction="row" spacing={2} alignItems="center" sx={{ width: '84.5%' }}>
-                <Box flex={3}>
+              <Stack direction="row" spacing={2} sx={{ width: '84.5%', alignItems: 'center' }}>
+                <Box sx={{ flex: 3 }}>
                   <Autocomplete
                     disablePortal
                     id={`select-${question.id.toString()}`}
@@ -86,7 +87,7 @@ const EmployeeSelect = ({ control, question, watch }: InputProps) => {
                     )}
                   />
                 </Box>
-                <Box flex={1}>
+                <Box sx={{ flex: 1 }}>
                   <Button
                     variant="contained"
                     color="primary"

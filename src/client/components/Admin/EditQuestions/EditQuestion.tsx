@@ -58,7 +58,7 @@ const QuestionItem = ({ language, question }: { language: keyof Locales; questio
       <Box sx={{ mb: 2 }}>
         <Typography sx={{ display: 'flex', mb: 2 }} variant="h6">
           {t('admin:questionTitle')}
-          <Typography ml={1}>{language}</Typography>
+          <Typography sx={{ ml: 1 }}>{language}</Typography>
         </Typography>
         <MDEditor data-color-mode="light" height={200} value={questionTitle} onChange={setQuestionTitle} />
       </Box>
@@ -66,7 +66,7 @@ const QuestionItem = ({ language, question }: { language: keyof Locales; questio
       <Box sx={{ mb: 2 }}>
         <Typography sx={{ display: 'flex', mb: 2 }} variant="h6">
           {t('admin:questionText')}
-          <Typography ml={1}>{language}</Typography>
+          <Typography sx={{ ml: 1 }}>{language}</Typography>
         </Typography>
         <MDEditor data-color-mode="light" height={400} value={questionText} onChange={setQuestionText} />
       </Box>
@@ -128,8 +128,8 @@ const EditQuestion = ({
         setOpen={setOpenAlert}
         onSubmit={handleDelete}
       />
-      <Box mb={5} display="flex">
-        <QuestionItem language={'fi' as keyof Locales} question={question} />
+      <Box sx={{ mb: 5, display: 'flex' }}>
+        <QuestionItem language={'fi'} question={question} />
         <QuestionItem language={language} question={question} />
       </Box>
     </>

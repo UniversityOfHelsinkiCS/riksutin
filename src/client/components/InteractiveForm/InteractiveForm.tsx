@@ -105,10 +105,10 @@ const InteractiveForm = () => {
   return (
     <Box sx={formStyles.formWrapper}>
       <Grid id="survey-main-section">
-        <Grid item sm={12}>
+        <Grid sx={{ sm: 12 }}>
           <HelloBanner />
         </Grid>
-        <Grid item sm={12}>
+        <Grid sx={{ sm: 12 }}>
           <form style={{ display: 'block' }} onSubmit={handleSubmit(onSubmit)}>
             <RenderSurvey
               questions={survey.Questions}

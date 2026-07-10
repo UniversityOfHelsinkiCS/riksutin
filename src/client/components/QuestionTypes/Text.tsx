@@ -24,14 +24,14 @@ const Text = ({ control, question, defaultValue }: InputProps) => {
         },
       }}
       render={({ field: { onChange, value }, fieldState: { error } }) => (
-        <Box justifyContent="center">
+        <Box sx={{ justifyContent: 'center' }}>
           <TextField
             helperText={error ? error.message : null}
             error={!!error}
             data-testid={`question-${question.id}`}
             onChange={onChange}
             fullWidth
-            InputProps={props}
+            slotProps={{ input: props }}
             value={value}
           />
         </Box>

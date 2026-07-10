@@ -21,7 +21,7 @@ const SingleChoice = ({ control, question, children, language }: InputProps) => 
           required: { value: true, message: t('questions:requiredText') },
         }}
         render={({ field, fieldState: { error } }) => (
-          <Box justifyContent="center">
+          <Box sx={{ justifyContent: 'center' }}>
             <RadioGroup {...field}>
               {question.optionData.options.map((singleOption: SingleChoiceType) => (
                 <FormControlLabel

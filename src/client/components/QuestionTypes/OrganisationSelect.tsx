@@ -44,7 +44,7 @@ const OrganisationList = ({
           required: { value: true, message: t('questions:requiredText') },
         }}
         render={({ field: { onChange, value }, fieldState: { error } }) => (
-          <Box justifyContent="center">
+          <Box sx={{ justifyContent: 'center' }}>
             <Autocomplete
               disablePortal
               id={`select-${questionId}`}
@@ -86,7 +86,7 @@ const OrganisationSelect = ({ control, question, children, watch }: InputProps) 
         name={question.id.toString()}
         defaultValue=""
         render={({ field: { onChange, value } }) => (
-          <Box justifyContent="center">
+          <Box sx={{ justifyContent: 'center' }}>
             {!selection && (
               <TextField data-testid={`question-${question.id}`} onChange={onChange} fullWidth value={value} />
             )}

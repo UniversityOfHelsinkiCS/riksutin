@@ -30,7 +30,7 @@ const CountrySelect = ({ control, question, children }: InputProps) => {
           required: { value: true, message: t('questions:requiredText') },
         }}
         render={({ field: { onChange, value }, fieldState: { error } }) => (
-          <Box justifyContent="center">
+          <Box sx={{ justifyContent: 'center' }}>
             <Autocomplete
               disablePortal
               id={`select-${question.id.toString()}`}

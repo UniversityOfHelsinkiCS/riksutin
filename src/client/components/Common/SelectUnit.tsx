@@ -55,7 +55,7 @@ const SelectUnit = ({ control }: InputProps) => {
         render={({ field: { onChange, value }, fieldState: { error } }) => {
           const currentSelectedUnit = units.find(u => u.code === value) ?? selectedUnit
           return (
-            <Box justifyContent="center">
+            <Box sx={{ justifyContent: 'center' }}>
               <Autocomplete
                 disablePortal
                 id={'unit'}

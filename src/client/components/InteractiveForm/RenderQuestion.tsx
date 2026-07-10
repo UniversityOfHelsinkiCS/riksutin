@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 import { UseFormWatch, Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
@@ -76,7 +77,7 @@ const CustomText = ({ control, id, title }) => {
         defaultValue=""
         rules={{ required: true }}
         render={({ field: { onChange }, fieldState: { error } }) => (
-          <Box justifyContent="center">
+          <Box sx={{ justifyContent: 'center' }}>
             <TextField
               helperText={error ? error.message : null}
               data-testid={`question-${id}`}

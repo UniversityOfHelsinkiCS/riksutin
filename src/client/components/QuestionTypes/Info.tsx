@@ -16,11 +16,11 @@ const Text = ({ control, question, defaultValue }: InputProps) => {
       name={question.id.toString()}
       defaultValue={defaultValue}
       render={() => (
-        <Box justifyContent="center">
+        <Box sx={{ justifyContent: 'center' }}>
           <TextField
             data-testid={`question-${question.id}`}
             fullWidth
-            InputProps={props}
+            slotProps={{ input: props }}
             defaultValue={defaultValue}
             disabled
           />

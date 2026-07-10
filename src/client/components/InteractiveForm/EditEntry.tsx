@@ -137,7 +137,7 @@ const EditEntry = () => {
   return (
     <Box sx={formStyles.formWrapper}>
       <Grid id="survey-main-section">
-        <Grid item sm={12}>
+        <Grid sx={{ sm: 12 }}>
           <Alert severity="info" sx={{ mb: 2 }}>
             {t('editEntry:editingEntryInfo', {
               date: new Date(entry.createdAt).toLocaleDateString('fi-FI'),
@@ -149,7 +149,7 @@ const EditEntry = () => {
           </Alert>
           <HelloBanner />
         </Grid>
-        <Grid item sm={12}>
+        <Grid sx={{ sm: 12 }}>
           <form style={{ display: 'block' }} onSubmit={handleSubmit(onSubmit)}>
             <RenderSurvey
               questions={survey.Questions}

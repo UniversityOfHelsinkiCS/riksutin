@@ -25,7 +25,7 @@ const AdditionalTextField = ({ question, control }: { question: Question; contro
         },
       }}
       render={({ field: { onChange }, fieldState: { error } }) => (
-        <Box justifyContent="center">
+        <Box sx={{ justifyContent: 'center' }}>
           <TextField
             helperText={error ? error.message : null}
             error={!!error}

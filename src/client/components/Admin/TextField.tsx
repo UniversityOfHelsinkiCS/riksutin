@@ -60,7 +60,7 @@ export const DialogLocalesField = ({
                 variant="h6"
               >
                 {inputlabel}
-                <Typography ml={1}>{language}</Typography>
+                <Typography sx={{ ml: 1 }}>{language}</Typography>
               </Typography>
               {isError && (
                 <Typography sx={{ my: 2, color: '#d32f2f' }}>{error[language as keyof Locales]?.message}</Typography>

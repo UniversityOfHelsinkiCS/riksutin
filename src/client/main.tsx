@@ -1,5 +1,5 @@
 import { StrictMode } from 'react'
-import ReactDOM from 'react-dom/client'
+import { createRoot } from 'react-dom/client'
 import { QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -14,7 +14,7 @@ initializeSentry()
 // HACK:
 initializeI18n().catch(_ => {})
 
-const root = ReactDOM.createRoot(document.getElementById('root')!)
+const root = createRoot(document.getElementById('root')!)
 root.render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>

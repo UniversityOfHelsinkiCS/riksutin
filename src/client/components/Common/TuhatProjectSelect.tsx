@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 import { useEffect, useState } from 'react'
 import { Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -70,7 +71,7 @@ const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
           <Typography component="span">{question.title[language as keyof Locales]}</Typography>
         </Box>
         <Box>
-          <Typography component="span" fontStyle={'italic'}>
+          <Typography component="span" sx={{ fontStyle: 'italic' }}>
             {t('tuhatProjectNotFound:defineProjectOwner')}
           </Typography>
         </Box>
@@ -92,7 +93,7 @@ const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
           name={question.id.toString()}
           rules={{ required: true }}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <Box justifyContent="center">
+            <Box sx={{ justifyContent: 'center' }}>
               <TextField
                 helperText={error ? error.message : null}
                 error={!!error}
@@ -134,7 +135,7 @@ const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
         render={({ field }) => {
           const currentValue = field.value || ''
           return (
-            <Box justifyContent="center">
+            <Box sx={{ justifyContent: 'center' }}>
               <FormControl sx={{ minWidth: 200 }}>
                 <RadioGroup {...field} value={currentValue}>
                   {collabProjectOptions.map((singleOption: SingleChoiceType) => (
@@ -196,7 +197,7 @@ const SelectTuhatProject = ({ control, question, watch }: InputProps) => {
             },
           }}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <Box justifyContent="center">
+            <Box sx={{ justifyContent: 'center' }}>
               <TextField
                 helperText={error ? error.message : null}
                 error={!!error}

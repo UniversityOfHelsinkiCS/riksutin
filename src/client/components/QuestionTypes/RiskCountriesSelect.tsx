@@ -53,12 +53,12 @@ const RiskCountrySelect = ({ control, question, children, watch, type }: InputPr
   }
 
   return (
-    <Box py={1}>
+    <Box sx={{ py: 1 }}>
       <Controller
         control={control}
         name={question.id.toString()}
         render={({ field: { onChange, value }, fieldState: { error } }) => (
-          <Box justifyContent="center">
+          <Box sx={{ justifyContent: 'center' }}>
             <Autocomplete
               multiple
               disablePortal
@@ -88,9 +88,11 @@ const RiskCountrySelect = ({ control, question, children, watch, type }: InputPr
                   error={!!error}
                   {...params}
                   label={question.optionData.label ? question.optionData.label[language as keyof Locales] : ''}
-                  inputProps={{
-                    ...params.inputProps,
-                    readOnly: contriesSelected >= 5,
+                  slotProps={{
+                    input: {
+                      ...params.slotProps.input,
+                      readOnly: contriesSelected >= 5,
+                    },
                   }}
                 />
               )}

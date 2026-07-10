@@ -74,7 +74,7 @@ const OptionItem = ({
       <Box sx={{ mb: 2 }}>
         <Typography sx={{ display: 'flex', mb: 2 }} variant="h6">
           {t('admin:optionTitle', { optionNumber })}
-          <Typography ml={1}>{language}</Typography>
+          <Typography sx={{ ml: 1 }}>{language}</Typography>
         </Typography>
         <MDEditor data-color-mode="light" height={200} value={optionTitle} onChange={setOptionTitle} />
       </Box>
@@ -83,7 +83,7 @@ const OptionItem = ({
         <Box sx={{ mb: 2 }}>
           <Typography sx={{ display: 'flex', mb: 2 }} variant="h6">
             {t('admin:optionText', { optionNumber })}
-            <Typography ml={1}>{language}</Typography>
+            <Typography sx={{ ml: 1 }}>{language}</Typography>
           </Typography>
           <MDEditor data-color-mode="light" height={400} value={optionData} onChange={setOptionData} />
         </Box>
@@ -110,8 +110,8 @@ const EditOptions = ({
   const { t: _ } = useTranslation()
 
   return (
-    <Box mb={2} display="flex">
-      <OptionItem option={option} optionNumber={optionNumber} question={question} language={'fi' as keyof Locales} />
+    <Box sx={{ mb: 2, display: 'flex' }}>
+      <OptionItem option={option} optionNumber={optionNumber} question={question} language={'fi'} />
       <OptionItem option={option} optionNumber={optionNumber} question={question} language={language} />
     </Box>
   )

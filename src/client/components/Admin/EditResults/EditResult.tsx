@@ -60,8 +60,8 @@ const ResultItem = ({ language, result }: { language: keyof Locales; result: Res
 }
 
 const EditResult = ({ language, result }: { language: keyof Locales; result: Result }) => (
-  <Box mb={5} display="flex">
-    <ResultItem language={'fi' as keyof Locales} result={result} />
+  <Box sx={{ mb: 5, display: 'flex' }}>
+    <ResultItem language={'fi'} result={result} />
     <ResultItem language={language} result={result} />
   </Box>
 )
