@@ -2,7 +2,7 @@ import axios, { AxiosError } from 'axios'
 
 import { inProduction, appName } from '@config'
 import { PATE_URL, TESTER_EMAILS } from '@userconfig'
-import logger from 'src/server/util/logger'
+import logger from '../../src/server/util/logger'
 import FormData from 'form-data'
 
 const settings = {
