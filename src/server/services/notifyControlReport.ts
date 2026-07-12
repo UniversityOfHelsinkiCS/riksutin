@@ -5,7 +5,7 @@ import logger from '../util/logger'
 export const notifyControlReportCreated = async (entry: Entry) => {
   const subject = 'Control Report Created / Käsittelytoimenpide luotu'
 
-  const projectName = entry.data.answers[3] || 'your project'
+  const projectName = entry.data.answers[3] ?? 'your project'
 
   const text = `A Control Report has been created for your project ${projectName}.
 Review it at: risk-i.helsinki.fi/user/${entry.id}

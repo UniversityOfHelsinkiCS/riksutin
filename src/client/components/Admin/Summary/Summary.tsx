@@ -84,7 +84,7 @@ const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps)
   entriesRef.current = entries
 
   const isTestVersion = useCallback((id: string) => {
-    return entriesRef.current.find(e => e.id === Number(id))?.testVersion || false
+    return entriesRef.current.find(e => e.id === Number(id))?.testVersion ?? false
   }, [])
 
   const getEntryState = useCallback((id: string): string | null => {

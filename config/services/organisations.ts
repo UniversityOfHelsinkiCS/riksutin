@@ -156,7 +156,7 @@ export const getUserOrganisations = async (userId: string, iamGroups: string[]):
     iamGroups,
   })
 
-  return data || []
+  return data ?? []
 }
 
 export const getEmployeeData = async (search: string): Promise<CanError<EmployeeResponse[]>> => {

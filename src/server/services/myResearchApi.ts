@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/prefer-optional-chain */
 import { Entry, Result } from '@dbmodels'
 import { Op } from 'sequelize'
 import i18n from '../util/i18n'

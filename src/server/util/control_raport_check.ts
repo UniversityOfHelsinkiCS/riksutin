@@ -79,14 +79,14 @@ export const sendPendingEntryEmail = async (entryId: number, parts: string[], ri
   const t = i18n.getFixedT('fi')
   const partsListHtml = parts.map(p => `<li>${t(p)}</li>`).join('')
 
-  const projectName: string = riskData.answers[3] || ''
+  const projectName: string = riskData.answers[3] ?? ''
   const collaborationForms: string[] = Array.isArray(riskData.answers[11]) ? riskData.answers[11] : []
   const collaborationFormsHtml = collaborationForms.map(f => `<li>${COLLABORATION_FORM_LABELS[f] ?? f}</li>`).join('')
   const hasExternalFunding = riskData.answers[13] === 'externalFunding'
-  const funder: string = riskData.answers[32] || ''
+  const funder: string = riskData.answers[32] ?? ''
   const ethicalRisk = (riskData as any)?.risks?.find((r: any) => r.id === 'ethical')?.level
   const hasEthicalRisk = ethicalRisk >= 2
-  const ethicalRiskDescription: string = riskData.answers[33] || ''
+  const ethicalRiskDescription: string = riskData.answers[33] ?? ''
 
   const text = [
     '<p>Uusi tarkastelua vaativa riskiarvio on luotu.</p>',
@@ -130,7 +130,7 @@ export const sendControlReportStartedEmail = async (entry: Entry) => {
   }
 
   const language = entry.language === 'fi' ? 'fi' : 'en'
-  const projectName: string = entry.data.answers[3] || ''
+  const projectName: string = entry.data.answers[3] ?? ''
   const url = `${USER_BASE_URL}/${entry.id}`
 
   const content = {
@@ -169,7 +169,7 @@ export const sendStateDecisionEmail = async (entry: Entry, newState: string) => 
   }
 
   const language = entry.language === 'fi' ? 'fi' : 'en'
-  const projectName: string = entry.data.answers[3] || ''
+  const projectName: string = entry.data.answers[3] ?? ''
   const url = `${USER_BASE_URL}/${entry.id}`
 
   const content = {

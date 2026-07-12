@@ -64,7 +64,7 @@ const RenderAnswers = ({
         question.optionData.options.find(option => option.id === value)?.title[language as keyof Locales]
     )
 
-    return { [questionId]: texts.join(', ') || '' }
+    return { [questionId]: texts.join(', ') ?? '' }
   })
 
   if (resultData.selectOrganisation) {
