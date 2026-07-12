@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import {
   Box,
