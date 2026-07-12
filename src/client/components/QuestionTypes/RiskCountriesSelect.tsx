@@ -89,6 +89,7 @@ const RiskCountrySelect = ({ control, question, children, watch, type }: InputPr
                   {...params}
                   label={question.optionData.label ? question.optionData.label[language as keyof Locales] : ''}
                   slotProps={{
+                    ...params.slotProps,
                     input: {
                       ...params.slotProps.input,
                       readOnly: contriesSelected >= 5,

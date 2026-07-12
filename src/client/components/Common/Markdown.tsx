@@ -12,7 +12,7 @@ const H3 = ({ ...rest }) => <GutterTypography variant="h6" component="h3" {...re
 
 const H4 = ({ ...rest }) => <GutterTypography variant="body1" component="h4" {...rest} />
 
-const A = ({ ...rest }) => <Link color="inherit" {...rest} />
+const A = ({ ...rest }) => <Link color="inherit" target="_blank" rel="noopener noreferrer" {...rest} />
 
 const defaultComponents = {
   p: GutterTypography,
@@ -36,7 +36,7 @@ const Markdown = ({ children, ...props }: MarkdownProps) => {
   const content = children.replace(/\n/gi, '&nbsp; \n')
 
   return (
-    <ReactMarkdown remarkPlugins={[remarkBreaks]} components={{ ...defaultComponents }} linkTarget="_blank" {...props}>
+    <ReactMarkdown remarkPlugins={[remarkBreaks]} components={{ ...defaultComponents }} {...props}>
       {content}
     </ReactMarkdown>
   )
