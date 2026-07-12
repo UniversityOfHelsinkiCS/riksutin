@@ -32,7 +32,7 @@
     "react-markdown": "10.1.0",
     "rss-parser": "^3.13.0",
     "sequelize": "^6.37.5",
-    "tsx": "^4.19.2",
+    "tsx": "4.23.0",
     "umzug": "^3.8.2",
     "uuid": "14.0.1",
     "winston": "^3.17.0",
