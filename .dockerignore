@@ -108,7 +108,7 @@ cypress/
 **/uploads
 
 # additional inclusions here
-docs/
-scripts/
+**/docs
+**/scripts
 
 # exclusions here

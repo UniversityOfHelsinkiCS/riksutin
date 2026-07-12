@@ -1,4 +1,4 @@
 services:
   app:
     build:
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
