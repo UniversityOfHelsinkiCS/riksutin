@@ -1,9 +1,9 @@
 import { init as initSentry, httpIntegration, expressIntegration } from '@sentry/node'
 
-import { inProduction, inStaging, inE2EMode, SENTRY_DNS, SENTRY_GIT_SHA } from '@config'
+import { inProduction, inDevelopment, inStaging, inE2EMode, SENTRY_DNS, SENTRY_GIT_SHA } from '@config'
 
 const initializeSentry = () => {
-  if (!inProduction || inStaging || inE2EMode) {
+  if (!inProduction || inStaging || inE2EMode || inDevelopment) {
     return
   }
 

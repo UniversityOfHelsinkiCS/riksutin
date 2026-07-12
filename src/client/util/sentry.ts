@@ -1,8 +1,8 @@
 import * as Sentry from '@sentry/browser'
-import { inProduction, inStaging, inE2EMode, SENTRY_DNS_FRONTEND, SENTRY_GIT_SHA } from '@config'
+import { inProduction, inStaging, inDevelopment, inE2EMode, SENTRY_DNS_FRONTEND, SENTRY_GIT_SHA } from '@config'
 
 const initializeSentry = () => {
-  if (!inProduction || inStaging || inE2EMode) {
+  if (!inProduction || inStaging || inE2EMode || inDevelopment) {
     return
   }
 
