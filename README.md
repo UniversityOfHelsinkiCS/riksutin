@@ -8,12 +8,15 @@ Riksutin (officially known as **Risk-i** or **International collaboration risk a
 - Clone the repository
 - Copy `.env.template` as `.env` file and fill in the required values
 - Run `npm i` and `npm start` to setup and start the development environment
+- If packages are installed or updated, run `docker compose down`, remove the node_modules volumes created for all workspaces
+`docker volume rm riksutin-base-nodemod riksutin-client-nodemod riksutin-tests-nodemod riksutin-validators-nodemod riksutin-server-nodemod` and build the app image in order to get changes to work inside the container.
+- To install a package to any of the workspaces, do it in the root of the directory by running `npm install <package> --workspace server|client|tests|validators` (choose the correct workspace).
 
 ## Running tests locally (and in CI)
 
 Start app with `npm run start:local:test`, wait until the frontend is build and app is served in [http://localhost:3000/](http://localhost:3000/).
 
-Run tests with `npm run test:local`. You get the UI mode with params `-- --ui`.
+Run tests with `npm run test:local`. You get the UI mode with params `-- --ui`. If you try to run the tests for the first time, run command `npx playwright install`.
 
 The envs for testing are in `cienv`
 
