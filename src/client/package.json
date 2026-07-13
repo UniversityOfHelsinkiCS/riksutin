@@ -2,6 +2,9 @@
   "name": "client",
   "type": "module",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=24.0.0"
+  },
   "scripts": {
     "build": "DISABLE_ESLINT_PLUGIN=true vite build",
     "watch": "vite"
