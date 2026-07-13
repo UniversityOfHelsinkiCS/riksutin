@@ -25,7 +25,7 @@ ENV REACT_APP_CONTROL_REPORT_CHECK_ENABLED=$REACT_APP_CONTROL_REPORT_CHECK_ENABL
 # Setup
 COPY . .
 RUN npm install -g tsx
-RUN npm ci --workspaces 
+RUN npm ci --workspaces --omit=dev
 RUN npm run build
 
 ARG NPM_COMMAND="start:prod"
