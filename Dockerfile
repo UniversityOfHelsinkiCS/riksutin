@@ -1,4 +1,4 @@
-FROM node:24
+FROM node:24-alpine
 
 ENV TZ="Europe/Helsinki"
 
@@ -23,9 +23,15 @@ ARG REACT_APP_CONTROL_REPORT_CHECK_ENABLED
 ENV REACT_APP_CONTROL_REPORT_CHECK_ENABLED=$REACT_APP_CONTROL_REPORT_CHECK_ENABLED
 
 # Setup
-COPY . .
+COPY .npmrc ./
+COPY package*.json ./
+COPY tsconfig.json ./
+COPY public ./puplic/
+COPY config ./config/
+COPY src ./src/
+
 RUN npm install -g tsx
-RUN npm ci --workspaces
+RUN npm ci --omit=dev --workspaces 
 RUN npm run build
 
 ARG NPM_COMMAND="start:prod"
