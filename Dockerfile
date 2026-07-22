@@ -31,7 +31,7 @@ COPY config ./config/
 COPY src ./src/
 
 RUN npm install -g tsx
-RUN npm ci --omit=dev --workspaces 
+RUN npm ci --workspaces 
 RUN npm run build
 
 ARG NPM_COMMAND="start:prod"
