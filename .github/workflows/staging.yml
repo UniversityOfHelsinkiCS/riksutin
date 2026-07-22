@@ -16,9 +16,9 @@ jobs:
       - uses: actions/checkout@v6
 
       - name: Debug actions
-      - run: sysctl fs
-      - run: ulimit -Sa
-      - run: ulimit -Ha
+        run: sysctl fs
+        run: ulimit -Sa
+        run: ulimit -Ha
 
 
       - name: Build image
