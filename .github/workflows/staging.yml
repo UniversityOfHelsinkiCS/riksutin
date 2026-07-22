@@ -2,7 +2,7 @@ name: Test and deploy to staging
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   test:
@@ -22,7 +22,6 @@ jobs:
       - name: Ulimit hdebug
         run: ulimit -Ha
 
-
       - name: Build image
         id: build-image
         uses: redhat-actions/buildah-build@v2
@@ -31,6 +30,9 @@ jobs:
           tags: staging ${{ github.sha }}
           containerfiles: |
             ./Dockerfile
+          extra-args: |
+            --ulimit
+            nofile=65536:65536
           build-args: |
             BASE_PATH=
             GIT_SHA=${{ github.sha }}
