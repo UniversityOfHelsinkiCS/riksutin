@@ -26,14 +26,15 @@ const getSafeReturnUrl = (rawReturnUrl: unknown) => {
 }
 
 loginRouter.get('/', (req, res, next) => {
-  req.session.returnUrl = getSafeReturnUrl(req.query.returnUrl)
+  const safeReturnUrl = getSafeReturnUrl(req.query.returnUrl)
+  req.session.returnUrl = safeReturnUrl
   passport.authenticate('oidc')(req, res, next)
 })
 
-loginRouter.get('/callback', passport.authenticate('oidc', { failureRedirect: fallbackUrl }), (req, res) => {
+loginRouter.get('/callback', (req, res, next) => {
   const returnUrl = req.session?.returnUrl ?? fallbackUrl
   delete req.session.returnUrl
-  res.redirect(returnUrl)
+  passport.authenticate('oidc', { successRedirect: returnUrl, failureRedirect: fallbackUrl })(req, res, next)
 })
 
 export default loginRouter
