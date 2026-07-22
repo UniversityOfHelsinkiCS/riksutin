@@ -15,9 +15,11 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Debug actions
+      - name: Sysctl debug
         run: sysctl fs
+      - name: Ulimit sdebug
         run: ulimit -Sa
+      - name: Ulimit hdebug
         run: ulimit -Ha
 
 
