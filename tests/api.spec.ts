@@ -159,7 +159,7 @@ test.describe('api', () => {
         '3': 'Initial Project',
         '4': 'bilateral',
         '6': 'university',
-        '8': 'Afghanistan',
+        '8': 'Finland',
         '9': 'partner',
         '10': 'agreementNotDone',
         '11': ['education'],
@@ -200,8 +200,8 @@ test.describe('api', () => {
         '10': 'agreementDone',
         '11': ['education', 'research'],
         '12': 'longDuration',
-        '13': 'externalFunding',
-        '16': 'largeBudget',
+        '13': 'noExternalFunding',
+        '16': 'smallBudget',
         '17': 'noTransferPersonalData',
         '20': 'Ahlobait University',
         '23': 'noTransferMilitaryKnowledge',
@@ -227,10 +227,10 @@ test.describe('api', () => {
     let expectedRisks = riskResponse([
       { id: 'country', level: 1 },
       { id: 'dualUseEU', level: 1 },
-      { id: 'economic', level: 3 },
-      { id: 'economicScope', level: 3 },
+      { id: 'economic', level: 1 },
+      { id: 'economicScope', level: 1 },
       { id: 'ethical', level: 1 },
-      { id: 'total', level: 2 },
+      { id: 'total', level: 1 },
       { id: 'university', level: 1 },
     ])
 
@@ -240,7 +240,7 @@ test.describe('api', () => {
 
     expect(updatedEntry.data.updatedData).toBeDefined()
     expect(updatedEntry.data.updatedData.length).toBe(1)
-    expect(updatedEntry.data.updatedData[0].country[0].code).toBe('AF')
+    expect(updatedEntry.data.updatedData[0].country[0].code).toBe('FI')
 
     updatedPayload = {
       data: {
@@ -294,7 +294,7 @@ test.describe('api', () => {
 
     expect(updatedEntry.data.updatedData).toBeDefined()
     expect(updatedEntry.data.updatedData.length).toBe(2)
-    expect(updatedEntry.data.updatedData[0].country[0].code).toBe('AF')
+    expect(updatedEntry.data.updatedData[0].country[0].code).toBe('FI')
     expect(updatedEntry.data.updatedData[1].country[0].code).toBe('SE')
   })
 
