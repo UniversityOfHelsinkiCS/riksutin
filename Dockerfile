@@ -26,7 +26,7 @@ ENV REACT_APP_CONTROL_REPORT_CHECK_ENABLED=$REACT_APP_CONTROL_REPORT_CHECK_ENABL
 COPY .npmrc ./
 COPY package*.json ./
 COPY tsconfig.json ./
-COPY public ./puplic/
+COPY public ./public/
 COPY config ./config/
 COPY src ./src/
 
