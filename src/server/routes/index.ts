@@ -97,9 +97,10 @@ router.use('/entries', entryRouter)
 router.use('/organizations', organizationRouter)
 router.use('/tuhatprojects', tuhatProjectsRouter)
 
-router.get('/explode', () => {
-  throw new Error('Bad thing happened!')
-})
+// Why are there two of them, and why is this not behind an admin middleware? Commented out for now, but will be removed if not needed
+// router.get('/explode', () => {
+//   throw new Error('Bad thing happened!')
+// })
 
 Sentry.setupExpressErrorHandler(router)
 router.use(errorHandler)
