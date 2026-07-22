@@ -19,6 +19,9 @@ jobs:
           tags: production ${{ github.sha }}
           containerfiles: |
             ./Dockerfile
+          extra-args: |
+            --ulimit
+            nofile=65536:65536
           build-args: |
             GIT_SHA=${{ github.sha }}
             ORGANISATION_ID=hy
