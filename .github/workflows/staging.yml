@@ -15,6 +15,12 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
+      - name: Debug actions
+      - run: sysctl fs
+      - run: ulimit -Sa
+      - run: ulimit -Ha
+
+
       - name: Build image
         id: build-image
         uses: redhat-actions/buildah-build@v2
