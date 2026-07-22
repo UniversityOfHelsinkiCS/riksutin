@@ -18,7 +18,7 @@ import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { enqueueSnackbar } from 'notistack'
 import { CONTROL_REPORT_CHECK_ENABLED } from '@config'
-import { ENTRY_STATES } from '@common/entryStates'
+import { isEntryStateLocked, isEntryExpired } from '@common/entryStates'
 import { getRiskParts } from '@common/getRiskParts'
 import RiskTableDOM from '../ResultPage/RiskTableDOM'
 import { useEntry } from '../../hooks/useEntry'
@@ -138,9 +138,8 @@ const UserEntry = () => {
             {!isAdminView &&
               tabValue === 0 &&
               (() => {
-                const isStateLocked = entry.state === ENTRY_STATES.PENDING || entry.state === ENTRY_STATES.EXPERT_GROUP
-                const isExpired =
-                  new Date().getTime() - new Date(entry.createdAt).getTime() > 12 * 30 * 24 * 60 * 60 * 1000
+                const isStateLocked = isEntryStateLocked(entry.state)
+                const isExpired = isEntryExpired(entry.createdAt)
                 const isDisabled = isStateLocked || isExpired
                 const tooltipTitle = isStateLocked
                   ? t('userPage:editDisabledTooltip')

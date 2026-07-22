@@ -154,7 +154,9 @@
   },
   "editEntry": {
     "editingEntryInfo": "Muokataan merkintää ajalta {{date}} {{time}}.",
-    "previousUpdates": "Tällä merkinnällä on {{count}} aiempaa päivitystä."
+    "previousUpdates": "Tällä merkinnällä on {{count}} aiempaa päivitystä.",
+    "entryLockedError": "Tämä merkintä on lukittu, eikä sitä voi enää muokata.",
+    "entryExpiredError": "Tämä merkintä on vanhentunut, eikä sitä voi enää muokata."
   },
   "admin": {
     "previousUpdates": "Tällä merkinnällä on {{count}} aiempaa päivitystä.",

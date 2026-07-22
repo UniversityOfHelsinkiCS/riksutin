@@ -156,7 +156,9 @@
   },
   "editEntry": {
     "editingEntryInfo": "Editing entry from {{date}} {{time}}.",
-    "previousUpdates": "This entry has {{count}} previous updates."
+    "previousUpdates": "This entry has {{count}} previous updates.",
+    "entryLockedError": "This entry is locked and can no longer be edited.",
+    "entryExpiredError": "This entry has expired and can no longer be edited."
   },
   "admin": {
     "summaryTab": "Summary",

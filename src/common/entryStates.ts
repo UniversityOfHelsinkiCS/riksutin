@@ -45,3 +45,13 @@ export const getEntryStateSx = (state: string): object => {
 }
 
 export const getEntryStateLabel = (state: string): string => ENTRY_STATE_LABELS[state as EntryState] ?? state
+
+export const EXPIRATION_TIME_MS = 12 * 30 * 24 * 60 * 60 * 1000
+
+export const isEntryStateLocked = (state: string | null | undefined): boolean => {
+  return state === ENTRY_STATES.PENDING || state === ENTRY_STATES.EXPERT_GROUP
+}
+
+export const isEntryExpired = (createdAt: string | Date): boolean => {
+  return new Date().getTime() - new Date(createdAt).getTime() > EXPIRATION_TIME_MS
+}

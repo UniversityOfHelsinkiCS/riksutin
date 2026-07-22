@@ -15,7 +15,13 @@ import {
 } from '../util/control_raport_check'
 import { sendResult } from '../services/sendResult'
 import { CreateControlReportZod, UpdateControlReportZod } from '../../validators/controlReport'
-import { ENTRY_STATES, FROM_STATE_FORM_EDIT, FROM_STATE_MANUAL_TRIGGER } from '../../common/entryStates'
+import {
+  ENTRY_STATES,
+  FROM_STATE_FORM_EDIT,
+  FROM_STATE_MANUAL_TRIGGER,
+  isEntryStateLocked,
+  isEntryExpired,
+} from '../../common/entryStates'
 const entryRouter = express.Router()
 
 entryRouter.get('/', adminHandler, async (req, res) => {
@@ -121,6 +127,12 @@ entryRouter.put('/:entryId', async (req: RequestWithUser, res: any) => {
 
   if (entry.userId !== userId && entry.ownerId !== userId) {
     throw new Error('Unauthorized: You can only edit your own entries')
+  }
+
+  const isStateLocked = isEntryStateLocked(entry.state)
+  const isExpired = isEntryExpired(entry.createdAt)
+  if (isStateLocked || isExpired) {
+    return res.status(403).send('Entry is locked or expired and cannot be edited')
   }
 
   const riskData = await createRiskData(data)

@@ -19,6 +19,7 @@ import RenderSurvey from './RenderSurvey'
 
 import styles from '../../styles'
 import { noDefault, NO_SELECTION } from '../../util/multilataral'
+import { isEntryStateLocked, isEntryExpired } from '@common/entryStates'
 
 const EditEntry = () => {
   const { entryId } = useParams<{ entryId: string }>()
@@ -64,6 +65,17 @@ const EditEntry = () => {
   // Update form values when entry loads (only once)
   useEffect(() => {
     if (entry && !entryLoading && !hasResetRef.current) {
+      const isStateLocked = isEntryStateLocked(entry.state)
+      const isExpired = isEntryExpired(entry.createdAt)
+
+      if (isStateLocked || isExpired) {
+        enqueueSnackbar(isStateLocked ? t('editEntry:entryLockedError') : t('editEntry:entryExpiredError'), {
+          variant: 'error',
+        })
+        navigate(`/user/${entryId}`)
+        return
+      }
+
       const values: FormValues = entry.data?.answers ?? ({} as FormValues)
       values[26] = values[26] ?? [NO_SELECTION]
       values[28] = values[28] ?? [NO_SELECTION]
@@ -80,7 +92,7 @@ const EditEntry = () => {
       reset(values, { keepDefaultValues: false })
       hasResetRef.current = true
     }
-  }, [entry, entryLoading, reset])
+  }, [entry, entryLoading, navigate, entryId, t, reset])
 
   // Wait for entry to load - must be after all hooks
   if (!survey || isLoading || !results || !entry || entryLoading) {
