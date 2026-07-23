@@ -27,7 +27,15 @@ const entryRouter = express.Router()
 entryRouter.get('/', adminHandler, async (req, res) => {
   const entries = await getEntries()
 
-  return res.status(200).send(entries)
+  // Temp fix for removing unnecessary data slowing down frontend ~10 MB -> 2.5 MB
+  entries.forEach(entry => {
+    entry.data.country.forEach(country => {
+      country.universities = null
+    })
+    entry.Survey.title = {}
+    entry.Survey.text = {}
+  })
+  return res.send(entries)
 })
 
 entryRouter.get('/user', async (req: RequestWithUser, res: any) => {
