@@ -1,44 +1,15 @@
 import { useState } from 'react'
-import { Control, Controller } from 'react-hook-form'
+import { Controller } from 'react-hook-form'
 import { Autocomplete, Box, Button, TextField, Typography } from '@mui/material'
 
 import { useTranslation } from 'react-i18next'
 
-import type { Locales, Question } from '@types'
+import type { Locales } from '@types'
 import type { InputProps } from '@client/types'
 
 import useCountry from '../../hooks/useCountryData'
 import LoadingProgress from '../Common/LoadingProgress'
 import ShowMore from '../Common/ShowMore'
-
-const AdditionalTextField = ({ question, control }: { question: Question; control: Control<any> | undefined }) => {
-  const { t } = useTranslation()
-  return (
-    <Controller
-      control={control}
-      name={question.id.toString()}
-      defaultValue=""
-      rules={{
-        required: {
-          value: question.id !== 7,
-          message: t('questions:requiredText'),
-        },
-      }}
-      render={({ field: { onChange }, fieldState: { error } }) => (
-        <Box sx={{ justifyContent: 'center' }}>
-          <TextField
-            helperText={error ? error.message : null}
-            error={!!error}
-            data-testid={`question-${question.id}`}
-            onChange={onChange}
-            defaultValue=""
-            sx={{ width: '50%' }}
-          />
-        </Box>
-      )}
-    />
-  )
-}
 
 const UniversitySelect = ({ control, question, selectedCountry }: InputProps) => {
   const { country, isLoading } = useCountry(selectedCountry)
@@ -108,7 +79,16 @@ const UniversitySelect = ({ control, question, selectedCountry }: InputProps) =>
                 />
               </Box>
             ) : (
-              <AdditionalTextField question={question} control={control} />
+              <Box sx={{ justifyContent: 'center' }}>
+                <TextField
+                  helperText={error ? error.message : null}
+                  error={!!error}
+                  data-testid={`question-${question.id}`}
+                  onChange={onChange}
+                  value={value ?? ''}
+                  sx={{ width: '50%' }}
+                />
+              </Box>
             )
           }
         />
