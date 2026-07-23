@@ -23,16 +23,37 @@ const RenderErrors = ({ questions, control }) => {
     return null
   }
 
+  const getErrorTitle = (id: string) => {
+    // 1. Try to find the question in the DB questions array
+    const question = questions.find(q => q.id.toString() === id)
+    if (question) {
+      return question.title[language as keyof Locales]
+    }
+
+    // 2. Fallbacks for custom string fields that aren't in the DB questions array
+    if (id === 'unit') {
+      return t('unitSelect:title')
+    }
+    if (id === 'faculty') {
+      return t('facultySelect:title')
+    }
+    if (id === 'tuhatProjectExists') {
+      return t('tuhatProjectExists:title')
+    }
+    if (id === 'selectOrganisation') {
+      return t('organisationSelect:autocompleteLabel')
+    }
+
+    return `Failed to read field id: ${id}`
+  }
+
   return (
     <Box sx={{ p: 2 }}>
       <Typography>{t('questions:requiredQuestionsNeedAnswers')}</Typography>
       <ul>
         {Object.keys(errors).map(id => (
           <li key={id}>
-            <Typography color="red">
-              {questions.find(q => q.id.toString() === id)?.title[language as keyof Locales] ??
-                `Failed to read field id: ${id}`}
-            </Typography>
+            <Typography color="red">{getErrorTitle(id)}</Typography>
           </li>
         ))}
       </ul>
