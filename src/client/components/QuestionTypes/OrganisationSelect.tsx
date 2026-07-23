@@ -71,6 +71,8 @@ const OrganisationList = ({
 }
 
 const OrganisationSelect = ({ control, question, children, watch }: InputProps) => {
+  const { t } = useTranslation()
+
   if (!question || !watch) {
     return null
   }
@@ -85,10 +87,17 @@ const OrganisationSelect = ({ control, question, children, watch }: InputProps) 
         control={control}
         name={question.id.toString()}
         defaultValue=""
-        render={({ field: { onChange, value } }) => (
+        rules={{ required: { value: true, message: t('questions:requiredText') } }}
+        render={({ field: { onChange, value }, fieldState: { error } }) => (
           <Box sx={{ justifyContent: 'center' }}>
             {!selection && (
-              <TextField data-testid={`question-${question.id}`} onChange={onChange} fullWidth value={value} />
+              <TextField
+                data-testid={`question-${question.id}`}
+                onChange={onChange}
+                fullWidth
+                value={value}
+                error={!!error}
+              />
             )}
           </Box>
         )}
