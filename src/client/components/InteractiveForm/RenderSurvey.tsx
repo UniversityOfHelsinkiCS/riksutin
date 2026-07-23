@@ -14,10 +14,10 @@ import { useResultData } from '../../contexts/ResultDataContext'
 import styles from '../../styles'
 import ResetForm from '../Common/ResetForm'
 
-const RenderErrors = ({ requiredFields, questions, control }) => {
+const RenderErrors = ({ questions, control }) => {
   const { t, i18n } = useTranslation()
   const { language } = i18n
-  const { dirtyFields, errors } = useFormState({ control })
+  const { errors } = useFormState({ control })
 
   if (Object.values(errors).length === 0) {
     return null
@@ -27,16 +27,14 @@ const RenderErrors = ({ requiredFields, questions, control }) => {
     <Box sx={{ p: 2 }}>
       <Typography>{t('questions:requiredQuestionsNeedAnswers')}</Typography>
       <ul>
-        {requiredFields
-          .filter(id => !Object.keys(dirtyFields).includes(id))
-          .map(id => (
-            <li key={id}>
-              <Typography color="red">
-                {questions.find(q => q.id.toString() === id)?.title[language as keyof Locales] ??
-                  `Failed to read field id: ${id}`}
-              </Typography>
-            </li>
-          ))}
+        {Object.keys(errors).map(id => (
+          <li key={id}>
+            <Typography color="red">
+              {questions.find(q => q.id.toString() === id)?.title[language as keyof Locales] ??
+                `Failed to read field id: ${id}`}
+            </Typography>
+          </li>
+        ))}
       </ul>
     </Box>
   )
@@ -79,8 +77,6 @@ const RenderSurvey = ({
 
   const { language } = i18n
 
-  const requiredFields = Object.keys(defaultValues).filter(value => !['1', '2', '7', 'faculty'].includes(value))
-
   // // eslint-disable-next-line no-console
   // console.log('FORM')
   // // eslint-disable-next-line no-console
@@ -106,7 +102,7 @@ const RenderSurvey = ({
           </Box>
         ))}
 
-        <RenderErrors control={control} requiredFields={requiredFields} questions={questions} />
+        <RenderErrors control={control} questions={questions} />
 
         <Box sx={formStyles.stackBox}>
           {!showQuestions ? (
