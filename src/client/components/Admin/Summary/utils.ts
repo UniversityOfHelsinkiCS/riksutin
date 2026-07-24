@@ -66,7 +66,9 @@ const createTableData = (entries: Entry[], questions: Question[], faculties: Fac
       economic: entry.data.risks.find(r => r.id === 'economic')?.level?.toString(),
       countryRisk: entry.data.risks.find(r => r.id === 'country')?.level?.toString(),
       ethical: entry.data.risks.find(r => r.id === 'ethical')?.level?.toString(),
-      dualUse: entry.data.risks.find(r => r.id === 'dualUseEU' || r.id === 'dualUseNonEU')?.level?.toString(),
+      dualUse: entry.data.risks
+        .find(r => r.id === 'dualUse' || r.id === 'dualUseEU' || r.id === 'dualUseNonEU')
+        ?.level?.toString(),
       gdpr: entry.data.country ? Math.max(...entry.data.country.map(c => c.gdpr ?? 0)).toString() : undefined,
     }
 
