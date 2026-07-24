@@ -13,16 +13,21 @@ export const riskReEvaluation = async (entry: Entry) => {
     return null
   }
 
-  const reCalculatedDataObject = {
-    createdAt: new Date().toISOString(),
-    ...reCalculatedData,
+  const previousVersionTimestamp = entry.updatedAt?.toISOString() ?? entry.createdAt.toISOString()
+  const previousDataSnapshot = {
+    answers: entry.data.answers,
+    risks: entry.data.risks,
+    country: entry.data.country,
+    multilateralCountries: entry.data.multilateralCountries,
+    createdAt: previousVersionTimestamp,
   }
 
   const dataWithRecalculatedValues: RiskData = {
     ...entry.data,
+    ...reCalculatedData,
     updatedData: !entry.data.updatedData
-      ? new Array(reCalculatedDataObject)
-      : entry.data.updatedData.concat(reCalculatedDataObject),
+      ? new Array(previousDataSnapshot)
+      : entry.data.updatedData.concat(previousDataSnapshot),
   }
 
   return dataWithRecalculatedValues
@@ -47,11 +52,9 @@ const run = async () => {
         updatedTotalRiskLevel === 3 &&
         updatedTotalRiskLevel > originalTotalRiskLevel
       ) {
-        await entry.update({
-          data: updatedRisks,
-        })
-
-        const updatedObject = await entry.save({ fields: ['data'] })
+        entry.set('data', updatedRisks)
+        entry.changed('data', true)
+        const updatedObject = await entry.save()
 
         const user = await User.findByPk(entry.userId)
 
