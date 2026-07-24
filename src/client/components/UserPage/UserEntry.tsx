@@ -225,7 +225,7 @@ const UserEntry = () => {
             return (
               /* eslint-disable-next-line react/no-array-index-key */
               <TabPanel key={index} value={tabValue} index={index + 1}>
-                <RiskTableDOM riskData={updated} countryData={country[0]} />
+                <RiskTableDOM riskData={updated} countryData={updated.country?.[0] ?? country[0]} />
                 <RenderAnswersDOM
                   survey={survey}
                   resultData={updated.answers ?? answers}
