@@ -73,6 +73,7 @@
     "economicScopeRiskLevel": "Taloudellinen laajuus",
     "economicExchangeRiskLevel": "Valuuttakurssiriski ",
     "dualUseRiskLevel": "Kaksikäyttötuotteiden riskitaso",
+    "gdprRiskLevel": "GDPR riskitaso",
     "organisationRiskLevel": "Yhteistyöorganisaation riskitaso",
     "ethicalRiskLevel": "Eettinen riskitaso",
     "totalRiskLevel": "**Yhteistyön kokonaisriskitaso**",

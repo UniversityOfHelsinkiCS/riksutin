@@ -63,6 +63,11 @@ const createTableData = (entries: Entry[], questions: Question[], faculties: Fac
       id: entry.id.toString(),
       date: `${new Date(entry.createdAt).toLocaleDateString()} ${new Date(entry.createdAt).toLocaleTimeString()}`,
       total: entry.data.risks.find(r => r.id === 'total')?.level?.toString(),
+      economic: entry.data.risks.find(r => r.id === 'economic')?.level?.toString(),
+      countryRisk: entry.data.risks.find(r => r.id === 'country')?.level?.toString(),
+      ethical: entry.data.risks.find(r => r.id === 'ethical')?.level?.toString(),
+      dualUse: entry.data.risks.find(r => r.id === 'dualUseEU' || r.id === 'dualUseNonEU')?.level?.toString(),
+      gdpr: entry.data.country ? Math.max(...entry.data.country.map(c => c.gdpr ?? 0)).toString() : undefined,
     }
 
     const faculty = faculties.find(f => f.code === entry.data.answers.faculty)?.name.fi

@@ -36,18 +36,28 @@ type TableProps = {
   entries: any[]
 }
 
-const additionalColumnNames: TableValues = {
-  id: 'ID',
-  date: 'Päivämäärä',
-  total: 'Kokonaisriskitaso',
-  faculty: 'Tiedekunta',
-  unit: 'Yksikkö',
-}
+const riskColumns = ['total', 'economic', 'countryRisk', 'ethical', 'dualUse', 'gdpr']
 
 const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps) => {
   const deleteMutation = useDeleteEntryMutation()
   const { t } = useTranslation()
   const [searchParams] = useSearchParams()
+
+  const additionalColumnNames = useMemo<TableValues>(
+    () => ({
+      id: 'ID',
+      date: t('userPage:tableDate') ?? undefined,
+      total: t('userPage:tableTotalRiskLevel') ?? undefined,
+      economic: t('riskTable:economicRiskLevel') ?? undefined,
+      countryRisk: t('riskTable:countryRiskLevel') ?? undefined,
+      ethical: t('riskTable:ethicalRiskLevel') ?? undefined,
+      dualUse: t('riskTable:dualUseRiskLevel') ?? undefined,
+      gdpr: t('riskTable:gdprRiskLevel') ?? undefined,
+      faculty: t('facultySelect:inputLabel') ?? undefined,
+      unit: t('unitSelect:inputLabel') ?? undefined,
+    }),
+    [t]
+  )
 
   // Use ref to track if this is the first render
   const isFirstRender = useRef(true)
@@ -102,7 +112,7 @@ const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps)
             <Box
               component="span"
               sx={() => ({
-                ...(columnId === 'total' && {
+                ...(riskColumns.includes(columnId) && {
                   backgroundColor: riskColors[cell.getValue<number>()] ?? riskColors[3],
                   borderRadius: '0.25rem',
                   fontWeight: 'bold',
@@ -156,9 +166,29 @@ const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps)
       : []
   }, [tableValues, questionTitles, isOutdated, isTestVersion, getEntryState, t])
 
-  const columnIds = Object.keys(tableValues[0])
+  const columnIds = Object.keys(tableValues[0] || {})
 
-  const [columnOrder, setColumnOrder] = useState(['3', 'date', 'total', '1', 'faculty', '2', 'unit', ...columnIds])
+  const desiredOrder = [
+    '3',
+    'faculty',
+    'unit',
+    'date',
+    'total',
+    'economic',
+    'countryRisk',
+    'ethical',
+    'dualUse',
+    'gdpr',
+    '1',
+    '2',
+  ]
+
+  const [columnOrder, setColumnOrder] = useState([
+    ...desiredOrder,
+    ...columnIds.filter(id => !desiredOrder.includes(id)),
+  ])
+
+  const initialColumnVisibility = Object.fromEntries(columnIds.map(id => [id, desiredOrder.includes(id)]))
 
   const handleDeleteRiskAssessment = (row: MRT_Row<TableValues>) => {
     // eslint-disable-next-line no-alert
@@ -214,7 +244,7 @@ const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps)
       },
     },
     initialState: {
-      columnVisibility: { id: false },
+      columnVisibility: { id: false, ...initialColumnVisibility },
     },
     renderRowActions: ({ row }) => (
       <IconButton onClick={() => handleDeleteRiskAssessment(row)}>

@@ -75,6 +75,7 @@
     "economicScopeRiskLevel": "Economic scope",
     "economicExchangeRiskLevel": "Exchange rate risk ",
     "dualUseRiskLevel": "Risk level of the dual use",
+    "gdprRiskLevel": "GDPR risk level",
     "organisationRiskLevel": "Risk level of the partner organisation",
     "ethicalRiskLevel": "Ethical risk level",
     "totalRiskLevel": "**Total risk level of the project**",
