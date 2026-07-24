@@ -123,9 +123,20 @@ const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps)
               {columnId === '3' ? (
                 <Box>
                   {isOutdated(row.getValue('id')) && <span style={outdatedWarning}>!</span>}
-                  <Box>
-                    <Link to={`/admin/entry/${row.getValue('id')}`}>{cell.getValue<string>()}</Link>
-                  </Box>
+                  <Tooltip title={cell.getValue<string>() || ''} placement="top">
+                    <Box
+                      sx={{
+                        display: '-webkit-box',
+                        WebkitLineClamp: 4,
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        wordBreak: 'break-word',
+                      }}
+                    >
+                      <Link to={`/admin/entry/${row.getValue('id')}`}>{cell.getValue<string>()}</Link>
+                    </Box>
+                  </Tooltip>
                   {(() => {
                     const state = getEntryState(row.getValue('id'))
                     if (!state) {
