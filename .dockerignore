@@ -112,3 +112,4 @@ cypress/
 **/scripts
 
 # exclusions here
+!src/server/data/ruleOfLaw/ruleOfLaw.csv

@@ -149,3 +149,4 @@ src/server/risk-assessment.pdf
 .s3cfg
 
 # exclusions here
+!src/server/data/ruleOfLaw/ruleOfLaw.csv
