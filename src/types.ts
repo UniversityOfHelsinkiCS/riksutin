@@ -207,6 +207,12 @@ export interface RiskData {
   answers: FormValues
   risks: Risk[]
   country: CountryData[]
+  /**
+   * **WARNING: CONFUSING NAMING**
+   *
+   * Stores snapshots of previous data.
+   * _(Despite the name, this array contains the old/previous versions of the data. A better name would be `previousData`)._
+   */
   updatedData?: {
     answers: FormValues
     risks: Risk[]
