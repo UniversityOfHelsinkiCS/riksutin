@@ -514,28 +514,15 @@ test.describe('editing entry triggers control process', () => {
     expect(pendingEmail).toBeTruthy()
   })
 
-  // TODO: Change test to check that users can't edit PENDING entries?
-  test.skip('editing an already-PENDING entry does not send a duplicate notification email', async () => {
-    await fetch('http://localhost:3000/pate/reset')
-
-    // Edit again with identical high-risk data; entry is already PENDING
+  test('editing a PENDING entry is not allowed', async () => {
+    // Attempt to edit again with identical high-risk data; entry is already PENDING
     const updateResponse = await fetch(`${baseUrl}/api/entries/${entryId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ data: highRiskData, tuhatData: {} }),
     })
-    expect(updateResponse.status).toBe(200)
-    const updatedEntry = await updateResponse.json()
 
-    // State must remain PENDING (not reset)
-    expect(updatedEntry.state).toBe('PENDING')
-
-    // No new notification email should have been sent
-    const pateResponse = await fetch('http://localhost:3000/pate')
-    const emails = await pateResponse.json()
-    const pendingEmails = emails.filter((m: any) =>
-      m.emails?.some((e: any) => e.subject === '[risk-i] Uusi tarkastelua vaativa riskiarvio luotu')
-    )
-    expect(pendingEmails.length).toBe(0)
+    // Expect 403 Forbidden because PENDING entries are locked
+    expect(updateResponse.status).toBe(403)
   })
 })
