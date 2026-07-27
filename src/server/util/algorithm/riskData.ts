@@ -47,4 +47,19 @@ const createRiskData = async (formData: FormValues) => {
   return riskData
 }
 
+export const appendHistorySnapshot = (oldData: RiskData, newRiskData: RiskData, timestamp: string): RiskData => {
+  const previousDataSnapshot = {
+    answers: oldData.answers,
+    risks: oldData.risks,
+    country: oldData.country,
+    multilateralCountries: oldData.multilateralCountries,
+    createdAt: timestamp,
+  }
+
+  return {
+    ...newRiskData,
+    updatedData: !oldData.updatedData ? [previousDataSnapshot] : oldData.updatedData.concat(previousDataSnapshot),
+  }
+}
+
 export default createRiskData

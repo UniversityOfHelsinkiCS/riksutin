@@ -1,9 +1,7 @@
-import type { RiskData } from '@types'
-
 import { Entry, User } from '@dbmodels'
 import logger from '../../logger'
 import scheduleCronJob from '../schedule'
-import createRiskData from '../../algorithm/riskData'
+import createRiskData, { appendHistorySnapshot } from '../../algorithm/riskData'
 import sendAlertEmail from './sendAlertEmail'
 
 export const riskReEvaluation = async (entry: Entry) => {
@@ -14,23 +12,7 @@ export const riskReEvaluation = async (entry: Entry) => {
   }
 
   const previousVersionTimestamp = entry.updatedAt?.toISOString() ?? entry.createdAt.toISOString()
-  const previousDataSnapshot = {
-    answers: entry.data.answers,
-    risks: entry.data.risks,
-    country: entry.data.country,
-    multilateralCountries: entry.data.multilateralCountries,
-    createdAt: previousVersionTimestamp,
-  }
-
-  const dataWithRecalculatedValues: RiskData = {
-    ...entry.data,
-    ...reCalculatedData,
-    updatedData: !entry.data.updatedData
-      ? new Array(previousDataSnapshot)
-      : entry.data.updatedData.concat(previousDataSnapshot),
-  }
-
-  return dataWithRecalculatedValues
+  return appendHistorySnapshot(entry.data, reCalculatedData, previousVersionTimestamp)
 }
 
 const run = async () => {

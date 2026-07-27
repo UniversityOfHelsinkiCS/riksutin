@@ -4,7 +4,7 @@ import type { EntryValues, RequestWithUser } from '@server/types'
 import z from 'zod'
 import { Entry, ControlReport, EntryStateChange } from '@dbmodels'
 import { riskReEvaluation } from '../util/cron/riskReEvaluation/riskReEvaluation'
-import createRiskData from '../util/algorithm/riskData'
+import createRiskData, { appendHistorySnapshot } from '../util/algorithm/riskData'
 import adminHandler from '../middleware/admin'
 import { createEntry, getEntries, getEntry, getUserEntries } from '../services/entry'
 import {
@@ -150,25 +150,13 @@ entryRouter.put('/:entryId', async (req: RequestWithUser, res: any) => {
   const { state: entryState, parts } = controlRaportCheck(riskData, testVersion)
   const shouldTriggerControl = entry.state == null && entryState === ENTRY_STATES.PENDING
 
-  const currentData = entry.data
-  const updatedDataArray = currentData.updatedData ?? []
-
   // Store the current state with the timestamp showing when this version was last active
   const previousVersionTimestamp = entry.updatedAt?.toISOString() ?? entry.createdAt.toISOString()
 
-  updatedDataArray.push({
-    answers: currentData.answers,
-    risks: currentData.risks,
-    country: currentData.country,
-    multilateralCountries: currentData.multilateralCountries,
-    createdAt: previousVersionTimestamp,
-  })
+  const updatedRiskData = appendHistorySnapshot(entry.data, riskData, previousVersionTimestamp)
 
   await entry.update({
-    data: {
-      ...riskData,
-      updatedData: updatedDataArray,
-    },
+    data: updatedRiskData,
     tuhatData,
     testVersion,
     ...(entry.state == null ? { state: entryState } : {}),
@@ -185,9 +173,7 @@ entryRouter.put('/:entryId', async (req: RequestWithUser, res: any) => {
     await sendPendingEntryEmail(entry.id, parts, riskData)
   }
 
-  const updatedEntry = await entry.save()
-
-  return res.status(200).send(updatedEntry.toJSON())
+  return res.status(200).send(entry.toJSON())
 })
 
 const SendEmailBodySchema = z.object({
