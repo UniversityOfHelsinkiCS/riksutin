@@ -87,7 +87,7 @@ const createCountriesList = (countries: CountryData[], results: Result[]): Count
 
 const createRiskAnalysisObject = (project: Entry, results: Result[]): RiskAnalysisData => {
   const t = i18n.getFixedT('en')
-  const data = project.data.updatedData?.find(pr => pr.createdAt === project.data.updatedData) ?? project.data
+  const { data } = project
 
   const riskWithEconomicScope = project.updatedAt.getTime() > new Date('2025-11-06T22:00:00.000Z').getTime()
   const hyMultilateral = project.data.answers['9'] === 'coordinator' && project.data.answers['4'] === 'multilateral'
