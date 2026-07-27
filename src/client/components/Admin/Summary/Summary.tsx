@@ -46,15 +46,15 @@ const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps)
   const additionalColumnNames = useMemo<TableValues>(
     () => ({
       id: 'ID',
-      date: t('userPage:tableDate') ?? undefined,
-      total: t('userPage:tableTotalRiskLevel') ?? undefined,
-      economic: t('riskTable:economicRiskLevel') ?? undefined,
-      countryRisk: t('riskTable:countryRiskLevel') ?? undefined,
-      ethical: t('riskTable:ethicalRiskLevel') ?? undefined,
-      dualUse: t('riskTable:dualUseRiskLevel') ?? undefined,
-      gdpr: t('riskTable:gdprRiskLevel') ?? undefined,
-      faculty: t('facultySelect:inputLabel') ?? undefined,
-      unit: t('unitSelect:inputLabel') ?? undefined,
+      date: t('admin:summaryDate') ?? undefined,
+      total: t('admin:summaryTotalRisk') ?? undefined,
+      economic: t('admin:summaryEconomicRisk') ?? undefined,
+      countryRisk: t('admin:summaryCountryRisk') ?? undefined,
+      ethical: t('admin:summaryEthicalRisk') ?? undefined,
+      dualUse: t('admin:summaryDualUseRisk') ?? undefined,
+      gdpr: t('admin:summaryGdprRisk') ?? undefined,
+      faculty: t('admin:summaryFaculty') ?? undefined,
+      unit: t('admin:summaryUnit') ?? undefined,
     }),
     [t]
   )
