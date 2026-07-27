@@ -169,9 +169,7 @@ const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps)
                   )}
                 </Box>
               ) : columnId === 'date' ? (
-                `${new Date(cell.getValue<string>()).toLocaleDateString('fi-FI')} ${new Date(
-                  cell.getValue<string>()
-                ).toLocaleTimeString('fi-FI')}`
+                new Date(cell.getValue<string>()).toLocaleDateString('fi-FI')
               ) : (
                 cell.getValue<number>()
               )}
