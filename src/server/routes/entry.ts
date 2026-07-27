@@ -70,9 +70,7 @@ entryRouter.get('/:entryId/update', async (req: RequestWithUser, res: any) => {
     data: updatedRisks,
   })
 
-  const updatedObject = await entry.save({ fields: ['data'] })
-
-  return res.status(200).send(updatedObject)
+  return res.status(200).send(entry)
 })
 
 entryRouter.delete('/:entryId/delete', async (req: RequestWithUser, res: any) => {
