@@ -159,6 +159,11 @@ const NavBar = () => {
                 </Grow>
               )}
             </Popper>
+            <Button variant="outlined" sx={{ marginLeft: '25px' }}>
+              <Link reloadDocument to="/api/logout/" style={{ textDecoration: 'none', color: 'inherit' }}>
+                {t('common:logout')}
+              </Link>
+            </Button>
           </Box>
         </Toolbar>
       </Container>
