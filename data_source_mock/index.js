@@ -164,3 +164,7 @@ app.listen(PORT, () => {
   console.log('BROKEN_INDICATORS', BROKEN_INDICATORS)
   console.log('BROKEN_UM', BROKEN_UM)
 })
+
+process.on('SIGTERM', () => {
+  process.exit(0)
+})
