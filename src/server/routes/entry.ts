@@ -100,8 +100,10 @@ entryRouter.post('/:surveyId/dryrun', async (req: RequestWithUser, res: any) => 
 
 entryRouter.post('/:surveyId', async (req: RequestWithUser, res: any) => {
   const { surveyId } = req.params
-  const { sessionToken, data, tuhatData, testVersion, language } = req.body
-  const userId = req.user?.id || `publicUser-${sessionToken}`
+  const { data, tuhatData, testVersion, language } = req.body
+  
+  const sessionToken = ''
+  const userId = req.user?.id
 
   const riskData = await createRiskData(data)
 
