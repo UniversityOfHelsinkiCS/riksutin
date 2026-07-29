@@ -8,7 +8,8 @@
     "admin": "Ylläpito",
     "submitError": "Tulosten lähettäminen epäonnistui, kokeile uudelleen hetken päästä",
     "updateSuccess": "Merkintä päivitetty onnistuneesti",
-    "updateError": "Merkinnän päivitys epäonnistui, yritä myöhemmin uudelleen"
+    "updateError": "Merkinnän päivitys epäonnistui, yritä myöhemmin uudelleen",
+    "logout": "Kirjaudu ulos"
   },
   "testVersion": {
     "saveAsTestForm": "Tallenna testinä (Järjestelmän ylläpito poistaa testiversiot säännöllisesti)",

@@ -9,7 +9,8 @@
     "submitError": "Failed to submit results, please try again later",
     "updateSuccess": "Entry updated successfully",
     "updateError": "Failed to update entry, please try again later",
-    "requiredText": "Required"
+    "requiredText": "Required",
+    "logout": "Log out"
   },
   "testVersion": {
     "saveAsTestForm": "Save as test (System admins will delete test versions regularly)",
