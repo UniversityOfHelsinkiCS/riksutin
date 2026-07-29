@@ -66,3 +66,9 @@ export const SENTRY_GIT_SHA = process.env.REACT_APP_GIT_SHA
 
 // Feature toggles
 export const CONTROL_REPORT_CHECK_ENABLED = process.env.REACT_APP_CONTROL_REPORT_CHECK_ENABLED === 'true'
+
+export const LOGOUT_REDIRECT_URL = inDevelopment
+  ? 'http://login.toska.localhost:3042/session/end'
+  : inProduction
+    ? 'https://login.helsinki.fi/idp/profile/Logout'
+    : 'https://login-test.it.helsinki.fi/idp/profile/Logout'

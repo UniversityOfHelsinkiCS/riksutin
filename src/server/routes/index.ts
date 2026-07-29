@@ -27,6 +27,7 @@ import myResearchApiRouter from './myResearchApi'
 import seed from '../db/seeders'
 import sendEmail from '../util/mailer'
 import { run as runStateMonitor, runCombinedReport } from '../util/cron/stateMonitor/stateMonitor'
+import logoutRouter from './logout'
 
 const router = express()
 
@@ -78,7 +79,9 @@ router.post('/debug/test-email', adminHandler, async (_, res) => {
 })
 
 router.use('/login', loginRouter)
+router.use('/logout', logoutRouter)
 router.use('/users', userRouter)
+
 router.use('/riskiapi', myResearchApiRouter)
 
 router.use(ensureAuthenticated)
@@ -96,11 +99,6 @@ router.use('/control-report-templates', controlReportTemplateRouter)
 router.use('/entries', entryRouter)
 router.use('/organizations', organizationRouter)
 router.use('/tuhatprojects', tuhatProjectsRouter)
-
-// Why are there two of them, and why is this not behind an admin middleware? Commented out for now, but will be removed if not needed
-// router.get('/explode', () => {
-//   throw new Error('Bad thing happened!')
-// })
 
 Sentry.setupExpressErrorHandler(router)
 router.use(errorHandler)
