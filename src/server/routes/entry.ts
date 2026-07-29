@@ -32,8 +32,10 @@ entryRouter.get('/', adminHandler, async (req, res) => {
     entry.data.country.forEach(country => {
       country.universities = null
     })
-    entry.Survey.title = {}
-    entry.Survey.text = {}
+    if (entry.Survey) {
+      entry.Survey.title = {}
+      entry.Survey.text = {}
+    }
   })
   return res.send(entries)
 })
@@ -101,7 +103,7 @@ entryRouter.post('/:surveyId/dryrun', async (req: RequestWithUser, res: any) => 
 entryRouter.post('/:surveyId', async (req: RequestWithUser, res: any) => {
   const { surveyId } = req.params
   const { data, tuhatData, testVersion, language } = req.body
-  
+
   const sessionToken = ''
   const userId = req.user?.id
 
