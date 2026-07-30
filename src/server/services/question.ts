@@ -151,7 +151,7 @@ export const updateQuestionPriority = async (
       },
     })
 
-    await question.update({ parentId: body.parentId, priority: body.priority })
+    await question.update({ priority: body.priority })
   }
 
   return question
