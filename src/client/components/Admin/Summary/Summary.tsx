@@ -201,7 +201,7 @@ const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps)
           ),
         }))
       : []
-  }, [tableValues, questionTitles, isOutdated, isTestVersion, getEntryState, t])
+  }, [tableValues, questionTitles, additionalColumnNames, isOutdated, isTestVersion, getEntryState, t])
 
   const columnIds = Object.keys(tableValues[0] || {})
 

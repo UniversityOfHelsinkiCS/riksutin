@@ -7,8 +7,6 @@ import LowPriorityIcon from '@mui/icons-material/LowPriority'
 import ChildCareIcon from '@mui/icons-material/ChildCare'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 
 import type { Locales, Question } from '@types'
 import { UpdatedQuestionLocation } from '@validators/questions'
@@ -58,42 +56,6 @@ const QuestionItemPositionHandles = ({ question, questions }: PositionHandleProp
     const destination = {
       parentId: question.parentId,
       priority: question.priority + 1,
-    }
-
-    // HACK:
-    handleChangePosition(destination).catch(_ => {})
-  }
-
-  const onMoveLeft = () => {
-    const parentQuestion = questions.find(q => q.id === question.parentId)
-
-    if (!parentQuestion) {
-      return
-    }
-
-    const destination = {
-      parentId: parentQuestion.parentId,
-      priority: parentQuestion.priority + 1,
-    }
-
-    // HACK:
-    handleChangePosition(destination).catch(_ => {})
-  }
-
-  const onMoveRight = () => {
-    const precedingQuestion = parentChildQuestions.find(q => q.priority === question.priority - 1)
-
-    if (!precedingQuestion) {
-      return
-    }
-
-    const precedingChilds = questions.filter(q => q.parentId === precedingQuestion.id)
-
-    const priority = precedingChilds.length >= 1 ? precedingChilds.length : 0
-
-    const destination = {
-      parentId: precedingQuestion.id,
-      priority,
     }
 
     // HACK:
