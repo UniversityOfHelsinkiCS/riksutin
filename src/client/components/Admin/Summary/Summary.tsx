@@ -108,6 +108,30 @@ const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps)
           header: questionTitles[columnId] ?? additionalColumnNames[columnId] ?? columnId,
           accessorKey: columnId,
           id: columnId,
+          size: riskColumns.includes(columnId) ? 40 : undefined,
+          muiTableHeadCellProps: {
+            sx: {
+              height: '140px',
+              verticalAlign: 'bottom',
+              ...(riskColumns.includes(columnId)
+                ? {
+                    overflow: 'visible',
+                    '& .Mui-TableHeadCell-Content': {
+                      position: 'relative',
+                      justifyContent: 'center',
+                    },
+                    '& .Mui-TableHeadCell-Content-Wrapper': {
+                      position: 'absolute',
+                      bottom: '40px',
+                      left: '10px',
+                      transform: 'rotate(-45deg)',
+                      transformOrigin: 'left bottom',
+                      whiteSpace: 'nowrap',
+                    },
+                  }
+                : undefined),
+            },
+          },
           Cell: ({ cell, row }) => (
             <Box
               component="span"
