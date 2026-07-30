@@ -113,18 +113,6 @@ const QuestionItemPositionHandles = ({ question, questions }: PositionHandleProp
           <KeyboardArrowDownIcon />
         </IconButton>
       )}
-
-      {(question.parentId ?? parentChildQuestions.length <= 1) && (
-        <IconButton size="small" onClick={onMoveLeft}>
-          <KeyboardArrowLeftIcon />
-        </IconButton>
-      )}
-
-      {question.priority > 0 && (
-        <IconButton size="small" onClick={onMoveRight}>
-          <KeyboardArrowRightIcon />
-        </IconButton>
-      )}
     </Box>
   )
 }
