@@ -65,7 +65,7 @@ const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps)
   // Initialize pagination from URL only on first render
   const [pagination, setPagination] = useState<MRT_PaginationState>(() => ({
     pageIndex: parseInt(searchParams.get('page') ?? '0', 10),
-    pageSize: parseInt(searchParams.get('pageSize') ?? '10', 10),
+    pageSize: parseInt(searchParams.get('pageSize') ?? '15', 10),
   }))
 
   // Handle pagination change from the table
