@@ -248,9 +248,12 @@ const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps)
     }${date.getFullYear()}_${date.getHours()}${date.getMinutes()}${date.getSeconds()}`
     const fileName = `risk_i_summary_${timeStamp}.xlsx`
 
-    const data = rows.map(r => Object.values(r.original))
-    const sheetData = [Object.values(questionTitles).concat(Object.values(additionalColumnNames))].concat(data)
-    const worksheet = utils.json_to_sheet(sheetData)
+    const exportKeys = Object.keys(rows[0]?.original || {}).filter(k => questionTitles[k] !== '')
+    const sheetData = [
+      exportKeys.map(k => questionTitles[k] ?? additionalColumnNames[k] ?? k),
+      ...rows.map(r => exportKeys.map(k => r.original[k])),
+    ]
+    const worksheet = utils.aoa_to_sheet(sheetData)
     const workbook = utils.book_new()
     utils.book_append_sheet(workbook, worksheet, 'Riskiarviot')
     writeFile(workbook, fileName, { compression: true })
