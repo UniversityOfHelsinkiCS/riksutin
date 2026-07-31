@@ -3,7 +3,7 @@ name: E2E Tests
 on: [workflow_call]
 
 jobs:
-  eslint:
+  oxlint:
     runs-on: ubuntu-latest
 
     steps:
@@ -11,9 +11,9 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: 24
-      - name: Build project for eslint
+      - name: Build project for oxlint
         run: npm ci
-      - name: Run eslint
+      - name: Run oxlint
         run: npm run lint
 
   playwright:
