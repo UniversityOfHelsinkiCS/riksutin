@@ -59,6 +59,8 @@
     "husky": "^8.0.3",
     "lint-staged": "^13.3.0",
     "minimist": "1.2.8",
+    "oxlint": "1.75.0",
+    "oxlint-tsgolint": "7.0.2001",
     "prettier": "^3.5.1",
     "typescript-eslint": "^8.24.0"
   },
