@@ -5,6 +5,8 @@ import type { RequestWithUser } from '@server/types'
 import { getFaculties, getUserFaculties, getEmployees, getUnits } from '../services/faculty'
 import { ensureAuthenticated } from '../middleware/user'
 
+import { get, getPermanent, setPermanent } from '../util/redis'
+
 const facultyRouter = express.Router()
 
 facultyRouter.get('/', async (req, res) => {
@@ -14,7 +16,15 @@ facultyRouter.get('/', async (req, res) => {
 })
 
 facultyRouter.get('/units', async (req, res) => {
+  let cached = await get('units')
+  cached ??= await getPermanent('units')
+
+  if (cached) {
+    return res.send(cached)
+  }
+
   const units = await getUnits()
+  await setPermanent('units', units)
 
   return res.send(units)
 })
