@@ -24,7 +24,7 @@
     "test": "npm run test --workspaces --if-present",
     "test:local": "npx playwright test",
     "test:api": "npx playwright test tests/api.spec.ts",
-    "lint": "RUST_BACKTRACE=full oxlint",
+    "lint": "oxlint",
     "format": "prettier --write \"*.{ts,tsx,json,css,md}\"",
     "build": "npm run build --workspace=client",
     "prepare": "husky install",
@@ -45,24 +45,18 @@
     ]
   },
   "devDependencies": {
-    "@eslint/js": "9.20.0",
-    "@types/eslint": "^8.4.10",
     "@types/jest": "^27.5.2",
     "@types/prettier": "^2.7.2",
     "concurrently": "^7.6.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-import-resolver-typescript": "^3.7.0",
     "eslint-plugin-prettier": "^5.2.3",
-    "eslint-plugin-react": "^7.37.4",
-    "eslint-plugin-react-hooks": "^5.1.0",
     "globals": "^17.7.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.3.0",
     "minimist": "1.2.8",
     "oxlint": "1.75.0",
     "oxlint-tsgolint": "7.0.2001",
-    "prettier": "^3.5.1",
-    "typescript-eslint": "^8.24.0"
+    "prettier": "^3.5.1"
   },
   "proxy": "http://localhost:8000",
   "lint-staged": {
