@@ -40,7 +40,7 @@ const AdminDebugView = () => {
       return
     }
     try {
-      const response = await fetch('/api/countries/cache', {
+      const response = await fetch('/api/countries/cache/flush', {
         method: 'GET',
       })
 
@@ -59,7 +59,7 @@ const AdminDebugView = () => {
       return
     }
     try {
-      const response = await fetch('/api/countries/cache?all=true', {
+      const response = await fetch('/api/countries/cache/flush?all=true', {
         method: 'GET',
       })
 
