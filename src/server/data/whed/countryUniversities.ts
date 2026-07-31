@@ -67,9 +67,7 @@ const parseHTML = (html: string): string[] => {
   const filterList = ['Sort by:', 'Results per page:']
   const universities = dom.window.document.querySelectorAll('h3')
 
-  const universityNames = [...universities]
-    .map(university => university?.textContent?.trim())
-    .filter(name => !!name) as string[]
+  const universityNames = [...universities].map(university => university?.textContent?.trim()).filter(name => !!name)
 
   const filteredUniversityNames = universityNames.filter(name => !filterList.includes(name))
 
