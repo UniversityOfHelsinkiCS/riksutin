@@ -73,6 +73,25 @@ const AdminDebugView = () => {
     }
   }
 
+  const handleCacheUnits = async () => {
+    if (!window.confirm('Are you sure you want to cache units?')) {
+      return
+    }
+    try {
+      const response = await fetch('/api/faculties/cache/flush', {
+        method: 'GET',
+      })
+
+      if (response.ok) {
+        addMessage('success', 'Units cache API called successfully')
+      } else {
+        addMessage('error', `Failed to call units cache API: ${response.statusText}`)
+      }
+    } catch (error) {
+      addMessage('error', `Error calling units cache API: ${error}`)
+    }
+  }
+
   const handleCacheHighRisk = async () => {
     if (!window.confirm('Are you sure you want to cache high risk countries?')) {
       return
@@ -304,6 +323,20 @@ const AdminDebugView = () => {
           }}
         >
           Cache Countries all=true
+        </button>
+        <button
+          onClick={handleCacheUnits}
+          style={{
+            padding: '10px 15px',
+            backgroundColor: '#198754',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            fontSize: '14px',
+          }}
+        >
+          Cache Units
         </button>
         <button
           onClick={handleCacheHighRisk}
