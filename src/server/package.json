@@ -35,7 +35,7 @@
     "react-markdown": "10.1.0",
     "rss-parser": "^3.13.0",
     "sequelize": "^6.37.8",
-    "tsx": "4.23.1",
+    "tsx": "4.23.8",
     "umzug": "^3.8.3",
     "uuid": "14.0.1",
     "winston": "^3.19.0",
