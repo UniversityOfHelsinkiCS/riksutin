@@ -52,11 +52,11 @@ app.listen(PORT, async () => {
   await setupAuthentication()
   if (inProduction) {
     startRiskCron()
+    startStateMonitorCron()
   }
   if (process.env.NODE_ENV === 'production') {
     startCountryCron()
     startCountryRiskCron()
-    startStateMonitorCron()
   }
 
   logger.info(`Server running on port ${PORT}`)
