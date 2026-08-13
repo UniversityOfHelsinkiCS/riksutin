@@ -3,7 +3,7 @@ import express from 'express'
 import type { CountryData } from '@types'
 
 import { cacheHighRiskCountries } from '../util/cron/highRiskCountries/highRiskCountries'
-import { get } from '../util/redis'
+import { getPermanent } from '../util/redis'
 import fetchSafetyLevelData from '../data/safetyLevel'
 import getCountryUniversities from '../data/whed/countryUniversities'
 import fetchSanctionsData, { cacheSanctionsData } from '../data/sanctions/sanctionsMap'
@@ -80,12 +80,12 @@ const uniqConcat = (first, second) => {
 countryRouter.get('/highrisk', async (req, res: any) => {
   const warned = await warnedCountries()
 
-  const cached = await get<
-    {
-      name: string
-      code: string
-    }[]
-  >('high_risk_countries')
+  const cached = (await getPermanent('high_risk_countries')) as
+    | {
+        name: string
+        code: string
+      }[]
+    | undefined
 
   if (cached) {
     return res.status(200).send(uniqConcat(cached, warned))
