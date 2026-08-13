@@ -22,23 +22,21 @@ const getCountryList = (allCountries, highriskCountries, type) => {
 }
 
 const RiskCountrySelect = ({ control, question, children, watch, type }: InputProps & { type: string }) => {
-  const { countries: highriskCountries } = useHighRiskCountries()
-  const { countries: allCountries } = useCountries()
+  const { countries: highriskCountries, isLoading: isHighRiskLoading } = useHighRiskCountries()
+  const { countries: allCountries, isLoading: isAllCountriesLoading } = useCountries()
   const { i18n } = useTranslation()
   const { language } = i18n
   const { t } = useTranslation()
 
-  if (!question || !highriskCountries || !allCountries || !watch) {
+  if (!question || !watch) {
     return null
   }
 
-  const countries = getCountryList(allCountries, highriskCountries, type)
+  const isLoading = isHighRiskLoading || isAllCountriesLoading || !highriskCountries || !allCountries
+
+  const countries = isLoading ? [] : getCountryList(allCountries, highriskCountries, type)
   const highRisks = watch()[26] ? watch()[26] : []
   const noRisks = watch()[28] ? watch()[28] : []
-
-  if (!question || !highriskCountries || !allCountries) {
-    return null
-  }
 
   const contriesSelected = highRisks.filter(noDefault).length + noRisks.filter(noDefault).length
 
@@ -61,6 +59,7 @@ const RiskCountrySelect = ({ control, question, children, watch, type }: InputPr
           <Box sx={{ justifyContent: 'center' }}>
             <Autocomplete
               multiple
+              loading={isLoading}
               disablePortal
               id={`select-${question.id.toString()}`}
               options={options}
