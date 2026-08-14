@@ -72,7 +72,9 @@ const sendEmail = async (
   }
 
   // Check if the email is being sent to a tester. If so, set dryrun to false
-  const acuallySendInTesting = TESTER_EMAILS.some(email => emails.some(({ to }) => to === email))
+  const testerEmails = emails.filter(email => TESTER_EMAILS.includes(email.to))
+  const acuallySendInTesting = settings.dryrun && testerEmails.length > 0
+
   if (acuallySendInTesting) {
     logger.info('Sending email to tester')
   }
@@ -83,7 +85,7 @@ const sendEmail = async (
       from: appName,
       text,
     },
-    emails,
+    emails: acuallySendInTesting ? testerEmails : emails,
     settings: acualSettings,
   }
 
