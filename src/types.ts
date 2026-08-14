@@ -186,6 +186,12 @@ export interface Result {
   id: number
   surveyId: number
   optionLabel: string
+  /**
+   * **WARNING: CONFUSING NAMING**
+   *
+   * Stores the localized text to display when the corresponding option is selected.
+   * _(Despite the name, this is not a boolean but a dictionary of translated strings. A better name would be `textWhenSelected`)._
+   */
   isSelected: Locales
   data: Record<string, Locales>
 }
