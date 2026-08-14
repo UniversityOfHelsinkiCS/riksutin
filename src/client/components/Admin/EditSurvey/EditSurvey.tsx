@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import MDEditor from '@uiw/react-md-editor'
 import { Box, Typography, Button } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { enqueueSnackbar } from 'notistack'
+import { useForm, Controller, Control } from 'react-hook-form'
 
 import type { Locales } from '@types'
 import type { Survey } from '@client/types'
@@ -10,36 +11,8 @@ import { UpdatedSurveyInfo } from '@validators/survey'
 
 import { useEditSurveyMutation } from '../../../hooks/useSurveyMutation'
 
-const SurveyItem = ({ language, survey }: { language: keyof Locales; survey: Survey }) => {
+const SurveyItem = ({ language, control }: { language: keyof Locales; control: Control<UpdatedSurveyInfo> }) => {
   const { t } = useTranslation()
-  const mutation = useEditSurveyMutation()
-  const [surveyTitle, setSurveyTitle] = useState<string | undefined>(survey.title[language])
-  const [surveyText, setSurveyText] = useState<string | undefined>(survey.text[language])
-
-  useEffect(() => {
-    setSurveyTitle(survey.title[language])
-    setSurveyText(survey.text[language])
-  }, [language, survey])
-
-  const handleSave = async () => {
-    const updatedSurveyInfo: UpdatedSurveyInfo = {
-      title: {
-        ...survey.title,
-        [language]: surveyTitle,
-      },
-      text: {
-        ...survey.text,
-        [language]: surveyText,
-      },
-    } as UpdatedSurveyInfo
-
-    try {
-      await mutation.mutateAsync(updatedSurveyInfo)
-      enqueueSnackbar(t('admin:saveSuccess'), { variant: 'success' })
-    } catch (error: any) {
-      enqueueSnackbar(error.message, { variant: 'error' })
-    }
-  }
 
   return (
     <Box
@@ -58,21 +31,63 @@ const SurveyItem = ({ language, survey }: { language: keyof Locales; survey: Sur
           {t('admin:surveyText')}
           <Typography sx={{ ml: 1 }}>{language}</Typography>
         </Typography>
-        <MDEditor data-color-mode="light" height={400} value={surveyText} onChange={setSurveyText} />
+        <Controller
+          name={`text.${language}`}
+          control={control}
+          render={({ field: { value, onChange } }) => (
+            <MDEditor data-color-mode="light" height={400} value={value} onChange={onChange} />
+          )}
+        />
       </Box>
-
-      <Button variant="outlined" onClick={handleSave}>
-        {t('admin:save')}
-      </Button>
     </Box>
   )
 }
 
-const EditSurvey = ({ language, survey }: { language: keyof Locales; survey: Survey }) => (
-  <Box sx={{ display: 'flex' }}>
-    <SurveyItem language={'fi'} survey={survey} />
-    <SurveyItem language={language} survey={survey} />
-  </Box>
-)
+const EditSurvey = ({ language, survey }: { language: keyof Locales; survey: Survey }) => {
+  const { t } = useTranslation()
+  const mutation = useEditSurveyMutation()
+
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { isDirty },
+  } = useForm<UpdatedSurveyInfo>({
+    defaultValues: {
+      title: survey.title,
+      text: survey.text,
+    },
+  })
+
+  useEffect(() => {
+    reset({
+      title: survey.title,
+      text: survey.text,
+    })
+  }, [survey, reset])
+
+  const onSubmit = async (data: UpdatedSurveyInfo) => {
+    try {
+      await mutation.mutateAsync(data)
+      enqueueSnackbar(t('admin:saveSuccess'), { variant: 'success' })
+    } catch (error: any) {
+      enqueueSnackbar(error.message, { variant: 'error' })
+    }
+  }
+
+  return (
+    <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+      <Box sx={{ display: 'flex' }}>
+        <SurveyItem language="fi" control={control} />
+        <SurveyItem language={language} control={control} />
+      </Box>
+      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2, mb: 4 }}>
+        <Button variant="contained" disabled={!isDirty} type="submit">
+          {t('admin:save')}
+        </Button>
+      </Box>
+    </Box>
+  )
+}
 
 export default EditSurvey
