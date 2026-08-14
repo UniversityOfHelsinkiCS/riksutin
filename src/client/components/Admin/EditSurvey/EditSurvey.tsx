@@ -70,6 +70,7 @@ const EditSurvey = ({ language, survey }: { language: keyof Locales; survey: Sur
     try {
       await mutation.mutateAsync(data)
       enqueueSnackbar(t('admin:saveSuccess'), { variant: 'success' })
+      reset(data)
     } catch (error: any) {
       enqueueSnackbar(error.message, { variant: 'error' })
     }
