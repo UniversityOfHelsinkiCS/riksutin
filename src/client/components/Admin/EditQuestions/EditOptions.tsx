@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import MDEditor from '@uiw/react-md-editor'
 import { Box, Typography, Button } from '@mui/material'
 import { useTranslation } from 'react-i18next'
@@ -97,12 +96,11 @@ const EditOptions = ({
     reset,
     formState: { isDirty },
   } = useForm<OptionUpdates>({
-    defaultValues,
+    values: defaultValues,
+    resetOptions: {
+      keepDirtyValues: true,
+    },
   })
-
-  useEffect(() => {
-    reset(defaultValues)
-  }, [option, reset])
 
   const onSubmit = async (data: OptionUpdates) => {
     try {

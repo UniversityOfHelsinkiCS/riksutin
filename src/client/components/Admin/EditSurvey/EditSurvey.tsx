@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import MDEditor from '@uiw/react-md-editor'
 import { Box, Typography, Button } from '@mui/material'
 import { useTranslation } from 'react-i18next'
@@ -53,18 +52,14 @@ const EditSurvey = ({ language, survey }: { language: keyof Locales; survey: Sur
     reset,
     formState: { isDirty },
   } = useForm<UpdatedSurveyInfo>({
-    defaultValues: {
+    values: {
       title: survey.title,
       text: survey.text,
+    } as UpdatedSurveyInfo,
+    resetOptions: {
+      keepDirtyValues: true,
     },
   })
-
-  useEffect(() => {
-    reset({
-      title: survey.title,
-      text: survey.text,
-    })
-  }, [survey, reset])
 
   const onSubmit = async (data: UpdatedSurveyInfo) => {
     try {

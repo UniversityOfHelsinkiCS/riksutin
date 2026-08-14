@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import MDEditor from '@uiw/react-md-editor'
 import { Box, Typography, Button } from '@mui/material'
 import { useTranslation } from 'react-i18next'
@@ -81,18 +81,14 @@ const EditQuestion = ({
     reset,
     formState: { isDirty },
   } = useForm<UpdatedQuestion>({
-    defaultValues: {
+    values: {
       title: question.title,
       text: question.text,
+    } as UpdatedQuestion,
+    resetOptions: {
+      keepDirtyValues: true,
     },
   })
-
-  useEffect(() => {
-    reset({
-      title: question.title,
-      text: question.text,
-    })
-  }, [question, reset])
 
   const handleDelete = async () => {
     try {
