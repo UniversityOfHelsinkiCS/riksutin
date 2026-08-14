@@ -285,6 +285,7 @@ const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps)
     },
     initialState: {
       columnVisibility: { id: false, ...initialColumnVisibility },
+      showColumnFilters: true,
     },
     renderRowActions: ({ row }) => (
       <IconButton onClick={() => handleDeleteRiskAssessment(row)}>
