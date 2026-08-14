@@ -3,6 +3,7 @@ import MDEditor from '@uiw/react-md-editor'
 import { Box, Typography, Button } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { enqueueSnackbar } from 'notistack'
+import { useForm, Controller, Control } from 'react-hook-form'
 
 import type { Locales, Question } from '@types'
 import { UpdatedQuestion } from '@validators/questions'
@@ -11,36 +12,8 @@ import { useDeleteQuestionMutation, useEditQuestionMutation } from '../../../hoo
 
 import DeleteDialog from '../DeleteDialog'
 
-const QuestionItem = ({ language, question }: { language: keyof Locales; question: Question }) => {
+const QuestionItem = ({ language, control }: { language: keyof Locales; control: Control<UpdatedQuestion> }) => {
   const { t } = useTranslation()
-  const mutation = useEditQuestionMutation(question.id)
-  const [questionTitle, setQuestionTitle] = useState<string | undefined>(question.title[language])
-  const [questionText, setQuestionText] = useState<string | undefined>(question.text[language])
-
-  useEffect(() => {
-    setQuestionTitle(question.title[language])
-    setQuestionText(question.text[language])
-  }, [language, question])
-
-  const handleSave = async () => {
-    const updatedQuestion: UpdatedQuestion = {
-      title: {
-        ...question.title,
-        [language]: questionTitle,
-      },
-      text: {
-        ...question.text,
-        [language]: questionText,
-      },
-    } as UpdatedQuestion
-
-    try {
-      await mutation.mutateAsync(updatedQuestion)
-      enqueueSnackbar(t('admin:saveSuccess'), { variant: 'success' })
-    } catch (error: any) {
-      enqueueSnackbar(error.message, { variant: 'error' })
-    }
-  }
 
   return (
     <Box
@@ -60,7 +33,13 @@ const QuestionItem = ({ language, question }: { language: keyof Locales; questio
           {t('admin:questionTitle')}
           <Typography sx={{ ml: 1 }}>{language}</Typography>
         </Typography>
-        <MDEditor data-color-mode="light" height={200} value={questionTitle} onChange={setQuestionTitle} />
+        <Controller
+          name={`title.${language}`}
+          control={control}
+          render={({ field: { value, onChange } }) => (
+            <MDEditor data-color-mode="light" height={200} value={value} onChange={onChange} />
+          )}
+        />
       </Box>
 
       <Box sx={{ mb: 2 }}>
@@ -68,12 +47,14 @@ const QuestionItem = ({ language, question }: { language: keyof Locales; questio
           {t('admin:questionText')}
           <Typography sx={{ ml: 1 }}>{language}</Typography>
         </Typography>
-        <MDEditor data-color-mode="light" height={400} value={questionText} onChange={setQuestionText} />
+        <Controller
+          name={`text.${language}`}
+          control={control}
+          render={({ field: { value, onChange } }) => (
+            <MDEditor data-color-mode="light" height={400} value={value} onChange={onChange} />
+          )}
+        />
       </Box>
-
-      <Button variant="outlined" onClick={handleSave}>
-        {t('admin:save')}
-      </Button>
     </Box>
   )
 }
@@ -89,13 +70,33 @@ const EditQuestion = ({
 }) => {
   const { t, i18n } = useTranslation()
   const [openAlert, setOpenAlert] = useState(false)
-  const mutation = useDeleteQuestionMutation(question.id)
+  const deleteMutation = useDeleteQuestionMutation(question.id)
+  const editMutation = useEditQuestionMutation(question.id)
 
   const selectedLanguage = i18n.language
 
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { isDirty },
+  } = useForm<UpdatedQuestion>({
+    defaultValues: {
+      title: question.title,
+      text: question.text,
+    },
+  })
+
+  useEffect(() => {
+    reset({
+      title: question.title,
+      text: question.text,
+    })
+  }, [question, reset])
+
   const handleDelete = async () => {
     try {
-      await mutation.mutateAsync()
+      await deleteMutation.mutateAsync()
       enqueueSnackbar(t('admin:deleteSuccess'), { variant: 'success' })
       setOpenAlert(false)
       onDelete('') // callback to reset the selected question ID
@@ -104,8 +105,18 @@ const EditQuestion = ({
     }
   }
 
+  const onSubmit = async (data: UpdatedQuestion) => {
+    try {
+      await editMutation.mutateAsync(data)
+      enqueueSnackbar(t('admin:saveSuccess'), { variant: 'success' })
+      reset(data)
+    } catch (error: any) {
+      enqueueSnackbar(error.message, { variant: 'error' })
+    }
+  }
+
   return (
-    <>
+    <Box component="form" onSubmit={handleSubmit(onSubmit)}>
       <Button
         sx={{
           ml: 4,
@@ -128,11 +139,16 @@ const EditQuestion = ({
         setOpen={setOpenAlert}
         onSubmit={handleDelete}
       />
-      <Box sx={{ mb: 5, display: 'flex' }}>
-        <QuestionItem language={'fi'} question={question} />
-        <QuestionItem language={language} question={question} />
+      <Box sx={{ display: 'flex' }}>
+        <QuestionItem language={'fi'} control={control} />
+        <QuestionItem language={language} control={control} />
       </Box>
-    </>
+      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2, mb: 4 }}>
+        <Button variant="contained" disabled={!isDirty} type="submit">
+          {t('admin:save')}
+        </Button>
+      </Box>
+    </Box>
   )
 }
 
