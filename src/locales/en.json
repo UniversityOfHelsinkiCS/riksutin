@@ -31,6 +31,7 @@
     "infoMessage": "Information about the owner's unit's guidelines"
   },
   "tuhatProjectNotFound": {
+    "loading": "Loading...",
     "defineProjectOwner": "Please, fill Project owner field to enable the project options."
   },
   "tuhatProjectExists": {

@@ -30,6 +30,7 @@
     "infoMessage": "Tietoa yksikkösi ohjeistuksesta"
   },
   "tuhatProjectNotFound": {
+    "loading": "Ladataan...",
     "defineProjectOwner": "Täytä Projektin omistaja -kenttä ensin saadaksesi projektivaihtoehdot näkyviin."
   },
   "tuhatProjectExists": {
