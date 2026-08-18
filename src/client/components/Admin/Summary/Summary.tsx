@@ -115,14 +115,14 @@ const Table = ({ tableValues, questionTitles, isOutdated, entries }: TableProps)
               verticalAlign: 'bottom',
               ...(riskColumns.includes(columnId)
                 ? {
-                    overflow: 'visible',
+                    position: 'relative',
                     '& .Mui-TableHeadCell-Content': {
-                      position: 'relative',
+                      position: 'static',
                       justifyContent: 'center',
                     },
                     '& .Mui-TableHeadCell-Content-Wrapper': {
                       position: 'absolute',
-                      bottom: '40px',
+                      bottom: '50px',
                       left: '10px',
                       transform: 'rotate(-45deg)',
                       transformOrigin: 'left bottom',
