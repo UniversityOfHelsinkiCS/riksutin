@@ -1,13 +1,7 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": [
-    "typescript",
-    "react",
-    "unicorn"
-  ],
-  "jsPlugins": [
-    "eslint-plugin-prettier"
-  ],
+  "plugins": ["typescript", "react", "unicorn"],
+  "jsPlugins": ["eslint-plugin-prettier"],
   "categories": {
     "correctness": "off"
   },
@@ -24,14 +18,7 @@
       "version": "18.2"
     }
   },
-  "ignorePatterns": [
-    "eslint.config.mjs",
-    "scripts/",
-    "vite.config.ts",
-    "**/build/",
-    "**/dist/",
-    "**/node_modules/"
-  ],
+  "ignorePatterns": ["eslint.config.mjs", "scripts/", "vite.config.ts", "**/build/", "**/dist/", "**/node_modules/"],
   "rules": {
     "constructor-super": "error",
     "for-direction": "error",
@@ -127,10 +114,7 @@
     ],
     "no-promise-executor-return": "error",
     "no-return-assign": "error",
-    "object-shorthand": [
-      "error",
-      "always"
-    ],
+    "object-shorthand": ["error", "always"],
     "prefer-const": "error",
     "prefer-destructuring": [
       "error",
@@ -147,18 +131,12 @@
         "unnamedComponents": "arrow-function"
       }
     ],
-    "react/jsx-boolean-value": [
-      "error",
-      "never"
-    ],
+    "react/jsx-boolean-value": ["error", "never"],
     "react/jsx-filename-extension": [
       "error",
       {
         "allow": "as-needed",
-        "extensions": [
-          ".jsx",
-          ".tsx"
-        ]
+        "extensions": [".jsx", ".tsx"]
       }
     ],
     "react/no-array-index-key": "error",
@@ -222,12 +200,7 @@
   },
   "overrides": [
     {
-      "files": [
-        "**/*.ts",
-        "**/*.tsx",
-        "**/*.mts",
-        "**/*.cts"
-      ],
+      "files": ["**/*.ts", "**/*.tsx", "**/*.mts", "**/*.cts"],
       "rules": {
         "constructor-super": "off",
         "getter-return": "off",
@@ -251,9 +224,7 @@
       }
     },
     {
-      "files": [
-        "**/*.{js,jsx}"
-      ],
+      "files": ["**/*.{js,jsx}"],
       "rules": {
         "typescript/await-thenable": "off",
         "typescript/consistent-return": "off",
@@ -307,9 +278,7 @@
       }
     },
     {
-      "files": [
-        "src/server/**/*.{js,ts}"
-      ],
+      "files": ["src/server/**/*.{js,ts}"],
       "rules": {
         "no-await-in-loop": "off",
         "no-param-reassign": "off",
