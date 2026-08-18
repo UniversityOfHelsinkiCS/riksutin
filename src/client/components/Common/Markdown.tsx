@@ -1,4 +1,4 @@
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdown, { Components } from 'react-markdown'
 import remarkBreaks from 'remark-breaks'
 import { Link, Typography } from '@mui/material'
 
@@ -24,10 +24,11 @@ const defaultComponents = {
 }
 
 interface MarkdownProps {
-  children: string
+  children?: string | null
+  components?: Components
 }
 
-const Markdown = ({ children, ...props }: MarkdownProps) => {
+const Markdown = ({ children, components, ...props }: MarkdownProps) => {
   if (!children) {
     return null
   }
@@ -36,7 +37,7 @@ const Markdown = ({ children, ...props }: MarkdownProps) => {
   const content = children.replace(/\n/gi, '&nbsp; \n')
 
   return (
-    <ReactMarkdown remarkPlugins={[remarkBreaks]} components={{ ...defaultComponents }} {...props}>
+    <ReactMarkdown remarkPlugins={[remarkBreaks]} components={{ ...defaultComponents, ...components }} {...props}>
       {content}
     </ReactMarkdown>
   )

@@ -11,6 +11,7 @@ import MultiChoice from '../QuestionTypes/MultiChoice'
 import SingleChoice from '../QuestionTypes/SingleChoice'
 import Text from '../QuestionTypes/Text'
 import ShowMore from '../Common/ShowMore'
+import Markdown from '../Common/Markdown'
 
 import styles from '../../styles'
 import useCountries from '../../hooks/useCountries'
@@ -44,17 +45,20 @@ const QuestionText = ({
     return null
   }
 
+  const titleText =
+    question.id === 8 && watch('4') === 'multilateral'
+      ? t('questions:additionalPartnerOrganisationCountryQuestion')
+      : question.id === 6 && watch('4') === 'multilateral'
+        ? t('questions:additionalPartnerOrganisationTypeQuestion')
+        : question.title[language]
+
   return (
     <>
       <Typography component="span" sx={{ color: 'red' }}>
         {![1, 7, 26, 28, 29, 30].includes(question.id) && '* '}
       </Typography>
       <Typography component="span">
-        {question.id === 8 && watch('4') === 'multilateral'
-          ? t('questions:additionalPartnerOrganisationCountryQuestion')
-          : question.id === 6 && watch('4') === 'multilateral'
-            ? t('questions:additionalPartnerOrganisationTypeQuestion')
-            : question.title[language]}
+        <Markdown components={{ p: 'span' }}>{titleText}</Markdown>
         {question.text[language] && <ShowMore text={question.text[language]} />}
       </Typography>
     </>
