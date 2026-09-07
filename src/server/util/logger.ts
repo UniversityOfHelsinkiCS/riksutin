@@ -5,7 +5,7 @@ import { inProduction } from '@config'
 
 const { combine, timestamp, printf, splat } = winston.format
 
-const LOKI_HOST = 'loki-svc.toska-lokki.svc.cluster.local:3100'
+const LOKI_HOST = 'http://loki-svc.toska-lokki.svc.cluster.local:3100'
 
 const transports: winston.transport[] = []
 
