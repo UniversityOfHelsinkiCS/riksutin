@@ -24,7 +24,9 @@ const App = () => {
     return null
   }
 
-  const hasAccess = user?.iamGroups?.some((group: string) => ['hy-employees', 'grp-hyplus-kaikki'].includes(group))
+  const hasAccess = user?.iamGroups?.some((group: string) =>
+    ['hy-employees', 'grp-hyplus-kaikki', 'grp-riski-tmp'].includes(group)
+  )
 
   if (!hasAccess) {
     return (
