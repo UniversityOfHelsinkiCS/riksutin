@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios'
 
-import { inProduction, appName } from '@config'
+import { inProduction, inStaging, appName } from '@config'
 import { PATE_URL, TESTER_EMAILS } from '@userconfig'
 import logger from '../../src/server/util/logger'
 import FormData from 'form-data'
@@ -55,7 +55,9 @@ const sendEmail = async (
   subject: string,
   attachment: { filename: string; content: Buffer } | null = null
 ) => {
-  const emails: EmailData[] = targets.map(to => ({ to, subject }))
+  const acualSubject = inStaging ? `[STAGING] ${subject}` : subject
+
+  const emails: EmailData[] = targets.map(to => ({ to, subject: acualSubject }))
 
   if (attachment) {
     logger.info('Sending: ' + attachment.filename)
