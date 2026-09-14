@@ -21,11 +21,12 @@ import styles from '../../styles'
 import { noDefault, NO_SELECTION } from '../../util/multilataral'
 import { isEntryStateLocked, isEntryExpired } from '@common/entryStates'
 
-const EditEntry = () => {
+const EditEntry = ({ isAdminView = false }: { isAdminView?: boolean }) => {
   const { entryId } = useParams<{ entryId: string }>()
   const { entry, isLoading: entryLoading } = useEntry(entryId)
   const { survey, isLoading } = useSurvey()
   const navigate = useNavigate()
+  const entryPath = isAdminView ? `/admin/entry/${entryId}` : `/user/${entryId}`
   const { results } = useResults(survey?.id)
   const { t } = useTranslation()
   const mutation = useUpdateEntryMutation(entryId)
@@ -68,11 +69,11 @@ const EditEntry = () => {
       const isStateLocked = isEntryStateLocked(entry.state)
       const isExpired = isEntryExpired(entry.createdAt)
 
-      if (isStateLocked || isExpired) {
+      if (!isAdminView && (isStateLocked || isExpired)) {
         enqueueSnackbar(isStateLocked ? t('editEntry:entryLockedError') : t('editEntry:entryExpiredError'), {
           variant: 'error',
         })
-        navigate(`/user/${entryId}`)
+        navigate(entryPath)
         return
       }
 
@@ -92,7 +93,7 @@ const EditEntry = () => {
       reset(values, { keepDefaultValues: false })
       hasResetRef.current = true
     }
-  }, [entry, entryLoading, navigate, entryId, t, reset])
+  }, [entry, entryLoading, navigate, entryPath, isAdminView, t, reset])
 
   // Wait for entry to load - must be after all hooks
   if (!survey || isLoading || !results || !entry || entryLoading) {
@@ -136,7 +137,7 @@ const EditEntry = () => {
       await mutation.mutateAsync(submittedData)
       sessionStorage.clear()
       enqueueSnackbar(t('common:updateSuccess'), { variant: 'success' })
-      navigate(`/user/${entryId}`)
+      navigate(entryPath)
       window.scrollTo(0, 0)
     } catch (error) {
       // eslint-disable-next-line no-console

@@ -135,14 +135,19 @@ entryRouter.put('/:entryId', async (req: RequestWithUser, res: any) => {
     return res.status(404).send('Entry not found')
   }
 
-  if (entry.userId !== userId && entry.ownerId !== userId) {
+  const isAdmin = Boolean(req.user?.isAdmin)
+
+  if (!isAdmin && entry.userId !== userId && entry.ownerId !== userId) {
     throw new Error('Unauthorized: You can only edit your own entries')
   }
 
-  const isStateLocked = isEntryStateLocked(entry.state)
-  const isExpired = isEntryExpired(entry.createdAt)
-  if (isStateLocked || isExpired) {
-    return res.status(403).send('Entry is locked or expired and cannot be edited')
+  // admins can also edit entries that are locked by their state or expired
+  if (!isAdmin) {
+    const isStateLocked = isEntryStateLocked(entry.state)
+    const isExpired = isEntryExpired(entry.createdAt)
+    if (isStateLocked || isExpired) {
+      return res.status(403).send('Entry is locked or expired and cannot be edited')
+    }
   }
 
   const riskData = await createRiskData(data)

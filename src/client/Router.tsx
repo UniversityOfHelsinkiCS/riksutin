@@ -65,7 +65,11 @@ const router = createBrowserRouter(
             },
             {
               path: 'entry/:entryId',
-              element: <UserEntry />,
+              element: <UserEntry isAdminView />,
+            },
+            {
+              path: 'entry/:entryId/edit',
+              element: <EditEntry isAdminView />,
             },
             {
               path: 'edit-survey',

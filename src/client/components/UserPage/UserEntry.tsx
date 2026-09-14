@@ -14,7 +14,7 @@ import {
 } from '@mui/material'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { enqueueSnackbar } from 'notistack'
 import { CONTROL_REPORT_CHECK_ENABLED } from '@config'
@@ -64,7 +64,7 @@ const TabPanel = (props: TabPanelProps) => {
   )
 }
 
-const UserEntry = () => {
+const UserEntry = ({ isAdminView = false }: { isAdminView?: boolean }) => {
   const { entryId } = useParams()
   const { survey } = useSurvey()
   const { entry, refetch } = useEntry(entryId)
@@ -72,8 +72,6 @@ const UserEntry = () => {
   const [setPendingConfirmOpen, setSetPendingConfirmOpen] = useState(false)
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const location = useLocation()
-  const isAdminView = location.pathname.startsWith('/admin')
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue)
@@ -134,6 +132,11 @@ const UserEntry = () => {
                   {t('userPage:backButton')}
                 </Button>
               </Link>
+            )}
+            {isAdminView && tabValue === 0 && (
+              <Button variant="outlined" component={Link} to={`/admin/entry/${entryId}/edit`} data-testid="edit-button">
+                {t('userPage:editEntry')}
+              </Button>
             )}
             {!isAdminView &&
               tabValue === 0 &&
