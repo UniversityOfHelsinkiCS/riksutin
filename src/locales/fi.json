@@ -17,7 +17,9 @@
     "saveAsTestFormVerification": "Oletko varma, että haluat tallentaa testiversion? Ylläpito poistaa säännöllisesti testiversiot tietokannasta."
   },
   "footer": {
-    "contactSupport": "Ota yhteyttä tukeen: <mailTo>{{supportEmail}}</mailTo>"
+    "contactSupport": "Ota yhteyttä tukeen: <mailTo>{{supportEmail}}</mailTo>",
+    "dataProtection": "Tietosuoja",
+    "dataProtectionUrl": "https://www.helsinki.fi/fi/tutustu-meihin/tietojen-kasittely-yliopistolla/tietosuoja"
   },
   "facultySelect": {
     "title": "Lomakkeen täyttäjän tiedekunta",

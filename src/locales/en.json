@@ -18,7 +18,9 @@
     "saveAsTestFormVerification": "Are you certain you want to save a test version only? System administration deletes test versions reugularly."
   },
   "footer": {
-    "contactSupport": "Contact support: <mailTo>{{supportEmail}}</mailTo>"
+    "contactSupport": "Contact support: <mailTo>{{supportEmail}}</mailTo>",
+    "dataProtection": "Data protection",
+    "dataProtectionUrl": "https://www.helsinki.fi/en/about-us/processing-data-university/data-protection"
   },
   "facultySelect": {
     "title": "Faculty of the person providing information",

@@ -20,7 +20,7 @@ const Footer = () => {
       })}
     >
       <Box sx={footerStyles.supportBox}>
-        <Box>
+        <Box sx={footerStyles.linkBox}>
           <Typography>
             <Trans
               i18nKey="footer:contactSupport"
@@ -29,6 +29,18 @@ const Footer = () => {
                 mailTo: <Link href={`mailto:${supportEmail}`} underline="hover" color="toskaPrimary.main" />,
               }}
             />
+          </Typography>
+
+          <Typography>
+            <Link
+              href={_('footer:dataProtectionUrl') as string}
+              target="_blank"
+              rel="noopener"
+              underline="hover"
+              color="toskaPrimary.main"
+            >
+              {_('footer:dataProtection')}
+            </Link>
           </Typography>
         </Box>
 

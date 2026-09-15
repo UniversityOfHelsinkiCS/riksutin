@@ -216,6 +216,13 @@ const footerStyles = {
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  linkBox: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    columnGap: '2rem',
+    rowGap: '0.5rem',
+  },
   imageBox: {
     display: 'flex',
     flexDirection: 'column',
