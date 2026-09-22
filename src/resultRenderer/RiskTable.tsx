@@ -19,12 +19,14 @@ const RiskTable = ({
   countryData,
   results,
   warnings,
+  pdfVersion,
 }: {
   riskData: RiskData
   countryData: CountryData
   countries: any
   results: any
   warnings: any
+  pdfVersion: boolean
 }) => {
   const { Div, Typography, TableContainer, Table, TableBody, TableRow, TableCell, t, language } = useComponents()
   const totalRisk = riskData.risks.find(risk => risk.id === 'total')
@@ -132,6 +134,7 @@ const RiskTable = ({
                     countries={results}
                     warnings={warnings}
                     results={results}
+                    pdfVersion={pdfVersion}
                   />
                 </>
               )}

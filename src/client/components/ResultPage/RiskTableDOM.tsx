@@ -21,6 +21,7 @@ const RiskTableDOM = ({ riskData, countryData }: { riskData: RiskData; countryDa
       riskData={riskData}
       results={results}
       warnings={warnings}
+      pdfVersion={false}
     />
   )
 }

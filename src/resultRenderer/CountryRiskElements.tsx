@@ -60,12 +60,14 @@ const CountryRiskElements = ({
   countryData,
   countries,
   results,
+  pdfVersion,
   warnings,
 }: {
   riskData: RiskData
   countryData: CountryData
   countries: any
   results: any
+  pdfVersion: boolean
   warnings: any
 }) => {
   const { TableRow, TableCell, Typography, Div, t, language } = useComponents()
@@ -120,7 +122,9 @@ const CountryRiskElements = ({
                   </Typography>
                 </Typography>
                 <Typography style={{ paddingBottom: 12 }}>{t(riskShownFor)}</Typography>
-                {multilateralCountyNames.length > 1 && <MultilateralRiskModal riskData={riskData} results={results} />}
+                {multilateralCountyNames.length > 1 && !pdfVersion && (
+                  <MultilateralRiskModal riskData={riskData} results={results} />
+                )}
               </Div>
             </TableCell>
           </TableRow>

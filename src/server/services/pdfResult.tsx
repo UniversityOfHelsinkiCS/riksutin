@@ -160,6 +160,7 @@ const ResultDocument = ({
               riskData={entry}
               results={results}
               warnings={warnings}
+              pdfVersion
             />
             <View style={{ padding: '10px' }} />
             <RenderAnswers survey={survey} resultData={resultData} faculties={faculties} units={units} />
