@@ -265,7 +265,15 @@
     "country": "Valtio",
     "WarningInFinnish": "Varoitus suomeksi",
     "WarningInEnglish": "Varoitus englanniksi",
-    "ExpiryDate": "Päättymispäivä"
+    "ExpiryDate": "Päättymispäivä",
+    "warningAddNew": "Lisää uusi varoitus",
+    "warningEdit": "Muokkaa varoitusta",
+    "warningNotFound": "Maakohtaisia varoituksia ei ole lisätty",
+    "warningExpired": "Vanhentunut",
+    "warningFieldRequired": "Pakollinen kenttä",
+    "warningExpiryDateHelp": "Valinnainen. Jätä tyhjäksi, jos varoitus ei vanhene.",
+    "warningRemoveInfo": "Poista varoitus",
+    "warningRemoveContent": "Vahvista, että haluat poistaa varoituksen maalle {{country}}."
   },
   "email": {
     "subject": "Riskiraportti",

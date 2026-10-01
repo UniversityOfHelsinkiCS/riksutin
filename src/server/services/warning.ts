@@ -34,8 +34,6 @@ export const createWarning = async (newWarningValues: Warning): Promise<Warning>
       en: newWarningValues.text.en,
     },
     expiry_date: newWarningValues.expiry_date ? new Date(newWarningValues.expiry_date) : undefined,
-    createdAt: new Date(newWarningValues.createdAt),
-    updatedAt: new Date(newWarningValues.updatedAt),
   })
   return newWarning
 }

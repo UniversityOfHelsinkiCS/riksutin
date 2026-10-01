@@ -8,8 +8,8 @@ class Warning extends Model<InferAttributes<Warning>, InferCreationAttributes<Wa
   declare country: string
   declare text: Locales
   declare expiry_date: CreationOptional<Date>
-  declare updatedAt: Date
-  declare createdAt: Date
+  declare updatedAt: CreationOptional<Date>
+  declare createdAt: CreationOptional<Date>
 }
 
 Warning.init(

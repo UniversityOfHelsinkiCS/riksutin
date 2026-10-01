@@ -19,7 +19,7 @@ import NotFound from './components/Errors/NotFound'
 import RenderEditResults from './components/Admin/EditResults/RenderEditResults'
 import EditResults from './components/Admin/EditResults/EditResults'
 
-import RenderMainWarningsPage from './components/Admin/Warnings'
+import Warnings from './components/Admin/Warnings'
 import ControlReportTemplates from './components/Admin/ControlReportTemplates'
 
 const router = createBrowserRouter(
@@ -97,7 +97,7 @@ const router = createBrowserRouter(
             },
             {
               path: 'warnings',
-              element: <RenderMainWarningsPage />,
+              element: <Warnings />,
             },
             {
               path: 'control-report-templates',

@@ -189,7 +189,7 @@
     "confirm": "Confirm",
     "cancel": "Cancel",
     "edit": "Edit",
-    "delete": "Poista",
+    "delete": "Delete",
     "move": "Move",
     "send": "Send",
     "close": "Close",
@@ -266,7 +266,15 @@
     "country": "Country",
     "WarningInFinnish": "Warning in Finnish",
     "WarningInEnglish": "Warning in English",
-    "ExpiryDate": "Expiry date"
+    "ExpiryDate": "Expiry date",
+    "warningAddNew": "Add new warning",
+    "warningEdit": "Edit warning",
+    "warningNotFound": "No country warnings have been added",
+    "warningExpired": "Expired",
+    "warningFieldRequired": "Required field",
+    "warningExpiryDateHelp": "Optional. Leave empty if the warning does not expire.",
+    "warningRemoveInfo": "Delete warning",
+    "warningRemoveContent": "Confirm that you want to delete the warning for {{country}}."
   },
   "email": {
     "subject": "Risk assessment results",
