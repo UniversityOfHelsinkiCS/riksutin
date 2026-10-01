@@ -28,7 +28,7 @@ export const UpdatedWarningZod = z.object({
     fi: z.string().nonempty(),
     en: z.string().nonempty(),
   }),
-  expiry_date: z.string().optional(),
+  expiry_date: z.string().nullish(),
   updatedAt: z.string(),
   createdAt: z.string(),
 })

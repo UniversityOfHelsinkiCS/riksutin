@@ -13,7 +13,7 @@ const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt, setNewI
   const [newCountry, setNewCountry] = useState(countryName)
   const [newFiText, setNewFiText] = useState(text.fi)
   const [newEnText, setNewEnText] = useState(text.en)
-  const [newExpiryDate, setNewExpiryDate] = useState(expiryDate)
+  const [newExpiryDate, setNewExpiryDate] = useState(expiryDate ?? '')
 
   const [showEditWarningForm, setShowEditWarningForm] = useState(false)
   const { t } = useTranslation()
@@ -36,7 +36,7 @@ const EditWarningForm = ({ countryName, text, expiryDate, id, createdAt, setNewI
         fi: newFiText,
         en: newEnText,
       },
-      expiry_date: newExpiryDate,
+      expiry_date: newExpiryDate === '' ? null : newExpiryDate,
       updatedAt: String(new Date()),
       createdAt,
     }
