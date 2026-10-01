@@ -10,6 +10,8 @@ import { UpdatedSurveyInfo } from '@validators/survey'
 
 import { useEditSurveyMutation } from '../../../hooks/useSurveyMutation'
 
+import UpdatedAt from '../UpdatedAt'
+
 const SurveyItem = ({ language, control }: { language: keyof Locales; control: Control<UpdatedSurveyInfo> }) => {
   const { t } = useTranslation()
 
@@ -73,6 +75,7 @@ const EditSurvey = ({ language, survey }: { language: keyof Locales; survey: Sur
 
   return (
     <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+      <UpdatedAt updatedAt={survey.updatedAt} />
       <Box sx={{ display: 'flex' }}>
         <SurveyItem language="fi" control={control} />
         <SurveyItem language={language} control={control} />

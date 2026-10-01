@@ -25,11 +25,18 @@ export const useCreateResultMutation = () => {
 }
 
 export const useEditResultMutation = (resultId: number) => {
+  const { survey } = useSurvey()
+
   const mutationFn = async (data: UpdatedResult) => {
     await apiClient.put(`/results/${resultId}`, data)
   }
 
-  const mutation = useMutation(mutationFn)
+  const mutation = useMutation(mutationFn, {
+    onSuccess: () =>
+      queryClient.invalidateQueries({
+        queryKey: ['results', survey?.id],
+      }),
+  })
 
   return mutation
 }

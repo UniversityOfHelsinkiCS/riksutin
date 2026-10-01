@@ -116,6 +116,7 @@ export const updateQuestionPriority = async (
             [Op.between]: [body.priority, question.priority],
           },
         },
+        silent: true,
       })
     } else {
       await Question.decrement('priority', {
@@ -126,10 +127,11 @@ export const updateQuestionPriority = async (
             [Op.between]: [question.priority, body.priority],
           },
         },
+        silent: true,
       })
     }
 
-    await question.update({ priority: body.priority })
+    await question.update({ priority: body.priority }, { silent: true })
   } else {
     await Question.decrement('priority', {
       by: 1,
@@ -139,6 +141,7 @@ export const updateQuestionPriority = async (
           [Op.gt]: question.priority,
         },
       },
+      silent: true,
     })
 
     await Question.increment('priority', {
@@ -149,9 +152,10 @@ export const updateQuestionPriority = async (
           [Op.gte]: body.priority,
         },
       },
+      silent: true,
     })
 
-    await question.update({ priority: body.priority })
+    await question.update({ priority: body.priority }, { silent: true })
   }
 
   return question

@@ -30,6 +30,8 @@ import { CONTROL_REPORT_TEMPLATE_LANGUAGES, CONTROL_REPORT_TEMPLATE_RISKS } from
 import { ControlReportTemplate, NewControlReportTemplate } from '@types'
 import apiClient from '../../../util/apiClient'
 
+import UpdatedAt from '../UpdatedAt'
+
 const EMPTY_TEMPLATE: NewControlReportTemplate = {
   name: '',
   risks: ['riskComponent:total'],
@@ -183,6 +185,7 @@ const ControlReportTemplates = () => {
                       <Typography variant="body2" sx={{ whiteSpace: 'pre-wrap' }}>
                         {template.text}
                       </Typography>
+                      <UpdatedAt updatedAt={template.updatedAt} createdAt={template.createdAt} sx={{ mt: 1 }} />
                     </Box>
                     <Box>
                       <IconButton size="small" onClick={() => openEditDialog(template)}>

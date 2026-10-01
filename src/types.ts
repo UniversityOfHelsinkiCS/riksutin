@@ -194,6 +194,8 @@ export interface Result {
    */
   isSelected: Locales
   data: Record<string, Locales>
+  createdAt?: string
+  updatedAt?: string
 }
 
 export interface Risk {
@@ -239,6 +241,8 @@ export interface Question {
   text: Locales
   optionData: OptionData
   visibility: Visibility
+  createdAt?: string
+  updatedAt?: string
 }
 
 /** List of question selection id's that controls the visibility of a tool */

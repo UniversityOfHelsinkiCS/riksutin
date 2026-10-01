@@ -10,11 +10,10 @@ import type { Warning } from '@types'
 
 import useCountries from '../../../hooks/useCountries'
 import { useDeleteWarning, useWarnings } from '../../../hooks/useWarnings'
+import { formatDate, formatDateTime } from '../../../util/formatDate'
 import Markdown from '../../Common/Markdown'
 import DeleteDialog from '../DeleteDialog'
 import WarningDialog from './WarningDialog'
-
-const formatDate = (date: string) => new Date(date).toLocaleDateString('fi-FI')
 
 const isExpired = (warning: Warning) => !!warning.expiry_date && new Date(warning.expiry_date) < new Date()
 
@@ -99,8 +98,8 @@ const Warnings = () => {
 
               <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
                 {t('admin:expire')}: {warning.expiry_date ? formatDate(warning.expiry_date) : '–'} ·{' '}
-                {t('admin:updated')}: {formatDate(warning.updatedAt)} · {t('admin:created')}:{' '}
-                {formatDate(warning.createdAt)}
+                {t('admin:updated')}: {formatDateTime(warning.updatedAt)} · {t('admin:created')}:{' '}
+                {formatDateTime(warning.createdAt)}
               </Typography>
             </CardContent>
             <CardActions sx={{ px: 2, pb: 2 }}>

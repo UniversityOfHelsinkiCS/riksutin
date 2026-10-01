@@ -9,6 +9,8 @@ import { UpdatedResult } from '@validators/results'
 
 import { useEditResultMutation } from '../../../hooks/useResultMutation'
 
+import UpdatedAt from '../UpdatedAt'
+
 const ResultItem = ({ language, control }: { language: keyof Locales; control: Control<UpdatedResult> }) => {
   return (
     <Box
@@ -67,6 +69,7 @@ const EditResult = ({ language, result }: { language: keyof Locales; result: Res
 
   return (
     <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+      <UpdatedAt updatedAt={result.updatedAt} />
       <Box sx={{ display: 'flex' }}>
         <ResultItem language="fi" control={control} />
         <ResultItem language={language} control={control} />

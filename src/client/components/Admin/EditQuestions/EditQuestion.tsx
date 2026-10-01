@@ -11,6 +11,7 @@ import { UpdatedQuestion } from '@validators/questions'
 import { useDeleteQuestionMutation, useEditQuestionMutation } from '../../../hooks/useQuestionMutation'
 
 import DeleteDialog from '../DeleteDialog'
+import UpdatedAt from '../UpdatedAt'
 
 const QuestionItem = ({ language, control }: { language: keyof Locales; control: Control<UpdatedQuestion> }) => {
   const { t } = useTranslation()
@@ -135,6 +136,7 @@ const EditQuestion = ({
         setOpen={setOpenAlert}
         onSubmit={handleDelete}
       />
+      <UpdatedAt updatedAt={question.updatedAt} />
       <Box sx={{ display: 'flex' }}>
         <QuestionItem language={'fi'} control={control} />
         <QuestionItem language={language} control={control} />
