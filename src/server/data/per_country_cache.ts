@@ -23,7 +23,6 @@ export const buildIndividualCountryCaches = async () => {
   }
 
   for (const code of codes) {
-    console.log(code)
     const country = countries.find(country => country.iso2Code === code)
 
     const safetyOk = await cacheSafetyLevel(code)
