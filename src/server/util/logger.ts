@@ -8,14 +8,12 @@ const { combine, timestamp, printf, splat } = winston.format
 const LOKI_HOST = 'http://loki-svc.toska-lokki.svc.cluster.local:3100'
 
 const transports: winston.transport[] = []
-
-transports.push(new winston.transports.File({ filename: 'debug.log' }))
-
 if (!inProduction) {
-  const devFormat = printf(({ level, message, timestamp: time, ...rest }) => {
+  transports.push(new winston.transports.File({ filename: 'debug.log' }))
+  const devFormat = printf(({ level, message, timestamp: time, ...meta }) => {
     let restStr = ''
     try {
-      restStr = JSON.stringify(rest)
+      restStr = JSON.stringify(meta)
     } catch (_) {
       restStr = '[unserializable]'
     }
@@ -39,22 +37,19 @@ if (!inProduction) {
     silly: 6,
   }
 
-  const prodFormat = winston.format.printf(({ level, ...rest }) => {
-    let message: string
-    try {
-      message = JSON.stringify({
-        level: levels[level],
-        ...rest,
-      })
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.error(rest)
-      return ''
+  const prodFormat = printf(({ level, message, timestamp, ...meta }) => {
+    let logMessage = `${timestamp} ${levels[level]}: ${message}`
+    if (Object.keys(meta ?? {}).length > 0) {
+      logMessage = `${logMessage} ${JSON.stringify(meta)}`
     }
-    return message
+    return logMessage
   })
 
-  transports.push(new winston.transports.Console({ format: prodFormat }))
+  transports.push(
+    new winston.transports.Console({
+      format: combine(timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }), prodFormat),
+    })
+  )
 
   transports.push(
     new LokiTransport({
