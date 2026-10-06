@@ -54,8 +54,8 @@
     "husky": "^8.0.3",
     "lint-staged": "^13.3.0",
     "minimist": "1.2.8",
-    "oxlint": "1.75.0",
-    "oxlint-tsgolint": "7.0.2001",
+    "oxlint": "1.87.0",
+    "oxlint-tsgolint": "7.0.2003",
     "prettier": "^3.5.1"
   },
   "proxy": "http://localhost:8000",
