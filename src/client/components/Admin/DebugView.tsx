@@ -1,13 +1,57 @@
 /* eslint-disable no-alert */
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+
+// in the order "Refresh all" runs them: high risk is calculated from the data before it
+const CACHES = [
+  {
+    title: 'Units',
+    description: 'University finance units from gw.api.helsinki.fi.',
+    url: '/api/faculties/cache/flush',
+  },
+  {
+    title: 'Countries',
+    description: 'World Bank country list and EU sanctions (sanctionsmap.eu).',
+    url: '/api/countries/cache/flush',
+  },
+  {
+    title: 'Per-country data',
+    description:
+      'Travel safety level (um.fi) and universities (whed.net) for every country. Takes several minutes, shows the countries that failed.',
+    url: '/api/countries/cache/debug',
+  },
+  {
+    title: 'High risk countries',
+    description:
+      'Recalculated from the cached data above, fetches nothing. Run this after refreshing Countries or Per-country data.',
+    url: '/api/countries/cache/highrisk',
+  },
+]
+
+const cellStyle = { borderBottom: '1px solid #ddd', padding: '12px 8px', textAlign: 'left' as const }
+
+const cacheButtonStyle = {
+  padding: '6px 12px',
+  backgroundColor: '#198754',
+  color: 'white',
+  border: 'none',
+  borderRadius: '4px',
+  cursor: 'pointer',
+  fontSize: '14px',
+}
 
 const AdminDebugView = () => {
   const [messages, setMessages] = useState<{ type: 'success' | 'error'; text: string; timestamp: number }[]>([])
 
   const addMessage = (type: 'success' | 'error', text: string) => {
     const newMessage = { type, text, timestamp: Date.now() }
-    setMessages(prev => [newMessage, ...prev].slice(0, 10))
+    setMessages(prev => [...prev, newMessage].slice(-10))
   }
+
+  // keep the newest message in view
+  const messagesRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    messagesRef.current?.scrollTo({ top: messagesRef.current.scrollHeight })
+  }, [messages])
   const handleExplode = async () => {
     if (!window.confirm('Are you sure you want to call the explode API?')) {
       return
@@ -35,99 +79,40 @@ const AdminDebugView = () => {
     throw new Error('frontti paskana')
   }
 
-  const handleCacheCountries = async () => {
-    if (!window.confirm('Are you sure you want to cache countries?')) {
-      return
-    }
+  const refreshCache = async ({ title, url }: (typeof CACHES)[number]) => {
     try {
-      const response = await fetch('/api/countries/cache/flush', {
-        method: 'GET',
-      })
+      const response = await fetch(url, { method: 'GET' })
+      const body = await response.text()
 
       if (response.ok) {
-        addMessage('success', 'Countries cache API called successfully')
+        addMessage('success', `${title} refreshed: ${body}`)
       } else {
-        addMessage('error', `Failed to call countries cache API: ${response.statusText}`)
+        addMessage('error', `Failed to refresh ${title}: ${response.statusText}`)
       }
+      return response.ok
     } catch (error) {
-      addMessage('error', `Error calling countries cache API: ${error}`)
+      addMessage('error', `Error refreshing ${title}: ${error}`)
+      return false
     }
   }
 
-  const handleCacheCountriesAll = async () => {
-    if (!window.confirm('Are you sure you want to cache all countries? This may take a while.')) {
+  const handleRefreshCache = async (cache: (typeof CACHES)[number]) => {
+    if (!window.confirm(`Refresh ${cache.title} now?`)) {
       return
     }
-    try {
-      const response = await fetch('/api/countries/cache/flush?all=true', {
-        method: 'GET',
-      })
-
-      if (response.ok) {
-        addMessage('success', 'Countries cache all API called successfully')
-      } else {
-        addMessage('error', `Failed to call countries cache all API: ${response.statusText}`)
-      }
-    } catch (error) {
-      addMessage('error', `Error calling countries cache all API: ${error}`)
-    }
+    await refreshCache(cache)
   }
 
-  const handleCacheUnits = async () => {
-    if (!window.confirm('Are you sure you want to cache units?')) {
+  const handleRefreshAll = async () => {
+    if (!window.confirm('Refresh all caches now? This takes several minutes.')) {
       return
     }
-    try {
-      const response = await fetch('/api/faculties/cache/flush', {
-        method: 'GET',
-      })
-
-      if (response.ok) {
-        addMessage('success', 'Units cache API called successfully')
-      } else {
-        addMessage('error', `Failed to call units cache API: ${response.statusText}`)
+    for (const cache of CACHES) {
+      // one at a time on purpose, high risk is calculated from the data refreshed before it
+      // eslint-disable-next-line no-await-in-loop
+      if (!(await refreshCache(cache))) {
+        return
       }
-    } catch (error) {
-      addMessage('error', `Error calling units cache API: ${error}`)
-    }
-  }
-
-  const handleCacheHighRisk = async () => {
-    if (!window.confirm('Are you sure you want to cache high risk countries?')) {
-      return
-    }
-    try {
-      const response = await fetch('/api/countries/cache/highrisk', {
-        method: 'GET',
-      })
-
-      if (response.ok) {
-        addMessage('success', 'High risk countries cache API called successfully')
-      } else {
-        addMessage('error', `Failed to call high risk countries cache API: ${response.statusText}`)
-      }
-    } catch (error) {
-      addMessage('error', `Error calling high risk countries cache API: ${error}`)
-    }
-  }
-
-  const handleCacheDebug = async () => {
-    if (!window.confirm('Are you sure you want to run cache debug?')) {
-      return
-    }
-    try {
-      const response = await fetch('/api/countries/cache/debug', {
-        method: 'GET',
-      })
-
-      if (response.ok) {
-        const result = await response.json()
-        addMessage('success', `Countries cache debug API called successfully. Result: ${JSON.stringify(result)}`)
-      } else {
-        addMessage('error', `Failed to call countries cache debug API: ${response.statusText}`)
-      }
-    } catch (error) {
-      addMessage('error', `Error calling countries cache debug API: ${error}`)
     }
   }
 
@@ -199,13 +184,14 @@ const AdminDebugView = () => {
   }
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <h2>Acual admin view</h2>
 
       {messages.length > 0 && (
-        <div style={{ marginBottom: '20px' }}>
+        <div style={{ marginBottom: '20px', alignSelf: 'stretch' }}>
           <h3>Messages:</h3>
           <div
+            ref={messagesRef}
             style={{
               maxHeight: '200px',
               overflowY: 'auto',
@@ -296,77 +282,6 @@ const AdminDebugView = () => {
           Frontend chaos monkey
         </button>
         <button
-          onClick={handleCacheCountries}
-          style={{
-            padding: '10px 15px',
-            backgroundColor: '#198754',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            fontSize: '14px',
-            marginTop: 20,
-          }}
-        >
-          Cache Countries
-        </button>
-        <button
-          onClick={handleCacheCountriesAll}
-          style={{
-            padding: '10px 15px',
-            backgroundColor: '#0d6efd',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            fontSize: '14px',
-          }}
-        >
-          Cache Countries all=true
-        </button>
-        <button
-          onClick={handleCacheUnits}
-          style={{
-            padding: '10px 15px',
-            backgroundColor: '#198754',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            fontSize: '14px',
-          }}
-        >
-          Cache Units
-        </button>
-        <button
-          onClick={handleCacheHighRisk}
-          style={{
-            padding: '10px 15px',
-            backgroundColor: '#6f42c1',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            fontSize: '14px',
-          }}
-        >
-          Cache High Risk Countries
-        </button>
-        <button
-          onClick={handleCacheDebug}
-          style={{
-            padding: '10px 15px',
-            backgroundColor: '#6c757d',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            fontSize: '14px',
-          }}
-        >
-          Cache Debug
-        </button>
-        <button
           onClick={handleStateMonitor}
           style={{
             padding: '10px 15px',
@@ -410,6 +325,36 @@ const AdminDebugView = () => {
         >
           Send Test Email
         </button>
+      </div>
+
+      <div style={{ width: '100%', maxWidth: 760, marginTop: 50 }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
+          <div>
+            <h3 style={{ margin: 0 }}>Cached data</h3>
+            <p style={{ margin: '6px 0 0', fontSize: 14, color: '#666' }}>
+              Refreshed automatically in production: high risk countries on Mondays at 18:00, everything else on Fridays
+              at 18:15.
+            </p>
+          </div>
+          <button onClick={handleRefreshAll} style={{ ...cacheButtonStyle, whiteSpace: 'nowrap' }}>
+            Refresh all
+          </button>
+        </div>
+        <table style={{ borderCollapse: 'collapse', width: '100%', marginTop: 16, fontSize: 14 }}>
+          <tbody>
+            {CACHES.map(cache => (
+              <tr key={cache.title}>
+                <td style={{ ...cellStyle, fontWeight: 600, whiteSpace: 'nowrap' }}>{cache.title}</td>
+                <td style={{ ...cellStyle, color: '#444' }}>{cache.description}</td>
+                <td style={{ ...cellStyle, textAlign: 'right' }}>
+                  <button onClick={() => handleRefreshCache(cache)} style={cacheButtonStyle}>
+                    Refresh
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   )
