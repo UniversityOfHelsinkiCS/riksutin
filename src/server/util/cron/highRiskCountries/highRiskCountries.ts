@@ -1,5 +1,4 @@
 import logger from '../../logger'
-import scheduleCronJob from '../schedule'
 import { getCountryData } from '../../../routes/country'
 import { setPermanent } from '../../redis'
 import { getCountries } from '../../../services/countries'
@@ -40,11 +39,3 @@ export const cacheHighRiskCountries = async () => {
   await setPermanent('high_risk_countries', highRiskCountries)
   return highRiskCountries
 }
-
-const startCountryCron = () => {
-  const cronTime = '0 18 * * 1'
-  logger.info('Cron job scheduled')
-  return scheduleCronJob(cronTime, cacheHighRiskCountries)
-}
-
-export default startCountryCron

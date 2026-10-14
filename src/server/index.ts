@@ -15,8 +15,7 @@ import setupAuthentication from './util/authentication'
 import { connectToDatabase } from './db/connection'
 import seed from './db/seeders'
 import startRiskCron from './util/cron/riskReEvaluation/riskReEvaluation'
-import startCountryCron from './util/cron/highRiskCountries/highRiskCountries'
-import startCountryRiskCron from './util/cron/countryRisks'
+import startCacheCron from './util/cron/cache'
 import startStateMonitorCron from './util/cron/stateMonitor/stateMonitor'
 
 const app = express()
@@ -55,8 +54,7 @@ app.listen(PORT, async () => {
     startStateMonitorCron()
   }
   if (process.env.NODE_ENV === 'production') {
-    startCountryCron()
-    startCountryRiskCron()
+    startCacheCron()
   }
 
   logger.info(`Server running on port ${PORT}`)
