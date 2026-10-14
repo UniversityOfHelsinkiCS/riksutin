@@ -10,6 +10,7 @@ import {
   getOrganisationEmployeeData,
   getUserOrganisations,
 } from '../util/organisations'
+import { setPermanent } from '../util/redis'
 
 export const getUnits = async (): Promise<FacultyOrUnit[]> => {
   if (inDevelopment || inE2EMode) {
@@ -19,6 +20,16 @@ export const getUnits = async (): Promise<FacultyOrUnit[]> => {
   const unitData = (await getUnitData()) || []
 
   return unitData.map(({ code, name }) => ({ code, name }))
+}
+
+export const cacheUnits = async () => {
+  const units = await getUnits()
+  // don't overwrite a good cache with an empty list if the upstream call failed
+  if (units.length > 0) {
+    await setPermanent('units', units)
+  }
+
+  return units
 }
 
 export const getFaculties = async (): Promise<FacultyOrUnit[]> => {

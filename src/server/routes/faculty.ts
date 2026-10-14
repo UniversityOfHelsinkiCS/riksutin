@@ -2,17 +2,16 @@ import express from 'express'
 
 import type { RequestWithUser } from '@server/types'
 
-import { getFaculties, getUserFaculties, getEmployees, getUnits } from '../services/faculty'
+import { getFaculties, getUserFaculties, getEmployees, cacheUnits } from '../services/faculty'
 import { ensureAuthenticated } from '../middleware/user'
 
 import adminHandler from '../middleware/admin'
-import { get, getPermanent, setPermanent } from '../util/redis'
+import { get, getPermanent } from '../util/redis'
 
 const facultyRouter = express.Router()
 
 facultyRouter.get('/cache/flush', adminHandler, async (req, res) => {
-  const units = await getUnits()
-  await setPermanent('units', units)
+  await cacheUnits()
 
   return res.status(200).send({ status: 'OK' })
 })
@@ -31,8 +30,7 @@ facultyRouter.get('/units', async (req, res) => {
     return res.send(cached)
   }
 
-  const units = await getUnits()
-  await setPermanent('units', units)
+  const units = await cacheUnits()
 
   return res.send(units)
 })
