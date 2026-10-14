@@ -123,11 +123,6 @@ countryRouter.get('/:code/new', async (req, res) => {
 countryRouter.get('/cache/flush', adminHandler, async (req, res) => {
   await cacheSanctionsData()
   await cacheCountryData()
-  await cacheHighRiskCountries()
-
-  if (req.query.all === 'true') {
-    await buildIndividualCountryCaches()
-  }
 
   return res.status(200).send({ status: 'OK' })
 })
