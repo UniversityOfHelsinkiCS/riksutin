@@ -3,7 +3,6 @@
 Riksutin (officially known as **Risk-i** or **International collaboration risk assessment application**) is a tool created for researchers and staff of University of Helsinki who are planning a project that includes collaboration with organisations, such as universities, from other countries.
 
 ## Development
-
 - Install npm, docker and docker compose
 - Clone the repository
 - Copy `.env.template` as `.env` file and fill in the required values
