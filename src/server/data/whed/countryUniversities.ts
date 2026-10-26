@@ -22,7 +22,54 @@ const normalizeCountryName = (countryName: string) => {
   if (countryName === 'Taiwan') {
     return 'China - Taiwan'
   }
-
+  if (countryName === "Korea, Dem. People's Rep.") {
+    return "Korea (Democratic People's Republic of)"
+  }
+  if (countryName === 'Korea, Rep.') {
+    return 'Korea (Republic of)'
+  }
+  if (countryName === 'Congo, Dem. Rep.') {
+    return 'Congo (Democratic Republic)'
+  }
+  if (countryName === 'Congo, Rep.') {
+    return 'Congo'
+  }
+  if (countryName === 'Bahamas, The') {
+    return 'Bahamas'
+  }
+  if (countryName === 'Bolivia') {
+    return 'Bolivia (Plurinational State of)'
+  }
+  if (countryName === 'Venezuela, RB') {
+    return 'Venezuela (Bolivarian Republic of)'
+  }
+  if (countryName === 'Yemen, Rep.') {
+    return 'Yemen'
+  }
+  if (countryName === 'Viet Nam') {
+    return 'Vietnam'
+  }
+  if (countryName === 'Egypt, Arab rep.') {
+    return 'Egypt'
+  }
+  if (countryName === 'Gambia, The') {
+    return 'Gambia (The)'
+  }
+  if (countryName === 'Iran, Islamic Rep.') {
+    return 'Iran (Islamic Republic of)'
+  }
+  if (countryName === 'Kyrgyz Republic') {
+    return 'Kyrgyzstan)'
+  }
+  if (countryName === 'Lao PDR') {
+    return "Lao People's Democratic Republic"
+  }
+  if (countryName === 'Puerto Rico') {
+    return 'United States of America - Puerto Rico'
+  }
+  if (countryName === 'Virgin Islands') {
+    return 'United States of America - Virgin Islands'
+  }
   return countryName
 }
 
