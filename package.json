@@ -52,18 +52,10 @@
     "eslint-plugin-prettier": "^5.2.3",
     "globals": "^17.7.0",
     "husky": "^8.0.3",
-    "lint-staged": "^13.3.0",
     "minimist": "1.2.8",
     "oxlint": "1.75.0",
     "oxlint-tsgolint": "7.0.2001",
     "prettier": "^3.5.1"
-  },
-  "proxy": "http://localhost:8000",
-  "lint-staged": {
-    "*.{js,ts,tsx}": [
-      "npm run lint",
-      "prettier --write"
-    ],
-    "*.{json,css,md}": "prettier --write"
-  }
+      },
+  "proxy": "http://localhost:8000"
 }

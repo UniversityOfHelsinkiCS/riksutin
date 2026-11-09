@@ -38,6 +38,11 @@ export default defineConfig({
     },
   },
   define: {
-    'process.env': process.env,
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+    'process.env.ORGANISATION_ID': JSON.stringify(process.env.ORGANISATION_ID),
+    'process.env.PUBLIC_URL': JSON.stringify(process.env.PUBLIC_URL),
+    'process.env.DEFAULT_SURVEY_NAME': JSON.stringify(process.env.DEFAULT_SURVEY_NAME),
+    'process.env.REACT_APP_E2E': JSON.stringify(process.env.REACT_APP_E2E),
+    'process.env.REACT_APP_CONTROL_REPORT_CHECK_ENABLED': JSON.stringify(process.env.REACT_APP_CONTROL_REPORT_CHECK_ENABLED),
   },
 })
