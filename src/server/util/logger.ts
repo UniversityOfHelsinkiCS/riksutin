@@ -9,7 +9,6 @@ const LOKI_HOST = 'http://loki-svc.toska-lokki.svc.cluster.local:3100'
 
 const transports: winston.transport[] = []
 if (!inProduction) {
-  transports.push(new winston.transports.File({ filename: 'debug.log' }))
   const devFormat = printf(({ level, message, timestamp: time, ...meta }) => {
     let restStr = ''
     try {
