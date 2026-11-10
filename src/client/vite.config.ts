@@ -43,6 +43,7 @@ export default defineConfig({
     'process.env.PUBLIC_URL': JSON.stringify(process.env.PUBLIC_URL),
     'process.env.DEFAULT_SURVEY_NAME': JSON.stringify(process.env.DEFAULT_SURVEY_NAME),
     'process.env.REACT_APP_E2E': JSON.stringify(process.env.REACT_APP_E2E),
+    'process.env.REACT_APP_STAGING': JSON.stringify(process.env.REACT_APP_STAGING),
     'process.env.REACT_APP_CONTROL_REPORT_CHECK_ENABLED': JSON.stringify(
       process.env.REACT_APP_CONTROL_REPORT_CHECK_ENABLED
     ),
