@@ -1,6 +1,6 @@
 FROM node:24-alpine
 
-ENV TZ="Europe/Helsinki"
+ENV TZ=Europe/Helsinki
 
 WORKDIR /opt/app-root/src
 
