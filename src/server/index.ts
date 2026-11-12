@@ -32,8 +32,8 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use(['/api', '/public/api'], (req, res, next) => router(req, res, next))
-app.use(['/api', '/public/api'], (_, res) => res.sendStatus(404))
+app.use('/api', (req, res, next) => router(req, res, next))
+app.use('/api', (_, res) => res.sendStatus(404))
 
 if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'test') {
   const DIST_PATH = path.resolve(dirname(fileURLToPath(import.meta.url)), '../../dist')
