@@ -21,7 +21,7 @@ const isFirstMondayOfMonth = (): boolean => {
   return now.getDay() === 1 && now.getDate() <= 7
 }
 
-const entryLink = (entryId: number): string => `https://${APP_URL}/admin/entries/${entryId}`
+const entryLink = (entryId: number): string => `https://${APP_URL}/admin/entry/${entryId}`
 
 const formatEntryLine = (entry: Entry): string => {
   const projectName: string = entry.data?.answers?.[3] ?? `Entry #${entry.id}`
